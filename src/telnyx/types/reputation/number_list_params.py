@@ -27,6 +27,3 @@ class NumberListParams(TypedDict, total=False):
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
-
-    phone_number: str
-    """Filter by specific phone number (E.164 format)."""

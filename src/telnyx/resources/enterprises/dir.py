@@ -183,7 +183,6 @@ class DirResource(SyncAPIResource):
         | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search: str | Omit = omit,
         sort: Literal[
             "created_at",
             "-created_at",
@@ -199,19 +198,6 @@ class DirResource(SyncAPIResource):
             "-verified_at",
             "expiring_at",
             "-expiring_at",
-        ]
-        | Omit = omit,
-        status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -252,13 +238,9 @@ class DirResource(SyncAPIResource):
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name`.
-
           sort: Sort field. Allowed: `created_at`, `updated_at`, `display_name`, `status`,
               `submitted_at`, `verified_at`, `expiring_at`. Prefix with `-` for descending.
               Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -288,9 +270,7 @@ class DirResource(SyncAPIResource):
                         "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),
@@ -455,7 +435,6 @@ class AsyncDirResource(AsyncAPIResource):
         | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search: str | Omit = omit,
         sort: Literal[
             "created_at",
             "-created_at",
@@ -471,19 +450,6 @@ class AsyncDirResource(AsyncAPIResource):
             "-verified_at",
             "expiring_at",
             "-expiring_at",
-        ]
-        | Omit = omit,
-        status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -524,13 +490,9 @@ class AsyncDirResource(AsyncAPIResource):
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name`.
-
           sort: Sort field. Allowed: `created_at`, `updated_at`, `display_name`, `status`,
               `submitted_at`, `verified_at`, `expiring_at`. Prefix with `-` for descending.
               Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -560,9 +522,7 @@ class AsyncDirResource(AsyncAPIResource):
                         "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),

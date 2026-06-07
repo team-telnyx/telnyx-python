@@ -62,9 +62,6 @@ class DirListParams(TypedDict, total=False):
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
 
-    search: str
-    """Case-insensitive partial match on `display_name`."""
-
     sort: Literal[
         "created_at",
         "-created_at",
@@ -87,17 +84,3 @@ class DirListParams(TypedDict, total=False):
     `verified_at`, `expiring_at`. Prefix with `-` for descending. Default
     `-created_at`.
     """
-
-    status: Literal[
-        "draft",
-        "submitted",
-        "in_review",
-        "verified",
-        "rejected",
-        "unsuccessful",
-        "suspended",
-        "expired",
-        "infringement_claimed",
-        "permanently_rejected",
-    ]
-    """Filter by DIR status."""

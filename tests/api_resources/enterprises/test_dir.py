@@ -130,9 +130,7 @@ class TestDir:
             filter_status="draft",
             page_number=1,
             page_size=20,
-            search="search",
             sort="created_at",
-            status="draft",
         )
         assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
 
@@ -287,9 +285,7 @@ class TestAsyncDir:
             filter_status="draft",
             page_number=1,
             page_size=20,
-            search="search",
             sort="created_at",
-            status="draft",
         )
         assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
 
