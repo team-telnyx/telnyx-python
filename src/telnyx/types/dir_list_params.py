@@ -12,9 +12,6 @@ __all__ = ["DirListParams"]
 
 
 class DirListParams(TypedDict, total=False):
-    enterprise_id: str
-    """Restrict results to a single enterprise."""
-
     filter_call_reason_contains: Annotated[str, PropertyInfo(alias="filter[call_reason][contains]")]
     """Case-insensitive partial match on call reason."""
 
@@ -63,9 +60,6 @@ class DirListParams(TypedDict, total=False):
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
 
-    search: str
-    """Case-insensitive partial match on `display_name` or call reason."""
-
     sort: Literal[
         "created_at", "-created_at", "updated_at", "-updated_at", "display_name", "-display_name", "status", "-status"
     ]
@@ -74,17 +68,3 @@ class DirListParams(TypedDict, total=False):
     Allowed values: `created_at`, `updated_at`, `display_name`, `status`. Prefix
     with `-` for descending. Default `-created_at`.
     """
-
-    status: Literal[
-        "draft",
-        "submitted",
-        "in_review",
-        "verified",
-        "rejected",
-        "unsuccessful",
-        "suspended",
-        "expired",
-        "infringement_claimed",
-        "permanently_rejected",
-    ]
-    """Filter by DIR status."""

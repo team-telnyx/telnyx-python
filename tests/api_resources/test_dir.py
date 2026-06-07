@@ -135,7 +135,6 @@ class TestDir:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         dir = client.dir.list(
-            enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter_call_reason_contains="filter[call_reason][contains]",
             filter_display_name_contains="filter[display_name][contains]",
             filter_enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -144,9 +143,7 @@ class TestDir:
             filter_status="draft",
             page_number=1,
             page_size=20,
-            search="search",
             sort="created_at",
-            status="draft",
         )
         assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
 
@@ -535,7 +532,6 @@ class TestAsyncDir:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         dir = await async_client.dir.list(
-            enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter_call_reason_contains="filter[call_reason][contains]",
             filter_display_name_contains="filter[display_name][contains]",
             filter_enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -544,9 +540,7 @@ class TestAsyncDir:
             filter_status="draft",
             page_number=1,
             page_size=20,
-            search="search",
             sort="created_at",
-            status="draft",
         )
         assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
 

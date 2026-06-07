@@ -87,7 +87,6 @@ class TestNumbers:
             filter_phone_number_eq="+16035551234",
             page_number=1,
             page_size=20,
-            phone_number="+16035551234",
         )
         assert_matches_type(SyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
 
@@ -227,7 +226,6 @@ class TestAsyncNumbers:
             filter_phone_number_eq="+16035551234",
             page_number=1,
             page_size=20,
-            phone_number="+16035551234",
         )
         assert_matches_type(AsyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
 

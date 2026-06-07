@@ -95,7 +95,6 @@ class NumbersResource(SyncAPIResource):
         filter_phone_number_eq: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,8 +117,6 @@ class NumbersResource(SyncAPIResource):
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
-
-          phone_number: Filter by specific phone number (E.164 format).
 
           extra_headers: Send extra headers
 
@@ -144,7 +141,6 @@ class NumbersResource(SyncAPIResource):
                         "filter_phone_number_eq": filter_phone_number_eq,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "phone_number": phone_number,
                     },
                     number_list_params.NumberListParams,
                 ),
@@ -260,7 +256,6 @@ class AsyncNumbersResource(AsyncAPIResource):
         filter_phone_number_eq: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        phone_number: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -283,8 +278,6 @@ class AsyncNumbersResource(AsyncAPIResource):
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
-
-          phone_number: Filter by specific phone number (E.164 format).
 
           extra_headers: Send extra headers
 
@@ -309,7 +302,6 @@ class AsyncNumbersResource(AsyncAPIResource):
                         "filter_phone_number_eq": filter_phone_number_eq,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "phone_number": phone_number,
                     },
                     number_list_params.NumberListParams,
                 ),

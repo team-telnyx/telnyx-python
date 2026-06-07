@@ -210,7 +210,6 @@ class DirResource(SyncAPIResource):
     def list(
         self,
         *,
-        enterprise_id: str | Omit = omit,
         filter_call_reason_contains: str | Omit = omit,
         filter_display_name_contains: str | Omit = omit,
         filter_enterprise_id: str | Omit = omit,
@@ -231,7 +230,6 @@ class DirResource(SyncAPIResource):
         | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search: str | Omit = omit,
         sort: Literal[
             "created_at",
             "-created_at",
@@ -241,19 +239,6 @@ class DirResource(SyncAPIResource):
             "-display_name",
             "status",
             "-status",
-        ]
-        | Omit = omit,
-        status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -274,8 +259,6 @@ class DirResource(SyncAPIResource):
         default `-created_at`).
 
         Args:
-          enterprise_id: Restrict results to a single enterprise.
-
           filter_call_reason_contains: Case-insensitive partial match on call reason.
 
           filter_display_name_contains: Case-insensitive partial match on display name.
@@ -293,12 +276,8 @@ class DirResource(SyncAPIResource):
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name` or call reason.
-
           sort: Sort field. Allowed values: `created_at`, `updated_at`, `display_name`,
               `status`. Prefix with `-` for descending. Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -318,7 +297,6 @@ class DirResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "enterprise_id": enterprise_id,
                         "filter_call_reason_contains": filter_call_reason_contains,
                         "filter_display_name_contains": filter_display_name_contains,
                         "filter_enterprise_id": filter_enterprise_id,
@@ -327,9 +305,7 @@ class DirResource(SyncAPIResource):
                         "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),
@@ -720,7 +696,6 @@ class AsyncDirResource(AsyncAPIResource):
     def list(
         self,
         *,
-        enterprise_id: str | Omit = omit,
         filter_call_reason_contains: str | Omit = omit,
         filter_display_name_contains: str | Omit = omit,
         filter_enterprise_id: str | Omit = omit,
@@ -741,7 +716,6 @@ class AsyncDirResource(AsyncAPIResource):
         | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search: str | Omit = omit,
         sort: Literal[
             "created_at",
             "-created_at",
@@ -751,19 +725,6 @@ class AsyncDirResource(AsyncAPIResource):
             "-display_name",
             "status",
             "-status",
-        ]
-        | Omit = omit,
-        status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -784,8 +745,6 @@ class AsyncDirResource(AsyncAPIResource):
         default `-created_at`).
 
         Args:
-          enterprise_id: Restrict results to a single enterprise.
-
           filter_call_reason_contains: Case-insensitive partial match on call reason.
 
           filter_display_name_contains: Case-insensitive partial match on display name.
@@ -803,12 +762,8 @@ class AsyncDirResource(AsyncAPIResource):
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name` or call reason.
-
           sort: Sort field. Allowed values: `created_at`, `updated_at`, `display_name`,
               `status`. Prefix with `-` for descending. Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -828,7 +783,6 @@ class AsyncDirResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "enterprise_id": enterprise_id,
                         "filter_call_reason_contains": filter_call_reason_contains,
                         "filter_display_name_contains": filter_display_name_contains,
                         "filter_enterprise_id": filter_enterprise_id,
@@ -837,9 +791,7 @@ class AsyncDirResource(AsyncAPIResource):
                         "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),
