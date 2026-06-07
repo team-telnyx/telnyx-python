@@ -9,8 +9,4 @@ __all__ = ["TermsOfServiceStatusParams"]
 
 class TermsOfServiceStatusParams(TypedDict, total=False):
     product_type: Literal["branded_calling", "number_reputation"]
-    """Which product's ToS to check.
-
-    Defaults to `branded_calling`; pass `number_reputation` to check the Number
-    Reputation Terms of Service.
-    """
+    """Which product's ToS to check. Defaults to `branded_calling`."""
