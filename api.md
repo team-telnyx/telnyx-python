@@ -5632,6 +5632,24 @@ Methods:
 - <code title="patch /enterprises/{enterprise_id}/reputation/loa">client.enterprises.reputation.loa.<a href="./src/telnyx/resources/enterprises/reputation/loa.py">update</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/loa_update_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/loa_update_response.py">LoaUpdateResponse</a></code>
 - <code title="post /enterprises/{enterprise_id}/reputation/loa">client.enterprises.reputation.loa.<a href="./src/telnyx/resources/enterprises/reputation/loa.py">render</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/loa_render_params.py">params</a>) -> BinaryAPIResponse</code>
 
+### Remediation
+
+Types:
+
+```python
+from telnyx.types.enterprises.reputation import (
+    RemediationCreateResponse,
+    RemediationRetrieveResponse,
+    RemediationListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_create_response.py">RemediationCreateResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/remediation/{remediation_id}">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">retrieve</a>(remediation_id, \*, enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_retrieve_response.py">RemediationRetrieveResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_list_response.py">SyncDefaultFlatPagination[RemediationListResponse]</a></code>
+
 ## Dir
 
 Types:
