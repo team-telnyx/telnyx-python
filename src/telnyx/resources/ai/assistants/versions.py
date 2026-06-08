@@ -73,6 +73,8 @@ class VersionsResource(SyncAPIResource):
         Retrieves a specific version of an assistant by assistant_id and version_id
 
         Args:
+          include_mcp_servers: Whether to include MCP servers in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -442,6 +444,8 @@ class AsyncVersionsResource(AsyncAPIResource):
         Retrieves a specific version of an assistant by assistant_id and version_id
 
         Args:
+          include_mcp_servers: Whether to include MCP servers in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

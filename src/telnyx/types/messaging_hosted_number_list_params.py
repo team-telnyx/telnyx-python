@@ -20,8 +20,10 @@ class MessagingHostedNumberListParams(TypedDict, total=False):
     """Filter by phone number substring."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    """Page number to retrieve (1-based)."""
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    """Number of items to return per page."""
 
     sort_phone_number: Annotated[Literal["asc", "desc"], PropertyInfo(alias="sort[phone_number]")]
     """Sort by phone number."""

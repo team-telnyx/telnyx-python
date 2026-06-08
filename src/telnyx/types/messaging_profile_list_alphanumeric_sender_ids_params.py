@@ -11,5 +11,7 @@ __all__ = ["MessagingProfileListAlphanumericSenderIDsParams"]
 
 class MessagingProfileListAlphanumericSenderIDsParams(TypedDict, total=False):
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    """Page number to retrieve (1-based)."""
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    """Number of items to return per page."""

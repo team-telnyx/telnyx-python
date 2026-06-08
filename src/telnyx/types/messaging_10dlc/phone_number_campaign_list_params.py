@@ -18,8 +18,10 @@ class PhoneNumberCampaignListParams(TypedDict, total=False):
     """
 
     page: int
+    """Page number to retrieve (1-based)."""
 
     records_per_page: Annotated[int, PropertyInfo(alias="recordsPerPage")]
+    """Number of records to return per page."""
 
     sort: Literal["assignmentStatus", "-assignmentStatus", "createdAt", "-createdAt", "phoneNumber", "-phoneNumber"]
     """Specifies the sort order for results.

@@ -12,41 +12,38 @@ __all__ = ["ReportListWdrsParams"]
 
 class ReportListWdrsParams(TypedDict, total=False):
     id: str
-    """WDR uuid"""
+    """Filter results by identifier."""
 
     end_date: str
     """End date"""
 
     imsi: str
-    """International mobile subscriber identity"""
+    """Filter results by imsi."""
 
     mcc: str
-    """Mobile country code"""
+    """Filter results by mcc."""
 
     mnc: str
-    """Mobile network code"""
+    """Filter results by mnc."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     phone_number: str
-    """Phone number"""
+    """Filter results by phone number."""
 
     sim_card_id: str
-    """Sim card unique identifier"""
+    """Filter results by sim card id."""
 
     sim_group_id: str
-    """Sim group unique identifier"""
+    """Filter results by sim group id."""
 
     sim_group_name: str
-    """Sim group name"""
+    """Filter results by sim group name."""
 
     sort: SequenceNotStr[str]
-    """Field used to order the data.
-
-    If no field is specified, default value is 'created_at'
-    """
+    """Field and direction to sort the results by."""
 
     start_date: str
     """Start date"""

@@ -9,3 +9,4 @@ __all__ = ["ClusterFetchGraphParams"]
 
 class ClusterFetchGraphParams(TypedDict, total=False):
     cluster_id: int
+    """Filter results by cluster id."""

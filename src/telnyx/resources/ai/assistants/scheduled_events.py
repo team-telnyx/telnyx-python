@@ -192,6 +192,12 @@ class ScheduledEventsResource(SyncAPIResource):
         Get scheduled events for an assistant with pagination and filtering
 
         Args:
+          conversation_channel: Filter results by conversation channel.
+
+          from_date: Start of the date range filter (inclusive, ISO 8601).
+
+          to_date: End of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -435,6 +441,12 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         Get scheduled events for an assistant with pagination and filtering
 
         Args:
+          conversation_channel: Filter results by conversation channel.
+
+          from_date: Start of the date range filter (inclusive, ISO 8601).
+
+          to_date: End of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -132,6 +132,10 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         with the supplied `taskId`.
 
         Args:
+          page: Page number to retrieve (1-based).
+
+          records_per_page: Number of records to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -178,6 +182,10 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         with the supplied `taskId`.
 
         Args:
+          page: Page number to retrieve (1-based).
+
+          records_per_page: Number of records to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -337,6 +345,10 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         with the supplied `taskId`.
 
         Args:
+          page: Page number to retrieve (1-based).
+
+          records_per_page: Number of records to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -383,6 +395,10 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         with the supplied `taskId`.
 
         Args:
+          page: Page number to retrieve (1-based).
+
+          records_per_page: Number of records to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

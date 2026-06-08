@@ -105,6 +105,10 @@ class UsageReportsResource(SyncAPIResource):
         both generate and fetch the speech to text report over a specified time period.
 
         Args:
+          end_date: End of the date range filter (inclusive, ISO 8601).
+
+          start_date: Start of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -187,6 +191,10 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         both generate and fetch the speech to text report over a specified time period.
 
         Args:
+          end_date: End of the date range filter (inclusive, ISO 8601).
+
+          start_date: Start of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

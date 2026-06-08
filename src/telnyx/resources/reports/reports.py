@@ -95,23 +95,23 @@ class ReportsResource(SyncAPIResource):
         Fetch all Mdr records
 
         Args:
-          id: Message uuid
+          id: Filter results by identifier.
 
-          cld: Destination number
+          cld: Filter results by cld.
 
-          cli: Origination number
+          cli: Filter results by cli.
 
-          direction: Direction (inbound or outbound)
+          direction: Filter results by direction.
 
           end_date: Pagination end date
 
-          message_type: Type of message
+          message_type: Filter results by message type.
 
-          profile: Name of the profile
+          profile: Filter results by profile.
 
           start_date: Pagination start date
 
-          status: Message status
+          status: Filter results by status.
 
           extra_headers: Send extra headers
 
@@ -173,26 +173,25 @@ class ReportsResource(SyncAPIResource):
         Fetch all Wdr records
 
         Args:
-          id: WDR uuid
+          id: Filter results by identifier.
 
           end_date: End date
 
-          imsi: International mobile subscriber identity
+          imsi: Filter results by imsi.
 
-          mcc: Mobile country code
+          mcc: Filter results by mcc.
 
-          mnc: Mobile network code
+          mnc: Filter results by mnc.
 
-          phone_number: Phone number
+          phone_number: Filter results by phone number.
 
-          sim_card_id: Sim card unique identifier
+          sim_card_id: Filter results by sim card id.
 
-          sim_group_id: Sim group unique identifier
+          sim_group_id: Filter results by sim group id.
 
-          sim_group_name: Sim group name
+          sim_group_name: Filter results by sim group name.
 
-          sort: Field used to order the data. If no field is specified, default value is
-              'created_at'
+          sort: Field and direction to sort the results by.
 
           start_date: Start date
 
@@ -289,23 +288,23 @@ class AsyncReportsResource(AsyncAPIResource):
         Fetch all Mdr records
 
         Args:
-          id: Message uuid
+          id: Filter results by identifier.
 
-          cld: Destination number
+          cld: Filter results by cld.
 
-          cli: Origination number
+          cli: Filter results by cli.
 
-          direction: Direction (inbound or outbound)
+          direction: Filter results by direction.
 
           end_date: Pagination end date
 
-          message_type: Type of message
+          message_type: Filter results by message type.
 
-          profile: Name of the profile
+          profile: Filter results by profile.
 
           start_date: Pagination start date
 
-          status: Message status
+          status: Filter results by status.
 
           extra_headers: Send extra headers
 
@@ -367,26 +366,25 @@ class AsyncReportsResource(AsyncAPIResource):
         Fetch all Wdr records
 
         Args:
-          id: WDR uuid
+          id: Filter results by identifier.
 
           end_date: End date
 
-          imsi: International mobile subscriber identity
+          imsi: Filter results by imsi.
 
-          mcc: Mobile country code
+          mcc: Filter results by mcc.
 
-          mnc: Mobile network code
+          mnc: Filter results by mnc.
 
-          phone_number: Phone number
+          phone_number: Filter results by phone number.
 
-          sim_card_id: Sim card unique identifier
+          sim_card_id: Filter results by sim card id.
 
-          sim_group_id: Sim group unique identifier
+          sim_group_id: Filter results by sim group id.
 
-          sim_group_name: Sim group name
+          sim_group_name: Filter results by sim group name.
 
-          sort: Field used to order the data. If no field is specified, default value is
-              'created_at'
+          sort: Field and direction to sort the results by.
 
           start_date: Start date
 

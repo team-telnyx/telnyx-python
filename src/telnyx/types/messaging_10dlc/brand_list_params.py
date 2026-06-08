@@ -14,12 +14,16 @@ class BrandListParams(TypedDict, total=False):
     """Filter results by the Telnyx Brand id"""
 
     country: str
+    """Filter results by country."""
 
     display_name: Annotated[str, PropertyInfo(alias="displayName")]
+    """Filter results by display name."""
 
     entity_type: Annotated[str, PropertyInfo(alias="entityType")]
+    """Filter results by entity type."""
 
     page: int
+    """Page number to retrieve (1-based)."""
 
     records_per_page: Annotated[int, PropertyInfo(alias="recordsPerPage")]
     """number of records per page. maximum of 500"""
@@ -46,6 +50,7 @@ class BrandListParams(TypedDict, total=False):
     """
 
     state: str
+    """Filter results by state."""
 
     tcr_brand_id: Annotated[str, PropertyInfo(alias="tcrBrandId")]
     """Filter results by the TCR Brand id"""

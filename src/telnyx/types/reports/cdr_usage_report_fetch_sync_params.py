@@ -13,11 +13,16 @@ __all__ = ["CdrUsageReportFetchSyncParams"]
 
 class CdrUsageReportFetchSyncParams(TypedDict, total=False):
     aggregation_type: Required[Literal["NO_AGGREGATION", "CONNECTION", "TAG", "BILLING_GROUP"]]
+    """Type of aggregation to apply to the results."""
 
     product_breakdown: Required[Literal["NO_BREAKDOWN", "DID_VS_TOLL_FREE", "COUNTRY", "DID_VS_TOLL_FREE_PER_COUNTRY"]]
+    """Filter results by product breakdown."""
 
     connections: Iterable[float]
+    """Filter results by connection."""
 
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """End of the date range filter (inclusive, ISO 8601)."""
 
     start_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Start of the date range filter (inclusive, ISO 8601)."""

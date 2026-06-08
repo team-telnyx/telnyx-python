@@ -205,6 +205,14 @@ class ToolsResource(SyncAPIResource):
         List Tools
 
         Args:
+          filter_name: Filter results by filter name.
+
+          filter_type: Filter results by filter type.
+
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -446,6 +454,14 @@ class AsyncToolsResource(AsyncAPIResource):
         List Tools
 
         Args:
+          filter_name: Filter results by filter name.
+
+          filter_type: Filter results by filter type.
+
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -9,6 +9,7 @@ __all__ = ["AutorespConfigListParams", "CreatedAt", "UpdatedAt"]
 
 class AutorespConfigListParams(TypedDict, total=False):
     country_code: str
+    """Filter results by country code."""
 
     created_at: CreatedAt
     """Consolidated created_at parameter (deepObject style).

@@ -483,13 +483,21 @@ class RequestsResource(SyncAPIResource):
         Get a list of previously-submitted tollfree verification requests
 
         Args:
+          page: Page number to retrieve (1-based).
+
           page_size: Request this many records per page
 
                       This value is automatically clamped if the provided value is too large.
 
           business_name: Filter verification requests by business name
 
-          status: Tollfree verification status
+          date_end: End of the date range filter (inclusive, ISO 8601).
+
+          date_start: Start of the date range filter (inclusive, ISO 8601).
+
+          phone_number: Filter results by phone number.
+
+          status: Filter results by status.
 
           extra_headers: Send extra headers
 
@@ -583,8 +591,9 @@ class RequestsResource(SyncAPIResource):
         each change and when it occurred.
 
         Args:
-          page_size: Request this many records per page. This value is automatically clamped if the
-              provided value is too large.
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
 
           extra_headers: Send extra headers
 
@@ -1056,13 +1065,21 @@ class AsyncRequestsResource(AsyncAPIResource):
         Get a list of previously-submitted tollfree verification requests
 
         Args:
+          page: Page number to retrieve (1-based).
+
           page_size: Request this many records per page
 
                       This value is automatically clamped if the provided value is too large.
 
           business_name: Filter verification requests by business name
 
-          status: Tollfree verification status
+          date_end: End of the date range filter (inclusive, ISO 8601).
+
+          date_start: Start of the date range filter (inclusive, ISO 8601).
+
+          phone_number: Filter results by phone number.
+
+          status: Filter results by status.
 
           extra_headers: Send extra headers
 
@@ -1156,8 +1173,9 @@ class AsyncRequestsResource(AsyncAPIResource):
         each change and when it occurred.
 
         Args:
-          page_size: Request this many records per page. This value is automatically clamped if the
-              provided value is too large.
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
 
           extra_headers: Send extra headers
 

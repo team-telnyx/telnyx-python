@@ -200,6 +200,10 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
               filter[telnyx_campaign_id], filter[telnyx_brand_id], filter[tcr_campaign_id],
               filter[tcr_brand_id]
 
+          page: Page number to retrieve (1-based).
+
+          records_per_page: Number of records to return per page.
+
           sort: Specifies the sort order for results. If not given, results are sorted by
               createdAt in descending order.
 
@@ -438,6 +442,10 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[telnyx_campaign_id], filter[telnyx_brand_id], filter[tcr_campaign_id],
               filter[tcr_brand_id]
+
+          page: Page number to retrieve (1-based).
+
+          records_per_page: Number of records to return per page.
 
           sort: Specifies the sort order for results. If not given, results are sorted by
               createdAt in descending order.

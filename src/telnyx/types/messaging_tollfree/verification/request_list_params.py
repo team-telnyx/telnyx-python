@@ -14,6 +14,7 @@ __all__ = ["RequestListParams"]
 
 class RequestListParams(TypedDict, total=False):
     page: Required[int]
+    """Page number to retrieve (1-based)."""
 
     page_size: Required[int]
     """Request this many records per page
@@ -25,10 +26,13 @@ class RequestListParams(TypedDict, total=False):
     """Filter verification requests by business name"""
 
     date_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """End of the date range filter (inclusive, ISO 8601)."""
 
     date_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Start of the date range filter (inclusive, ISO 8601)."""
 
     phone_number: str
+    """Filter results by phone number."""
 
     status: TfVerificationStatus
-    """Tollfree verification status"""
+    """Filter results by status."""

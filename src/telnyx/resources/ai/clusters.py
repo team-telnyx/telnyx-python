@@ -258,6 +258,8 @@ class ClustersResource(SyncAPIResource):
         Fetch a cluster visualization
 
         Args:
+          cluster_id: Filter results by cluster id.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -508,6 +510,8 @@ class AsyncClustersResource(AsyncAPIResource):
         Fetch a cluster visualization
 
         Args:
+          cluster_id: Filter results by cluster id.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

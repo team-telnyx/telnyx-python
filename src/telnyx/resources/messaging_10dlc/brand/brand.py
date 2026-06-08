@@ -433,10 +433,20 @@ class BrandResource(SyncAPIResource):
         Args:
           brand_id: Filter results by the Telnyx Brand id
 
+          country: Filter results by country.
+
+          display_name: Filter results by display name.
+
+          entity_type: Filter results by entity type.
+
+          page: Page number to retrieve (1-based).
+
           records_per_page: number of records per page. maximum of 500
 
           sort: Specifies the sort order for results. If not given, results are sorted by
               createdAt in descending order.
+
+          state: Filter results by state.
 
           tcr_brand_id: Filter results by the TCR Brand id
 
@@ -1222,10 +1232,20 @@ class AsyncBrandResource(AsyncAPIResource):
         Args:
           brand_id: Filter results by the Telnyx Brand id
 
+          country: Filter results by country.
+
+          display_name: Filter results by display name.
+
+          entity_type: Filter results by entity type.
+
+          page: Page number to retrieve (1-based).
+
           records_per_page: number of records per page. maximum of 500
 
           sort: Specifies the sort order for results. If not given, results are sorted by
               createdAt in descending order.
+
+          state: Filter results by state.
 
           tcr_brand_id: Filter results by the TCR Brand id
 
