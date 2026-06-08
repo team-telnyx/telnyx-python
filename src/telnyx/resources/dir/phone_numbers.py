@@ -134,7 +134,7 @@ class PhoneNumbersResource(SyncAPIResource):
 
         Args:
           documents: Supporting documents covering this batch. At least one entry with
-              `document_type: letter_of_authorization` is required — the LOA authorises Telnyx
+              `document_type: letter_of_authorization` is required - the LOA authorises Telnyx
               to register these numbers under the DIR. Each `document_id` must come from the
               Telnyx Documents API. Additional document types (e.g. business registration) may
               be included alongside the LOA.
@@ -312,7 +312,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
 
         Args:
           documents: Supporting documents covering this batch. At least one entry with
-              `document_type: letter_of_authorization` is required — the LOA authorises Telnyx
+              `document_type: letter_of_authorization` is required - the LOA authorises Telnyx
               to register these numbers under the DIR. Each `document_id` must come from the
               Telnyx Documents API. Additional document types (e.g. business registration) may
               be included alongside the LOA.

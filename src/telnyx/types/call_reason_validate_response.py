@@ -18,7 +18,7 @@ class Data(BaseModel):
     non_approved_reasons: List[str]
     """Subset of the input that does NOT match the pre-vetted library.
 
-    The DIR can still be submitted with these — they will go through manual review.
+    The DIR can still be submitted with these - they will go through manual review.
     """
 
     requires_manual_vetting: bool

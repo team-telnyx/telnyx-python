@@ -5,7 +5,9 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
+from respx import MockRouter
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
@@ -19,6 +21,12 @@ from telnyx.types import (
     DirListInfringementClaimsResponse,
 )
 from telnyx._utils import parse_datetime
+from telnyx._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+)
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -209,6 +217,99 @@ class TestDir:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
             client.dir.with_raw_response.delete(
                 "",
+            )
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_create_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = client.dir.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+        assert dir.is_closed
+        assert dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_create_loa_with_all_params(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = client.dir.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+            agent={
+                "administrative_area": "administrative_area",
+                "city": "city",
+                "contact_email": "dev@stainless.com",
+                "contact_name": "contact_name",
+                "contact_phone": "+13125550000",
+                "contact_title": "contact_title",
+                "country": "US",
+                "legal_name": "legal_name",
+                "postal_code": "postal_code",
+                "street_address": "street_address",
+                "dba": "dba",
+                "extended_address": "extended_address",
+            },
+            signature={
+                "image_base64": "x",
+                "signer_name": "signer_name",
+            },
+        )
+        assert dir.is_closed
+        assert dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_create_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        dir = client.dir.with_raw_response.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+
+        assert dir.is_closed is True
+        assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert dir.json() == {"foo": "bar"}
+        assert isinstance(dir, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_create_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        with client.dir.with_streaming_response.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        ) as dir:
+            assert not dir.is_closed
+            assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assert dir.json() == {"foo": "bar"}
+            assert cast(Any, dir.is_closed) is True
+            assert isinstance(dir, StreamedBinaryAPIResponse)
+
+        assert cast(Any, dir.is_closed) is True
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_path_params_create_loa(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
+            client.dir.with_raw_response.create_loa(
+                dir_id="",
+                phone_numbers=["+13125550000"],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -606,6 +707,99 @@ class TestAsyncDir:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
             await async_client.dir.with_raw_response.delete(
                 "",
+            )
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_create_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = await async_client.dir.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+        assert dir.is_closed
+        assert await dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_create_loa_with_all_params(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = await async_client.dir.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+            agent={
+                "administrative_area": "administrative_area",
+                "city": "city",
+                "contact_email": "dev@stainless.com",
+                "contact_name": "contact_name",
+                "contact_phone": "+13125550000",
+                "contact_title": "contact_title",
+                "country": "US",
+                "legal_name": "legal_name",
+                "postal_code": "postal_code",
+                "street_address": "street_address",
+                "dba": "dba",
+                "extended_address": "extended_address",
+            },
+            signature={
+                "image_base64": "x",
+                "signer_name": "signer_name",
+            },
+        )
+        assert dir.is_closed
+        assert await dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_create_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        dir = await async_client.dir.with_raw_response.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+
+        assert dir.is_closed is True
+        assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await dir.json() == {"foo": "bar"}
+        assert isinstance(dir, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_create_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        async with async_client.dir.with_streaming_response.create_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        ) as dir:
+            assert not dir.is_closed
+            assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assert await dir.json() == {"foo": "bar"}
+            assert cast(Any, dir.is_closed) is True
+            assert isinstance(dir, AsyncStreamedBinaryAPIResponse)
+
+        assert cast(Any, dir.is_closed) is True
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_path_params_create_loa(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
+            await async_client.dir.with_raw_response.create_loa(
+                dir_id="",
+                phone_numbers=["+13125550000"],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

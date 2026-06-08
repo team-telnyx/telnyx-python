@@ -44,4 +44,4 @@ class CommentListResponse(BaseModel):
     """Resource the comment is attached to. Always `dir` on this endpoint."""
 
     visibility: Optional[Literal["customer"]] = None
-    """Always `customer` on this endpoint — internal-only comments are filtered out."""
+    """Always `customer` on this endpoint - internal-only comments are filtered out."""

@@ -12,7 +12,7 @@ __all__ = ["AgreementListResponse"]
 class AgreementListResponse(BaseModel):
     """A recorded user agreement to a product's Terms of Service.
 
-    The `user_id` is intentionally NOT echoed back on this public surface — the caller already knows their own identity.
+    The `user_id` is intentionally NOT echoed back on this public surface - the caller already knows their own identity.
     """
 
     id: Optional[str] = None
