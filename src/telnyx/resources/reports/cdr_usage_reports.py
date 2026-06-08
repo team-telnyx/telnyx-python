@@ -69,6 +69,16 @@ class CdrUsageReportsResource(SyncAPIResource):
         necessary but the response may take up to a couple of minutes.
 
         Args:
+          aggregation_type: Type of aggregation to apply to the results.
+
+          product_breakdown: Filter results by product breakdown.
+
+          connections: Filter results by connection.
+
+          end_date: End of the date range filter (inclusive, ISO 8601).
+
+          start_date: Start of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -143,6 +153,16 @@ class AsyncCdrUsageReportsResource(AsyncAPIResource):
         necessary but the response may take up to a couple of minutes.
 
         Args:
+          aggregation_type: Type of aggregation to apply to the results.
+
+          product_breakdown: Filter results by product breakdown.
+
+          connections: Filter results by connection.
+
+          end_date: End of the date range filter (inclusive, ISO 8601).
+
+          start_date: Start of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

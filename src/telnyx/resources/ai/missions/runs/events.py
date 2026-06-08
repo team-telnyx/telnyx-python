@@ -68,9 +68,15 @@ class EventsResource(SyncAPIResource):
         List events for a run (paginated)
 
         Args:
+          agent_id: Filter results by agent id.
+
           page_number: Page number (1-based)
 
           page_size: Number of items per page
+
+          step_id: Filter results by step id.
+
+          type: Filter results by type.
 
           extra_headers: Send extra headers
 
@@ -257,9 +263,15 @@ class AsyncEventsResource(AsyncAPIResource):
         List events for a run (paginated)
 
         Args:
+          agent_id: Filter results by agent id.
+
           page_number: Page number (1-based)
 
           page_size: Number of items per page
+
+          step_id: Filter results by step id.
+
+          type: Filter results by type.
 
           extra_headers: Send extra headers
 

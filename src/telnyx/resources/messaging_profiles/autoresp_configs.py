@@ -207,6 +207,8 @@ class AutorespConfigsResource(SyncAPIResource):
         List Auto-Response Settings
 
         Args:
+          country_code: Filter results by country code.
+
           created_at:
               Consolidated created_at parameter (deepObject style). Originally:
               created_at[gte], created_at[lte]
@@ -464,6 +466,8 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         List Auto-Response Settings
 
         Args:
+          country_code: Filter results by country code.
+
           created_at:
               Consolidated created_at parameter (deepObject style). Originally:
               created_at[gte], created_at[lte]

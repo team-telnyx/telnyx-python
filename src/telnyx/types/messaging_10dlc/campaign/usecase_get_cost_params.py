@@ -9,3 +9,4 @@ __all__ = ["UsecaseGetCostParams"]
 
 class UsecaseGetCostParams(TypedDict, total=False):
     usecase: Required[str]
+    """Filter results by usecase."""

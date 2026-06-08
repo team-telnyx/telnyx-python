@@ -13,5 +13,7 @@ __all__ = ["UsageReportRetrieveSpeechToTextParams"]
 
 class UsageReportRetrieveSpeechToTextParams(TypedDict, total=False):
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """End of the date range filter (inclusive, ISO 8601)."""
 
     start_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Start of the date range filter (inclusive, ISO 8601)."""

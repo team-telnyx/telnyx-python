@@ -317,6 +317,8 @@ class MissionsResource(SyncAPIResource):
 
           page_size: Number of items per page
 
+          type: Filter results by type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -646,6 +648,8 @@ class AsyncMissionsResource(AsyncAPIResource):
           page_number: Page number (1-based)
 
           page_size: Number of items per page
+
+          type: Filter results by type.
 
           extra_headers: Send extra headers
 

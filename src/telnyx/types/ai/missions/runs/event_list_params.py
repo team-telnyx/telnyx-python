@@ -13,6 +13,7 @@ class EventListParams(TypedDict, total=False):
     mission_id: Required[str]
 
     agent_id: str
+    """Filter results by agent id."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
     """Page number (1-based)"""
@@ -21,5 +22,7 @@ class EventListParams(TypedDict, total=False):
     """Number of items per page"""
 
     step_id: str
+    """Filter results by step id."""
 
     type: str
+    """Filter results by type."""

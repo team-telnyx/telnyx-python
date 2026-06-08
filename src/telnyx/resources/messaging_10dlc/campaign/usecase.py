@@ -58,6 +58,8 @@ class UsecaseResource(SyncAPIResource):
         Get Campaign Cost
 
         Args:
+          usecase: Filter results by usecase.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -116,6 +118,8 @@ class AsyncUsecaseResource(AsyncAPIResource):
         Get Campaign Cost
 
         Args:
+          usecase: Filter results by usecase.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

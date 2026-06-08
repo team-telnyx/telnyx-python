@@ -11,3 +11,4 @@ class VersionRetrieveParams(TypedDict, total=False):
     assistant_id: Required[str]
 
     include_mcp_servers: bool
+    """Whether to include MCP servers in the response."""

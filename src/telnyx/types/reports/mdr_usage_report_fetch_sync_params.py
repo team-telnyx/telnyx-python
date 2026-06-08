@@ -14,9 +14,13 @@ __all__ = ["MdrUsageReportFetchSyncParams"]
 
 class MdrUsageReportFetchSyncParams(TypedDict, total=False):
     aggregation_type: Required[Literal["NO_AGGREGATION", "PROFILE", "TAGS"]]
+    """Type of aggregation to apply to the results."""
 
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """End of the date range filter (inclusive, ISO 8601)."""
 
     profiles: SequenceNotStr[str]
+    """Filter results by profile."""
 
     start_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Start of the date range filter (inclusive, ISO 8601)."""
