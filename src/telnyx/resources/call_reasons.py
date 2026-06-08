@@ -119,7 +119,7 @@ class CallReasonsResource(SyncAPIResource):
         phrases, length issues, etc.) so you can fix them up front.
 
         Args:
-          body: **Bare JSON array** of candidate call-reason strings (NOT an object — there is
+          body: **Bare JSON array** of candidate call-reason strings (NOT an object - there is
               no top-level `call_reasons` key on this endpoint). 1–10 strings, each ≤64
               characters.
 
@@ -237,7 +237,7 @@ class AsyncCallReasonsResource(AsyncAPIResource):
         phrases, length issues, etc.) so you can fix them up front.
 
         Args:
-          body: **Bare JSON array** of candidate call-reason strings (NOT an object — there is
+          body: **Bare JSON array** of candidate call-reason strings (NOT an object - there is
               no top-level `call_reasons` key on this endpoint). 1–10 strings, each ≤64
               characters.
 

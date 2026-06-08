@@ -11,6 +11,7 @@ import httpx
 from ...types import (
     dir_list_params,
     dir_update_params,
+    dir_create_loa_params,
     dir_update_infringement_params,
     dir_list_infringement_claims_params,
 )
@@ -27,10 +28,18 @@ from .comments import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .phone_numbers import (
@@ -158,7 +167,7 @@ class DirResource(SyncAPIResource):
         """Edit a DIR.
 
         Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
-        editable. PATCH is a pure edit — `status` is never changed by this endpoint. To
+        editable. PATCH is a pure edit - `status` is never changed by this endpoint. To
         re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
 
         Args:
@@ -348,6 +357,71 @@ class DirResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def create_loa(
+        self,
+        dir_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        agent: dir_create_loa_params.Agent | Omit = omit,
+        signature: dir_create_loa_params.Signature | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BinaryAPIResponse:
+        """Generate a pre-filled Letter of Authorization (LOA) PDF for a DIR.
+
+        Enterprise
+        identity (legal name, DBA, address, contact, website, tax id) and the DIR
+        display name are read server-side; the caller supplies the telephone numbers to
+        authorize, an optional Authorized Agent block, and an optional drawn signature.
+
+        When `signature` is omitted the PDF is returned unsigned so the customer can
+        sign it externally and upload it via the Documents API. When `signature` is
+        present the PDF embeds the supplied image, printed name, and signed-at date.
+
+        Returns `application/pdf`.
+
+        Args:
+          phone_numbers: Telephone numbers to authorize on the DIR, in `+E164` format (`+` followed by
+              10-15 digits). Max 15 per request.
+
+          agent: Third-party reseller / partner managing the enterprise's phone numbers. Omit
+              when the enterprise works directly with Telnyx.
+
+          signature: Optional. When provided the rendered PDF embeds the signature image, printed
+              name, and signed-at date. When absent the PDF is returned unsigned so the
+              customer can sign externally and upload it via the Documents API.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return self._post(
+            path_template("/dir/{dir_id}/loa", dir_id=dir_id),
+            body=maybe_transform(
+                {
+                    "phone_numbers": phone_numbers,
+                    "agent": agent,
+                    "signature": signature,
+                },
+                dir_create_loa_params.DirCreateLoaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BinaryAPIResponse,
         )
 
     def list_document_types(
@@ -644,7 +718,7 @@ class AsyncDirResource(AsyncAPIResource):
         """Edit a DIR.
 
         Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
-        editable. PATCH is a pure edit — `status` is never changed by this endpoint. To
+        editable. PATCH is a pure edit - `status` is never changed by this endpoint. To
         re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
 
         Args:
@@ -834,6 +908,71 @@ class AsyncDirResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    async def create_loa(
+        self,
+        dir_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        agent: dir_create_loa_params.Agent | Omit = omit,
+        signature: dir_create_loa_params.Signature | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncBinaryAPIResponse:
+        """Generate a pre-filled Letter of Authorization (LOA) PDF for a DIR.
+
+        Enterprise
+        identity (legal name, DBA, address, contact, website, tax id) and the DIR
+        display name are read server-side; the caller supplies the telephone numbers to
+        authorize, an optional Authorized Agent block, and an optional drawn signature.
+
+        When `signature` is omitted the PDF is returned unsigned so the customer can
+        sign it externally and upload it via the Documents API. When `signature` is
+        present the PDF embeds the supplied image, printed name, and signed-at date.
+
+        Returns `application/pdf`.
+
+        Args:
+          phone_numbers: Telephone numbers to authorize on the DIR, in `+E164` format (`+` followed by
+              10-15 digits). Max 15 per request.
+
+          agent: Third-party reseller / partner managing the enterprise's phone numbers. Omit
+              when the enterprise works directly with Telnyx.
+
+          signature: Optional. When provided the rendered PDF embeds the signature image, printed
+              name, and signed-at date. When absent the PDF is returned unsigned so the
+              customer can sign externally and upload it via the Documents API.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return await self._post(
+            path_template("/dir/{dir_id}/loa", dir_id=dir_id),
+            body=await async_maybe_transform(
+                {
+                    "phone_numbers": phone_numbers,
+                    "agent": agent,
+                    "signature": signature,
+                },
+                dir_create_loa_params.DirCreateLoaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AsyncBinaryAPIResponse,
         )
 
     async def list_document_types(
@@ -1051,6 +1190,10 @@ class DirResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             dir.delete,
         )
+        self.create_loa = to_custom_raw_response_wrapper(
+            dir.create_loa,
+            BinaryAPIResponse,
+        )
         self.list_document_types = to_raw_response_wrapper(
             dir.list_document_types,
         )
@@ -1102,6 +1245,10 @@ class AsyncDirResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             dir.delete,
+        )
+        self.create_loa = async_to_custom_raw_response_wrapper(
+            dir.create_loa,
+            AsyncBinaryAPIResponse,
         )
         self.list_document_types = async_to_raw_response_wrapper(
             dir.list_document_types,
@@ -1155,6 +1302,10 @@ class DirResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             dir.delete,
         )
+        self.create_loa = to_custom_streamed_response_wrapper(
+            dir.create_loa,
+            StreamedBinaryAPIResponse,
+        )
         self.list_document_types = to_streamed_response_wrapper(
             dir.list_document_types,
         )
@@ -1206,6 +1357,10 @@ class AsyncDirResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             dir.delete,
+        )
+        self.create_loa = async_to_custom_streamed_response_wrapper(
+            dir.create_loa,
+            AsyncStreamedBinaryAPIResponse,
         )
         self.list_document_types = async_to_streamed_response_wrapper(
             dir.list_document_types,

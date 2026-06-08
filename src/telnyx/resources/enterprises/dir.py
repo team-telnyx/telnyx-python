@@ -95,10 +95,10 @@ class DirResource(SyncAPIResource):
 
         **Failure modes**
 
-        - `422` — validation error; `errors[].source.pointer` names the offending field.
-        - `403` — Branded Calling not activated on this enterprise (see
+        - `422` - validation error; `errors[].source.pointer` names the offending field.
+        - `403` - Branded Calling not activated on this enterprise (see
           `POST /enterprises/{id}/branded_calling`).
-        - `404` — enterprise does not exist or does not belong to your account.
+        - `404` - enterprise does not exist or does not belong to your account.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or
@@ -230,7 +230,7 @@ class DirResource(SyncAPIResource):
           filter_expiring_within_days: Convenience: returns DIRs whose `expiring_at` falls within the next N days
               (1–365). Equivalent to setting `filter[expiring_at][gte]=<now>` +
               `filter[expiring_at][lte]=<now+N>`. Mutually exclusive with the explicit
-              `[gte]`/`[lte]` filters — combining returns 400.
+              `[gte]`/`[lte]` filters - combining returns 400.
 
           filter_status: Filter by DIR status.
 
@@ -347,10 +347,10 @@ class AsyncDirResource(AsyncAPIResource):
 
         **Failure modes**
 
-        - `422` — validation error; `errors[].source.pointer` names the offending field.
-        - `403` — Branded Calling not activated on this enterprise (see
+        - `422` - validation error; `errors[].source.pointer` names the offending field.
+        - `403` - Branded Calling not activated on this enterprise (see
           `POST /enterprises/{id}/branded_calling`).
-        - `404` — enterprise does not exist or does not belong to your account.
+        - `404` - enterprise does not exist or does not belong to your account.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or
@@ -482,7 +482,7 @@ class AsyncDirResource(AsyncAPIResource):
           filter_expiring_within_days: Convenience: returns DIRs whose `expiring_at` falls within the next N days
               (1–365). Equivalent to setting `filter[expiring_at][gte]=<now>` +
               `filter[expiring_at][lte]=<now+N>`. Mutually exclusive with the explicit
-              `[gte]`/`[lte]` filters — combining returns 400.
+              `[gte]`/`[lte]` filters - combining returns 400.
 
           filter_status: Filter by DIR status.
 

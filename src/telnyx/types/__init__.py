@@ -252,6 +252,7 @@ from .call_streaming_failed import CallStreamingFailed as CallStreamingFailed
 from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_list_response import CommentListResponse as CommentListResponse
 from .credential_connection import CredentialConnection as CredentialConnection
+from .dir_create_loa_params import DirCreateLoaParams as DirCreateLoaParams
 from .dir_retrieve_response import DirRetrieveResponse as DirRetrieveResponse
 from .fax_retrieve_response import FaxRetrieveResponse as FaxRetrieveResponse
 from .global_ip_list_params import GlobalIPListParams as GlobalIPListParams
