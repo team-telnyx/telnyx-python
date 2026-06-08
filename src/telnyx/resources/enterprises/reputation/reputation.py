@@ -25,6 +25,14 @@ from .numbers import (
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
+from .remediation import (
+    RemediationResource,
+    AsyncRemediationResource,
+    RemediationResourceWithRawResponse,
+    AsyncRemediationResourceWithRawResponse,
+    RemediationResourceWithStreamingResponse,
+    AsyncRemediationResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -53,6 +61,11 @@ class ReputationResource(SyncAPIResource):
     def loa(self) -> LoaResource:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return LoaResource(self._client)
+
+    @cached_property
+    def remediation(self) -> RemediationResource:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return RemediationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ReputationResourceWithRawResponse:
@@ -272,6 +285,11 @@ class AsyncReputationResource(AsyncAPIResource):
     def loa(self) -> AsyncLoaResource:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncLoaResource(self._client)
+
+    @cached_property
+    def remediation(self) -> AsyncRemediationResource:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncRemediationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncReputationResourceWithRawResponse:
@@ -506,6 +524,11 @@ class ReputationResourceWithRawResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return LoaResourceWithRawResponse(self._reputation.loa)
 
+    @cached_property
+    def remediation(self) -> RemediationResourceWithRawResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return RemediationResourceWithRawResponse(self._reputation.remediation)
+
 
 class AsyncReputationResourceWithRawResponse:
     def __init__(self, reputation: AsyncReputationResource) -> None:
@@ -533,6 +556,11 @@ class AsyncReputationResourceWithRawResponse:
     def loa(self) -> AsyncLoaResourceWithRawResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncLoaResourceWithRawResponse(self._reputation.loa)
+
+    @cached_property
+    def remediation(self) -> AsyncRemediationResourceWithRawResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncRemediationResourceWithRawResponse(self._reputation.remediation)
 
 
 class ReputationResourceWithStreamingResponse:
@@ -562,6 +590,11 @@ class ReputationResourceWithStreamingResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return LoaResourceWithStreamingResponse(self._reputation.loa)
 
+    @cached_property
+    def remediation(self) -> RemediationResourceWithStreamingResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return RemediationResourceWithStreamingResponse(self._reputation.remediation)
+
 
 class AsyncReputationResourceWithStreamingResponse:
     def __init__(self, reputation: AsyncReputationResource) -> None:
@@ -589,3 +622,8 @@ class AsyncReputationResourceWithStreamingResponse:
     def loa(self) -> AsyncLoaResourceWithStreamingResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncLoaResourceWithStreamingResponse(self._reputation.loa)
+
+    @cached_property
+    def remediation(self) -> AsyncRemediationResourceWithStreamingResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncRemediationResourceWithStreamingResponse(self._reputation.remediation)
