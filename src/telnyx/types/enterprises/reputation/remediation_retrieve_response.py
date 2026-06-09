@@ -33,8 +33,6 @@ class Data(BaseModel):
 
     call_purpose: str
 
-    contact_email: str
-
     created_at: datetime
 
     phone_numbers_count: int
@@ -58,6 +56,8 @@ class Data(BaseModel):
     """Customer-facing status of a remediation request."""
 
     updated_at: datetime
+
+    contact_email: Optional[str] = None
 
     results: Optional[DataResults] = None
     """Per-category buckets.

@@ -29,7 +29,6 @@ class TestRemediation:
         remediation = client.enterprises.reputation.remediation.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
         )
         assert_matches_type(RemediationCreateResponse, remediation, path=["response"])
@@ -40,8 +39,8 @@ class TestRemediation:
         remediation = client.enterprises.reputation.remediation.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
+            contact_email="ops@example.com",
             webhook_url="https://example.com/webhooks/remediation",
         )
         assert_matches_type(RemediationCreateResponse, remediation, path=["response"])
@@ -52,7 +51,6 @@ class TestRemediation:
         response = client.enterprises.reputation.remediation.with_raw_response.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
         )
 
@@ -67,7 +65,6 @@ class TestRemediation:
         with client.enterprises.reputation.remediation.with_streaming_response.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
         ) as response:
             assert not response.is_closed
@@ -85,7 +82,6 @@ class TestRemediation:
             client.enterprises.reputation.remediation.with_raw_response.create(
                 enterprise_id="",
                 call_purpose="Appointment reminders for our dental clinic.",
-                contact_email="ops@example.com",
                 phone_numbers=["+19493253498", "+12134445566"],
             )
 
@@ -208,7 +204,6 @@ class TestAsyncRemediation:
         remediation = await async_client.enterprises.reputation.remediation.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
         )
         assert_matches_type(RemediationCreateResponse, remediation, path=["response"])
@@ -219,8 +214,8 @@ class TestAsyncRemediation:
         remediation = await async_client.enterprises.reputation.remediation.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
+            contact_email="ops@example.com",
             webhook_url="https://example.com/webhooks/remediation",
         )
         assert_matches_type(RemediationCreateResponse, remediation, path=["response"])
@@ -231,7 +226,6 @@ class TestAsyncRemediation:
         response = await async_client.enterprises.reputation.remediation.with_raw_response.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
         )
 
@@ -246,7 +240,6 @@ class TestAsyncRemediation:
         async with async_client.enterprises.reputation.remediation.with_streaming_response.create(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             call_purpose="Appointment reminders for our dental clinic.",
-            contact_email="ops@example.com",
             phone_numbers=["+19493253498", "+12134445566"],
         ) as response:
             assert not response.is_closed
@@ -264,7 +257,6 @@ class TestAsyncRemediation:
             await async_client.enterprises.reputation.remediation.with_raw_response.create(
                 enterprise_id="",
                 call_purpose="Appointment reminders for our dental clinic.",
-                contact_email="ops@example.com",
                 phone_numbers=["+19493253498", "+12134445566"],
             )
 
