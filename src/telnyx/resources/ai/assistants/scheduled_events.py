@@ -57,6 +57,7 @@ class ScheduledEventsResource(SyncAPIResource):
         telnyx_agent_target: str,
         telnyx_conversation_channel: ConversationChannelType,
         telnyx_end_user_target: str,
+        call_settings: scheduled_event_create_params.CallSettings | Omit = omit,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         dynamic_variables: Dict[str, str] | Omit = omit,
         max_retries_client_errors: int | Omit = omit,
@@ -78,6 +79,10 @@ class ScheduledEventsResource(SyncAPIResource):
           telnyx_agent_target: The phone number, SIP URI, to schedule the call or text from.
 
           telnyx_end_user_target: The phone number, SIP URI, to schedule the call or text to.
+
+          call_settings: Per-call telephony overrides applied when a scheduled phone-call event
+              dispatches. Phone-call events only. New per-call dispatch options should be
+              added here rather than as top-level event fields.
 
           conversation_metadata: Metadata associated with the conversation. Telnyx provides several pieces of
               metadata, but customers can also add their own.
@@ -110,6 +115,7 @@ class ScheduledEventsResource(SyncAPIResource):
                         "telnyx_agent_target": telnyx_agent_target,
                         "telnyx_conversation_channel": telnyx_conversation_channel,
                         "telnyx_end_user_target": telnyx_end_user_target,
+                        "call_settings": call_settings,
                         "conversation_metadata": conversation_metadata,
                         "dynamic_variables": dynamic_variables,
                         "max_retries_client_errors": max_retries_client_errors,
@@ -306,6 +312,7 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         telnyx_agent_target: str,
         telnyx_conversation_channel: ConversationChannelType,
         telnyx_end_user_target: str,
+        call_settings: scheduled_event_create_params.CallSettings | Omit = omit,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         dynamic_variables: Dict[str, str] | Omit = omit,
         max_retries_client_errors: int | Omit = omit,
@@ -327,6 +334,10 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
           telnyx_agent_target: The phone number, SIP URI, to schedule the call or text from.
 
           telnyx_end_user_target: The phone number, SIP URI, to schedule the call or text to.
+
+          call_settings: Per-call telephony overrides applied when a scheduled phone-call event
+              dispatches. Phone-call events only. New per-call dispatch options should be
+              added here rather than as top-level event fields.
 
           conversation_metadata: Metadata associated with the conversation. Telnyx provides several pieces of
               metadata, but customers can also add their own.
@@ -359,6 +370,7 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
                         "telnyx_agent_target": telnyx_agent_target,
                         "telnyx_conversation_channel": telnyx_conversation_channel,
                         "telnyx_end_user_target": telnyx_end_user_target,
+                        "call_settings": call_settings,
                         "conversation_metadata": conversation_metadata,
                         "dynamic_variables": dynamic_variables,
                         "max_retries_client_errors": max_retries_client_errors,
