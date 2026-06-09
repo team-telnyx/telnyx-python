@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing import Dict, Union
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 from .conversation_channel_type import ConversationChannelType
 
-__all__ = ["ScheduledEventCreateParams"]
+__all__ = ["ScheduledEventCreateParams", "CallSettings"]
 
 
 class ScheduledEventCreateParams(TypedDict, total=False):
@@ -23,6 +23,13 @@ class ScheduledEventCreateParams(TypedDict, total=False):
 
     telnyx_end_user_target: Required[str]
     """The phone number, SIP URI, to schedule the call or text to."""
+
+    call_settings: CallSettings
+    """
+    Per-call telephony overrides applied when a scheduled phone-call event
+    dispatches. Phone-call events only. New per-call dispatch options should be
+    added here rather than as top-level event fields.
+    """
 
     conversation_metadata: Dict[str, Union[str, int, bool]]
     """Metadata associated with the conversation.
@@ -48,3 +55,18 @@ class ScheduledEventCreateParams(TypedDict, total=False):
 
     text: str
     """Required for sms scheduled events. The text to be sent to the end user."""
+
+
+class CallSettings(TypedDict, total=False):
+    """
+    Per-call telephony overrides applied when a scheduled phone-call event
+    dispatches. Phone-call events only. New per-call dispatch options should be
+    added here rather than as top-level event fields.
+    """
+
+    sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"]
+    """SIP region passed to Telnyx when initiating an outbound call.
+
+    Values match the Telnyx TeXML `SipRegion` parameter exactly. Telnyx defaults to
+    `US` when omitted.
+    """
