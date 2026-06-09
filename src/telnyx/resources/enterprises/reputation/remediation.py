@@ -55,8 +55,8 @@ class RemediationResource(SyncAPIResource):
         enterprise_id: str,
         *,
         call_purpose: str,
-        contact_email: str,
         phone_numbers: SequenceNotStr[str],
+        contact_email: str | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -78,10 +78,10 @@ class RemediationResource(SyncAPIResource):
         Args:
           call_purpose: How the numbers are used (free text).
 
-          contact_email: Contact email for tracking this request.
-
           phone_numbers: Phone numbers in E.164 format. Each must belong to this enterprise. Maximum
               2,000 per request.
+
+          contact_email: Optional contact email for this remediation request.
 
           webhook_url: Optional https:// URL for status notifications.
 
@@ -100,8 +100,8 @@ class RemediationResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "call_purpose": call_purpose,
-                    "contact_email": contact_email,
                     "phone_numbers": phone_numbers,
+                    "contact_email": contact_email,
                     "webhook_url": webhook_url,
                 },
                 remediation_create_params.RemediationCreateParams,
@@ -247,8 +247,8 @@ class AsyncRemediationResource(AsyncAPIResource):
         enterprise_id: str,
         *,
         call_purpose: str,
-        contact_email: str,
         phone_numbers: SequenceNotStr[str],
+        contact_email: str | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -270,10 +270,10 @@ class AsyncRemediationResource(AsyncAPIResource):
         Args:
           call_purpose: How the numbers are used (free text).
 
-          contact_email: Contact email for tracking this request.
-
           phone_numbers: Phone numbers in E.164 format. Each must belong to this enterprise. Maximum
               2,000 per request.
+
+          contact_email: Optional contact email for this remediation request.
 
           webhook_url: Optional https:// URL for status notifications.
 
@@ -292,8 +292,8 @@ class AsyncRemediationResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "call_purpose": call_purpose,
-                    "contact_email": contact_email,
                     "phone_numbers": phone_numbers,
+                    "contact_email": contact_email,
                     "webhook_url": webhook_url,
                 },
                 remediation_create_params.RemediationCreateParams,

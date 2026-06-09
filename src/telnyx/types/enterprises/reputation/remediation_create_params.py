@@ -13,14 +13,14 @@ class RemediationCreateParams(TypedDict, total=False):
     call_purpose: Required[str]
     """How the numbers are used (free text)."""
 
-    contact_email: Required[str]
-    """Contact email for tracking this request."""
-
     phone_numbers: Required[SequenceNotStr[str]]
     """Phone numbers in E.164 format.
 
     Each must belong to this enterprise. Maximum 2,000 per request.
     """
+
+    contact_email: str
+    """Optional contact email for this remediation request."""
 
     webhook_url: str
     """Optional https:// URL for status notifications."""
