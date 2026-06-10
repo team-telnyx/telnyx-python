@@ -93,7 +93,17 @@ class TestDir:
             authorizer_email="dev@stainless.com",
             authorizer_name="authorizer_name",
             call_reasons=["Appointment reminders", "Billing inquiries", "Lab results"],
+            certify_brand_is_accurate=True,
+            certify_ip_ownership=True,
+            certify_no_shaft_content=True,
             display_name="Acme Plumbing & Wellness",
+            documents=[
+                {
+                    "document_id": "2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
+                    "document_type": "business_registration",
+                    "description": "Certificate of incorporation.",
+                }
+            ],
             logo_url="https://acmeplumbing.example.com/logo-v2-256.bmp",
             reselling=True,
         )
@@ -583,7 +593,17 @@ class TestAsyncDir:
             authorizer_email="dev@stainless.com",
             authorizer_name="authorizer_name",
             call_reasons=["Appointment reminders", "Billing inquiries", "Lab results"],
+            certify_brand_is_accurate=True,
+            certify_ip_ownership=True,
+            certify_no_shaft_content=True,
             display_name="Acme Plumbing & Wellness",
+            documents=[
+                {
+                    "document_id": "2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
+                    "document_type": "business_registration",
+                    "description": "Certificate of incorporation.",
+                }
+            ],
             logo_url="https://acmeplumbing.example.com/logo-v2-256.bmp",
             reselling=True,
         )

@@ -154,7 +154,11 @@ class DirResource(SyncAPIResource):
         authorizer_email: str | Omit = omit,
         authorizer_name: str | Omit = omit,
         call_reasons: SequenceNotStr[str] | Omit = omit,
+        certify_brand_is_accurate: bool | Omit = omit,
+        certify_ip_ownership: bool | Omit = omit,
+        certify_no_shaft_content: bool | Omit = omit,
         display_name: str | Omit = omit,
+        documents: Iterable[dir_update_params.Document] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -166,9 +170,15 @@ class DirResource(SyncAPIResource):
     ) -> DirUpdateResponse:
         """Edit a DIR.
 
-        Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
-        editable. PATCH is a pure edit - `status` is never changed by this endpoint. To
-        re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
+        DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
+        edited freely: PATCH is a pure edit, `status` is never changed, and you re-vet
+        by calling `POST /v2/dir/{dir_id}/submit` explicitly. A `verified` DIR can also
+        be edited in place: a PATCH that changes any value returns the DIR to `draft`
+        and branded delivery stops until you re-submit and the DIR is approved again,
+        while a PATCH that changes nothing (an empty body or values identical to the
+        current ones) leaves the DIR `verified`, so idempotent retries are safe. DIRs in
+        any other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
+        `permanently_rejected`) cannot be edited.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or infringement
@@ -180,7 +190,21 @@ class DirResource(SyncAPIResource):
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
 
+          certify_brand_is_accurate: Certification that the DIR information is accurate. Must be `true` for the DIR
+              to be submitted for vetting.
+
+          certify_ip_ownership: Certification of ownership of any logos/trademarks shown. Must be `true` for the
+              DIR to be submitted for vetting.
+
+          certify_no_shaft_content: Certification that this DIR is not used for SHAFT content (Sex, Hate, Alcohol,
+              Firearms, Tobacco) where prohibited. Must be `true` for the DIR to be submitted
+              for vetting.
+
           display_name: Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only.
+
+          documents: Additional supporting documents to attach. Append-only: existing documents are
+              never removed or replaced, and an empty or omitted list is a no-op. Each
+              `document_id` may appear at most once on a DIR.
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
@@ -204,7 +228,11 @@ class DirResource(SyncAPIResource):
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
                     "call_reasons": call_reasons,
+                    "certify_brand_is_accurate": certify_brand_is_accurate,
+                    "certify_ip_ownership": certify_ip_ownership,
+                    "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
+                    "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
                 },
@@ -705,7 +733,11 @@ class AsyncDirResource(AsyncAPIResource):
         authorizer_email: str | Omit = omit,
         authorizer_name: str | Omit = omit,
         call_reasons: SequenceNotStr[str] | Omit = omit,
+        certify_brand_is_accurate: bool | Omit = omit,
+        certify_ip_ownership: bool | Omit = omit,
+        certify_no_shaft_content: bool | Omit = omit,
         display_name: str | Omit = omit,
+        documents: Iterable[dir_update_params.Document] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -717,9 +749,15 @@ class AsyncDirResource(AsyncAPIResource):
     ) -> DirUpdateResponse:
         """Edit a DIR.
 
-        Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
-        editable. PATCH is a pure edit - `status` is never changed by this endpoint. To
-        re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
+        DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
+        edited freely: PATCH is a pure edit, `status` is never changed, and you re-vet
+        by calling `POST /v2/dir/{dir_id}/submit` explicitly. A `verified` DIR can also
+        be edited in place: a PATCH that changes any value returns the DIR to `draft`
+        and branded delivery stops until you re-submit and the DIR is approved again,
+        while a PATCH that changes nothing (an empty body or values identical to the
+        current ones) leaves the DIR `verified`, so idempotent retries are safe. DIRs in
+        any other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
+        `permanently_rejected`) cannot be edited.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or infringement
@@ -731,7 +769,21 @@ class AsyncDirResource(AsyncAPIResource):
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
 
+          certify_brand_is_accurate: Certification that the DIR information is accurate. Must be `true` for the DIR
+              to be submitted for vetting.
+
+          certify_ip_ownership: Certification of ownership of any logos/trademarks shown. Must be `true` for the
+              DIR to be submitted for vetting.
+
+          certify_no_shaft_content: Certification that this DIR is not used for SHAFT content (Sex, Hate, Alcohol,
+              Firearms, Tobacco) where prohibited. Must be `true` for the DIR to be submitted
+              for vetting.
+
           display_name: Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only.
+
+          documents: Additional supporting documents to attach. Append-only: existing documents are
+              never removed or replaced, and an empty or omitted list is a no-op. Each
+              `document_id` may appear at most once on a DIR.
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
@@ -755,7 +807,11 @@ class AsyncDirResource(AsyncAPIResource):
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
                     "call_reasons": call_reasons,
+                    "certify_brand_is_accurate": certify_brand_is_accurate,
+                    "certify_ip_ownership": certify_ip_ownership,
+                    "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
+                    "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
                 },
