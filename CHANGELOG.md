@@ -1,5 +1,27 @@
 # Changelog
 
+## 4.153.0 (2026-06-11)
+
+Full Changelog: [v4.152.0...v4.153.0](https://github.com/team-telnyx/telnyx-python/compare/v4.152.0...v4.153.0)
+
+### Features
+
+* Add sip region to scheduled events ([5225803](https://github.com/team-telnyx/telnyx-python/commit/5225803870d8a57e40b991d30e885a71067de502))
+* branded-calling: drop 'simplified'/'no enterprise_id' framing from DIR endpoints ([f05ef19](https://github.com/team-telnyx/telnyx-python/commit/f05ef19ec11f94c9f6b93e8f435a9bfd72a5055e))
+* branded-calling: sync PATCH /dir/{dir_id} spec with deployed service behavior ([bb99c2e](https://github.com/team-telnyx/telnyx-python/commit/bb99c2e700da1ab41ad0626d3ab4a5e27c5d4a0d))
+* **branded-calling:** document LOA (DIR) + reputation remediation endpoints ([aa820e3](https://github.com/team-telnyx/telnyx-python/commit/aa820e336b1a0fe2cbc5711d47c5ae90dcc4aabe))
+* Fix cross-product leakage: de-dup shared enterprise/ToS endpoints + neutralize descriptions ([880cf47](https://github.com/team-telnyx/telnyx-python/commit/880cf4734e8016b8a17b41d916e44ea2377037ea))
+* **spec:** backfill parameter descriptions to 100% coverage ([63a56e9](https://github.com/team-telnyx/telnyx-python/commit/63a56e90e415120518fb41e2339bbf0b3e9c1106))
+* **spec:** inline 2xx response schemas — REST response coverage 41% → 91% (sync of openapi[#199](https://github.com/team-telnyx/telnyx-python/issues/199)) ([d92820a](https://github.com/team-telnyx/telnyx-python/commit/d92820a53d6aafa93880b8dd2407b54726bb0509))
+* specs: add GET /terms_of_service/info (branded-calling + number-reputation) ([22d4e2b](https://github.com/team-telnyx/telnyx-python/commit/22d4e2b153efdb4bd93eb08b28d506188f3b5285))
+* specs: drop legacy plain filter params (keep filter[] canonical) on list endpoints ([c740d4f](https://github.com/team-telnyx/telnyx-python/commit/c740d4fd45b3872a33f58a5097050cd34922d87c))
+* specs: remove em dashes from branded-calling + number-reputation descriptions ([3281ac6](https://github.com/team-telnyx/telnyx-python/commit/3281ac6208cb0bb834c4f74ad868e061bd88a400))
+
+
+### Bug Fixes
+
+* **number-reputation:** remediation contact_email is optional ([0ed56b8](https://github.com/team-telnyx/telnyx-python/commit/0ed56b88a8e286361fd5073232ff62844d5e6dfb))
+
 ## 4.152.0 (2026-06-05)
 
 Full Changelog: [v4.151.0...v4.152.0](https://github.com/team-telnyx/telnyx-python/compare/v4.151.0...v4.152.0)
