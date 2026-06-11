@@ -11,5 +11,7 @@ __all__ = ["PhoneNumberAssignmentByProfileListPhoneNumberStatusParams"]
 
 class PhoneNumberAssignmentByProfileListPhoneNumberStatusParams(TypedDict, total=False):
     page: int
+    """Page number to retrieve (1-based)."""
 
     records_per_page: Annotated[int, PropertyInfo(alias="recordsPerPage")]
+    """Number of records to return per page."""

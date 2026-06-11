@@ -166,6 +166,10 @@ class MessagingHostedNumbersResource(SyncAPIResource):
 
           filter_phone_number_contains: Filter by phone number substring.
 
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
+
           sort_phone_number: Sort by phone number.
 
           extra_headers: Send extra headers
@@ -371,6 +375,10 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
           filter_phone_number: Filter by exact phone number.
 
           filter_phone_number_contains: Filter by phone number substring.
+
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
 
           sort_phone_number: Sort by phone number.
 

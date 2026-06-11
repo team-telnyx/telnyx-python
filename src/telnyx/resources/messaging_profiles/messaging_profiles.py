@@ -483,6 +483,10 @@ class MessagingProfilesResource(SyncAPIResource):
         List all alphanumeric sender IDs associated with a specific messaging profile.
 
         Args:
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1081,6 +1085,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         List all alphanumeric sender IDs associated with a specific messaging profile.
 
         Args:
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

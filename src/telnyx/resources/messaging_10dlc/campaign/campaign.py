@@ -227,6 +227,8 @@ class CampaignResource(SyncAPIResource):
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
         Args:
+          brand_id: Filter results by brand id.
+
           page: The 1-indexed page number to get. The default value is `1`.
 
           records_per_page: The amount of records per page, limited to between 1 and 500 inclusive. The
@@ -660,6 +662,8 @@ class AsyncCampaignResource(AsyncAPIResource):
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
         Args:
+          brand_id: Filter results by brand id.
+
           page: The 1-indexed page number to get. The default value is `1`.
 
           records_per_page: The amount of records per page, limited to between 1 and 500 inclusive. The

@@ -12,7 +12,7 @@ __all__ = ["CallReasonValidateParams"]
 class CallReasonValidateParams(TypedDict, total=False):
     body: Required[SequenceNotStr[str]]
     """
-    **Bare JSON array** of candidate call-reason strings (NOT an object — there is
+    **Bare JSON array** of candidate call-reason strings (NOT an object - there is
     no top-level `call_reasons` key on this endpoint). 1–10 strings, each ≤64
     characters.
     """

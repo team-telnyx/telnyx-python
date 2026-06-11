@@ -11,6 +11,7 @@ import httpx
 from ...types import (
     dir_list_params,
     dir_update_params,
+    dir_create_loa_params,
     dir_update_infringement_params,
     dir_list_infringement_claims_params,
 )
@@ -27,10 +28,18 @@ from .comments import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .phone_numbers import (
@@ -145,7 +154,11 @@ class DirResource(SyncAPIResource):
         authorizer_email: str | Omit = omit,
         authorizer_name: str | Omit = omit,
         call_reasons: SequenceNotStr[str] | Omit = omit,
+        certify_brand_is_accurate: bool | Omit = omit,
+        certify_ip_ownership: bool | Omit = omit,
+        certify_no_shaft_content: bool | Omit = omit,
         display_name: str | Omit = omit,
+        documents: Iterable[dir_update_params.Document] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -157,9 +170,15 @@ class DirResource(SyncAPIResource):
     ) -> DirUpdateResponse:
         """Edit a DIR.
 
-        Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
-        editable. PATCH is a pure edit — `status` is never changed by this endpoint. To
-        re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
+        DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
+        edited freely: PATCH is a pure edit, `status` is never changed, and you re-vet
+        by calling `POST /v2/dir/{dir_id}/submit` explicitly. A `verified` DIR can also
+        be edited in place: a PATCH that changes any value returns the DIR to `draft`
+        and branded delivery stops until you re-submit and the DIR is approved again,
+        while a PATCH that changes nothing (an empty body or values identical to the
+        current ones) leaves the DIR `verified`, so idempotent retries are safe. DIRs in
+        any other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
+        `permanently_rejected`) cannot be edited.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or infringement
@@ -171,7 +190,21 @@ class DirResource(SyncAPIResource):
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
 
+          certify_brand_is_accurate: Certification that the DIR information is accurate. Must be `true` for the DIR
+              to be submitted for vetting.
+
+          certify_ip_ownership: Certification of ownership of any logos/trademarks shown. Must be `true` for the
+              DIR to be submitted for vetting.
+
+          certify_no_shaft_content: Certification that this DIR is not used for SHAFT content (Sex, Hate, Alcohol,
+              Firearms, Tobacco) where prohibited. Must be `true` for the DIR to be submitted
+              for vetting.
+
           display_name: Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only.
+
+          documents: Additional supporting documents to attach. Append-only: existing documents are
+              never removed or replaced, and an empty or omitted list is a no-op. Each
+              `document_id` may appear at most once on a DIR.
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
@@ -195,7 +228,11 @@ class DirResource(SyncAPIResource):
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
                     "call_reasons": call_reasons,
+                    "certify_brand_is_accurate": certify_brand_is_accurate,
+                    "certify_ip_ownership": certify_ip_ownership,
+                    "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
+                    "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
                 },
@@ -210,24 +247,12 @@ class DirResource(SyncAPIResource):
     def list(
         self,
         *,
-        enterprise_id: str | Omit = omit,
+        filter_call_reason_contains: str | Omit = omit,
+        filter_display_name_contains: str | Omit = omit,
+        filter_enterprise_id: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
-        search: str | Omit = omit,
-        sort: Literal[
-            "created_at",
-            "-created_at",
-            "updated_at",
-            "-updated_at",
-            "display_name",
-            "-display_name",
-            "status",
-            "-status",
-        ]
-        | Omit = omit,
-        status: Literal[
+        filter_status: Literal[
             "draft",
             "submitted",
             "in_review",
@@ -240,6 +265,19 @@ class DirResource(SyncAPIResource):
             "permanently_rejected",
         ]
         | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        sort: Literal[
+            "created_at",
+            "-created_at",
+            "updated_at",
+            "-updated_at",
+            "display_name",
+            "-display_name",
+            "status",
+            "-status",
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -248,29 +286,35 @@ class DirResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[DirListResponse]:
         """
-        Convenience endpoint that returns every DIR you own without scoping to a
-        specific enterprise. Equivalent to calling
-        `GET /v2/enterprises/{enterprise_id}/dir` for each enterprise and concatenating
-        the results, but server-side and paginated as a single list.
+        Returns every DIR (Display Identity Record) you own, across all of your
+        enterprises, as a single list. Pagination is JSON:API style (`page[number]`,
+        `page[size]`, max 250). Supports `filter[]` query params:
+        `filter[enterprise_id]`, `filter[status]`, `filter[display_name][contains]`,
+        `filter[call_reason][contains]`, plus the renewal-window filters
+        `filter[expiring_at][gte]` / `filter[expiring_at][lte]`. Sortable by
+        `created_at`, `updated_at`, `display_name`, `status` (prefix `-` for descending;
+        default `-created_at`).
 
         Args:
-          enterprise_id: Restrict results to a single enterprise.
+          filter_call_reason_contains: Case-insensitive partial match on call reason.
+
+          filter_display_name_contains: Case-insensitive partial match on display name.
+
+          filter_enterprise_id: Filter by enterprise ID.
 
           filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
               Pairs with the `[lte]` variant to build renewal-window dashboards.
 
           filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
 
+          filter_status: Filter by DIR status.
+
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name` or call reason.
-
           sort: Sort field. Allowed values: `created_at`, `updated_at`, `display_name`,
               `status`. Prefix with `-` for descending. Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -290,14 +334,15 @@ class DirResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "enterprise_id": enterprise_id,
+                        "filter_call_reason_contains": filter_call_reason_contains,
+                        "filter_display_name_contains": filter_display_name_contains,
+                        "filter_enterprise_id": filter_enterprise_id,
                         "filter_expiring_at_gte": filter_expiring_at_gte,
                         "filter_expiring_at_lte": filter_expiring_at_lte,
+                        "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),
@@ -340,6 +385,71 @@ class DirResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def create_loa(
+        self,
+        dir_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        agent: dir_create_loa_params.Agent | Omit = omit,
+        signature: dir_create_loa_params.Signature | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BinaryAPIResponse:
+        """Generate a pre-filled Letter of Authorization (LOA) PDF for a DIR.
+
+        Enterprise
+        identity (legal name, DBA, address, contact, website, tax id) and the DIR
+        display name are read server-side; the caller supplies the telephone numbers to
+        authorize, an optional Authorized Agent block, and an optional drawn signature.
+
+        When `signature` is omitted the PDF is returned unsigned so the customer can
+        sign it externally and upload it via the Documents API. When `signature` is
+        present the PDF embeds the supplied image, printed name, and signed-at date.
+
+        Returns `application/pdf`.
+
+        Args:
+          phone_numbers: Telephone numbers to authorize on the DIR, in `+E164` format (`+` followed by
+              10-15 digits). Max 15 per request.
+
+          agent: Third-party reseller / partner managing the enterprise's phone numbers. Omit
+              when the enterprise works directly with Telnyx.
+
+          signature: Optional. When provided the rendered PDF embeds the signature image, printed
+              name, and signed-at date. When absent the PDF is returned unsigned so the
+              customer can sign externally and upload it via the Documents API.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return self._post(
+            path_template("/dir/{dir_id}/loa", dir_id=dir_id),
+            body=maybe_transform(
+                {
+                    "phone_numbers": phone_numbers,
+                    "agent": agent,
+                    "signature": signature,
+                },
+                dir_create_loa_params.DirCreateLoaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BinaryAPIResponse,
         )
 
     def list_document_types(
@@ -623,7 +733,11 @@ class AsyncDirResource(AsyncAPIResource):
         authorizer_email: str | Omit = omit,
         authorizer_name: str | Omit = omit,
         call_reasons: SequenceNotStr[str] | Omit = omit,
+        certify_brand_is_accurate: bool | Omit = omit,
+        certify_ip_ownership: bool | Omit = omit,
+        certify_no_shaft_content: bool | Omit = omit,
         display_name: str | Omit = omit,
+        documents: Iterable[dir_update_params.Document] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -635,9 +749,15 @@ class AsyncDirResource(AsyncAPIResource):
     ) -> DirUpdateResponse:
         """Edit a DIR.
 
-        Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
-        editable. PATCH is a pure edit — `status` is never changed by this endpoint. To
-        re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
+        DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
+        edited freely: PATCH is a pure edit, `status` is never changed, and you re-vet
+        by calling `POST /v2/dir/{dir_id}/submit` explicitly. A `verified` DIR can also
+        be edited in place: a PATCH that changes any value returns the DIR to `draft`
+        and branded delivery stops until you re-submit and the DIR is approved again,
+        while a PATCH that changes nothing (an empty body or values identical to the
+        current ones) leaves the DIR `verified`, so idempotent retries are safe. DIRs in
+        any other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
+        `permanently_rejected`) cannot be edited.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or infringement
@@ -649,7 +769,21 @@ class AsyncDirResource(AsyncAPIResource):
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
 
+          certify_brand_is_accurate: Certification that the DIR information is accurate. Must be `true` for the DIR
+              to be submitted for vetting.
+
+          certify_ip_ownership: Certification of ownership of any logos/trademarks shown. Must be `true` for the
+              DIR to be submitted for vetting.
+
+          certify_no_shaft_content: Certification that this DIR is not used for SHAFT content (Sex, Hate, Alcohol,
+              Firearms, Tobacco) where prohibited. Must be `true` for the DIR to be submitted
+              for vetting.
+
           display_name: Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only.
+
+          documents: Additional supporting documents to attach. Append-only: existing documents are
+              never removed or replaced, and an empty or omitted list is a no-op. Each
+              `document_id` may appear at most once on a DIR.
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
@@ -673,7 +807,11 @@ class AsyncDirResource(AsyncAPIResource):
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
                     "call_reasons": call_reasons,
+                    "certify_brand_is_accurate": certify_brand_is_accurate,
+                    "certify_ip_ownership": certify_ip_ownership,
+                    "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
+                    "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
                 },
@@ -688,24 +826,12 @@ class AsyncDirResource(AsyncAPIResource):
     def list(
         self,
         *,
-        enterprise_id: str | Omit = omit,
+        filter_call_reason_contains: str | Omit = omit,
+        filter_display_name_contains: str | Omit = omit,
+        filter_enterprise_id: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
-        search: str | Omit = omit,
-        sort: Literal[
-            "created_at",
-            "-created_at",
-            "updated_at",
-            "-updated_at",
-            "display_name",
-            "-display_name",
-            "status",
-            "-status",
-        ]
-        | Omit = omit,
-        status: Literal[
+        filter_status: Literal[
             "draft",
             "submitted",
             "in_review",
@@ -718,6 +844,19 @@ class AsyncDirResource(AsyncAPIResource):
             "permanently_rejected",
         ]
         | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        sort: Literal[
+            "created_at",
+            "-created_at",
+            "updated_at",
+            "-updated_at",
+            "display_name",
+            "-display_name",
+            "status",
+            "-status",
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -726,29 +865,35 @@ class AsyncDirResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DirListResponse, AsyncDefaultFlatPagination[DirListResponse]]:
         """
-        Convenience endpoint that returns every DIR you own without scoping to a
-        specific enterprise. Equivalent to calling
-        `GET /v2/enterprises/{enterprise_id}/dir` for each enterprise and concatenating
-        the results, but server-side and paginated as a single list.
+        Returns every DIR (Display Identity Record) you own, across all of your
+        enterprises, as a single list. Pagination is JSON:API style (`page[number]`,
+        `page[size]`, max 250). Supports `filter[]` query params:
+        `filter[enterprise_id]`, `filter[status]`, `filter[display_name][contains]`,
+        `filter[call_reason][contains]`, plus the renewal-window filters
+        `filter[expiring_at][gte]` / `filter[expiring_at][lte]`. Sortable by
+        `created_at`, `updated_at`, `display_name`, `status` (prefix `-` for descending;
+        default `-created_at`).
 
         Args:
-          enterprise_id: Restrict results to a single enterprise.
+          filter_call_reason_contains: Case-insensitive partial match on call reason.
+
+          filter_display_name_contains: Case-insensitive partial match on display name.
+
+          filter_enterprise_id: Filter by enterprise ID.
 
           filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
               Pairs with the `[lte]` variant to build renewal-window dashboards.
 
           filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
 
+          filter_status: Filter by DIR status.
+
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name` or call reason.
-
           sort: Sort field. Allowed values: `created_at`, `updated_at`, `display_name`,
               `status`. Prefix with `-` for descending. Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -768,14 +913,15 @@ class AsyncDirResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "enterprise_id": enterprise_id,
+                        "filter_call_reason_contains": filter_call_reason_contains,
+                        "filter_display_name_contains": filter_display_name_contains,
+                        "filter_enterprise_id": filter_enterprise_id,
                         "filter_expiring_at_gte": filter_expiring_at_gte,
                         "filter_expiring_at_lte": filter_expiring_at_lte,
+                        "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),
@@ -818,6 +964,71 @@ class AsyncDirResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    async def create_loa(
+        self,
+        dir_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        agent: dir_create_loa_params.Agent | Omit = omit,
+        signature: dir_create_loa_params.Signature | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncBinaryAPIResponse:
+        """Generate a pre-filled Letter of Authorization (LOA) PDF for a DIR.
+
+        Enterprise
+        identity (legal name, DBA, address, contact, website, tax id) and the DIR
+        display name are read server-side; the caller supplies the telephone numbers to
+        authorize, an optional Authorized Agent block, and an optional drawn signature.
+
+        When `signature` is omitted the PDF is returned unsigned so the customer can
+        sign it externally and upload it via the Documents API. When `signature` is
+        present the PDF embeds the supplied image, printed name, and signed-at date.
+
+        Returns `application/pdf`.
+
+        Args:
+          phone_numbers: Telephone numbers to authorize on the DIR, in `+E164` format (`+` followed by
+              10-15 digits). Max 15 per request.
+
+          agent: Third-party reseller / partner managing the enterprise's phone numbers. Omit
+              when the enterprise works directly with Telnyx.
+
+          signature: Optional. When provided the rendered PDF embeds the signature image, printed
+              name, and signed-at date. When absent the PDF is returned unsigned so the
+              customer can sign externally and upload it via the Documents API.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return await self._post(
+            path_template("/dir/{dir_id}/loa", dir_id=dir_id),
+            body=await async_maybe_transform(
+                {
+                    "phone_numbers": phone_numbers,
+                    "agent": agent,
+                    "signature": signature,
+                },
+                dir_create_loa_params.DirCreateLoaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AsyncBinaryAPIResponse,
         )
 
     async def list_document_types(
@@ -1035,6 +1246,10 @@ class DirResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             dir.delete,
         )
+        self.create_loa = to_custom_raw_response_wrapper(
+            dir.create_loa,
+            BinaryAPIResponse,
+        )
         self.list_document_types = to_raw_response_wrapper(
             dir.list_document_types,
         )
@@ -1086,6 +1301,10 @@ class AsyncDirResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             dir.delete,
+        )
+        self.create_loa = async_to_custom_raw_response_wrapper(
+            dir.create_loa,
+            AsyncBinaryAPIResponse,
         )
         self.list_document_types = async_to_raw_response_wrapper(
             dir.list_document_types,
@@ -1139,6 +1358,10 @@ class DirResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             dir.delete,
         )
+        self.create_loa = to_custom_streamed_response_wrapper(
+            dir.create_loa,
+            StreamedBinaryAPIResponse,
+        )
         self.list_document_types = to_streamed_response_wrapper(
             dir.list_document_types,
         )
@@ -1190,6 +1413,10 @@ class AsyncDirResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             dir.delete,
+        )
+        self.create_loa = async_to_custom_streamed_response_wrapper(
+            dir.create_loa,
+            AsyncStreamedBinaryAPIResponse,
         )
         self.list_document_types = async_to_streamed_response_wrapper(
             dir.list_document_types,

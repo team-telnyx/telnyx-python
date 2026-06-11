@@ -24,6 +24,14 @@ from .reputation import (
     ReputationResourceWithStreamingResponse,
     AsyncReputationResourceWithStreamingResponse,
 )
+from .remediation import (
+    RemediationResource,
+    AsyncRemediationResource,
+    RemediationResourceWithRawResponse,
+    AsyncRemediationResourceWithRawResponse,
+    RemediationResourceWithStreamingResponse,
+    AsyncRemediationResourceWithStreamingResponse,
+)
 
 __all__ = [
     "NumbersResource",
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncLoaResourceWithRawResponse",
     "LoaResourceWithStreamingResponse",
     "AsyncLoaResourceWithStreamingResponse",
+    "RemediationResource",
+    "AsyncRemediationResource",
+    "RemediationResourceWithRawResponse",
+    "AsyncRemediationResourceWithRawResponse",
+    "RemediationResourceWithStreamingResponse",
+    "AsyncRemediationResourceWithStreamingResponse",
     "ReputationResource",
     "AsyncReputationResource",
     "ReputationResourceWithRawResponse",

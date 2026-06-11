@@ -94,12 +94,12 @@ class EnterpriseCreateParams(TypedDict, total=False):
     organization_legal_type: Required[Literal["corporation", "llc", "partnership", "nonprofit", "other"]]
     """Legal-entity form. Pick the form that matches your incorporation documents:
 
-    - `corporation` — C-corp or S-corp.
-    - `llc` — limited liability company.
-    - `partnership` — general/limited partnership.
-    - `nonprofit` — non-profit corporation, charitable trust, or
+    - `corporation` - C-corp or S-corp.
+    - `llc` - limited liability company.
+    - `partnership` - general/limited partnership.
+    - `nonprofit` - non-profit corporation, charitable trust, or
       501(c)(3)/equivalent.
-    - `other` — anything else (sole proprietorships, government bodies, DBAs, etc.).
+    - `other` - anything else (sole proprietorships, government bodies, DBAs, etc.).
       You may be asked for additional documents during vetting.
     """
 
@@ -108,10 +108,10 @@ class EnterpriseCreateParams(TypedDict, total=False):
     organization_type: Required[Literal["commercial", "government", "non_profit"]]
     """Organization category for vetting purposes:
 
-    - `commercial` — for-profit business entities (LLC, corp, partnership, sole
+    - `commercial` - for-profit business entities (LLC, corp, partnership, sole
       proprietorship). Most callers fall here.
-    - `government` — federal/state/local government bodies.
-    - `non_profit` — registered 501(c)(3)/equivalent (incl. educational
+    - `government` - federal/state/local government bodies.
+    - `non_profit` - registered 501(c)(3)/equivalent (incl. educational
       institutions, charities, religious organisations).
     """
 

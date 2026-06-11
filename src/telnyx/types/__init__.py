@@ -252,6 +252,7 @@ from .call_streaming_failed import CallStreamingFailed as CallStreamingFailed
 from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_list_response import CommentListResponse as CommentListResponse
 from .credential_connection import CredentialConnection as CredentialConnection
+from .dir_create_loa_params import DirCreateLoaParams as DirCreateLoaParams
 from .dir_retrieve_response import DirRetrieveResponse as DirRetrieveResponse
 from .fax_retrieve_response import FaxRetrieveResponse as FaxRetrieveResponse
 from .global_ip_list_params import GlobalIPListParams as GlobalIPListParams
@@ -960,6 +961,7 @@ from .public_internet_gateway_list_response import (
 )
 from .sim_card_get_activation_code_response import SimCardGetActivationCodeResponse as SimCardGetActivationCodeResponse
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
+from .terms_of_service_retrieve_info_params import TermsOfServiceRetrieveInfoParams as TermsOfServiceRetrieveInfoParams
 from .verification_trigger_flashcall_params import (
     VerificationTriggerFlashcallParams as VerificationTriggerFlashcallParams,
 )
@@ -1152,6 +1154,9 @@ from .sip_registration_status_retrieve_params import (
 )
 from .sub_number_order_regulatory_requirement import (
     SubNumberOrderRegulatoryRequirement as SubNumberOrderRegulatoryRequirement,
+)
+from .terms_of_service_retrieve_info_response import (
+    TermsOfServiceRetrieveInfoResponse as TermsOfServiceRetrieveInfoResponse,
 )
 from .virtual_cross_connect_retrieve_response import (
     VirtualCrossConnectRetrieveResponse as VirtualCrossConnectRetrieveResponse,

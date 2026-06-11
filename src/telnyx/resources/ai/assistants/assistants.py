@@ -334,6 +334,14 @@ class AssistantsResource(SyncAPIResource):
         Retrieve an AI Assistant configuration by `assistant_id`.
 
         Args:
+          call_control_id: Filter results by call control id.
+
+          fetch_dynamic_variables_from_webhook: Whether to fetch dynamic variables from the configured webhook.
+
+          from_: Start of the filter range.
+
+          to: End of the filter range.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1075,6 +1083,14 @@ class AsyncAssistantsResource(AsyncAPIResource):
         Retrieve an AI Assistant configuration by `assistant_id`.
 
         Args:
+          call_control_id: Filter results by call control id.
+
+          fetch_dynamic_variables_from_webhook: Whether to fetch dynamic variables from the configured webhook.
+
+          from_: Start of the filter range.
+
+          to: End of the filter range.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

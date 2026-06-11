@@ -14,11 +14,14 @@ __all__ = ["ScheduledEventListParams"]
 
 class ScheduledEventListParams(TypedDict, total=False):
     conversation_channel: ConversationChannelType
+    """Filter results by conversation channel."""
 
     from_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Start of the date range filter (inclusive, ISO 8601)."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     to_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """End of the date range filter (inclusive, ISO 8601)."""

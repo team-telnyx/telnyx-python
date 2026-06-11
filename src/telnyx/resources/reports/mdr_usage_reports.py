@@ -233,6 +233,14 @@ class MdrUsageReportsResource(SyncAPIResource):
         is necessary but the response may take up to a couple of minutes.
 
         Args:
+          aggregation_type: Type of aggregation to apply to the results.
+
+          end_date: End of the date range filter (inclusive, ISO 8601).
+
+          profiles: Filter results by profile.
+
+          start_date: Start of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -461,6 +469,14 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
         is necessary but the response may take up to a couple of minutes.
 
         Args:
+          aggregation_type: Type of aggregation to apply to the results.
+
+          end_date: End of the date range filter (inclusive, ISO 8601).
+
+          profiles: Filter results by profile.
+
+          start_date: Start of the date range filter (inclusive, ISO 8601).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

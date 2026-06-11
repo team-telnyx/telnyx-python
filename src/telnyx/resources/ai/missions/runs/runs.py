@@ -238,6 +238,8 @@ class RunsResource(SyncAPIResource):
 
           page_size: Number of items per page
 
+          status: Filter results by status.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -324,6 +326,8 @@ class RunsResource(SyncAPIResource):
           page_number: Page number (1-based)
 
           page_size: Number of items per page
+
+          status: Filter results by status.
 
           extra_headers: Send extra headers
 
@@ -609,6 +613,8 @@ class AsyncRunsResource(AsyncAPIResource):
 
           page_size: Number of items per page
 
+          status: Filter results by status.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -695,6 +701,8 @@ class AsyncRunsResource(AsyncAPIResource):
           page_number: Page number (1-based)
 
           page_size: Number of items per page
+
+          status: Filter results by status.
 
           extra_headers: Send extra headers
 

@@ -14,7 +14,7 @@ class PhoneNumberAddParams(TypedDict, total=False):
     documents: Required[Iterable[Document]]
     """Supporting documents covering this batch.
 
-    At least one entry with `document_type: letter_of_authorization` is required —
+    At least one entry with `document_type: letter_of_authorization` is required -
     the LOA authorises Telnyx to register these numbers under the DIR. Each
     `document_id` must come from the Telnyx Documents API. Additional document types
     (e.g. business registration) may be included alongside the LOA.

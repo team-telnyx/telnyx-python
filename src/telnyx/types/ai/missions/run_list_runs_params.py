@@ -17,3 +17,4 @@ class RunListRunsParams(TypedDict, total=False):
     """Number of items per page"""
 
     status: str
+    """Filter results by status."""

@@ -11,9 +11,7 @@ __all__ = ["RequestRetrieveStatusHistoryParams"]
 
 class RequestRetrieveStatusHistoryParams(TypedDict, total=False):
     page_number: Required[Annotated[int, PropertyInfo(alias="page[number]")]]
+    """Page number to retrieve (1-based)."""
 
     page_size: Required[Annotated[int, PropertyInfo(alias="page[size]")]]
-    """Request this many records per page.
-
-    This value is automatically clamped if the provided value is too large.
-    """
+    """Number of items to return per page."""

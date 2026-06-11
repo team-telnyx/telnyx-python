@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import terms_of_service_status_params
+from ...types import terms_of_service_status_params, terms_of_service_retrieve_info_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -43,6 +43,7 @@ from .number_reputation import (
     AsyncNumberReputationResourceWithStreamingResponse,
 )
 from ...types.terms_of_service_status_response import TermsOfServiceStatusResponse
+from ...types.terms_of_service_retrieve_info_response import TermsOfServiceRetrieveInfoResponse
 
 __all__ = ["TermsOfServiceResource", "AsyncTermsOfServiceResource"]
 
@@ -92,6 +93,48 @@ class TermsOfServiceResource(SyncAPIResource):
         """
         return TermsOfServiceResourceWithStreamingResponse(self)
 
+    def retrieve_info(
+        self,
+        *,
+        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TermsOfServiceRetrieveInfoResponse:
+        """
+        Returns the available Terms of Service agreements (product, current version,
+        terms URL, effective date). Omit `product_type` to return all products; pass it
+        to scope to one.
+
+        Args:
+          product_type: Optional product filter. Omit to return info for all products.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/terms_of_service/info",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"product_type": product_type},
+                    terms_of_service_retrieve_info_params.TermsOfServiceRetrieveInfoParams,
+                ),
+            ),
+            cast_to=TermsOfServiceRetrieveInfoResponse,
+        )
+
     def status(
         self,
         *,
@@ -104,18 +147,15 @@ class TermsOfServiceResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TermsOfServiceStatusResponse:
         """
-        Returns whether the authenticated user has agreed to the current Number
-        Reputation Terms of Service. Used during onboarding to decide whether to prompt
-        the user with the ToS dialog before continuing.
+        Returns whether the authenticated user has agreed to the current Terms of
+        Service for the product given by `product_type`. Used during onboarding to
+        decide whether to prompt the user with the ToS dialog before continuing.
 
-        The `agreement_required: true` value means the user has not yet agreed (or has
-        agreed to an outdated version) and must call
-        `POST /terms_of_service/number_reputation/agree` before they can use the Number
-        Reputation endpoints on an enterprise.
+        `agreement_required: true` means the user has not yet agreed (or has agreed to
+        an outdated version) and must agree before using that product's endpoints.
 
         Args:
-          product_type: Which product's ToS to check. Defaults to `branded_calling`; pass
-              `number_reputation` to check the Number Reputation Terms of Service.
+          product_type: Which product's ToS to check. Defaults to `branded_calling`.
 
           extra_headers: Send extra headers
 
@@ -185,6 +225,48 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
         """
         return AsyncTermsOfServiceResourceWithStreamingResponse(self)
 
+    async def retrieve_info(
+        self,
+        *,
+        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TermsOfServiceRetrieveInfoResponse:
+        """
+        Returns the available Terms of Service agreements (product, current version,
+        terms URL, effective date). Omit `product_type` to return all products; pass it
+        to scope to one.
+
+        Args:
+          product_type: Optional product filter. Omit to return info for all products.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/terms_of_service/info",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"product_type": product_type},
+                    terms_of_service_retrieve_info_params.TermsOfServiceRetrieveInfoParams,
+                ),
+            ),
+            cast_to=TermsOfServiceRetrieveInfoResponse,
+        )
+
     async def status(
         self,
         *,
@@ -197,18 +279,15 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TermsOfServiceStatusResponse:
         """
-        Returns whether the authenticated user has agreed to the current Number
-        Reputation Terms of Service. Used during onboarding to decide whether to prompt
-        the user with the ToS dialog before continuing.
+        Returns whether the authenticated user has agreed to the current Terms of
+        Service for the product given by `product_type`. Used during onboarding to
+        decide whether to prompt the user with the ToS dialog before continuing.
 
-        The `agreement_required: true` value means the user has not yet agreed (or has
-        agreed to an outdated version) and must call
-        `POST /terms_of_service/number_reputation/agree` before they can use the Number
-        Reputation endpoints on an enterprise.
+        `agreement_required: true` means the user has not yet agreed (or has agreed to
+        an outdated version) and must agree before using that product's endpoints.
 
         Args:
-          product_type: Which product's ToS to check. Defaults to `branded_calling`; pass
-              `number_reputation` to check the Number Reputation Terms of Service.
+          product_type: Which product's ToS to check. Defaults to `branded_calling`.
 
           extra_headers: Send extra headers
 
@@ -237,6 +316,9 @@ class TermsOfServiceResourceWithRawResponse:
     def __init__(self, terms_of_service: TermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
+        self.retrieve_info = to_raw_response_wrapper(
+            terms_of_service.retrieve_info,
+        )
         self.status = to_raw_response_wrapper(
             terms_of_service.status,
         )
@@ -267,6 +349,9 @@ class AsyncTermsOfServiceResourceWithRawResponse:
     def __init__(self, terms_of_service: AsyncTermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
+        self.retrieve_info = async_to_raw_response_wrapper(
+            terms_of_service.retrieve_info,
+        )
         self.status = async_to_raw_response_wrapper(
             terms_of_service.status,
         )
@@ -297,6 +382,9 @@ class TermsOfServiceResourceWithStreamingResponse:
     def __init__(self, terms_of_service: TermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
+        self.retrieve_info = to_streamed_response_wrapper(
+            terms_of_service.retrieve_info,
+        )
         self.status = to_streamed_response_wrapper(
             terms_of_service.status,
         )
@@ -327,6 +415,9 @@ class AsyncTermsOfServiceResourceWithStreamingResponse:
     def __init__(self, terms_of_service: AsyncTermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
+        self.retrieve_info = async_to_streamed_response_wrapper(
+            terms_of_service.retrieve_info,
+        )
         self.status = async_to_streamed_response_wrapper(
             terms_of_service.status,
         )

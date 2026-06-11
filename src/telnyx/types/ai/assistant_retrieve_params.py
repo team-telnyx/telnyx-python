@@ -11,9 +11,13 @@ __all__ = ["AssistantRetrieveParams"]
 
 class AssistantRetrieveParams(TypedDict, total=False):
     call_control_id: str
+    """Filter results by call control id."""
 
     fetch_dynamic_variables_from_webhook: bool
+    """Whether to fetch dynamic variables from the configured webhook."""
 
     from_: Annotated[str, PropertyInfo(alias="from")]
+    """Start of the filter range."""
 
     to: str
+    """End of the filter range."""

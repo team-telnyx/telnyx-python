@@ -122,14 +122,15 @@ class TestDir:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         dir = client.enterprises.dir.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            filter_call_reason_contains="filter[call_reason][contains]",
+            filter_display_name_contains="filter[display_name][contains]",
             filter_expiring_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             filter_expiring_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             filter_expiring_within_days=1,
+            filter_status="draft",
             page_number=1,
             page_size=20,
-            search="search",
             sort="created_at",
-            status="draft",
         )
         assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
 
@@ -276,14 +277,15 @@ class TestAsyncDir:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         dir = await async_client.enterprises.dir.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            filter_call_reason_contains="filter[call_reason][contains]",
+            filter_display_name_contains="filter[display_name][contains]",
             filter_expiring_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             filter_expiring_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
             filter_expiring_within_days=1,
+            filter_status="draft",
             page_number=1,
             page_size=20,
-            search="search",
             sort="created_at",
-            status="draft",
         )
         assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
 

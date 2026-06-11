@@ -98,9 +98,10 @@ class TestNumbers:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         number = client.enterprises.reputation.numbers.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            filter_phone_number_contains="+16035551234",
+            filter_phone_number_eq="+16035551234",
             page_number=1,
             page_size=10,
-            phone_number="+16035551234",
         )
         assert_matches_type(SyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
 
@@ -363,9 +364,10 @@ class TestAsyncNumbers:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         number = await async_client.enterprises.reputation.numbers.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            filter_phone_number_contains="+16035551234",
+            filter_phone_number_eq="+16035551234",
             page_number=1,
             page_size=10,
-            phone_number="+16035551234",
         )
         assert_matches_type(AsyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
 

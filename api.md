@@ -5632,6 +5632,24 @@ Methods:
 - <code title="patch /enterprises/{enterprise_id}/reputation/loa">client.enterprises.reputation.loa.<a href="./src/telnyx/resources/enterprises/reputation/loa.py">update</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/loa_update_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/loa_update_response.py">LoaUpdateResponse</a></code>
 - <code title="post /enterprises/{enterprise_id}/reputation/loa">client.enterprises.reputation.loa.<a href="./src/telnyx/resources/enterprises/reputation/loa.py">render</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/loa_render_params.py">params</a>) -> BinaryAPIResponse</code>
 
+### Remediation
+
+Types:
+
+```python
+from telnyx.types.enterprises.reputation import (
+    RemediationCreateResponse,
+    RemediationRetrieveResponse,
+    RemediationListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_create_response.py">RemediationCreateResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/remediation/{remediation_id}">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">retrieve</a>(remediation_id, \*, enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_retrieve_response.py">RemediationRetrieveResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_list_response.py">SyncDefaultFlatPagination[RemediationListResponse]</a></code>
+
 ## Dir
 
 Types:
@@ -5666,11 +5684,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import TermsOfServiceStatusResponse
+from telnyx.types import TermsOfServiceRetrieveInfoResponse, TermsOfServiceStatusResponse
 ```
 
 Methods:
 
+- <code title="get /terms_of_service/info">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">retrieve_info</a>(\*\*<a href="src/telnyx/types/terms_of_service_retrieve_info_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_retrieve_info_response.py">TermsOfServiceRetrieveInfoResponse</a></code>
 - <code title="get /terms_of_service/status">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">status</a>(\*\*<a href="src/telnyx/types/terms_of_service_status_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_status_response.py">TermsOfServiceStatusResponse</a></code>
 
 ## NumberReputation
@@ -5768,6 +5787,7 @@ Methods:
 - <code title="patch /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">update</a>(dir_id, \*\*<a href="src/telnyx/types/dir_update_params.py">params</a>) -> <a href="./src/telnyx/types/dir_update_response.py">DirUpdateResponse</a></code>
 - <code title="get /dir">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list</a>(\*\*<a href="src/telnyx/types/dir_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir_list_response.py">SyncDefaultFlatPagination[DirListResponse]</a></code>
 - <code title="delete /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">delete</a>(dir_id) -> None</code>
+- <code title="post /dir/{dir_id}/loa">client.dir.<a href="./src/telnyx/resources/dir/dir.py">create_loa</a>(dir_id, \*\*<a href="src/telnyx/types/dir_create_loa_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /dir/document_types">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_document_types</a>() -> <a href="./src/telnyx/types/dir_list_document_types_response.py">DirListDocumentTypesResponse</a></code>
 - <code title="get /dir/{dir_id}/infringement_claims">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_infringement_claims</a>(dir_id, \*\*<a href="src/telnyx/types/dir_list_infringement_claims_params.py">params</a>) -> <a href="./src/telnyx/types/dir_list_infringement_claims_response.py">SyncDefaultFlatPagination[DirListInfringementClaimsResponse]</a></code>
 - <code title="post /dir/{dir_id}/submit">client.dir.<a href="./src/telnyx/resources/dir/dir.py">submit</a>(dir_id) -> <a href="./src/telnyx/types/dir_submit_response.py">DirSubmitResponse</a></code>

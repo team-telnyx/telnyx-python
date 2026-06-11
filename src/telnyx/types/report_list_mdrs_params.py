@@ -9,28 +9,28 @@ __all__ = ["ReportListMdrsParams"]
 
 class ReportListMdrsParams(TypedDict, total=False):
     id: str
-    """Message uuid"""
+    """Filter results by identifier."""
 
     cld: str
-    """Destination number"""
+    """Filter results by cld."""
 
     cli: str
-    """Origination number"""
+    """Filter results by cli."""
 
     direction: Literal["INBOUND", "OUTBOUND"]
-    """Direction (inbound or outbound)"""
+    """Filter results by direction."""
 
     end_date: str
     """Pagination end date"""
 
     message_type: Literal["SMS", "MMS"]
-    """Type of message"""
+    """Filter results by message type."""
 
     profile: str
-    """Name of the profile"""
+    """Filter results by profile."""
 
     start_date: str
     """Pagination start date"""
 
     status: Literal["GW_TIMEOUT", "DELIVERED", "DLR_UNCONFIRMED", "DLR_TIMEOUT", "RECEIVED", "GW_REJECT", "FAILED"]
-    """Message status"""
+    """Filter results by status."""

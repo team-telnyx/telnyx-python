@@ -162,15 +162,19 @@ class EnterprisesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseCreateResponse:
         """
-        Create the legal entity that owns your Number Reputation registrations.
+        Create the legal entity (enterprise) that represents your business on the Telnyx
+        platform.
 
-        The response carries a server-assigned `id` you will use for every subsequent
-        call. After creating an enterprise and agreeing to the Number Reputation Terms
-        of Service (`POST /terms_of_service/number_reputation/agree`), enable reputation
-        monitoring via `POST /enterprises/{enterprise_id}/reputation`.
+        The response carries a server-assigned `id` you use for every subsequent call.
+        An enterprise is created once and reused; the API collects all required fields
+        up front.
 
-        An enterprise is shared across Telnyx products; if you also use Branded Calling,
-        the same enterprise is reused.
+        Common failure modes:
+
+        - `422` - a required field is missing or malformed (the response
+          `errors[].source.pointer` names the field).
+        - `409` - an enterprise with the same identifying details already exists under
+          your account.
 
         Args:
           country_code: ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported.
@@ -187,21 +191,21 @@ class EnterprisesResource(SyncAPIResource):
           organization_legal_type:
               Legal-entity form. Pick the form that matches your incorporation documents:
 
-              - `corporation` — C-corp or S-corp.
-              - `llc` — limited liability company.
-              - `partnership` — general/limited partnership.
-              - `nonprofit` — non-profit corporation, charitable trust, or
+              - `corporation` - C-corp or S-corp.
+              - `llc` - limited liability company.
+              - `partnership` - general/limited partnership.
+              - `nonprofit` - non-profit corporation, charitable trust, or
                 501(c)(3)/equivalent.
-              - `other` — anything else (sole proprietorships, government bodies, DBAs, etc.).
+              - `other` - anything else (sole proprietorships, government bodies, DBAs, etc.).
                 You may be asked for additional documents during vetting.
 
           organization_type:
               Organization category for vetting purposes:
 
-              - `commercial` — for-profit business entities (LLC, corp, partnership, sole
+              - `commercial` - for-profit business entities (LLC, corp, partnership, sole
                 proprietorship). Most callers fall here.
-              - `government` — federal/state/local government bodies.
-              - `non_profit` — registered 501(c)(3)/equivalent (incl. educational
+              - `government` - federal/state/local government bodies.
+              - `non_profit` - registered 501(c)(3)/equivalent (incl. educational
                 institutions, charities, religious organisations).
 
           corporate_registration_number: Optional corporate-registration / company-number identifier.
@@ -423,6 +427,7 @@ class EnterprisesResource(SyncAPIResource):
     def list(
         self,
         *,
+        filter_legal_name_contains: str | Omit = omit,
         legal_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -439,6 +444,8 @@ class EnterprisesResource(SyncAPIResource):
         maximum is 250.
 
         Args:
+          filter_legal_name_contains: Case-insensitive partial match on legal name.
+
           legal_name: Filter by legal name (partial match).
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
@@ -463,6 +470,7 @@ class EnterprisesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_legal_name_contains": filter_legal_name_contains,
                         "legal_name": legal_name,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -484,12 +492,17 @@ class EnterprisesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Delete an enterprise.
+        """
+        Soft-delete an enterprise.
 
-        Fails with `400` if the enterprise still has dependent
-        resources (e.g. active reputation settings or registered numbers); remove those
-        first. Returns `404` if the enterprise does not exist or does not belong to your
-        account.
+        Failure modes:
+
+        - `400` - the enterprise still has dependent resources in a non-deletable state.
+          Remove those first; the response `detail` identifies what is blocking the
+          delete.
+        - `409` - the enterprise has a dependent resource with an unresolved claim.
+          Resolve it before deleting.
+        - `404` - the enterprise does not exist or does not belong to your account.
 
         Args:
           extra_headers: Send extra headers
@@ -538,8 +551,8 @@ class EnterprisesResource(SyncAPIResource):
 
         Failure modes:
 
-        - `403` — Branded Calling Terms of Service not accepted.
-        - `404` — enterprise does not exist or does not belong to your account.
+        - `403` - Branded Calling Terms of Service not accepted.
+        - `404` - enterprise does not exist or does not belong to your account.
 
         **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
         for current pricing.
@@ -673,15 +686,19 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseCreateResponse:
         """
-        Create the legal entity that owns your Number Reputation registrations.
+        Create the legal entity (enterprise) that represents your business on the Telnyx
+        platform.
 
-        The response carries a server-assigned `id` you will use for every subsequent
-        call. After creating an enterprise and agreeing to the Number Reputation Terms
-        of Service (`POST /terms_of_service/number_reputation/agree`), enable reputation
-        monitoring via `POST /enterprises/{enterprise_id}/reputation`.
+        The response carries a server-assigned `id` you use for every subsequent call.
+        An enterprise is created once and reused; the API collects all required fields
+        up front.
 
-        An enterprise is shared across Telnyx products; if you also use Branded Calling,
-        the same enterprise is reused.
+        Common failure modes:
+
+        - `422` - a required field is missing or malformed (the response
+          `errors[].source.pointer` names the field).
+        - `409` - an enterprise with the same identifying details already exists under
+          your account.
 
         Args:
           country_code: ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported.
@@ -698,21 +715,21 @@ class AsyncEnterprisesResource(AsyncAPIResource):
           organization_legal_type:
               Legal-entity form. Pick the form that matches your incorporation documents:
 
-              - `corporation` — C-corp or S-corp.
-              - `llc` — limited liability company.
-              - `partnership` — general/limited partnership.
-              - `nonprofit` — non-profit corporation, charitable trust, or
+              - `corporation` - C-corp or S-corp.
+              - `llc` - limited liability company.
+              - `partnership` - general/limited partnership.
+              - `nonprofit` - non-profit corporation, charitable trust, or
                 501(c)(3)/equivalent.
-              - `other` — anything else (sole proprietorships, government bodies, DBAs, etc.).
+              - `other` - anything else (sole proprietorships, government bodies, DBAs, etc.).
                 You may be asked for additional documents during vetting.
 
           organization_type:
               Organization category for vetting purposes:
 
-              - `commercial` — for-profit business entities (LLC, corp, partnership, sole
+              - `commercial` - for-profit business entities (LLC, corp, partnership, sole
                 proprietorship). Most callers fall here.
-              - `government` — federal/state/local government bodies.
-              - `non_profit` — registered 501(c)(3)/equivalent (incl. educational
+              - `government` - federal/state/local government bodies.
+              - `non_profit` - registered 501(c)(3)/equivalent (incl. educational
                 institutions, charities, religious organisations).
 
           corporate_registration_number: Optional corporate-registration / company-number identifier.
@@ -934,6 +951,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
     def list(
         self,
         *,
+        filter_legal_name_contains: str | Omit = omit,
         legal_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -950,6 +968,8 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         maximum is 250.
 
         Args:
+          filter_legal_name_contains: Case-insensitive partial match on legal name.
+
           legal_name: Filter by legal name (partial match).
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
@@ -974,6 +994,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_legal_name_contains": filter_legal_name_contains,
                         "legal_name": legal_name,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -995,12 +1016,17 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Delete an enterprise.
+        """
+        Soft-delete an enterprise.
 
-        Fails with `400` if the enterprise still has dependent
-        resources (e.g. active reputation settings or registered numbers); remove those
-        first. Returns `404` if the enterprise does not exist or does not belong to your
-        account.
+        Failure modes:
+
+        - `400` - the enterprise still has dependent resources in a non-deletable state.
+          Remove those first; the response `detail` identifies what is blocking the
+          delete.
+        - `409` - the enterprise has a dependent resource with an unresolved claim.
+          Resolve it before deleting.
+        - `404` - the enterprise does not exist or does not belong to your account.
 
         Args:
           extra_headers: Send extra headers
@@ -1049,8 +1075,8 @@ class AsyncEnterprisesResource(AsyncAPIResource):
 
         Failure modes:
 
-        - `403` — Branded Calling Terms of Service not accepted.
-        - `404` — enterprise does not exist or does not belong to your account.
+        - `403` - Branded Calling Terms of Service not accepted.
+        - `404` - enterprise does not exist or does not belong to your account.
 
         **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
         for current pricing.

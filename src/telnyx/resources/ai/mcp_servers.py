@@ -196,6 +196,14 @@ class McpServersResource(SyncAPIResource):
         Retrieve a list of MCP servers.
 
         Args:
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
+
+          type: Filter results by type.
+
+          url: Filter results by url.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -428,6 +436,14 @@ class AsyncMcpServersResource(AsyncAPIResource):
         Retrieve a list of MCP servers.
 
         Args:
+          page_number: Page number to retrieve (1-based).
+
+          page_size: Number of items to return per page.
+
+          type: Filter results by type.
+
+          url: Filter results by url.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -95,10 +95,10 @@ class DirResource(SyncAPIResource):
 
         **Failure modes**
 
-        - `422` — validation error; `errors[].source.pointer` names the offending field.
-        - `403` — Branded Calling not activated on this enterprise (see
+        - `422` - validation error; `errors[].source.pointer` names the offending field.
+        - `403` - Branded Calling not activated on this enterprise (see
           `POST /enterprises/{id}/branded_calling`).
-        - `404` — enterprise does not exist or does not belong to your account.
+        - `404` - enterprise does not exist or does not belong to your account.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or
@@ -163,12 +163,26 @@ class DirResource(SyncAPIResource):
         self,
         enterprise_id: str,
         *,
+        filter_call_reason_contains: str | Omit = omit,
+        filter_display_name_contains: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
         filter_expiring_within_days: int | Omit = omit,
+        filter_status: Literal[
+            "draft",
+            "submitted",
+            "in_review",
+            "verified",
+            "rejected",
+            "unsuccessful",
+            "suspended",
+            "expired",
+            "infringement_claimed",
+            "permanently_rejected",
+        ]
+        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search: str | Omit = omit,
         sort: Literal[
             "created_at",
             "-created_at",
@@ -186,19 +200,6 @@ class DirResource(SyncAPIResource):
             "-expiring_at",
         ]
         | Omit = omit,
-        status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
-        ]
-        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,16 +209,20 @@ class DirResource(SyncAPIResource):
     ) -> SyncDefaultFlatPagination[DirListResponse]:
         """
         Return the DIRs (Display Identity Records) belonging to a single enterprise.
-        Pagination is JSON:API style (`page[number]`, `page[size]`, max 250). Filterable
-        by `status`. Searchable by case-insensitive partial match on `display_name`
-        (`search=`). Sortable by any of `created_at`, `updated_at`, `display_name`,
-        `status`, `submitted_at`, `verified_at`, `expiring_at` (prefix `-` for
-        descending; default `-created_at`). Supports the renewal-window filters
+        Pagination is JSON:API style (`page[number]`, `page[size]`, max 250). Supports
+        `filter[]` query params: `filter[status]`, `filter[display_name][contains]`,
+        `filter[call_reason][contains]`, plus the renewal-window filters
         `filter[expiring_at][gte]` / `filter[expiring_at][lte]` and the convenience
         `filter[expiring_within_days]` (mutually exclusive with the explicit gte/lte
-        form).
+        form). Sortable by `created_at`, `updated_at`, `display_name`, `status`,
+        `submitted_at`, `verified_at`, `expiring_at` (prefix `-` for descending; default
+        `-created_at`).
 
         Args:
+          filter_call_reason_contains: Case-insensitive partial match on call reason.
+
+          filter_display_name_contains: Case-insensitive partial match on display name.
+
           filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
 
           filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
@@ -225,19 +230,17 @@ class DirResource(SyncAPIResource):
           filter_expiring_within_days: Convenience: returns DIRs whose `expiring_at` falls within the next N days
               (1–365). Equivalent to setting `filter[expiring_at][gte]=<now>` +
               `filter[expiring_at][lte]=<now+N>`. Mutually exclusive with the explicit
-              `[gte]`/`[lte]` filters — combining returns 400.
+              `[gte]`/`[lte]` filters - combining returns 400.
+
+          filter_status: Filter by DIR status.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name`.
-
           sort: Sort field. Allowed: `created_at`, `updated_at`, `display_name`, `status`,
               `submitted_at`, `verified_at`, `expiring_at`. Prefix with `-` for descending.
               Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -259,14 +262,15 @@ class DirResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_call_reason_contains": filter_call_reason_contains,
+                        "filter_display_name_contains": filter_display_name_contains,
                         "filter_expiring_at_gte": filter_expiring_at_gte,
                         "filter_expiring_at_lte": filter_expiring_at_lte,
                         "filter_expiring_within_days": filter_expiring_within_days,
+                        "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),
@@ -343,10 +347,10 @@ class AsyncDirResource(AsyncAPIResource):
 
         **Failure modes**
 
-        - `422` — validation error; `errors[].source.pointer` names the offending field.
-        - `403` — Branded Calling not activated on this enterprise (see
+        - `422` - validation error; `errors[].source.pointer` names the offending field.
+        - `403` - Branded Calling not activated on this enterprise (see
           `POST /enterprises/{id}/branded_calling`).
-        - `404` — enterprise does not exist or does not belong to your account.
+        - `404` - enterprise does not exist or does not belong to your account.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or
@@ -411,12 +415,26 @@ class AsyncDirResource(AsyncAPIResource):
         self,
         enterprise_id: str,
         *,
+        filter_call_reason_contains: str | Omit = omit,
+        filter_display_name_contains: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
         filter_expiring_within_days: int | Omit = omit,
+        filter_status: Literal[
+            "draft",
+            "submitted",
+            "in_review",
+            "verified",
+            "rejected",
+            "unsuccessful",
+            "suspended",
+            "expired",
+            "infringement_claimed",
+            "permanently_rejected",
+        ]
+        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search: str | Omit = omit,
         sort: Literal[
             "created_at",
             "-created_at",
@@ -434,19 +452,6 @@ class AsyncDirResource(AsyncAPIResource):
             "-expiring_at",
         ]
         | Omit = omit,
-        status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
-        ]
-        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -456,16 +461,20 @@ class AsyncDirResource(AsyncAPIResource):
     ) -> AsyncPaginator[DirListResponse, AsyncDefaultFlatPagination[DirListResponse]]:
         """
         Return the DIRs (Display Identity Records) belonging to a single enterprise.
-        Pagination is JSON:API style (`page[number]`, `page[size]`, max 250). Filterable
-        by `status`. Searchable by case-insensitive partial match on `display_name`
-        (`search=`). Sortable by any of `created_at`, `updated_at`, `display_name`,
-        `status`, `submitted_at`, `verified_at`, `expiring_at` (prefix `-` for
-        descending; default `-created_at`). Supports the renewal-window filters
+        Pagination is JSON:API style (`page[number]`, `page[size]`, max 250). Supports
+        `filter[]` query params: `filter[status]`, `filter[display_name][contains]`,
+        `filter[call_reason][contains]`, plus the renewal-window filters
         `filter[expiring_at][gte]` / `filter[expiring_at][lte]` and the convenience
         `filter[expiring_within_days]` (mutually exclusive with the explicit gte/lte
-        form).
+        form). Sortable by `created_at`, `updated_at`, `display_name`, `status`,
+        `submitted_at`, `verified_at`, `expiring_at` (prefix `-` for descending; default
+        `-created_at`).
 
         Args:
+          filter_call_reason_contains: Case-insensitive partial match on call reason.
+
+          filter_display_name_contains: Case-insensitive partial match on display name.
+
           filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
 
           filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
@@ -473,19 +482,17 @@ class AsyncDirResource(AsyncAPIResource):
           filter_expiring_within_days: Convenience: returns DIRs whose `expiring_at` falls within the next N days
               (1–365). Equivalent to setting `filter[expiring_at][gte]=<now>` +
               `filter[expiring_at][lte]=<now+N>`. Mutually exclusive with the explicit
-              `[gte]`/`[lte]` filters — combining returns 400.
+              `[gte]`/`[lte]` filters - combining returns 400.
+
+          filter_status: Filter by DIR status.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          search: Case-insensitive partial match on `display_name`.
-
           sort: Sort field. Allowed: `created_at`, `updated_at`, `display_name`, `status`,
               `submitted_at`, `verified_at`, `expiring_at`. Prefix with `-` for descending.
               Default `-created_at`.
-
-          status: Filter by DIR status.
 
           extra_headers: Send extra headers
 
@@ -507,14 +514,15 @@ class AsyncDirResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_call_reason_contains": filter_call_reason_contains,
+                        "filter_display_name_contains": filter_display_name_contains,
                         "filter_expiring_at_gte": filter_expiring_at_gte,
                         "filter_expiring_at_lte": filter_expiring_at_lte,
                         "filter_expiring_within_days": filter_expiring_within_days,
+                        "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search": search,
                         "sort": sort,
-                        "status": status,
                     },
                     dir_list_params.DirListParams,
                 ),

@@ -11,6 +11,7 @@ __all__ = ["CampaignListParams"]
 
 class CampaignListParams(TypedDict, total=False):
     brand_id: Required[Annotated[str, PropertyInfo(alias="brandId")]]
+    """Filter results by brand id."""
 
     page: int
     """The 1-indexed page number to get. The default value is `1`."""

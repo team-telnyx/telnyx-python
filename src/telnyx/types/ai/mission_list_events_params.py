@@ -17,3 +17,4 @@ class MissionListEventsParams(TypedDict, total=False):
     """Number of items per page"""
 
     type: str
+    """Filter results by type."""
