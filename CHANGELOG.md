@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.154.0 (2026-06-15)
+
+Full Changelog: [v4.153.0...v4.154.0](https://github.com/team-telnyx/telnyx-python/compare/v4.153.0...v4.154.0)
+
+### Features
+
+* Document POST /ai/assistants/{assistant_id}/instructions/enhance ([3d6e81a](https://github.com/team-telnyx/telnyx-python/commit/3d6e81a98f620a9d07bcc3bcc90fa702df8cb0db))
+
 ## 4.153.0 (2026-06-11)
 
 Full Changelog: [v4.152.0...v4.153.0](https://github.com/team-telnyx/telnyx-python/compare/v4.152.0...v4.153.0)
