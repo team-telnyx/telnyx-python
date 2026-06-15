@@ -771,6 +771,18 @@ Methods:
 - <code title="post /ai/assistants/{assistant_id}/tags">client.ai.assistants.tags.<a href="./src/telnyx/resources/ai/assistants/tags.py">add</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/tag_add_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/tag_add_response.py">TagAddResponse</a></code>
 - <code title="delete /ai/assistants/{assistant_id}/tags/{tag}">client.ai.assistants.tags.<a href="./src/telnyx/resources/ai/assistants/tags.py">remove</a>(tag, \*, assistant_id) -> <a href="./src/telnyx/types/ai/assistants/tag_remove_response.py">TagRemoveResponse</a></code>
 
+### Instructions
+
+Types:
+
+```python
+from telnyx.types.ai.assistants import InstructionEnhanceResponse
+```
+
+Methods:
+
+- <code title="post /ai/assistants/{assistant_id}/instructions/enhance">client.ai.assistants.instructions.<a href="./src/telnyx/resources/ai/assistants/instructions.py">enhance</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/instruction_enhance_params.py">params</a>) -> str</code>
+
 ## Audio
 
 Types:

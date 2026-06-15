@@ -40,6 +40,14 @@ from .assistants import (
     AssistantsResourceWithStreamingResponse,
     AsyncAssistantsResourceWithStreamingResponse,
 )
+from .instructions import (
+    InstructionsResource,
+    AsyncInstructionsResource,
+    InstructionsResourceWithRawResponse,
+    AsyncInstructionsResourceWithRawResponse,
+    InstructionsResourceWithStreamingResponse,
+    AsyncInstructionsResourceWithStreamingResponse,
+)
 from .canary_deploys import (
     CanaryDeploysResource,
     AsyncCanaryDeploysResource,
@@ -94,6 +102,12 @@ __all__ = [
     "AsyncTagsResourceWithRawResponse",
     "TagsResourceWithStreamingResponse",
     "AsyncTagsResourceWithStreamingResponse",
+    "InstructionsResource",
+    "AsyncInstructionsResource",
+    "InstructionsResourceWithRawResponse",
+    "AsyncInstructionsResourceWithRawResponse",
+    "InstructionsResourceWithStreamingResponse",
+    "AsyncInstructionsResourceWithStreamingResponse",
     "AssistantsResource",
     "AsyncAssistantsResource",
     "AssistantsResourceWithRawResponse",
