@@ -57,6 +57,14 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .instructions import (
+    InstructionsResource,
+    AsyncInstructionsResource,
+    InstructionsResourceWithRawResponse,
+    AsyncInstructionsResourceWithRawResponse,
+    InstructionsResourceWithStreamingResponse,
+    AsyncInstructionsResourceWithStreamingResponse,
+)
 from .canary_deploys import (
     CanaryDeploysResource,
     AsyncCanaryDeploysResource,
@@ -125,6 +133,11 @@ class AssistantsResource(SyncAPIResource):
     def tags(self) -> TagsResource:
         """Configure AI assistant specifications"""
         return TagsResource(self._client)
+
+    @cached_property
+    def instructions(self) -> InstructionsResource:
+        """Configure AI assistant specifications"""
+        return InstructionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AssistantsResourceWithRawResponse:
@@ -874,6 +887,11 @@ class AsyncAssistantsResource(AsyncAPIResource):
     def tags(self) -> AsyncTagsResource:
         """Configure AI assistant specifications"""
         return AsyncTagsResource(self._client)
+
+    @cached_property
+    def instructions(self) -> AsyncInstructionsResource:
+        """Configure AI assistant specifications"""
+        return AsyncInstructionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAssistantsResourceWithRawResponse:
@@ -1656,6 +1674,11 @@ class AssistantsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return TagsResourceWithRawResponse(self._assistants.tags)
 
+    @cached_property
+    def instructions(self) -> InstructionsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return InstructionsResourceWithRawResponse(self._assistants.instructions)
+
 
 class AsyncAssistantsResourceWithRawResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -1721,6 +1744,11 @@ class AsyncAssistantsResourceWithRawResponse:
     def tags(self) -> AsyncTagsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return AsyncTagsResourceWithRawResponse(self._assistants.tags)
+
+    @cached_property
+    def instructions(self) -> AsyncInstructionsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return AsyncInstructionsResourceWithRawResponse(self._assistants.instructions)
 
 
 class AssistantsResourceWithStreamingResponse:
@@ -1788,6 +1816,11 @@ class AssistantsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return TagsResourceWithStreamingResponse(self._assistants.tags)
 
+    @cached_property
+    def instructions(self) -> InstructionsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return InstructionsResourceWithStreamingResponse(self._assistants.instructions)
+
 
 class AsyncAssistantsResourceWithStreamingResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -1853,3 +1886,8 @@ class AsyncAssistantsResourceWithStreamingResponse:
     def tags(self) -> AsyncTagsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return AsyncTagsResourceWithStreamingResponse(self._assistants.tags)
+
+    @cached_property
+    def instructions(self) -> AsyncInstructionsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return AsyncInstructionsResourceWithStreamingResponse(self._assistants.instructions)
