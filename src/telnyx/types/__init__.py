@@ -519,6 +519,7 @@ from .sim_card_group_list_response import SimCardGroupListResponse as SimCardGro
 from .sim_card_group_update_params import SimCardGroupUpdateParams as SimCardGroupUpdateParams
 from .sim_card_order_create_params import SimCardOrderCreateParams as SimCardOrderCreateParams
 from .sub_number_order_list_params import SubNumberOrderListParams as SubNumberOrderListParams
+from .terms_of_service_info_params import TermsOfServiceInfoParams as TermsOfServiceInfoParams
 from .uac_connection_create_params import UacConnectionCreateParams as UacConnectionCreateParams
 from .uac_connection_list_response import UacConnectionListResponse as UacConnectionListResponse
 from .uac_connection_update_params import UacConnectionUpdateParams as UacConnectionUpdateParams
@@ -615,6 +616,7 @@ from .siprec_connector_create_params import SiprecConnectorCreateParams as Sipre
 from .siprec_connector_update_params import SiprecConnectorUpdateParams as SiprecConnectorUpdateParams
 from .sub_number_order_list_response import SubNumberOrderListResponse as SubNumberOrderListResponse
 from .sub_number_order_update_params import SubNumberOrderUpdateParams as SubNumberOrderUpdateParams
+from .terms_of_service_info_response import TermsOfServiceInfoResponse as TermsOfServiceInfoResponse
 from .terms_of_service_status_params import TermsOfServiceStatusParams as TermsOfServiceStatusParams
 from .text_to_speech_generate_params import TextToSpeechGenerateParams as TextToSpeechGenerateParams
 from .uac_connection_create_response import UacConnectionCreateResponse as UacConnectionCreateResponse
@@ -961,7 +963,6 @@ from .public_internet_gateway_list_response import (
 )
 from .sim_card_get_activation_code_response import SimCardGetActivationCodeResponse as SimCardGetActivationCodeResponse
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
-from .terms_of_service_retrieve_info_params import TermsOfServiceRetrieveInfoParams as TermsOfServiceRetrieveInfoParams
 from .verification_trigger_flashcall_params import (
     VerificationTriggerFlashcallParams as VerificationTriggerFlashcallParams,
 )
@@ -1154,9 +1155,6 @@ from .sip_registration_status_retrieve_params import (
 )
 from .sub_number_order_regulatory_requirement import (
     SubNumberOrderRegulatoryRequirement as SubNumberOrderRegulatoryRequirement,
-)
-from .terms_of_service_retrieve_info_response import (
-    TermsOfServiceRetrieveInfoResponse as TermsOfServiceRetrieveInfoResponse,
 )
 from .virtual_cross_connect_retrieve_response import (
     VirtualCrossConnectRetrieveResponse as VirtualCrossConnectRetrieveResponse,

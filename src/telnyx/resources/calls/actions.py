@@ -2353,7 +2353,19 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         direction: Literal["inbound", "outbound", "both"] | Omit = omit,
-        noise_suppression_engine: Literal["Denoiser", "DeepFilterNet", "Krisp", "AiCoustics"] | Omit = omit,
+        noise_suppression_engine: Literal[
+            "Denoiser",
+            "DeepFilterNet",
+            "Krisp",
+            "AiCoustics",
+            "aic_l_quail",
+            "aic_l_rook",
+            "aic_s_quail",
+            "aic_s_rook",
+            "quail_voice_focus_s",
+            "quail_voice_focus_xs",
+        ]
+        | Omit = omit,
         noise_suppression_engine_config: action_start_noise_suppression_params.NoiseSuppressionEngineConfig
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -6269,7 +6281,19 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         direction: Literal["inbound", "outbound", "both"] | Omit = omit,
-        noise_suppression_engine: Literal["Denoiser", "DeepFilterNet", "Krisp", "AiCoustics"] | Omit = omit,
+        noise_suppression_engine: Literal[
+            "Denoiser",
+            "DeepFilterNet",
+            "Krisp",
+            "AiCoustics",
+            "aic_l_quail",
+            "aic_l_rook",
+            "aic_s_quail",
+            "aic_s_rook",
+            "quail_voice_focus_s",
+            "quail_voice_focus_xs",
+        ]
+        | Omit = omit,
         noise_suppression_engine_config: action_start_noise_suppression_params.NoiseSuppressionEngineConfig
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

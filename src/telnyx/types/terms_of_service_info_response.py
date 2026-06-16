@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["TermsOfServiceRetrieveInfoResponse", "Agreement"]
+__all__ = ["TermsOfServiceInfoResponse", "Agreement"]
 
 
 class Agreement(BaseModel):
@@ -22,5 +22,5 @@ class Agreement(BaseModel):
     terms_url: Optional[str] = None
 
 
-class TermsOfServiceRetrieveInfoResponse(BaseModel):
+class TermsOfServiceInfoResponse(BaseModel):
     agreements: Optional[List[Agreement]] = None

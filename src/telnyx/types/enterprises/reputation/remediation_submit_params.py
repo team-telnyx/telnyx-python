@@ -6,10 +6,10 @@ from typing_extensions import Required, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["RemediationCreateParams"]
+__all__ = ["RemediationSubmitParams"]
 
 
-class RemediationCreateParams(TypedDict, total=False):
+class RemediationSubmitParams(TypedDict, total=False):
     call_purpose: Required[str]
     """How the numbers are used (free text)."""
 
