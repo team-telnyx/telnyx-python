@@ -249,6 +249,14 @@ class ConversationRelayConfigLanguageVoiceSettingsInworldVoiceSettings(TypedDict
     type: Required[Literal["inworld"]]
     """Voice settings provider type"""
 
+    delivery_mode: Literal["STABLE", "BALANCED", "CREATIVE"]
+    """
+    Controls the expressiveness and consistency of the Inworld `TTS2` model's speech
+    synthesis. `STABLE` favors consistent, predictable output, `CREATIVE` allows
+    more expressive variation, and `BALANCED` sits in between. Optional and only
+    supported by `TTS2`; when omitted, the provider default applies.
+    """
+
 
 class ConversationRelayConfigLanguageVoiceSettingsXaiVoiceSettings(TypedDict, total=False):
     type: Required[Literal["xai"]]
@@ -325,6 +333,14 @@ class ConversationRelayConfigLanguage(TypedDict, total=False):
 class ConversationRelayConfigVoiceSettingsInworldVoiceSettings(TypedDict, total=False):
     type: Required[Literal["inworld"]]
     """Voice settings provider type"""
+
+    delivery_mode: Literal["STABLE", "BALANCED", "CREATIVE"]
+    """
+    Controls the expressiveness and consistency of the Inworld `TTS2` model's speech
+    synthesis. `STABLE` favors consistent, predictable output, `CREATIVE` allows
+    more expressive variation, and `BALANCED` sits in between. Optional and only
+    supported by `TTS2`; when omitted, the provider default applies.
+    """
 
 
 class ConversationRelayConfigVoiceSettingsXaiVoiceSettings(TypedDict, total=False):
@@ -456,7 +472,8 @@ class ConversationRelayConfig(TypedDict, total=False):
       [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
     - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
     - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
-      `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+      `Inworld.Max.Oliver`, `Inworld.TTS2.Loretta`). Supported models: `Mini`,
+      `Max`, `TTS2`.
     - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
       `ara`, `rex`, `sal`, `leo`.
     """
