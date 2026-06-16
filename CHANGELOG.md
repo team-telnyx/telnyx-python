@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.155.0 (2026-06-16)
+
+Full Changelog: [v4.154.0...v4.155.0](https://github.com/team-telnyx/telnyx-python/compare/v4.154.0...v4.155.0)
+
+### Features
+
+* TELAPPS-719: add Inworld inworld-tts-2 model + delivery_mode to call-control voice settings ([756ca73](https://github.com/team-telnyx/telnyx-python/commit/756ca736341a0279ada8260bc29870547f8c67fe))
+
 ## 4.154.0 (2026-06-15)
 
 Full Changelog: [v4.153.0...v4.154.0](https://github.com/team-telnyx/telnyx-python/compare/v4.153.0...v4.154.0)
