@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["TermsOfServiceRetrieveInfoParams"]
+__all__ = ["TermsOfServiceInfoParams"]
 
 
-class TermsOfServiceRetrieveInfoParams(TypedDict, total=False):
+class TermsOfServiceInfoParams(TypedDict, total=False):
     product_type: Literal["branded_calling", "number_reputation"]
     """Optional product filter. Omit to return info for all products."""

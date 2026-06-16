@@ -24,7 +24,18 @@ class ActionStartNoiseSuppressionParams(TypedDict, total=False):
     direction: Literal["inbound", "outbound", "both"]
     """The direction of the audio stream to be noise suppressed."""
 
-    noise_suppression_engine: Literal["Denoiser", "DeepFilterNet", "Krisp", "AiCoustics"]
+    noise_suppression_engine: Literal[
+        "Denoiser",
+        "DeepFilterNet",
+        "Krisp",
+        "AiCoustics",
+        "aic_l_quail",
+        "aic_l_rook",
+        "aic_s_quail",
+        "aic_s_rook",
+        "quail_voice_focus_s",
+        "quail_voice_focus_xs",
+    ]
     """
     The engine to use for noise suppression. For backward compatibility, engines A,
     B, C, and D are also supported, but are deprecated: A - Denoiser B -

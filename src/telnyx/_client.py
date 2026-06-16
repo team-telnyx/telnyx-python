@@ -1699,13 +1699,6 @@ class Telnyx(SyncAPIClient):
         return InfringementClaimsResource(self)
 
     @cached_property
-    def uac_connections(self) -> UacConnectionsResource:
-        """UAC connection operations"""
-        from .resources.uac_connections import UacConnectionsResource
-
-        return UacConnectionsResource(self)
-
-    @cached_property
     def sip_registration_status(self) -> SipRegistrationStatusResource:
         """UAC connection operations"""
         from .resources.sip_registration_status import SipRegistrationStatusResource
@@ -1718,6 +1711,13 @@ class Telnyx(SyncAPIClient):
         from .resources.speech_to_text import SpeechToTextResource
 
         return SpeechToTextResource(self)
+
+    @cached_property
+    def uac_connections(self) -> UacConnectionsResource:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResource
+
+        return UacConnectionsResource(self)
 
     @cached_property
     def voice_sdk_call_reports(self) -> VoiceSDKCallReportsResource:
@@ -3107,13 +3107,6 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncInfringementClaimsResource(self)
 
     @cached_property
-    def uac_connections(self) -> AsyncUacConnectionsResource:
-        """UAC connection operations"""
-        from .resources.uac_connections import AsyncUacConnectionsResource
-
-        return AsyncUacConnectionsResource(self)
-
-    @cached_property
     def sip_registration_status(self) -> AsyncSipRegistrationStatusResource:
         """UAC connection operations"""
         from .resources.sip_registration_status import AsyncSipRegistrationStatusResource
@@ -3126,6 +3119,13 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.speech_to_text import AsyncSpeechToTextResource
 
         return AsyncSpeechToTextResource(self)
+
+    @cached_property
+    def uac_connections(self) -> AsyncUacConnectionsResource:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResource
+
+        return AsyncUacConnectionsResource(self)
 
     @cached_property
     def voice_sdk_call_reports(self) -> AsyncVoiceSDKCallReportsResource:
@@ -4451,13 +4451,6 @@ class TelnyxWithRawResponse:
         return InfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import UacConnectionsResourceWithRawResponse
-
-        return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
-
-    @cached_property
     def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithRawResponse:
         """UAC connection operations"""
         from .resources.sip_registration_status import SipRegistrationStatusResourceWithRawResponse
@@ -4470,6 +4463,13 @@ class TelnyxWithRawResponse:
         from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
 
         return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResourceWithRawResponse
+
+        return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithRawResponse:
@@ -5666,13 +5666,6 @@ class AsyncTelnyxWithRawResponse:
         return AsyncInfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
-
-        return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
-
-    @cached_property
     def sip_registration_status(self) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithRawResponse:
         """UAC connection operations"""
         from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
@@ -5685,6 +5678,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
 
         return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
+
+        return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithRawResponse:
@@ -6883,13 +6883,6 @@ class TelnyxWithStreamedResponse:
         return InfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
-
-        return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
-
-    @cached_property
     def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithStreamingResponse:
         """UAC connection operations"""
         from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
@@ -6902,6 +6895,13 @@ class TelnyxWithStreamedResponse:
         from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
 
         return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
+
+        return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithStreamingResponse:
@@ -8146,13 +8146,6 @@ class AsyncTelnyxWithStreamedResponse:
         return AsyncInfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
-
-        return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
-
-    @cached_property
     def sip_registration_status(
         self,
     ) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithStreamingResponse:
@@ -8167,6 +8160,13 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
 
         return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
+
+        return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithStreamingResponse:

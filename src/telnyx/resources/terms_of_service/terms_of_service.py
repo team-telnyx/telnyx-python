@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import terms_of_service_status_params, terms_of_service_retrieve_info_params
+from ...types import terms_of_service_info_params, terms_of_service_status_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -42,8 +42,8 @@ from .number_reputation import (
     NumberReputationResourceWithStreamingResponse,
     AsyncNumberReputationResourceWithStreamingResponse,
 )
+from ...types.terms_of_service_info_response import TermsOfServiceInfoResponse
 from ...types.terms_of_service_status_response import TermsOfServiceStatusResponse
-from ...types.terms_of_service_retrieve_info_response import TermsOfServiceRetrieveInfoResponse
 
 __all__ = ["TermsOfServiceResource", "AsyncTermsOfServiceResource"]
 
@@ -93,7 +93,7 @@ class TermsOfServiceResource(SyncAPIResource):
         """
         return TermsOfServiceResourceWithStreamingResponse(self)
 
-    def retrieve_info(
+    def info(
         self,
         *,
         product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
@@ -103,7 +103,7 @@ class TermsOfServiceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TermsOfServiceRetrieveInfoResponse:
+    ) -> TermsOfServiceInfoResponse:
         """
         Returns the available Terms of Service agreements (product, current version,
         terms URL, effective date). Omit `product_type` to return all products; pass it
@@ -128,11 +128,10 @@ class TermsOfServiceResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"product_type": product_type},
-                    terms_of_service_retrieve_info_params.TermsOfServiceRetrieveInfoParams,
+                    {"product_type": product_type}, terms_of_service_info_params.TermsOfServiceInfoParams
                 ),
             ),
-            cast_to=TermsOfServiceRetrieveInfoResponse,
+            cast_to=TermsOfServiceInfoResponse,
         )
 
     def status(
@@ -225,7 +224,7 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
         """
         return AsyncTermsOfServiceResourceWithStreamingResponse(self)
 
-    async def retrieve_info(
+    async def info(
         self,
         *,
         product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
@@ -235,7 +234,7 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TermsOfServiceRetrieveInfoResponse:
+    ) -> TermsOfServiceInfoResponse:
         """
         Returns the available Terms of Service agreements (product, current version,
         terms URL, effective date). Omit `product_type` to return all products; pass it
@@ -260,11 +259,10 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"product_type": product_type},
-                    terms_of_service_retrieve_info_params.TermsOfServiceRetrieveInfoParams,
+                    {"product_type": product_type}, terms_of_service_info_params.TermsOfServiceInfoParams
                 ),
             ),
-            cast_to=TermsOfServiceRetrieveInfoResponse,
+            cast_to=TermsOfServiceInfoResponse,
         )
 
     async def status(
@@ -316,8 +314,8 @@ class TermsOfServiceResourceWithRawResponse:
     def __init__(self, terms_of_service: TermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.retrieve_info = to_raw_response_wrapper(
-            terms_of_service.retrieve_info,
+        self.info = to_raw_response_wrapper(
+            terms_of_service.info,
         )
         self.status = to_raw_response_wrapper(
             terms_of_service.status,
@@ -349,8 +347,8 @@ class AsyncTermsOfServiceResourceWithRawResponse:
     def __init__(self, terms_of_service: AsyncTermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.retrieve_info = async_to_raw_response_wrapper(
-            terms_of_service.retrieve_info,
+        self.info = async_to_raw_response_wrapper(
+            terms_of_service.info,
         )
         self.status = async_to_raw_response_wrapper(
             terms_of_service.status,
@@ -382,8 +380,8 @@ class TermsOfServiceResourceWithStreamingResponse:
     def __init__(self, terms_of_service: TermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.retrieve_info = to_streamed_response_wrapper(
-            terms_of_service.retrieve_info,
+        self.info = to_streamed_response_wrapper(
+            terms_of_service.info,
         )
         self.status = to_streamed_response_wrapper(
             terms_of_service.status,
@@ -415,8 +413,8 @@ class AsyncTermsOfServiceResourceWithStreamingResponse:
     def __init__(self, terms_of_service: AsyncTermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.retrieve_info = async_to_streamed_response_wrapper(
-            terms_of_service.retrieve_info,
+        self.info = async_to_streamed_response_wrapper(
+            terms_of_service.info,
         )
         self.status = async_to_streamed_response_wrapper(
             terms_of_service.status,
