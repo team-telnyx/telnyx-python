@@ -5650,17 +5650,17 @@ Types:
 
 ```python
 from telnyx.types.enterprises.reputation import (
-    RemediationCreateResponse,
     RemediationRetrieveResponse,
     RemediationListResponse,
+    RemediationSubmitResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_create_response.py">RemediationCreateResponse</a></code>
 - <code title="get /enterprises/{enterprise_id}/reputation/remediation/{remediation_id}">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">retrieve</a>(remediation_id, \*, enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_retrieve_response.py">RemediationRetrieveResponse</a></code>
 - <code title="get /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_list_response.py">SyncDefaultFlatPagination[RemediationListResponse]</a></code>
+- <code title="post /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">submit</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_submit_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_submit_response.py">RemediationSubmitResponse</a></code>
 
 ## Dir
 
@@ -5696,12 +5696,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import TermsOfServiceRetrieveInfoResponse, TermsOfServiceStatusResponse
+from telnyx.types import TermsOfServiceInfoResponse, TermsOfServiceStatusResponse
 ```
 
 Methods:
 
-- <code title="get /terms_of_service/info">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">retrieve_info</a>(\*\*<a href="src/telnyx/types/terms_of_service_retrieve_info_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_retrieve_info_response.py">TermsOfServiceRetrieveInfoResponse</a></code>
+- <code title="get /terms_of_service/info">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">info</a>(\*\*<a href="src/telnyx/types/terms_of_service_info_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_info_response.py">TermsOfServiceInfoResponse</a></code>
 - <code title="get /terms_of_service/status">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">status</a>(\*\*<a href="src/telnyx/types/terms_of_service_status_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_status_response.py">TermsOfServiceStatusResponse</a></code>
 
 ## NumberReputation
@@ -5862,6 +5862,30 @@ Methods:
 - <code title="get /infringement_claims/{claim_id}">client.infringement_claims.<a href="./src/telnyx/resources/infringement_claims.py">retrieve</a>(claim_id) -> <a href="./src/telnyx/types/infringement_claim_retrieve_response.py">InfringementClaimRetrieveResponse</a></code>
 - <code title="post /infringement_claims/{claim_id}/contest">client.infringement_claims.<a href="./src/telnyx/resources/infringement_claims.py">contest</a>(claim_id, \*\*<a href="src/telnyx/types/infringement_claim_contest_params.py">params</a>) -> <a href="./src/telnyx/types/infringement_claim_contest_response.py">InfringementClaimContestResponse</a></code>
 
+# SipRegistrationStatus
+
+Types:
+
+```python
+from telnyx.types import SipRegistrationStatusRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /sip_registration_status">client.sip_registration_status.<a href="./src/telnyx/resources/sip_registration_status.py">retrieve</a>(\*\*<a href="src/telnyx/types/sip_registration_status_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/sip_registration_status_retrieve_response.py">SipRegistrationStatusRetrieveResponse</a></code>
+
+# SpeechToText
+
+Types:
+
+```python
+from telnyx.types import SpeechToTextListProvidersResponse
+```
+
+Methods:
+
+- <code title="get /speech-to-text/providers">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">list_providers</a>(\*\*<a href="src/telnyx/types/speech_to_text_list_providers_params.py">params</a>) -> <a href="./src/telnyx/types/speech_to_text_list_providers_response.py">SpeechToTextListProvidersResponse</a></code>
+
 # UacConnections
 
 Types:
@@ -5895,30 +5919,6 @@ from telnyx.types.uac_connections import ActionCheckRegistrationStatusResponse
 Methods:
 
 - <code title="post /uac_connections/{id}/actions/check_registration_status">client.uac_connections.actions.<a href="./src/telnyx/resources/uac_connections/actions.py">check_registration_status</a>(id) -> <a href="./src/telnyx/types/uac_connections/action_check_registration_status_response.py">ActionCheckRegistrationStatusResponse</a></code>
-
-# SipRegistrationStatus
-
-Types:
-
-```python
-from telnyx.types import SipRegistrationStatusRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /sip_registration_status">client.sip_registration_status.<a href="./src/telnyx/resources/sip_registration_status.py">retrieve</a>(\*\*<a href="src/telnyx/types/sip_registration_status_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/sip_registration_status_retrieve_response.py">SipRegistrationStatusRetrieveResponse</a></code>
-
-# SpeechToText
-
-Types:
-
-```python
-from telnyx.types import SpeechToTextListProvidersResponse
-```
-
-Methods:
-
-- <code title="get /speech-to-text/providers">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">list_providers</a>(\*\*<a href="src/telnyx/types/speech_to_text_list_providers_params.py">params</a>) -> <a href="./src/telnyx/types/speech_to_text_list_providers_response.py">SpeechToTextListProvidersResponse</a></code>
 
 # VoiceSDKCallReports
 

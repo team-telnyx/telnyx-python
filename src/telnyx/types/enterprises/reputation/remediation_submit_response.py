@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["RemediationCreateResponse", "Data", "DataResults"]
+__all__ = ["RemediationSubmitResponse", "Data", "DataResults"]
 
 
 class DataResults(BaseModel):
@@ -72,6 +72,6 @@ class Data(BaseModel):
     webhook_url: Optional[str] = None
 
 
-class RemediationCreateResponse(BaseModel):
+class RemediationSubmitResponse(BaseModel):
     data: Data
     """Full detail of a remediation request, returned on submit and GET by id."""
