@@ -60,7 +60,9 @@ class ActionSpeakParams(TypedDict, total=False):
       `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
       `voice_settings` to configure precision, sample_rate, and format.
     - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
-      `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+      `Inworld.Max.Oliver`, `Inworld.TTS2.Loretta`). Supported models: `Mini`,
+      `Max`, `TTS2`. Use `voice_settings` to configure `delivery_mode` (`STABLE`,
+      `BALANCED`, `CREATIVE`), supported by `TTS2` only.
     - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
       `ara`, `rex`, `sal`, `leo`.
 
@@ -137,6 +139,14 @@ class ActionSpeakParams(TypedDict, total=False):
 class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
     type: Required[Literal["inworld"]]
     """Voice settings provider type"""
+
+    delivery_mode: Literal["STABLE", "BALANCED", "CREATIVE"]
+    """
+    Controls the expressiveness and consistency of the Inworld `TTS2` model's speech
+    synthesis. `STABLE` favors consistent, predictable output, `CREATIVE` allows
+    more expressive variation, and `BALANCED` sits in between. Optional and only
+    supported by `TTS2`; when omitted, the provider default applies.
+    """
 
 
 class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
