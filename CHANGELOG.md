@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.156.0 (2026-06-16)
+
+Full Changelog: [v4.155.0...v4.156.0](https://github.com/team-telnyx/telnyx-python/compare/v4.155.0...v4.156.0)
+
+### Features
+
+* ENGDESK-51290: Add Aicoustic NS engines to portal backend ([b11dfc9](https://github.com/team-telnyx/telnyx-python/commit/b11dfc9987487b68d3bca6c5be8dbfae4988e626))
+
 ## 4.155.0 (2026-06-16)
 
 Full Changelog: [v4.154.0...v4.155.0](https://github.com/team-telnyx/telnyx-python/compare/v4.154.0...v4.155.0)
