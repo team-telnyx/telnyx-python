@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.157.0 (2026-06-18)
+
+Full Changelog: [v4.156.0...v4.157.0](https://github.com/team-telnyx/telnyx-python/compare/v4.156.0...v4.157.0)
+
+### Features
+
+* add transcriptions-search API spec (dev/external) ([c89ff29](https://github.com/team-telnyx/telnyx-python/commit/c89ff29b49c05c7e4ec6090888e9e222aa91d541))
+
 ## 4.156.0 (2026-06-16)
 
 Full Changelog: [v4.155.0...v4.156.0](https://github.com/team-telnyx/telnyx-python/compare/v4.155.0...v4.156.0)
