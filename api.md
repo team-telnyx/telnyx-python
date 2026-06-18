@@ -572,6 +572,7 @@ Types:
 from telnyx.types import (
     AICreateResponseDeprecatedResponse,
     AIRetrieveModelsResponse,
+    AISearchConversationHistoriesResponse,
     AISummarizeResponse,
 )
 ```
@@ -580,6 +581,7 @@ Methods:
 
 - <code title="post /ai/responses">client.ai.<a href="./src/telnyx/resources/ai/ai.py">create_response_deprecated</a>(\*\*<a href="src/telnyx/types/ai_create_response_deprecated_params.py">params</a>) -> <a href="./src/telnyx/types/ai_create_response_deprecated_response.py">AICreateResponseDeprecatedResponse</a></code>
 - <code title="get /ai/models">client.ai.<a href="./src/telnyx/resources/ai/ai.py">retrieve_models</a>() -> <a href="./src/telnyx/types/ai_retrieve_models_response.py">AIRetrieveModelsResponse</a></code>
+- <code title="get /ai/conversation_histories">client.ai.<a href="./src/telnyx/resources/ai/ai.py">search_conversation_histories</a>(\*\*<a href="src/telnyx/types/ai_search_conversation_histories_params.py">params</a>) -> <a href="./src/telnyx/types/ai_search_conversation_histories_response.py">AISearchConversationHistoriesResponse</a></code>
 - <code title="post /ai/summarize">client.ai.<a href="./src/telnyx/resources/ai/ai.py">summarize</a>(\*\*<a href="src/telnyx/types/ai_summarize_params.py">params</a>) -> <a href="./src/telnyx/types/ai_summarize_response.py">AISummarizeResponse</a></code>
 
 ## Assistants

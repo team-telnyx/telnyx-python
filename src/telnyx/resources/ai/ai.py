@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Dict
+from typing import Dict, Union
+from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -31,7 +33,7 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
-from ...types import ai_summarize_params, ai_create_response_deprecated_params
+from ...types import ai_summarize_params, ai_create_response_deprecated_params, ai_search_conversation_histories_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .clusters import (
@@ -118,13 +120,12 @@ from .conversations.conversations import (
 from ...types.ai_summarize_response import AISummarizeResponse
 from ...types.ai_retrieve_models_response import AIRetrieveModelsResponse
 from ...types.ai_create_response_deprecated_response import AICreateResponseDeprecatedResponse
+from ...types.ai_search_conversation_histories_response import AISearchConversationHistoriesResponse
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
 
 class AIResource(SyncAPIResource):
-    """Generate text with LLMs"""
-
     @cached_property
     def assistants(self) -> AssistantsResource:
         """Configure AI assistant specifications"""
@@ -267,6 +268,163 @@ class AIResource(SyncAPIResource):
             cast_to=AIRetrieveModelsResponse,
         )
 
+    def search_conversation_histories(
+        self,
+        *,
+        q: str,
+        record_type: Literal["voice", "message", "ai_pipeline_storage", "knowledge_base"],
+        filter_document_id: str | Omit = omit,
+        filter_ingested_at_gte: Union[str, datetime] | Omit = omit,
+        filter_ingested_at_lte: Union[str, datetime] | Omit = omit,
+        filter_record_created_at_gte: Union[str, datetime] | Omit = omit,
+        filter_record_created_at_lte: Union[str, datetime] | Omit = omit,
+        filter_record_id: str | Omit = omit,
+        filter_region_in: str | Omit = omit,
+        filter_retention: str | Omit = omit,
+        filter_user_id: str | Omit = omit,
+        min_score: float | Omit = omit,
+        region: Literal["USA", "DEU", "AUS", "UAE"] | Omit = omit,
+        top_k: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AISearchConversationHistoriesResponse:
+        """
+        Performs semantic vector search across conversation history records.
+
+        **How it works:**
+
+        1. The query text is embedded into a 1024-dimensional vector using the
+           multilingual-e5-large model.
+        2. The vector is sent to regional OpenSearch clusters for kNN search using HNSW
+           cosine similarity.
+        3. When no region is specified, all regions are queried in parallel (fan-out)
+           and results are merged by score.
+        4. Results are ranked by cosine similarity score (descending) and truncated to
+           `top_k`.
+
+        **Authentication:** Requires a Telnyx API key via `Authorization: Bearer <key>`.
+        Results are automatically scoped to the caller's organization —
+        `organization_id` is injected from the auth token and cannot be overridden.
+
+        **Chunking:** Records are split into chunks of up to 480 tokens with 64-token
+        overlap at ingestion time. Each search result represents a single chunk, with
+        `chunk_index` and `chunk_total` indicating its position within the original
+        record.
+
+        **Filtering:** Use `filter[field][operator]=value` query parameters to narrow
+        results before vector search.
+
+        Top-level filterable fields: `user_id`, `record_type`, `region`, `document_id`,
+        `record_id`, `record_created_at`, `ingested_at`, `retention`
+
+        Note: `retention` is filter-only — it can be used to narrow results but is not
+        returned in the response body.
+
+        Metadata fields: any field not in the list above is resolved to
+        `data.metadata.<field>` in OpenSearch (e.g., `filter[language]=en` →
+        `data.metadata.language`).
+
+        Supported filter operators:
+
+        - `eq` — exact match (default when no operator specified)
+        - `in` — match any of comma-separated values
+        - `gte`, `gt`, `lte`, `lt` — range comparisons (useful for date filtering)
+        - `contains` — wildcard substring match
+
+        **Examples:**
+
+        ```
+        GET /v2/ai/conversation_histories?q=billing+issue&record_type=voice&top_k=10
+        GET /v2/ai/conversation_histories?q=setup+guide&record_type=knowledge_base&region=USA&min_score=0.5
+        GET /v2/ai/conversation_histories?q=refund&record_type=voice&filter[record_created_at][gte]=2026-01-01T00:00:00Z
+        GET /v2/ai/conversation_histories?q=outage&record_type=voice&filter[region][in]=USA,DEU
+        GET /v2/ai/conversation_histories?q=hold+time&record_type=voice&filter[language]=en
+        ```
+
+        Args:
+          q: Natural language search query. The text is embedded into a 1024-dimensional
+              vector and compared against indexed record chunks using kNN cosine similarity.
+
+          record_type: The type of records to search. Each record type is stored in a separate vector
+              index.
+
+          filter_document_id: Filter by document identifier (exact match). Populated for knowledge_base
+              records.
+
+          filter_ingested_at_gte: Only include records ingested (chunked, embedded, and indexed) on or after this
+              ISO 8601 timestamp.
+
+          filter_ingested_at_lte: Only include records ingested (chunked, embedded, and indexed) on or before this
+              ISO 8601 timestamp.
+
+          filter_record_created_at_gte: Only include records whose original creation time is on or after this ISO 8601
+              timestamp.
+
+          filter_record_created_at_lte: Only include records whose original creation time is on or before this ISO 8601
+              timestamp.
+
+          filter_record_id: Filter to chunks belonging to a specific parent record (exact match).
+
+          filter_region_in: Filter by the region stored on the record. Comma-separated to match multiple
+              regions (USA, DEU, AUS, UAE). Distinct from the `region` parameter, which
+              selects which cluster(s) are queried.
+
+          filter_retention: Filter by retention policy (exact match). Filter-only: not returned in the
+              response body.
+
+          filter_user_id: Filter to records owned by a specific user (exact match).
+
+          min_score: Minimum cosine similarity score threshold (0.0 to 1.0). Results below this
+              threshold are excluded.
+
+          region: Restrict search to a specific region's OpenSearch cluster. When omitted, all
+              regions are queried in parallel (fan-out) and results are merged by cosine
+              similarity score.
+
+          top_k: Maximum number of results to return. Defaults to 20, maximum 100.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/ai/conversation_histories",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "q": q,
+                        "record_type": record_type,
+                        "filter_document_id": filter_document_id,
+                        "filter_ingested_at_gte": filter_ingested_at_gte,
+                        "filter_ingested_at_lte": filter_ingested_at_lte,
+                        "filter_record_created_at_gte": filter_record_created_at_gte,
+                        "filter_record_created_at_lte": filter_record_created_at_lte,
+                        "filter_record_id": filter_record_id,
+                        "filter_region_in": filter_region_in,
+                        "filter_retention": filter_retention,
+                        "filter_user_id": filter_user_id,
+                        "min_score": min_score,
+                        "region": region,
+                        "top_k": top_k,
+                    },
+                    ai_search_conversation_histories_params.AISearchConversationHistoriesParams,
+                ),
+            ),
+            cast_to=AISearchConversationHistoriesResponse,
+        )
+
     def summarize(
         self,
         *,
@@ -326,8 +484,6 @@ class AIResource(SyncAPIResource):
 
 
 class AsyncAIResource(AsyncAPIResource):
-    """Generate text with LLMs"""
-
     @cached_property
     def assistants(self) -> AsyncAssistantsResource:
         """Configure AI assistant specifications"""
@@ -472,6 +628,163 @@ class AsyncAIResource(AsyncAPIResource):
             cast_to=AIRetrieveModelsResponse,
         )
 
+    async def search_conversation_histories(
+        self,
+        *,
+        q: str,
+        record_type: Literal["voice", "message", "ai_pipeline_storage", "knowledge_base"],
+        filter_document_id: str | Omit = omit,
+        filter_ingested_at_gte: Union[str, datetime] | Omit = omit,
+        filter_ingested_at_lte: Union[str, datetime] | Omit = omit,
+        filter_record_created_at_gte: Union[str, datetime] | Omit = omit,
+        filter_record_created_at_lte: Union[str, datetime] | Omit = omit,
+        filter_record_id: str | Omit = omit,
+        filter_region_in: str | Omit = omit,
+        filter_retention: str | Omit = omit,
+        filter_user_id: str | Omit = omit,
+        min_score: float | Omit = omit,
+        region: Literal["USA", "DEU", "AUS", "UAE"] | Omit = omit,
+        top_k: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AISearchConversationHistoriesResponse:
+        """
+        Performs semantic vector search across conversation history records.
+
+        **How it works:**
+
+        1. The query text is embedded into a 1024-dimensional vector using the
+           multilingual-e5-large model.
+        2. The vector is sent to regional OpenSearch clusters for kNN search using HNSW
+           cosine similarity.
+        3. When no region is specified, all regions are queried in parallel (fan-out)
+           and results are merged by score.
+        4. Results are ranked by cosine similarity score (descending) and truncated to
+           `top_k`.
+
+        **Authentication:** Requires a Telnyx API key via `Authorization: Bearer <key>`.
+        Results are automatically scoped to the caller's organization —
+        `organization_id` is injected from the auth token and cannot be overridden.
+
+        **Chunking:** Records are split into chunks of up to 480 tokens with 64-token
+        overlap at ingestion time. Each search result represents a single chunk, with
+        `chunk_index` and `chunk_total` indicating its position within the original
+        record.
+
+        **Filtering:** Use `filter[field][operator]=value` query parameters to narrow
+        results before vector search.
+
+        Top-level filterable fields: `user_id`, `record_type`, `region`, `document_id`,
+        `record_id`, `record_created_at`, `ingested_at`, `retention`
+
+        Note: `retention` is filter-only — it can be used to narrow results but is not
+        returned in the response body.
+
+        Metadata fields: any field not in the list above is resolved to
+        `data.metadata.<field>` in OpenSearch (e.g., `filter[language]=en` →
+        `data.metadata.language`).
+
+        Supported filter operators:
+
+        - `eq` — exact match (default when no operator specified)
+        - `in` — match any of comma-separated values
+        - `gte`, `gt`, `lte`, `lt` — range comparisons (useful for date filtering)
+        - `contains` — wildcard substring match
+
+        **Examples:**
+
+        ```
+        GET /v2/ai/conversation_histories?q=billing+issue&record_type=voice&top_k=10
+        GET /v2/ai/conversation_histories?q=setup+guide&record_type=knowledge_base&region=USA&min_score=0.5
+        GET /v2/ai/conversation_histories?q=refund&record_type=voice&filter[record_created_at][gte]=2026-01-01T00:00:00Z
+        GET /v2/ai/conversation_histories?q=outage&record_type=voice&filter[region][in]=USA,DEU
+        GET /v2/ai/conversation_histories?q=hold+time&record_type=voice&filter[language]=en
+        ```
+
+        Args:
+          q: Natural language search query. The text is embedded into a 1024-dimensional
+              vector and compared against indexed record chunks using kNN cosine similarity.
+
+          record_type: The type of records to search. Each record type is stored in a separate vector
+              index.
+
+          filter_document_id: Filter by document identifier (exact match). Populated for knowledge_base
+              records.
+
+          filter_ingested_at_gte: Only include records ingested (chunked, embedded, and indexed) on or after this
+              ISO 8601 timestamp.
+
+          filter_ingested_at_lte: Only include records ingested (chunked, embedded, and indexed) on or before this
+              ISO 8601 timestamp.
+
+          filter_record_created_at_gte: Only include records whose original creation time is on or after this ISO 8601
+              timestamp.
+
+          filter_record_created_at_lte: Only include records whose original creation time is on or before this ISO 8601
+              timestamp.
+
+          filter_record_id: Filter to chunks belonging to a specific parent record (exact match).
+
+          filter_region_in: Filter by the region stored on the record. Comma-separated to match multiple
+              regions (USA, DEU, AUS, UAE). Distinct from the `region` parameter, which
+              selects which cluster(s) are queried.
+
+          filter_retention: Filter by retention policy (exact match). Filter-only: not returned in the
+              response body.
+
+          filter_user_id: Filter to records owned by a specific user (exact match).
+
+          min_score: Minimum cosine similarity score threshold (0.0 to 1.0). Results below this
+              threshold are excluded.
+
+          region: Restrict search to a specific region's OpenSearch cluster. When omitted, all
+              regions are queried in parallel (fan-out) and results are merged by cosine
+              similarity score.
+
+          top_k: Maximum number of results to return. Defaults to 20, maximum 100.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/ai/conversation_histories",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "q": q,
+                        "record_type": record_type,
+                        "filter_document_id": filter_document_id,
+                        "filter_ingested_at_gte": filter_ingested_at_gte,
+                        "filter_ingested_at_lte": filter_ingested_at_lte,
+                        "filter_record_created_at_gte": filter_record_created_at_gte,
+                        "filter_record_created_at_lte": filter_record_created_at_lte,
+                        "filter_record_id": filter_record_id,
+                        "filter_region_in": filter_region_in,
+                        "filter_retention": filter_retention,
+                        "filter_user_id": filter_user_id,
+                        "min_score": min_score,
+                        "region": region,
+                        "top_k": top_k,
+                    },
+                    ai_search_conversation_histories_params.AISearchConversationHistoriesParams,
+                ),
+            ),
+            cast_to=AISearchConversationHistoriesResponse,
+        )
+
     async def summarize(
         self,
         *,
@@ -543,6 +856,9 @@ class AIResourceWithRawResponse:
             to_raw_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.search_conversation_histories = to_raw_response_wrapper(
+            ai.search_conversation_histories,
         )
         self.summarize = to_raw_response_wrapper(
             ai.summarize,
@@ -617,6 +933,9 @@ class AsyncAIResourceWithRawResponse:
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
         )
+        self.search_conversation_histories = async_to_raw_response_wrapper(
+            ai.search_conversation_histories,
+        )
         self.summarize = async_to_raw_response_wrapper(
             ai.summarize,
         )
@@ -690,6 +1009,9 @@ class AIResourceWithStreamingResponse:
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
         )
+        self.search_conversation_histories = to_streamed_response_wrapper(
+            ai.search_conversation_histories,
+        )
         self.summarize = to_streamed_response_wrapper(
             ai.summarize,
         )
@@ -762,6 +1084,9 @@ class AsyncAIResourceWithStreamingResponse:
             async_to_streamed_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.search_conversation_histories = async_to_streamed_response_wrapper(
+            ai.search_conversation_histories,
         )
         self.summarize = async_to_streamed_response_wrapper(
             ai.summarize,
