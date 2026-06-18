@@ -628,7 +628,6 @@ class Telnyx(SyncAPIClient):
 
     @cached_property
     def ai(self) -> AIResource:
-        """Generate text with LLMs"""
         from .resources.ai import AIResource
 
         return AIResource(self)
@@ -2036,7 +2035,6 @@ class AsyncTelnyx(AsyncAPIClient):
 
     @cached_property
     def ai(self) -> AsyncAIResource:
-        """Generate text with LLMs"""
         from .resources.ai import AsyncAIResource
 
         return AsyncAIResource(self)
@@ -3350,7 +3348,6 @@ class TelnyxWithRawResponse:
 
     @cached_property
     def ai(self) -> ai.AIResourceWithRawResponse:
-        """Generate text with LLMs"""
         from .resources.ai import AIResourceWithRawResponse
 
         return AIResourceWithRawResponse(self._client.ai)
@@ -4549,7 +4546,6 @@ class AsyncTelnyxWithRawResponse:
 
     @cached_property
     def ai(self) -> ai.AsyncAIResourceWithRawResponse:
-        """Generate text with LLMs"""
         from .resources.ai import AsyncAIResourceWithRawResponse
 
         return AsyncAIResourceWithRawResponse(self._client.ai)
@@ -5764,7 +5760,6 @@ class TelnyxWithStreamedResponse:
 
     @cached_property
     def ai(self) -> ai.AIResourceWithStreamingResponse:
-        """Generate text with LLMs"""
         from .resources.ai import AIResourceWithStreamingResponse
 
         return AIResourceWithStreamingResponse(self._client.ai)
@@ -6981,7 +6976,6 @@ class AsyncTelnyxWithStreamedResponse:
 
     @cached_property
     def ai(self) -> ai.AsyncAIResourceWithStreamingResponse:
-        """Generate text with LLMs"""
         from .resources.ai import AsyncAIResourceWithStreamingResponse
 
         return AsyncAIResourceWithStreamingResponse(self._client.ai)
