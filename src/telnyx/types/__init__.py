@@ -1075,6 +1075,9 @@ from .traffic_policy_profile_update_response import (
 from .wireless_blocklist_value_list_response import (
     WirelessBlocklistValueListResponse as WirelessBlocklistValueListResponse,
 )
+from .ai_search_conversation_histories_params import (
+    AISearchConversationHistoriesParams as AISearchConversationHistoriesParams,
+)
 from .authentication_provider_create_response import (
     AuthenticationProviderCreateResponse as AuthenticationProviderCreateResponse,
 )
@@ -1230,6 +1233,9 @@ from .traffic_policy_profile_retrieve_response import (
 )
 from .verify_profile_message_template_response import (
     VerifyProfileMessageTemplateResponse as VerifyProfileMessageTemplateResponse,
+)
+from .ai_search_conversation_histories_response import (
+    AISearchConversationHistoriesResponse as AISearchConversationHistoriesResponse,
 )
 from .authentication_provider_retrieve_response import (
     AuthenticationProviderRetrieveResponse as AuthenticationProviderRetrieveResponse,

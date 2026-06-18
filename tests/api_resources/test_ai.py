@@ -13,7 +13,9 @@ from telnyx.types import (
     AISummarizeResponse,
     AIRetrieveModelsResponse,
     AICreateResponseDeprecatedResponse,
+    AISearchConversationHistoriesResponse,
 )
+from telnyx._utils import parse_datetime
 
 # pyright: reportDeprecated=false
 
@@ -99,6 +101,64 @@ class TestAI:
 
                 ai = response.parse()
                 assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_search_conversation_histories(self, client: Telnyx) -> None:
+        ai = client.ai.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+        )
+        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_search_conversation_histories_with_all_params(self, client: Telnyx) -> None:
+        ai = client.ai.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+            filter_document_id="doc-789",
+            filter_ingested_at_gte=parse_datetime("2026-01-01T00:00:00Z"),
+            filter_ingested_at_lte=parse_datetime("2026-12-31T23:59:59Z"),
+            filter_record_created_at_gte=parse_datetime("2026-01-01T00:00:00Z"),
+            filter_record_created_at_lte=parse_datetime("2026-12-31T23:59:59Z"),
+            filter_record_id="rec-001",
+            filter_region_in="USA,DEU",
+            filter_retention="filter[retention]",
+            filter_user_id="user-123",
+            min_score=0.5,
+            region="USA",
+            top_k=10,
+        )
+        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_search_conversation_histories(self, client: Telnyx) -> None:
+        response = client.ai.with_raw_response.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai = response.parse()
+        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_search_conversation_histories(self, client: Telnyx) -> None:
+        with client.ai.with_streaming_response.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai = response.parse()
+            assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,6 +291,64 @@ class TestAsyncAI:
 
                 ai = await response.parse()
                 assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_search_conversation_histories(self, async_client: AsyncTelnyx) -> None:
+        ai = await async_client.ai.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+        )
+        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_search_conversation_histories_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        ai = await async_client.ai.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+            filter_document_id="doc-789",
+            filter_ingested_at_gte=parse_datetime("2026-01-01T00:00:00Z"),
+            filter_ingested_at_lte=parse_datetime("2026-12-31T23:59:59Z"),
+            filter_record_created_at_gte=parse_datetime("2026-01-01T00:00:00Z"),
+            filter_record_created_at_lte=parse_datetime("2026-12-31T23:59:59Z"),
+            filter_record_id="rec-001",
+            filter_region_in="USA,DEU",
+            filter_retention="filter[retention]",
+            filter_user_id="user-123",
+            min_score=0.5,
+            region="USA",
+            top_k=10,
+        )
+        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_search_conversation_histories(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.with_raw_response.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai = await response.parse()
+        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_search_conversation_histories(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.with_streaming_response.search_conversation_histories(
+            q="customer called about billing issue",
+            record_type="voice",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ai = await response.parse()
+            assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
