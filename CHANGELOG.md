@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.161.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.160.0...v4.161.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* restore deleted type files to fix mypy import errors ([1a0e359](https://github.com/team-telnyx/telnyx-python-staging/commit/1a0e3596152be9982574615b6e21bd0c501384af))
+* restore dir_retrieve_document_types_response.py ([7ffd1d6](https://github.com/team-telnyx/telnyx-python-staging/commit/7ffd1d63414f3fa3d69d8069b61c946206b41609))
+* restore dir_retrieve_infringement_claims_response.py ([001ce04](https://github.com/team-telnyx/telnyx-python-staging/commit/001ce044ba388b4abbb8dccd010851d689a5b8c3))
+
+
+### Chores
+
+* add promote-to-prod workflow and fix prerelease config ([5b616aa](https://github.com/team-telnyx/telnyx-python-staging/commit/5b616aa0b946f40bc833db7de69f9831ce371a67))
+* add promote-to-prod.yml + remove prerelease config ([b97c239](https://github.com/team-telnyx/telnyx-python-staging/commit/b97c239fe6c539d3a64f0c401a408bbac66b9b98))
+* preserve repo-owned files not part of SDK generation ([847a466](https://github.com/team-telnyx/telnyx-python-staging/commit/847a46693c350cf931f3decc407da2c709fe6b82))
+* release python 4.161.0 ([86d5b64](https://github.com/team-telnyx/telnyx-python-staging/commit/86d5b64c8ad3fdec9fb6e7c72c15143c513d59fe))
+* remove stale files from previous generation ([faffa38](https://github.com/team-telnyx/telnyx-python-staging/commit/faffa3839f32371124893b3715e621a9426cfae1))
+
 ## [4.160.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.159.0...v4.160.0) (2026-06-18)
 
 
