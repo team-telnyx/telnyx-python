@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.162.0 (2026-06-22)
+
+Full Changelog: [v4.157.0...v4.162.0](https://github.com/team-telnyx/telnyx-python/compare/v4.157.0...v4.162.0)
+
+### Chores
+
+* add release-please.yml + remove prerelease config ([#323](https://github.com/team-telnyx/telnyx-python/issues/323)) ([daf86a8](https://github.com/team-telnyx/telnyx-python/commit/daf86a8b24295234d930e0ec470dec1a3ce1a04a))
+* promote from staging 039286b ([14409a3](https://github.com/team-telnyx/telnyx-python/commit/14409a39fe4df6dbc076f83b0236da4ffb168b3a))
+* promote from staging 39aa740 ([2fdc883](https://github.com/team-telnyx/telnyx-python/commit/2fdc8839fc5e976c4d5b2e45fbd45b26507f5669))
+* promote from staging a9e377a ([6b7fbd5](https://github.com/team-telnyx/telnyx-python/commit/6b7fbd59bb4edb3beea35d31aabca58da8b65f95))
+* promote from staging b97c239 ([1210ac7](https://github.com/team-telnyx/telnyx-python/commit/1210ac728df84be57802ede08f1d77e12305694f))
+* promote from staging cafbafa ([8fd499a](https://github.com/team-telnyx/telnyx-python/commit/8fd499af43a29ae5e081194f0e61f078cf973fdc))
+* promote from staging e21b9f2 ([aec8d6b](https://github.com/team-telnyx/telnyx-python/commit/aec8d6b89e0375e15cc8a77d0ec51b914ca51151))
+* update example date in audit-logs for pipeline sync ([beb1434](https://github.com/team-telnyx/telnyx-python/commit/beb143472c5a5fe244c1a50b66fa3618b0ca44df))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
