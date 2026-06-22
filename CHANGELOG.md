@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.162.0](https://github.com/team-telnyx/telnyx-python/compare/v4.157.0...v4.162.0) (2026-06-22)
+
+
+### Chores
+
+* add release-please.yml + remove prerelease config ([#323](https://github.com/team-telnyx/telnyx-python/issues/323)) ([daf86a8](https://github.com/team-telnyx/telnyx-python/commit/daf86a8b24295234d930e0ec470dec1a3ce1a04a))
+
 ## 4.157.0 (2026-06-18)
 
 Full Changelog: [v4.156.0...v4.157.0](https://github.com/team-telnyx/telnyx-python/compare/v4.156.0...v4.157.0)
