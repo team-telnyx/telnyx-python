@@ -5,7 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .accounts.calls.recording_source import RecordingSource
 from .texml_recording_subresources_uris import TexmlRecordingSubresourcesUris
+from .accounts.calls.twiml_recording_channels import TwimlRecordingChannels
 
 __all__ = ["TexmlGetCallRecordingResponseBody"]
 
@@ -15,7 +17,7 @@ class TexmlGetCallRecordingResponseBody(BaseModel):
 
     call_sid: Optional[str] = None
 
-    channels: Optional[Literal[1, 2]] = None
+    channels: Optional[TwimlRecordingChannels] = None
 
     conference_sid: Optional[str] = None
 
@@ -33,17 +35,7 @@ class TexmlGetCallRecordingResponseBody(BaseModel):
     sid: Optional[str] = None
     """Identifier of a resource."""
 
-    source: Optional[
-        Literal[
-            "StartCallRecordingAPI",
-            "StartConferenceRecordingAPI",
-            "OutboundAPI",
-            "DialVerb",
-            "Conference",
-            "RecordVerb",
-            "Trunking",
-        ]
-    ] = None
+    source: Optional[RecordingSource] = None
     """Defines how the recording was created."""
 
     start_time: Optional[datetime] = None

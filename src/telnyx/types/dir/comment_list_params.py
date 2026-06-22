@@ -2,23 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from .comment_type import CommentType
 
 __all__ = ["CommentListParams"]
 
 
 class CommentListParams(TypedDict, total=False):
-    comment_type: Literal[
-        "vetting_comment",
-        "rejection_reason",
-        "internal_note",
-        "notification",
-        "status_update",
-        "customer_inquiry",
-        "admin_response",
-    ]
+    comment_type: CommentType
     """Restrict to comments of this category.
 
     Customer-visible categories only: internal-only comments are filtered out

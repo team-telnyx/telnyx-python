@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
 from .dtmf_type import DtmfType
@@ -13,6 +13,7 @@ from .transport_protocol import TransportProtocol
 from .anchorsite_override import AnchorsiteOverride
 from .outbound_fqdn_param import OutboundFqdnParam
 from .webhook_api_version import WebhookAPIVersion
+from .connection_noise_suppression import ConnectionNoiseSuppression
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from .shared_params.connection_jitter_buffer import ConnectionJitterBuffer
 from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
@@ -86,7 +87,7 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
     A \\**.mstsbc.telnyx.tech FQDN will be created for the connection automatically.
     """
 
-    noise_suppression: Literal["inbound", "outbound", "both", "disabled"]
+    noise_suppression: ConnectionNoiseSuppression
     """Controls when noise suppression is applied to calls.
 
     When set to 'inbound', noise suppression is applied to incoming audio. When set

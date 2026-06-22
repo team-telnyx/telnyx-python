@@ -11,7 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.porting_orders import (
-    PhoneNumberConfigurationListResponse,
+    PortingPhoneNumberConfiguration,
     PhoneNumberConfigurationCreateResponse,
 )
 
@@ -67,9 +67,7 @@ class TestPhoneNumberConfigurations:
     def test_method_list(self, client: Telnyx) -> None:
         phone_number_configuration = client.porting_orders.phone_number_configurations.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
-            phone_number_configuration,
-            path=["response"],
+            SyncDefaultFlatPagination[PortingPhoneNumberConfiguration], phone_number_configuration, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -86,9 +84,7 @@ class TestPhoneNumberConfigurations:
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
-            phone_number_configuration,
-            path=["response"],
+            SyncDefaultFlatPagination[PortingPhoneNumberConfiguration], phone_number_configuration, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -100,9 +96,7 @@ class TestPhoneNumberConfigurations:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_configuration = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
-            phone_number_configuration,
-            path=["response"],
+            SyncDefaultFlatPagination[PortingPhoneNumberConfiguration], phone_number_configuration, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -114,7 +108,7 @@ class TestPhoneNumberConfigurations:
 
             phone_number_configuration = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+                SyncDefaultFlatPagination[PortingPhoneNumberConfiguration],
                 phone_number_configuration,
                 path=["response"],
             )
@@ -173,9 +167,7 @@ class TestAsyncPhoneNumberConfigurations:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         phone_number_configuration = await async_client.porting_orders.phone_number_configurations.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
-            phone_number_configuration,
-            path=["response"],
+            AsyncDefaultFlatPagination[PortingPhoneNumberConfiguration], phone_number_configuration, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -192,9 +184,7 @@ class TestAsyncPhoneNumberConfigurations:
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
-            phone_number_configuration,
-            path=["response"],
+            AsyncDefaultFlatPagination[PortingPhoneNumberConfiguration], phone_number_configuration, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -206,9 +196,7 @@ class TestAsyncPhoneNumberConfigurations:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_configuration = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
-            phone_number_configuration,
-            path=["response"],
+            AsyncDefaultFlatPagination[PortingPhoneNumberConfiguration], phone_number_configuration, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -220,7 +208,7 @@ class TestAsyncPhoneNumberConfigurations:
 
             phone_number_configuration = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+                AsyncDefaultFlatPagination[PortingPhoneNumberConfiguration],
                 phone_number_configuration,
                 path=["response"],
             )

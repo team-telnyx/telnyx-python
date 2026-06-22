@@ -9,12 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.ai import (
-    ToolListResponse,
-    ToolCreateResponse,
-    ToolUpdateResponse,
-    ToolRetrieveResponse,
-)
+from telnyx.types.ai import SharedToolResponse
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +25,7 @@ class TestTools:
             display_name="display_name",
             type="type",
         )
-        assert_matches_type(ToolCreateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -45,7 +40,7 @@ class TestTools:
             timeout_ms=0,
             webhook={"foo": "bar"},
         )
-        assert_matches_type(ToolCreateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -58,7 +53,7 @@ class TestTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = response.parse()
-        assert_matches_type(ToolCreateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -71,7 +66,7 @@ class TestTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = response.parse()
-            assert_matches_type(ToolCreateResponse, tool, path=["response"])
+            assert_matches_type(SharedToolResponse, tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +76,7 @@ class TestTools:
         tool = client.ai.tools.retrieve(
             "tool_id",
         )
-        assert_matches_type(ToolRetrieveResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -93,7 +88,7 @@ class TestTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = response.parse()
-        assert_matches_type(ToolRetrieveResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -105,7 +100,7 @@ class TestTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = response.parse()
-            assert_matches_type(ToolRetrieveResponse, tool, path=["response"])
+            assert_matches_type(SharedToolResponse, tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +118,7 @@ class TestTools:
         tool = client.ai.tools.update(
             tool_id="tool_id",
         )
-        assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -139,7 +134,7 @@ class TestTools:
             type="type",
             webhook={"foo": "bar"},
         )
-        assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -151,7 +146,7 @@ class TestTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = response.parse()
-        assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -163,7 +158,7 @@ class TestTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = response.parse()
-            assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+            assert_matches_type(SharedToolResponse, tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,7 +174,7 @@ class TestTools:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         tool = client.ai.tools.list()
-        assert_matches_type(SyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -190,7 +185,7 @@ class TestTools:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(SyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -200,7 +195,7 @@ class TestTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -210,7 +205,7 @@ class TestTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -269,7 +264,7 @@ class TestAsyncTools:
             display_name="display_name",
             type="type",
         )
-        assert_matches_type(ToolCreateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -284,7 +279,7 @@ class TestAsyncTools:
             timeout_ms=0,
             webhook={"foo": "bar"},
         )
-        assert_matches_type(ToolCreateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -297,7 +292,7 @@ class TestAsyncTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = await response.parse()
-        assert_matches_type(ToolCreateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -310,7 +305,7 @@ class TestAsyncTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = await response.parse()
-            assert_matches_type(ToolCreateResponse, tool, path=["response"])
+            assert_matches_type(SharedToolResponse, tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -320,7 +315,7 @@ class TestAsyncTools:
         tool = await async_client.ai.tools.retrieve(
             "tool_id",
         )
-        assert_matches_type(ToolRetrieveResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -332,7 +327,7 @@ class TestAsyncTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = await response.parse()
-        assert_matches_type(ToolRetrieveResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -344,7 +339,7 @@ class TestAsyncTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = await response.parse()
-            assert_matches_type(ToolRetrieveResponse, tool, path=["response"])
+            assert_matches_type(SharedToolResponse, tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -362,7 +357,7 @@ class TestAsyncTools:
         tool = await async_client.ai.tools.update(
             tool_id="tool_id",
         )
-        assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -378,7 +373,7 @@ class TestAsyncTools:
             type="type",
             webhook={"foo": "bar"},
         )
-        assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -390,7 +385,7 @@ class TestAsyncTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = await response.parse()
-        assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+        assert_matches_type(SharedToolResponse, tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -402,7 +397,7 @@ class TestAsyncTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = await response.parse()
-            assert_matches_type(ToolUpdateResponse, tool, path=["response"])
+            assert_matches_type(SharedToolResponse, tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -418,7 +413,7 @@ class TestAsyncTools:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         tool = await async_client.ai.tools.list()
-        assert_matches_type(AsyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -429,7 +424,7 @@ class TestAsyncTools:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -439,7 +434,7 @@ class TestAsyncTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -449,7 +444,7 @@ class TestAsyncTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[ToolListResponse], tool, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[SharedToolResponse], tool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

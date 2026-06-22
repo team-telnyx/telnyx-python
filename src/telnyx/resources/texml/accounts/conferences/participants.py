@@ -19,8 +19,7 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.texml.accounts.conferences import participant_update_params, participant_participants_params
-from .....types.texml.accounts.conferences.participant_update_response import ParticipantUpdateResponse
-from .....types.texml.accounts.conferences.participant_retrieve_response import ParticipantRetrieveResponse
+from .....types.texml.accounts.conferences.participant_resource import ParticipantResource
 from .....types.texml.accounts.conferences.participant_participants_response import ParticipantParticipantsResponse
 from .....types.texml.accounts.conferences.participant_retrieve_participants_response import (
     ParticipantRetrieveParticipantsResponse,
@@ -63,7 +62,7 @@ class ParticipantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ParticipantRetrieveResponse:
+    ) -> ParticipantResource:
         """
         Gets conference participant resource
 
@@ -94,7 +93,7 @@ class ParticipantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ParticipantRetrieveResponse,
+            cast_to=ParticipantResource,
         )
 
     def update(
@@ -120,7 +119,7 @@ class ParticipantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ParticipantUpdateResponse:
+    ) -> ParticipantResource:
         """
         Updates a conference participant
 
@@ -197,7 +196,7 @@ class ParticipantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ParticipantUpdateResponse,
+            cast_to=ParticipantResource,
         )
 
     def delete(
@@ -601,7 +600,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ParticipantRetrieveResponse:
+    ) -> ParticipantResource:
         """
         Gets conference participant resource
 
@@ -632,7 +631,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ParticipantRetrieveResponse,
+            cast_to=ParticipantResource,
         )
 
     async def update(
@@ -658,7 +657,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ParticipantUpdateResponse:
+    ) -> ParticipantResource:
         """
         Updates a conference participant
 
@@ -735,7 +734,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ParticipantUpdateResponse,
+            cast_to=ParticipantResource,
         )
 
     async def delete(

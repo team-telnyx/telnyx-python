@@ -19,7 +19,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.connection_list_response import ConnectionListResponse
+from ..types.connection import Connection
 from ..types.connection_retrieve_response import ConnectionRetrieveResponse
 from ..types.connection_list_active_calls_response import ConnectionListActiveCallsResponse
 
@@ -94,7 +94,7 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ConnectionListResponse]:
+    ) -> SyncDefaultFlatPagination[Connection]:
         """
         Returns a list of your connections irrespective of type.
 
@@ -129,7 +129,7 @@ class ConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/connections",
-            page=SyncDefaultFlatPagination[ConnectionListResponse],
+            page=SyncDefaultFlatPagination[Connection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -145,7 +145,7 @@ class ConnectionsResource(SyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=ConnectionListResponse,
+            model=Connection,
         )
 
     def list_active_calls(
@@ -266,7 +266,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ConnectionListResponse, AsyncDefaultFlatPagination[ConnectionListResponse]]:
+    ) -> AsyncPaginator[Connection, AsyncDefaultFlatPagination[Connection]]:
         """
         Returns a list of your connections irrespective of type.
 
@@ -301,7 +301,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/connections",
-            page=AsyncDefaultFlatPagination[ConnectionListResponse],
+            page=AsyncDefaultFlatPagination[Connection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -317,7 +317,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=ConnectionListResponse,
+            model=Connection,
         )
 
     def list_active_calls(

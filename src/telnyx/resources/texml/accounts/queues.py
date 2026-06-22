@@ -17,10 +17,7 @@ from ...._response import (
 from ....pagination import SyncDefaultPaginationForQueues, AsyncDefaultPaginationForQueues
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.texml.accounts import queue_list_params, queue_create_params, queue_update_params
-from ....types.texml.accounts.queue_list_response import QueueListResponse
-from ....types.texml.accounts.queue_create_response import QueueCreateResponse
-from ....types.texml.accounts.queue_update_response import QueueUpdateResponse
-from ....types.texml.accounts.queue_retrieve_response import QueueRetrieveResponse
+from ....types.texml.accounts.queue_resource import QueueResource
 
 __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
@@ -59,7 +56,7 @@ class QueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QueueCreateResponse:
+    ) -> QueueResource:
         """
         Creates a new queue resource.
 
@@ -90,7 +87,7 @@ class QueuesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QueueCreateResponse,
+            cast_to=QueueResource,
         )
 
     def retrieve(
@@ -104,7 +101,7 @@ class QueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QueueRetrieveResponse:
+    ) -> QueueResource:
         """
         Returns a queue resource.
 
@@ -128,7 +125,7 @@ class QueuesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QueueRetrieveResponse,
+            cast_to=QueueResource,
         )
 
     def update(
@@ -143,7 +140,7 @@ class QueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QueueUpdateResponse:
+    ) -> QueueResource:
         """
         Updates a queue resource.
 
@@ -170,7 +167,7 @@ class QueuesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QueueUpdateResponse,
+            cast_to=QueueResource,
         )
 
     def list(
@@ -188,7 +185,7 @@ class QueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPaginationForQueues[QueueListResponse]:
+    ) -> SyncDefaultPaginationForQueues[QueueResource]:
         """
         Lists queue resources.
 
@@ -218,7 +215,7 @@ class QueuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get_api_list(
             path_template("/texml/Accounts/{account_sid}/Queues", account_sid=account_sid),
-            page=SyncDefaultPaginationForQueues[QueueListResponse],
+            page=SyncDefaultPaginationForQueues[QueueResource],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,7 +232,7 @@ class QueuesResource(SyncAPIResource):
                     queue_list_params.QueueListParams,
                 ),
             ),
-            model=QueueListResponse,
+            model=QueueResource,
         )
 
     def delete(
@@ -312,7 +309,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QueueCreateResponse:
+    ) -> QueueResource:
         """
         Creates a new queue resource.
 
@@ -343,7 +340,7 @@ class AsyncQueuesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QueueCreateResponse,
+            cast_to=QueueResource,
         )
 
     async def retrieve(
@@ -357,7 +354,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QueueRetrieveResponse:
+    ) -> QueueResource:
         """
         Returns a queue resource.
 
@@ -381,7 +378,7 @@ class AsyncQueuesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QueueRetrieveResponse,
+            cast_to=QueueResource,
         )
 
     async def update(
@@ -396,7 +393,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> QueueUpdateResponse:
+    ) -> QueueResource:
         """
         Updates a queue resource.
 
@@ -423,7 +420,7 @@ class AsyncQueuesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=QueueUpdateResponse,
+            cast_to=QueueResource,
         )
 
     def list(
@@ -441,7 +438,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[QueueListResponse, AsyncDefaultPaginationForQueues[QueueListResponse]]:
+    ) -> AsyncPaginator[QueueResource, AsyncDefaultPaginationForQueues[QueueResource]]:
         """
         Lists queue resources.
 
@@ -471,7 +468,7 @@ class AsyncQueuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get_api_list(
             path_template("/texml/Accounts/{account_sid}/Queues", account_sid=account_sid),
-            page=AsyncDefaultPaginationForQueues[QueueListResponse],
+            page=AsyncDefaultPaginationForQueues[QueueResource],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -488,7 +485,7 @@ class AsyncQueuesResource(AsyncAPIResource):
                     queue_list_params.QueueListParams,
                 ),
             ),
-            model=QueueListResponse,
+            model=QueueResource,
         )
 
     async def delete(

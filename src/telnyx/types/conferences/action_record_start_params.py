@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
+from .conference_region import ConferenceRegion
+
 __all__ = ["ActionRecordStartParams"]
 
 
@@ -36,7 +38,7 @@ class ActionRecordStartParams(TypedDict, total=False):
     play_beep: bool
     """If enabled, a beep sound will be played at the start of a recording."""
 
-    region: Literal["Australia", "Europe", "Middle East", "US"]
+    region: ConferenceRegion
     """Region where the conference data is located.
 
     Defaults to the region defined in user's data locality settings (Europe or US).

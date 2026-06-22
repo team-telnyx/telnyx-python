@@ -22,10 +22,10 @@ from ....types.enterprises.reputation import (
     number_retrieve_params,
     number_associate_params,
 )
-from ....types.enterprises.reputation.number_list_response import NumberListResponse
 from ....types.enterprises.reputation.number_refresh_response import NumberRefreshResponse
-from ....types.enterprises.reputation.number_retrieve_response import NumberRetrieveResponse
-from ....types.enterprises.reputation.number_associate_response import NumberAssociateResponse
+from ....types.enterprises.reputation.reputation_phone_number import ReputationPhoneNumber
+from ....types.enterprises.reputation.reputation_phone_number_list import ReputationPhoneNumberList
+from ....types.enterprises.reputation.reputation_phone_number_with_reputation import ReputationPhoneNumberWithReputation
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
 
@@ -64,7 +64,7 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberRetrieveResponse:
+    ) -> ReputationPhoneNumberWithReputation:
         """Retrieve one registered number with its latest reputation snapshot.
 
         The
@@ -100,7 +100,7 @@ class NumbersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"fresh": fresh}, number_retrieve_params.NumberRetrieveParams),
             ),
-            cast_to=NumberRetrieveResponse,
+            cast_to=ReputationPhoneNumberWithReputation,
         )
 
     def list(
@@ -117,7 +117,7 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NumberListResponse]:
+    ) -> SyncDefaultFlatPagination[ReputationPhoneNumber]:
         """
         Paginated list of phone numbers registered for reputation monitoring under this
         enterprise. The response includes the latest reputation snapshot per number
@@ -144,7 +144,7 @@ class NumbersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            page=SyncDefaultFlatPagination[NumberListResponse],
+            page=SyncDefaultFlatPagination[ReputationPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -160,7 +160,7 @@ class NumbersResource(SyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=NumberListResponse,
+            model=ReputationPhoneNumber,
         )
 
     def associate(
@@ -174,7 +174,7 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberAssociateResponse:
+    ) -> ReputationPhoneNumberList:
         """Add up to 100 phone numbers to reputation monitoring on this enterprise.
 
         Each
@@ -206,7 +206,7 @@ class NumbersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NumberAssociateResponse,
+            cast_to=ReputationPhoneNumberList,
         )
 
     def disassociate(
@@ -332,7 +332,7 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberRetrieveResponse:
+    ) -> ReputationPhoneNumberWithReputation:
         """Retrieve one registered number with its latest reputation snapshot.
 
         The
@@ -368,7 +368,7 @@ class AsyncNumbersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"fresh": fresh}, number_retrieve_params.NumberRetrieveParams),
             ),
-            cast_to=NumberRetrieveResponse,
+            cast_to=ReputationPhoneNumberWithReputation,
         )
 
     def list(
@@ -385,7 +385,7 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NumberListResponse, AsyncDefaultFlatPagination[NumberListResponse]]:
+    ) -> AsyncPaginator[ReputationPhoneNumber, AsyncDefaultFlatPagination[ReputationPhoneNumber]]:
         """
         Paginated list of phone numbers registered for reputation monitoring under this
         enterprise. The response includes the latest reputation snapshot per number
@@ -412,7 +412,7 @@ class AsyncNumbersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            page=AsyncDefaultFlatPagination[NumberListResponse],
+            page=AsyncDefaultFlatPagination[ReputationPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -428,7 +428,7 @@ class AsyncNumbersResource(AsyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=NumberListResponse,
+            model=ReputationPhoneNumber,
         )
 
     async def associate(
@@ -442,7 +442,7 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberAssociateResponse:
+    ) -> ReputationPhoneNumberList:
         """Add up to 100 phone numbers to reputation monitoring on this enterprise.
 
         Each
@@ -476,7 +476,7 @@ class AsyncNumbersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NumberAssociateResponse,
+            cast_to=ReputationPhoneNumberList,
         )
 
     async def disassociate(

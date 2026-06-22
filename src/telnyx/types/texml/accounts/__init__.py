@@ -2,27 +2,22 @@
 
 from __future__ import annotations
 
+from .call_resource import CallResource as CallResource
+from .queue_resource import QueueResource as QueueResource
 from .call_calls_params import CallCallsParams as CallCallsParams
 from .queue_list_params import QueueListParams as QueueListParams
 from .call_update_params import CallUpdateParams as CallUpdateParams
 from .call_calls_response import CallCallsResponse as CallCallsResponse
+from .conference_resource import ConferenceResource as ConferenceResource
 from .queue_create_params import QueueCreateParams as QueueCreateParams
-from .queue_list_response import QueueListResponse as QueueListResponse
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
-from .call_update_response import CallUpdateResponse as CallUpdateResponse
-from .queue_create_response import QueueCreateResponse as QueueCreateResponse
-from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
-from .call_retrieve_response import CallRetrieveResponse as CallRetrieveResponse
 from .call_siprec_json_params import CallSiprecJsonParams as CallSiprecJsonParams
-from .queue_retrieve_response import QueueRetrieveResponse as QueueRetrieveResponse
 from .call_streams_json_params import CallStreamsJsonParams as CallStreamsJsonParams
 from .conference_update_params import ConferenceUpdateParams as ConferenceUpdateParams
 from .call_siprec_json_response import CallSiprecJsonResponse as CallSiprecJsonResponse
 from .call_retrieve_calls_params import CallRetrieveCallsParams as CallRetrieveCallsParams
 from .call_streams_json_response import CallStreamsJsonResponse as CallStreamsJsonResponse
-from .conference_update_response import ConferenceUpdateResponse as ConferenceUpdateResponse
 from .call_retrieve_calls_response import CallRetrieveCallsResponse as CallRetrieveCallsResponse
-from .conference_retrieve_response import ConferenceRetrieveResponse as ConferenceRetrieveResponse
 from .conference_retrieve_conferences_params import (
     ConferenceRetrieveConferencesParams as ConferenceRetrieveConferencesParams,
 )
@@ -31,7 +26,4 @@ from .conference_retrieve_recordings_response import (
 )
 from .conference_retrieve_conferences_response import (
     ConferenceRetrieveConferencesResponse as ConferenceRetrieveConferencesResponse,
-)
-from .conference_retrieve_recordings_json_response import (
-    ConferenceRetrieveRecordingsJsonResponse as ConferenceRetrieveRecordingsJsonResponse,
 )

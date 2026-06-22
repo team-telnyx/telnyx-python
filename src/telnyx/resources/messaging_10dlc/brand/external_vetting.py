@@ -16,9 +16,8 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.messaging_10dlc.brand import external_vetting_order_params, external_vetting_imports_params
+from ....types.messaging_10dlc.brand.external_vetting import ExternalVetting
 from ....types.messaging_10dlc.brand.external_vetting_list_response import ExternalVettingListResponse
-from ....types.messaging_10dlc.brand.external_vetting_order_response import ExternalVettingOrderResponse
-from ....types.messaging_10dlc.brand.external_vetting_imports_response import ExternalVettingImportsResponse
 
 __all__ = ["ExternalVettingResource", "AsyncExternalVettingResource"]
 
@@ -91,7 +90,7 @@ class ExternalVettingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingImportsResponse:
+    ) -> ExternalVetting:
         """
         This operation can be used to import an external vetting record from a
         TCR-approved vetting provider. If the vetting provider confirms validity of the
@@ -129,7 +128,7 @@ class ExternalVettingResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingImportsResponse,
+            cast_to=ExternalVetting,
         )
 
     def order(
@@ -144,7 +143,7 @@ class ExternalVettingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingOrderResponse:
+    ) -> ExternalVetting:
         """
         Order new external vetting for a brand.
 
@@ -179,7 +178,7 @@ class ExternalVettingResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingOrderResponse,
+            cast_to=ExternalVetting,
         )
 
 
@@ -251,7 +250,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingImportsResponse:
+    ) -> ExternalVetting:
         """
         This operation can be used to import an external vetting record from a
         TCR-approved vetting provider. If the vetting provider confirms validity of the
@@ -289,7 +288,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingImportsResponse,
+            cast_to=ExternalVetting,
         )
 
     async def order(
@@ -304,7 +303,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingOrderResponse:
+    ) -> ExternalVetting:
         """
         Order new external vetting for a brand.
 
@@ -339,7 +338,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingOrderResponse,
+            cast_to=ExternalVetting,
         )
 
 

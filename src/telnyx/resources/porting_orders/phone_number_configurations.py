@@ -19,7 +19,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import phone_number_configuration_list_params, phone_number_configuration_create_params
-from ...types.porting_orders.phone_number_configuration_list_response import PhoneNumberConfigurationListResponse
+from ...types.porting_orders.porting_phone_number_configuration import PortingPhoneNumberConfiguration
 from ...types.porting_orders.phone_number_configuration_create_response import PhoneNumberConfigurationCreateResponse
 
 __all__ = ["PhoneNumberConfigurationsResource", "AsyncPhoneNumberConfigurationsResource"]
@@ -96,7 +96,7 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse]:
+    ) -> SyncDefaultFlatPagination[PortingPhoneNumberConfiguration]:
         """
         Returns a list of phone number configurations paginated.
 
@@ -118,7 +118,7 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/porting_orders/phone_number_configurations",
-            page=SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            page=SyncDefaultFlatPagination[PortingPhoneNumberConfiguration],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -134,7 +134,7 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
                     phone_number_configuration_list_params.PhoneNumberConfigurationListParams,
                 ),
             ),
-            model=PhoneNumberConfigurationListResponse,
+            model=PortingPhoneNumberConfiguration,
         )
 
 
@@ -209,9 +209,7 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        PhoneNumberConfigurationListResponse, AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse]
-    ]:
+    ) -> AsyncPaginator[PortingPhoneNumberConfiguration, AsyncDefaultFlatPagination[PortingPhoneNumberConfiguration]]:
         """
         Returns a list of phone number configurations paginated.
 
@@ -233,7 +231,7 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/porting_orders/phone_number_configurations",
-            page=AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            page=AsyncDefaultFlatPagination[PortingPhoneNumberConfiguration],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -249,7 +247,7 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
                     phone_number_configuration_list_params.PhoneNumberConfigurationListParams,
                 ),
             ),
-            model=PhoneNumberConfigurationListResponse,
+            model=PortingPhoneNumberConfiguration,
         )
 
 

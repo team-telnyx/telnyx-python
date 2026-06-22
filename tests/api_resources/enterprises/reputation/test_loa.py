@@ -17,7 +17,7 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from telnyx.types.enterprises.reputation import LoaUpdateResponse
+from telnyx.types.enterprises import EnterpriseReputationPublicWrapped
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -32,7 +32,7 @@ class TestLoa:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
-        assert_matches_type(LoaUpdateResponse, loa, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, loa, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -45,7 +45,7 @@ class TestLoa:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         loa = response.parse()
-        assert_matches_type(LoaUpdateResponse, loa, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, loa, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -58,7 +58,7 @@ class TestLoa:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             loa = response.parse()
-            assert_matches_type(LoaUpdateResponse, loa, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, loa, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -172,7 +172,7 @@ class TestAsyncLoa:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
-        assert_matches_type(LoaUpdateResponse, loa, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, loa, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -185,7 +185,7 @@ class TestAsyncLoa:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         loa = await response.parse()
-        assert_matches_type(LoaUpdateResponse, loa, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, loa, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -198,7 +198,7 @@ class TestAsyncLoa:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             loa = await response.parse()
-            assert_matches_type(LoaUpdateResponse, loa, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, loa, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

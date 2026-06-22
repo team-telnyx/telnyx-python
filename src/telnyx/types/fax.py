@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from .quality import Quality
 from .._models import BaseModel
 
 __all__ = ["Fax"]
@@ -57,7 +58,7 @@ class Fax(BaseModel):
     Link expires after 10 minutes.
     """
 
-    quality: Optional[Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"]] = None
+    quality: Optional[Quality] = None
     """The quality of the fax.
 
     The `ultra` settings provides the highest quality available, but also present

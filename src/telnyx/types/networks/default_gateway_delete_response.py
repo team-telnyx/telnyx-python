@@ -2,26 +2,14 @@
 
 from typing import List, Optional
 
-from ..record import Record
 from ..._models import BaseModel
+from .default_gateway import DefaultGateway
 from ..pagination_meta import PaginationMeta
-from ..interface_status import InterfaceStatus
 
-__all__ = ["DefaultGatewayDeleteResponse", "Data"]
-
-
-class Data(Record):
-    network_id: Optional[str] = None
-    """Network ID."""
-
-    status: Optional[InterfaceStatus] = None
-    """The current status of the interface deployment."""
-
-    wireguard_peer_id: Optional[str] = None
-    """Wireguard peer ID."""
+__all__ = ["DefaultGatewayDeleteResponse"]
 
 
 class DefaultGatewayDeleteResponse(BaseModel):
-    data: Optional[List[Data]] = None
+    data: Optional[List[DefaultGateway]] = None
 
     meta: Optional[PaginationMeta] = None

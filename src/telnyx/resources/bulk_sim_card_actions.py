@@ -19,7 +19,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.bulk_sim_card_action_list_response import BulkSimCardActionListResponse
+from ..types.bulk_sim_card_action_detailed import BulkSimCardActionDetailed
 from ..types.bulk_sim_card_action_retrieve_response import BulkSimCardActionRetrieveResponse
 
 __all__ = ["BulkSimCardActionsResource", "AsyncBulkSimCardActionsResource"]
@@ -96,7 +96,7 @@ class BulkSimCardActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[BulkSimCardActionListResponse]:
+    ) -> SyncDefaultFlatPagination[BulkSimCardActionDetailed]:
         """This API lists a paginated collection of bulk SIM card actions.
 
         A bulk SIM card
@@ -119,7 +119,7 @@ class BulkSimCardActionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/bulk_sim_card_actions",
-            page=SyncDefaultFlatPagination[BulkSimCardActionListResponse],
+            page=SyncDefaultFlatPagination[BulkSimCardActionDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -134,7 +134,7 @@ class BulkSimCardActionsResource(SyncAPIResource):
                     bulk_sim_card_action_list_params.BulkSimCardActionListParams,
                 ),
             ),
-            model=BulkSimCardActionListResponse,
+            model=BulkSimCardActionDetailed,
         )
 
 
@@ -209,7 +209,7 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[BulkSimCardActionListResponse, AsyncDefaultFlatPagination[BulkSimCardActionListResponse]]:
+    ) -> AsyncPaginator[BulkSimCardActionDetailed, AsyncDefaultFlatPagination[BulkSimCardActionDetailed]]:
         """This API lists a paginated collection of bulk SIM card actions.
 
         A bulk SIM card
@@ -232,7 +232,7 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/bulk_sim_card_actions",
-            page=AsyncDefaultFlatPagination[BulkSimCardActionListResponse],
+            page=AsyncDefaultFlatPagination[BulkSimCardActionDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -247,7 +247,7 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
                     bulk_sim_card_action_list_params.BulkSimCardActionListParams,
                 ),
             ),
-            model=BulkSimCardActionListResponse,
+            model=BulkSimCardActionDetailed,
         )
 
 

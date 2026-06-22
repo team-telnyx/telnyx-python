@@ -35,9 +35,7 @@ from .._response import (
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.voice_clone_data import VoiceCloneData
-from ..types.voice_clone_create_response import VoiceCloneCreateResponse
-from ..types.voice_clone_update_response import VoiceCloneUpdateResponse
-from ..types.voice_clone_create_from_upload_response import VoiceCloneCreateFromUploadResponse
+from ..types.voice_clone_response import VoiceCloneResponse
 
 __all__ = ["VoiceClonesResource", "AsyncVoiceClonesResource"]
 
@@ -69,20 +67,20 @@ class VoiceClonesResource(SyncAPIResource):
     def create(
         self,
         *,
-        params: voice_clone_create_params.Params,
+        voice_clone_request: voice_clone_create_params.VoiceCloneRequest,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneCreateResponse:
+    ) -> VoiceCloneResponse:
         """
         Creates a new voice clone by capturing the voice identity of an existing voice
         design. The clone can then be used for text-to-speech synthesis.
 
         Args:
-          params: Request body for creating a voice clone from an existing voice design.
+          voice_clone_request: Request body for creating a voice clone from an existing voice design.
 
           extra_headers: Send extra headers
 
@@ -94,11 +92,11 @@ class VoiceClonesResource(SyncAPIResource):
         """
         return self._post(
             "/voice_clones",
-            body=maybe_transform(params, voice_clone_create_params.VoiceCloneCreateParams),
+            body=maybe_transform(voice_clone_request, voice_clone_create_params.VoiceCloneCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceCloneCreateResponse,
+            cast_to=VoiceCloneResponse,
         )
 
     def update(
@@ -114,7 +112,7 @@ class VoiceClonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneUpdateResponse:
+    ) -> VoiceCloneResponse:
         """
         Updates the name, language, or gender of a voice clone.
 
@@ -148,7 +146,7 @@ class VoiceClonesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceCloneUpdateResponse,
+            cast_to=VoiceCloneResponse,
         )
 
     def list(
@@ -248,14 +246,14 @@ class VoiceClonesResource(SyncAPIResource):
     def create_from_upload(
         self,
         *,
-        params: voice_clone_create_from_upload_params.Params,
+        voice_clone_upload_request: voice_clone_create_from_upload_params.VoiceCloneUploadRequest,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneCreateFromUploadResponse:
+    ) -> VoiceCloneResponse:
         """Creates a new voice clone by uploading an audio file directly.
 
         Supported
@@ -263,7 +261,7 @@ class VoiceClonesResource(SyncAPIResource):
         clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
-          params: Multipart form data for creating a voice clone from a direct audio upload.
+          voice_clone_upload_request: Multipart form data for creating a voice clone from a direct audio upload.
               Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
           extra_headers: Send extra headers
@@ -274,7 +272,7 @@ class VoiceClonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_with_paths(params, [["audio_file"], ["audio_file"], ["audio_file"]])
+        body = deepcopy_with_paths(voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"]])
         files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
@@ -287,7 +285,7 @@ class VoiceClonesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceCloneCreateFromUploadResponse,
+            cast_to=VoiceCloneResponse,
         )
 
     def download_sample(
@@ -352,20 +350,20 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        params: voice_clone_create_params.Params,
+        voice_clone_request: voice_clone_create_params.VoiceCloneRequest,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneCreateResponse:
+    ) -> VoiceCloneResponse:
         """
         Creates a new voice clone by capturing the voice identity of an existing voice
         design. The clone can then be used for text-to-speech synthesis.
 
         Args:
-          params: Request body for creating a voice clone from an existing voice design.
+          voice_clone_request: Request body for creating a voice clone from an existing voice design.
 
           extra_headers: Send extra headers
 
@@ -377,11 +375,11 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """
         return await self._post(
             "/voice_clones",
-            body=await async_maybe_transform(params, voice_clone_create_params.VoiceCloneCreateParams),
+            body=await async_maybe_transform(voice_clone_request, voice_clone_create_params.VoiceCloneCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceCloneCreateResponse,
+            cast_to=VoiceCloneResponse,
         )
 
     async def update(
@@ -397,7 +395,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneUpdateResponse:
+    ) -> VoiceCloneResponse:
         """
         Updates the name, language, or gender of a voice clone.
 
@@ -431,7 +429,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceCloneUpdateResponse,
+            cast_to=VoiceCloneResponse,
         )
 
     def list(
@@ -531,14 +529,14 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
     async def create_from_upload(
         self,
         *,
-        params: voice_clone_create_from_upload_params.Params,
+        voice_clone_upload_request: voice_clone_create_from_upload_params.VoiceCloneUploadRequest,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneCreateFromUploadResponse:
+    ) -> VoiceCloneResponse:
         """Creates a new voice clone by uploading an audio file directly.
 
         Supported
@@ -546,7 +544,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
-          params: Multipart form data for creating a voice clone from a direct audio upload.
+          voice_clone_upload_request: Multipart form data for creating a voice clone from a direct audio upload.
               Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
           extra_headers: Send extra headers
@@ -557,7 +555,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_with_paths(params, [["audio_file"], ["audio_file"], ["audio_file"]])
+        body = deepcopy_with_paths(voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"]])
         files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
@@ -572,7 +570,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceCloneCreateFromUploadResponse,
+            cast_to=VoiceCloneResponse,
         )
 
     async def download_sample(

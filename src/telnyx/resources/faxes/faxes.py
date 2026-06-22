@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import fax_list_params, fax_create_params
+from ...types import Quality, fax_list_params, fax_create_params
 from .actions import (
     ActionsResource,
     AsyncActionsResource,
@@ -30,6 +30,7 @@ from ..._response import (
 from ...types.fax import Fax
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.quality import Quality
 from ...types.fax_create_response import FaxCreateResponse
 from ...types.fax_retrieve_response import FaxRetrieveResponse
 
@@ -76,7 +77,7 @@ class FaxesResource(SyncAPIResource):
         media_url: str | Omit = omit,
         monochrome: bool | Omit = omit,
         preview_format: Literal["pdf", "tiff"] | Omit = omit,
-        quality: Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"] | Omit = omit,
+        quality: Quality | Omit = omit,
         store_media: bool | Omit = omit,
         store_preview: bool | Omit = omit,
         t38_enabled: bool | Omit = omit,
@@ -362,7 +363,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         media_url: str | Omit = omit,
         monochrome: bool | Omit = omit,
         preview_format: Literal["pdf", "tiff"] | Omit = omit,
-        quality: Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"] | Omit = omit,
+        quality: Quality | Omit = omit,
         store_media: bool | Omit = omit,
         store_preview: bool | Omit = omit,
         t38_enabled: bool | Omit = omit,

@@ -2,8 +2,8 @@
 
 from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from .event_type import EventType
 from ....._models import BaseModel
 
 __all__ = ["EventData"]
@@ -18,17 +18,7 @@ class EventData(BaseModel):
 
     timestamp: datetime
 
-    type: Literal[
-        "status_change",
-        "step_started",
-        "step_completed",
-        "step_failed",
-        "tool_call",
-        "tool_result",
-        "message",
-        "error",
-        "custom",
-    ]
+    type: EventType
 
     agent_id: Optional[str] = None
 

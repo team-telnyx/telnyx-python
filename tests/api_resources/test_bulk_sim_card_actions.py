@@ -9,10 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    BulkSimCardActionListResponse,
-    BulkSimCardActionRetrieveResponse,
-)
+from telnyx.types import BulkSimCardActionDetailed, BulkSimCardActionRetrieveResponse
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -68,7 +65,7 @@ class TestBulkSimCardActions:
     def test_method_list(self, client: Telnyx) -> None:
         bulk_sim_card_action = client.bulk_sim_card_actions.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+            SyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -80,7 +77,7 @@ class TestBulkSimCardActions:
             page_size=1,
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+            SyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -92,7 +89,7 @@ class TestBulkSimCardActions:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_sim_card_action = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+            SyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -104,7 +101,7 @@ class TestBulkSimCardActions:
 
             bulk_sim_card_action = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+                SyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -162,7 +159,7 @@ class TestAsyncBulkSimCardActions:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         bulk_sim_card_action = await async_client.bulk_sim_card_actions.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+            AsyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -174,7 +171,7 @@ class TestAsyncBulkSimCardActions:
             page_size=1,
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+            AsyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -186,7 +183,7 @@ class TestAsyncBulkSimCardActions:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_sim_card_action = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+            AsyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -198,7 +195,7 @@ class TestAsyncBulkSimCardActions:
 
             bulk_sim_card_action = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[BulkSimCardActionListResponse], bulk_sim_card_action, path=["response"]
+                AsyncDefaultFlatPagination[BulkSimCardActionDetailed], bulk_sim_card_action, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

@@ -10,6 +10,7 @@ from .credential_inbound import CredentialInbound
 from .anchorsite_override import AnchorsiteOverride
 from .credential_outbound import CredentialOutbound
 from .connection_rtcp_settings import ConnectionRtcpSettings
+from .connection_noise_suppression import ConnectionNoiseSuppression
 from .shared.connection_jitter_buffer import ConnectionJitterBuffer
 from .shared.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
@@ -81,7 +82,7 @@ class CredentialConnection(BaseModel):
     smaller values reduce latency but are more sensitive to jitter and reordering.
     """
 
-    noise_suppression: Optional[Literal["inbound", "outbound", "both", "disabled"]] = None
+    noise_suppression: Optional[ConnectionNoiseSuppression] = None
     """Controls when noise suppression is applied to calls.
 
     When set to 'inbound', noise suppression is applied to incoming audio. When set

@@ -9,11 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    RecordingResponseData,
-    RecordingDeleteResponse,
-    RecordingRetrieveResponse,
-)
+from telnyx.types import RecordingResponse, RecordingResponseData
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,7 +24,7 @@ class TestRecordings:
         recording = client.recordings.retrieve(
             "recording_id",
         )
-        assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -40,7 +36,7 @@ class TestRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = response.parse()
-        assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -52,7 +48,7 @@ class TestRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = response.parse()
-            assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
+            assert_matches_type(RecordingResponse, recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,7 +126,7 @@ class TestRecordings:
         recording = client.recordings.delete(
             "recording_id",
         )
-        assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -142,7 +138,7 @@ class TestRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = response.parse()
-        assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -154,7 +150,7 @@ class TestRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = response.parse()
-            assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
+            assert_matches_type(RecordingResponse, recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -178,7 +174,7 @@ class TestAsyncRecordings:
         recording = await async_client.recordings.retrieve(
             "recording_id",
         )
-        assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -190,7 +186,7 @@ class TestAsyncRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = await response.parse()
-        assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -202,7 +198,7 @@ class TestAsyncRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = await response.parse()
-            assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
+            assert_matches_type(RecordingResponse, recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -280,7 +276,7 @@ class TestAsyncRecordings:
         recording = await async_client.recordings.delete(
             "recording_id",
         )
-        assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -292,7 +288,7 @@ class TestAsyncRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = await response.parse()
-        assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
+        assert_matches_type(RecordingResponse, recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -304,7 +300,7 @@ class TestAsyncRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = await response.parse()
-            assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
+            assert_matches_type(RecordingResponse, recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

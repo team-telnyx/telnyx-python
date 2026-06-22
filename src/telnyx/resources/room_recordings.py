@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.room_recording_list_response import RoomRecordingListResponse
+from ..types.room_recording import RoomRecording
 from ..types.room_recording_retrieve_response import RoomRecordingRetrieveResponse
 from ..types.room_recording_delete_bulk_response import RoomRecordingDeleteBulkResponse
 
@@ -91,7 +91,7 @@ class RoomRecordingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[RoomRecordingListResponse]:
+    ) -> SyncDefaultFlatPagination[RoomRecording]:
         """
         View a list of room recordings.
 
@@ -114,7 +114,7 @@ class RoomRecordingsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/room_recordings",
-            page=SyncDefaultFlatPagination[RoomRecordingListResponse],
+            page=SyncDefaultFlatPagination[RoomRecording],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -129,7 +129,7 @@ class RoomRecordingsResource(SyncAPIResource):
                     room_recording_list_params.RoomRecordingListParams,
                 ),
             ),
-            model=RoomRecordingListResponse,
+            model=RoomRecording,
         )
 
     def delete(
@@ -286,7 +286,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomRecordingListResponse, AsyncDefaultFlatPagination[RoomRecordingListResponse]]:
+    ) -> AsyncPaginator[RoomRecording, AsyncDefaultFlatPagination[RoomRecording]]:
         """
         View a list of room recordings.
 
@@ -309,7 +309,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/room_recordings",
-            page=AsyncDefaultFlatPagination[RoomRecordingListResponse],
+            page=AsyncDefaultFlatPagination[RoomRecording],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -324,7 +324,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
                     room_recording_list_params.RoomRecordingListParams,
                 ),
             ),
-            model=RoomRecordingListResponse,
+            model=RoomRecording,
         )
 
     async def delete(

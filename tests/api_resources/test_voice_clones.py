@@ -13,9 +13,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
     VoiceCloneData,
-    VoiceCloneCreateResponse,
-    VoiceCloneUpdateResponse,
-    VoiceCloneCreateFromUploadResponse,
+    VoiceCloneResponse,
 )
 from telnyx._response import (
     BinaryAPIResponse,
@@ -35,7 +33,7 @@ class TestVoiceClones:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -43,13 +41,13 @@ class TestVoiceClones:
                 "provider": "telnyx",
             },
         )
-        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -57,13 +55,13 @@ class TestVoiceClones:
                 "provider": "telnyx",
             },
         )
-        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.voice_clones.with_raw_response.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -75,13 +73,13 @@ class TestVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = response.parse()
-        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.voice_clones.with_streaming_response.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -93,7 +91,7 @@ class TestVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = response.parse()
-            assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+            assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,7 +102,7 @@ class TestVoiceClones:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="updated-clone",
         )
-        assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -115,7 +113,7 @@ class TestVoiceClones:
             gender="male",
             language="language",
         )
-        assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -128,7 +126,7 @@ class TestVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = response.parse()
-        assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -141,7 +139,7 @@ class TestVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = response.parse()
-            assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+            assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +238,7 @@ class TestVoiceClones:
     @parametrize
     def test_method_create_from_upload(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -248,13 +246,13 @@ class TestVoiceClones:
                 "provider": "telnyx",
             },
         )
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_from_upload_with_all_params(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -265,13 +263,13 @@ class TestVoiceClones:
                 "ref_text": "ref_text",
             },
         )
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_from_upload(self, client: Telnyx) -> None:
         response = client.voice_clones.with_raw_response.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -283,13 +281,13 @@ class TestVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = response.parse()
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_from_upload(self, client: Telnyx) -> None:
         with client.voice_clones.with_streaming_response.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -301,7 +299,7 @@ class TestVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = response.parse()
-            assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+            assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -371,7 +369,7 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -379,13 +377,13 @@ class TestAsyncVoiceClones:
                 "provider": "telnyx",
             },
         )
-        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -393,13 +391,13 @@ class TestAsyncVoiceClones:
                 "provider": "telnyx",
             },
         )
-        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.voice_clones.with_raw_response.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -411,13 +409,13 @@ class TestAsyncVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = await response.parse()
-        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.voice_clones.with_streaming_response.create(
-            params={
+            voice_clone_request={
                 "gender": "male",
                 "language": "en",
                 "name": "clone-narrator",
@@ -429,7 +427,7 @@ class TestAsyncVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = await response.parse()
-            assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+            assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -440,7 +438,7 @@ class TestAsyncVoiceClones:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="updated-clone",
         )
-        assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -451,7 +449,7 @@ class TestAsyncVoiceClones:
             gender="male",
             language="language",
         )
-        assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -464,7 +462,7 @@ class TestAsyncVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = await response.parse()
-        assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -477,7 +475,7 @@ class TestAsyncVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = await response.parse()
-            assert_matches_type(VoiceCloneUpdateResponse, voice_clone, path=["response"])
+            assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -576,7 +574,7 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_method_create_from_upload(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -584,13 +582,13 @@ class TestAsyncVoiceClones:
                 "provider": "telnyx",
             },
         )
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_from_upload_with_all_params(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -601,13 +599,13 @@ class TestAsyncVoiceClones:
                 "ref_text": "ref_text",
             },
         )
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_from_upload(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.voice_clones.with_raw_response.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -619,13 +617,13 @@ class TestAsyncVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = await response.parse()
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+        assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_from_upload(self, async_client: AsyncTelnyx) -> None:
         async with async_client.voice_clones.with_streaming_response.create_from_upload(
-            params={
+            voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
                 "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
@@ -637,7 +635,7 @@ class TestAsyncVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = await response.parse()
-            assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
+            assert_matches_type(VoiceCloneResponse, voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

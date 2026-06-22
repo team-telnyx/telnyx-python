@@ -9,7 +9,8 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.ai import OpenAIListModelsResponse, OpenAICreateResponseResponse
+from telnyx.types import ModelsResponse
+from telnyx.types.ai import OpenAICreateResponseResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,17 +29,7 @@ class TestOpenAI:
     def test_method_create_response_with_all_params(self, client: Telnyx) -> None:
         openai = client.ai.openai.create_response(
             conversation="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            input=[
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "input_text",
-                            "text": "Hello, world!",
-                        }
-                    ],
-                }
-            ],
+            input={"0": "bar"},
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
             stream=True,
@@ -71,7 +62,7 @@ class TestOpenAI:
     @parametrize
     def test_method_list_models(self, client: Telnyx) -> None:
         openai = client.ai.openai.list_models()
-        assert_matches_type(OpenAIListModelsResponse, openai, path=["response"])
+        assert_matches_type(ModelsResponse, openai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -81,7 +72,7 @@ class TestOpenAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         openai = response.parse()
-        assert_matches_type(OpenAIListModelsResponse, openai, path=["response"])
+        assert_matches_type(ModelsResponse, openai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -91,7 +82,7 @@ class TestOpenAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             openai = response.parse()
-            assert_matches_type(OpenAIListModelsResponse, openai, path=["response"])
+            assert_matches_type(ModelsResponse, openai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,17 +103,7 @@ class TestAsyncOpenAI:
     async def test_method_create_response_with_all_params(self, async_client: AsyncTelnyx) -> None:
         openai = await async_client.ai.openai.create_response(
             conversation="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            input=[
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "input_text",
-                            "text": "Hello, world!",
-                        }
-                    ],
-                }
-            ],
+            input={"0": "bar"},
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
             stream=True,
@@ -155,7 +136,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_list_models(self, async_client: AsyncTelnyx) -> None:
         openai = await async_client.ai.openai.list_models()
-        assert_matches_type(OpenAIListModelsResponse, openai, path=["response"])
+        assert_matches_type(ModelsResponse, openai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -165,7 +146,7 @@ class TestAsyncOpenAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         openai = await response.parse()
-        assert_matches_type(OpenAIListModelsResponse, openai, path=["response"])
+        assert_matches_type(ModelsResponse, openai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -175,6 +156,6 @@ class TestAsyncOpenAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             openai = await response.parse()
-            assert_matches_type(OpenAIListModelsResponse, openai, path=["response"])
+            assert_matches_type(ModelsResponse, openai, path=["response"])
 
         assert cast(Any, response.is_closed) is True

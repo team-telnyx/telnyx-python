@@ -18,7 +18,9 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.texml.accounts.calls import recording_recording_sid_json_params
-from .....types.texml.accounts.calls.recording_recording_sid_json_response import RecordingRecordingSidJsonResponse
+from .....types.texml.accounts.calls.texml_create_call_recording_response_body import (
+    TexmlCreateCallRecordingResponseBody,
+)
 
 __all__ = ["RecordingsResource", "AsyncRecordingsResource"]
 
@@ -58,7 +60,7 @@ class RecordingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingRecordingSidJsonResponse:
+    ) -> TexmlCreateCallRecordingResponseBody:
         """
         Updates recording resource for particular call.
 
@@ -90,7 +92,7 @@ class RecordingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingRecordingSidJsonResponse,
+            cast_to=TexmlCreateCallRecordingResponseBody,
         )
 
 
@@ -129,7 +131,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingRecordingSidJsonResponse:
+    ) -> TexmlCreateCallRecordingResponseBody:
         """
         Updates recording resource for particular call.
 
@@ -161,7 +163,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingRecordingSidJsonResponse,
+            cast_to=TexmlCreateCallRecordingResponseBody,
         )
 
 

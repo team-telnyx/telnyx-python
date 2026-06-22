@@ -8,17 +8,14 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
+from ..shared_params.inworld_voice_settings import InworldVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = [
-    "ActionGatherUsingSpeakParams",
-    "VoiceSettings",
-    "VoiceSettingsInworldVoiceSettings",
-    "VoiceSettingsXaiVoiceSettings",
-]
+__all__ = ["ActionGatherUsingSpeakParams", "VoiceSettings"]
 
 
 class ActionGatherUsingSpeakParams(TypedDict, total=False):
@@ -181,27 +178,6 @@ class ActionGatherUsingSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
-class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["inworld"]]
-    """Voice settings provider type"""
-
-    delivery_mode: Literal["STABLE", "BALANCED", "CREATIVE"]
-    """
-    Controls the expressiveness and consistency of the Inworld `TTS2` model's speech
-    synthesis. `STABLE` favors consistent, predictable output, `CREATIVE` allows
-    more expressive variation, and `BALANCED` sits in between. Optional and only
-    supported by `TTS2`; when omitted, the provider default applies.
-    """
-
-
-class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["xai"]]
-    """Voice settings provider type"""
-
-    language: str
-    """Language code, or `auto` to detect automatically."""
-
-
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -210,6 +186,6 @@ VoiceSettings: TypeAlias = Union[
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
-    VoiceSettingsInworldVoiceSettings,
-    VoiceSettingsXaiVoiceSettings,
+    InworldVoiceSettings,
+    XaiVoiceSettings,
 ]

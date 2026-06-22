@@ -21,9 +21,8 @@ from .._response import (
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.pronunciation_dict_data import PronunciationDictData
-from ..types.pronunciation_dict_create_response import PronunciationDictCreateResponse
-from ..types.pronunciation_dict_update_response import PronunciationDictUpdateResponse
-from ..types.pronunciation_dict_retrieve_response import PronunciationDictRetrieveResponse
+from ..types.pronunciation_dict_response import PronunciationDictResponse
+from ..types.pronunciation_dict_item_param import PronunciationDictItemParam
 
 __all__ = ["PronunciationDictsResource", "AsyncPronunciationDictsResource"]
 
@@ -56,7 +55,7 @@ class PronunciationDictsResource(SyncAPIResource):
     def create(
         self,
         *,
-        items: Iterable[pronunciation_dict_create_params.Item],
+        items: Iterable[PronunciationDictItemParam],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -64,7 +63,7 @@ class PronunciationDictsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PronunciationDictCreateResponse:
+    ) -> PronunciationDictResponse:
         """Create a new pronunciation dictionary for the authenticated organization.
 
         Each
@@ -120,7 +119,7 @@ class PronunciationDictsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PronunciationDictCreateResponse,
+            cast_to=PronunciationDictResponse,
         )
 
     def retrieve(
@@ -133,7 +132,7 @@ class PronunciationDictsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PronunciationDictRetrieveResponse:
+    ) -> PronunciationDictResponse:
         """
         Retrieve a single pronunciation dictionary by ID.
 
@@ -153,14 +152,14 @@ class PronunciationDictsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PronunciationDictRetrieveResponse,
+            cast_to=PronunciationDictResponse,
         )
 
     def update(
         self,
         id: str,
         *,
-        items: Iterable[pronunciation_dict_update_params.Item] | Omit = omit,
+        items: Iterable[PronunciationDictItemParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -168,7 +167,7 @@ class PronunciationDictsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PronunciationDictUpdateResponse:
+    ) -> PronunciationDictResponse:
         """Update the name and/or items of an existing pronunciation dictionary.
 
         Uses
@@ -202,7 +201,7 @@ class PronunciationDictsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PronunciationDictUpdateResponse,
+            cast_to=PronunciationDictResponse,
         )
 
     def list(
@@ -317,7 +316,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        items: Iterable[pronunciation_dict_create_params.Item],
+        items: Iterable[PronunciationDictItemParam],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -325,7 +324,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PronunciationDictCreateResponse:
+    ) -> PronunciationDictResponse:
         """Create a new pronunciation dictionary for the authenticated organization.
 
         Each
@@ -381,7 +380,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PronunciationDictCreateResponse,
+            cast_to=PronunciationDictResponse,
         )
 
     async def retrieve(
@@ -394,7 +393,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PronunciationDictRetrieveResponse:
+    ) -> PronunciationDictResponse:
         """
         Retrieve a single pronunciation dictionary by ID.
 
@@ -414,14 +413,14 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PronunciationDictRetrieveResponse,
+            cast_to=PronunciationDictResponse,
         )
 
     async def update(
         self,
         id: str,
         *,
-        items: Iterable[pronunciation_dict_update_params.Item] | Omit = omit,
+        items: Iterable[PronunciationDictItemParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -429,7 +428,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PronunciationDictUpdateResponse:
+    ) -> PronunciationDictResponse:
         """Update the name and/or items of an existing pronunciation dictionary.
 
         Uses
@@ -463,7 +462,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PronunciationDictUpdateResponse,
+            cast_to=PronunciationDictResponse,
         )
 
     def list(

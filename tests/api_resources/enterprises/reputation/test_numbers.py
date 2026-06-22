@@ -11,10 +11,10 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.enterprises.reputation import (
-    NumberListResponse,
     NumberRefreshResponse,
-    NumberRetrieveResponse,
-    NumberAssociateResponse,
+    ReputationPhoneNumber,
+    ReputationPhoneNumberList,
+    ReputationPhoneNumberWithReputation,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +30,7 @@ class TestNumbers:
             phone_number="+19493253498",
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -40,7 +40,7 @@ class TestNumbers:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             fresh=True,
         )
-        assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -53,7 +53,7 @@ class TestNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number = response.parse()
-        assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -66,7 +66,7 @@ class TestNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number = response.parse()
-            assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+            assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +91,7 @@ class TestNumbers:
         number = client.enterprises.reputation.numbers.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(SyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -103,7 +103,7 @@ class TestNumbers:
             page_number=1,
             page_size=10,
         )
-        assert_matches_type(SyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -115,7 +115,7 @@ class TestNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -127,7 +127,7 @@ class TestNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +146,7 @@ class TestNumbers:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             phone_numbers=["+19493253498", "+12134445566"],
         )
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberList, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -159,7 +159,7 @@ class TestNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number = response.parse()
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberList, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -172,7 +172,7 @@ class TestNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number = response.parse()
-            assert_matches_type(NumberAssociateResponse, number, path=["response"])
+            assert_matches_type(ReputationPhoneNumberList, number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -296,7 +296,7 @@ class TestAsyncNumbers:
             phone_number="+19493253498",
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -306,7 +306,7 @@ class TestAsyncNumbers:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             fresh=True,
         )
-        assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -319,7 +319,7 @@ class TestAsyncNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number = await response.parse()
-        assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -332,7 +332,7 @@ class TestAsyncNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number = await response.parse()
-            assert_matches_type(NumberRetrieveResponse, number, path=["response"])
+            assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -357,7 +357,7 @@ class TestAsyncNumbers:
         number = await async_client.enterprises.reputation.numbers.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -369,7 +369,7 @@ class TestAsyncNumbers:
             page_number=1,
             page_size=10,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -381,7 +381,7 @@ class TestAsyncNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -393,7 +393,7 @@ class TestAsyncNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[NumberListResponse], number, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[ReputationPhoneNumber], number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -412,7 +412,7 @@ class TestAsyncNumbers:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             phone_numbers=["+19493253498", "+12134445566"],
         )
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberList, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -425,7 +425,7 @@ class TestAsyncNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number = await response.parse()
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
+        assert_matches_type(ReputationPhoneNumberList, number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -438,7 +438,7 @@ class TestAsyncNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number = await response.parse()
-            assert_matches_type(NumberAssociateResponse, number, path=["response"])
+            assert_matches_type(ReputationPhoneNumberList, number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

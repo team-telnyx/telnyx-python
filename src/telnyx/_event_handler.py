@@ -24,7 +24,9 @@ class EventHandlerRegistry:
         if self._lock is not None:
             self._lock.release()
 
-    def add(self, event_type: str, handler: EventHandler, *, once: bool = False) -> None:
+    def add(self, event_type: str | None, handler: EventHandler, *, once: bool = False) -> None:
+        if event_type is None:
+            return
         self._acquire()
         try:
             handlers = self._handlers.setdefault(event_type, [])
@@ -34,7 +36,9 @@ class EventHandlerRegistry:
         finally:
             self._release()
 
-    def remove(self, event_type: str, handler: EventHandler) -> None:
+    def remove(self, event_type: str | None, handler: EventHandler) -> None:
+        if event_type is None:
+            return
         self._acquire()
         try:
             handlers = self._handlers.get(event_type)

@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
+from .document_param import DocumentParam
 
-__all__ = ["DirUpdateParams", "Document"]
+__all__ = ["DirUpdateParams"]
 
 
 class DirUpdateParams(TypedDict, total=False):
@@ -51,7 +52,7 @@ class DirUpdateParams(TypedDict, total=False):
     display_name: str
     """Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only."""
 
-    documents: Iterable[Document]
+    documents: Iterable[DocumentParam]
     """Additional supporting documents to attach.
 
     Append-only: existing documents are never removed or replaced, and an empty or
@@ -66,37 +67,3 @@ class DirUpdateParams(TypedDict, total=False):
     Set to true if your organization places calls on behalf of other enterprises
     (BPO/reseller). Updating this triggers re-vetting on next submit.
     """
-
-
-class Document(TypedDict, total=False):
-    document_id: Required[str]
-    """
-    Id returned by the Telnyx Documents API after you upload the file (upload via
-    `POST /v2/documents`; see https://developers.telnyx.com/api/documents).
-    """
-
-    document_type: Required[
-        Literal[
-            "letter_of_authorization",
-            "business_registration",
-            "articles_of_incorporation",
-            "tax_document",
-            "ein_letter",
-            "trademark_registration",
-            "website_ownership",
-            "business_license",
-            "professional_license",
-            "government_id",
-            "utility_bill",
-            "bank_statement",
-            "other",
-        ]
-    ]
-    """Type of supporting document.
-
-    Pick the closest match to what the file actually contains; `other` triggers
-    manual vetting and may slow approval. The matching short_name reference list is
-    at `GET /v2/dir/document_types`.
-    """
-
-    description: str

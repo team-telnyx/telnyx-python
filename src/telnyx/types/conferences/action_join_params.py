@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
+from .conference_region import ConferenceRegion
 
 __all__ = ["ActionJoinParams"]
 
@@ -71,7 +72,7 @@ class ActionJoinParams(TypedDict, total=False):
     Defaults to "false".
     """
 
-    region: Literal["Australia", "Europe", "Middle East", "US"]
+    region: ConferenceRegion
     """Region where the conference data is located.
 
     Defaults to the region defined in user's data locality settings (Europe or US).

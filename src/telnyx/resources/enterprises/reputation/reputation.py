@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
 from .loa import (
@@ -41,10 +39,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.enterprises import reputation_enable_params, reputation_update_frequency_params
-from ....types.enterprises.reputation_enable_response import ReputationEnableResponse
-from ....types.enterprises.reputation_retrieve_response import ReputationRetrieveResponse
-from ....types.enterprises.reputation_update_frequency_response import ReputationUpdateFrequencyResponse
+from ....types.enterprises import ReputationCheckFrequency, reputation_enable_params, reputation_update_frequency_params
+from ....types.enterprises.reputation_check_frequency import ReputationCheckFrequency
+from ....types.enterprises.enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
 
 __all__ = ["ReputationResource", "AsyncReputationResource"]
 
@@ -96,7 +93,7 @@ class ReputationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationRetrieveResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """
         Phone Number Reputation tracks how your outbound caller-IDs are perceived (spam
         risk, engagement, etc.) across the call-screening ecosystem. This endpoint reads
@@ -121,7 +118,7 @@ class ReputationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationRetrieveResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
     def disable(
@@ -166,14 +163,14 @@ class ReputationResource(SyncAPIResource):
         enterprise_id: str,
         *,
         loa_document_id: str,
-        check_frequency: Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"] | Omit = omit,
+        check_frequency: ReputationCheckFrequency | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationEnableResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """Activate Phone Number Reputation for the given enterprise.
 
         Requires an uploaded
@@ -224,21 +221,21 @@ class ReputationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationEnableResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
     def update_frequency(
         self,
         enterprise_id: str,
         *,
-        check_frequency: Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"],
+        check_frequency: ReputationCheckFrequency,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationUpdateFrequencyResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """
         Update how often Telnyx refreshes the reputation data for this enterprise's
         registered numbers. The new frequency takes effect on the next scheduled
@@ -269,7 +266,7 @@ class ReputationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationUpdateFrequencyResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
 
@@ -320,7 +317,7 @@ class AsyncReputationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationRetrieveResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """
         Phone Number Reputation tracks how your outbound caller-IDs are perceived (spam
         risk, engagement, etc.) across the call-screening ecosystem. This endpoint reads
@@ -345,7 +342,7 @@ class AsyncReputationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationRetrieveResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
     async def disable(
@@ -390,14 +387,14 @@ class AsyncReputationResource(AsyncAPIResource):
         enterprise_id: str,
         *,
         loa_document_id: str,
-        check_frequency: Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"] | Omit = omit,
+        check_frequency: ReputationCheckFrequency | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationEnableResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """Activate Phone Number Reputation for the given enterprise.
 
         Requires an uploaded
@@ -448,21 +445,21 @@ class AsyncReputationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationEnableResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
     async def update_frequency(
         self,
         enterprise_id: str,
         *,
-        check_frequency: Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"],
+        check_frequency: ReputationCheckFrequency,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationUpdateFrequencyResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """
         Update how often Telnyx refreshes the reputation data for this enterprise's
         registered numbers. The new frequency takes effect on the next scheduled
@@ -493,7 +490,7 @@ class AsyncReputationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationUpdateFrequencyResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
 

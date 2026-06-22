@@ -7,6 +7,7 @@ from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from ..dir_status import DirStatus
 
 __all__ = ["DirListParams"]
 
@@ -36,21 +37,7 @@ class DirListParams(TypedDict, total=False):
     `[gte]`/`[lte]` filters - combining returns 400.
     """
 
-    filter_status: Annotated[
-        Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
-        ],
-        PropertyInfo(alias="filter[status]"),
-    ]
+    filter_status: Annotated[DirStatus, PropertyInfo(alias="filter[status]")]
     """Filter by DIR status."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]

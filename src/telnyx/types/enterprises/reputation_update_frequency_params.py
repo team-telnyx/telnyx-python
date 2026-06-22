@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .reputation_check_frequency import ReputationCheckFrequency
 
 __all__ = ["ReputationUpdateFrequencyParams"]
 
 
 class ReputationUpdateFrequencyParams(TypedDict, total=False):
-    check_frequency: Required[Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"]]
+    check_frequency: Required[ReputationCheckFrequency]
     """
     How often Telnyx refreshes the stored reputation data for this enterprise's
     registered numbers.

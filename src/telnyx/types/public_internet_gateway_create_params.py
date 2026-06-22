@@ -2,17 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["PublicInternetGatewayCreateParams"]
+from .public_internet_gateway_param import PublicInternetGatewayParam
+
+__all__ = ["PublicInternetGatewayCreateParams", "Body"]
 
 
 class PublicInternetGatewayCreateParams(TypedDict, total=False):
-    name: str
-    """A user specified name for the interface."""
+    body: Required[Body]
 
-    network_id: str
-    """The id of the network associated with the interface."""
 
-    region_code: str
-    """The region interface is deployed to."""
+class Body(PublicInternetGatewayParam, total=False):
+    pass

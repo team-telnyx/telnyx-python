@@ -10,12 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
-from telnyx.types.ai import (
-    McpServerListResponse,
-    McpServerCreateResponse,
-    McpServerUpdateResponse,
-    McpServerRetrieveResponse,
-)
+from telnyx.types.ai import McpServer
 from telnyx.pagination import SyncDefaultFlatPaginationTopLevelArray, AsyncDefaultFlatPaginationTopLevelArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,7 +27,7 @@ class TestMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -44,7 +39,7 @@ class TestMcpServers:
             allowed_tools=["string"],
             api_key_ref="api_key_ref",
         )
-        assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -58,7 +53,7 @@ class TestMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = response.parse()
-        assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -72,7 +67,7 @@ class TestMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = response.parse()
-            assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+            assert_matches_type(McpServer, mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +77,7 @@ class TestMcpServers:
         mcp_server = client.ai.mcp_servers.retrieve(
             "mcp_server_id",
         )
-        assert_matches_type(McpServerRetrieveResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -94,7 +89,7 @@ class TestMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = response.parse()
-        assert_matches_type(McpServerRetrieveResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -106,7 +101,7 @@ class TestMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = response.parse()
-            assert_matches_type(McpServerRetrieveResponse, mcp_server, path=["response"])
+            assert_matches_type(McpServer, mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -124,7 +119,7 @@ class TestMcpServers:
         mcp_server = client.ai.mcp_servers.update(
             mcp_server_id="mcp_server_id",
         )
-        assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -139,7 +134,7 @@ class TestMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -151,7 +146,7 @@ class TestMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = response.parse()
-        assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -163,7 +158,7 @@ class TestMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = response.parse()
-            assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+            assert_matches_type(McpServer, mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,9 +174,7 @@ class TestMcpServers:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mcp_server = client.ai.mcp_servers.list()
-        assert_matches_type(
-            SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -192,9 +185,7 @@ class TestMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(
-            SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -204,9 +195,7 @@ class TestMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -216,9 +205,7 @@ class TestMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-            )
+            assert_matches_type(SyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,7 +265,7 @@ class TestAsyncMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -290,7 +277,7 @@ class TestAsyncMcpServers:
             allowed_tools=["string"],
             api_key_ref="api_key_ref",
         )
-        assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -304,7 +291,7 @@ class TestAsyncMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = await response.parse()
-        assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -318,7 +305,7 @@ class TestAsyncMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = await response.parse()
-            assert_matches_type(McpServerCreateResponse, mcp_server, path=["response"])
+            assert_matches_type(McpServer, mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -328,7 +315,7 @@ class TestAsyncMcpServers:
         mcp_server = await async_client.ai.mcp_servers.retrieve(
             "mcp_server_id",
         )
-        assert_matches_type(McpServerRetrieveResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -340,7 +327,7 @@ class TestAsyncMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = await response.parse()
-        assert_matches_type(McpServerRetrieveResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -352,7 +339,7 @@ class TestAsyncMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = await response.parse()
-            assert_matches_type(McpServerRetrieveResponse, mcp_server, path=["response"])
+            assert_matches_type(McpServer, mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -370,7 +357,7 @@ class TestAsyncMcpServers:
         mcp_server = await async_client.ai.mcp_servers.update(
             mcp_server_id="mcp_server_id",
         )
-        assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -385,7 +372,7 @@ class TestAsyncMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -397,7 +384,7 @@ class TestAsyncMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = await response.parse()
-        assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+        assert_matches_type(McpServer, mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -409,7 +396,7 @@ class TestAsyncMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = await response.parse()
-            assert_matches_type(McpServerUpdateResponse, mcp_server, path=["response"])
+            assert_matches_type(McpServer, mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -425,9 +412,7 @@ class TestAsyncMcpServers:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mcp_server = await async_client.ai.mcp_servers.list()
-        assert_matches_type(
-            AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -438,9 +423,7 @@ class TestAsyncMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(
-            AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -450,9 +433,7 @@ class TestAsyncMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -462,9 +443,7 @@ class TestAsyncMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
-            )
+            assert_matches_type(AsyncDefaultFlatPaginationTopLevelArray[McpServer], mcp_server, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

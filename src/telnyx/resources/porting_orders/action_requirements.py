@@ -17,7 +17,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import action_requirement_list_params, action_requirement_initiate_params
-from ...types.porting_orders.action_requirement_list_response import ActionRequirementListResponse
+from ...types.porting_orders.porting_action_requirement import PortingActionRequirement
 from ...types.porting_orders.action_requirement_initiate_response import ActionRequirementInitiateResponse
 
 __all__ = ["ActionRequirementsResource", "AsyncActionRequirementsResource"]
@@ -59,7 +59,7 @@ class ActionRequirementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ActionRequirementListResponse]:
+    ) -> SyncDefaultFlatPagination[PortingActionRequirement]:
         """
         Returns a list of action requirements for a specific porting order.
 
@@ -81,7 +81,7 @@ class ActionRequirementsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
             path_template("/porting_orders/{porting_order_id}/action_requirements", porting_order_id=porting_order_id),
-            page=SyncDefaultFlatPagination[ActionRequirementListResponse],
+            page=SyncDefaultFlatPagination[PortingActionRequirement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -97,7 +97,7 @@ class ActionRequirementsResource(SyncAPIResource):
                     action_requirement_list_params.ActionRequirementListParams,
                 ),
             ),
-            model=ActionRequirementListResponse,
+            model=PortingActionRequirement,
         )
 
     def initiate(
@@ -184,7 +184,7 @@ class AsyncActionRequirementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ActionRequirementListResponse, AsyncDefaultFlatPagination[ActionRequirementListResponse]]:
+    ) -> AsyncPaginator[PortingActionRequirement, AsyncDefaultFlatPagination[PortingActionRequirement]]:
         """
         Returns a list of action requirements for a specific porting order.
 
@@ -206,7 +206,7 @@ class AsyncActionRequirementsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
             path_template("/porting_orders/{porting_order_id}/action_requirements", porting_order_id=porting_order_id),
-            page=AsyncDefaultFlatPagination[ActionRequirementListResponse],
+            page=AsyncDefaultFlatPagination[PortingActionRequirement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -222,7 +222,7 @@ class AsyncActionRequirementsResource(AsyncAPIResource):
                     action_requirement_list_params.ActionRequirementListParams,
                 ),
             ),
-            model=ActionRequirementListResponse,
+            model=PortingActionRequirement,
         )
 
     async def initiate(

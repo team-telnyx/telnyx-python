@@ -59,8 +59,8 @@ from .transcriptions.transcriptions import (
     TranscriptionsResourceWithStreamingResponse,
     AsyncTranscriptionsResourceWithStreamingResponse,
 )
-from ....types.texml.account_retrieve_recordings_json_response import AccountRetrieveRecordingsJsonResponse
 from ....types.texml.account_retrieve_transcriptions_json_response import AccountRetrieveTranscriptionsJsonResponse
+from ....types.texml.accounts.calls.texml_get_call_recordings_response_body import TexmlGetCallRecordingsResponseBody
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -123,7 +123,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveRecordingsJsonResponse:
+    ) -> TexmlGetCallRecordingsResponseBody:
         """
         Returns multiple recording resources for an account.
 
@@ -163,7 +163,7 @@ class AccountsResource(SyncAPIResource):
                     account_retrieve_recordings_json_params.AccountRetrieveRecordingsJsonParams,
                 ),
             ),
-            cast_to=AccountRetrieveRecordingsJsonResponse,
+            cast_to=TexmlGetCallRecordingsResponseBody,
         )
 
     def retrieve_transcriptions_json(
@@ -274,7 +274,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveRecordingsJsonResponse:
+    ) -> TexmlGetCallRecordingsResponseBody:
         """
         Returns multiple recording resources for an account.
 
@@ -314,7 +314,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                     account_retrieve_recordings_json_params.AccountRetrieveRecordingsJsonParams,
                 ),
             ),
-            cast_to=AccountRetrieveRecordingsJsonResponse,
+            cast_to=TexmlGetCallRecordingsResponseBody,
         )
 
     async def retrieve_transcriptions_json(

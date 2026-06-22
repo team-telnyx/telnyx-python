@@ -13,6 +13,7 @@ from ..types import (
     TransportProtocol,
     WebhookAPIVersion,
     AnchorsiteOverride,
+    ConnectionNoiseSuppression,
     fqdn_connection_list_params,
     fqdn_connection_create_params,
     fqdn_connection_update_params,
@@ -37,6 +38,7 @@ from ..types.transport_protocol import TransportProtocol
 from ..types.anchorsite_override import AnchorsiteOverride
 from ..types.outbound_fqdn_param import OutboundFqdnParam
 from ..types.webhook_api_version import WebhookAPIVersion
+from ..types.connection_noise_suppression import ConnectionNoiseSuppression
 from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
 from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
@@ -86,7 +88,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
@@ -267,7 +269,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
@@ -536,7 +538,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
@@ -717,7 +719,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,

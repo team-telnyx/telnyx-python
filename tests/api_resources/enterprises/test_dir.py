@@ -9,9 +9,10 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.types import DirWrapped
 from telnyx._utils import parse_datetime
+from telnyx.types.dir import Dir
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.enterprises import DirListResponse, DirCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -31,7 +32,7 @@ class TestDir:
             certify_no_shaft_content=True,
             display_name="Acme Plumbing",
         )
-        assert_matches_type(DirCreateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -55,7 +56,7 @@ class TestDir:
             logo_url="https://acmeplumbing.example.com/logo-256.bmp",
             reselling=False,
         )
-        assert_matches_type(DirCreateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -73,7 +74,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(DirCreateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -91,7 +92,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(DirCreateResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -115,7 +116,7 @@ class TestDir:
         dir = client.enterprises.dir.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -132,7 +133,7 @@ class TestDir:
             page_size=20,
             sort="created_at",
         )
-        assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -144,7 +145,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -156,7 +157,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -186,7 +187,7 @@ class TestAsyncDir:
             certify_no_shaft_content=True,
             display_name="Acme Plumbing",
         )
-        assert_matches_type(DirCreateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -210,7 +211,7 @@ class TestAsyncDir:
             logo_url="https://acmeplumbing.example.com/logo-256.bmp",
             reselling=False,
         )
-        assert_matches_type(DirCreateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -228,7 +229,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(DirCreateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -246,7 +247,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(DirCreateResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -270,7 +271,7 @@ class TestAsyncDir:
         dir = await async_client.enterprises.dir.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -287,7 +288,7 @@ class TestAsyncDir:
             page_size=20,
             sort="created_at",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -299,7 +300,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -311,7 +312,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

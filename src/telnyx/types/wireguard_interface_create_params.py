@@ -4,18 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WireguardInterfaceCreateParams"]
+from .wireguard_interface_param import WireguardInterfaceParam
+from .network_interface_region_param import NetworkInterfaceRegionParam
+
+__all__ = ["WireguardInterfaceCreateParams", "Body"]
 
 
 class WireguardInterfaceCreateParams(TypedDict, total=False):
-    region_code: Required[str]
-    """The region the interface should be deployed to."""
+    body: Required[Body]
 
-    enable_sip_trunking: bool
-    """Enable SIP traffic forwarding over VPN interface."""
 
-    name: str
-    """A user specified name for the interface."""
-
-    network_id: str
-    """The id of the network associated with the interface."""
+class Body(WireguardInterfaceParam, NetworkInterfaceRegionParam, total=False):
+    pass

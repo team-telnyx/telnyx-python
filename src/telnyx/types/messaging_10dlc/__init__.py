@@ -13,6 +13,7 @@ from .brand_list_response import BrandListResponse as BrandListResponse
 from .brand_update_params import BrandUpdateParams as BrandUpdateParams
 from .telnyx_campaign_csp import TelnyxCampaignCsp as TelnyxCampaignCsp
 from .alt_business_id_type import AltBusinessIDType as AltBusinessIDType
+from .brand_sms_otp_status import BrandSMSOtpStatus as BrandSMSOtpStatus
 from .campaign_list_params import CampaignListParams as CampaignListParams
 from .brand_identity_status import BrandIdentityStatus as BrandIdentityStatus
 from .phone_number_campaign import PhoneNumberCampaign as PhoneNumberCampaign
@@ -40,14 +41,8 @@ from .phone_number_campaign_create_params import PhoneNumberCampaignCreateParams
 from .phone_number_campaign_update_params import PhoneNumberCampaignUpdateParams as PhoneNumberCampaignUpdateParams
 from .campaign_get_sharing_status_response import CampaignGetSharingStatusResponse as CampaignGetSharingStatusResponse
 from .brand_get_sms_otp_by_reference_params import BrandGetSMSOtpByReferenceParams as BrandGetSMSOtpByReferenceParams
-from .brand_retrieve_sms_otp_status_response import (
-    BrandRetrieveSMSOtpStatusResponse as BrandRetrieveSMSOtpStatusResponse,
-)
 from .campaign_get_operation_status_response import (
     CampaignGetOperationStatusResponse as CampaignGetOperationStatusResponse,
-)
-from .brand_get_sms_otp_by_reference_response import (
-    BrandGetSMSOtpByReferenceResponse as BrandGetSMSOtpByReferenceResponse,
 )
 from .partner_campaign_list_shared_by_me_params import (
     PartnerCampaignListSharedByMeParams as PartnerCampaignListSharedByMeParams,

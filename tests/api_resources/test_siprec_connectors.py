@@ -9,11 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    SiprecConnectorCreateResponse,
-    SiprecConnectorUpdateResponse,
-    SiprecConnectorRetrieveResponse,
-)
+from telnyx.types import SiprecConnectorResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +25,7 @@ class TestSiprecConnectors:
             name="my-siprec-connector",
             port=5060,
         )
-        assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -40,7 +36,7 @@ class TestSiprecConnectors:
             port=5060,
             app_subdomain="my-app",
         )
-        assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -54,7 +50,7 @@ class TestSiprecConnectors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         siprec_connector = response.parse()
-        assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -68,7 +64,7 @@ class TestSiprecConnectors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             siprec_connector = response.parse()
-            assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+            assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -78,7 +74,7 @@ class TestSiprecConnectors:
         siprec_connector = client.siprec_connectors.retrieve(
             "connector_name",
         )
-        assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -90,7 +86,7 @@ class TestSiprecConnectors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         siprec_connector = response.parse()
-        assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -102,7 +98,7 @@ class TestSiprecConnectors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             siprec_connector = response.parse()
-            assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
+            assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +119,7 @@ class TestSiprecConnectors:
             name="my-siprec-connector",
             port=5060,
         )
-        assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -135,7 +131,7 @@ class TestSiprecConnectors:
             port=5060,
             app_subdomain="my-app",
         )
-        assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -150,7 +146,7 @@ class TestSiprecConnectors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         siprec_connector = response.parse()
-        assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -165,7 +161,7 @@ class TestSiprecConnectors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             siprec_connector = response.parse()
-            assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+            assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -236,7 +232,7 @@ class TestAsyncSiprecConnectors:
             name="my-siprec-connector",
             port=5060,
         )
-        assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -247,7 +243,7 @@ class TestAsyncSiprecConnectors:
             port=5060,
             app_subdomain="my-app",
         )
-        assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -261,7 +257,7 @@ class TestAsyncSiprecConnectors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         siprec_connector = await response.parse()
-        assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -275,7 +271,7 @@ class TestAsyncSiprecConnectors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             siprec_connector = await response.parse()
-            assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
+            assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -285,7 +281,7 @@ class TestAsyncSiprecConnectors:
         siprec_connector = await async_client.siprec_connectors.retrieve(
             "connector_name",
         )
-        assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -297,7 +293,7 @@ class TestAsyncSiprecConnectors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         siprec_connector = await response.parse()
-        assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -309,7 +305,7 @@ class TestAsyncSiprecConnectors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             siprec_connector = await response.parse()
-            assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
+            assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -330,7 +326,7 @@ class TestAsyncSiprecConnectors:
             name="my-siprec-connector",
             port=5060,
         )
-        assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -342,7 +338,7 @@ class TestAsyncSiprecConnectors:
             port=5060,
             app_subdomain="my-app",
         )
-        assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -357,7 +353,7 @@ class TestAsyncSiprecConnectors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         siprec_connector = await response.parse()
-        assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+        assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -372,7 +368,7 @@ class TestAsyncSiprecConnectors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             siprec_connector = await response.parse()
-            assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
+            assert_matches_type(SiprecConnectorResponse, siprec_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

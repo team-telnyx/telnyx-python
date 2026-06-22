@@ -17,8 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.channel_zone_list_response import ChannelZoneListResponse
-from ..types.channel_zone_update_response import ChannelZoneUpdateResponse
+from ..types.gcb_channel_zone import GcbChannelZone
 
 __all__ = ["ChannelZonesResource", "AsyncChannelZonesResource"]
 
@@ -56,7 +55,7 @@ class ChannelZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ChannelZoneUpdateResponse:
+    ) -> GcbChannelZone:
         """Update the number of Voice Channels for the Non-US Zones.
 
         This allows your
@@ -83,7 +82,7 @@ class ChannelZonesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelZoneUpdateResponse,
+            cast_to=GcbChannelZone,
         )
 
     def list(
@@ -97,7 +96,7 @@ class ChannelZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ChannelZoneListResponse]:
+    ) -> SyncDefaultFlatPagination[GcbChannelZone]:
         """Returns the non-US voice channels for your account.
 
         voice channels allow you to
@@ -117,7 +116,7 @@ class ChannelZonesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/channel_zones",
-            page=SyncDefaultFlatPagination[ChannelZoneListResponse],
+            page=SyncDefaultFlatPagination[GcbChannelZone],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +130,7 @@ class ChannelZonesResource(SyncAPIResource):
                     channel_zone_list_params.ChannelZoneListParams,
                 ),
             ),
-            model=ChannelZoneListResponse,
+            model=GcbChannelZone,
         )
 
 
@@ -168,7 +167,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ChannelZoneUpdateResponse:
+    ) -> GcbChannelZone:
         """Update the number of Voice Channels for the Non-US Zones.
 
         This allows your
@@ -197,7 +196,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChannelZoneUpdateResponse,
+            cast_to=GcbChannelZone,
         )
 
     def list(
@@ -211,7 +210,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ChannelZoneListResponse, AsyncDefaultFlatPagination[ChannelZoneListResponse]]:
+    ) -> AsyncPaginator[GcbChannelZone, AsyncDefaultFlatPagination[GcbChannelZone]]:
         """Returns the non-US voice channels for your account.
 
         voice channels allow you to
@@ -231,7 +230,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/channel_zones",
-            page=AsyncDefaultFlatPagination[ChannelZoneListResponse],
+            page=AsyncDefaultFlatPagination[GcbChannelZone],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,7 +244,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
                     channel_zone_list_params.ChannelZoneListParams,
                 ),
             ),
-            model=ChannelZoneListResponse,
+            model=GcbChannelZone,
         )
 
 

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal
 
 import httpx
 
@@ -43,14 +42,16 @@ from .telnyx_agents import (
 )
 from .....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.ai.missions import run_list_params, run_create_params, run_update_params, run_list_runs_params
+from .....types.ai.missions import (
+    RunStatus,
+    run_list_params,
+    run_create_params,
+    run_update_params,
+    run_list_runs_params,
+)
+from .....types.ai.missions.run_status import RunStatus
 from .....types.ai.missions.mission_run_data import MissionRunData
-from .....types.ai.missions.run_create_response import RunCreateResponse
-from .....types.ai.missions.run_update_response import RunUpdateResponse
-from .....types.ai.missions.run_retrieve_response import RunRetrieveResponse
-from .....types.ai.missions.run_pause_run_response import RunPauseRunResponse
-from .....types.ai.missions.run_cancel_run_response import RunCancelRunResponse
-from .....types.ai.missions.run_resume_run_response import RunResumeRunResponse
+from .....types.ai.missions.mission_run_response import MissionRunResponse
 
 __all__ = ["RunsResource", "AsyncRunsResource"]
 
@@ -99,7 +100,7 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunCreateResponse:
+    ) -> MissionRunResponse:
         """
         Start a new run for a mission
 
@@ -126,7 +127,7 @@ class RunsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunCreateResponse,
+            cast_to=MissionRunResponse,
         )
 
     def retrieve(
@@ -140,7 +141,7 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunRetrieveResponse:
+    ) -> MissionRunResponse:
         """
         Get details of a specific run
 
@@ -162,7 +163,7 @@ class RunsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunRetrieveResponse,
+            cast_to=MissionRunResponse,
         )
 
     def update(
@@ -174,14 +175,14 @@ class RunsResource(SyncAPIResource):
         metadata: Dict[str, object] | Omit = omit,
         result_payload: Dict[str, object] | Omit = omit,
         result_summary: str | Omit = omit,
-        status: Literal["pending", "running", "paused", "succeeded", "failed", "cancelled"] | Omit = omit,
+        status: RunStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunUpdateResponse:
+    ) -> MissionRunResponse:
         """
         Update run status and/or result
 
@@ -213,7 +214,7 @@ class RunsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunUpdateResponse,
+            cast_to=MissionRunResponse,
         )
 
     def list(
@@ -281,7 +282,7 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunCancelRunResponse:
+    ) -> MissionRunResponse:
         """
         Cancel a running or paused run
 
@@ -303,7 +304,7 @@ class RunsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunCancelRunResponse,
+            cast_to=MissionRunResponse,
         )
 
     def list_runs(
@@ -368,7 +369,7 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunPauseRunResponse:
+    ) -> MissionRunResponse:
         """
         Pause a running run
 
@@ -390,7 +391,7 @@ class RunsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunPauseRunResponse,
+            cast_to=MissionRunResponse,
         )
 
     def resume_run(
@@ -404,7 +405,7 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunResumeRunResponse:
+    ) -> MissionRunResponse:
         """
         Resume a paused run
 
@@ -426,7 +427,7 @@ class RunsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunResumeRunResponse,
+            cast_to=MissionRunResponse,
         )
 
 
@@ -474,7 +475,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunCreateResponse:
+    ) -> MissionRunResponse:
         """
         Start a new run for a mission
 
@@ -501,7 +502,7 @@ class AsyncRunsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunCreateResponse,
+            cast_to=MissionRunResponse,
         )
 
     async def retrieve(
@@ -515,7 +516,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunRetrieveResponse:
+    ) -> MissionRunResponse:
         """
         Get details of a specific run
 
@@ -537,7 +538,7 @@ class AsyncRunsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunRetrieveResponse,
+            cast_to=MissionRunResponse,
         )
 
     async def update(
@@ -549,14 +550,14 @@ class AsyncRunsResource(AsyncAPIResource):
         metadata: Dict[str, object] | Omit = omit,
         result_payload: Dict[str, object] | Omit = omit,
         result_summary: str | Omit = omit,
-        status: Literal["pending", "running", "paused", "succeeded", "failed", "cancelled"] | Omit = omit,
+        status: RunStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunUpdateResponse:
+    ) -> MissionRunResponse:
         """
         Update run status and/or result
 
@@ -588,7 +589,7 @@ class AsyncRunsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunUpdateResponse,
+            cast_to=MissionRunResponse,
         )
 
     def list(
@@ -656,7 +657,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunCancelRunResponse:
+    ) -> MissionRunResponse:
         """
         Cancel a running or paused run
 
@@ -678,7 +679,7 @@ class AsyncRunsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunCancelRunResponse,
+            cast_to=MissionRunResponse,
         )
 
     def list_runs(
@@ -743,7 +744,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunPauseRunResponse:
+    ) -> MissionRunResponse:
         """
         Pause a running run
 
@@ -765,7 +766,7 @@ class AsyncRunsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunPauseRunResponse,
+            cast_to=MissionRunResponse,
         )
 
     async def resume_run(
@@ -779,7 +780,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RunResumeRunResponse:
+    ) -> MissionRunResponse:
         """
         Resume a paused run
 
@@ -801,7 +802,7 @@ class AsyncRunsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RunResumeRunResponse,
+            cast_to=MissionRunResponse,
         )
 
 

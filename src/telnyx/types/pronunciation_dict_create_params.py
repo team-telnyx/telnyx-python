@@ -2,17 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import Iterable
+from typing_extensions import Required, TypedDict
 
-from .pronunciation_dict_alias_item_param import PronunciationDictAliasItemParam
-from .pronunciation_dict_phoneme_item_param import PronunciationDictPhonemeItemParam
+from .pronunciation_dict_item_param import PronunciationDictItemParam
 
-__all__ = ["PronunciationDictCreateParams", "Item"]
+__all__ = ["PronunciationDictCreateParams"]
 
 
 class PronunciationDictCreateParams(TypedDict, total=False):
-    items: Required[Iterable[Item]]
+    items: Required[Iterable[PronunciationDictItemParam]]
     """List of pronunciation items (alias or phoneme type).
 
     At least one item is required.
@@ -20,6 +19,3 @@ class PronunciationDictCreateParams(TypedDict, total=False):
 
     name: Required[str]
     """Human-readable name. Must be unique within the organization."""
-
-
-Item: TypeAlias = Union[PronunciationDictAliasItemParam, PronunciationDictPhonemeItemParam]

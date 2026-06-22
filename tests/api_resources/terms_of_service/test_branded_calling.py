@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.terms_of_service import BrandedCallingAgreeResponse
+from telnyx.types.terms_of_service import TosAgreementWrapped
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +21,7 @@ class TestBrandedCalling:
     @parametrize
     def test_method_agree(self, client: Telnyx) -> None:
         branded_calling = client.terms_of_service.branded_calling.agree()
-        assert_matches_type(BrandedCallingAgreeResponse, branded_calling, path=["response"])
+        assert_matches_type(TosAgreementWrapped, branded_calling, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -31,7 +31,7 @@ class TestBrandedCalling:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         branded_calling = response.parse()
-        assert_matches_type(BrandedCallingAgreeResponse, branded_calling, path=["response"])
+        assert_matches_type(TosAgreementWrapped, branded_calling, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -41,7 +41,7 @@ class TestBrandedCalling:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             branded_calling = response.parse()
-            assert_matches_type(BrandedCallingAgreeResponse, branded_calling, path=["response"])
+            assert_matches_type(TosAgreementWrapped, branded_calling, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -55,7 +55,7 @@ class TestAsyncBrandedCalling:
     @parametrize
     async def test_method_agree(self, async_client: AsyncTelnyx) -> None:
         branded_calling = await async_client.terms_of_service.branded_calling.agree()
-        assert_matches_type(BrandedCallingAgreeResponse, branded_calling, path=["response"])
+        assert_matches_type(TosAgreementWrapped, branded_calling, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -65,7 +65,7 @@ class TestAsyncBrandedCalling:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         branded_calling = await response.parse()
-        assert_matches_type(BrandedCallingAgreeResponse, branded_calling, path=["response"])
+        assert_matches_type(TosAgreementWrapped, branded_calling, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -75,6 +75,6 @@ class TestAsyncBrandedCalling:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             branded_calling = await response.parse()
-            assert_matches_type(BrandedCallingAgreeResponse, branded_calling, path=["response"])
+            assert_matches_type(TosAgreementWrapped, branded_calling, path=["response"])
 
         assert cast(Any, response.is_closed) is True

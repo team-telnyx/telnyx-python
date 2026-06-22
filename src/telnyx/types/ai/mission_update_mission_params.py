@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
+
+from .execution_mode import ExecutionMode
 
 __all__ = ["MissionUpdateMissionParams"]
 
@@ -11,7 +13,7 @@ __all__ = ["MissionUpdateMissionParams"]
 class MissionUpdateMissionParams(TypedDict, total=False):
     description: str
 
-    execution_mode: Literal["external", "managed"]
+    execution_mode: ExecutionMode
 
     instructions: str
 

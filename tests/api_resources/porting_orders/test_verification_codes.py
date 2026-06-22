@@ -11,7 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.porting_orders import (
-    VerificationCodeListResponse,
+    PortingVerificationCode,
     VerificationCodeVerifyResponse,
 )
 
@@ -27,9 +27,7 @@ class TestVerificationCodes:
         verification_code = client.porting_orders.verification_codes.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -41,9 +39,7 @@ class TestVerificationCodes:
             page_size=0,
             sort={"value": "created_at"},
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -55,9 +51,7 @@ class TestVerificationCodes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verification_code = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -70,7 +64,7 @@ class TestVerificationCodes:
 
             verification_code = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
+                SyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -207,9 +201,7 @@ class TestAsyncVerificationCodes:
         verification_code = await async_client.porting_orders.verification_codes.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -221,9 +213,7 @@ class TestAsyncVerificationCodes:
             page_size=0,
             sort={"value": "created_at"},
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -235,9 +225,7 @@ class TestAsyncVerificationCodes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verification_code = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -250,7 +238,7 @@ class TestAsyncVerificationCodes:
 
             verification_code = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
+                AsyncDefaultFlatPagination[PortingVerificationCode], verification_code, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

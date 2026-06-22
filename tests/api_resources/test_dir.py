@@ -12,13 +12,9 @@ from respx import MockRouter
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    DirListResponse,
-    DirSubmitResponse,
-    DirUpdateResponse,
-    DirRetrieveResponse,
+    DirWrapped,
+    InfringementClaim,
     DirListDocumentTypesResponse,
-    DirUpdateInfringementResponse,
-    DirListInfringementClaimsResponse,
 )
 from telnyx._utils import parse_datetime
 from telnyx._response import (
@@ -27,6 +23,7 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
+from telnyx.types.dir import Dir
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -41,7 +38,7 @@ class TestDir:
         dir = client.dir.retrieve(
             "16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(DirRetrieveResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -53,7 +50,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(DirRetrieveResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -65,7 +62,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(DirRetrieveResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -83,7 +80,7 @@ class TestDir:
         dir = client.dir.update(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(DirUpdateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -107,7 +104,7 @@ class TestDir:
             logo_url="https://acmeplumbing.example.com/logo-v2-256.bmp",
             reselling=True,
         )
-        assert_matches_type(DirUpdateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -119,7 +116,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(DirUpdateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -131,7 +128,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(DirUpdateResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -147,7 +144,7 @@ class TestDir:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         dir = client.dir.list()
-        assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -163,7 +160,7 @@ class TestDir:
             page_size=20,
             sort="created_at",
         )
-        assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -173,7 +170,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -183,7 +180,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[Dir], dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,99 +226,6 @@ class TestDir:
                 "",
             )
 
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_method_create_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        dir = client.dir.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-        )
-        assert dir.is_closed
-        assert dir.json() == {"foo": "bar"}
-        assert cast(Any, dir.is_closed) is True
-        assert isinstance(dir, BinaryAPIResponse)
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_method_create_loa_with_all_params(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        dir = client.dir.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-            agent={
-                "administrative_area": "administrative_area",
-                "city": "city",
-                "contact_email": "dev@stainless.com",
-                "contact_name": "contact_name",
-                "contact_phone": "+13125550000",
-                "contact_title": "contact_title",
-                "country": "US",
-                "legal_name": "legal_name",
-                "postal_code": "postal_code",
-                "street_address": "street_address",
-                "dba": "dba",
-                "extended_address": "extended_address",
-            },
-            signature={
-                "image_base64": "x",
-                "signer_name": "signer_name",
-            },
-        )
-        assert dir.is_closed
-        assert dir.json() == {"foo": "bar"}
-        assert cast(Any, dir.is_closed) is True
-        assert isinstance(dir, BinaryAPIResponse)
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_raw_response_create_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-
-        dir = client.dir.with_raw_response.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-        )
-
-        assert dir.is_closed is True
-        assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
-        assert dir.json() == {"foo": "bar"}
-        assert isinstance(dir, BinaryAPIResponse)
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_streaming_response_create_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        with client.dir.with_streaming_response.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-        ) as dir:
-            assert not dir.is_closed
-            assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            assert dir.json() == {"foo": "bar"}
-            assert cast(Any, dir.is_closed) is True
-            assert isinstance(dir, StreamedBinaryAPIResponse)
-
-        assert cast(Any, dir.is_closed) is True
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_path_params_create_loa(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
-            client.dir.with_raw_response.create_loa(
-                dir_id="",
-                phone_numbers=["+13125550000"],
-            )
-
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_document_types(self, client: Telnyx) -> None:
@@ -356,7 +260,7 @@ class TestDir:
         dir = client.dir.list_infringement_claims(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(SyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -366,7 +270,7 @@ class TestDir:
             page_number=1,
             page_size=20,
         )
-        assert_matches_type(SyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -378,7 +282,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -390,7 +294,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -402,13 +306,106 @@ class TestDir:
                 dir_id="",
             )
 
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_new_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = client.dir.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+        assert dir.is_closed
+        assert dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_new_loa_with_all_params(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = client.dir.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+            agent={
+                "administrative_area": "administrative_area",
+                "city": "city",
+                "contact_email": "dev@stainless.com",
+                "contact_name": "contact_name",
+                "contact_phone": "+13125550000",
+                "contact_title": "contact_title",
+                "country": "US",
+                "legal_name": "legal_name",
+                "postal_code": "postal_code",
+                "street_address": "street_address",
+                "dba": "dba",
+                "extended_address": "extended_address",
+            },
+            signature={
+                "image_base64": "x",
+                "signer_name": "signer_name",
+            },
+        )
+        assert dir.is_closed
+        assert dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_new_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        dir = client.dir.with_raw_response.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+
+        assert dir.is_closed is True
+        assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert dir.json() == {"foo": "bar"}
+        assert isinstance(dir, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_new_loa(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        with client.dir.with_streaming_response.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        ) as dir:
+            assert not dir.is_closed
+            assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assert dir.json() == {"foo": "bar"}
+            assert cast(Any, dir.is_closed) is True
+            assert isinstance(dir, StreamedBinaryAPIResponse)
+
+        assert cast(Any, dir.is_closed) is True
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_path_params_new_loa(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
+            client.dir.with_raw_response.new_loa(
+                dir_id="",
+                phone_numbers=["+13125550000"],
+            )
+
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_submit(self, client: Telnyx) -> None:
         dir = client.dir.submit(
             "16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(DirSubmitResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -420,7 +417,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(DirSubmitResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -432,7 +429,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(DirSubmitResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -455,7 +452,7 @@ class TestDir:
             certify_no_shaft_content=True,
             infringement_resolution_notes="Updated the display name to remove the disputed mark and re-uploaded the authorization.",
         )
-        assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -478,7 +475,7 @@ class TestDir:
             ],
             logo_url="logo_url",
         )
-        assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -495,7 +492,7 @@ class TestDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = response.parse()
-        assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -512,7 +509,7 @@ class TestDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = response.parse()
-            assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -541,7 +538,7 @@ class TestAsyncDir:
         dir = await async_client.dir.retrieve(
             "16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(DirRetrieveResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -553,7 +550,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(DirRetrieveResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -565,7 +562,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(DirRetrieveResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -583,7 +580,7 @@ class TestAsyncDir:
         dir = await async_client.dir.update(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(DirUpdateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -607,7 +604,7 @@ class TestAsyncDir:
             logo_url="https://acmeplumbing.example.com/logo-v2-256.bmp",
             reselling=True,
         )
-        assert_matches_type(DirUpdateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -619,7 +616,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(DirUpdateResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -631,7 +628,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(DirUpdateResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -647,7 +644,7 @@ class TestAsyncDir:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         dir = await async_client.dir.list()
-        assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -663,7 +660,7 @@ class TestAsyncDir:
             page_size=20,
             sort="created_at",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -673,7 +670,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -683,7 +680,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[DirListResponse], dir, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[Dir], dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -729,99 +726,6 @@ class TestAsyncDir:
                 "",
             )
 
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_method_create_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        dir = await async_client.dir.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-        )
-        assert dir.is_closed
-        assert await dir.json() == {"foo": "bar"}
-        assert cast(Any, dir.is_closed) is True
-        assert isinstance(dir, AsyncBinaryAPIResponse)
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_method_create_loa_with_all_params(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        dir = await async_client.dir.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-            agent={
-                "administrative_area": "administrative_area",
-                "city": "city",
-                "contact_email": "dev@stainless.com",
-                "contact_name": "contact_name",
-                "contact_phone": "+13125550000",
-                "contact_title": "contact_title",
-                "country": "US",
-                "legal_name": "legal_name",
-                "postal_code": "postal_code",
-                "street_address": "street_address",
-                "dba": "dba",
-                "extended_address": "extended_address",
-            },
-            signature={
-                "image_base64": "x",
-                "signer_name": "signer_name",
-            },
-        )
-        assert dir.is_closed
-        assert await dir.json() == {"foo": "bar"}
-        assert cast(Any, dir.is_closed) is True
-        assert isinstance(dir, AsyncBinaryAPIResponse)
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_raw_response_create_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-
-        dir = await async_client.dir.with_raw_response.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-        )
-
-        assert dir.is_closed is True
-        assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
-        assert await dir.json() == {"foo": "bar"}
-        assert isinstance(dir, AsyncBinaryAPIResponse)
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_streaming_response_create_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        async with async_client.dir.with_streaming_response.create_loa(
-            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            phone_numbers=["+13125550000"],
-        ) as dir:
-            assert not dir.is_closed
-            assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            assert await dir.json() == {"foo": "bar"}
-            assert cast(Any, dir.is_closed) is True
-            assert isinstance(dir, AsyncStreamedBinaryAPIResponse)
-
-        assert cast(Any, dir.is_closed) is True
-
-    @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_path_params_create_loa(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
-            await async_client.dir.with_raw_response.create_loa(
-                dir_id="",
-                phone_numbers=["+13125550000"],
-            )
-
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_document_types(self, async_client: AsyncTelnyx) -> None:
@@ -856,7 +760,7 @@ class TestAsyncDir:
         dir = await async_client.dir.list_infringement_claims(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -866,7 +770,7 @@ class TestAsyncDir:
             page_number=1,
             page_size=20,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -878,7 +782,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -890,7 +794,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[DirListInfringementClaimsResponse], dir, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[InfringementClaim], dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -902,13 +806,106 @@ class TestAsyncDir:
                 dir_id="",
             )
 
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_new_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = await async_client.dir.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+        assert dir.is_closed
+        assert await dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_new_loa_with_all_params(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        dir = await async_client.dir.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+            agent={
+                "administrative_area": "administrative_area",
+                "city": "city",
+                "contact_email": "dev@stainless.com",
+                "contact_name": "contact_name",
+                "contact_phone": "+13125550000",
+                "contact_title": "contact_title",
+                "country": "US",
+                "legal_name": "legal_name",
+                "postal_code": "postal_code",
+                "street_address": "street_address",
+                "dba": "dba",
+                "extended_address": "extended_address",
+            },
+            signature={
+                "image_base64": "x",
+                "signer_name": "signer_name",
+            },
+        )
+        assert dir.is_closed
+        assert await dir.json() == {"foo": "bar"}
+        assert cast(Any, dir.is_closed) is True
+        assert isinstance(dir, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_new_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        dir = await async_client.dir.with_raw_response.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        )
+
+        assert dir.is_closed is True
+        assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await dir.json() == {"foo": "bar"}
+        assert isinstance(dir, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_new_loa(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/dir/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/loa").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        async with async_client.dir.with_streaming_response.new_loa(
+            dir_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            phone_numbers=["+13125550000"],
+        ) as dir:
+            assert not dir.is_closed
+            assert dir.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assert await dir.json() == {"foo": "bar"}
+            assert cast(Any, dir.is_closed) is True
+            assert isinstance(dir, AsyncStreamedBinaryAPIResponse)
+
+        assert cast(Any, dir.is_closed) is True
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_path_params_new_loa(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
+            await async_client.dir.with_raw_response.new_loa(
+                dir_id="",
+                phone_numbers=["+13125550000"],
+            )
+
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_submit(self, async_client: AsyncTelnyx) -> None:
         dir = await async_client.dir.submit(
             "16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(DirSubmitResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -920,7 +917,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(DirSubmitResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -932,7 +929,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(DirSubmitResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -955,7 +952,7 @@ class TestAsyncDir:
             certify_no_shaft_content=True,
             infringement_resolution_notes="Updated the display name to remove the disputed mark and re-uploaded the authorization.",
         )
-        assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -978,7 +975,7 @@ class TestAsyncDir:
             ],
             logo_url="logo_url",
         )
-        assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -995,7 +992,7 @@ class TestAsyncDir:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dir = await response.parse()
-        assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+        assert_matches_type(DirWrapped, dir, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1012,7 +1009,7 @@ class TestAsyncDir:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dir = await response.parse()
-            assert_matches_type(DirUpdateInfringementResponse, dir, path=["response"])
+            assert_matches_type(DirWrapped, dir, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

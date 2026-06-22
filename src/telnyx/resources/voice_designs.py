@@ -33,10 +33,9 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.voice_design_list_response import VoiceDesignListResponse
-from ..types.voice_design_create_response import VoiceDesignCreateResponse
+from ..types.voice_design_response import VoiceDesignResponse
+from ..types.voice_design_summary_data import VoiceDesignSummaryData
 from ..types.voice_design_rename_response import VoiceDesignRenameResponse
-from ..types.voice_design_retrieve_response import VoiceDesignRetrieveResponse
 
 __all__ = ["VoiceDesignsResource", "AsyncVoiceDesignsResource"]
 
@@ -83,7 +82,7 @@ class VoiceDesignsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceDesignCreateResponse:
+    ) -> VoiceDesignResponse:
         """Creates a new voice design (version 1) when `voice_design_id` is omitted.
 
         When
@@ -153,7 +152,7 @@ class VoiceDesignsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceDesignCreateResponse,
+            cast_to=VoiceDesignResponse,
         )
 
     def retrieve(
@@ -167,7 +166,7 @@ class VoiceDesignsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceDesignRetrieveResponse:
+    ) -> VoiceDesignResponse:
         """
         Returns the latest version of a voice design, or a specific version when
         `?version=N` is provided. The `id` parameter accepts either a UUID or the design
@@ -195,7 +194,7 @@ class VoiceDesignsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"version": version}, voice_design_retrieve_params.VoiceDesignRetrieveParams),
             ),
-            cast_to=VoiceDesignRetrieveResponse,
+            cast_to=VoiceDesignResponse,
         )
 
     def list(
@@ -211,7 +210,7 @@ class VoiceDesignsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VoiceDesignListResponse]:
+    ) -> SyncDefaultFlatPagination[VoiceDesignSummaryData]:
         """
         Returns a paginated list of voice designs belonging to the authenticated
         account.
@@ -235,7 +234,7 @@ class VoiceDesignsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/voice_designs",
-            page=SyncDefaultFlatPagination[VoiceDesignListResponse],
+            page=SyncDefaultFlatPagination[VoiceDesignSummaryData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -251,7 +250,7 @@ class VoiceDesignsResource(SyncAPIResource):
                     voice_design_list_params.VoiceDesignListParams,
                 ),
             ),
-            model=VoiceDesignListResponse,
+            model=VoiceDesignSummaryData,
         )
 
     def delete(
@@ -455,7 +454,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceDesignCreateResponse:
+    ) -> VoiceDesignResponse:
         """Creates a new voice design (version 1) when `voice_design_id` is omitted.
 
         When
@@ -525,7 +524,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VoiceDesignCreateResponse,
+            cast_to=VoiceDesignResponse,
         )
 
     async def retrieve(
@@ -539,7 +538,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceDesignRetrieveResponse:
+    ) -> VoiceDesignResponse:
         """
         Returns the latest version of a voice design, or a specific version when
         `?version=N` is provided. The `id` parameter accepts either a UUID or the design
@@ -569,7 +568,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
                     {"version": version}, voice_design_retrieve_params.VoiceDesignRetrieveParams
                 ),
             ),
-            cast_to=VoiceDesignRetrieveResponse,
+            cast_to=VoiceDesignResponse,
         )
 
     def list(
@@ -585,7 +584,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VoiceDesignListResponse, AsyncDefaultFlatPagination[VoiceDesignListResponse]]:
+    ) -> AsyncPaginator[VoiceDesignSummaryData, AsyncDefaultFlatPagination[VoiceDesignSummaryData]]:
         """
         Returns a paginated list of voice designs belonging to the authenticated
         account.
@@ -609,7 +608,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/voice_designs",
-            page=AsyncDefaultFlatPagination[VoiceDesignListResponse],
+            page=AsyncDefaultFlatPagination[VoiceDesignSummaryData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -625,7 +624,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
                     voice_design_list_params.VoiceDesignListParams,
                 ),
             ),
-            model=VoiceDesignListResponse,
+            model=VoiceDesignSummaryData,
         )
 
     async def delete(

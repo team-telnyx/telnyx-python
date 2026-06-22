@@ -9,10 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    VoiceSDKCallReportListResponse,
-    VoiceSDKCallReportRetrieveResponse,
-)
+from telnyx.types import VoiceSDKCallReport, VoiceSDKCallReportRetrieveResponse
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -67,9 +64,7 @@ class TestVoiceSDKCallReports:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         voice_sdk_call_report = client.voice_sdk_call_reports.list()
-        assert_matches_type(
-            SyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -79,9 +74,7 @@ class TestVoiceSDKCallReports:
             page_size=0,
             sort="-created_at",
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -91,9 +84,7 @@ class TestVoiceSDKCallReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_sdk_call_report = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -103,9 +94,7 @@ class TestVoiceSDKCallReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_sdk_call_report = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
-            )
+            assert_matches_type(SyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,9 +150,7 @@ class TestAsyncVoiceSDKCallReports:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         voice_sdk_call_report = await async_client.voice_sdk_call_reports.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -173,9 +160,7 @@ class TestAsyncVoiceSDKCallReports:
             page_size=0,
             sort="-created_at",
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -185,9 +170,7 @@ class TestAsyncVoiceSDKCallReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_sdk_call_report = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -198,7 +181,7 @@ class TestAsyncVoiceSDKCallReports:
 
             voice_sdk_call_report = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[VoiceSDKCallReportListResponse], voice_sdk_call_report, path=["response"]
+                AsyncDefaultFlatPagination[VoiceSDKCallReport], voice_sdk_call_report, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

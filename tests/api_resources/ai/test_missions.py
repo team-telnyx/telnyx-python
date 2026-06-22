@@ -11,9 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.ai import (
     MissionData,
-    MissionCreateResponse,
-    MissionRetrieveResponse,
-    MissionUpdateMissionResponse,
+    MissionResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.ai.missions.runs import EventData
@@ -30,7 +28,7 @@ class TestMissions:
         mission = client.ai.missions.create(
             name="name",
         )
-        assert_matches_type(MissionCreateResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -43,7 +41,7 @@ class TestMissions:
             metadata={"foo": "bar"},
             model="model",
         )
-        assert_matches_type(MissionCreateResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -55,7 +53,7 @@ class TestMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = response.parse()
-        assert_matches_type(MissionCreateResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -67,7 +65,7 @@ class TestMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = response.parse()
-            assert_matches_type(MissionCreateResponse, mission, path=["response"])
+            assert_matches_type(MissionResponse, mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +75,7 @@ class TestMissions:
         mission = client.ai.missions.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MissionRetrieveResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -89,7 +87,7 @@ class TestMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = response.parse()
-        assert_matches_type(MissionRetrieveResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -101,7 +99,7 @@ class TestMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = response.parse()
-            assert_matches_type(MissionRetrieveResponse, mission, path=["response"])
+            assert_matches_type(MissionResponse, mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,7 +276,7 @@ class TestMissions:
         mission = client.ai.missions.update_mission(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -292,7 +290,7 @@ class TestMissions:
             model="model",
             name="name",
         )
-        assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -304,7 +302,7 @@ class TestMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = response.parse()
-        assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -316,7 +314,7 @@ class TestMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = response.parse()
-            assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+            assert_matches_type(MissionResponse, mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -340,7 +338,7 @@ class TestAsyncMissions:
         mission = await async_client.ai.missions.create(
             name="name",
         )
-        assert_matches_type(MissionCreateResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -353,7 +351,7 @@ class TestAsyncMissions:
             metadata={"foo": "bar"},
             model="model",
         )
-        assert_matches_type(MissionCreateResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -365,7 +363,7 @@ class TestAsyncMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = await response.parse()
-        assert_matches_type(MissionCreateResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -377,7 +375,7 @@ class TestAsyncMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = await response.parse()
-            assert_matches_type(MissionCreateResponse, mission, path=["response"])
+            assert_matches_type(MissionResponse, mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -387,7 +385,7 @@ class TestAsyncMissions:
         mission = await async_client.ai.missions.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MissionRetrieveResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -399,7 +397,7 @@ class TestAsyncMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = await response.parse()
-        assert_matches_type(MissionRetrieveResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -411,7 +409,7 @@ class TestAsyncMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = await response.parse()
-            assert_matches_type(MissionRetrieveResponse, mission, path=["response"])
+            assert_matches_type(MissionResponse, mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -588,7 +586,7 @@ class TestAsyncMissions:
         mission = await async_client.ai.missions.update_mission(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -602,7 +600,7 @@ class TestAsyncMissions:
             model="model",
             name="name",
         )
-        assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -614,7 +612,7 @@ class TestAsyncMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = await response.parse()
-        assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+        assert_matches_type(MissionResponse, mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -626,7 +624,7 @@ class TestAsyncMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = await response.parse()
-            assert_matches_type(MissionUpdateMissionResponse, mission, path=["response"])
+            assert_matches_type(MissionResponse, mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

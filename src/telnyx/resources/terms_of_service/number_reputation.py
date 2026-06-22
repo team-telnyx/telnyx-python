@@ -14,7 +14,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.terms_of_service.number_reputation_agree_response import NumberReputationAgreeResponse
+from ...types.terms_of_service.tos_agreement_wrapped import TosAgreementWrapped
 
 __all__ = ["NumberReputationResource", "AsyncNumberReputationResource"]
 
@@ -52,7 +52,7 @@ class NumberReputationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberReputationAgreeResponse:
+    ) -> TosAgreementWrapped:
         """
         Records the authenticated user's agreement to the current Phone Number
         Reputation ToS. No body required. Idempotent.
@@ -64,7 +64,7 @@ class NumberReputationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NumberReputationAgreeResponse,
+            cast_to=TosAgreementWrapped,
         )
 
 
@@ -101,7 +101,7 @@ class AsyncNumberReputationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberReputationAgreeResponse:
+    ) -> TosAgreementWrapped:
         """
         Records the authenticated user's agreement to the current Phone Number
         Reputation ToS. No body required. Idempotent.
@@ -113,7 +113,7 @@ class AsyncNumberReputationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NumberReputationAgreeResponse,
+            cast_to=TosAgreementWrapped,
         )
 
 

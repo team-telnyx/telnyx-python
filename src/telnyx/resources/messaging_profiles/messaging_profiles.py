@@ -8,6 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import (
+    MessagingMetricsTimeFrame,
     messaging_profile_list_params,
     messaging_profile_create_params,
     messaging_profile_update_params,
@@ -48,6 +49,7 @@ from ...types.messaging_profile import MessagingProfile
 from ...types.shared.short_code import ShortCode
 from ...types.alphanumeric_sender_id import AlphanumericSenderID
 from ...types.number_pool_settings_param import NumberPoolSettingsParam
+from ...types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
 from ...types.url_shortener_settings_param import URLShortenerSettingsParam
 from ...types.messaging_profile_create_response import MessagingProfileCreateResponse
 from ...types.messaging_profile_delete_response import MessagingProfileDeleteResponse
@@ -620,7 +622,7 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        time_frame: Literal["1h", "3h", "24h", "3d", "7d", "30d"] | Omit = omit,
+        time_frame: MessagingMetricsTimeFrame | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1222,7 +1224,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        time_frame: Literal["1h", "3h", "24h", "3d", "7d", "30d"] | Omit = omit,
+        time_frame: MessagingMetricsTimeFrame | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

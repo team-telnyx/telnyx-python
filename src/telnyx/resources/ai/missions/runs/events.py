@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal
 
 import httpx
 
@@ -19,10 +18,10 @@ from ....._response import (
 )
 from .....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.ai.missions.runs import event_log_params, event_list_params
+from .....types.ai.missions.runs import EventType, event_log_params, event_list_params
 from .....types.ai.missions.runs.event_data import EventData
-from .....types.ai.missions.runs.event_log_response import EventLogResponse
-from .....types.ai.missions.runs.event_get_event_details_response import EventGetEventDetailsResponse
+from .....types.ai.missions.runs.event_type import EventType
+from .....types.ai.missions.runs.event_response import EventResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 
@@ -124,7 +123,7 @@ class EventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventGetEventDetailsResponse:
+    ) -> EventResponse:
         """
         Get details of a specific event
 
@@ -153,7 +152,7 @@ class EventsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventGetEventDetailsResponse,
+            cast_to=EventResponse,
         )
 
     def log(
@@ -162,17 +161,7 @@ class EventsResource(SyncAPIResource):
         *,
         mission_id: str,
         summary: str,
-        type: Literal[
-            "status_change",
-            "step_started",
-            "step_completed",
-            "step_failed",
-            "tool_call",
-            "tool_result",
-            "message",
-            "error",
-            "custom",
-        ],
+        type: EventType,
         agent_id: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         payload: Dict[str, object] | Omit = omit,
@@ -183,7 +172,7 @@ class EventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventLogResponse:
+    ) -> EventResponse:
         """
         Log an event for a run
 
@@ -218,7 +207,7 @@ class EventsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventLogResponse,
+            cast_to=EventResponse,
         )
 
 
@@ -319,7 +308,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventGetEventDetailsResponse:
+    ) -> EventResponse:
         """
         Get details of a specific event
 
@@ -348,7 +337,7 @@ class AsyncEventsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventGetEventDetailsResponse,
+            cast_to=EventResponse,
         )
 
     async def log(
@@ -357,17 +346,7 @@ class AsyncEventsResource(AsyncAPIResource):
         *,
         mission_id: str,
         summary: str,
-        type: Literal[
-            "status_change",
-            "step_started",
-            "step_completed",
-            "step_failed",
-            "tool_call",
-            "tool_result",
-            "message",
-            "error",
-            "custom",
-        ],
+        type: EventType,
         agent_id: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         payload: Dict[str, object] | Omit = omit,
@@ -378,7 +357,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventLogResponse:
+    ) -> EventResponse:
         """
         Log an event for a run
 
@@ -413,7 +392,7 @@ class AsyncEventsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EventLogResponse,
+            cast_to=EventResponse,
         )
 
 

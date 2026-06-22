@@ -14,7 +14,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.terms_of_service.branded_calling_agree_response import BrandedCallingAgreeResponse
+from ...types.terms_of_service.tos_agreement_wrapped import TosAgreementWrapped
 
 __all__ = ["BrandedCallingResource", "AsyncBrandedCallingResource"]
 
@@ -52,7 +52,7 @@ class BrandedCallingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandedCallingAgreeResponse:
+    ) -> TosAgreementWrapped:
         """
         Records the authenticated user's agreement to the current Branded Calling ToS.
         No body required. Idempotent - re-calling after agreement is a no-op and returns
@@ -67,7 +67,7 @@ class BrandedCallingResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandedCallingAgreeResponse,
+            cast_to=TosAgreementWrapped,
         )
 
 
@@ -104,7 +104,7 @@ class AsyncBrandedCallingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandedCallingAgreeResponse:
+    ) -> TosAgreementWrapped:
         """
         Records the authenticated user's agreement to the current Branded Calling ToS.
         No body required. Idempotent - re-calling after agreement is a no-op and returns
@@ -119,7 +119,7 @@ class AsyncBrandedCallingResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandedCallingAgreeResponse,
+            cast_to=TosAgreementWrapped,
         )
 
 

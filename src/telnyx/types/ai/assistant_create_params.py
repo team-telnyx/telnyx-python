@@ -2,56 +2,29 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import Dict, List, Iterable
+from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 from .enabled_features import EnabledFeatures
 from .assistant_tool_param import AssistantToolParam
 from .voice_settings_param import VoiceSettingsParam
 from .widget_settings_param import WidgetSettingsParam
+from .external_llm_req_param import ExternalLlmReqParam
 from .insight_settings_param import InsightSettingsParam
 from .privacy_settings_param import PrivacySettingsParam
 from .observability_req_param import ObservabilityReqParam
 from .messaging_settings_param import MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam
+from .fallback_config_req_param import FallbackConfigReqParam
+from .assistant_mcp_server_param import AssistantMcpServerParam
+from .assistant_integration_param import AssistantIntegrationParam
+from .conversation_flow_req_param import ConversationFlowReqParam
 from .transcription_settings_param import TranscriptionSettingsParam
+from .post_conversation_settings_req_param import PostConversationSettingsReqParam
+from .inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
-__all__ = [
-    "AssistantCreateParams",
-    "ConversationFlow",
-    "ConversationFlowNode",
-    "ConversationFlowNodeFlowNodeReq",
-    "ConversationFlowNodeFlowNodeReqExternalLlm",
-    "ConversationFlowNodeFlowNodeReqPosition",
-    "ConversationFlowNodeToolNodeReq",
-    "ConversationFlowNodeToolNodeReqPosition",
-    "ConversationFlowNodeSpeakNodeReq",
-    "ConversationFlowNodeSpeakNodeReqPosition",
-    "ConversationFlowEdge",
-    "ConversationFlowEdgeCondition",
-    "ConversationFlowEdgeConditionLlmCondition",
-    "ConversationFlowEdgeConditionExpressionCondition",
-    "ConversationFlowEdgeConditionExpressionConditionExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionDynamicVariableExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralExpression",
-    "ConversationFlowEdgeConditionDefaultCondition",
-    "ConversationFlowEdgeTarget",
-    "ConversationFlowEdgeTargetNodeTarget",
-    "ConversationFlowEdgeTargetAssistantTarget",
-    "ConversationFlowEdgeTargetAssistantTargetPosition",
-    "ExternalLlm",
-    "FallbackConfig",
-    "FallbackConfigExternalLlm",
-    "Integration",
-    "InterruptionSettings",
-    "InterruptionSettingsStartSpeakingPlan",
-    "InterruptionSettingsStartSpeakingPlanTranscriptionEndpointingPlan",
-    "McpServer",
-    "PostConversationSettings",
-]
+__all__ = ["AssistantCreateParams"]
 
 
 class AssistantCreateParams(TypedDict, total=False):
@@ -64,7 +37,7 @@ class AssistantCreateParams(TypedDict, total=False):
 
     name: Required[str]
 
-    conversation_flow: ConversationFlow
+    conversation_flow: ConversationFlowReqParam
     """Conversation flow as supplied by API clients (create / update).
 
     A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
@@ -99,9 +72,9 @@ class AssistantCreateParams(TypedDict, total=False):
 
     enabled_features: List[EnabledFeatures]
 
-    external_llm: ExternalLlm
+    external_llm: ExternalLlmReqParam
 
-    fallback_config: FallbackConfig
+    fallback_config: FallbackConfigReqParam
 
     greeting: str
     """Text that the assistant will use to start the conversation.
@@ -115,7 +88,7 @@ class AssistantCreateParams(TypedDict, total=False):
 
     insight_settings: InsightSettingsParam
 
-    integrations: Iterable[Integration]
+    integrations: Iterable[AssistantIntegrationParam]
     """Connected integrations attached to the assistant.
 
     The catalog of available integrations is at `/ai/integrations`; the user's
@@ -123,7 +96,7 @@ class AssistantCreateParams(TypedDict, total=False):
     references a catalog integration by `integration_id`.
     """
 
-    interruption_settings: InterruptionSettings
+    interruption_settings: InferenceEmbeddingInterruptionSettingsParam
     """
     Settings for interruptions and how the assistant decides the user has finished
     speaking. These timings are most relevant when using non turn-taking
@@ -143,7 +116,7 @@ class AssistantCreateParams(TypedDict, total=False):
     are unlikely to work with this integration.
     """
 
-    mcp_servers: Iterable[McpServer]
+    mcp_servers: Iterable[AssistantMcpServerParam]
     """MCP servers attached to the assistant.
 
     Create MCP servers with `/ai/mcp_servers`, then reference them by `id` here.
@@ -163,7 +136,7 @@ class AssistantCreateParams(TypedDict, total=False):
 
     observability_settings: ObservabilityReqParam
 
-    post_conversation_settings: PostConversationSettings
+    post_conversation_settings: PostConversationSettingsReqParam
     """Configuration for post-conversation processing.
 
     When enabled, the assistant receives one additional LLM turn after the
@@ -202,669 +175,3 @@ class AssistantCreateParams(TypedDict, total=False):
 
     widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""
-
-
-class ConversationFlowNodeFlowNodeReqExternalLlm(TypedDict, total=False):
-    """Override for `Assistant.external_llm` while this node is active.
-
-    Use this to route a node's turns to a different external LLM (different `model`, `base_url`, credentials). Part of the LLM bundle — see `model` for cascade semantics. Mutually exclusive with `model` on the node (a single LLM identity per node).
-    """
-
-    base_url: Required[str]
-    """Base URL for the external LLM endpoint."""
-
-    model: Required[str]
-    """Model identifier to use with the external LLM endpoint."""
-
-    authentication_method: Literal["token", "certificate"]
-    """Authentication method used when connecting to the external LLM endpoint."""
-
-    certificate_ref: str
-    """
-    Integration secret identifier for the client certificate used with certificate
-    authentication.
-    """
-
-    forward_metadata: bool
-    """
-    When `true`, Telnyx forwards the assistant's dynamic variables to the external
-    LLM endpoint as a top-level `extra_metadata` object on the chat completion
-    request body. Defaults to `false`. Example payload sent to the external
-    endpoint:
-    `{"extra_metadata": {"customer_name": "Jane", "account_id": "acct_789", "telnyx_agent_target": "+13125550100", "telnyx_end_user_target": "+13125550123"}}`.
-    Distinct from OpenAI's native `metadata` field, which has its own size and type
-    limits.
-    """
-
-    llm_api_key_ref: str
-    """Integration secret identifier for the external LLM API key."""
-
-    token_retrieval_url: str
-    """
-    URL used to retrieve an access token when certificate authentication is enabled.
-    """
-
-
-class ConversationFlowNodeFlowNodeReqPosition(TypedDict, total=False):
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across reloads.
-    """
-
-    x: Required[float]
-    """Horizontal coordinate in the authoring canvas."""
-
-    y: Required[float]
-    """Vertical coordinate in the authoring canvas."""
-
-
-class ConversationFlowNodeFlowNodeReq(TypedDict, total=False):
-    """One step in a conversation flow, as supplied by API clients.
-
-    Each node carries the prompt, tool scope, and optional overrides for
-    model/voice/transcription. Unset overrides cascade from the assistant.
-    """
-
-    id: Required[str]
-    """Caller-supplied unique identifier for this node within the flow."""
-
-    instructions: Required[str]
-    """Prompt that drives the LLM while this node is active. Required."""
-
-    external_llm: ConversationFlowNodeFlowNodeReqExternalLlm
-    """Override for `Assistant.external_llm` while this node is active.
-
-    Use this to route a node's turns to a different external LLM (different `model`,
-    `base_url`, credentials). Part of the LLM bundle — see `model` for cascade
-    semantics. Mutually exclusive with `model` on the node (a single LLM identity
-    per node).
-    """
-
-    instructions_mode: Literal["replace", "append"]
-    """How `instructions` combine with the assistant-level instructions.
-
-    `replace` (default): the node's instructions are used alone. `append`: the
-    node's instructions are concatenated after the assistant's instructions.
-    """
-
-    llm_api_key_ref: str
-    """Override for `Assistant.llm_api_key_ref` while this node is active.
-
-    Part of the LLM bundle — see `model` for cascade semantics.
-    """
-
-    model: str
-    """Override for `Assistant.model` while this node is active.
-
-    Part of the LLM bundle (`model` + `llm_api_key_ref` + `external_llm`): when any
-    of the three is set on the node, all three are taken from the node and the
-    assistant-level LLM identity is not consulted. When none of the three is set,
-    the assistant's bundle cascades unchanged.
-    """
-
-    name: str
-    """Optional human-readable label, displayed in authoring UIs."""
-
-    position: ConversationFlowNodeFlowNodeReqPosition
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across
-    reloads.
-    """
-
-    shared_tool_ids: SequenceNotStr[str]
-    """IDs of shared (org-level) tools available at this node.
-
-    Knowledge bases are attached the same way — via a shared retrieval tool. Tools
-    not listed here are not callable while this node is active.
-    """
-
-    tools_mode: Literal["replace", "append"]
-    """How `shared_tool_ids` combine with the assistant-level tool set.
-
-    `replace` (default): only the node's tools are callable. `append`: the node's
-    tools are added to the assistant's tools. Ignored when `shared_tool_ids` is
-    null.
-    """
-
-    transcription: TranscriptionSettingsParam
-    """Per-node transcription override (model/language/region).
-
-    Unset fields cascade from the assistant-level transcription.
-    """
-
-    type: Literal["prompt"]
-    """Node kind discriminator.
-
-    `prompt` (default) is an LLM-driven step; `tool` is a standalone tool execution
-    (see `ToolNodeReq`).
-    """
-
-    voice_settings: VoiceSettingsParam
-    """Per-node voice override.
-
-    Only fields set here override the assistant-level voice settings; unset fields
-    cascade.
-    """
-
-
-class ConversationFlowNodeToolNodeReqPosition(TypedDict, total=False):
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across reloads.
-    """
-
-    x: Required[float]
-    """Horizontal coordinate in the authoring canvas."""
-
-    y: Required[float]
-    """Vertical coordinate in the authoring canvas."""
-
-
-class ConversationFlowNodeToolNodeReq(TypedDict, total=False):
-    """A standalone tool step in a conversation flow, as supplied by clients.
-
-    Unlike a prompt node, a tool node has no instructions or model — it
-    isn't an LLM turn. Reaching it deterministically runs one shared tool
-    (arguments filled from matching dynamic variables by name), then routes
-    on the result via outgoing `tool_result` edges.
-    """
-
-    id: Required[str]
-    """Caller-supplied unique identifier for this node within the flow."""
-
-    shared_tool_id: Required[str]
-    """ID of the single shared (org-level) tool this node executes.
-
-    When the flow reaches this node the tool runs as a deliberate step (no LLM
-    turn); its outgoing `tool_result` edges then route on the outcome. Arguments are
-    filled from the conversation's dynamic variables by name — a dynamic variable
-    whose name matches one of the tool's parameters supplies that argument.
-    Cross-validated against the org's shared tools on write.
-    """
-
-    name: str
-    """Optional human-readable label, displayed in authoring UIs."""
-
-    position: ConversationFlowNodeToolNodeReqPosition
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across
-    reloads.
-    """
-
-    type: Literal["tool"]
-    """Node kind discriminator. Always `tool` for a tool node."""
-
-
-class ConversationFlowNodeSpeakNodeReqPosition(TypedDict, total=False):
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across reloads.
-    """
-
-    x: Required[float]
-    """Horizontal coordinate in the authoring canvas."""
-
-    y: Required[float]
-    """Vertical coordinate in the authoring canvas."""
-
-
-class ConversationFlowNodeSpeakNodeReq(TypedDict, total=False):
-    """A standalone scripted-message step in a flow, as supplied by clients.
-
-    Unlike a prompt node, a speak node has no instructions or model — it isn't
-    an LLM turn. Reaching it delivers `message` to the user verbatim (with
-    `{{variable}}` interpolation), then routes via outgoing `llm` /
-    `expression` edges.
-    """
-
-    id: Required[str]
-    """Caller-supplied unique identifier for this node within the flow."""
-
-    message: Required[str]
-    """Message delivered to the user verbatim when the flow reaches this node.
-
-    No LLM turn — the text is spoken/sent exactly as written. `{{variable}}`
-    placeholders are interpolated from the conversation's dynamic variables; an
-    unresolved placeholder renders as an empty string. After delivering, the flow
-    routes via the node's outgoing `llm` / `expression` edges (commonly a single
-    unconditional edge).
-    """
-
-    name: str
-    """Optional human-readable label, displayed in authoring UIs."""
-
-    position: ConversationFlowNodeSpeakNodeReqPosition
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across
-    reloads.
-    """
-
-    type: Literal["speak"]
-    """Node kind discriminator. Always `speak` for a speak node."""
-
-
-ConversationFlowNode: TypeAlias = Union[
-    ConversationFlowNodeFlowNodeReq, ConversationFlowNodeToolNodeReq, ConversationFlowNodeSpeakNodeReq
-]
-
-
-class ConversationFlowEdgeConditionLlmCondition(TypedDict, total=False):
-    """Edge condition evaluated by the LLM from a natural-language prompt.
-
-    The model is asked to judge the prompt against conversation context and
-    returns true/false. Use this for fuzzy intents that aren't expressible as
-    a deterministic expression (e.g. 'user wants to escalate to a human').
-    """
-
-    prompt: Required[str]
-    """Natural-language criterion the LLM judges as true/false."""
-
-    type: Required[Literal["llm"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionDynamicVariableExpression(TypedDict, total=False):
-    """Reference a dynamic variable by name.
-
-    Resolved at runtime from the assistant's dynamic-variables context (see
-    `Assistant.dynamic_variables` and the dynamic-variables webhook).
-    """
-
-    name: Required[str]
-    """Variable name to look up in the runtime context."""
-
-    type: Required[Literal["variable"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression(TypedDict, total=False):
-    """Constant string value."""
-
-    type: Required[Literal["string_literal"]]
-
-    value: Required[str]
-    """Literal string value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression(TypedDict, total=False):
-    """Constant numeric value (float; integers are accepted and stored as float)."""
-
-    type: Required[Literal["number_literal"]]
-
-    value: Required[float]
-    """Literal numeric value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralExpression(TypedDict, total=False):
-    """Constant boolean value. Useful for unconditional ('always') edges."""
-
-    type: Required[Literal["bool_literal"]]
-
-    value: Required[bool]
-    """Literal boolean value."""
-
-
-ConversationFlowEdgeConditionExpressionConditionExpression: TypeAlias = Union[
-    ConversationFlowEdgeConditionExpressionConditionExpressionDynamicVariableExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralExpression,
-    object,
-]
-
-
-class ConversationFlowEdgeConditionExpressionCondition(TypedDict, total=False):
-    """Edge condition evaluated as a deterministic expression AST.
-
-    The expression is computed against runtime dynamic variables and must
-    evaluate to a boolean. Prefer this over `LLMCondition` when the rule is
-    a clean function of known variables — it's cheaper and predictable.
-    """
-
-    expression: Required[ConversationFlowEdgeConditionExpressionConditionExpression]
-    """A node in a deterministic expression AST.
-
-    Exactly one variant is selected by the `type` discriminator. Terminal variants
-    (`number_literal`, `string_literal`, `bool_literal`, `variable`) bottom out the
-    recursion; `arithmetic`, `bool_op`, and `comparison` nest further
-    sub-expressions.
-
-    Extracted into a single named schema so the recursive union is defined once (was
-    previously inlined at every operand site).
-    """
-
-    type: Required[Literal["expression"]]
-
-
-class ConversationFlowEdgeConditionDefaultCondition(TypedDict, total=False):
-    """Fallback edge condition: fires only when no other edge's condition is true.
-
-    Evaluated after every conditioned (`llm` / `expression`) edge regardless
-    of declaration order, so it routes the flow whenever none of the node's
-    other outgoing edges match. Valid **only** on edges leaving a `tool` or
-    `speak` node, where the deterministic step auto-advances and must always
-    have somewhere to go. A tool/speak node with any outgoing edge is required
-    to carry exactly one `default` edge so it never dead-ends; a tool/speak
-    node with no outgoing edges is a valid terminal step. Carries no parameters.
-    """
-
-    type: Required[Literal["default"]]
-
-
-ConversationFlowEdgeCondition: TypeAlias = Union[
-    ConversationFlowEdgeConditionLlmCondition,
-    ConversationFlowEdgeConditionExpressionCondition,
-    ConversationFlowEdgeConditionDefaultCondition,
-]
-
-
-class ConversationFlowEdgeTargetNodeTarget(TypedDict, total=False):
-    """Edge target referencing another node within the same flow.
-
-    The runtime transitions the active node to `node_id` and continues
-    processing within the current assistant's flow.
-    """
-
-    node_id: Required[str]
-    """ID of the node this edge transitions into."""
-
-    type: Required[Literal["node"]]
-
-
-class ConversationFlowEdgeTargetAssistantTargetPosition(TypedDict, total=False):
-    """
-    Optional canvas coordinates for rendering the target assistant as a node in authoring UIs. Pure presentation — the runtime ignores it; round-trips so frontends can persist graph layout across reloads. When multiple edges target the same assistant, each edge's `position` is independent (frontends typically use the first non-null one).
-    """
-
-    x: Required[float]
-    """Horizontal coordinate in the authoring canvas."""
-
-    y: Required[float]
-    """Vertical coordinate in the authoring canvas."""
-
-
-class ConversationFlowEdgeTargetAssistantTarget(TypedDict, total=False):
-    """Edge target referencing a different assistant.
-
-    When the edge fires, the conversation hands off to `assistant_id`: the
-    active assistant on the conversation row is rewritten and the new
-    assistant's flow starts at its own `start_node_id`. The current turn's
-    LLM response is delivered to the user as-is; subsequent turns route
-    to the new assistant.
-    """
-
-    assistant_id: Required[str]
-    """ID of the assistant the conversation transitions to."""
-
-    type: Required[Literal["assistant"]]
-
-    position: ConversationFlowEdgeTargetAssistantTargetPosition
-    """
-    Optional canvas coordinates for rendering the target assistant as a node in
-    authoring UIs. Pure presentation — the runtime ignores it; round-trips so
-    frontends can persist graph layout across reloads. When multiple edges target
-    the same assistant, each edge's `position` is independent (frontends typically
-    use the first non-null one).
-    """
-
-    voice_mode: Literal["unified", "distinct"]
-    """
-    Voice behavior when handing off to the target assistant, mirroring the handoff
-    tool's `voice_mode`. `unified` (default) keeps the current voice across the
-    handoff; `distinct` lets the target assistant speak with its own configured
-    voice. Only applies to assistant targets — node targets override voice via the
-    node's own `voice_settings`.
-    """
-
-
-ConversationFlowEdgeTarget: TypeAlias = Union[
-    ConversationFlowEdgeTargetNodeTarget, ConversationFlowEdgeTargetAssistantTarget
-]
-
-
-class ConversationFlowEdge(TypedDict, total=False):
-    """Directed transition from one node to a target, gated by a condition.
-
-    The target is either another node in the same flow (`NodeTarget`) or a
-    different assistant (`AssistantTarget`). Multiple edges may share a
-    `start_node_id`; the runtime evaluates them in the order they're
-    declared and takes the first whose condition is true.
-    """
-
-    id: Required[str]
-    """Caller-supplied unique identifier for this edge within the flow."""
-
-    condition: Required[ConversationFlowEdgeCondition]
-    """Condition that gates the transition.
-
-    Discriminated by `type`: `llm`, `expression`.
-    """
-
-    start_node_id: Required[str]
-    """ID of the node this edge transitions away from."""
-
-    target: Required[ConversationFlowEdgeTarget]
-    """Destination of the transition.
-
-    Discriminated by `type`: `node` (jump to another node in this flow) or
-    `assistant` (hand off to a different assistant).
-    """
-
-
-class ConversationFlow(TypedDict, total=False):
-    """Conversation flow as supplied by API clients (create / update).
-
-    A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation
-    enforces unique node/edge IDs, that `start_node_id` references a real
-    node, and that every edge's endpoints reference real nodes.
-    """
-
-    nodes: Required[Iterable[ConversationFlowNode]]
-    """All nodes in the flow.
-
-    Must contain `start_node_id`. Each node is a prompt node (`type: prompt`) or a
-    tool node (`type: tool`).
-    """
-
-    start_node_id: Required[str]
-    """ID of the node where the conversation begins."""
-
-    edges: Iterable[ConversationFlowEdge]
-    """Directed transitions between nodes. May be empty for a single-node flow."""
-
-
-class ExternalLlm(TypedDict, total=False):
-    base_url: Required[str]
-    """Base URL for the external LLM endpoint."""
-
-    model: Required[str]
-    """Model identifier to use with the external LLM endpoint."""
-
-    authentication_method: Literal["token", "certificate"]
-    """Authentication method used when connecting to the external LLM endpoint."""
-
-    certificate_ref: str
-    """
-    Integration secret identifier for the client certificate used with certificate
-    authentication.
-    """
-
-    forward_metadata: bool
-    """
-    When `true`, Telnyx forwards the assistant's dynamic variables to the external
-    LLM endpoint as a top-level `extra_metadata` object on the chat completion
-    request body. Defaults to `false`. Example payload sent to the external
-    endpoint:
-    `{"extra_metadata": {"customer_name": "Jane", "account_id": "acct_789", "telnyx_agent_target": "+13125550100", "telnyx_end_user_target": "+13125550123"}}`.
-    Distinct from OpenAI's native `metadata` field, which has its own size and type
-    limits.
-    """
-
-    llm_api_key_ref: str
-    """Integration secret identifier for the external LLM API key."""
-
-    token_retrieval_url: str
-    """
-    URL used to retrieve an access token when certificate authentication is enabled.
-    """
-
-
-class FallbackConfigExternalLlm(TypedDict, total=False):
-    base_url: Required[str]
-    """Base URL for the external LLM endpoint."""
-
-    model: Required[str]
-    """Model identifier to use with the external LLM endpoint."""
-
-    authentication_method: Literal["token", "certificate"]
-    """Authentication method used when connecting to the external LLM endpoint."""
-
-    certificate_ref: str
-    """
-    Integration secret identifier for the client certificate used with certificate
-    authentication.
-    """
-
-    forward_metadata: bool
-    """
-    When `true`, Telnyx forwards the assistant's dynamic variables to the external
-    LLM endpoint as a top-level `extra_metadata` object on the chat completion
-    request body. Defaults to `false`. Example payload sent to the external
-    endpoint:
-    `{"extra_metadata": {"customer_name": "Jane", "account_id": "acct_789", "telnyx_agent_target": "+13125550100", "telnyx_end_user_target": "+13125550123"}}`.
-    Distinct from OpenAI's native `metadata` field, which has its own size and type
-    limits.
-    """
-
-    llm_api_key_ref: str
-    """Integration secret identifier for the external LLM API key."""
-
-    token_retrieval_url: str
-    """
-    URL used to retrieve an access token when certificate authentication is enabled.
-    """
-
-
-class FallbackConfig(TypedDict, total=False):
-    external_llm: FallbackConfigExternalLlm
-
-    llm_api_key_ref: str
-    """Integration secret identifier for the fallback model API key."""
-
-    model: str
-    """
-    Fallback Telnyx-hosted model to use when the primary LLM provider is
-    unavailable.
-    """
-
-
-class Integration(TypedDict, total=False):
-    """Reference to a connected integration attached to an assistant.
-
-    Discover available integrations with `/ai/integrations` and connected integrations with `/ai/integrations/connections`.
-    """
-
-    integration_id: Required[str]
-    """Catalog integration ID to attach.
-
-    This is the `id` from the integrations catalog at `/ai/integrations` (the same
-    value also appears as `integration_id` on entries returned by
-    `/ai/integrations/connections`). It is **not** the connection-level `id` from
-    `/ai/integrations/connections`.
-    """
-
-    allowed_list: SequenceNotStr[str]
-    """Optional per-assistant allowlist of integration tool names.
-
-    When omitted or empty, all tools allowed by the connected integration are
-    available to the assistant.
-    """
-
-
-class InterruptionSettingsStartSpeakingPlanTranscriptionEndpointingPlan(TypedDict, total=False):
-    """Endpointing thresholds used to decide when the user has finished speaking.
-
-    Applies to non turn-taking transcription models. For `deepgram/flux`, use `transcription.settings.eot_threshold` / `eot_timeout_ms` / `eager_eot_threshold`.
-    """
-
-    on_no_punctuation_seconds: float
-    """Seconds to wait after the transcript ends without punctuation."""
-
-    on_number_seconds: float
-    """Seconds to wait after the transcript ends with a number."""
-
-    on_punctuation_seconds: float
-    """Seconds to wait after the transcript ends with punctuation."""
-
-
-class InterruptionSettingsStartSpeakingPlan(TypedDict, total=False):
-    """Controls when the assistant starts speaking after the user stops.
-
-    These thresholds primarily apply to non turn-taking transcription models. For turn-taking models like `deepgram/flux`, end-of-turn detection is driven by the transcription end-of-turn settings under `transcription.settings` instead.
-    """
-
-    transcription_endpointing_plan: InterruptionSettingsStartSpeakingPlanTranscriptionEndpointingPlan
-    """Endpointing thresholds used to decide when the user has finished speaking.
-
-    Applies to non turn-taking transcription models. For `deepgram/flux`, use
-    `transcription.settings.eot_threshold` / `eot_timeout_ms` /
-    `eager_eot_threshold`.
-    """
-
-    wait_seconds: float
-    """Minimum seconds to wait before the assistant starts speaking."""
-
-
-class InterruptionSettings(TypedDict, total=False):
-    """
-    Settings for interruptions and how the assistant decides the user has finished speaking. These timings are most relevant when using non turn-taking transcription models. For turn-taking models like `deepgram/flux`, end-of-turn behavior is controlled by the transcription end-of-turn settings under `transcription.settings` (`eot_threshold`, `eot_timeout_ms`, `eager_eot_threshold`).
-    """
-
-    disable_greeting_interruption: bool
-    """When true, disables user interruptions while the assistant greeting is playing."""
-
-    enable: bool
-    """Whether users can interrupt the assistant while it is speaking."""
-
-    start_speaking_plan: InterruptionSettingsStartSpeakingPlan
-    """Controls when the assistant starts speaking after the user stops.
-
-    These thresholds primarily apply to non turn-taking transcription models. For
-    turn-taking models like `deepgram/flux`, end-of-turn detection is driven by the
-    transcription end-of-turn settings under `transcription.settings` instead.
-    """
-
-
-class McpServer(TypedDict, total=False):
-    """Reference to an MCP server attached to an assistant.
-
-    Create and manage MCP servers with the `/ai/mcp_servers` endpoints, then attach them to assistants by ID.
-    """
-
-    id: Required[str]
-    """ID of the MCP server to attach.
-
-    This must be the `id` of an MCP server returned by the `/ai/mcp_servers`
-    endpoints.
-    """
-
-    allowed_tools: SequenceNotStr[str]
-    """Optional per-assistant allowlist of MCP tool names.
-
-    When omitted, the assistant uses the MCP server's configured `allowed_tools`.
-    """
-
-
-class PostConversationSettings(TypedDict, total=False):
-    """Configuration for post-conversation processing.
-
-    When enabled, the assistant receives one additional LLM turn after the conversation ends, allowing it to execute tool calls such as logging to a CRM or sending a summary. The assistant can execute multiple parallel or sequential tools during this phase. Telephony-control tools (e.g. hangup, transfer) are unavailable post-conversation. Beta feature.
-    """
-
-    enabled: bool
-    """Whether post-conversation processing is enabled.
-
-    When true, the assistant will be invoked after the conversation ends to perform
-    any final tool calls. Defaults to false.
-    """

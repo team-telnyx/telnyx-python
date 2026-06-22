@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
+
+from .messaging_metrics_time_frame import MessagingMetricsTimeFrame
 
 __all__ = ["MessagingProfileRetrieveMetricsParams"]
 
 
 class MessagingProfileRetrieveMetricsParams(TypedDict, total=False):
-    time_frame: Literal["1h", "3h", "24h", "3d", "7d", "30d"]
+    time_frame: MessagingMetricsTimeFrame
     """The time frame for metrics."""

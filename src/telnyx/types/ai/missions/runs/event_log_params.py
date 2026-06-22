@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .event_type import EventType
 
 __all__ = ["EventLogParams"]
 
@@ -13,19 +15,7 @@ class EventLogParams(TypedDict, total=False):
 
     summary: Required[str]
 
-    type: Required[
-        Literal[
-            "status_change",
-            "step_started",
-            "step_completed",
-            "step_failed",
-            "tool_call",
-            "tool_result",
-            "message",
-            "error",
-            "custom",
-        ]
-    ]
+    type: Required[EventType]
 
     agent_id: str
 

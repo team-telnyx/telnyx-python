@@ -10,9 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.messaging_10dlc.brand import (
+    ExternalVetting,
     ExternalVettingListResponse,
-    ExternalVettingOrderResponse,
-    ExternalVettingImportsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -71,7 +70,7 @@ class TestExternalVetting:
             evp_id="evpId",
             vetting_id="vettingId",
         )
-        assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -82,7 +81,7 @@ class TestExternalVetting:
             vetting_id="vettingId",
             vetting_token="vettingToken",
         )
-        assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -96,7 +95,7 @@ class TestExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = response.parse()
-        assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -110,7 +109,7 @@ class TestExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = response.parse()
-            assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+            assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,7 +131,7 @@ class TestExternalVetting:
             evp_id="evpId",
             vetting_class="vettingClass",
         )
-        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -146,7 +145,7 @@ class TestExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = response.parse()
-        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -160,7 +159,7 @@ class TestExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = response.parse()
-            assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
+            assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,7 +229,7 @@ class TestAsyncExternalVetting:
             evp_id="evpId",
             vetting_id="vettingId",
         )
-        assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -241,7 +240,7 @@ class TestAsyncExternalVetting:
             vetting_id="vettingId",
             vetting_token="vettingToken",
         )
-        assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -255,7 +254,7 @@ class TestAsyncExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = await response.parse()
-        assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -269,7 +268,7 @@ class TestAsyncExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = await response.parse()
-            assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
+            assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -291,7 +290,7 @@ class TestAsyncExternalVetting:
             evp_id="evpId",
             vetting_class="vettingClass",
         )
-        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -305,7 +304,7 @@ class TestAsyncExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = await response.parse()
-        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
+        assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -319,7 +318,7 @@ class TestAsyncExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = await response.parse()
-            assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
+            assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

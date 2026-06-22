@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable
-from typing_extensions import Literal
 
 import httpx
 
@@ -18,12 +17,17 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.ai.missions.runs import plan_create_params, plan_update_step_params, plan_add_steps_to_plan_params
-from .....types.ai.missions.runs.plan_create_response import PlanCreateResponse
+from .....types.ai.missions.runs import (
+    StepStatus,
+    plan_create_params,
+    plan_update_step_params,
+    plan_add_steps_to_plan_params,
+)
+from .....types.ai.missions.runs.step_status import StepStatus
+from .....types.ai.missions.runs.plan_step_response import PlanStepResponse
 from .....types.ai.missions.runs.plan_retrieve_response import PlanRetrieveResponse
-from .....types.ai.missions.runs.plan_update_step_response import PlanUpdateStepResponse
-from .....types.ai.missions.runs.plan_get_step_details_response import PlanGetStepDetailsResponse
-from .....types.ai.missions.runs.plan_add_steps_to_plan_response import PlanAddStepsToPlanResponse
+from .....types.ai.missions.runs.plan_steps_created_response import PlanStepsCreatedResponse
+from .....types.ai.missions.runs.create_plan_step_request_param import CreatePlanStepRequestParam
 
 __all__ = ["PlanResource", "AsyncPlanResource"]
 
@@ -53,14 +57,14 @@ class PlanResource(SyncAPIResource):
         run_id: str,
         *,
         mission_id: str,
-        steps: Iterable[plan_create_params.Step],
+        steps: Iterable[CreatePlanStepRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanCreateResponse:
+    ) -> PlanStepsCreatedResponse:
         """
         Create the initial plan for a run
 
@@ -83,7 +87,7 @@ class PlanResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanCreateResponse,
+            cast_to=PlanStepsCreatedResponse,
         )
 
     def retrieve(
@@ -127,14 +131,14 @@ class PlanResource(SyncAPIResource):
         run_id: str,
         *,
         mission_id: str,
-        steps: Iterable[plan_add_steps_to_plan_params.Step],
+        steps: Iterable[CreatePlanStepRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanAddStepsToPlanResponse:
+    ) -> PlanStepsCreatedResponse:
         """
         Add one or more steps to an existing plan
 
@@ -157,7 +161,7 @@ class PlanResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanAddStepsToPlanResponse,
+            cast_to=PlanStepsCreatedResponse,
         )
 
     def get_step_details(
@@ -172,7 +176,7 @@ class PlanResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanGetStepDetailsResponse:
+    ) -> PlanStepResponse:
         """
         Get details of a specific plan step
 
@@ -201,7 +205,7 @@ class PlanResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanGetStepDetailsResponse,
+            cast_to=PlanStepResponse,
         )
 
     def update_step(
@@ -211,14 +215,14 @@ class PlanResource(SyncAPIResource):
         mission_id: str,
         run_id: str,
         metadata: Dict[str, object] | Omit = omit,
-        status: Literal["pending", "in_progress", "completed", "skipped", "failed"] | Omit = omit,
+        status: StepStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanUpdateStepResponse:
+    ) -> PlanStepResponse:
         """
         Update the status of a plan step
 
@@ -254,7 +258,7 @@ class PlanResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanUpdateStepResponse,
+            cast_to=PlanStepResponse,
         )
 
 
@@ -283,14 +287,14 @@ class AsyncPlanResource(AsyncAPIResource):
         run_id: str,
         *,
         mission_id: str,
-        steps: Iterable[plan_create_params.Step],
+        steps: Iterable[CreatePlanStepRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanCreateResponse:
+    ) -> PlanStepsCreatedResponse:
         """
         Create the initial plan for a run
 
@@ -313,7 +317,7 @@ class AsyncPlanResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanCreateResponse,
+            cast_to=PlanStepsCreatedResponse,
         )
 
     async def retrieve(
@@ -357,14 +361,14 @@ class AsyncPlanResource(AsyncAPIResource):
         run_id: str,
         *,
         mission_id: str,
-        steps: Iterable[plan_add_steps_to_plan_params.Step],
+        steps: Iterable[CreatePlanStepRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanAddStepsToPlanResponse:
+    ) -> PlanStepsCreatedResponse:
         """
         Add one or more steps to an existing plan
 
@@ -387,7 +391,7 @@ class AsyncPlanResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanAddStepsToPlanResponse,
+            cast_to=PlanStepsCreatedResponse,
         )
 
     async def get_step_details(
@@ -402,7 +406,7 @@ class AsyncPlanResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanGetStepDetailsResponse:
+    ) -> PlanStepResponse:
         """
         Get details of a specific plan step
 
@@ -431,7 +435,7 @@ class AsyncPlanResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanGetStepDetailsResponse,
+            cast_to=PlanStepResponse,
         )
 
     async def update_step(
@@ -441,14 +445,14 @@ class AsyncPlanResource(AsyncAPIResource):
         mission_id: str,
         run_id: str,
         metadata: Dict[str, object] | Omit = omit,
-        status: Literal["pending", "in_progress", "completed", "skipped", "failed"] | Omit = omit,
+        status: StepStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PlanUpdateStepResponse:
+    ) -> PlanStepResponse:
         """
         Update the status of a plan step
 
@@ -484,7 +488,7 @@ class AsyncPlanResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PlanUpdateStepResponse,
+            cast_to=PlanStepResponse,
         )
 
 

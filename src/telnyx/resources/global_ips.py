@@ -19,7 +19,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.global_ip_list_response import GlobalIPListResponse
+from ..types.global_ip import GlobalIP
 from ..types.global_ip_create_response import GlobalIPCreateResponse
 from ..types.global_ip_delete_response import GlobalIPDeleteResponse
 from ..types.global_ip_retrieve_response import GlobalIPRetrieveResponse
@@ -140,7 +140,7 @@ class GlobalIPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[GlobalIPListResponse]:
+    ) -> SyncDefaultFlatPagination[GlobalIP]:
         """
         List all Global IPs.
 
@@ -155,7 +155,7 @@ class GlobalIPsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/global_ips",
-            page=SyncDefaultFlatPagination[GlobalIPListResponse],
+            page=SyncDefaultFlatPagination[GlobalIP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,7 +169,7 @@ class GlobalIPsResource(SyncAPIResource):
                     global_ip_list_params.GlobalIPListParams,
                 ),
             ),
-            model=GlobalIPListResponse,
+            model=GlobalIP,
         )
 
     def delete(
@@ -319,7 +319,7 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[GlobalIPListResponse, AsyncDefaultFlatPagination[GlobalIPListResponse]]:
+    ) -> AsyncPaginator[GlobalIP, AsyncDefaultFlatPagination[GlobalIP]]:
         """
         List all Global IPs.
 
@@ -334,7 +334,7 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/global_ips",
-            page=AsyncDefaultFlatPagination[GlobalIPListResponse],
+            page=AsyncDefaultFlatPagination[GlobalIP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -348,7 +348,7 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
                     global_ip_list_params.GlobalIPListParams,
                 ),
             ),
-            model=GlobalIPListResponse,
+            model=GlobalIP,
         )
 
     async def delete(

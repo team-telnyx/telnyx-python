@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .run_status import RunStatus
 
 __all__ = ["RunUpdateParams"]
 
@@ -19,4 +21,4 @@ class RunUpdateParams(TypedDict, total=False):
 
     result_summary: str
 
-    status: Literal["pending", "running", "paused", "succeeded", "failed", "cancelled"]
+    status: RunStatus

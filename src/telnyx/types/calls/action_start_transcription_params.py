@@ -3,24 +3,21 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 from .deepgram_nova2_config_param import DeepgramNova2ConfigParam
 from .deepgram_nova3_config_param import DeepgramNova3ConfigParam
 from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam
 from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
+from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
 from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
+from .transcription_engine_soniox_config_param import TranscriptionEngineSonioxConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
+from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
+from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = [
-    "ActionStartTranscriptionParams",
-    "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineXaiConfig",
-    "TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig",
-    "TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig",
-    "TranscriptionEngineConfigTranscriptionEngineSonioxConfig",
-]
+__all__ = ["ActionStartTranscriptionParams", "TranscriptionEngineConfig"]
 
 
 class ActionStartTranscriptionParams(TypedDict, total=False):
@@ -56,139 +53,14 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
     """
 
 
-class TranscriptionEngineConfigTranscriptionEngineXaiConfig(TypedDict, total=False):
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    language: Literal[
-        "ar",
-        "cs",
-        "da",
-        "de",
-        "en",
-        "es",
-        "fa",
-        "fil",
-        "fr",
-        "hi",
-        "id",
-        "it",
-        "ja",
-        "ko",
-        "mk",
-        "ms",
-        "nl",
-        "pl",
-        "pt",
-        "ro",
-        "ru",
-        "sv",
-        "th",
-        "tr",
-        "vi",
-    ]
-    """Language to use for speech recognition"""
-
-    transcription_engine: Literal["xAI"]
-    """Engine identifier for xAI transcription service"""
-
-    transcription_model: Literal["xai/grok-stt"]
-    """The model to use for transcription."""
-
-
-class TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig(TypedDict, total=False):
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    transcription_engine: Literal["AssemblyAI"]
-    """Engine identifier for AssemblyAI transcription service"""
-
-    transcription_model: Literal["assemblyai/universal-streaming"]
-    """The model to use for transcription."""
-
-
-class TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig(TypedDict, total=False):
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    language: Literal[
-        "en",
-        "ba",
-        "eu",
-        "gl",
-        "ga",
-        "mt",
-        "mn",
-        "sw",
-        "ug",
-        "cy",
-        "ar_en",
-        "cmn_en",
-        "en_ms",
-        "en_ta",
-        "tl",
-        "es-bilingual-en",
-        "cmn_en_ms_ta",
-    ]
-    """Language to use for speech recognition"""
-
-    transcription_engine: Literal["Speechmatics"]
-    """Engine identifier for Speechmatics transcription service"""
-
-    transcription_model: Literal["speechmatics/standard"]
-    """The model to use for transcription."""
-
-
-class TranscriptionEngineConfigTranscriptionEngineSonioxConfig(TypedDict, total=False):
-    transcription_engine: Required[Literal["Soniox"]]
-    """Engine identifier for Soniox transcription service"""
-
-    enable_endpoint_detection: bool
-    """
-    When true, Soniox emits end-of-utterance events at the cadence configured by
-    `max_endpoint_delay_ms`.
-    """
-
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    language: str
-    """ISO 639-1 language hint (e.g.
-
-    `en`, `es`), or `auto` to omit the hint and let Soniox auto-detect supported
-    languages multilingually.
-    """
-
-    max_endpoint_delay_ms: int
-    """Maximum silence (in milliseconds) before Soniox emits an end-of-utterance event.
-
-    Only honored when `enable_endpoint_detection` is true. Range: 500-3000 ms.
-    """
-
-    transcription_model: Literal["soniox/stt-rt-v4"]
-    """The model to use for transcription."""
-
-
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
     TranscriptionEngineAzureConfigParam,
-    TranscriptionEngineConfigTranscriptionEngineXaiConfig,
-    TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig,
-    TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig,
-    TranscriptionEngineConfigTranscriptionEngineSonioxConfig,
+    TranscriptionEngineXaiConfigParam,
+    TranscriptionEngineAssemblyaiConfigParam,
+    TranscriptionEngineSpeechmaticsConfigParam,
+    TranscriptionEngineSonioxConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,

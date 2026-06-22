@@ -1,23 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 
-from .record import Record
 from .._models import BaseModel
+from .global_ip_health_check import GlobalIPHealthCheck
 
-__all__ = ["GlobalIPHealthCheckCreateResponse", "Data"]
-
-
-class Data(Record):
-    global_ip_id: Optional[str] = None
-    """Global IP ID."""
-
-    health_check_params: Optional[Dict[str, object]] = None
-    """A Global IP health check params."""
-
-    health_check_type: Optional[str] = None
-    """The Global IP health check type."""
+__all__ = ["GlobalIPHealthCheckCreateResponse"]
 
 
 class GlobalIPHealthCheckCreateResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[GlobalIPHealthCheck] = None

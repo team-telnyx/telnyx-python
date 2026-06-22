@@ -11,6 +11,7 @@ from .encrypted_media import EncryptedMedia
 from .anchorsite_override import AnchorsiteOverride
 from .credential_inbound_param import CredentialInboundParam
 from .credential_outbound_param import CredentialOutboundParam
+from .connection_noise_suppression import ConnectionNoiseSuppression
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from .shared_params.connection_jitter_buffer import ConnectionJitterBuffer
 from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
@@ -78,7 +79,7 @@ class CredentialConnectionUpdateParams(TypedDict, total=False):
     smaller values reduce latency but are more sensitive to jitter and reordering.
     """
 
-    noise_suppression: Literal["inbound", "outbound", "both", "disabled"]
+    noise_suppression: ConnectionNoiseSuppression
     """Controls when noise suppression is applied to calls.
 
     When set to 'inbound', noise suppression is applied to incoming audio. When set

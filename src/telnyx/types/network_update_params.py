@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
+from .network_create_param import NetworkCreateParam
+
 __all__ = ["NetworkUpdateParams"]
 
 
 class NetworkUpdateParams(TypedDict, total=False):
-    name: Required[str]
-    """A user specified name for the network."""
+    network_create: Required[NetworkCreateParam]

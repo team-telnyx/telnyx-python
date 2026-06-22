@@ -1,9 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .stt_service_type import SttServiceType
 
 __all__ = ["SpeechToTextListProvidersResponse", "Data", "DataServiceType", "Meta"]
 
@@ -20,7 +20,7 @@ class DataServiceType(BaseModel):
     `auto` indicates the provider performs language detection.
     """
 
-    type: Literal["streaming", "file_based", "in_call", "ai_assistant"]
+    type: SttServiceType
     """Service surface a model is available on.
 
     `ai_assistant` is the STT surface configured via Call Control voice-assistant

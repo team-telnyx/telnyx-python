@@ -5,15 +5,20 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["VoiceCloneCreateParams", "Params", "ParamsTelnyxDesignClone", "ParamsMinimaxDesignClone"]
+__all__ = [
+    "VoiceCloneCreateParams",
+    "VoiceCloneRequest",
+    "VoiceCloneRequestTelnyxDesignClone",
+    "VoiceCloneRequestMinimaxDesignClone",
+]
 
 
 class VoiceCloneCreateParams(TypedDict, total=False):
-    params: Required[Params]
+    voice_clone_request: Required[VoiceCloneRequest]
     """Request body for creating a voice clone from an existing voice design."""
 
 
-class ParamsTelnyxDesignClone(TypedDict, total=False):
+class VoiceCloneRequestTelnyxDesignClone(TypedDict, total=False):
     """Create a voice clone from a voice design using the Telnyx provider."""
 
     gender: Required[Literal["male", "female", "neutral"]]
@@ -35,7 +40,7 @@ class ParamsTelnyxDesignClone(TypedDict, total=False):
     """Voice synthesis provider. Defaults to `telnyx`."""
 
 
-class ParamsMinimaxDesignClone(TypedDict, total=False):
+class VoiceCloneRequestMinimaxDesignClone(TypedDict, total=False):
     """Create a voice clone from a voice design using the Minimax provider."""
 
     gender: Required[Literal["male", "female", "neutral"]]
@@ -54,4 +59,4 @@ class ParamsMinimaxDesignClone(TypedDict, total=False):
     """UUID of the source voice design to clone."""
 
 
-Params: TypeAlias = Union[ParamsTelnyxDesignClone, ParamsMinimaxDesignClone]
+VoiceCloneRequest: TypeAlias = Union[VoiceCloneRequestTelnyxDesignClone, VoiceCloneRequestMinimaxDesignClone]

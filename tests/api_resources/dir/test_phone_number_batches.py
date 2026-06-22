@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.dir import (
-    PhoneNumberBatchListResponse,
+    PhoneNumberBatch,
     PhoneNumberBatchRetrieveResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
@@ -79,9 +79,7 @@ class TestPhoneNumberBatches:
         phone_number_batch = client.dir.phone_number_batches.list(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -92,9 +90,7 @@ class TestPhoneNumberBatches:
             page_number=1,
             page_size=20,
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -106,9 +102,7 @@ class TestPhoneNumberBatches:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_batch = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -120,9 +114,7 @@ class TestPhoneNumberBatches:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number_batch = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-            )
+            assert_matches_type(SyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,9 +190,7 @@ class TestAsyncPhoneNumberBatches:
         phone_number_batch = await async_client.dir.phone_number_batches.list(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -211,9 +201,7 @@ class TestAsyncPhoneNumberBatches:
             page_number=1,
             page_size=20,
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -225,9 +213,7 @@ class TestAsyncPhoneNumberBatches:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_batch = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -239,9 +225,7 @@ class TestAsyncPhoneNumberBatches:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number_batch = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPagination[PhoneNumberBatchListResponse], phone_number_batch, path=["response"]
-            )
+            assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberBatch], phone_number_batch, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

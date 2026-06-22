@@ -23,8 +23,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from ....types.ai.integration import Integration
 from ....types.ai.integration_list_response import IntegrationListResponse
-from ....types.ai.integration_retrieve_response import IntegrationRetrieveResponse
 
 __all__ = ["IntegrationsResource", "AsyncIntegrationsResource"]
 
@@ -63,7 +63,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationRetrieveResponse:
+    ) -> Integration:
         """
         Retrieve integration details
 
@@ -83,7 +83,7 @@ class IntegrationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationRetrieveResponse,
+            cast_to=Integration,
         )
 
     def list(
@@ -140,7 +140,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationRetrieveResponse:
+    ) -> Integration:
         """
         Retrieve integration details
 
@@ -160,7 +160,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IntegrationRetrieveResponse,
+            cast_to=Integration,
         )
 
     async def list(

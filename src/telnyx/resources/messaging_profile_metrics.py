@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
-from ..types import messaging_profile_metric_list_params
+from ..types import MessagingMetricsTimeFrame, messaging_profile_metric_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,6 +16,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
 from ..types.messaging_profile_metric_list_response import MessagingProfileMetricListResponse
 
 __all__ = ["MessagingProfileMetricsResource", "AsyncMessagingProfileMetricsResource"]
@@ -46,7 +45,7 @@ class MessagingProfileMetricsResource(SyncAPIResource):
     def list(
         self,
         *,
-        time_frame: Literal["1h", "3h", "24h", "3d", "7d", "30d"] | Omit = omit,
+        time_frame: MessagingMetricsTimeFrame | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -107,7 +106,7 @@ class AsyncMessagingProfileMetricsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        time_frame: Literal["1h", "3h", "24h", "3d", "7d", "30d"] | Omit = omit,
+        time_frame: MessagingMetricsTimeFrame | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

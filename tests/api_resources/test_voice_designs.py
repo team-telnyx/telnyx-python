@@ -12,10 +12,9 @@ from respx import MockRouter
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    VoiceDesignListResponse,
-    VoiceDesignCreateResponse,
+    VoiceDesignResponse,
+    VoiceDesignSummaryData,
     VoiceDesignRenameResponse,
-    VoiceDesignRetrieveResponse,
 )
 from telnyx._response import (
     BinaryAPIResponse,
@@ -38,7 +37,7 @@ class TestVoiceDesigns:
             prompt="Speak in a warm, friendly tone",
             text="Hello, welcome to our service.",
         )
-        assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -56,7 +55,7 @@ class TestVoiceDesigns:
             top_p=0,
             voice_design_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -69,7 +68,7 @@ class TestVoiceDesigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_design = response.parse()
-        assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -82,7 +81,7 @@ class TestVoiceDesigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_design = response.parse()
-            assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+            assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -92,7 +91,7 @@ class TestVoiceDesigns:
         voice_design = client.voice_designs.retrieve(
             id="id",
         )
-        assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -101,7 +100,7 @@ class TestVoiceDesigns:
             id="id",
             version=1,
         )
-        assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -113,7 +112,7 @@ class TestVoiceDesigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_design = response.parse()
-        assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -125,7 +124,7 @@ class TestVoiceDesigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_design = response.parse()
-            assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+            assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +140,7 @@ class TestVoiceDesigns:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         voice_design = client.voice_designs.list()
-        assert_matches_type(SyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -152,7 +151,7 @@ class TestVoiceDesigns:
             page_size=1,
             sort="name",
         )
-        assert_matches_type(SyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -162,7 +161,7 @@ class TestVoiceDesigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_design = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -172,7 +171,7 @@ class TestVoiceDesigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_design = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -386,7 +385,7 @@ class TestAsyncVoiceDesigns:
             prompt="Speak in a warm, friendly tone",
             text="Hello, welcome to our service.",
         )
-        assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -404,7 +403,7 @@ class TestAsyncVoiceDesigns:
             top_p=0,
             voice_design_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -417,7 +416,7 @@ class TestAsyncVoiceDesigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_design = await response.parse()
-        assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -430,7 +429,7 @@ class TestAsyncVoiceDesigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_design = await response.parse()
-            assert_matches_type(VoiceDesignCreateResponse, voice_design, path=["response"])
+            assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -440,7 +439,7 @@ class TestAsyncVoiceDesigns:
         voice_design = await async_client.voice_designs.retrieve(
             id="id",
         )
-        assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -449,7 +448,7 @@ class TestAsyncVoiceDesigns:
             id="id",
             version=1,
         )
-        assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -461,7 +460,7 @@ class TestAsyncVoiceDesigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_design = await response.parse()
-        assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+        assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -473,7 +472,7 @@ class TestAsyncVoiceDesigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_design = await response.parse()
-            assert_matches_type(VoiceDesignRetrieveResponse, voice_design, path=["response"])
+            assert_matches_type(VoiceDesignResponse, voice_design, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -489,7 +488,7 @@ class TestAsyncVoiceDesigns:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         voice_design = await async_client.voice_designs.list()
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -500,7 +499,7 @@ class TestAsyncVoiceDesigns:
             page_size=1,
             sort="name",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -510,7 +509,7 @@ class TestAsyncVoiceDesigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_design = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -520,7 +519,7 @@ class TestAsyncVoiceDesigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_design = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignListResponse], voice_design, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[VoiceDesignSummaryData], voice_design, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
