@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* restore promote-to-prod.yml workflow ([cafbafa](https://github.com/team-telnyx/telnyx-python-staging/commit/cafbafa02649a08f33e1f8631c013be05b54bf88))
+
 ## [4.162.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.161.1...v4.162.0) (2026-06-22)
 
 
