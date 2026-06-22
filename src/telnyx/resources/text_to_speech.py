@@ -1282,7 +1282,7 @@ class AsyncTextToSpeechResourceConnection:
 
         async for event in self:
             event_type = event.type
-            specific = self._event_handler_registry.get_handlers(str(event_type) if event_type is not None else None)
+            specific = self._event_handler_registry.get_handlers(str(event_type))
             generic = self._event_handler_registry.get_handlers("event")
 
             if event_type == "error" and not specific and not generic:
@@ -1726,7 +1726,7 @@ class TextToSpeechResourceConnection:
         """
         for event in self:
             event_type = event.type
-            specific = self._event_handler_registry.get_handlers(str(event_type) if event_type is not None else None)
+            specific = self._event_handler_registry.get_handlers(str(event_type))
             generic = self._event_handler_registry.get_handlers("event")
 
             if event_type == "error" and not specific and not generic:

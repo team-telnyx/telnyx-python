@@ -876,7 +876,6 @@ from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEve
 from .conference_participant_speak_started import ConferenceParticipantSpeakStarted as ConferenceParticipantSpeakStarted
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent as ConferenceSpeakEndedWebhookEvent
 from .conference_update_participant_params import ConferenceUpdateParticipantParams as ConferenceUpdateParticipantParams
-from .dir_retrieve_document_types_response import DirRetrieveDocumentTypesResponse as DirRetrieveDocumentTypesResponse
 from .global_ip_allowed_port_list_response import GlobalIPAllowedPortListResponse as GlobalIPAllowedPortListResponse
 from .global_ip_assignment_create_response import GlobalIPAssignmentCreateResponse as GlobalIPAssignmentCreateResponse
 from .global_ip_assignment_delete_response import GlobalIPAssignmentDeleteResponse as GlobalIPAssignmentDeleteResponse
@@ -1261,9 +1260,6 @@ from .conference_playback_started_webhook_event import (
 )
 from .customer_service_record_retrieve_response import (
     CustomerServiceRecordRetrieveResponse as CustomerServiceRecordRetrieveResponse,
-)
-from .dir_retrieve_infringement_claims_response import (
-    DirRetrieveInfringementClaimsResponse as DirRetrieveInfringementClaimsResponse,
 )
 from .dynamic_emergency_address_create_response import (
     DynamicEmergencyAddressCreateResponse as DynamicEmergencyAddressCreateResponse,

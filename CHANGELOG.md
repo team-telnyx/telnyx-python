@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.162.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.161.1...v4.162.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* remove stale imports for deleted types ([0f5c80b](https://github.com/team-telnyx/telnyx-python-staging/commit/0f5c80bc605773e349618e9a7dfd47b0ea1ee690))
+* restore TYPE_CHECKING import and remove None guard in preserved files ([e9d9375](https://github.com/team-telnyx/telnyx-python-staging/commit/e9d9375b322f85632bf7ebf1cd6dbf1032783add))
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([876026e](https://github.com/team-telnyx/telnyx-python-staging/commit/876026ebe9fa402f625417d6b35314ab2c0ccfee))
+* release python 4.162.0 ([1f1c960](https://github.com/team-telnyx/telnyx-python-staging/commit/1f1c9603d45c75f08cb431a02459a56abc59aabc))
+* remove stale files from previous generation ([db377be](https://github.com/team-telnyx/telnyx-python-staging/commit/db377befde2d3d1b605e21c661175ec567c16d36))
+
 ## [4.161.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.161.0...v4.161.1) (2026-06-22)
 
 
