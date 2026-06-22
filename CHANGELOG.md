@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.161.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.161.0...v4.161.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* **ci:** add test job to staging CI to match prod ([039286b](https://github.com/team-telnyx/telnyx-python-staging/commit/039286bb93ca9c96aebf03138683a815d378ac32))
+* **ci:** add test job to staging CI to match prod ([1d0bc11](https://github.com/team-telnyx/telnyx-python-staging/commit/1d0bc1135f1dad9fcef0f89f7259646a62dca3fe))
+* **types:** resolve circular import in texml recordings response body ([84b7ae4](https://github.com/team-telnyx/telnyx-python-staging/commit/84b7ae432c965240ce91c05d4de043d473636063))
+
 ## [4.161.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.160.0...v4.161.0) (2026-06-22)
 
 
