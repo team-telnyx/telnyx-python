@@ -9,10 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    InfringementClaimContestResponse,
-    InfringementClaimRetrieveResponse,
-)
+from telnyx.types import InfringementClaimWrapped
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +23,7 @@ class TestInfringementClaims:
         infringement_claim = client.infringement_claims.retrieve(
             "e379fbc8-cd83-4bef-a280-a0ac9d00dcf8",
         )
-        assert_matches_type(InfringementClaimRetrieveResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -38,7 +35,7 @@ class TestInfringementClaims:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         infringement_claim = response.parse()
-        assert_matches_type(InfringementClaimRetrieveResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -50,7 +47,7 @@ class TestInfringementClaims:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             infringement_claim = response.parse()
-            assert_matches_type(InfringementClaimRetrieveResponse, infringement_claim, path=["response"])
+            assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +66,7 @@ class TestInfringementClaims:
             claim_id="e379fbc8-cd83-4bef-a280-a0ac9d00dcf8",
             contest_notes="We own the trademark outright; our registration precedes the claimant by three years. See attached certificate.",
         )
-        assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -85,7 +82,7 @@ class TestInfringementClaims:
                 }
             ],
         )
-        assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -98,7 +95,7 @@ class TestInfringementClaims:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         infringement_claim = response.parse()
-        assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -111,7 +108,7 @@ class TestInfringementClaims:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             infringement_claim = response.parse()
-            assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+            assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -136,7 +133,7 @@ class TestAsyncInfringementClaims:
         infringement_claim = await async_client.infringement_claims.retrieve(
             "e379fbc8-cd83-4bef-a280-a0ac9d00dcf8",
         )
-        assert_matches_type(InfringementClaimRetrieveResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -148,7 +145,7 @@ class TestAsyncInfringementClaims:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         infringement_claim = await response.parse()
-        assert_matches_type(InfringementClaimRetrieveResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -160,7 +157,7 @@ class TestAsyncInfringementClaims:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             infringement_claim = await response.parse()
-            assert_matches_type(InfringementClaimRetrieveResponse, infringement_claim, path=["response"])
+            assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,7 +176,7 @@ class TestAsyncInfringementClaims:
             claim_id="e379fbc8-cd83-4bef-a280-a0ac9d00dcf8",
             contest_notes="We own the trademark outright; our registration precedes the claimant by three years. See attached certificate.",
         )
-        assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -195,7 +192,7 @@ class TestAsyncInfringementClaims:
                 }
             ],
         )
-        assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -208,7 +205,7 @@ class TestAsyncInfringementClaims:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         infringement_claim = await response.parse()
-        assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+        assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -221,7 +218,7 @@ class TestAsyncInfringementClaims:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             infringement_claim = await response.parse()
-            assert_matches_type(InfringementClaimContestResponse, infringement_claim, path=["response"])
+            assert_matches_type(InfringementClaimWrapped, infringement_claim, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

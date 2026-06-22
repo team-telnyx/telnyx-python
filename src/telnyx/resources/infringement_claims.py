@@ -18,8 +18,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.infringement_claim_contest_response import InfringementClaimContestResponse
-from ..types.infringement_claim_retrieve_response import InfringementClaimRetrieveResponse
+from ..types.document_param import DocumentParam
+from ..types.infringement_claim_wrapped import InfringementClaimWrapped
 
 __all__ = ["InfringementClaimsResource", "AsyncInfringementClaimsResource"]
 
@@ -59,7 +59,7 @@ class InfringementClaimsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InfringementClaimRetrieveResponse:
+    ) -> InfringementClaimWrapped:
         """Retrieve a single claim by id.
 
         Returns `404` if the claim does not exist or is
@@ -81,7 +81,7 @@ class InfringementClaimsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InfringementClaimRetrieveResponse,
+            cast_to=InfringementClaimWrapped,
         )
 
     def contest(
@@ -89,14 +89,14 @@ class InfringementClaimsResource(SyncAPIResource):
         claim_id: str,
         *,
         contest_notes: str,
-        documents: Iterable[infringement_claim_contest_params.Document] | Omit = omit,
+        documents: Iterable[DocumentParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InfringementClaimContestResponse:
+    ) -> InfringementClaimWrapped:
         """Submit a written response and supporting documents disputing the claim.
 
         The
@@ -144,7 +144,7 @@ class InfringementClaimsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InfringementClaimContestResponse,
+            cast_to=InfringementClaimWrapped,
         )
 
 
@@ -183,7 +183,7 @@ class AsyncInfringementClaimsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InfringementClaimRetrieveResponse:
+    ) -> InfringementClaimWrapped:
         """Retrieve a single claim by id.
 
         Returns `404` if the claim does not exist or is
@@ -205,7 +205,7 @@ class AsyncInfringementClaimsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InfringementClaimRetrieveResponse,
+            cast_to=InfringementClaimWrapped,
         )
 
     async def contest(
@@ -213,14 +213,14 @@ class AsyncInfringementClaimsResource(AsyncAPIResource):
         claim_id: str,
         *,
         contest_notes: str,
-        documents: Iterable[infringement_claim_contest_params.Document] | Omit = omit,
+        documents: Iterable[DocumentParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InfringementClaimContestResponse:
+    ) -> InfringementClaimWrapped:
         """Submit a written response and supporting documents disputing the claim.
 
         The
@@ -268,7 +268,7 @@ class AsyncInfringementClaimsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InfringementClaimContestResponse,
+            cast_to=InfringementClaimWrapped,
         )
 
 

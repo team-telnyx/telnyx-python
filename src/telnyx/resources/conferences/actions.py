@@ -18,6 +18,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.conferences import (
+    ConferenceRegion,
     action_hold_params,
     action_join_params,
     action_mute_params,
@@ -37,6 +38,7 @@ from ...types.conferences import (
     action_gather_dtmf_audio_params,
 )
 from ...types.calls.loopcount_param import LoopcountParam
+from ...types.conferences.conference_region import ConferenceRegion
 from ...types.conferences.action_hold_response import ActionHoldResponse
 from ...types.conferences.action_join_response import ActionJoinResponse
 from ...types.conferences.action_mute_response import ActionMuteResponse
@@ -87,7 +89,7 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
         command_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -299,7 +301,7 @@ class ActionsResource(SyncAPIResource):
         audio_url: str | Omit = omit,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         media_name: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -365,7 +367,7 @@ class ActionsResource(SyncAPIResource):
         hold_audio_url: str | Omit = omit,
         hold_media_name: str | Omit = omit,
         mute: bool | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         soft_end_conference_on_exit: bool | Omit = omit,
         start_conference_on_enter: bool | Omit = omit,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"] | Omit = omit,
@@ -490,7 +492,7 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
         command_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -550,7 +552,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -601,7 +603,7 @@ class ActionsResource(SyncAPIResource):
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         loop: LoopcountParam | Omit = omit,
         media_name: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -664,7 +666,7 @@ class ActionsResource(SyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -716,7 +718,7 @@ class ActionsResource(SyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -771,7 +773,7 @@ class ActionsResource(SyncAPIResource):
         command_id: str | Omit = omit,
         custom_file_name: str | Omit = omit,
         play_beep: bool | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -847,7 +849,7 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -999,7 +1001,7 @@ class ActionsResource(SyncAPIResource):
         ]
         | Omit = omit,
         payload_type: Literal["text", "ssml"] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1115,7 +1117,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1163,7 +1165,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str],
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1211,7 +1213,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1284,7 +1286,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
         command_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1498,7 +1500,7 @@ class AsyncActionsResource(AsyncAPIResource):
         audio_url: str | Omit = omit,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         media_name: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1564,7 +1566,7 @@ class AsyncActionsResource(AsyncAPIResource):
         hold_audio_url: str | Omit = omit,
         hold_media_name: str | Omit = omit,
         mute: bool | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         soft_end_conference_on_exit: bool | Omit = omit,
         start_conference_on_enter: bool | Omit = omit,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"] | Omit = omit,
@@ -1689,7 +1691,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
         command_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1749,7 +1751,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1800,7 +1802,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         loop: LoopcountParam | Omit = omit,
         media_name: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1863,7 +1865,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1915,7 +1917,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1970,7 +1972,7 @@ class AsyncActionsResource(AsyncAPIResource):
         command_id: str | Omit = omit,
         custom_file_name: str | Omit = omit,
         play_beep: bool | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2046,7 +2048,7 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2198,7 +2200,7 @@ class AsyncActionsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         payload_type: Literal["text", "ssml"] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2314,7 +2316,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2362,7 +2364,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str],
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2410,7 +2412,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
-        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
+        region: ConferenceRegion | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

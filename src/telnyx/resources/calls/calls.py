@@ -47,6 +47,7 @@ from ...types.call_retrieve_status_response import CallRetrieveStatusResponse
 from ...types.stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
+from ...types.conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 
 __all__ = ["CallsResource", "AsyncCallsResource"]
 
@@ -95,7 +96,7 @@ class CallsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         conference_config: call_dial_params.ConferenceConfig | Omit = omit,
-        conversation_relay_config: call_dial_params.ConversationRelayConfig | Omit = omit,
+        conversation_relay_config: ConversationRelayEmbeddedConfigParam | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
@@ -567,7 +568,7 @@ class AsyncCallsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         conference_config: call_dial_params.ConferenceConfig | Omit = omit,
-        conversation_relay_config: call_dial_params.ConversationRelayConfig | Omit = omit,
+        conversation_relay_config: ConversationRelayEmbeddedConfigParam | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,

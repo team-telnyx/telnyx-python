@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.terms_of_service import NumberReputationAgreeResponse
+from telnyx.types.terms_of_service import TosAgreementWrapped
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +21,7 @@ class TestNumberReputation:
     @parametrize
     def test_method_agree(self, client: Telnyx) -> None:
         number_reputation = client.terms_of_service.number_reputation.agree()
-        assert_matches_type(NumberReputationAgreeResponse, number_reputation, path=["response"])
+        assert_matches_type(TosAgreementWrapped, number_reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -31,7 +31,7 @@ class TestNumberReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_reputation = response.parse()
-        assert_matches_type(NumberReputationAgreeResponse, number_reputation, path=["response"])
+        assert_matches_type(TosAgreementWrapped, number_reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -41,7 +41,7 @@ class TestNumberReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_reputation = response.parse()
-            assert_matches_type(NumberReputationAgreeResponse, number_reputation, path=["response"])
+            assert_matches_type(TosAgreementWrapped, number_reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -55,7 +55,7 @@ class TestAsyncNumberReputation:
     @parametrize
     async def test_method_agree(self, async_client: AsyncTelnyx) -> None:
         number_reputation = await async_client.terms_of_service.number_reputation.agree()
-        assert_matches_type(NumberReputationAgreeResponse, number_reputation, path=["response"])
+        assert_matches_type(TosAgreementWrapped, number_reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -65,7 +65,7 @@ class TestAsyncNumberReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_reputation = await response.parse()
-        assert_matches_type(NumberReputationAgreeResponse, number_reputation, path=["response"])
+        assert_matches_type(TosAgreementWrapped, number_reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -75,6 +75,6 @@ class TestAsyncNumberReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_reputation = await response.parse()
-            assert_matches_type(NumberReputationAgreeResponse, number_reputation, path=["response"])
+            assert_matches_type(TosAgreementWrapped, number_reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True

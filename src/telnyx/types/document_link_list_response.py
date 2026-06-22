@@ -2,18 +2,12 @@
 
 from typing import Optional
 
-from .._models import BaseModel
+from .doc_service_record import DocServiceRecord
 
 __all__ = ["DocumentLinkListResponse"]
 
 
-class DocumentLinkListResponse(BaseModel):
-    id: Optional[str] = None
-    """Identifies the resource."""
-
-    created_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was created."""
-
+class DocumentLinkListResponse(DocServiceRecord):
     document_id: Optional[str] = None
     """Identifies the associated document."""
 
@@ -23,8 +17,5 @@ class DocumentLinkListResponse(BaseModel):
     linked_resource_id: Optional[str] = None
     """Identifies the linked resource."""
 
-    record_type: Optional[str] = None
+    record_type: Optional[str] = None  # type: ignore
     """Identifies the type of the resource."""
-
-    updated_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was updated."""

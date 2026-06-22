@@ -19,10 +19,7 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ai.tool_list_response import ToolListResponse
-from ...types.ai.tool_create_response import ToolCreateResponse
-from ...types.ai.tool_update_response import ToolUpdateResponse
-from ...types.ai.tool_retrieve_response import ToolRetrieveResponse
+from ...types.ai.shared_tool_response import SharedToolResponse
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
 
@@ -66,7 +63,7 @@ class ToolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolCreateResponse:
+    ) -> SharedToolResponse:
         """
         Create Tool
 
@@ -97,7 +94,7 @@ class ToolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolCreateResponse,
+            cast_to=SharedToolResponse,
         )
 
     def retrieve(
@@ -110,7 +107,7 @@ class ToolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolRetrieveResponse:
+    ) -> SharedToolResponse:
         """
         Get Tool
 
@@ -130,7 +127,7 @@ class ToolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolRetrieveResponse,
+            cast_to=SharedToolResponse,
         )
 
     def update(
@@ -151,7 +148,7 @@ class ToolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolUpdateResponse:
+    ) -> SharedToolResponse:
         """
         Update Tool
 
@@ -184,7 +181,7 @@ class ToolsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolUpdateResponse,
+            cast_to=SharedToolResponse,
         )
 
     def list(
@@ -200,7 +197,7 @@ class ToolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ToolListResponse]:
+    ) -> SyncDefaultFlatPagination[SharedToolResponse]:
         """
         List Tools
 
@@ -223,7 +220,7 @@ class ToolsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/ai/tools",
-            page=SyncDefaultFlatPagination[ToolListResponse],
+            page=SyncDefaultFlatPagination[SharedToolResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +236,7 @@ class ToolsResource(SyncAPIResource):
                     tool_list_params.ToolListParams,
                 ),
             ),
-            model=ToolListResponse,
+            model=SharedToolResponse,
         )
 
     def delete(
@@ -315,7 +312,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolCreateResponse:
+    ) -> SharedToolResponse:
         """
         Create Tool
 
@@ -346,7 +343,7 @@ class AsyncToolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolCreateResponse,
+            cast_to=SharedToolResponse,
         )
 
     async def retrieve(
@@ -359,7 +356,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolRetrieveResponse:
+    ) -> SharedToolResponse:
         """
         Get Tool
 
@@ -379,7 +376,7 @@ class AsyncToolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolRetrieveResponse,
+            cast_to=SharedToolResponse,
         )
 
     async def update(
@@ -400,7 +397,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ToolUpdateResponse:
+    ) -> SharedToolResponse:
         """
         Update Tool
 
@@ -433,7 +430,7 @@ class AsyncToolsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ToolUpdateResponse,
+            cast_to=SharedToolResponse,
         )
 
     def list(
@@ -449,7 +446,7 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ToolListResponse, AsyncDefaultFlatPagination[ToolListResponse]]:
+    ) -> AsyncPaginator[SharedToolResponse, AsyncDefaultFlatPagination[SharedToolResponse]]:
         """
         List Tools
 
@@ -472,7 +469,7 @@ class AsyncToolsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/ai/tools",
-            page=AsyncDefaultFlatPagination[ToolListResponse],
+            page=AsyncDefaultFlatPagination[SharedToolResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -488,7 +485,7 @@ class AsyncToolsResource(AsyncAPIResource):
                     tool_list_params.ToolListParams,
                 ),
             ),
-            model=ToolListResponse,
+            model=SharedToolResponse,
         )
 
     async def delete(

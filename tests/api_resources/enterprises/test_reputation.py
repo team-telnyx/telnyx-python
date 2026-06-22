@@ -10,9 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.enterprises import (
-    ReputationEnableResponse,
-    ReputationRetrieveResponse,
-    ReputationUpdateFrequencyResponse,
+    EnterpriseReputationPublicWrapped,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +25,7 @@ class TestReputation:
         reputation = client.enterprises.reputation.retrieve(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -39,7 +37,7 @@ class TestReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reputation = response.parse()
-        assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -51,7 +49,7 @@ class TestReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reputation = response.parse()
-            assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +110,7 @@ class TestReputation:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
-        assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -122,7 +120,7 @@ class TestReputation:
             loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
             check_frequency="business_daily",
         )
-        assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -135,7 +133,7 @@ class TestReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reputation = response.parse()
-        assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -148,7 +146,7 @@ class TestReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reputation = response.parse()
-            assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,7 +166,7 @@ class TestReputation:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             check_frequency="weekly",
         )
-        assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -181,7 +179,7 @@ class TestReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reputation = response.parse()
-        assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -194,7 +192,7 @@ class TestReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reputation = response.parse()
-            assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -219,7 +217,7 @@ class TestAsyncReputation:
         reputation = await async_client.enterprises.reputation.retrieve(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -231,7 +229,7 @@ class TestAsyncReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reputation = await response.parse()
-        assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -243,7 +241,7 @@ class TestAsyncReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reputation = await response.parse()
-            assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -304,7 +302,7 @@ class TestAsyncReputation:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
-        assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -314,7 +312,7 @@ class TestAsyncReputation:
             loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
             check_frequency="business_daily",
         )
-        assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -327,7 +325,7 @@ class TestAsyncReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reputation = await response.parse()
-        assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -340,7 +338,7 @@ class TestAsyncReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reputation = await response.parse()
-            assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -360,7 +358,7 @@ class TestAsyncReputation:
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             check_frequency="weekly",
         )
-        assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -373,7 +371,7 @@ class TestAsyncReputation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reputation = await response.parse()
-        assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
+        assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -386,7 +384,7 @@ class TestAsyncReputation:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reputation = await response.parse()
-            assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
+            assert_matches_type(EnterpriseReputationPublicWrapped, reputation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

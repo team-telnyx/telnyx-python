@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -16,10 +14,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.dir import comment_list_params, comment_create_params
+from ...types.dir import CommentType, comment_list_params, comment_create_params
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.dir.comment_list_response import CommentListResponse
+from ...types.dir.dir_comment import DirComment
+from ...types.dir.comment_type import CommentType
 from ...types.dir.comment_create_response import CommentCreateResponse
 
 __all__ = ["CommentsResource", "AsyncCommentsResource"]
@@ -102,16 +101,7 @@ class CommentsResource(SyncAPIResource):
         self,
         dir_id: str,
         *,
-        comment_type: Literal[
-            "vetting_comment",
-            "rejection_reason",
-            "internal_note",
-            "notification",
-            "status_update",
-            "customer_inquiry",
-            "admin_response",
-        ]
-        | Omit = omit,
+        comment_type: CommentType | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -120,7 +110,7 @@ class CommentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[CommentListResponse]:
+    ) -> SyncDefaultFlatPagination[DirComment]:
         """List the comments on a DIR.
 
         The enterprise is resolved server-side from the DIR
@@ -147,7 +137,7 @@ class CommentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
         return self._get_api_list(
             path_template("/dir/{dir_id}/comments", dir_id=dir_id),
-            page=SyncDefaultFlatPagination[CommentListResponse],
+            page=SyncDefaultFlatPagination[DirComment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -162,7 +152,7 @@ class CommentsResource(SyncAPIResource):
                     comment_list_params.CommentListParams,
                 ),
             ),
-            model=CommentListResponse,
+            model=DirComment,
         )
 
 
@@ -243,16 +233,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         self,
         dir_id: str,
         *,
-        comment_type: Literal[
-            "vetting_comment",
-            "rejection_reason",
-            "internal_note",
-            "notification",
-            "status_update",
-            "customer_inquiry",
-            "admin_response",
-        ]
-        | Omit = omit,
+        comment_type: CommentType | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -261,7 +242,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CommentListResponse, AsyncDefaultFlatPagination[CommentListResponse]]:
+    ) -> AsyncPaginator[DirComment, AsyncDefaultFlatPagination[DirComment]]:
         """List the comments on a DIR.
 
         The enterprise is resolved server-side from the DIR
@@ -288,7 +269,7 @@ class AsyncCommentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
         return self._get_api_list(
             path_template("/dir/{dir_id}/comments", dir_id=dir_id),
-            page=AsyncDefaultFlatPagination[CommentListResponse],
+            page=AsyncDefaultFlatPagination[DirComment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -303,7 +284,7 @@ class AsyncCommentsResource(AsyncAPIResource):
                     comment_list_params.CommentListParams,
                 ),
             ),
-            model=CommentListResponse,
+            model=DirComment,
         )
 
 

@@ -24,7 +24,8 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.enterprises.reputation import loa_render_params, loa_update_params
-from ....types.enterprises.reputation.loa_update_response import LoaUpdateResponse
+from ....types.enterprises.reputation.agent_input_param import AgentInputParam
+from ....types.enterprises.enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
 
 __all__ = ["LoaResource", "AsyncLoaResource"]
 
@@ -62,7 +63,7 @@ class LoaResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoaUpdateResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """Point the enterprise's reputation settings at a new signed LOA document.
 
         This
@@ -90,14 +91,14 @@ class LoaResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoaUpdateResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
     def render(
         self,
         enterprise_id: str,
         *,
-        agent: loa_render_params.Agent | Omit = omit,
+        agent: AgentInputParam | Omit = omit,
         signature: loa_render_params.Signature | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -183,7 +184,7 @@ class AsyncLoaResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoaUpdateResponse:
+    ) -> EnterpriseReputationPublicWrapped:
         """Point the enterprise's reputation settings at a new signed LOA document.
 
         This
@@ -211,14 +212,14 @@ class AsyncLoaResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LoaUpdateResponse,
+            cast_to=EnterpriseReputationPublicWrapped,
         )
 
     async def render(
         self,
         enterprise_id: str,
         *,
-        agent: loa_render_params.Agent | Omit = omit,
+        agent: AgentInputParam | Omit = omit,
         signature: loa_render_params.Signature | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

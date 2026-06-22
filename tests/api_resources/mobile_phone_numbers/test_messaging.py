@@ -10,7 +10,10 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.mobile_phone_numbers import MessagingListResponse, MessagingRetrieveResponse
+from telnyx.types.mobile_phone_numbers import (
+    MessagingRetrieveResponse,
+    MobilePhoneNumberWithMessagingSettings,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -64,7 +67,9 @@ class TestMessaging:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         messaging = client.mobile_phone_numbers.messaging.list()
-        assert_matches_type(SyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -73,7 +78,9 @@ class TestMessaging:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -83,7 +90,9 @@ class TestMessaging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -93,7 +102,9 @@ class TestMessaging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -149,7 +160,9 @@ class TestAsyncMessaging:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging = await async_client.mobile_phone_numbers.messaging.list()
-        assert_matches_type(AsyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -158,7 +171,9 @@ class TestAsyncMessaging:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -168,7 +183,9 @@ class TestAsyncMessaging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -178,6 +195,8 @@ class TestAsyncMessaging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[MessagingListResponse], messaging, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings], messaging, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True

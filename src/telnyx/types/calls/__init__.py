@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from .loopcount_param import LoopcountParam as LoopcountParam
+from .tool_message_param import ToolMessageParam as ToolMessageParam
+from .user_message_param import UserMessageParam as UserMessageParam
 from .action_refer_params import ActionReferParams as ActionReferParams
 from .action_speak_params import ActionSpeakParams as ActionSpeakParams
 from .action_answer_params import ActionAnswerParams as ActionAnswerParams
@@ -10,6 +12,7 @@ from .action_bridge_params import ActionBridgeParams as ActionBridgeParams
 from .action_gather_params import ActionGatherParams as ActionGatherParams
 from .action_hangup_params import ActionHangupParams as ActionHangupParams
 from .action_reject_params import ActionRejectParams as ActionRejectParams
+from .system_message_param import SystemMessageParam as SystemMessageParam
 from .action_enqueue_params import ActionEnqueueParams as ActionEnqueueParams
 from .action_refer_response import ActionReferResponse as ActionReferResponse
 from .action_speak_response import ActionSpeakResponse as ActionSpeakResponse
@@ -21,6 +24,8 @@ from .action_reject_response import ActionRejectResponse as ActionRejectResponse
 from .action_transfer_params import ActionTransferParams as ActionTransferParams
 from .action_enqueue_response import ActionEnqueueResponse as ActionEnqueueResponse
 from .action_send_dtmf_params import ActionSendDtmfParams as ActionSendDtmfParams
+from .assistant_message_param import AssistantMessageParam as AssistantMessageParam
+from .developer_message_param import DeveloperMessageParam as DeveloperMessageParam
 from .action_transfer_response import ActionTransferResponse as ActionTransferResponse
 from .aws_voice_settings_param import AwsVoiceSettingsParam as AwsVoiceSettingsParam
 from .action_leave_queue_params import ActionLeaveQueueParams as ActionLeaveQueueParams
@@ -70,6 +75,7 @@ from .action_gather_using_speak_params import ActionGatherUsingSpeakParams as Ac
 from .action_resume_recording_response import ActionResumeRecordingResponse as ActionResumeRecordingResponse
 from .action_start_ai_assistant_params import ActionStartAIAssistantParams as ActionStartAIAssistantParams
 from .action_stop_transcription_params import ActionStopTranscriptionParams as ActionStopTranscriptionParams
+from .conversation_relay_interruptible import ConversationRelayInterruptible as ConversationRelayInterruptible
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam as ElevenLabsVoiceSettingsParam
 from .action_join_ai_assistant_response import ActionJoinAIAssistantResponse as ActionJoinAIAssistantResponse
 from .action_start_transcription_params import ActionStartTranscriptionParams as ActionStartTranscriptionParams
@@ -82,6 +88,7 @@ from .action_start_ai_assistant_response import ActionStartAIAssistantResponse a
 from .action_stop_transcription_response import ActionStopTranscriptionResponse as ActionStopTranscriptionResponse
 from .action_start_transcription_response import ActionStartTranscriptionResponse as ActionStartTranscriptionResponse
 from .action_update_client_state_response import ActionUpdateClientStateResponse as ActionUpdateClientStateResponse
+from .ai_assistant_join_participant_param import AIAssistantJoinParticipantParam as AIAssistantJoinParticipantParam
 from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam as TranscriptionEngineAConfigParam
 from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam as TranscriptionEngineBConfigParam
 from .action_stop_noise_suppression_params import ActionStopNoiseSuppressionParams as ActionStopNoiseSuppressionParams
@@ -91,6 +98,9 @@ from .action_start_noise_suppression_params import (
 )
 from .action_stop_conversation_relay_params import (
     ActionStopConversationRelayParams as ActionStopConversationRelayParams,
+)
+from .transcription_engine_xai_config_param import (
+    TranscriptionEngineXaiConfigParam as TranscriptionEngineXaiConfigParam,
 )
 from .action_start_conversation_relay_params import (
     ActionStartConversationRelayParams as ActionStartConversationRelayParams,
@@ -119,11 +129,20 @@ from .action_start_conversation_relay_response import (
 from .transcription_engine_google_config_param import (
     TranscriptionEngineGoogleConfigParam as TranscriptionEngineGoogleConfigParam,
 )
+from .transcription_engine_soniox_config_param import (
+    TranscriptionEngineSonioxConfigParam as TranscriptionEngineSonioxConfigParam,
+)
 from .transcription_engine_telnyx_config_param import (
     TranscriptionEngineTelnyxConfigParam as TranscriptionEngineTelnyxConfigParam,
 )
 from .action_add_ai_assistant_messages_response import (
     ActionAddAIAssistantMessagesResponse as ActionAddAIAssistantMessagesResponse,
+)
+from .transcription_engine_assemblyai_config_param import (
+    TranscriptionEngineAssemblyaiConfigParam as TranscriptionEngineAssemblyaiConfigParam,
+)
+from .transcription_engine_speechmatics_config_param import (
+    TranscriptionEngineSpeechmaticsConfigParam as TranscriptionEngineSpeechmaticsConfigParam,
 )
 from .call_control_command_result_with_conversation_id import (
     CallControlCommandResultWithConversationID as CallControlCommandResultWithConversationID,

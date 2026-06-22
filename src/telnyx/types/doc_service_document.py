@@ -4,11 +4,12 @@ from typing import Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .doc_service_record import DocServiceRecord
 
-__all__ = ["DocServiceDocument", "Size"]
+__all__ = ["DocServiceDocument", "DocServiceDocumentSize"]
 
 
-class Size(BaseModel):
+class DocServiceDocumentSize(BaseModel):
     """Indicates the document's filesize"""
 
     amount: Optional[int] = None
@@ -18,18 +19,12 @@ class Size(BaseModel):
     """Identifies the unit"""
 
 
-class DocServiceDocument(BaseModel):
-    id: Optional[str] = None
-    """Identifies the resource."""
-
+class DocServiceDocument(DocServiceRecord):
     av_scan_status: Optional[Literal["scanned", "infected", "pending_scan", "not_scanned"]] = None
     """The antivirus scan status of the document."""
 
     content_type: Optional[str] = None
     """The document's content_type."""
-
-    created_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was created."""
 
     customer_reference: Optional[str] = None
     """Optional reference string for customer tracking."""
@@ -37,17 +32,14 @@ class DocServiceDocument(BaseModel):
     filename: Optional[str] = None
     """The filename of the document."""
 
-    record_type: Optional[str] = None
+    record_type: Optional[str] = None  # type: ignore
     """Identifies the type of the resource."""
 
     sha256: Optional[str] = None
     """The document's SHA256 hash provided for optional verification purposes."""
 
-    size: Optional[Size] = None
+    size: Optional[DocServiceDocumentSize] = None
     """Indicates the document's filesize"""
 
     status: Optional[Literal["pending", "verified", "denied"]] = None
     """Indicates the current document reviewing status"""
-
-    updated_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was updated."""

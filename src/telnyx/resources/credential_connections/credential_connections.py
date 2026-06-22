@@ -11,6 +11,7 @@ from ...types import (
     DtmfType,
     EncryptedMedia,
     AnchorsiteOverride,
+    ConnectionNoiseSuppression,
     credential_connection_list_params,
     credential_connection_create_params,
     credential_connection_update_params,
@@ -41,6 +42,7 @@ from ...types.anchorsite_override import AnchorsiteOverride
 from ...types.credential_connection import CredentialConnection
 from ...types.credential_inbound_param import CredentialInboundParam
 from ...types.credential_outbound_param import CredentialOutboundParam
+from ...types.connection_noise_suppression import ConnectionNoiseSuppression
 from ...types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ...types.credential_connection_create_response import CredentialConnectionCreateResponse
 from ...types.credential_connection_delete_response import CredentialConnectionDeleteResponse
@@ -96,7 +98,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,
@@ -286,7 +288,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,
@@ -574,7 +576,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,
@@ -764,7 +766,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,

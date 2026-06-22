@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .quality import Quality
 
 __all__ = ["FaxCreateParams"]
 
@@ -61,7 +62,7 @@ class FaxCreateParams(TypedDict, total=False):
     preview_format: Literal["pdf", "tiff"]
     """The format for the preview file in case the `store_preview` is `true`."""
 
-    quality: Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"]
+    quality: Quality
     """The quality of the fax.
 
     The `ultra` settings provides the highest quality available, but also present

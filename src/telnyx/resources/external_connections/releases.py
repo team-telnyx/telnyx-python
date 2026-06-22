@@ -17,7 +17,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.external_connections import release_list_params
-from ...types.external_connections.release_list_response import ReleaseListResponse
+from ...types.external_connections.release import Release
 from ...types.external_connections.release_retrieve_response import ReleaseRetrieveResponse
 
 __all__ = ["ReleasesResource", "AsyncReleasesResource"]
@@ -94,7 +94,7 @@ class ReleasesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ReleaseListResponse]:
+    ) -> SyncDefaultFlatPagination[Release]:
         """Returns a list of your Releases for the given external connection.
 
         These are
@@ -117,7 +117,7 @@ class ReleasesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/external_connections/{id}/releases", id=id),
-            page=SyncDefaultFlatPagination[ReleaseListResponse],
+            page=SyncDefaultFlatPagination[Release],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -132,7 +132,7 @@ class ReleasesResource(SyncAPIResource):
                     release_list_params.ReleaseListParams,
                 ),
             ),
-            model=ReleaseListResponse,
+            model=Release,
         )
 
 
@@ -207,7 +207,7 @@ class AsyncReleasesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ReleaseListResponse, AsyncDefaultFlatPagination[ReleaseListResponse]]:
+    ) -> AsyncPaginator[Release, AsyncDefaultFlatPagination[Release]]:
         """Returns a list of your Releases for the given external connection.
 
         These are
@@ -230,7 +230,7 @@ class AsyncReleasesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/external_connections/{id}/releases", id=id),
-            page=AsyncDefaultFlatPagination[ReleaseListResponse],
+            page=AsyncDefaultFlatPagination[Release],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,7 +245,7 @@ class AsyncReleasesResource(AsyncAPIResource):
                     release_list_params.ReleaseListParams,
                 ),
             ),
-            model=ReleaseListResponse,
+            model=Release,
         )
 
 

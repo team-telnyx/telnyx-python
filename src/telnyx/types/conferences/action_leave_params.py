@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
+from .conference_region import ConferenceRegion
+
 __all__ = ["ActionLeaveParams"]
 
 
@@ -25,7 +27,7 @@ class ActionLeaveParams(TypedDict, total=False):
     has already been executed.
     """
 
-    region: Literal["Australia", "Europe", "Middle East", "US"]
+    region: ConferenceRegion
     """Region where the conference data is located.
 
     Defaults to the region defined in user's data locality settings (Europe or US).

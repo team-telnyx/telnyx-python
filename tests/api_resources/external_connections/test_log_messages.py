@@ -11,7 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultPaginationForLogMessages, AsyncDefaultPaginationForLogMessages
 from telnyx.types.external_connections import (
-    LogMessageListResponse,
+    LogMessage,
     LogMessageDismissResponse,
     LogMessageRetrieveResponse,
 )
@@ -68,7 +68,7 @@ class TestLogMessages:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         log_message = client.external_connections.log_messages.list()
-        assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"])
+        assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -84,7 +84,7 @@ class TestLogMessages:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"])
+        assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -94,7 +94,7 @@ class TestLogMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         log_message = response.parse()
-        assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"])
+        assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -104,9 +104,7 @@ class TestLogMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             log_message = response.parse()
-            assert_matches_type(
-                SyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"]
-            )
+            assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -204,9 +202,7 @@ class TestAsyncLogMessages:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         log_message = await async_client.external_connections.log_messages.list()
-        assert_matches_type(
-            AsyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -222,9 +218,7 @@ class TestAsyncLogMessages:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(
-            AsyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -234,9 +228,7 @@ class TestAsyncLogMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         log_message = await response.parse()
-        assert_matches_type(
-            AsyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -246,9 +238,7 @@ class TestAsyncLogMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             log_message = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"]
-            )
+            assert_matches_type(AsyncDefaultPaginationForLogMessages[LogMessage], log_message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

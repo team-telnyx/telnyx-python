@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    ConnectionListResponse,
+    Connection,
     ConnectionRetrieveResponse,
     ConnectionListActiveCallsResponse,
 )
@@ -68,7 +68,7 @@ class TestConnections:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         connection = client.connections.list()
-        assert_matches_type(SyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Connection], connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -83,7 +83,7 @@ class TestConnections:
             page_size=0,
             sort="connection_name",
         )
-        assert_matches_type(SyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Connection], connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -93,7 +93,7 @@ class TestConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Connection], connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -103,7 +103,7 @@ class TestConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connection = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[Connection], connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -213,7 +213,7 @@ class TestAsyncConnections:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         connection = await async_client.connections.list()
-        assert_matches_type(AsyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Connection], connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -228,7 +228,7 @@ class TestAsyncConnections:
             page_size=0,
             sort="connection_name",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Connection], connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -238,7 +238,7 @@ class TestAsyncConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Connection], connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -248,7 +248,7 @@ class TestAsyncConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connection = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[ConnectionListResponse], connection, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[Connection], connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

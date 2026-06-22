@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal
 
 import httpx
 
@@ -27,6 +26,7 @@ from .runs.runs import (
 )
 from ...._compat import cached_property
 from ....types.ai import (
+    ExecutionMode,
     mission_list_params,
     mission_create_params,
     mission_list_events_params,
@@ -58,10 +58,9 @@ from .knowledge_bases import (
     AsyncKnowledgeBasesResourceWithStreamingResponse,
 )
 from ....types.ai.mission_data import MissionData
-from ....types.ai.mission_create_response import MissionCreateResponse
+from ....types.ai.execution_mode import ExecutionMode
+from ....types.ai.mission_response import MissionResponse
 from ....types.ai.missions.runs.event_data import EventData
-from ....types.ai.mission_retrieve_response import MissionRetrieveResponse
-from ....types.ai.mission_update_mission_response import MissionUpdateMissionResponse
 
 __all__ = ["MissionsResource", "AsyncMissionsResource"]
 
@@ -107,7 +106,7 @@ class MissionsResource(SyncAPIResource):
         *,
         name: str,
         description: str | Omit = omit,
-        execution_mode: Literal["external", "managed"] | Omit = omit,
+        execution_mode: ExecutionMode | Omit = omit,
         instructions: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
@@ -117,7 +116,7 @@ class MissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MissionCreateResponse:
+    ) -> MissionResponse:
         """
         Create a new mission definition
 
@@ -146,7 +145,7 @@ class MissionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MissionCreateResponse,
+            cast_to=MissionResponse,
         )
 
     def retrieve(
@@ -159,7 +158,7 @@ class MissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MissionRetrieveResponse:
+    ) -> MissionResponse:
         """
         Get a mission by ID (includes tools, knowledge_bases, mcp_servers)
 
@@ -179,7 +178,7 @@ class MissionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MissionRetrieveResponse,
+            cast_to=MissionResponse,
         )
 
     def list(
@@ -352,7 +351,7 @@ class MissionsResource(SyncAPIResource):
         mission_id: str,
         *,
         description: str | Omit = omit,
-        execution_mode: Literal["external", "managed"] | Omit = omit,
+        execution_mode: ExecutionMode | Omit = omit,
         instructions: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
@@ -363,7 +362,7 @@ class MissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MissionUpdateMissionResponse:
+    ) -> MissionResponse:
         """
         Update a mission definition
 
@@ -394,7 +393,7 @@ class MissionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MissionUpdateMissionResponse,
+            cast_to=MissionResponse,
         )
 
 
@@ -439,7 +438,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         *,
         name: str,
         description: str | Omit = omit,
-        execution_mode: Literal["external", "managed"] | Omit = omit,
+        execution_mode: ExecutionMode | Omit = omit,
         instructions: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
@@ -449,7 +448,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MissionCreateResponse:
+    ) -> MissionResponse:
         """
         Create a new mission definition
 
@@ -478,7 +477,7 @@ class AsyncMissionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MissionCreateResponse,
+            cast_to=MissionResponse,
         )
 
     async def retrieve(
@@ -491,7 +490,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MissionRetrieveResponse:
+    ) -> MissionResponse:
         """
         Get a mission by ID (includes tools, knowledge_bases, mcp_servers)
 
@@ -511,7 +510,7 @@ class AsyncMissionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MissionRetrieveResponse,
+            cast_to=MissionResponse,
         )
 
     def list(
@@ -684,7 +683,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         mission_id: str,
         *,
         description: str | Omit = omit,
-        execution_mode: Literal["external", "managed"] | Omit = omit,
+        execution_mode: ExecutionMode | Omit = omit,
         instructions: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
@@ -695,7 +694,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MissionUpdateMissionResponse:
+    ) -> MissionResponse:
         """
         Update a mission definition
 
@@ -726,7 +725,7 @@ class AsyncMissionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MissionUpdateMissionResponse,
+            cast_to=MissionResponse,
         )
 
 

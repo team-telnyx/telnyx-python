@@ -20,7 +20,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.requirement_list_response import RequirementListResponse
+from ..types.doc_reqs_requirement import DocReqsRequirement
 from ..types.requirement_retrieve_response import RequirementRetrieveResponse
 
 __all__ = ["RequirementsResource", "AsyncRequirementsResource"]
@@ -106,7 +106,7 @@ class RequirementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[RequirementListResponse]:
+    ) -> SyncDefaultFlatPagination[DocReqsRequirement]:
         """
         List all requirements with filtering, sorting, and pagination
 
@@ -129,7 +129,7 @@ class RequirementsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/requirements",
-            page=SyncDefaultFlatPagination[RequirementListResponse],
+            page=SyncDefaultFlatPagination[DocReqsRequirement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -145,7 +145,7 @@ class RequirementsResource(SyncAPIResource):
                     requirement_list_params.RequirementListParams,
                 ),
             ),
-            model=RequirementListResponse,
+            model=DocReqsRequirement,
         )
 
 
@@ -229,7 +229,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RequirementListResponse, AsyncDefaultFlatPagination[RequirementListResponse]]:
+    ) -> AsyncPaginator[DocReqsRequirement, AsyncDefaultFlatPagination[DocReqsRequirement]]:
         """
         List all requirements with filtering, sorting, and pagination
 
@@ -252,7 +252,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/requirements",
-            page=AsyncDefaultFlatPagination[RequirementListResponse],
+            page=AsyncDefaultFlatPagination[DocReqsRequirement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -268,7 +268,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
                     requirement_list_params.RequirementListParams,
                 ),
             ),
-            model=RequirementListResponse,
+            model=DocReqsRequirement,
         )
 
 

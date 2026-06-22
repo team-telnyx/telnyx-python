@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.wireguard_peer_list_response import WireguardPeerListResponse
+from ..types.wireguard_peer import WireguardPeer
 from ..types.wireguard_peer_create_response import WireguardPeerCreateResponse
 from ..types.wireguard_peer_delete_response import WireguardPeerDeleteResponse
 from ..types.wireguard_peer_update_response import WireguardPeerUpdateResponse
@@ -51,7 +51,7 @@ class WireguardPeersResource(SyncAPIResource):
     def create(
         self,
         *,
-        wireguard_interface_id: str,
+        body: wireguard_peer_create_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,8 +65,6 @@ class WireguardPeersResource(SyncAPIResource):
         created.
 
         Args:
-          wireguard_interface_id: The id of the wireguard interface associated with the peer.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -77,10 +75,7 @@ class WireguardPeersResource(SyncAPIResource):
         """
         return self._post(
             "/wireguard_peers",
-            body=maybe_transform(
-                {"wireguard_interface_id": wireguard_interface_id},
-                wireguard_peer_create_params.WireguardPeerCreateParams,
-            ),
+            body=maybe_transform(body, wireguard_peer_create_params.WireguardPeerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -170,7 +165,7 @@ class WireguardPeersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[WireguardPeerListResponse]:
+    ) -> SyncDefaultFlatPagination[WireguardPeer]:
         """
         List all WireGuard peers.
 
@@ -189,7 +184,7 @@ class WireguardPeersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_peers",
-            page=SyncDefaultFlatPagination[WireguardPeerListResponse],
+            page=SyncDefaultFlatPagination[WireguardPeer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -204,7 +199,7 @@ class WireguardPeersResource(SyncAPIResource):
                     wireguard_peer_list_params.WireguardPeerListParams,
                 ),
             ),
-            model=WireguardPeerListResponse,
+            model=WireguardPeer,
         )
 
     def delete(
@@ -300,7 +295,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        wireguard_interface_id: str,
+        body: wireguard_peer_create_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -314,8 +309,6 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         created.
 
         Args:
-          wireguard_interface_id: The id of the wireguard interface associated with the peer.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -326,10 +319,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         """
         return await self._post(
             "/wireguard_peers",
-            body=await async_maybe_transform(
-                {"wireguard_interface_id": wireguard_interface_id},
-                wireguard_peer_create_params.WireguardPeerCreateParams,
-            ),
+            body=await async_maybe_transform(body, wireguard_peer_create_params.WireguardPeerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -421,7 +411,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WireguardPeerListResponse, AsyncDefaultFlatPagination[WireguardPeerListResponse]]:
+    ) -> AsyncPaginator[WireguardPeer, AsyncDefaultFlatPagination[WireguardPeer]]:
         """
         List all WireGuard peers.
 
@@ -440,7 +430,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_peers",
-            page=AsyncDefaultFlatPagination[WireguardPeerListResponse],
+            page=AsyncDefaultFlatPagination[WireguardPeer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -455,7 +445,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
                     wireguard_peer_list_params.WireguardPeerListParams,
                 ),
             ),
-            model=WireguardPeerListResponse,
+            model=WireguardPeer,
         )
 
     async def delete(

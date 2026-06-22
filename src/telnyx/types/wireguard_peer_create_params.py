@@ -4,9 +4,14 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WireguardPeerCreateParams"]
+from .wireguard_peer_param import WireguardPeerParam
+
+__all__ = ["WireguardPeerCreateParams", "Body"]
 
 
 class WireguardPeerCreateParams(TypedDict, total=False):
-    wireguard_interface_id: Required[str]
-    """The id of the wireguard interface associated with the peer."""
+    body: Required[Body]
+
+
+class Body(WireguardPeerParam, total=False):
+    pass

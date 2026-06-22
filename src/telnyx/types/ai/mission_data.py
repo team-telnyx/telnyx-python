@@ -2,9 +2,9 @@
 
 from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .execution_mode import ExecutionMode
 
 __all__ = ["MissionData"]
 
@@ -12,7 +12,7 @@ __all__ = ["MissionData"]
 class MissionData(BaseModel):
     created_at: datetime
 
-    execution_mode: Literal["external", "managed"]
+    execution_mode: ExecutionMode
 
     mission_id: str
 

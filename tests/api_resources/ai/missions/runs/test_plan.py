@@ -10,11 +10,9 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.ai.missions.runs import (
-    PlanCreateResponse,
+    PlanStepResponse,
     PlanRetrieveResponse,
-    PlanUpdateStepResponse,
-    PlanAddStepsToPlanResponse,
-    PlanGetStepDetailsResponse,
+    PlanStepsCreatedResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -37,7 +35,7 @@ class TestPlan:
                 }
             ],
         )
-        assert_matches_type(PlanCreateResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -57,7 +55,7 @@ class TestPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = response.parse()
-        assert_matches_type(PlanCreateResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -77,7 +75,7 @@ class TestPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = response.parse()
-            assert_matches_type(PlanCreateResponse, plan, path=["response"])
+            assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -176,7 +174,7 @@ class TestPlan:
                 }
             ],
         )
-        assert_matches_type(PlanAddStepsToPlanResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -196,7 +194,7 @@ class TestPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = response.parse()
-        assert_matches_type(PlanAddStepsToPlanResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -216,7 +214,7 @@ class TestPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = response.parse()
-            assert_matches_type(PlanAddStepsToPlanResponse, plan, path=["response"])
+            assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -257,7 +255,7 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PlanGetStepDetailsResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -271,7 +269,7 @@ class TestPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = response.parse()
-        assert_matches_type(PlanGetStepDetailsResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -285,7 +283,7 @@ class TestPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = response.parse()
-            assert_matches_type(PlanGetStepDetailsResponse, plan, path=["response"])
+            assert_matches_type(PlanStepResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -321,7 +319,7 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -333,7 +331,7 @@ class TestPlan:
             metadata={"foo": "bar"},
             status="pending",
         )
-        assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -347,7 +345,7 @@ class TestPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = response.parse()
-        assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -361,7 +359,7 @@ class TestPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = response.parse()
-            assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+            assert_matches_type(PlanStepResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +407,7 @@ class TestAsyncPlan:
                 }
             ],
         )
-        assert_matches_type(PlanCreateResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -429,7 +427,7 @@ class TestAsyncPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = await response.parse()
-        assert_matches_type(PlanCreateResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -449,7 +447,7 @@ class TestAsyncPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = await response.parse()
-            assert_matches_type(PlanCreateResponse, plan, path=["response"])
+            assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -548,7 +546,7 @@ class TestAsyncPlan:
                 }
             ],
         )
-        assert_matches_type(PlanAddStepsToPlanResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -568,7 +566,7 @@ class TestAsyncPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = await response.parse()
-        assert_matches_type(PlanAddStepsToPlanResponse, plan, path=["response"])
+        assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -588,7 +586,7 @@ class TestAsyncPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = await response.parse()
-            assert_matches_type(PlanAddStepsToPlanResponse, plan, path=["response"])
+            assert_matches_type(PlanStepsCreatedResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -629,7 +627,7 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PlanGetStepDetailsResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -643,7 +641,7 @@ class TestAsyncPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = await response.parse()
-        assert_matches_type(PlanGetStepDetailsResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -657,7 +655,7 @@ class TestAsyncPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = await response.parse()
-            assert_matches_type(PlanGetStepDetailsResponse, plan, path=["response"])
+            assert_matches_type(PlanStepResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -693,7 +691,7 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -705,7 +703,7 @@ class TestAsyncPlan:
             metadata={"foo": "bar"},
             status="pending",
         )
-        assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -719,7 +717,7 @@ class TestAsyncPlan:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = await response.parse()
-        assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+        assert_matches_type(PlanStepResponse, plan, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -733,7 +731,7 @@ class TestAsyncPlan:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = await response.parse()
-            assert_matches_type(PlanUpdateStepResponse, plan, path=["response"])
+            assert_matches_type(PlanStepResponse, plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

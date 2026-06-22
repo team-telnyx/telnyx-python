@@ -1,9 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .sim_card_status import SimCardStatus as SimCardStatus
+from .xai_voice_settings import XaiVoiceSettings as XaiVoiceSettings
 from .rime_voice_settings import RimeVoiceSettings as RimeVoiceSettings
 from .azure_voice_settings import AzureVoiceSettings as AzureVoiceSettings
 from .book_appointment_tool import BookAppointmentTool as BookAppointmentTool
+from .inworld_voice_settings import InworldVoiceSettings as InworldVoiceSettings
 from .minimax_voice_settings import MinimaxVoiceSettings as MinimaxVoiceSettings
 from .call_control_bucket_ids import CallControlBucketIDs as CallControlBucketIDs
 from .check_availability_tool import CheckAvailabilityTool as CheckAvailabilityTool

@@ -1,19 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal
 
-from .._utils import PropertyInfo
 from .._models import BaseModel
-from .pronunciation_dict_alias_item import PronunciationDictAliasItem
-from .pronunciation_dict_phoneme_item import PronunciationDictPhonemeItem
+from .pronunciation_dict_item import PronunciationDictItem
 
-__all__ = ["PronunciationDictData", "Item"]
-
-Item: TypeAlias = Annotated[
-    Union[PronunciationDictAliasItem, PronunciationDictPhonemeItem], PropertyInfo(discriminator="type")
-]
+__all__ = ["PronunciationDictData"]
 
 
 class PronunciationDictData(BaseModel):
@@ -25,7 +19,7 @@ class PronunciationDictData(BaseModel):
     created_at: Optional[datetime] = None
     """ISO 8601 timestamp with millisecond precision."""
 
-    items: Optional[List[Item]] = None
+    items: Optional[List[PronunciationDictItem]] = None
     """List of pronunciation items (alias or phoneme type)."""
 
     name: Optional[str] = None

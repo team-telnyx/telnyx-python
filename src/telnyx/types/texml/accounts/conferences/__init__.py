@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
+from .participant_resource import ParticipantResource as ParticipantResource
 from .participant_update_params import ParticipantUpdateParams as ParticipantUpdateParams
-from .participant_update_response import ParticipantUpdateResponse as ParticipantUpdateResponse
-from .participant_retrieve_response import ParticipantRetrieveResponse as ParticipantRetrieveResponse
 from .participant_participants_params import ParticipantParticipantsParams as ParticipantParticipantsParams
 from .participant_participants_response import ParticipantParticipantsResponse as ParticipantParticipantsResponse
 from .participant_retrieve_participants_response import (

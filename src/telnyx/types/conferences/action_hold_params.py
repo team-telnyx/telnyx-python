@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
+from .conference_region import ConferenceRegion
 
 __all__ = ["ActionHoldParams"]
 
@@ -30,7 +31,7 @@ class ActionHoldParams(TypedDict, total=False):
     WAV or MP3 file.
     """
 
-    region: Literal["Australia", "Europe", "Middle East", "US"]
+    region: ConferenceRegion
     """Region where the conference data is located.
 
     Defaults to the region defined in user's data locality settings (Europe or US).

@@ -10,9 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    CustomStorageCredentialCreateResponse,
-    CustomStorageCredentialUpdateResponse,
-    CustomStorageCredentialRetrieveResponse,
+    CredentialsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +27,7 @@ class TestCustomStorageCredentials:
             backend="gcs",
             configuration={"backend": "gcs"},
         )
-        assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -43,7 +41,7 @@ class TestCustomStorageCredentials:
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
         )
-        assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -57,7 +55,7 @@ class TestCustomStorageCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_storage_credential = response.parse()
-        assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -71,7 +69,7 @@ class TestCustomStorageCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_storage_credential = response.parse()
-            assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+            assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +89,7 @@ class TestCustomStorageCredentials:
         custom_storage_credential = client.custom_storage_credentials.retrieve(
             "connection_id",
         )
-        assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -103,7 +101,7 @@ class TestCustomStorageCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_storage_credential = response.parse()
-        assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -115,7 +113,7 @@ class TestCustomStorageCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_storage_credential = response.parse()
-            assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
+            assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,7 +133,7 @@ class TestCustomStorageCredentials:
             backend="gcs",
             configuration={"backend": "gcs"},
         )
-        assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -149,7 +147,7 @@ class TestCustomStorageCredentials:
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
         )
-        assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -163,7 +161,7 @@ class TestCustomStorageCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_storage_credential = response.parse()
-        assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -177,7 +175,7 @@ class TestCustomStorageCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_storage_credential = response.parse()
-            assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+            assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,7 +245,7 @@ class TestAsyncCustomStorageCredentials:
             backend="gcs",
             configuration={"backend": "gcs"},
         )
-        assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -261,7 +259,7 @@ class TestAsyncCustomStorageCredentials:
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
         )
-        assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -275,7 +273,7 @@ class TestAsyncCustomStorageCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_storage_credential = await response.parse()
-        assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -289,7 +287,7 @@ class TestAsyncCustomStorageCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_storage_credential = await response.parse()
-            assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
+            assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -309,7 +307,7 @@ class TestAsyncCustomStorageCredentials:
         custom_storage_credential = await async_client.custom_storage_credentials.retrieve(
             "connection_id",
         )
-        assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -321,7 +319,7 @@ class TestAsyncCustomStorageCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_storage_credential = await response.parse()
-        assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -333,7 +331,7 @@ class TestAsyncCustomStorageCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_storage_credential = await response.parse()
-            assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
+            assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,7 +351,7 @@ class TestAsyncCustomStorageCredentials:
             backend="gcs",
             configuration={"backend": "gcs"},
         )
-        assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -367,7 +365,7 @@ class TestAsyncCustomStorageCredentials:
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
         )
-        assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -381,7 +379,7 @@ class TestAsyncCustomStorageCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_storage_credential = await response.parse()
-        assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+        assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -395,7 +393,7 @@ class TestAsyncCustomStorageCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_storage_credential = await response.parse()
-            assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
+            assert_matches_type(CredentialsResponse, custom_storage_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

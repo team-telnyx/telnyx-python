@@ -1,26 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 
-from .record import Record
 from .._models import BaseModel
+from .global_ip import GlobalIP
 
-__all__ = ["GlobalIPDeleteResponse", "Data"]
-
-
-class Data(Record):
-    description: Optional[str] = None
-    """A user specified description for the address."""
-
-    ip_address: Optional[str] = None
-    """The Global IP address."""
-
-    name: Optional[str] = None
-    """A user specified name for the address."""
-
-    ports: Optional[Dict[str, object]] = None
-    """A Global IP ports grouped by protocol code."""
+__all__ = ["GlobalIPDeleteResponse"]
 
 
 class GlobalIPDeleteResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[GlobalIP] = None

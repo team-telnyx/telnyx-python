@@ -11,9 +11,9 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
 from telnyx.types.texml import (
-    AccountRetrieveRecordingsJsonResponse,
     AccountRetrieveTranscriptionsJsonResponse,
 )
+from telnyx.types.texml.accounts.calls import TexmlGetCallRecordingsResponseBody
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +27,7 @@ class TestAccounts:
         account = client.texml.accounts.retrieve_recordings_json(
             account_sid="account_sid",
         )
-        assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -38,7 +38,7 @@ class TestAccounts:
             page=0,
             page_size=0,
         )
-        assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -50,7 +50,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -62,7 +62,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -138,7 +138,7 @@ class TestAsyncAccounts:
         account = await async_client.texml.accounts.retrieve_recordings_json(
             account_sid="account_sid",
         )
-        assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -149,7 +149,7 @@ class TestAsyncAccounts:
             page=0,
             page_size=0,
         )
-        assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -161,7 +161,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -173,7 +173,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(AccountRetrieveRecordingsJsonResponse, account, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

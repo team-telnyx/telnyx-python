@@ -19,9 +19,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.dialogflow_connection_create_response import DialogflowConnectionCreateResponse
-from ..types.dialogflow_connection_update_response import DialogflowConnectionUpdateResponse
-from ..types.dialogflow_connection_retrieve_response import DialogflowConnectionRetrieveResponse
+from ..types.dialogflow_connection_response import DialogflowConnectionResponse
 
 __all__ = ["DialogflowConnectionsResource", "AsyncDialogflowConnectionsResource"]
 
@@ -63,7 +61,7 @@ class DialogflowConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DialogflowConnectionCreateResponse:
+    ) -> DialogflowConnectionResponse:
         """
         Save Dialogflow Credentiails to Telnyx, so it can be used with other Telnyx
         services.
@@ -105,7 +103,7 @@ class DialogflowConnectionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DialogflowConnectionCreateResponse,
+            cast_to=DialogflowConnectionResponse,
         )
 
     def retrieve(
@@ -118,7 +116,7 @@ class DialogflowConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DialogflowConnectionRetrieveResponse:
+    ) -> DialogflowConnectionResponse:
         """
         Return details of the Dialogflow connection associated with the given
         CallControl connection.
@@ -139,7 +137,7 @@ class DialogflowConnectionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DialogflowConnectionRetrieveResponse,
+            cast_to=DialogflowConnectionResponse,
         )
 
     def update(
@@ -157,7 +155,7 @@ class DialogflowConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DialogflowConnectionUpdateResponse:
+    ) -> DialogflowConnectionResponse:
         """
         Updates a stored Dialogflow Connection.
 
@@ -198,7 +196,7 @@ class DialogflowConnectionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DialogflowConnectionUpdateResponse,
+            cast_to=DialogflowConnectionResponse,
         )
 
     def delete(
@@ -273,7 +271,7 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DialogflowConnectionCreateResponse:
+    ) -> DialogflowConnectionResponse:
         """
         Save Dialogflow Credentiails to Telnyx, so it can be used with other Telnyx
         services.
@@ -315,7 +313,7 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DialogflowConnectionCreateResponse,
+            cast_to=DialogflowConnectionResponse,
         )
 
     async def retrieve(
@@ -328,7 +326,7 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DialogflowConnectionRetrieveResponse:
+    ) -> DialogflowConnectionResponse:
         """
         Return details of the Dialogflow connection associated with the given
         CallControl connection.
@@ -349,7 +347,7 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DialogflowConnectionRetrieveResponse,
+            cast_to=DialogflowConnectionResponse,
         )
 
     async def update(
@@ -367,7 +365,7 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DialogflowConnectionUpdateResponse:
+    ) -> DialogflowConnectionResponse:
         """
         Updates a stored Dialogflow Connection.
 
@@ -408,7 +406,7 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DialogflowConnectionUpdateResponse,
+            cast_to=DialogflowConnectionResponse,
         )
 
     async def delete(

@@ -16,9 +16,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.siprec_connector_create_response import SiprecConnectorCreateResponse
-from ..types.siprec_connector_update_response import SiprecConnectorUpdateResponse
-from ..types.siprec_connector_retrieve_response import SiprecConnectorRetrieveResponse
+from ..types.siprec_connector_response import SiprecConnectorResponse
 
 __all__ = ["SiprecConnectorsResource", "AsyncSiprecConnectorsResource"]
 
@@ -58,7 +56,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SiprecConnectorCreateResponse:
+    ) -> SiprecConnectorResponse:
         """
         Creates a new SIPREC connector configuration.
 
@@ -93,7 +91,7 @@ class SiprecConnectorsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SiprecConnectorCreateResponse,
+            cast_to=SiprecConnectorResponse,
         )
 
     def retrieve(
@@ -106,7 +104,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SiprecConnectorRetrieveResponse:
+    ) -> SiprecConnectorResponse:
         """
         Returns details of a stored SIPREC connector.
 
@@ -126,7 +124,7 @@ class SiprecConnectorsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SiprecConnectorRetrieveResponse,
+            cast_to=SiprecConnectorResponse,
         )
 
     def update(
@@ -143,7 +141,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SiprecConnectorUpdateResponse:
+    ) -> SiprecConnectorResponse:
         """
         Updates a stored SIPREC connector configuration.
 
@@ -180,7 +178,7 @@ class SiprecConnectorsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SiprecConnectorUpdateResponse,
+            cast_to=SiprecConnectorResponse,
         )
 
     def delete(
@@ -253,7 +251,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SiprecConnectorCreateResponse:
+    ) -> SiprecConnectorResponse:
         """
         Creates a new SIPREC connector configuration.
 
@@ -288,7 +286,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SiprecConnectorCreateResponse,
+            cast_to=SiprecConnectorResponse,
         )
 
     async def retrieve(
@@ -301,7 +299,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SiprecConnectorRetrieveResponse:
+    ) -> SiprecConnectorResponse:
         """
         Returns details of a stored SIPREC connector.
 
@@ -321,7 +319,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SiprecConnectorRetrieveResponse,
+            cast_to=SiprecConnectorResponse,
         )
 
     async def update(
@@ -338,7 +336,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SiprecConnectorUpdateResponse:
+    ) -> SiprecConnectorResponse:
         """
         Updates a stored SIPREC connector configuration.
 
@@ -375,7 +373,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SiprecConnectorUpdateResponse,
+            cast_to=SiprecConnectorResponse,
         )
 
     async def delete(

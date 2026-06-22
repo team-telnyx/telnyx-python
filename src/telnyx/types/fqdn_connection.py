@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from .._models import BaseModel
 from .dtmf_type import DtmfType
@@ -12,6 +11,7 @@ from .transport_protocol import TransportProtocol
 from .anchorsite_override import AnchorsiteOverride
 from .webhook_api_version import WebhookAPIVersion
 from .connection_rtcp_settings import ConnectionRtcpSettings
+from .connection_noise_suppression import ConnectionNoiseSuppression
 from .shared.connection_jitter_buffer import ConnectionJitterBuffer
 from .shared.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
@@ -99,7 +99,7 @@ class FqdnConnection(BaseModel):
     microsoft_teams_sbc: Optional[bool] = None
     """The connection is enabled for Microsoft Teams Direct Routing."""
 
-    noise_suppression: Optional[Literal["inbound", "outbound", "both", "disabled"]] = None
+    noise_suppression: Optional[ConnectionNoiseSuppression] = None
     """Controls when noise suppression is applied to calls.
 
     When set to 'inbound', noise suppression is applied to incoming audio. When set

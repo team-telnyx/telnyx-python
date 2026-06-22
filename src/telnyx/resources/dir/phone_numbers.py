@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal
 
 import httpx
 
@@ -17,11 +16,18 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.dir import phone_number_add_params, phone_number_list_params, phone_number_remove_params
+from ...types.dir import (
+    DirPhoneNumberStatus,
+    phone_number_add_params,
+    phone_number_list_params,
+    phone_number_remove_params,
+)
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.document_param import DocumentParam
+from ...types.dir.dir_phone_number import DirPhoneNumber
+from ...types.dir.dir_phone_number_status import DirPhoneNumberStatus
 from ...types.dir.phone_number_add_response import PhoneNumberAddResponse
-from ...types.dir.phone_number_list_response import PhoneNumberListResponse
 from ...types.dir.phone_number_remove_response import PhoneNumberRemoveResponse
 
 __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
@@ -57,17 +63,14 @@ class PhoneNumbersResource(SyncAPIResource):
         *,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        status: Literal[
-            "submitted", "in_review", "verified", "unsuccessful", "suspended", "expired", "permanently_rejected"
-        ]
-        | Omit = omit,
+        status: DirPhoneNumberStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumberListResponse]:
+    ) -> SyncDefaultFlatPagination[DirPhoneNumber]:
         """List the phone numbers registered under a DIR.
 
         The enterprise is resolved
@@ -92,7 +95,7 @@ class PhoneNumbersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
         return self._get_api_list(
             path_template("/dir/{dir_id}/phone_numbers", dir_id=dir_id),
-            page=SyncDefaultFlatPagination[PhoneNumberListResponse],
+            page=SyncDefaultFlatPagination[DirPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -107,14 +110,14 @@ class PhoneNumbersResource(SyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberListResponse,
+            model=DirPhoneNumber,
         )
 
     def add(
         self,
         dir_id: str,
         *,
-        documents: Iterable[phone_number_add_params.Document],
+        documents: Iterable[DocumentParam],
         phone_numbers: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -235,17 +238,14 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         *,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        status: Literal[
-            "submitted", "in_review", "verified", "unsuccessful", "suspended", "expired", "permanently_rejected"
-        ]
-        | Omit = omit,
+        status: DirPhoneNumberStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberListResponse, AsyncDefaultFlatPagination[PhoneNumberListResponse]]:
+    ) -> AsyncPaginator[DirPhoneNumber, AsyncDefaultFlatPagination[DirPhoneNumber]]:
         """List the phone numbers registered under a DIR.
 
         The enterprise is resolved
@@ -270,7 +270,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
         return self._get_api_list(
             path_template("/dir/{dir_id}/phone_numbers", dir_id=dir_id),
-            page=AsyncDefaultFlatPagination[PhoneNumberListResponse],
+            page=AsyncDefaultFlatPagination[DirPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -285,14 +285,14 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberListResponse,
+            model=DirPhoneNumber,
         )
 
     async def add(
         self,
         dir_id: str,
         *,
-        documents: Iterable[phone_number_add_params.Document],
+        documents: Iterable[DocumentParam],
         phone_numbers: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

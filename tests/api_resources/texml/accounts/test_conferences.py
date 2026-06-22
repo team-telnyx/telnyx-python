@@ -10,12 +10,11 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.texml.accounts import (
-    ConferenceUpdateResponse,
-    ConferenceRetrieveResponse,
+    ConferenceResource,
     ConferenceRetrieveRecordingsResponse,
     ConferenceRetrieveConferencesResponse,
-    ConferenceRetrieveRecordingsJsonResponse,
 )
+from telnyx.types.texml.accounts.calls import TexmlGetCallRecordingsResponseBody
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +29,7 @@ class TestConferences:
             conference_sid="conference_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(ConferenceRetrieveResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -43,7 +42,7 @@ class TestConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = response.parse()
-        assert_matches_type(ConferenceRetrieveResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -56,7 +55,7 @@ class TestConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = response.parse()
-            assert_matches_type(ConferenceRetrieveResponse, conference, path=["response"])
+            assert_matches_type(ConferenceResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +81,7 @@ class TestConferences:
             conference_sid="conference_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -94,7 +93,7 @@ class TestConferences:
             announce_url="https://www.example.com/announce.xml",
             status="completed",
         )
-        assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -107,7 +106,7 @@ class TestConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = response.parse()
-        assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -120,7 +119,7 @@ class TestConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = response.parse()
-            assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+            assert_matches_type(ConferenceResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -255,7 +254,7 @@ class TestConferences:
             conference_sid="conference_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(ConferenceRetrieveRecordingsJsonResponse, conference, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -268,7 +267,7 @@ class TestConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = response.parse()
-        assert_matches_type(ConferenceRetrieveRecordingsJsonResponse, conference, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -281,7 +280,7 @@ class TestConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = response.parse()
-            assert_matches_type(ConferenceRetrieveRecordingsJsonResponse, conference, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -313,7 +312,7 @@ class TestAsyncConferences:
             conference_sid="conference_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(ConferenceRetrieveResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -326,7 +325,7 @@ class TestAsyncConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = await response.parse()
-        assert_matches_type(ConferenceRetrieveResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -339,7 +338,7 @@ class TestAsyncConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = await response.parse()
-            assert_matches_type(ConferenceRetrieveResponse, conference, path=["response"])
+            assert_matches_type(ConferenceResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +364,7 @@ class TestAsyncConferences:
             conference_sid="conference_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -377,7 +376,7 @@ class TestAsyncConferences:
             announce_url="https://www.example.com/announce.xml",
             status="completed",
         )
-        assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -390,7 +389,7 @@ class TestAsyncConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = await response.parse()
-        assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+        assert_matches_type(ConferenceResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -403,7 +402,7 @@ class TestAsyncConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = await response.parse()
-            assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
+            assert_matches_type(ConferenceResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -538,7 +537,7 @@ class TestAsyncConferences:
             conference_sid="conference_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(ConferenceRetrieveRecordingsJsonResponse, conference, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -551,7 +550,7 @@ class TestAsyncConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = await response.parse()
-        assert_matches_type(ConferenceRetrieveRecordingsJsonResponse, conference, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -564,7 +563,7 @@ class TestAsyncConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = await response.parse()
-            assert_matches_type(ConferenceRetrieveRecordingsJsonResponse, conference, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -45,12 +45,11 @@ from ....types.messaging_10dlc.telnyx_brand import TelnyxBrand
 from ....types.messaging_10dlc.stock_exchange import StockExchange
 from ....types.messaging_10dlc.brand_list_response import BrandListResponse
 from ....types.messaging_10dlc.alt_business_id_type import AltBusinessIDType
+from ....types.messaging_10dlc.brand_sms_otp_status import BrandSMSOtpStatus
 from ....types.messaging_10dlc.brand_identity_status import BrandIdentityStatus
 from ....types.messaging_10dlc.brand_retrieve_response import BrandRetrieveResponse
 from ....types.messaging_10dlc.brand_get_feedback_response import BrandGetFeedbackResponse
 from ....types.messaging_10dlc.brand_trigger_sms_otp_response import BrandTriggerSMSOtpResponse
-from ....types.messaging_10dlc.brand_retrieve_sms_otp_status_response import BrandRetrieveSMSOtpStatusResponse
-from ....types.messaging_10dlc.brand_get_sms_otp_by_reference_response import BrandGetSMSOtpByReferenceResponse
 
 __all__ = ["BrandResource", "AsyncBrandResource"]
 
@@ -578,7 +577,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandGetSMSOtpByReferenceResponse:
+    ) -> BrandSMSOtpStatus:
         """
         Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
         verification.
@@ -617,7 +616,7 @@ class BrandResource(SyncAPIResource):
                     {"brand_id": brand_id}, brand_get_sms_otp_by_reference_params.BrandGetSMSOtpByReferenceParams
                 ),
             ),
-            cast_to=BrandGetSMSOtpByReferenceResponse,
+            cast_to=BrandSMSOtpStatus,
         )
 
     def resend_2fa_email(
@@ -664,7 +663,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandRetrieveSMSOtpStatusResponse:
+    ) -> BrandSMSOtpStatus:
         """
         Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
         verification using the Brand ID.
@@ -695,7 +694,7 @@ class BrandResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandRetrieveSMSOtpStatusResponse,
+            cast_to=BrandSMSOtpStatus,
         )
 
     def revet(
@@ -1377,7 +1376,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandGetSMSOtpByReferenceResponse:
+    ) -> BrandSMSOtpStatus:
         """
         Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
         verification.
@@ -1416,7 +1415,7 @@ class AsyncBrandResource(AsyncAPIResource):
                     {"brand_id": brand_id}, brand_get_sms_otp_by_reference_params.BrandGetSMSOtpByReferenceParams
                 ),
             ),
-            cast_to=BrandGetSMSOtpByReferenceResponse,
+            cast_to=BrandSMSOtpStatus,
         )
 
     async def resend_2fa_email(
@@ -1463,7 +1462,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandRetrieveSMSOtpStatusResponse:
+    ) -> BrandSMSOtpStatus:
         """
         Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
         verification using the Brand ID.
@@ -1494,7 +1493,7 @@ class AsyncBrandResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandRetrieveSMSOtpStatusResponse,
+            cast_to=BrandSMSOtpStatus,
         )
 
     async def revet(

@@ -2,25 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["PlanCreateParams", "Step"]
+from .create_plan_step_request_param import CreatePlanStepRequestParam
+
+__all__ = ["PlanCreateParams"]
 
 
 class PlanCreateParams(TypedDict, total=False):
     mission_id: Required[str]
 
-    steps: Required[Iterable[Step]]
-
-
-class Step(TypedDict, total=False):
-    description: Required[str]
-
-    sequence: Required[int]
-
-    step_id: Required[str]
-
-    metadata: Dict[str, object]
-
-    parent_step_id: str
+    steps: Required[Iterable[CreatePlanStepRequestParam]]

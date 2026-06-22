@@ -2,31 +2,15 @@
 
 from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .porting_order_activation_status import PortingOrderActivationStatus
 
 __all__ = ["PortingOrderActivationSettings"]
 
 
 class PortingOrderActivationSettings(BaseModel):
-    activation_status: Optional[
-        Literal[
-            "New",
-            "Pending",
-            "Conflict",
-            "Cancel Pending",
-            "Failed",
-            "Concurred",
-            "Activate RDY",
-            "Disconnect Pending",
-            "Concurrence Sent",
-            "Old",
-            "Sending",
-            "Active",
-            "Cancelled",
-        ]
-    ] = None
+    activation_status: Optional[PortingOrderActivationStatus] = None
     """Activation status"""
 
     fast_port_eligible: Optional[bool] = None

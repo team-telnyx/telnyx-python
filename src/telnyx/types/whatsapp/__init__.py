@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .whatsapp_user_data import WhatsappUserData as WhatsappUserData
 from .template_list_params import TemplateListParams as TemplateListParams
 from .template_create_params import TemplateCreateParams as TemplateCreateParams
 from .user_data_update_params import UserDataUpdateParams as UserDataUpdateParams
@@ -14,6 +15,21 @@ from .user_data_retrieve_response import UserDataRetrieveResponse as UserDataRet
 from .business_account_list_params import BusinessAccountListParams as BusinessAccountListParams
 from .business_account_list_response import BusinessAccountListResponse as BusinessAccountListResponse
 from .business_account_retrieve_response import BusinessAccountRetrieveResponse as BusinessAccountRetrieveResponse
+from .whatsapp_template_body_component_param import (
+    WhatsappTemplateBodyComponentParam as WhatsappTemplateBodyComponentParam,
+)
 from .phone_number_resend_verification_params import (
     PhoneNumberResendVerificationParams as PhoneNumberResendVerificationParams,
+)
+from .whatsapp_template_footer_component_param import (
+    WhatsappTemplateFooterComponentParam as WhatsappTemplateFooterComponentParam,
+)
+from .whatsapp_template_header_component_param import (
+    WhatsappTemplateHeaderComponentParam as WhatsappTemplateHeaderComponentParam,
+)
+from .whatsapp_template_buttons_component_param import (
+    WhatsappTemplateButtonsComponentParam as WhatsappTemplateButtonsComponentParam,
+)
+from .whatsapp_template_carousel_component_param import (
+    WhatsappTemplateCarouselComponentParam as WhatsappTemplateCarouselComponentParam,
 )

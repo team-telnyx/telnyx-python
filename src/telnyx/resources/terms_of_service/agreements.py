@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -18,9 +16,10 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.terms_of_service import agreement_list_params
-from ...types.terms_of_service.agreement_list_response import AgreementListResponse
-from ...types.terms_of_service.agreement_retrieve_response import AgreementRetrieveResponse
+from ...types.terms_of_service import TosProductType, agreement_list_params
+from ...types.terms_of_service.tos_agreement import TosAgreement
+from ...types.terms_of_service.tos_product_type import TosProductType
+from ...types.terms_of_service.tos_agreement_wrapped import TosAgreementWrapped
 
 __all__ = ["AgreementsResource", "AsyncAgreementsResource"]
 
@@ -59,7 +58,7 @@ class AgreementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AgreementRetrieveResponse:
+    ) -> TosAgreementWrapped:
         """Retrieve a single ToS agreement record.
 
         Returns `404` if the agreement does not
@@ -81,7 +80,7 @@ class AgreementsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AgreementRetrieveResponse,
+            cast_to=TosAgreementWrapped,
         )
 
     def list(
@@ -89,14 +88,14 @@ class AgreementsResource(SyncAPIResource):
         *,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        product_type: TosProductType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[AgreementListResponse]:
+    ) -> SyncDefaultFlatPagination[TosAgreement]:
         """Returns the Terms of Service agreements the authenticated user has on file.
 
         Each
@@ -129,7 +128,7 @@ class AgreementsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/terms_of_service/agreements",
-            page=SyncDefaultFlatPagination[AgreementListResponse],
+            page=SyncDefaultFlatPagination[TosAgreement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -144,7 +143,7 @@ class AgreementsResource(SyncAPIResource):
                     agreement_list_params.AgreementListParams,
                 ),
             ),
-            model=AgreementListResponse,
+            model=TosAgreement,
         )
 
 
@@ -182,7 +181,7 @@ class AsyncAgreementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AgreementRetrieveResponse:
+    ) -> TosAgreementWrapped:
         """Retrieve a single ToS agreement record.
 
         Returns `404` if the agreement does not
@@ -204,7 +203,7 @@ class AsyncAgreementsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AgreementRetrieveResponse,
+            cast_to=TosAgreementWrapped,
         )
 
     def list(
@@ -212,14 +211,14 @@ class AsyncAgreementsResource(AsyncAPIResource):
         *,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        product_type: TosProductType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AgreementListResponse, AsyncDefaultFlatPagination[AgreementListResponse]]:
+    ) -> AsyncPaginator[TosAgreement, AsyncDefaultFlatPagination[TosAgreement]]:
         """Returns the Terms of Service agreements the authenticated user has on file.
 
         Each
@@ -252,7 +251,7 @@ class AsyncAgreementsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/terms_of_service/agreements",
-            page=AsyncDefaultFlatPagination[AgreementListResponse],
+            page=AsyncDefaultFlatPagination[TosAgreement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -267,7 +266,7 @@ class AsyncAgreementsResource(AsyncAPIResource):
                     agreement_list_params.AgreementListParams,
                 ),
             ),
-            model=AgreementListResponse,
+            model=TosAgreement,
         )
 
 

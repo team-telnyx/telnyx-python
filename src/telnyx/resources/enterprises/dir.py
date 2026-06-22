@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from ...types import DirStatus
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -20,9 +21,11 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.dir.dir import Dir
+from ...types.dir_status import DirStatus
+from ...types.dir_wrapped import DirWrapped
 from ...types.enterprises import dir_list_params, dir_create_params
-from ...types.enterprises.dir_list_response import DirListResponse
-from ...types.enterprises.dir_create_response import DirCreateResponse
+from ...types.document_param import DocumentParam
 
 __all__ = ["DirResource", "AsyncDirResource"]
 
@@ -62,7 +65,7 @@ class DirResource(SyncAPIResource):
         certify_no_shaft_content: Literal[True],
         display_name: str,
         call_reasons: SequenceNotStr[str] | Omit = omit,
-        documents: Iterable[dir_create_params.Document] | Omit = omit,
+        documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -71,7 +74,7 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirCreateResponse:
+    ) -> DirWrapped:
         """Create a new DIR under the given enterprise.
 
         The DIR starts in `draft` status;
@@ -156,7 +159,7 @@ class DirResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirCreateResponse,
+            cast_to=DirWrapped,
         )
 
     def list(
@@ -168,19 +171,7 @@ class DirResource(SyncAPIResource):
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
         filter_expiring_within_days: int | Omit = omit,
-        filter_status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
-        ]
-        | Omit = omit,
+        filter_status: DirStatus | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal[
@@ -206,7 +197,7 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[DirListResponse]:
+    ) -> SyncDefaultFlatPagination[Dir]:
         """
         Return the DIRs (Display Identity Records) belonging to a single enterprise.
         Pagination is JSON:API style (`page[number]`, `page[size]`, max 250). Supports
@@ -254,7 +245,7 @@ class DirResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/dir", enterprise_id=enterprise_id),
-            page=SyncDefaultFlatPagination[DirListResponse],
+            page=SyncDefaultFlatPagination[Dir],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -275,7 +266,7 @@ class DirResource(SyncAPIResource):
                     dir_list_params.DirListParams,
                 ),
             ),
-            model=DirListResponse,
+            model=Dir,
         )
 
 
@@ -314,7 +305,7 @@ class AsyncDirResource(AsyncAPIResource):
         certify_no_shaft_content: Literal[True],
         display_name: str,
         call_reasons: SequenceNotStr[str] | Omit = omit,
-        documents: Iterable[dir_create_params.Document] | Omit = omit,
+        documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -323,7 +314,7 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirCreateResponse:
+    ) -> DirWrapped:
         """Create a new DIR under the given enterprise.
 
         The DIR starts in `draft` status;
@@ -408,7 +399,7 @@ class AsyncDirResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirCreateResponse,
+            cast_to=DirWrapped,
         )
 
     def list(
@@ -420,19 +411,7 @@ class AsyncDirResource(AsyncAPIResource):
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
         filter_expiring_within_days: int | Omit = omit,
-        filter_status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
-        ]
-        | Omit = omit,
+        filter_status: DirStatus | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal[
@@ -458,7 +437,7 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DirListResponse, AsyncDefaultFlatPagination[DirListResponse]]:
+    ) -> AsyncPaginator[Dir, AsyncDefaultFlatPagination[Dir]]:
         """
         Return the DIRs (Display Identity Records) belonging to a single enterprise.
         Pagination is JSON:API style (`page[number]`, `page[size]`, max 250). Supports
@@ -506,7 +485,7 @@ class AsyncDirResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/dir", enterprise_id=enterprise_id),
-            page=AsyncDefaultFlatPagination[DirListResponse],
+            page=AsyncDefaultFlatPagination[Dir],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -527,7 +506,7 @@ class AsyncDirResource(AsyncAPIResource):
                     dir_list_params.DirListParams,
                 ),
             ),
-            model=DirListResponse,
+            model=Dir,
         )
 
 

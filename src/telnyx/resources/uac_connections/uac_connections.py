@@ -11,6 +11,7 @@ from ...types import (
     DtmfType,
     EncryptedMedia,
     AnchorsiteOverride,
+    ConnectionNoiseSuppression,
     uac_connection_list_params,
     uac_connection_create_params,
     uac_connection_update_params,
@@ -36,9 +37,14 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dtmf_type import DtmfType
+from ...types.uac_connection import UacConnection
 from ...types.encrypted_media import EncryptedMedia
+from ...types.uac_outbound_param import UacOutboundParam
 from ...types.anchorsite_override import AnchorsiteOverride
-from ...types.uac_connection_list_response import UacConnectionListResponse
+from ...types.uac_inbound_request_param import UacInboundRequestParam
+from ...types.uac_external_settings_param import UacExternalSettingsParam
+from ...types.uac_internal_settings_param import UacInternalSettingsParam
+from ...types.connection_noise_suppression import ConnectionNoiseSuppression
 from ...types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ...types.uac_connection_create_response import UacConnectionCreateResponse
 from ...types.uac_connection_delete_response import UacConnectionDeleteResponse
@@ -89,15 +95,15 @@ class UacConnectionsResource(SyncAPIResource):
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
-        external_uac_settings: uac_connection_create_params.ExternalUacSettings | Omit = omit,
-        inbound: uac_connection_create_params.Inbound | Omit = omit,
-        internal_uac_settings: uac_connection_create_params.InternalUacSettings | Omit = omit,
+        external_uac_settings: UacExternalSettingsParam | Omit = omit,
+        inbound: UacInboundRequestParam | Omit = omit,
+        internal_uac_settings: UacInternalSettingsParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
-        outbound: uac_connection_create_params.Outbound | Omit = omit,
+        outbound: UacOutboundParam | Omit = omit,
         password: str | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | Omit = omit,
@@ -298,15 +304,15 @@ class UacConnectionsResource(SyncAPIResource):
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
-        external_uac_settings: uac_connection_update_params.ExternalUacSettings | Omit = omit,
-        inbound: uac_connection_update_params.Inbound | Omit = omit,
-        internal_uac_settings: uac_connection_update_params.InternalUacSettings | Omit = omit,
+        external_uac_settings: UacExternalSettingsParam | Omit = omit,
+        inbound: UacInboundRequestParam | Omit = omit,
+        internal_uac_settings: UacInternalSettingsParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
-        outbound: uac_connection_update_params.Outbound | Omit = omit,
+        outbound: UacOutboundParam | Omit = omit,
         password: str | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | Omit = omit,
@@ -470,7 +476,7 @@ class UacConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[UacConnectionListResponse]:
+    ) -> SyncDefaultFlatPagination[UacConnection]:
         """Returns a list of your UAC connections.
 
         A UAC (User Agent Client) Connection
@@ -509,7 +515,7 @@ class UacConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/uac_connections",
-            page=SyncDefaultFlatPagination[UacConnectionListResponse],
+            page=SyncDefaultFlatPagination[UacConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -525,7 +531,7 @@ class UacConnectionsResource(SyncAPIResource):
                     uac_connection_list_params.UacConnectionListParams,
                 ),
             ),
-            model=UacConnectionListResponse,
+            model=UacConnection,
         )
 
     def delete(
@@ -601,15 +607,15 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
-        external_uac_settings: uac_connection_create_params.ExternalUacSettings | Omit = omit,
-        inbound: uac_connection_create_params.Inbound | Omit = omit,
-        internal_uac_settings: uac_connection_create_params.InternalUacSettings | Omit = omit,
+        external_uac_settings: UacExternalSettingsParam | Omit = omit,
+        inbound: UacInboundRequestParam | Omit = omit,
+        internal_uac_settings: UacInternalSettingsParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
-        outbound: uac_connection_create_params.Outbound | Omit = omit,
+        outbound: UacOutboundParam | Omit = omit,
         password: str | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | Omit = omit,
@@ -810,15 +816,15 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
-        external_uac_settings: uac_connection_update_params.ExternalUacSettings | Omit = omit,
-        inbound: uac_connection_update_params.Inbound | Omit = omit,
-        internal_uac_settings: uac_connection_update_params.InternalUacSettings | Omit = omit,
+        external_uac_settings: UacExternalSettingsParam | Omit = omit,
+        inbound: UacInboundRequestParam | Omit = omit,
+        internal_uac_settings: UacInternalSettingsParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
-        outbound: uac_connection_update_params.Outbound | Omit = omit,
+        outbound: UacOutboundParam | Omit = omit,
         password: str | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | Omit = omit,
@@ -982,7 +988,7 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[UacConnectionListResponse, AsyncDefaultFlatPagination[UacConnectionListResponse]]:
+    ) -> AsyncPaginator[UacConnection, AsyncDefaultFlatPagination[UacConnection]]:
         """Returns a list of your UAC connections.
 
         A UAC (User Agent Client) Connection
@@ -1021,7 +1027,7 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/uac_connections",
-            page=AsyncDefaultFlatPagination[UacConnectionListResponse],
+            page=AsyncDefaultFlatPagination[UacConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1037,7 +1043,7 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
                     uac_connection_list_params.UacConnectionListParams,
                 ),
             ),
-            model=UacConnectionListResponse,
+            model=UacConnection,
         )
 
     async def delete(

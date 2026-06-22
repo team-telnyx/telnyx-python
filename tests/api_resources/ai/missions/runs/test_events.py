@@ -10,11 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.ai.missions.runs import (
-    EventData,
-    EventLogResponse,
-    EventGetEventDetailsResponse,
-)
+from telnyx.types.ai.missions.runs import EventData, EventResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -96,7 +92,7 @@ class TestEvents:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(EventGetEventDetailsResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -110,7 +106,7 @@ class TestEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = response.parse()
-        assert_matches_type(EventGetEventDetailsResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -124,7 +120,7 @@ class TestEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = response.parse()
-            assert_matches_type(EventGetEventDetailsResponse, event, path=["response"])
+            assert_matches_type(EventResponse, event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +157,7 @@ class TestEvents:
             summary="summary",
             type="status_change",
         )
-        assert_matches_type(EventLogResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -176,7 +172,7 @@ class TestEvents:
             payload={"foo": "bar"},
             step_id="step_id",
         )
-        assert_matches_type(EventLogResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -191,7 +187,7 @@ class TestEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = response.parse()
-        assert_matches_type(EventLogResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -206,7 +202,7 @@ class TestEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = response.parse()
-            assert_matches_type(EventLogResponse, event, path=["response"])
+            assert_matches_type(EventResponse, event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -309,7 +305,7 @@ class TestAsyncEvents:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(EventGetEventDetailsResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -323,7 +319,7 @@ class TestAsyncEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = await response.parse()
-        assert_matches_type(EventGetEventDetailsResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -337,7 +333,7 @@ class TestAsyncEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = await response.parse()
-            assert_matches_type(EventGetEventDetailsResponse, event, path=["response"])
+            assert_matches_type(EventResponse, event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -374,7 +370,7 @@ class TestAsyncEvents:
             summary="summary",
             type="status_change",
         )
-        assert_matches_type(EventLogResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -389,7 +385,7 @@ class TestAsyncEvents:
             payload={"foo": "bar"},
             step_id="step_id",
         )
-        assert_matches_type(EventLogResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -404,7 +400,7 @@ class TestAsyncEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = await response.parse()
-        assert_matches_type(EventLogResponse, event, path=["response"])
+        assert_matches_type(EventResponse, event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -419,7 +415,7 @@ class TestAsyncEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = await response.parse()
-            assert_matches_type(EventLogResponse, event, path=["response"])
+            assert_matches_type(EventResponse, event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

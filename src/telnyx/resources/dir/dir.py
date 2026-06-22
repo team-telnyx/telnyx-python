@@ -9,9 +9,10 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import (
+    DirStatus,
     dir_list_params,
     dir_update_params,
-    dir_create_loa_params,
+    dir_new_loa_params,
     dir_update_infringement_params,
     dir_list_infringement_claims_params,
 )
@@ -51,6 +52,9 @@ from .phone_numbers import (
     AsyncPhoneNumbersResourceWithStreamingResponse,
 )
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.dir.dir import Dir
+from ...types.dir_status import DirStatus
+from ...types.dir_wrapped import DirWrapped
 from .phone_number_batches import (
     PhoneNumberBatchesResource,
     AsyncPhoneNumberBatchesResource,
@@ -59,13 +63,10 @@ from .phone_number_batches import (
     PhoneNumberBatchesResourceWithStreamingResponse,
     AsyncPhoneNumberBatchesResourceWithStreamingResponse,
 )
-from ...types.dir_list_response import DirListResponse
-from ...types.dir_submit_response import DirSubmitResponse
-from ...types.dir_update_response import DirUpdateResponse
-from ...types.dir_retrieve_response import DirRetrieveResponse
+from ...types.document_param import DocumentParam
+from ...types.infringement_claim import InfringementClaim
 from ...types.dir_list_document_types_response import DirListDocumentTypesResponse
-from ...types.dir_update_infringement_response import DirUpdateInfringementResponse
-from ...types.dir_list_infringement_claims_response import DirListInfringementClaimsResponse
+from ...types.enterprises.reputation.agent_input_param import AgentInputParam
 
 __all__ = ["DirResource", "AsyncDirResource"]
 
@@ -122,7 +123,7 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirRetrieveResponse:
+    ) -> DirWrapped:
         """Returns a single DIR by id.
 
         The enterprise is resolved server-side from the DIR
@@ -144,7 +145,7 @@ class DirResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirRetrieveResponse,
+            cast_to=DirWrapped,
         )
 
     def update(
@@ -158,7 +159,7 @@ class DirResource(SyncAPIResource):
         certify_ip_ownership: bool | Omit = omit,
         certify_no_shaft_content: bool | Omit = omit,
         display_name: str | Omit = omit,
-        documents: Iterable[dir_update_params.Document] | Omit = omit,
+        documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,7 +168,7 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirUpdateResponse:
+    ) -> DirWrapped:
         """Edit a DIR.
 
         DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
@@ -241,7 +242,7 @@ class DirResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirUpdateResponse,
+            cast_to=DirWrapped,
         )
 
     def list(
@@ -252,19 +253,7 @@ class DirResource(SyncAPIResource):
         filter_enterprise_id: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
-        filter_status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
-        ]
-        | Omit = omit,
+        filter_status: DirStatus | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal[
@@ -284,7 +273,7 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[DirListResponse]:
+    ) -> SyncDefaultFlatPagination[Dir]:
         """
         Returns every DIR (Display Identity Record) you own, across all of your
         enterprises, as a single list. Pagination is JSON:API style (`page[number]`,
@@ -326,7 +315,7 @@ class DirResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/dir",
-            page=SyncDefaultFlatPagination[DirListResponse],
+            page=SyncDefaultFlatPagination[Dir],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -347,7 +336,7 @@ class DirResource(SyncAPIResource):
                     dir_list_params.DirListParams,
                 ),
             ),
-            model=DirListResponse,
+            model=Dir,
         )
 
     def delete(
@@ -387,13 +376,93 @@ class DirResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def create_loa(
+    def list_document_types(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirListDocumentTypesResponse:
+        """
+        Reference list of `document_type` values accepted by
+        `DirCreateRequest.documents[].document_type` and the infringement-contest
+        endpoint. Each entry has a stable `short_name` (used in API calls) and a
+        customer-facing description.
+        """
+        return self._get(
+            "/dir/document_types",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirListDocumentTypesResponse,
+        )
+
+    def list_infringement_claims(
+        self,
+        dir_id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncDefaultFlatPagination[InfringementClaim]:
+        """Return the trademark or copyright claims filed against this DIR.
+
+        Each claim's
+        `status` is `pending` (newly filed; DIR auto-suspended), `contested` (you have
+        submitted contest evidence; awaiting resolution), or `resolved` (final).
+        Resolution outcomes: `upheld` (claim accepted; DIR stays
+        suspended/permanently_rejected), `rejected` (claim dismissed; DIR restored to
+        `verified`), `modified` (partial outcome).
+
+        Args:
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._get_api_list(
+            path_template("/dir/{dir_id}/infringement_claims", dir_id=dir_id),
+            page=SyncDefaultFlatPagination[InfringementClaim],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    dir_list_infringement_claims_params.DirListInfringementClaimsParams,
+                ),
+            ),
+            model=InfringementClaim,
+        )
+
+    def new_loa(
         self,
         dir_id: str,
         *,
         phone_numbers: SequenceNotStr[str],
-        agent: dir_create_loa_params.Agent | Omit = omit,
-        signature: dir_create_loa_params.Signature | Omit = omit,
+        agent: AgentInputParam | Omit = omit,
+        signature: dir_new_loa_params.Signature | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -444,92 +513,12 @@ class DirResource(SyncAPIResource):
                     "agent": agent,
                     "signature": signature,
                 },
-                dir_create_loa_params.DirCreateLoaParams,
+                dir_new_loa_params.DirNewLoaParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BinaryAPIResponse,
-        )
-
-    def list_document_types(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirListDocumentTypesResponse:
-        """
-        Reference list of `document_type` values accepted by
-        `DirCreateRequest.documents[].document_type` and the infringement-contest
-        endpoint. Each entry has a stable `short_name` (used in API calls) and a
-        customer-facing description.
-        """
-        return self._get(
-            "/dir/document_types",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DirListDocumentTypesResponse,
-        )
-
-    def list_infringement_claims(
-        self,
-        dir_id: str,
-        *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[DirListInfringementClaimsResponse]:
-        """Return the trademark or copyright claims filed against this DIR.
-
-        Each claim's
-        `status` is `pending` (newly filed; DIR auto-suspended), `contested` (you have
-        submitted contest evidence; awaiting resolution), or `resolved` (final).
-        Resolution outcomes: `upheld` (claim accepted; DIR stays
-        suspended/permanently_rejected), `rejected` (claim dismissed; DIR restored to
-        `verified`), `modified` (partial outcome).
-
-        Args:
-          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
-
-          page_size: Items per page. Maximum 250; values above are clamped to 250.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not dir_id:
-            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
-        return self._get_api_list(
-            path_template("/dir/{dir_id}/infringement_claims", dir_id=dir_id),
-            page=SyncDefaultFlatPagination[DirListInfringementClaimsResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    dir_list_infringement_claims_params.DirListInfringementClaimsParams,
-                ),
-            ),
-            model=DirListInfringementClaimsResponse,
         )
 
     def submit(
@@ -542,7 +531,7 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirSubmitResponse:
+    ) -> DirWrapped:
         """Submit a DIR for vetting.
 
         Sends the DIR back through the vetting cycle from any
@@ -570,7 +559,7 @@ class DirResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirSubmitResponse,
+            cast_to=DirWrapped,
         )
 
     def update_infringement(
@@ -584,7 +573,7 @@ class DirResource(SyncAPIResource):
         infringement_resolution_notes: str,
         call_reasons: Optional[SequenceNotStr[str]] | Omit = omit,
         display_name: Optional[str] | Omit = omit,
-        documents: Optional[Iterable[dir_update_infringement_params.Document]] | Omit = omit,
+        documents: Optional[Iterable[DocumentParam]] | Omit = omit,
         logo_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -592,7 +581,7 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirUpdateInfringementResponse:
+    ) -> DirWrapped:
         """
         Push a fix for a DIR that is `suspended` with an open infringement claim back
         into vetting. `POST /dir/{dir_id}/submit` is blocked while a claim is open, so
@@ -645,7 +634,7 @@ class DirResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirUpdateInfringementResponse,
+            cast_to=DirWrapped,
         )
 
 
@@ -701,7 +690,7 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirRetrieveResponse:
+    ) -> DirWrapped:
         """Returns a single DIR by id.
 
         The enterprise is resolved server-side from the DIR
@@ -723,7 +712,7 @@ class AsyncDirResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirRetrieveResponse,
+            cast_to=DirWrapped,
         )
 
     async def update(
@@ -737,7 +726,7 @@ class AsyncDirResource(AsyncAPIResource):
         certify_ip_ownership: bool | Omit = omit,
         certify_no_shaft_content: bool | Omit = omit,
         display_name: str | Omit = omit,
-        documents: Iterable[dir_update_params.Document] | Omit = omit,
+        documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -746,7 +735,7 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirUpdateResponse:
+    ) -> DirWrapped:
         """Edit a DIR.
 
         DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
@@ -820,7 +809,7 @@ class AsyncDirResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirUpdateResponse,
+            cast_to=DirWrapped,
         )
 
     def list(
@@ -831,19 +820,7 @@ class AsyncDirResource(AsyncAPIResource):
         filter_enterprise_id: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
-        filter_status: Literal[
-            "draft",
-            "submitted",
-            "in_review",
-            "verified",
-            "rejected",
-            "unsuccessful",
-            "suspended",
-            "expired",
-            "infringement_claimed",
-            "permanently_rejected",
-        ]
-        | Omit = omit,
+        filter_status: DirStatus | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal[
@@ -863,7 +840,7 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DirListResponse, AsyncDefaultFlatPagination[DirListResponse]]:
+    ) -> AsyncPaginator[Dir, AsyncDefaultFlatPagination[Dir]]:
         """
         Returns every DIR (Display Identity Record) you own, across all of your
         enterprises, as a single list. Pagination is JSON:API style (`page[number]`,
@@ -905,7 +882,7 @@ class AsyncDirResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/dir",
-            page=AsyncDefaultFlatPagination[DirListResponse],
+            page=AsyncDefaultFlatPagination[Dir],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -926,7 +903,7 @@ class AsyncDirResource(AsyncAPIResource):
                     dir_list_params.DirListParams,
                 ),
             ),
-            model=DirListResponse,
+            model=Dir,
         )
 
     async def delete(
@@ -966,13 +943,93 @@ class AsyncDirResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def create_loa(
+    async def list_document_types(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirListDocumentTypesResponse:
+        """
+        Reference list of `document_type` values accepted by
+        `DirCreateRequest.documents[].document_type` and the infringement-contest
+        endpoint. Each entry has a stable `short_name` (used in API calls) and a
+        customer-facing description.
+        """
+        return await self._get(
+            "/dir/document_types",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirListDocumentTypesResponse,
+        )
+
+    def list_infringement_claims(
+        self,
+        dir_id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[InfringementClaim, AsyncDefaultFlatPagination[InfringementClaim]]:
+        """Return the trademark or copyright claims filed against this DIR.
+
+        Each claim's
+        `status` is `pending` (newly filed; DIR auto-suspended), `contested` (you have
+        submitted contest evidence; awaiting resolution), or `resolved` (final).
+        Resolution outcomes: `upheld` (claim accepted; DIR stays
+        suspended/permanently_rejected), `rejected` (claim dismissed; DIR restored to
+        `verified`), `modified` (partial outcome).
+
+        Args:
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._get_api_list(
+            path_template("/dir/{dir_id}/infringement_claims", dir_id=dir_id),
+            page=AsyncDefaultFlatPagination[InfringementClaim],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    dir_list_infringement_claims_params.DirListInfringementClaimsParams,
+                ),
+            ),
+            model=InfringementClaim,
+        )
+
+    async def new_loa(
         self,
         dir_id: str,
         *,
         phone_numbers: SequenceNotStr[str],
-        agent: dir_create_loa_params.Agent | Omit = omit,
-        signature: dir_create_loa_params.Signature | Omit = omit,
+        agent: AgentInputParam | Omit = omit,
+        signature: dir_new_loa_params.Signature | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1023,94 +1080,12 @@ class AsyncDirResource(AsyncAPIResource):
                     "agent": agent,
                     "signature": signature,
                 },
-                dir_create_loa_params.DirCreateLoaParams,
+                dir_new_loa_params.DirNewLoaParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=AsyncBinaryAPIResponse,
-        )
-
-    async def list_document_types(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirListDocumentTypesResponse:
-        """
-        Reference list of `document_type` values accepted by
-        `DirCreateRequest.documents[].document_type` and the infringement-contest
-        endpoint. Each entry has a stable `short_name` (used in API calls) and a
-        customer-facing description.
-        """
-        return await self._get(
-            "/dir/document_types",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DirListDocumentTypesResponse,
-        )
-
-    def list_infringement_claims(
-        self,
-        dir_id: str,
-        *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        DirListInfringementClaimsResponse, AsyncDefaultFlatPagination[DirListInfringementClaimsResponse]
-    ]:
-        """Return the trademark or copyright claims filed against this DIR.
-
-        Each claim's
-        `status` is `pending` (newly filed; DIR auto-suspended), `contested` (you have
-        submitted contest evidence; awaiting resolution), or `resolved` (final).
-        Resolution outcomes: `upheld` (claim accepted; DIR stays
-        suspended/permanently_rejected), `rejected` (claim dismissed; DIR restored to
-        `verified`), `modified` (partial outcome).
-
-        Args:
-          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
-
-          page_size: Items per page. Maximum 250; values above are clamped to 250.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not dir_id:
-            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
-        return self._get_api_list(
-            path_template("/dir/{dir_id}/infringement_claims", dir_id=dir_id),
-            page=AsyncDefaultFlatPagination[DirListInfringementClaimsResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    dir_list_infringement_claims_params.DirListInfringementClaimsParams,
-                ),
-            ),
-            model=DirListInfringementClaimsResponse,
         )
 
     async def submit(
@@ -1123,7 +1098,7 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirSubmitResponse:
+    ) -> DirWrapped:
         """Submit a DIR for vetting.
 
         Sends the DIR back through the vetting cycle from any
@@ -1151,7 +1126,7 @@ class AsyncDirResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirSubmitResponse,
+            cast_to=DirWrapped,
         )
 
     async def update_infringement(
@@ -1165,7 +1140,7 @@ class AsyncDirResource(AsyncAPIResource):
         infringement_resolution_notes: str,
         call_reasons: Optional[SequenceNotStr[str]] | Omit = omit,
         display_name: Optional[str] | Omit = omit,
-        documents: Optional[Iterable[dir_update_infringement_params.Document]] | Omit = omit,
+        documents: Optional[Iterable[DocumentParam]] | Omit = omit,
         logo_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1173,7 +1148,7 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DirUpdateInfringementResponse:
+    ) -> DirWrapped:
         """
         Push a fix for a DIR that is `suspended` with an open infringement claim back
         into vetting. `POST /dir/{dir_id}/submit` is blocked while a claim is open, so
@@ -1226,7 +1201,7 @@ class AsyncDirResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DirUpdateInfringementResponse,
+            cast_to=DirWrapped,
         )
 
 
@@ -1246,15 +1221,15 @@ class DirResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             dir.delete,
         )
-        self.create_loa = to_custom_raw_response_wrapper(
-            dir.create_loa,
-            BinaryAPIResponse,
-        )
         self.list_document_types = to_raw_response_wrapper(
             dir.list_document_types,
         )
         self.list_infringement_claims = to_raw_response_wrapper(
             dir.list_infringement_claims,
+        )
+        self.new_loa = to_custom_raw_response_wrapper(
+            dir.new_loa,
+            BinaryAPIResponse,
         )
         self.submit = to_raw_response_wrapper(
             dir.submit,
@@ -1302,15 +1277,15 @@ class AsyncDirResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             dir.delete,
         )
-        self.create_loa = async_to_custom_raw_response_wrapper(
-            dir.create_loa,
-            AsyncBinaryAPIResponse,
-        )
         self.list_document_types = async_to_raw_response_wrapper(
             dir.list_document_types,
         )
         self.list_infringement_claims = async_to_raw_response_wrapper(
             dir.list_infringement_claims,
+        )
+        self.new_loa = async_to_custom_raw_response_wrapper(
+            dir.new_loa,
+            AsyncBinaryAPIResponse,
         )
         self.submit = async_to_raw_response_wrapper(
             dir.submit,
@@ -1358,15 +1333,15 @@ class DirResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             dir.delete,
         )
-        self.create_loa = to_custom_streamed_response_wrapper(
-            dir.create_loa,
-            StreamedBinaryAPIResponse,
-        )
         self.list_document_types = to_streamed_response_wrapper(
             dir.list_document_types,
         )
         self.list_infringement_claims = to_streamed_response_wrapper(
             dir.list_infringement_claims,
+        )
+        self.new_loa = to_custom_streamed_response_wrapper(
+            dir.new_loa,
+            StreamedBinaryAPIResponse,
         )
         self.submit = to_streamed_response_wrapper(
             dir.submit,
@@ -1414,15 +1389,15 @@ class AsyncDirResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             dir.delete,
         )
-        self.create_loa = async_to_custom_streamed_response_wrapper(
-            dir.create_loa,
-            AsyncStreamedBinaryAPIResponse,
-        )
         self.list_document_types = async_to_streamed_response_wrapper(
             dir.list_document_types,
         )
         self.list_infringement_claims = async_to_streamed_response_wrapper(
             dir.list_infringement_claims,
+        )
+        self.new_loa = async_to_custom_streamed_response_wrapper(
+            dir.new_loa,
+            AsyncStreamedBinaryAPIResponse,
         )
         self.submit = async_to_streamed_response_wrapper(
             dir.submit,

@@ -36,9 +36,8 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.conference import Conference
 from ...types.conference_create_response import ConferenceCreateResponse
 from ...types.conference_retrieve_response import ConferenceRetrieveResponse
+from ...types.conference_participant_resource import ConferenceParticipantResource
 from ...types.conference_list_participants_response import ConferenceListParticipantsResponse
-from ...types.conference_update_participant_response import ConferenceUpdateParticipantResponse
-from ...types.conference_retrieve_participant_response import ConferenceRetrieveParticipantResponse
 
 __all__ = ["ConferencesResource", "AsyncConferencesResource"]
 
@@ -348,7 +347,7 @@ class ConferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceRetrieveParticipantResponse:
+    ) -> ConferenceParticipantResource:
         """
         Retrieve details of a specific conference participant by their ID or label.
 
@@ -370,7 +369,7 @@ class ConferencesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceRetrieveParticipantResponse,
+            cast_to=ConferenceParticipantResource,
         )
 
     def update_participant(
@@ -387,7 +386,7 @@ class ConferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceUpdateParticipantResponse:
+    ) -> ConferenceParticipantResource:
         """
         Update properties of a conference participant.
 
@@ -425,7 +424,7 @@ class ConferencesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceUpdateParticipantResponse,
+            cast_to=ConferenceParticipantResource,
         )
 
 
@@ -738,7 +737,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceRetrieveParticipantResponse:
+    ) -> ConferenceParticipantResource:
         """
         Retrieve details of a specific conference participant by their ID or label.
 
@@ -760,7 +759,7 @@ class AsyncConferencesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceRetrieveParticipantResponse,
+            cast_to=ConferenceParticipantResource,
         )
 
     async def update_participant(
@@ -777,7 +776,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceUpdateParticipantResponse:
+    ) -> ConferenceParticipantResource:
         """
         Update properties of a conference participant.
 
@@ -815,7 +814,7 @@ class AsyncConferencesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceUpdateParticipantResponse,
+            cast_to=ConferenceParticipantResource,
         )
 
 

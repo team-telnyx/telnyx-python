@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    RoomRecordingListResponse,
+    RoomRecording,
     RoomRecordingRetrieveResponse,
     RoomRecordingDeleteBulkResponse,
 )
@@ -69,7 +69,7 @@ class TestRoomRecordings:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         room_recording = client.room_recordings.list()
-        assert_matches_type(SyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -96,7 +96,7 @@ class TestRoomRecordings:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -106,7 +106,7 @@ class TestRoomRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         room_recording = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -116,7 +116,7 @@ class TestRoomRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             room_recording = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -269,7 +269,7 @@ class TestAsyncRoomRecordings:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         room_recording = await async_client.room_recordings.list()
-        assert_matches_type(AsyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -296,7 +296,7 @@ class TestAsyncRoomRecordings:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -306,7 +306,7 @@ class TestAsyncRoomRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         room_recording = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -316,9 +316,7 @@ class TestAsyncRoomRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             room_recording = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPagination[RoomRecordingListResponse], room_recording, path=["response"]
-            )
+            assert_matches_type(AsyncDefaultFlatPagination[RoomRecording], room_recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

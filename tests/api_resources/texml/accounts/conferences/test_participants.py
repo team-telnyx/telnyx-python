@@ -10,8 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.texml.accounts.conferences import (
-    ParticipantUpdateResponse,
-    ParticipantRetrieveResponse,
+    ParticipantResource,
     ParticipantParticipantsResponse,
     ParticipantRetrieveParticipantsResponse,
 )
@@ -30,7 +29,7 @@ class TestParticipants:
             account_sid="account_sid",
             conference_sid="conference_sid",
         )
-        assert_matches_type(ParticipantRetrieveResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -44,7 +43,7 @@ class TestParticipants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         participant = response.parse()
-        assert_matches_type(ParticipantRetrieveResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -58,7 +57,7 @@ class TestParticipants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             participant = response.parse()
-            assert_matches_type(ParticipantRetrieveResponse, participant, path=["response"])
+            assert_matches_type(ParticipantResource, participant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -96,7 +95,7 @@ class TestParticipants:
             account_sid="account_sid",
             conference_sid="conference_sid",
         )
-        assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -117,7 +116,7 @@ class TestParticipants:
             muted=True,
             wait_url="https://www.example.com/wait_music.mp3",
         )
-        assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -131,7 +130,7 @@ class TestParticipants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         participant = response.parse()
-        assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -145,7 +144,7 @@ class TestParticipants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             participant = response.parse()
-            assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+            assert_matches_type(ParticipantResource, participant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -421,7 +420,7 @@ class TestAsyncParticipants:
             account_sid="account_sid",
             conference_sid="conference_sid",
         )
-        assert_matches_type(ParticipantRetrieveResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -435,7 +434,7 @@ class TestAsyncParticipants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         participant = await response.parse()
-        assert_matches_type(ParticipantRetrieveResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -449,7 +448,7 @@ class TestAsyncParticipants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             participant = await response.parse()
-            assert_matches_type(ParticipantRetrieveResponse, participant, path=["response"])
+            assert_matches_type(ParticipantResource, participant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -487,7 +486,7 @@ class TestAsyncParticipants:
             account_sid="account_sid",
             conference_sid="conference_sid",
         )
-        assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -508,7 +507,7 @@ class TestAsyncParticipants:
             muted=True,
             wait_url="https://www.example.com/wait_music.mp3",
         )
-        assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -522,7 +521,7 @@ class TestAsyncParticipants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         participant = await response.parse()
-        assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+        assert_matches_type(ParticipantResource, participant, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -536,7 +535,7 @@ class TestAsyncParticipants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             participant = await response.parse()
-            assert_matches_type(ParticipantUpdateResponse, participant, path=["response"])
+            assert_matches_type(ParticipantResource, participant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

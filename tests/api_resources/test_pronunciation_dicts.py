@@ -11,9 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
     PronunciationDictData,
-    PronunciationDictCreateResponse,
-    PronunciationDictUpdateResponse,
-    PronunciationDictRetrieveResponse,
+    PronunciationDictResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
@@ -36,7 +34,7 @@ class TestPronunciationDicts:
             ],
             name="Brand Names",
         )
-        assert_matches_type(PronunciationDictCreateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -55,7 +53,7 @@ class TestPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = response.parse()
-        assert_matches_type(PronunciationDictCreateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -74,7 +72,7 @@ class TestPronunciationDicts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pronunciation_dict = response.parse()
-            assert_matches_type(PronunciationDictCreateResponse, pronunciation_dict, path=["response"])
+            assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -84,7 +82,7 @@ class TestPronunciationDicts:
         pronunciation_dict = client.pronunciation_dicts.retrieve(
             "c215a3e1-be41-4701-97e8-1d3c22f9a5b7",
         )
-        assert_matches_type(PronunciationDictRetrieveResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -96,7 +94,7 @@ class TestPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = response.parse()
-        assert_matches_type(PronunciationDictRetrieveResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -108,7 +106,7 @@ class TestPronunciationDicts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pronunciation_dict = response.parse()
-            assert_matches_type(PronunciationDictRetrieveResponse, pronunciation_dict, path=["response"])
+            assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -126,7 +124,7 @@ class TestPronunciationDicts:
         pronunciation_dict = client.pronunciation_dicts.update(
             id="c215a3e1-be41-4701-97e8-1d3c22f9a5b7",
         )
-        assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -142,7 +140,7 @@ class TestPronunciationDicts:
             ],
             name="Updated Brand Names",
         )
-        assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -154,7 +152,7 @@ class TestPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = response.parse()
-        assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -166,7 +164,7 @@ class TestPronunciationDicts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pronunciation_dict = response.parse()
-            assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+            assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -276,7 +274,7 @@ class TestAsyncPronunciationDicts:
             ],
             name="Brand Names",
         )
-        assert_matches_type(PronunciationDictCreateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -295,7 +293,7 @@ class TestAsyncPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = await response.parse()
-        assert_matches_type(PronunciationDictCreateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -314,7 +312,7 @@ class TestAsyncPronunciationDicts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pronunciation_dict = await response.parse()
-            assert_matches_type(PronunciationDictCreateResponse, pronunciation_dict, path=["response"])
+            assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -324,7 +322,7 @@ class TestAsyncPronunciationDicts:
         pronunciation_dict = await async_client.pronunciation_dicts.retrieve(
             "c215a3e1-be41-4701-97e8-1d3c22f9a5b7",
         )
-        assert_matches_type(PronunciationDictRetrieveResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -336,7 +334,7 @@ class TestAsyncPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = await response.parse()
-        assert_matches_type(PronunciationDictRetrieveResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -348,7 +346,7 @@ class TestAsyncPronunciationDicts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pronunciation_dict = await response.parse()
-            assert_matches_type(PronunciationDictRetrieveResponse, pronunciation_dict, path=["response"])
+            assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -366,7 +364,7 @@ class TestAsyncPronunciationDicts:
         pronunciation_dict = await async_client.pronunciation_dicts.update(
             id="c215a3e1-be41-4701-97e8-1d3c22f9a5b7",
         )
-        assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -382,7 +380,7 @@ class TestAsyncPronunciationDicts:
             ],
             name="Updated Brand Names",
         )
-        assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -394,7 +392,7 @@ class TestAsyncPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = await response.parse()
-        assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+        assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -406,7 +404,7 @@ class TestAsyncPronunciationDicts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pronunciation_dict = await response.parse()
-            assert_matches_type(PronunciationDictUpdateResponse, pronunciation_dict, path=["response"])
+            assert_matches_type(PronunciationDictResponse, pronunciation_dict, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

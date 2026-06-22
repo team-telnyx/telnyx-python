@@ -16,9 +16,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.ai.assistants import tag_add_params
-from ....types.ai.assistants.tag_add_response import TagAddResponse
-from ....types.ai.assistants.tag_list_response import TagListResponse
-from ....types.ai.assistants.tag_remove_response import TagRemoveResponse
+from ....types.ai.assistants.tags_response import TagsResponse
 
 __all__ = ["TagsResource", "AsyncTagsResource"]
 
@@ -54,14 +52,14 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagListResponse:
+    ) -> TagsResponse:
         """Get All Tags"""
         return self._get(
             "/ai/assistants/tags",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagListResponse,
+            cast_to=TagsResponse,
         )
 
     def add(
@@ -75,7 +73,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagAddResponse:
+    ) -> TagsResponse:
         """
         Add Assistant Tag
 
@@ -96,7 +94,7 @@ class TagsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagAddResponse,
+            cast_to=TagsResponse,
         )
 
     def remove(
@@ -110,7 +108,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagRemoveResponse:
+    ) -> TagsResponse:
         """
         Remove Assistant Tag
 
@@ -132,7 +130,7 @@ class TagsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagRemoveResponse,
+            cast_to=TagsResponse,
         )
 
 
@@ -167,14 +165,14 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagListResponse:
+    ) -> TagsResponse:
         """Get All Tags"""
         return await self._get(
             "/ai/assistants/tags",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagListResponse,
+            cast_to=TagsResponse,
         )
 
     async def add(
@@ -188,7 +186,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagAddResponse:
+    ) -> TagsResponse:
         """
         Add Assistant Tag
 
@@ -209,7 +207,7 @@ class AsyncTagsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagAddResponse,
+            cast_to=TagsResponse,
         )
 
     async def remove(
@@ -223,7 +221,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagRemoveResponse:
+    ) -> TagsResponse:
         """
         Remove Assistant Tag
 
@@ -245,7 +243,7 @@ class AsyncTagsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagRemoveResponse,
+            cast_to=TagsResponse,
         )
 
 
