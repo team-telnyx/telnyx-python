@@ -25,6 +25,8 @@ jobs:
 
       - name: Read Release-As version from staging history
         id: version
+        env:
+          GH_TOKEN: ${{ secrets.SDK_WRITE_TOKEN }}
         run: |
           VERSION=""
           for commit in $(git rev-list HEAD --max-count=50); do
@@ -48,6 +50,22 @@ jobs:
             echo "::warning::Could not determine version; skipping promote"
             echo "has_version=false" >> "$GITHUB_OUTPUT"
           else
+            # Check against prod master's already-released version.
+            # If staging Release-As <= prod released version, auto-bump patch
+            # so release-please creates a new release PR instead of skipping.
+            PROD_VERSION=$(gh api "repos/team-telnyx/telnyx-python/contents/.release-please-manifest.json" \
+              --jq '.content' 2>/dev/null | base64 -d 2>/dev/null | jq -r '.["."] // empty' 2>/dev/null || true)
+            if [ -n "$PROD_VERSION" ]; then
+              HIGHER=$(printf '%s\n%s\n' "$VERSION" "$PROD_VERSION" | sort -V | tail -1)
+              if [ "$VERSION" = "$PROD_VERSION" ] || [ "$HIGHER" = "$PROD_VERSION" ]; then
+                MAJOR=$(echo "$PROD_VERSION" | cut -d. -f1)
+                MINOR=$(echo "$PROD_VERSION" | cut -d. -f2)
+                PATCH=$(echo "$PROD_VERSION" | cut -d. -f3)
+                PATCH=$((PATCH + 1))
+                VERSION="${MAJOR}.${MINOR}.${PATCH}"
+                echo "::warning::Release-As <= prod ${PROD_VERSION}, auto-bumped to ${VERSION}"
+              fi
+            fi
             echo "version=$VERSION" >> "$GITHUB_OUTPUT"
             echo "has_version=true" >> "$GITHUB_OUTPUT"
             echo "Next version: $VERSION"
