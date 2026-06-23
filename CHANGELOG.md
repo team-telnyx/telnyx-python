@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.163.1](https://github.com/team-telnyx/telnyx-python/compare/v4.163.0...v4.163.1) (2026-06-23)
+
+
+### Bug Fixes
+
+* use --no-save for release-please install to avoid dirty worktree ([#335](https://github.com/team-telnyx/telnyx-python/issues/335)) ([185cbf1](https://github.com/team-telnyx/telnyx-python/commit/185cbf1e33f823753ee776c777b69785ac9f450a))
+* use -X theirs for next merge so staging fixes override stale master code ([#338](https://github.com/team-telnyx/telnyx-python/issues/338)) ([e19953b](https://github.com/team-telnyx/telnyx-python/commit/e19953b8da9411fff91dea68257b62b29f12d5fe))
+
 ## [4.163.0](https://github.com/team-telnyx/telnyx-python/compare/v4.162.0...v4.163.0) (2026-06-23)
 
 
