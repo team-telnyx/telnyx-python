@@ -1,22 +1,19 @@
 # Changelog
 
-## [4.163.1](https://github.com/team-telnyx/telnyx-python/compare/v4.163.0...v4.163.1) (2026-06-23)
+## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
 ### Bug Fixes
 
-* use --no-save for release-please install to avoid dirty worktree ([#335](https://github.com/team-telnyx/telnyx-python/issues/335)) ([185cbf1](https://github.com/team-telnyx/telnyx-python/commit/185cbf1e33f823753ee776c777b69785ac9f450a))
-* use -X theirs for next merge so staging fixes override stale master code ([#338](https://github.com/team-telnyx/telnyx-python/issues/338)) ([e19953b](https://github.com/team-telnyx/telnyx-python/commit/e19953b8da9411fff91dea68257b62b29f12d5fe))
+* restore promote-to-prod.yml workflow ([cafbafa](https://github.com/team-telnyx/telnyx-python-staging/commit/cafbafa02649a08f33e1f8631c013be05b54bf88))
 
-## [4.163.0](https://github.com/team-telnyx/telnyx-python/compare/v4.162.0...v4.163.0) (2026-06-23)
+## [4.162.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.161.1...v4.162.0) (2026-06-22)
 
 
 ### Bug Fixes
 
-* remove || true from github-release step ([#329](https://github.com/team-telnyx/telnyx-python/issues/329)) ([fc0235f](https://github.com/team-telnyx/telnyx-python/commit/fc0235f589297a8cb195b9b9e47064d453c9a507))
-* use correct googleapis schema URL in release-please-config.json ([#327](https://github.com/team-telnyx/telnyx-python/issues/327)) ([bf71c7c](https://github.com/team-telnyx/telnyx-python/commit/bf71c7ca8adb4708d0e552c433e9d72327c4da15))
-
-## [4.162.0](https://github.com/team-telnyx/telnyx-python/compare/v4.157.0...v4.162.0) (2026-06-22)
+* remove stale imports for deleted types ([0f5c80b](https://github.com/team-telnyx/telnyx-python-staging/commit/0f5c80bc605773e349618e9a7dfd47b0ea1ee690))
+* restore TYPE_CHECKING import and remove None guard in preserved files ([e9d9375](https://github.com/team-telnyx/telnyx-python-staging/commit/e9d9375b322f85632bf7ebf1cd6dbf1032783add))
 
 
 ### Chores
