@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.162.0 (2026-06-23)
+
+Full Changelog: [v4.162.0...v4.162.0](https://github.com/team-telnyx/telnyx-python/compare/v4.162.0...v4.162.0)
+
+### Bug Fixes
+
+* use correct googleapis schema URL in release-please-config.json ([#327](https://github.com/team-telnyx/telnyx-python/issues/327)) ([bf71c7c](https://github.com/team-telnyx/telnyx-python/commit/bf71c7ca8adb4708d0e552c433e9d72327c4da15))
+
+
+### Chores
+
+* promote from staging 3a81535 ([87aa7ff](https://github.com/team-telnyx/telnyx-python/commit/87aa7ff9087163322407c8cf2203aba419777885))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
