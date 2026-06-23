@@ -25,6 +25,8 @@ jobs:
 
       - name: Read Release-As version from staging history
         id: version
+        env:
+          GH_TOKEN: ${{ secrets.SDK_WRITE_TOKEN }}
         run: |
           VERSION=""
           for commit in $(git rev-list HEAD --max-count=50); do
