@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import sip_registration_status_retrieve_params
-from .._types import Body, Query, Headers, NotGiven, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -32,7 +32,7 @@ class SipRegistrationStatusResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return SipRegistrationStatusResourceWithRawResponse(self)
 
@@ -41,15 +41,16 @@ class SipRegistrationStatusResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
         """
         return SipRegistrationStatusResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
         *,
-        connection_id: str,
-        credential_type: Literal["uac_external_credential"],
+        credential_type: Literal["uac_external_credential", "telephony_credential"],
+        connection_id: str | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -63,10 +64,14 @@ class SipRegistrationStatusResource(SyncAPIResource):
         received from the registrar. Only `uac_external_credential` is supported today.
 
         Args:
-          connection_id: Identifier of the UAC connection to look up.
+          credential_type: The kind of credential to look up. `uac_external_credential` is keyed by
+              `connection_id`; `telephony_credential` is keyed by `username`.
 
-          credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
-              today.
+          connection_id: Identifier of the UAC connection to look up. Required when `credential_type` is
+              `uac_external_credential`.
+
+          username: SIP username of the telephony credential to look up. Required when
+              `credential_type` is `telephony_credential`.
 
           extra_headers: Send extra headers
 
@@ -85,8 +90,9 @@ class SipRegistrationStatusResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "connection_id": connection_id,
                         "credential_type": credential_type,
+                        "connection_id": connection_id,
+                        "username": username,
                     },
                     sip_registration_status_retrieve_params.SipRegistrationStatusRetrieveParams,
                 ),
@@ -104,7 +110,7 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncSipRegistrationStatusResourceWithRawResponse(self)
 
@@ -113,15 +119,16 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
         """
         return AsyncSipRegistrationStatusResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
         *,
-        connection_id: str,
-        credential_type: Literal["uac_external_credential"],
+        credential_type: Literal["uac_external_credential", "telephony_credential"],
+        connection_id: str | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,10 +142,14 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
         received from the registrar. Only `uac_external_credential` is supported today.
 
         Args:
-          connection_id: Identifier of the UAC connection to look up.
+          credential_type: The kind of credential to look up. `uac_external_credential` is keyed by
+              `connection_id`; `telephony_credential` is keyed by `username`.
 
-          credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
-              today.
+          connection_id: Identifier of the UAC connection to look up. Required when `credential_type` is
+              `uac_external_credential`.
+
+          username: SIP username of the telephony credential to look up. Required when
+              `credential_type` is `telephony_credential`.
 
           extra_headers: Send extra headers
 
@@ -157,8 +168,9 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "connection_id": connection_id,
                         "credential_type": credential_type,
+                        "connection_id": connection_id,
+                        "username": username,
                     },
                     sip_registration_status_retrieve_params.SipRegistrationStatusRetrieveParams,
                 ),
