@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.webhook_delivery_list_response import WebhookDeliveryListResponse
+from ..types.webhook_delivery import WebhookDelivery
 from ..types.webhook_delivery_retrieve_response import WebhookDeliveryRetrieveResponse
 
 __all__ = ["WebhookDeliveriesResource", "AsyncWebhookDeliveriesResource"]
@@ -91,7 +91,7 @@ class WebhookDeliveriesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[WebhookDeliveryListResponse]:
+    ) -> SyncDefaultFlatPagination[WebhookDelivery]:
         """
         Lists webhook_deliveries for the authenticated user
 
@@ -112,7 +112,7 @@ class WebhookDeliveriesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/webhook_deliveries",
-            page=SyncDefaultFlatPagination[WebhookDeliveryListResponse],
+            page=SyncDefaultFlatPagination[WebhookDelivery],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -127,7 +127,7 @@ class WebhookDeliveriesResource(SyncAPIResource):
                     webhook_delivery_list_params.WebhookDeliveryListParams,
                 ),
             ),
-            model=WebhookDeliveryListResponse,
+            model=WebhookDelivery,
         )
 
 
@@ -199,7 +199,7 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WebhookDeliveryListResponse, AsyncDefaultFlatPagination[WebhookDeliveryListResponse]]:
+    ) -> AsyncPaginator[WebhookDelivery, AsyncDefaultFlatPagination[WebhookDelivery]]:
         """
         Lists webhook_deliveries for the authenticated user
 
@@ -220,7 +220,7 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/webhook_deliveries",
-            page=AsyncDefaultFlatPagination[WebhookDeliveryListResponse],
+            page=AsyncDefaultFlatPagination[WebhookDelivery],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,7 +235,7 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
                     webhook_delivery_list_params.WebhookDeliveryListParams,
                 ),
             ),
-            model=WebhookDeliveryListResponse,
+            model=WebhookDelivery,
         )
 
 

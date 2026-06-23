@@ -9,29 +9,16 @@ from ...._utils import PropertyInfo
 
 __all__ = [
     "CallCallsParams",
-    "Params",
-    "ParamsWithURL",
-    "ParamsWithURLCustomHeader",
-    "ParamsWithTeXml",
-    "ParamsWithTeXmlCustomHeader",
-    "ParamsApplicationDefault",
-    "ParamsApplicationDefaultCustomHeader",
+    "WithURL",
+    "WithURLCustomHeader",
+    "WithTeXml",
+    "WithTeXmlCustomHeader",
+    "ApplicationDefault",
+    "ApplicationDefaultCustomHeader",
 ]
 
 
-class CallCallsParams(TypedDict, total=False):
-    params: Required[Params]
-
-
-class ParamsWithURLCustomHeader(TypedDict, total=False):
-    name: Required[str]
-    """The name of the custom header"""
-
-    value: Required[str]
-    """The value of the custom header"""
-
-
-class ParamsWithURL(TypedDict, total=False):
+class WithURL(TypedDict, total=False):
     url: Required[Annotated[str, PropertyInfo(alias="Url")]]
     """The URL from which Telnyx will retrieve the TeXML call instructions."""
 
@@ -72,7 +59,7 @@ class ParamsWithURL(TypedDict, total=False):
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
 
-    custom_headers: Annotated[Iterable[ParamsWithURLCustomHeader], PropertyInfo(alias="CustomHeaders")]
+    custom_headers: Annotated[Iterable[WithURLCustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
@@ -245,7 +232,7 @@ class ParamsWithURL(TypedDict, total=False):
     14400 seconds.
     """
 
-    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
+    timeout_seconds: Annotated[int, PropertyInfo(alias="Timeout")]
     """
     The number of seconds to wait for the called party to answer the call before the
     call is canceled. The minimum value is 5 and the maximum value is 120. Default
@@ -271,7 +258,7 @@ class ParamsWithURL(TypedDict, total=False):
     """
 
 
-class ParamsWithTeXmlCustomHeader(TypedDict, total=False):
+class WithURLCustomHeader(TypedDict, total=False):
     name: Required[str]
     """The name of the custom header"""
 
@@ -279,7 +266,7 @@ class ParamsWithTeXmlCustomHeader(TypedDict, total=False):
     """The value of the custom header"""
 
 
-class ParamsWithTeXml(TypedDict, total=False):
+class WithTeXml(TypedDict, total=False):
     texml: Required[Annotated[str, PropertyInfo(alias="Texml")]]
     """TeXML to be used as instructions for the call.
 
@@ -324,7 +311,7 @@ class ParamsWithTeXml(TypedDict, total=False):
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
 
-    custom_headers: Annotated[Iterable[ParamsWithTeXmlCustomHeader], PropertyInfo(alias="CustomHeaders")]
+    custom_headers: Annotated[Iterable[WithTeXmlCustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
@@ -495,7 +482,7 @@ class ParamsWithTeXml(TypedDict, total=False):
     14400 seconds.
     """
 
-    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
+    timeout_seconds: Annotated[int, PropertyInfo(alias="Timeout")]
     """
     The number of seconds to wait for the called party to answer the call before the
     call is canceled. The minimum value is 5 and the maximum value is 120. Default
@@ -523,7 +510,7 @@ class ParamsWithTeXml(TypedDict, total=False):
     """
 
 
-class ParamsApplicationDefaultCustomHeader(TypedDict, total=False):
+class WithTeXmlCustomHeader(TypedDict, total=False):
     name: Required[str]
     """The name of the custom header"""
 
@@ -531,7 +518,7 @@ class ParamsApplicationDefaultCustomHeader(TypedDict, total=False):
     """The value of the custom header"""
 
 
-class ParamsApplicationDefault(TypedDict, total=False):
+class ApplicationDefault(TypedDict, total=False):
     application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
     """The ID of the TeXML Application."""
 
@@ -569,7 +556,7 @@ class ParamsApplicationDefault(TypedDict, total=False):
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
 
-    custom_headers: Annotated[Iterable[ParamsApplicationDefaultCustomHeader], PropertyInfo(alias="CustomHeaders")]
+    custom_headers: Annotated[Iterable[ApplicationDefaultCustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
@@ -742,7 +729,7 @@ class ParamsApplicationDefault(TypedDict, total=False):
     14400 seconds.
     """
 
-    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
+    timeout_seconds: Annotated[int, PropertyInfo(alias="Timeout")]
     """
     The number of seconds to wait for the called party to answer the call before the
     call is canceled. The minimum value is 5 and the maximum value is 120. Default
@@ -770,4 +757,12 @@ class ParamsApplicationDefault(TypedDict, total=False):
     """
 
 
-Params: TypeAlias = Union[ParamsWithURL, ParamsWithTeXml, ParamsApplicationDefault]
+class ApplicationDefaultCustomHeader(TypedDict, total=False):
+    name: Required[str]
+    """The name of the custom header"""
+
+    value: Required[str]
+    """The value of the custom header"""
+
+
+CallCallsParams: TypeAlias = Union[WithURL, WithTeXml, ApplicationDefault]

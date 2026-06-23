@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
+from .remediation_status import RemediationStatus
 
 __all__ = ["RemediationListParams"]
 
@@ -22,9 +23,7 @@ class RemediationListParams(TypedDict, total=False):
     ]
     """Only requests created on or before this timestamp (ISO 8601)."""
 
-    filter_status: Annotated[
-        Literal["pending", "in_progress", "completed", "failed", "cancelled"], PropertyInfo(alias="filter[status]")
-    ]
+    filter_status: Annotated[RemediationStatus, PropertyInfo(alias="filter[status]")]
     """Filter by customer-facing status."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]

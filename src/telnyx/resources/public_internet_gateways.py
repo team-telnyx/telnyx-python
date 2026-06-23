@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.public_internet_gateway_list_response import PublicInternetGatewayListResponse
+from ..types.public_internet_gateway_read import PublicInternetGatewayRead
 from ..types.public_internet_gateway_create_response import PublicInternetGatewayCreateResponse
 from ..types.public_internet_gateway_delete_response import PublicInternetGatewayDeleteResponse
 from ..types.public_internet_gateway_retrieve_response import PublicInternetGatewayRetrieveResponse
@@ -50,9 +50,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
     def create(
         self,
         *,
-        name: str | Omit = omit,
-        network_id: str | Omit = omit,
-        region_code: str | Omit = omit,
+        body: public_internet_gateway_create_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,12 +62,6 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         Create a new Public Internet Gateway.
 
         Args:
-          name: A user specified name for the interface.
-
-          network_id: The id of the network associated with the interface.
-
-          region_code: The region interface is deployed to.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -80,14 +72,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         """
         return self._post(
             "/public_internet_gateways",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "network_id": network_id,
-                    "region_code": region_code,
-                },
-                public_internet_gateway_create_params.PublicInternetGatewayCreateParams,
-            ),
+            body=maybe_transform(body, public_internet_gateway_create_params.PublicInternetGatewayCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -139,7 +124,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PublicInternetGatewayListResponse]:
+    ) -> SyncDefaultFlatPagination[PublicInternetGatewayRead]:
         """
         List all Public Internet Gateways.
 
@@ -156,7 +141,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/public_internet_gateways",
-            page=SyncDefaultFlatPagination[PublicInternetGatewayListResponse],
+            page=SyncDefaultFlatPagination[PublicInternetGatewayRead],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -171,7 +156,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
                     public_internet_gateway_list_params.PublicInternetGatewayListParams,
                 ),
             ),
-            model=PublicInternetGatewayListResponse,
+            model=PublicInternetGatewayRead,
         )
 
     def delete(
@@ -233,9 +218,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: str | Omit = omit,
-        network_id: str | Omit = omit,
-        region_code: str | Omit = omit,
+        body: public_internet_gateway_create_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -247,12 +230,6 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         Create a new Public Internet Gateway.
 
         Args:
-          name: A user specified name for the interface.
-
-          network_id: The id of the network associated with the interface.
-
-          region_code: The region interface is deployed to.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -264,12 +241,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         return await self._post(
             "/public_internet_gateways",
             body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "network_id": network_id,
-                    "region_code": region_code,
-                },
-                public_internet_gateway_create_params.PublicInternetGatewayCreateParams,
+                body, public_internet_gateway_create_params.PublicInternetGatewayCreateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -322,9 +294,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        PublicInternetGatewayListResponse, AsyncDefaultFlatPagination[PublicInternetGatewayListResponse]
-    ]:
+    ) -> AsyncPaginator[PublicInternetGatewayRead, AsyncDefaultFlatPagination[PublicInternetGatewayRead]]:
         """
         List all Public Internet Gateways.
 
@@ -341,7 +311,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/public_internet_gateways",
-            page=AsyncDefaultFlatPagination[PublicInternetGatewayListResponse],
+            page=AsyncDefaultFlatPagination[PublicInternetGatewayRead],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -356,7 +326,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
                     public_internet_gateway_list_params.PublicInternetGatewayListParams,
                 ),
             ),
-            model=PublicInternetGatewayListResponse,
+            model=PublicInternetGatewayRead,
         )
 
     async def delete(

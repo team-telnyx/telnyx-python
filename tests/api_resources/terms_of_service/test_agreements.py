@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.terms_of_service import AgreementListResponse, AgreementRetrieveResponse
+from telnyx.types.terms_of_service import TosAgreement, TosAgreementWrapped
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestAgreements:
         agreement = client.terms_of_service.agreements.retrieve(
             "550e8400-e29b-41d4-a716-446655440000",
         )
-        assert_matches_type(AgreementRetrieveResponse, agreement, path=["response"])
+        assert_matches_type(TosAgreementWrapped, agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -36,7 +36,7 @@ class TestAgreements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         agreement = response.parse()
-        assert_matches_type(AgreementRetrieveResponse, agreement, path=["response"])
+        assert_matches_type(TosAgreementWrapped, agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -48,7 +48,7 @@ class TestAgreements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             agreement = response.parse()
-            assert_matches_type(AgreementRetrieveResponse, agreement, path=["response"])
+            assert_matches_type(TosAgreementWrapped, agreement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +64,7 @@ class TestAgreements:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         agreement = client.terms_of_service.agreements.list()
-        assert_matches_type(SyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -74,7 +74,7 @@ class TestAgreements:
             page_size=20,
             product_type="branded_calling",
         )
-        assert_matches_type(SyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -84,7 +84,7 @@ class TestAgreements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         agreement = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -94,7 +94,7 @@ class TestAgreements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             agreement = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -110,7 +110,7 @@ class TestAsyncAgreements:
         agreement = await async_client.terms_of_service.agreements.retrieve(
             "550e8400-e29b-41d4-a716-446655440000",
         )
-        assert_matches_type(AgreementRetrieveResponse, agreement, path=["response"])
+        assert_matches_type(TosAgreementWrapped, agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -122,7 +122,7 @@ class TestAsyncAgreements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         agreement = await response.parse()
-        assert_matches_type(AgreementRetrieveResponse, agreement, path=["response"])
+        assert_matches_type(TosAgreementWrapped, agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -134,7 +134,7 @@ class TestAsyncAgreements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             agreement = await response.parse()
-            assert_matches_type(AgreementRetrieveResponse, agreement, path=["response"])
+            assert_matches_type(TosAgreementWrapped, agreement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -150,7 +150,7 @@ class TestAsyncAgreements:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         agreement = await async_client.terms_of_service.agreements.list()
-        assert_matches_type(AsyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -160,7 +160,7 @@ class TestAsyncAgreements:
             page_size=20,
             product_type="branded_calling",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -170,7 +170,7 @@ class TestAsyncAgreements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         agreement = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -180,6 +180,6 @@ class TestAsyncAgreements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             agreement = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[AgreementListResponse], agreement, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[TosAgreement], agreement, path=["response"])
 
         assert cast(Any, response.is_closed) is True

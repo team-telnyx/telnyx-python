@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
+from .tos_agreement import TosAgreement as TosAgreement
+from .tos_product_type import TosProductType as TosProductType
 from .agreement_list_params import AgreementListParams as AgreementListParams
-from .agreement_list_response import AgreementListResponse as AgreementListResponse
-from .agreement_retrieve_response import AgreementRetrieveResponse as AgreementRetrieveResponse
-from .branded_calling_agree_response import BrandedCallingAgreeResponse as BrandedCallingAgreeResponse
-from .number_reputation_agree_response import NumberReputationAgreeResponse as NumberReputationAgreeResponse
+from .tos_agreement_wrapped import TosAgreementWrapped as TosAgreementWrapped

@@ -11,7 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.porting_orders import (
-    ActionRequirementListResponse,
+    PortingActionRequirement,
     ActionRequirementInitiateResponse,
 )
 
@@ -27,9 +27,7 @@ class TestActionRequirements:
         action_requirement = client.porting_orders.action_requirements.list(
             porting_order_id="porting_order_id",
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -46,9 +44,7 @@ class TestActionRequirements:
             page_size=0,
             sort={"value": "created_at"},
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -60,9 +56,7 @@ class TestActionRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action_requirement = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -75,7 +69,7 @@ class TestActionRequirements:
 
             action_requirement = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
+                SyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -172,9 +166,7 @@ class TestAsyncActionRequirements:
         action_requirement = await async_client.porting_orders.action_requirements.list(
             porting_order_id="porting_order_id",
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -191,9 +183,7 @@ class TestAsyncActionRequirements:
             page_size=0,
             sort={"value": "created_at"},
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -205,9 +195,7 @@ class TestAsyncActionRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action_requirement = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -220,7 +208,7 @@ class TestAsyncActionRequirements:
 
             action_requirement = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
+                AsyncDefaultFlatPagination[PortingActionRequirement], action_requirement, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

@@ -13,11 +13,10 @@ from telnyx.pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
 from telnyx.types.messaging_10dlc import (
     TelnyxBrand,
     BrandListResponse,
+    BrandSMSOtpStatus,
     BrandRetrieveResponse,
     BrandGetFeedbackResponse,
     BrandTriggerSMSOtpResponse,
-    BrandGetSMSOtpByReferenceResponse,
-    BrandRetrieveSMSOtpStatusResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -374,7 +373,7 @@ class TestBrand:
         brand = client.messaging_10dlc.brand.get_sms_otp_by_reference(
             reference_id="OTP4B2001",
         )
-        assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -383,7 +382,7 @@ class TestBrand:
             reference_id="OTP4B2001",
             brand_id="B123ABC",
         )
-        assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -395,7 +394,7 @@ class TestBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = response.parse()
-        assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -407,7 +406,7 @@ class TestBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = response.parse()
-            assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+            assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -467,7 +466,7 @@ class TestBrand:
         brand = client.messaging_10dlc.brand.retrieve_sms_otp_status(
             "4b20019b-043a-78f8-0657-b3be3f4b4002",
         )
-        assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -479,7 +478,7 @@ class TestBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = response.parse()
-        assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -491,7 +490,7 @@ class TestBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = response.parse()
-            assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
+            assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -995,7 +994,7 @@ class TestAsyncBrand:
         brand = await async_client.messaging_10dlc.brand.get_sms_otp_by_reference(
             reference_id="OTP4B2001",
         )
-        assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1004,7 +1003,7 @@ class TestAsyncBrand:
             reference_id="OTP4B2001",
             brand_id="B123ABC",
         )
-        assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1016,7 +1015,7 @@ class TestAsyncBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = await response.parse()
-        assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1028,7 +1027,7 @@ class TestAsyncBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = await response.parse()
-            assert_matches_type(BrandGetSMSOtpByReferenceResponse, brand, path=["response"])
+            assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1088,7 +1087,7 @@ class TestAsyncBrand:
         brand = await async_client.messaging_10dlc.brand.retrieve_sms_otp_status(
             "4b20019b-043a-78f8-0657-b3be3f4b4002",
         )
-        assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1100,7 +1099,7 @@ class TestAsyncBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = await response.parse()
-        assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
+        assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -1112,7 +1111,7 @@ class TestAsyncBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = await response.parse()
-            assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
+            assert_matches_type(BrandSMSOtpStatus, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

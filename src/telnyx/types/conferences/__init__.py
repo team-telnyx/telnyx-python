@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .conference_region import ConferenceRegion as ConferenceRegion
 from .action_hold_params import ActionHoldParams as ActionHoldParams
 from .action_join_params import ActionJoinParams as ActionJoinParams
 from .action_mute_params import ActionMuteParams as ActionMuteParams

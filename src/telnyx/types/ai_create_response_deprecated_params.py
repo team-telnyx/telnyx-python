@@ -9,4 +9,4 @@ __all__ = ["AICreateResponseDeprecatedParams"]
 
 
 class AICreateResponseDeprecatedParams(TypedDict, total=False):
-    body: Required[Dict[str, object]]
+    response_request: Required[Dict[str, object]]

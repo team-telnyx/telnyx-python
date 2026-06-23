@@ -2,9 +2,9 @@
 
 from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ....._models import BaseModel
+from .step_status import StepStatus
 
 __all__ = ["PlanStepData"]
 
@@ -16,7 +16,7 @@ class PlanStepData(BaseModel):
 
     sequence: int
 
-    status: Literal["pending", "in_progress", "completed", "skipped", "failed"]
+    status: StepStatus
 
     step_id: str
 

@@ -18,11 +18,9 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.texml.accounts.calls import recordings_json_recordings_json_params
-from .....types.texml.accounts.calls.recordings_json_recordings_json_response import (
-    RecordingsJsonRecordingsJsonResponse,
-)
-from .....types.texml.accounts.calls.recordings_json_retrieve_recordings_json_response import (
-    RecordingsJsonRetrieveRecordingsJsonResponse,
+from .....types.texml.accounts.calls.texml_get_call_recordings_response_body import TexmlGetCallRecordingsResponseBody
+from .....types.texml.accounts.calls.texml_create_call_recording_response_body import (
+    TexmlCreateCallRecordingResponseBody,
 )
 
 __all__ = ["RecordingsJsonResource", "AsyncRecordingsJsonResource"]
@@ -68,7 +66,7 @@ class RecordingsJsonResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingsJsonRecordingsJsonResponse:
+    ) -> TexmlCreateCallRecordingResponseBody:
         """
         Starts recording with specified parameters for call idientified by call_sid.
 
@@ -123,7 +121,7 @@ class RecordingsJsonResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingsJsonRecordingsJsonResponse,
+            cast_to=TexmlCreateCallRecordingResponseBody,
         )
 
     def retrieve_recordings_json(
@@ -137,7 +135,7 @@ class RecordingsJsonResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingsJsonRetrieveRecordingsJsonResponse:
+    ) -> TexmlGetCallRecordingsResponseBody:
         """
         Returns recordings for a call identified by call_sid.
 
@@ -163,7 +161,7 @@ class RecordingsJsonResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingsJsonRetrieveRecordingsJsonResponse,
+            cast_to=TexmlGetCallRecordingsResponseBody,
         )
 
 
@@ -207,7 +205,7 @@ class AsyncRecordingsJsonResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingsJsonRecordingsJsonResponse:
+    ) -> TexmlCreateCallRecordingResponseBody:
         """
         Starts recording with specified parameters for call idientified by call_sid.
 
@@ -262,7 +260,7 @@ class AsyncRecordingsJsonResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingsJsonRecordingsJsonResponse,
+            cast_to=TexmlCreateCallRecordingResponseBody,
         )
 
     async def retrieve_recordings_json(
@@ -276,7 +274,7 @@ class AsyncRecordingsJsonResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingsJsonRetrieveRecordingsJsonResponse:
+    ) -> TexmlGetCallRecordingsResponseBody:
         """
         Returns recordings for a call identified by call_sid.
 
@@ -302,7 +300,7 @@ class AsyncRecordingsJsonResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingsJsonRetrieveRecordingsJsonResponse,
+            cast_to=TexmlGetCallRecordingsResponseBody,
         )
 
 

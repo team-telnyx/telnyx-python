@@ -6,6 +6,7 @@ from .metadata import Metadata as Metadata
 from .api_error import APIError as APIError
 from .short_code import ShortCode as ShortCode
 from .hosted_number import HostedNumber as HostedNumber
+from .messaging_error import MessagingError as MessagingError
 from .reputation_data import ReputationData as ReputationData
 from .sim_card_status import SimCardStatus as SimCardStatus
 from .simple_sim_card import SimpleSimCard as SimpleSimCard
@@ -13,12 +14,14 @@ from .cost_information import CostInformation as CostInformation
 from .netapps_location import NetappsLocation as NetappsLocation
 from .room_participant import RoomParticipant as RoomParticipant
 from .region_information import RegionInformation as RegionInformation
+from .xai_voice_settings import XaiVoiceSettings as XaiVoiceSettings
 from .rime_voice_settings import RimeVoiceSettings as RimeVoiceSettings
 from .azure_voice_settings import AzureVoiceSettings as AzureVoiceSettings
 from .porting_order_status import PortingOrderStatus as PortingOrderStatus
 from .book_appointment_tool import BookAppointmentTool as BookAppointmentTool
 from .messaging_feature_set import MessagingFeatureSet as MessagingFeatureSet
 from .number_health_metrics import NumberHealthMetrics as NumberHealthMetrics
+from .inworld_voice_settings import InworldVoiceSettings as InworldVoiceSettings
 from .minimax_voice_settings import MinimaxVoiceSettings as MinimaxVoiceSettings
 from .whatsapp_template_data import WhatsappTemplateData as WhatsappTemplateData
 from .call_control_bucket_ids import CallControlBucketIDs as CallControlBucketIDs

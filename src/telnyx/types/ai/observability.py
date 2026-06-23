@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .prompt_sync_status import PromptSyncStatus
+from .observability_status import ObservabilityStatus
 
 __all__ = ["Observability"]
 
@@ -15,7 +16,7 @@ class Observability(BaseModel):
 
     prompt_name: Optional[str] = None
 
-    prompt_sync: Optional[Literal["enabled", "disabled"]] = None
+    prompt_sync: Optional[PromptSyncStatus] = None
     """Whether to auto-publish the assistant's instructions as a Langfuse prompt.
 
     When ENABLED + prompt_name set, every assistant create/update pushes
@@ -29,4 +30,4 @@ class Observability(BaseModel):
 
     secret_key_ref: Optional[str] = None
 
-    status: Optional[Literal["enabled", "disabled"]] = None
+    status: Optional[ObservabilityStatus] = None

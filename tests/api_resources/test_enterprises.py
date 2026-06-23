@@ -11,10 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
     EnterprisePublic,
-    EnterpriseCreateResponse,
-    EnterpriseUpdateResponse,
-    EnterpriseRetrieveResponse,
-    EnterpriseActivateBrandedCallingResponse,
+    EnterprisePublicWrapped,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
@@ -66,7 +63,7 @@ class TestEnterprises:
             organization_type="commercial",
             website="https://run065.example.com",
         )
-        assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -118,7 +115,7 @@ class TestEnterprises:
             professional_license_number="professional_license_number",
             role_type="enterprise",
         )
-        assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -166,7 +163,7 @@ class TestEnterprises:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = response.parse()
-        assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -214,7 +211,7 @@ class TestEnterprises:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = response.parse()
-            assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -224,7 +221,7 @@ class TestEnterprises:
         enterprise = client.enterprises.retrieve(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(EnterpriseRetrieveResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -236,7 +233,7 @@ class TestEnterprises:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = response.parse()
-        assert_matches_type(EnterpriseRetrieveResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -248,7 +245,7 @@ class TestEnterprises:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = response.parse()
-            assert_matches_type(EnterpriseRetrieveResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -266,7 +263,7 @@ class TestEnterprises:
         enterprise = client.enterprises.update(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -316,7 +313,7 @@ class TestEnterprises:
             professional_license_number="professional_license_number",
             website="https://acmeplumbing.example.com",
         )
-        assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -328,7 +325,7 @@ class TestEnterprises:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = response.parse()
-        assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -340,7 +337,7 @@ class TestEnterprises:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = response.parse()
-            assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -435,43 +432,43 @@ class TestEnterprises:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_activate_branded_calling(self, client: Telnyx) -> None:
-        enterprise = client.enterprises.activate_branded_calling(
+    def test_method_branded_calling(self, client: Telnyx) -> None:
+        enterprise = client.enterprises.branded_calling(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(EnterpriseActivateBrandedCallingResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_activate_branded_calling(self, client: Telnyx) -> None:
-        response = client.enterprises.with_raw_response.activate_branded_calling(
+    def test_raw_response_branded_calling(self, client: Telnyx) -> None:
+        response = client.enterprises.with_raw_response.branded_calling(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = response.parse()
-        assert_matches_type(EnterpriseActivateBrandedCallingResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_activate_branded_calling(self, client: Telnyx) -> None:
-        with client.enterprises.with_streaming_response.activate_branded_calling(
+    def test_streaming_response_branded_calling(self, client: Telnyx) -> None:
+        with client.enterprises.with_streaming_response.branded_calling(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = response.parse()
-            assert_matches_type(EnterpriseActivateBrandedCallingResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_activate_branded_calling(self, client: Telnyx) -> None:
+    def test_path_params_branded_calling(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
-            client.enterprises.with_raw_response.activate_branded_calling(
+            client.enterprises.with_raw_response.branded_calling(
                 "",
             )
 
@@ -523,7 +520,7 @@ class TestAsyncEnterprises:
             organization_type="commercial",
             website="https://run065.example.com",
         )
-        assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -575,7 +572,7 @@ class TestAsyncEnterprises:
             professional_license_number="professional_license_number",
             role_type="enterprise",
         )
-        assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -623,7 +620,7 @@ class TestAsyncEnterprises:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = await response.parse()
-        assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -671,7 +668,7 @@ class TestAsyncEnterprises:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = await response.parse()
-            assert_matches_type(EnterpriseCreateResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -681,7 +678,7 @@ class TestAsyncEnterprises:
         enterprise = await async_client.enterprises.retrieve(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(EnterpriseRetrieveResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -693,7 +690,7 @@ class TestAsyncEnterprises:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = await response.parse()
-        assert_matches_type(EnterpriseRetrieveResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -705,7 +702,7 @@ class TestAsyncEnterprises:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = await response.parse()
-            assert_matches_type(EnterpriseRetrieveResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -723,7 +720,7 @@ class TestAsyncEnterprises:
         enterprise = await async_client.enterprises.update(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -773,7 +770,7 @@ class TestAsyncEnterprises:
             professional_license_number="professional_license_number",
             website="https://acmeplumbing.example.com",
         )
-        assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -785,7 +782,7 @@ class TestAsyncEnterprises:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = await response.parse()
-        assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -797,7 +794,7 @@ class TestAsyncEnterprises:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = await response.parse()
-            assert_matches_type(EnterpriseUpdateResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -892,42 +889,42 @@ class TestAsyncEnterprises:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_activate_branded_calling(self, async_client: AsyncTelnyx) -> None:
-        enterprise = await async_client.enterprises.activate_branded_calling(
+    async def test_method_branded_calling(self, async_client: AsyncTelnyx) -> None:
+        enterprise = await async_client.enterprises.branded_calling(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
-        assert_matches_type(EnterpriseActivateBrandedCallingResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_activate_branded_calling(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.enterprises.with_raw_response.activate_branded_calling(
+    async def test_raw_response_branded_calling(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.enterprises.with_raw_response.branded_calling(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         enterprise = await response.parse()
-        assert_matches_type(EnterpriseActivateBrandedCallingResponse, enterprise, path=["response"])
+        assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_activate_branded_calling(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.enterprises.with_streaming_response.activate_branded_calling(
+    async def test_streaming_response_branded_calling(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.enterprises.with_streaming_response.branded_calling(
             "4a6192a4-573d-446d-b3ce-aff9117272a6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             enterprise = await response.parse()
-            assert_matches_type(EnterpriseActivateBrandedCallingResponse, enterprise, path=["response"])
+            assert_matches_type(EnterprisePublicWrapped, enterprise, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_activate_branded_calling(self, async_client: AsyncTelnyx) -> None:
+    async def test_path_params_branded_calling(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
-            await async_client.enterprises.with_raw_response.activate_branded_calling(
+            await async_client.enterprises.with_raw_response.branded_calling(
                 "",
             )

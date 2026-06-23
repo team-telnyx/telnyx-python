@@ -2,13 +2,13 @@
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ...._models import BaseModel
 from .event_status import EventStatus
+from .scheduled_call_settings import ScheduledCallSettings
 from .conversation_channel_type import ConversationChannelType
 
-__all__ = ["ScheduledPhoneCallEventResponse", "CallAttempt", "CallSettings"]
+__all__ = ["ScheduledPhoneCallEventResponse", "CallAttempt"]
 
 
 class CallAttempt(BaseModel):
@@ -29,21 +29,6 @@ class CallAttempt(BaseModel):
     telnyx_call_control_id: Optional[str] = None
 
 
-class CallSettings(BaseModel):
-    """
-    Per-call telephony overrides applied when a scheduled phone-call event
-    dispatches. Phone-call events only. New per-call dispatch options should be
-    added here rather than as top-level event fields.
-    """
-
-    sip_region: Optional[Literal["US", "Europe", "Canada", "Australia", "Middle East"]] = None
-    """SIP region passed to Telnyx when initiating an outbound call.
-
-    Values match the Telnyx TeXML `SipRegion` parameter exactly. Telnyx defaults to
-    `US` when omitted.
-    """
-
-
 class ScheduledPhoneCallEventResponse(BaseModel):
     assistant_id: str
 
@@ -60,7 +45,7 @@ class ScheduledPhoneCallEventResponse(BaseModel):
     call_duration: Optional[int] = None
     """Duration of the call in seconds"""
 
-    call_settings: Optional[CallSettings] = None
+    call_settings: Optional[ScheduledCallSettings] = None
     """
     Per-call telephony overrides applied when a scheduled phone-call event
     dispatches. Phone-call events only. New per-call dispatch options should be

@@ -17,7 +17,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import call_list_params, call_update_params
-from ...types.queues.call_list_response import CallListResponse
+from ...types.queues.queue_call import QueueCall
 from ...types.queues.call_retrieve_response import CallRetrieveResponse
 
 __all__ = ["CallsResource", "AsyncCallsResource"]
@@ -138,7 +138,7 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[CallListResponse]:
+    ) -> SyncDefaultFlatPagination[QueueCall]:
         """
         Retrieve the list of calls in an existing queue
 
@@ -155,7 +155,7 @@ class CallsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return self._get_api_list(
             path_template("/queues/{queue_name}/calls", queue_name=queue_name),
-            page=SyncDefaultFlatPagination[CallListResponse],
+            page=SyncDefaultFlatPagination[QueueCall],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,7 +169,7 @@ class CallsResource(SyncAPIResource):
                     call_list_params.CallListParams,
                 ),
             ),
-            model=CallListResponse,
+            model=QueueCall,
         )
 
     def remove(
@@ -331,7 +331,7 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CallListResponse, AsyncDefaultFlatPagination[CallListResponse]]:
+    ) -> AsyncPaginator[QueueCall, AsyncDefaultFlatPagination[QueueCall]]:
         """
         Retrieve the list of calls in an existing queue
 
@@ -348,7 +348,7 @@ class AsyncCallsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return self._get_api_list(
             path_template("/queues/{queue_name}/calls", queue_name=queue_name),
-            page=AsyncDefaultFlatPagination[CallListResponse],
+            page=AsyncDefaultFlatPagination[QueueCall],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,7 +362,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     call_list_params.CallListParams,
                 ),
             ),
-            model=CallListResponse,
+            model=QueueCall,
         )
 
     async def remove(

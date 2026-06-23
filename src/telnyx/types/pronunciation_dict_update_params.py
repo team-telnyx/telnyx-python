@@ -2,21 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import TypeAlias, TypedDict
+from typing import Iterable
+from typing_extensions import TypedDict
 
-from .pronunciation_dict_alias_item_param import PronunciationDictAliasItemParam
-from .pronunciation_dict_phoneme_item_param import PronunciationDictPhonemeItemParam
+from .pronunciation_dict_item_param import PronunciationDictItemParam
 
-__all__ = ["PronunciationDictUpdateParams", "Item"]
+__all__ = ["PronunciationDictUpdateParams"]
 
 
 class PronunciationDictUpdateParams(TypedDict, total=False):
-    items: Iterable[Item]
+    items: Iterable[PronunciationDictItemParam]
     """Updated list of pronunciation items (alias or phoneme type)."""
 
     name: str
     """Updated dictionary name."""
-
-
-Item: TypeAlias = Union[PronunciationDictAliasItemParam, PronunciationDictPhonemeItemParam]

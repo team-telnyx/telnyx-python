@@ -10,10 +10,10 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
+    ModelsResponse,
     AISummarizeResponse,
-    AIRetrieveModelsResponse,
     AICreateResponseDeprecatedResponse,
-    AISearchConversationHistoriesResponse,
+    AIRetrieveConversationHistoriesResponse,
 )
 from telnyx._utils import parse_datetime
 
@@ -30,7 +30,7 @@ class TestAI:
     def test_method_create_response_deprecated(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
             ai = client.ai.create_response_deprecated(
-                body={
+                response_request={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -43,7 +43,7 @@ class TestAI:
     def test_raw_response_create_response_deprecated(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.ai.with_raw_response.create_response_deprecated(
-                body={
+                response_request={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -59,7 +59,7 @@ class TestAI:
     def test_streaming_response_create_response_deprecated(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
             with client.ai.with_streaming_response.create_response_deprecated(
-                body={
+                response_request={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -74,49 +74,17 @@ class TestAI:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_models(self, client: Telnyx) -> None:
-        with pytest.warns(DeprecationWarning):
-            ai = client.ai.retrieve_models()
-
-        assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_raw_response_retrieve_models(self, client: Telnyx) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.ai.with_raw_response.retrieve_models()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = response.parse()
-        assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_streaming_response_retrieve_models(self, client: Telnyx) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.ai.with_streaming_response.retrieve_models() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-                ai = response.parse()
-                assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_search_conversation_histories(self, client: Telnyx) -> None:
-        ai = client.ai.search_conversation_histories(
+    def test_method_retrieve_conversation_histories(self, client: Telnyx) -> None:
+        ai = client.ai.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
         )
-        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_search_conversation_histories_with_all_params(self, client: Telnyx) -> None:
-        ai = client.ai.search_conversation_histories(
+    def test_method_retrieve_conversation_histories_with_all_params(self, client: Telnyx) -> None:
+        ai = client.ai.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
             filter_document_id="doc-789",
@@ -132,12 +100,12 @@ class TestAI:
             region="USA",
             top_k=10,
         )
-        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_search_conversation_histories(self, client: Telnyx) -> None:
-        response = client.ai.with_raw_response.search_conversation_histories(
+    def test_raw_response_retrieve_conversation_histories(self, client: Telnyx) -> None:
+        response = client.ai.with_raw_response.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
         )
@@ -145,12 +113,12 @@ class TestAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = response.parse()
-        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_search_conversation_histories(self, client: Telnyx) -> None:
-        with client.ai.with_streaming_response.search_conversation_histories(
+    def test_streaming_response_retrieve_conversation_histories(self, client: Telnyx) -> None:
+        with client.ai.with_streaming_response.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
         ) as response:
@@ -158,7 +126,39 @@ class TestAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ai = response.parse()
-            assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+            assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_models(self, client: Telnyx) -> None:
+        with pytest.warns(DeprecationWarning):
+            ai = client.ai.retrieve_models()
+
+        assert_matches_type(ModelsResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_models(self, client: Telnyx) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = client.ai.with_raw_response.retrieve_models()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai = response.parse()
+        assert_matches_type(ModelsResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_models(self, client: Telnyx) -> None:
+        with pytest.warns(DeprecationWarning):
+            with client.ai.with_streaming_response.retrieve_models() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                ai = response.parse()
+                assert_matches_type(ModelsResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -220,7 +220,7 @@ class TestAsyncAI:
     async def test_method_create_response_deprecated(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
             ai = await async_client.ai.create_response_deprecated(
-                body={
+                response_request={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -233,7 +233,7 @@ class TestAsyncAI:
     async def test_raw_response_create_response_deprecated(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.ai.with_raw_response.create_response_deprecated(
-                body={
+                response_request={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -249,7 +249,7 @@ class TestAsyncAI:
     async def test_streaming_response_create_response_deprecated(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.ai.with_streaming_response.create_response_deprecated(
-                body={
+                response_request={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -264,49 +264,17 @@ class TestAsyncAI:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_models(self, async_client: AsyncTelnyx) -> None:
-        with pytest.warns(DeprecationWarning):
-            ai = await async_client.ai.retrieve_models()
-
-        assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_raw_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.ai.with_raw_response.retrieve_models()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = await response.parse()
-        assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_streaming_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.ai.with_streaming_response.retrieve_models() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-                ai = await response.parse()
-                assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_search_conversation_histories(self, async_client: AsyncTelnyx) -> None:
-        ai = await async_client.ai.search_conversation_histories(
+    async def test_method_retrieve_conversation_histories(self, async_client: AsyncTelnyx) -> None:
+        ai = await async_client.ai.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
         )
-        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_search_conversation_histories_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        ai = await async_client.ai.search_conversation_histories(
+    async def test_method_retrieve_conversation_histories_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        ai = await async_client.ai.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
             filter_document_id="doc-789",
@@ -322,12 +290,12 @@ class TestAsyncAI:
             region="USA",
             top_k=10,
         )
-        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_search_conversation_histories(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.ai.with_raw_response.search_conversation_histories(
+    async def test_raw_response_retrieve_conversation_histories(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.with_raw_response.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
         )
@@ -335,12 +303,12 @@ class TestAsyncAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = await response.parse()
-        assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_search_conversation_histories(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.ai.with_streaming_response.search_conversation_histories(
+    async def test_streaming_response_retrieve_conversation_histories(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.with_streaming_response.retrieve_conversation_histories(
             q="customer called about billing issue",
             record_type="voice",
         ) as response:
@@ -348,7 +316,39 @@ class TestAsyncAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ai = await response.parse()
-            assert_matches_type(AISearchConversationHistoriesResponse, ai, path=["response"])
+            assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_models(self, async_client: AsyncTelnyx) -> None:
+        with pytest.warns(DeprecationWarning):
+            ai = await async_client.ai.retrieve_models()
+
+        assert_matches_type(ModelsResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.ai.with_raw_response.retrieve_models()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ai = await response.parse()
+        assert_matches_type(ModelsResponse, ai, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.ai.with_streaming_response.retrieve_models() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                ai = await response.parse()
+                assert_matches_type(ModelsResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

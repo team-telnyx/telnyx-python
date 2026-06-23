@@ -19,7 +19,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import additional_document_list_params, additional_document_create_params
-from ...types.porting_orders.additional_document_list_response import AdditionalDocumentListResponse
+from ...types.porting_orders.porting_additional_document import PortingAdditionalDocument
 from ...types.porting_orders.additional_document_create_response import AdditionalDocumentCreateResponse
 
 __all__ = ["AdditionalDocumentsResource", "AsyncAdditionalDocumentsResource"]
@@ -99,7 +99,7 @@ class AdditionalDocumentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[AdditionalDocumentListResponse]:
+    ) -> SyncDefaultFlatPagination[PortingAdditionalDocument]:
         """
         Returns a list of additional documents for a porting order.
 
@@ -122,7 +122,7 @@ class AdditionalDocumentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/porting_orders/{id}/additional_documents", id=id),
-            page=SyncDefaultFlatPagination[AdditionalDocumentListResponse],
+            page=SyncDefaultFlatPagination[PortingAdditionalDocument],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -138,7 +138,7 @@ class AdditionalDocumentsResource(SyncAPIResource):
                     additional_document_list_params.AdditionalDocumentListParams,
                 ),
             ),
-            model=AdditionalDocumentListResponse,
+            model=PortingAdditionalDocument,
         )
 
     def delete(
@@ -259,7 +259,7 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AdditionalDocumentListResponse, AsyncDefaultFlatPagination[AdditionalDocumentListResponse]]:
+    ) -> AsyncPaginator[PortingAdditionalDocument, AsyncDefaultFlatPagination[PortingAdditionalDocument]]:
         """
         Returns a list of additional documents for a porting order.
 
@@ -282,7 +282,7 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/porting_orders/{id}/additional_documents", id=id),
-            page=AsyncDefaultFlatPagination[AdditionalDocumentListResponse],
+            page=AsyncDefaultFlatPagination[PortingAdditionalDocument],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -298,7 +298,7 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
                     additional_document_list_params.AdditionalDocumentListParams,
                 ),
             ),
-            model=AdditionalDocumentListResponse,
+            model=PortingAdditionalDocument,
         )
 
     async def delete(

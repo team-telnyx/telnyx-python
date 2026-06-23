@@ -9,7 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import SpeechToTextListProvidersResponse
+from telnyx.types import (
+    SpeechToTextListProvidersResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -54,6 +56,59 @@ class TestSpeechToText:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_transcription(self, client: Telnyx) -> None:
+        speech_to_text = client.speech_to_text.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+        )
+        assert speech_to_text is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_transcription_with_all_params(self, client: Telnyx) -> None:
+        speech_to_text = client.speech_to_text.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+            endpointing=0,
+            interim_results=True,
+            keyterm="keyterm",
+            keywords="keywords",
+            language="language",
+            model="fast",
+            redact="redact",
+        )
+        assert speech_to_text is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_transcription(self, client: Telnyx) -> None:
+        response = client.speech_to_text.with_raw_response.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        speech_to_text = response.parse()
+        assert speech_to_text is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_transcription(self, client: Telnyx) -> None:
+        with client.speech_to_text.with_streaming_response.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            speech_to_text = response.parse()
+            assert speech_to_text is None
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncSpeechToText:
     parametrize = pytest.mark.parametrize(
@@ -94,5 +149,58 @@ class TestAsyncSpeechToText:
 
             speech_to_text = await response.parse()
             assert_matches_type(SpeechToTextListProvidersResponse, speech_to_text, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_transcription(self, async_client: AsyncTelnyx) -> None:
+        speech_to_text = await async_client.speech_to_text.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+        )
+        assert speech_to_text is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_transcription_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        speech_to_text = await async_client.speech_to_text.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+            endpointing=0,
+            interim_results=True,
+            keyterm="keyterm",
+            keywords="keywords",
+            language="language",
+            model="fast",
+            redact="redact",
+        )
+        assert speech_to_text is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_transcription(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.speech_to_text.with_raw_response.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        speech_to_text = await response.parse()
+        assert speech_to_text is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_transcription(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.speech_to_text.with_streaming_response.retrieve_transcription(
+            input_format="mp3",
+            transcription_engine="Azure",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            speech_to_text = await response.parse()
+            assert speech_to_text is None
 
         assert cast(Any, response.is_closed) is True

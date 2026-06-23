@@ -13,9 +13,8 @@ from telnyx.types import (
     Conference,
     ConferenceCreateResponse,
     ConferenceRetrieveResponse,
+    ConferenceParticipantResource,
     ConferenceListParticipantsResponse,
-    ConferenceUpdateParticipantResponse,
-    ConferenceRetrieveParticipantResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
@@ -264,7 +263,7 @@ class TestConferences:
             participant_id="participant_id",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -277,7 +276,7 @@ class TestConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = response.parse()
-        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -290,7 +289,7 @@ class TestConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = response.parse()
-            assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+            assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -316,7 +315,7 @@ class TestConferences:
             participant_id="participant_id",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -328,7 +327,7 @@ class TestConferences:
             end_conference_on_exit=True,
             soft_end_conference_on_exit=False,
         )
-        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -341,7 +340,7 @@ class TestConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = response.parse()
-        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -354,7 +353,7 @@ class TestConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = response.parse()
-            assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+            assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -618,7 +617,7 @@ class TestAsyncConferences:
             participant_id="participant_id",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -631,7 +630,7 @@ class TestAsyncConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = await response.parse()
-        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -644,7 +643,7 @@ class TestAsyncConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = await response.parse()
-            assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+            assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -670,7 +669,7 @@ class TestAsyncConferences:
             participant_id="participant_id",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -682,7 +681,7 @@ class TestAsyncConferences:
             end_conference_on_exit=True,
             soft_end_conference_on_exit=False,
         )
-        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -695,7 +694,7 @@ class TestAsyncConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = await response.parse()
-        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+        assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -708,7 +707,7 @@ class TestAsyncConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = await response.parse()
-            assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+            assert_matches_type(ConferenceParticipantResource, conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

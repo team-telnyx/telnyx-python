@@ -17,8 +17,8 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.reputation import number_list_params, number_retrieve_params
-from ...types.reputation.number_list_response import NumberListResponse
-from ...types.reputation.number_retrieve_response import NumberRetrieveResponse
+from ...types.enterprises.reputation.reputation_phone_number import ReputationPhoneNumber
+from ...types.enterprises.reputation.reputation_phone_number_with_reputation import ReputationPhoneNumberWithReputation
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
 
@@ -56,7 +56,7 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberRetrieveResponse:
+    ) -> ReputationPhoneNumberWithReputation:
         """
         Convenience alias for
         `GET /v2/enterprises/{enterprise_id}/reputation/numbers/{phone_number}`.
@@ -84,7 +84,7 @@ class NumbersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"fresh": fresh}, number_retrieve_params.NumberRetrieveParams),
             ),
-            cast_to=NumberRetrieveResponse,
+            cast_to=ReputationPhoneNumberWithReputation,
         )
 
     def list(
@@ -101,7 +101,7 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NumberListResponse]:
+    ) -> SyncDefaultFlatPagination[ReputationPhoneNumber]:
         """
         Convenience alias for `GET /v2/enterprises/{enterprise_id}/reputation/numbers`
         that returns numbers across every enterprise you own. Useful when you don't want
@@ -128,7 +128,7 @@ class NumbersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/reputation/numbers",
-            page=SyncDefaultFlatPagination[NumberListResponse],
+            page=SyncDefaultFlatPagination[ReputationPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -145,7 +145,7 @@ class NumbersResource(SyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=NumberListResponse,
+            model=ReputationPhoneNumber,
         )
 
     def delete(
@@ -217,7 +217,7 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberRetrieveResponse:
+    ) -> ReputationPhoneNumberWithReputation:
         """
         Convenience alias for
         `GET /v2/enterprises/{enterprise_id}/reputation/numbers/{phone_number}`.
@@ -245,7 +245,7 @@ class AsyncNumbersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"fresh": fresh}, number_retrieve_params.NumberRetrieveParams),
             ),
-            cast_to=NumberRetrieveResponse,
+            cast_to=ReputationPhoneNumberWithReputation,
         )
 
     def list(
@@ -262,7 +262,7 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NumberListResponse, AsyncDefaultFlatPagination[NumberListResponse]]:
+    ) -> AsyncPaginator[ReputationPhoneNumber, AsyncDefaultFlatPagination[ReputationPhoneNumber]]:
         """
         Convenience alias for `GET /v2/enterprises/{enterprise_id}/reputation/numbers`
         that returns numbers across every enterprise you own. Useful when you don't want
@@ -289,7 +289,7 @@ class AsyncNumbersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/reputation/numbers",
-            page=AsyncDefaultFlatPagination[NumberListResponse],
+            page=AsyncDefaultFlatPagination[ReputationPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -306,7 +306,7 @@ class AsyncNumbersResource(AsyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=NumberListResponse,
+            model=ReputationPhoneNumber,
         )
 
     async def delete(

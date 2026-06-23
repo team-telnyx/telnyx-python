@@ -26,6 +26,7 @@ from ..._response import (
 )
 from ...types.calls import (
     GoogleTranscriptionLanguage,
+    ConversationRelayInterruptible,
     action_refer_params,
     action_speak_params,
     action_answer_params,
@@ -94,6 +95,7 @@ from ...types.calls.action_leave_queue_response import ActionLeaveQueueResponse
 from ...types.calls.action_stop_gather_response import ActionStopGatherResponse
 from ...types.calls.action_stop_siprec_response import ActionStopSiprecResponse
 from ...types.calls.interruption_settings_param import InterruptionSettingsParam
+from ...types.conversation_relay_language_param import ConversationRelayLanguageParam
 from ...types.calls.action_start_siprec_response import ActionStartSiprecResponse
 from ...types.calls.action_stop_forking_response import ActionStopForkingResponse
 from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
@@ -109,6 +111,7 @@ from ...types.calls.action_pause_recording_response import ActionPauseRecordingR
 from ...types.calls.action_start_recording_response import ActionStartRecordingResponse
 from ...types.calls.action_start_streaming_response import ActionStartStreamingResponse
 from ...types.calls.action_resume_recording_response import ActionResumeRecordingResponse
+from ...types.calls.conversation_relay_interruptible import ConversationRelayInterruptible
 from ...types.calls.action_join_ai_assistant_response import ActionJoinAIAssistantResponse
 from ...types.calls.action_stop_ai_assistant_response import ActionStopAIAssistantResponse
 from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
@@ -116,13 +119,16 @@ from ...types.calls.action_gather_using_audio_response import ActionGatherUsingA
 from ...types.calls.action_gather_using_speak_response import ActionGatherUsingSpeakResponse
 from ...types.calls.action_start_ai_assistant_response import ActionStartAIAssistantResponse
 from ...types.calls.action_stop_transcription_response import ActionStopTranscriptionResponse
+from ...types.conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 from ...types.calls.action_start_transcription_response import ActionStartTranscriptionResponse
 from ...types.calls.action_update_client_state_response import ActionUpdateClientStateResponse
+from ...types.calls.ai_assistant_join_participant_param import AIAssistantJoinParticipantParam
 from ...types.calls.action_stop_noise_suppression_response import ActionStopNoiseSuppressionResponse
 from ...types.calls.action_switch_supervisor_role_response import ActionSwitchSupervisorRoleResponse
 from ...types.calls.action_start_noise_suppression_response import ActionStartNoiseSuppressionResponse
 from ...types.calls.action_stop_conversation_relay_response import ActionStopConversationRelayResponse
 from ...types.calls.action_start_conversation_relay_response import ActionStartConversationRelayResponse
+from ...types.conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
 from ...types.calls.action_add_ai_assistant_messages_response import ActionAddAIAssistantMessagesResponse
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
@@ -212,7 +218,7 @@ class ActionsResource(SyncAPIResource):
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        conversation_relay_config: action_answer_params.ConversationRelayConfig | Omit = omit,
+        conversation_relay_config: ConversationRelayEmbeddedConfigParam | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: action_answer_params.DeepfakeDetection | Omit = omit,
         preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
@@ -1308,7 +1314,7 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         *,
         conversation_id: str,
-        participant: action_join_ai_assistant_params.Participant,
+        participant: AIAssistantJoinParticipantParam,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1964,7 +1970,7 @@ class ActionsResource(SyncAPIResource):
         greeting: str | Omit = omit,
         interruption_settings: InterruptionSettingsParam | Omit = omit,
         message_history: Iterable[action_start_ai_assistant_params.MessageHistory] | Omit = omit,
-        participants: Iterable[action_start_ai_assistant_params.Participant] | Omit = omit,
+        participants: Iterable[AIAssistantJoinParticipantParam] | Omit = omit,
         send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
         voice: str | Omit = omit,
@@ -2091,11 +2097,11 @@ class ActionsResource(SyncAPIResource):
         custom_parameters: Dict[str, object] | Omit = omit,
         dtmf_detection: bool | Omit = omit,
         greeting: str | Omit = omit,
-        interruptible: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
-        interruptible_greeting: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
-        interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
+        interruptible: ConversationRelayInterruptible | Omit = omit,
+        interruptible_greeting: ConversationRelayInterruptible | Omit = omit,
+        interruption_settings: ConversationRelayInterruptionSettingsParam | Omit = omit,
         language: str | Omit = omit,
-        languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
+        languages: Iterable[ConversationRelayLanguageParam] | Omit = omit,
         provider: str | Omit = omit,
         structured_provider: Dict[str, object] | Omit = omit,
         transcription: Dict[str, object] | Omit = omit,
@@ -4140,7 +4146,7 @@ class AsyncActionsResource(AsyncAPIResource):
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        conversation_relay_config: action_answer_params.ConversationRelayConfig | Omit = omit,
+        conversation_relay_config: ConversationRelayEmbeddedConfigParam | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: action_answer_params.DeepfakeDetection | Omit = omit,
         preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
@@ -5236,7 +5242,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         *,
         conversation_id: str,
-        participant: action_join_ai_assistant_params.Participant,
+        participant: AIAssistantJoinParticipantParam,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5892,7 +5898,7 @@ class AsyncActionsResource(AsyncAPIResource):
         greeting: str | Omit = omit,
         interruption_settings: InterruptionSettingsParam | Omit = omit,
         message_history: Iterable[action_start_ai_assistant_params.MessageHistory] | Omit = omit,
-        participants: Iterable[action_start_ai_assistant_params.Participant] | Omit = omit,
+        participants: Iterable[AIAssistantJoinParticipantParam] | Omit = omit,
         send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
         voice: str | Omit = omit,
@@ -6019,11 +6025,11 @@ class AsyncActionsResource(AsyncAPIResource):
         custom_parameters: Dict[str, object] | Omit = omit,
         dtmf_detection: bool | Omit = omit,
         greeting: str | Omit = omit,
-        interruptible: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
-        interruptible_greeting: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
-        interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
+        interruptible: ConversationRelayInterruptible | Omit = omit,
+        interruptible_greeting: ConversationRelayInterruptible | Omit = omit,
+        interruption_settings: ConversationRelayInterruptionSettingsParam | Omit = omit,
         language: str | Omit = omit,
-        languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
+        languages: Iterable[ConversationRelayLanguageParam] | Omit = omit,
         provider: str | Omit = omit,
         structured_provider: Dict[str, object] | Omit = omit,
         transcription: Dict[str, object] | Omit = omit,

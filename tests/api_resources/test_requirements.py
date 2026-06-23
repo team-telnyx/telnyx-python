@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import RequirementListResponse, RequirementRetrieveResponse
+from telnyx.types import DocReqsRequirement, RequirementRetrieveResponse
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -64,7 +64,7 @@ class TestRequirements:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         requirement = client.requirements.list()
-        assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -79,7 +79,7 @@ class TestRequirements:
             page_size=0,
             sort=["country_code"],
         )
-        assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -89,7 +89,7 @@ class TestRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         requirement = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -99,7 +99,7 @@ class TestRequirements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             requirement = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestAsyncRequirements:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         requirement = await async_client.requirements.list()
-        assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -170,7 +170,7 @@ class TestAsyncRequirements:
             page_size=0,
             sort=["country_code"],
         )
-        assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -180,7 +180,7 @@ class TestAsyncRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         requirement = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -190,6 +190,6 @@ class TestAsyncRequirements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             requirement = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
         assert cast(Any, response.is_closed) is True

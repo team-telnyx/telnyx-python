@@ -5,12 +5,13 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .reputation_check_frequency import ReputationCheckFrequency
 
 __all__ = ["EnterpriseReputationPublic"]
 
 
 class EnterpriseReputationPublic(BaseModel):
-    check_frequency: Optional[Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"]] = None
+    check_frequency: Optional[ReputationCheckFrequency] = None
     """
     How often Telnyx refreshes the stored reputation data for this enterprise's
     registered numbers.

@@ -2,9 +2,9 @@
 
 from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ...._models import BaseModel
+from .run_status import RunStatus
 
 __all__ = ["MissionRunData"]
 
@@ -16,7 +16,7 @@ class MissionRunData(BaseModel):
 
     started_at: datetime
 
-    status: Literal["pending", "running", "paused", "succeeded", "failed", "cancelled"]
+    status: RunStatus
 
     updated_at: datetime
 

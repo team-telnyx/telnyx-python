@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
+from .conference_region import ConferenceRegion
 
 __all__ = ["ActionStopParams"]
 
@@ -16,7 +17,7 @@ class ActionStopParams(TypedDict, total=False):
     played to. If not given, the audio will be stoped to the entire conference.
     """
 
-    region: Literal["Australia", "Europe", "Middle East", "US"]
+    region: ConferenceRegion
     """Region where the conference data is located.
 
     Defaults to the region defined in user's data locality settings (Europe or US).

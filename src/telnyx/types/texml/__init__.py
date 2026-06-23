@@ -9,9 +9,6 @@ from .texml_get_call_recording_response_body import (
 from .account_retrieve_recordings_json_params import (
     AccountRetrieveRecordingsJsonParams as AccountRetrieveRecordingsJsonParams,
 )
-from .account_retrieve_recordings_json_response import (
-    AccountRetrieveRecordingsJsonResponse as AccountRetrieveRecordingsJsonResponse,
-)
 from .account_retrieve_transcriptions_json_params import (
     AccountRetrieveTranscriptionsJsonParams as AccountRetrieveTranscriptionsJsonParams,
 )

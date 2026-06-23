@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .default_gateway import DefaultGateway as DefaultGateway
 from .default_gateway_create_params import DefaultGatewayCreateParams as DefaultGatewayCreateParams
 from .default_gateway_create_response import DefaultGatewayCreateResponse as DefaultGatewayCreateResponse
 from .default_gateway_delete_response import DefaultGatewayDeleteResponse as DefaultGatewayDeleteResponse

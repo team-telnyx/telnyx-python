@@ -26,13 +26,10 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.texml.accounts import conference_update_params, conference_retrieve_conferences_params
-from .....types.texml.accounts.conference_update_response import ConferenceUpdateResponse
-from .....types.texml.accounts.conference_retrieve_response import ConferenceRetrieveResponse
+from .....types.texml.accounts.conference_resource import ConferenceResource
 from .....types.texml.accounts.conference_retrieve_recordings_response import ConferenceRetrieveRecordingsResponse
 from .....types.texml.accounts.conference_retrieve_conferences_response import ConferenceRetrieveConferencesResponse
-from .....types.texml.accounts.conference_retrieve_recordings_json_response import (
-    ConferenceRetrieveRecordingsJsonResponse,
-)
+from .....types.texml.accounts.calls.texml_get_call_recordings_response_body import TexmlGetCallRecordingsResponseBody
 
 __all__ = ["ConferencesResource", "AsyncConferencesResource"]
 
@@ -75,7 +72,7 @@ class ConferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceRetrieveResponse:
+    ) -> ConferenceResource:
         """
         Returns a conference resource.
 
@@ -101,7 +98,7 @@ class ConferencesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceRetrieveResponse,
+            cast_to=ConferenceResource,
         )
 
     def update(
@@ -118,7 +115,7 @@ class ConferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceUpdateResponse:
+    ) -> ConferenceResource:
         """
         Updates a conference resource.
 
@@ -161,7 +158,7 @@ class ConferencesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceUpdateResponse,
+            cast_to=ConferenceResource,
         )
 
     def retrieve_conferences(
@@ -287,7 +284,7 @@ class ConferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceRetrieveRecordingsJsonResponse:
+    ) -> TexmlGetCallRecordingsResponseBody:
         """
         Returns recordings for a conference identified by conference_sid.
 
@@ -313,7 +310,7 @@ class ConferencesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceRetrieveRecordingsJsonResponse,
+            cast_to=TexmlGetCallRecordingsResponseBody,
         )
 
 
@@ -355,7 +352,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceRetrieveResponse:
+    ) -> ConferenceResource:
         """
         Returns a conference resource.
 
@@ -381,7 +378,7 @@ class AsyncConferencesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceRetrieveResponse,
+            cast_to=ConferenceResource,
         )
 
     async def update(
@@ -398,7 +395,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceUpdateResponse:
+    ) -> ConferenceResource:
         """
         Updates a conference resource.
 
@@ -441,7 +438,7 @@ class AsyncConferencesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceUpdateResponse,
+            cast_to=ConferenceResource,
         )
 
     async def retrieve_conferences(
@@ -567,7 +564,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceRetrieveRecordingsJsonResponse:
+    ) -> TexmlGetCallRecordingsResponseBody:
         """
         Returns recordings for a conference identified by conference_sid.
 
@@ -593,7 +590,7 @@ class AsyncConferencesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConferenceRetrieveRecordingsJsonResponse,
+            cast_to=TexmlGetCallRecordingsResponseBody,
         )
 
 

@@ -2,9 +2,9 @@
 
 from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ...._models import BaseModel
+from .remediation_status import RemediationStatus
 
 __all__ = ["RemediationListResponse"]
 
@@ -23,7 +23,7 @@ class RemediationListResponse(BaseModel):
 
     phone_numbers_count: int
 
-    status: Literal["pending", "in_progress", "completed", "failed", "cancelled"]
+    status: RemediationStatus
     """Customer-facing status of a remediation request."""
 
     updated_at: datetime

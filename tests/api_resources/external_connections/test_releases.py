@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.external_connections import ReleaseListResponse, ReleaseRetrieveResponse
+from telnyx.types.external_connections import Release, ReleaseRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -76,7 +76,7 @@ class TestReleases:
         release = client.external_connections.releases.list(
             id="1293384261075731499",
         )
-        assert_matches_type(SyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Release], release, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -95,7 +95,7 @@ class TestReleases:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Release], release, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -107,7 +107,7 @@ class TestReleases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         release = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Release], release, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -119,7 +119,7 @@ class TestReleases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             release = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[Release], release, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -195,7 +195,7 @@ class TestAsyncReleases:
         release = await async_client.external_connections.releases.list(
             id="1293384261075731499",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Release], release, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -214,7 +214,7 @@ class TestAsyncReleases:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Release], release, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -226,7 +226,7 @@ class TestAsyncReleases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         release = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Release], release, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -238,7 +238,7 @@ class TestAsyncReleases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             release = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[ReleaseListResponse], release, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[Release], release, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

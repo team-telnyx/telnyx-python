@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.dir import CommentListResponse, CommentCreateResponse
+from telnyx.types.dir import DirComment, CommentCreateResponse
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -80,7 +80,7 @@ class TestComments:
         comment = client.dir.comments.list(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(SyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -91,7 +91,7 @@ class TestComments:
             page_number=1,
             page_size=20,
         )
-        assert_matches_type(SyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -103,7 +103,7 @@ class TestComments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         comment = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -115,7 +115,7 @@ class TestComments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             comment = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -195,7 +195,7 @@ class TestAsyncComments:
         comment = await async_client.dir.comments.list(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -206,7 +206,7 @@ class TestAsyncComments:
             page_number=1,
             page_size=20,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -218,7 +218,7 @@ class TestAsyncComments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         comment = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -230,7 +230,7 @@ class TestAsyncComments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             comment = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[CommentListResponse], comment, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[DirComment], comment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

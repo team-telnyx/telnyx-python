@@ -7,6 +7,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
+from ..porting_order_activation_status import PortingOrderActivationStatus
 
 __all__ = ["PhoneNumberBlockListParams", "Filter", "Sort"]
 
@@ -33,21 +34,7 @@ class Filter(TypedDict, total=False):
     Originally: filter[porting_order_id], filter[support_key], filter[status], filter[phone_number], filter[activation_status], filter[portability_status]
     """
 
-    activation_status: Literal[
-        "New",
-        "Pending",
-        "Conflict",
-        "Cancel Pending",
-        "Failed",
-        "Concurred",
-        "Activate RDY",
-        "Disconnect Pending",
-        "Concurrence Sent",
-        "Old",
-        "Sending",
-        "Active",
-        "Cancelled",
-    ]
+    activation_status: PortingOrderActivationStatus
     """Filter results by activation status"""
 
     phone_number: SequenceNotStr[str]

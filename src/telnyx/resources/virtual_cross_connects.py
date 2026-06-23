@@ -23,7 +23,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.virtual_cross_connect_list_response import VirtualCrossConnectListResponse
+from ..types.virtual_cross_connect_combined import VirtualCrossConnectCombined
 from ..types.virtual_cross_connect_create_response import VirtualCrossConnectCreateResponse
 from ..types.virtual_cross_connect_delete_response import VirtualCrossConnectDeleteResponse
 from ..types.virtual_cross_connect_update_response import VirtualCrossConnectUpdateResponse
@@ -294,7 +294,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VirtualCrossConnectListResponse]:
+    ) -> SyncDefaultFlatPagination[VirtualCrossConnectCombined]:
         """
         List all Virtual Cross Connects.
 
@@ -311,7 +311,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/virtual_cross_connects",
-            page=SyncDefaultFlatPagination[VirtualCrossConnectListResponse],
+            page=SyncDefaultFlatPagination[VirtualCrossConnectCombined],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -326,7 +326,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
                     virtual_cross_connect_list_params.VirtualCrossConnectListParams,
                 ),
             ),
-            model=VirtualCrossConnectListResponse,
+            model=VirtualCrossConnectCombined,
         )
 
     def delete(
@@ -625,7 +625,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VirtualCrossConnectListResponse, AsyncDefaultFlatPagination[VirtualCrossConnectListResponse]]:
+    ) -> AsyncPaginator[VirtualCrossConnectCombined, AsyncDefaultFlatPagination[VirtualCrossConnectCombined]]:
         """
         List all Virtual Cross Connects.
 
@@ -642,7 +642,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/virtual_cross_connects",
-            page=AsyncDefaultFlatPagination[VirtualCrossConnectListResponse],
+            page=AsyncDefaultFlatPagination[VirtualCrossConnectCombined],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -657,7 +657,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
                     virtual_cross_connect_list_params.VirtualCrossConnectListParams,
                 ),
             ),
-            model=VirtualCrossConnectListResponse,
+            model=VirtualCrossConnectCombined,
         )
 
     async def delete(

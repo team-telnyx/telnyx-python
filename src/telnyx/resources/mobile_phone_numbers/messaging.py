@@ -17,8 +17,10 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.mobile_phone_numbers import messaging_list_params
-from ...types.mobile_phone_numbers.messaging_list_response import MessagingListResponse
 from ...types.mobile_phone_numbers.messaging_retrieve_response import MessagingRetrieveResponse
+from ...types.mobile_phone_numbers.mobile_phone_number_with_messaging_settings import (
+    MobilePhoneNumberWithMessagingSettings,
+)
 
 __all__ = ["MessagingResource", "AsyncMessagingResource"]
 
@@ -87,7 +89,7 @@ class MessagingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MessagingListResponse]:
+    ) -> SyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings]:
         """
         List mobile phone numbers with messaging settings
 
@@ -102,7 +104,7 @@ class MessagingResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/mobile_phone_numbers/messaging",
-            page=SyncDefaultFlatPagination[MessagingListResponse],
+            page=SyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -116,7 +118,7 @@ class MessagingResource(SyncAPIResource):
                     messaging_list_params.MessagingListParams,
                 ),
             ),
-            model=MessagingListResponse,
+            model=MobilePhoneNumberWithMessagingSettings,
         )
 
 
@@ -184,7 +186,9 @@ class AsyncMessagingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessagingListResponse, AsyncDefaultFlatPagination[MessagingListResponse]]:
+    ) -> AsyncPaginator[
+        MobilePhoneNumberWithMessagingSettings, AsyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings]
+    ]:
         """
         List mobile phone numbers with messaging settings
 
@@ -199,7 +203,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/mobile_phone_numbers/messaging",
-            page=AsyncDefaultFlatPagination[MessagingListResponse],
+            page=AsyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -213,7 +217,7 @@ class AsyncMessagingResource(AsyncAPIResource):
                     messaging_list_params.MessagingListParams,
                 ),
             ),
-            model=MessagingListResponse,
+            model=MobilePhoneNumberWithMessagingSettings,
         )
 
 

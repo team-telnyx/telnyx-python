@@ -25,9 +25,8 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.recording_response import RecordingResponse
 from ...types.recording_response_data import RecordingResponseData
-from ...types.recording_delete_response import RecordingDeleteResponse
-from ...types.recording_retrieve_response import RecordingRetrieveResponse
 
 __all__ = ["RecordingsResource", "AsyncRecordingsResource"]
 
@@ -69,7 +68,7 @@ class RecordingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingRetrieveResponse:
+    ) -> RecordingResponse:
         """
         Retrieves the details of an existing call recording.
 
@@ -89,7 +88,7 @@ class RecordingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingRetrieveResponse,
+            cast_to=RecordingResponse,
         )
 
     def list(
@@ -149,7 +148,7 @@ class RecordingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingDeleteResponse:
+    ) -> RecordingResponse:
         """
         Permanently deletes a call recording.
 
@@ -169,7 +168,7 @@ class RecordingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingDeleteResponse,
+            cast_to=RecordingResponse,
         )
 
 
@@ -210,7 +209,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingRetrieveResponse:
+    ) -> RecordingResponse:
         """
         Retrieves the details of an existing call recording.
 
@@ -230,7 +229,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingRetrieveResponse,
+            cast_to=RecordingResponse,
         )
 
     def list(
@@ -290,7 +289,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecordingDeleteResponse:
+    ) -> RecordingResponse:
         """
         Permanently deletes a call recording.
 
@@ -310,7 +309,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RecordingDeleteResponse,
+            cast_to=RecordingResponse,
         )
 
 

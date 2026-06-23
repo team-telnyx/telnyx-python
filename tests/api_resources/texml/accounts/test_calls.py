@@ -10,9 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.texml.accounts import (
+    CallResource,
     CallCallsResponse,
-    CallUpdateResponse,
-    CallRetrieveResponse,
     CallSiprecJsonResponse,
     CallStreamsJsonResponse,
     CallRetrieveCallsResponse,
@@ -31,7 +30,7 @@ class TestCalls:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(CallRetrieveResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -44,7 +43,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(CallRetrieveResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -57,7 +56,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(CallRetrieveResponse, call, path=["response"])
+            assert_matches_type(CallResource, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -83,7 +82,7 @@ class TestCalls:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(CallUpdateResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -100,7 +99,7 @@ class TestCalls:
             texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
             url="https://www.example.com/intruction-b.xml",
         )
-        assert_matches_type(CallUpdateResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -113,7 +112,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(CallUpdateResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -126,7 +125,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(CallUpdateResponse, call, path=["response"])
+            assert_matches_type(CallResource, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -147,79 +146,77 @@ class TestCalls:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_calls(self, client: Telnyx) -> None:
+    def test_method_calls_overload_1(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            params={"url": "https://www.example.com/texml.xml"},
+            url="https://www.example.com/instructions.xml",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_calls_with_all_params(self, client: Telnyx) -> None:
+    def test_method_calls_with_all_params_overload_1(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            params={
-                "url": "https://www.example.com/texml.xml",
-                "application_sid": "example-app-sid",
-                "async_amd": True,
-                "async_amd_status_callback": "https://www.example.com/callback",
-                "async_amd_status_callback_method": "GET",
-                "caller_id": "Info",
-                "cancel_playback_on_detect_message_end": False,
-                "cancel_playback_on_machine_detection": False,
-                "custom_headers": [
-                    {
-                        "name": "X-Custom-Header",
-                        "value": "custom-value",
-                    }
-                ],
-                "deepfake_detection": "Enable",
-                "deepfake_detection_callback_method": "GET",
-                "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
-                "detection_mode": "Premium",
-                "fallback_url": "https://www.example.com/instructions-fallback.xml",
-                "from_": "+13120001234",
-                "machine_detection": "Enable",
-                "machine_detection_prompt_end_timeout": 5000,
-                "machine_detection_silence_timeout": 2000,
-                "machine_detection_speech_end_threshold": 2000,
-                "machine_detection_speech_threshold": 2000,
-                "machine_detection_timeout": 5000,
-                "media_encryption": "disabled",
-                "preferred_codecs": "PCMA,PCMU",
-                "record": False,
-                "recording_channels": "dual",
-                "recording_status_callback": "https://example.com/recording_status_callback",
-                "recording_status_callback_event": "in-progress completed absent",
-                "recording_status_callback_method": "GET",
-                "recording_timeout": 5,
-                "recording_track": "inbound",
-                "send_recording_url": False,
-                "sip_auth_password": "1234",
-                "sip_auth_username": "user",
-                "sip_region": "Canada",
-                "status_callback": "https://www.example.com/statuscallback-listener",
-                "status_callback_event": "initiated",
-                "status_callback_method": "GET",
-                "supervise_call_sid": "v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-                "supervising_role": "monitor",
-                "texml": "Texml",
-                "time_limit": 3600,
-                "timeout": 60,
-                "to": "+13121230000",
-                "trim": "trim-silence",
-                "url_method": "GET",
-            },
+            url="https://www.example.com/instructions.xml",
+            application_sid="ApplicationSid",
+            async_amd=True,
+            async_amd_status_callback="https://www.example.com/callback",
+            async_amd_status_callback_method="GET",
+            caller_id="Info",
+            cancel_playback_on_detect_message_end=False,
+            cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
+            deepfake_detection="Enable",
+            deepfake_detection_callback_method="GET",
+            deepfake_detection_callback_url="https://www.example.com/deepfake-callback",
+            detection_mode="Premium",
+            fallback_url="https://www.example.com/instructions-fallback.xml",
+            from_="+16175551212",
+            machine_detection="Enable",
+            machine_detection_prompt_end_timeout=5000,
+            machine_detection_silence_timeout=2000,
+            machine_detection_speech_end_threshold=2000,
+            machine_detection_speech_threshold=2000,
+            machine_detection_timeout=5000,
+            media_encryption="disabled",
+            preferred_codecs="PCMA,PCMU",
+            record=False,
+            recording_channels="dual",
+            recording_status_callback="https://example.com/recording_status_callback",
+            recording_status_callback_event="in-progress completed absent",
+            recording_status_callback_method="GET",
+            recording_timeout=5,
+            recording_track="inbound",
+            send_recording_url=False,
+            sip_auth_password="1234",
+            sip_auth_username="user",
+            sip_region="Canada",
+            status_callback="https://www.example.com/callback",
+            status_callback_event="initiated",
+            status_callback_method="GET",
+            supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            supervising_role="monitor",
+            texml="Texml",
+            time_limit=3600,
+            timeout_seconds=60,
+            to="+16175551212",
+            trim="trim-silence",
+            url_method="GET",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_calls(self, client: Telnyx) -> None:
+    def test_raw_response_calls_overload_1(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.calls(
             account_sid="account_sid",
-            params={"url": "https://www.example.com/texml.xml"},
+            url="https://www.example.com/instructions.xml",
         )
 
         assert response.is_closed is True
@@ -229,10 +226,10 @@ class TestCalls:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_calls(self, client: Telnyx) -> None:
+    def test_streaming_response_calls_overload_1(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.calls(
             account_sid="account_sid",
-            params={"url": "https://www.example.com/texml.xml"},
+            url="https://www.example.com/instructions.xml",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,11 +241,215 @@ class TestCalls:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_calls(self, client: Telnyx) -> None:
+    def test_path_params_calls_overload_1(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
             client.texml.accounts.calls.with_raw_response.calls(
                 account_sid="",
-                params={"url": "https://www.example.com/texml.xml"},
+                url="https://www.example.com/instructions.xml",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_calls_overload_2(self, client: Telnyx) -> None:
+        call = client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_calls_with_all_params_overload_2(self, client: Telnyx) -> None:
+        call = client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+            application_sid="ApplicationSid",
+            async_amd=True,
+            async_amd_status_callback="https://www.example.com/callback",
+            async_amd_status_callback_method="GET",
+            caller_id="Info",
+            cancel_playback_on_detect_message_end=False,
+            cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
+            deepfake_detection="Enable",
+            deepfake_detection_callback_method="GET",
+            deepfake_detection_callback_url="https://www.example.com/deepfake-callback",
+            detection_mode="Premium",
+            fallback_url="https://www.example.com/instructions-fallback.xml",
+            from_="+16175551212",
+            machine_detection="Enable",
+            machine_detection_prompt_end_timeout=5000,
+            machine_detection_silence_timeout=2000,
+            machine_detection_speech_end_threshold=2000,
+            machine_detection_speech_threshold=2000,
+            machine_detection_timeout=5000,
+            media_encryption="disabled",
+            preferred_codecs="PCMA,PCMU",
+            record=False,
+            recording_channels="dual",
+            recording_status_callback="https://example.com/recording_status_callback",
+            recording_status_callback_event="in-progress completed absent",
+            recording_status_callback_method="GET",
+            recording_timeout=5,
+            recording_track="inbound",
+            send_recording_url=False,
+            sip_auth_password="1234",
+            sip_auth_username="user",
+            sip_region="Canada",
+            status_callback="https://www.example.com/callback",
+            status_callback_event="initiated",
+            status_callback_method="GET",
+            supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            supervising_role="monitor",
+            time_limit=3600,
+            timeout_seconds=60,
+            to="+16175551212",
+            trim="trim-silence",
+            url="Url",
+            url_method="GET",
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_calls_overload_2(self, client: Telnyx) -> None:
+        response = client.texml.accounts.calls.with_raw_response.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = response.parse()
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_calls_overload_2(self, client: Telnyx) -> None:
+        with client.texml.accounts.calls.with_streaming_response.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = response.parse()
+            assert_matches_type(CallCallsResponse, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_calls_overload_2(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
+            client.texml.accounts.calls.with_raw_response.calls(
+                account_sid="",
+                texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_calls_overload_3(self, client: Telnyx) -> None:
+        call = client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_calls_with_all_params_overload_3(self, client: Telnyx) -> None:
+        call = client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            application_sid="ApplicationSid",
+            async_amd=True,
+            async_amd_status_callback="https://www.example.com/callback",
+            async_amd_status_callback_method="GET",
+            caller_id="Info",
+            cancel_playback_on_detect_message_end=False,
+            cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
+            deepfake_detection="Enable",
+            deepfake_detection_callback_method="GET",
+            deepfake_detection_callback_url="https://www.example.com/deepfake-callback",
+            detection_mode="Premium",
+            fallback_url="https://www.example.com/instructions-fallback.xml",
+            from_="+16175551212",
+            machine_detection="Enable",
+            machine_detection_prompt_end_timeout=5000,
+            machine_detection_silence_timeout=2000,
+            machine_detection_speech_end_threshold=2000,
+            machine_detection_speech_threshold=2000,
+            machine_detection_timeout=5000,
+            media_encryption="disabled",
+            preferred_codecs="PCMA,PCMU",
+            record=False,
+            recording_channels="dual",
+            recording_status_callback="https://example.com/recording_status_callback",
+            recording_status_callback_event="in-progress completed absent",
+            recording_status_callback_method="GET",
+            recording_timeout=5,
+            recording_track="inbound",
+            send_recording_url=False,
+            sip_auth_password="1234",
+            sip_auth_username="user",
+            sip_region="Canada",
+            status_callback="https://www.example.com/callback",
+            status_callback_event="initiated",
+            status_callback_method="GET",
+            supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            supervising_role="monitor",
+            texml="Texml",
+            time_limit=3600,
+            timeout_seconds=60,
+            to="+16175551212",
+            trim="trim-silence",
+            url="Url",
+            url_method="GET",
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_calls_overload_3(self, client: Telnyx) -> None:
+        response = client.texml.accounts.calls.with_raw_response.calls(
+            account_sid="account_sid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = response.parse()
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_calls_overload_3(self, client: Telnyx) -> None:
+        with client.texml.accounts.calls.with_streaming_response.calls(
+            account_sid="account_sid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = response.parse()
+            assert_matches_type(CallCallsResponse, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_calls_overload_3(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
+            client.texml.accounts.calls.with_raw_response.calls(
+                account_sid="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -464,7 +665,7 @@ class TestAsyncCalls:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(CallRetrieveResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -477,7 +678,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(CallRetrieveResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -490,7 +691,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(CallRetrieveResponse, call, path=["response"])
+            assert_matches_type(CallResource, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -516,7 +717,7 @@ class TestAsyncCalls:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(CallUpdateResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -533,7 +734,7 @@ class TestAsyncCalls:
             texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
             url="https://www.example.com/intruction-b.xml",
         )
-        assert_matches_type(CallUpdateResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -546,7 +747,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(CallUpdateResponse, call, path=["response"])
+        assert_matches_type(CallResource, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -559,7 +760,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(CallUpdateResponse, call, path=["response"])
+            assert_matches_type(CallResource, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -580,79 +781,77 @@ class TestAsyncCalls:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_calls(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_calls_overload_1(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            params={"url": "https://www.example.com/texml.xml"},
+            url="https://www.example.com/instructions.xml",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_calls_with_all_params(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_calls_with_all_params_overload_1(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            params={
-                "url": "https://www.example.com/texml.xml",
-                "application_sid": "example-app-sid",
-                "async_amd": True,
-                "async_amd_status_callback": "https://www.example.com/callback",
-                "async_amd_status_callback_method": "GET",
-                "caller_id": "Info",
-                "cancel_playback_on_detect_message_end": False,
-                "cancel_playback_on_machine_detection": False,
-                "custom_headers": [
-                    {
-                        "name": "X-Custom-Header",
-                        "value": "custom-value",
-                    }
-                ],
-                "deepfake_detection": "Enable",
-                "deepfake_detection_callback_method": "GET",
-                "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
-                "detection_mode": "Premium",
-                "fallback_url": "https://www.example.com/instructions-fallback.xml",
-                "from_": "+13120001234",
-                "machine_detection": "Enable",
-                "machine_detection_prompt_end_timeout": 5000,
-                "machine_detection_silence_timeout": 2000,
-                "machine_detection_speech_end_threshold": 2000,
-                "machine_detection_speech_threshold": 2000,
-                "machine_detection_timeout": 5000,
-                "media_encryption": "disabled",
-                "preferred_codecs": "PCMA,PCMU",
-                "record": False,
-                "recording_channels": "dual",
-                "recording_status_callback": "https://example.com/recording_status_callback",
-                "recording_status_callback_event": "in-progress completed absent",
-                "recording_status_callback_method": "GET",
-                "recording_timeout": 5,
-                "recording_track": "inbound",
-                "send_recording_url": False,
-                "sip_auth_password": "1234",
-                "sip_auth_username": "user",
-                "sip_region": "Canada",
-                "status_callback": "https://www.example.com/statuscallback-listener",
-                "status_callback_event": "initiated",
-                "status_callback_method": "GET",
-                "supervise_call_sid": "v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-                "supervising_role": "monitor",
-                "texml": "Texml",
-                "time_limit": 3600,
-                "timeout": 60,
-                "to": "+13121230000",
-                "trim": "trim-silence",
-                "url_method": "GET",
-            },
+            url="https://www.example.com/instructions.xml",
+            application_sid="ApplicationSid",
+            async_amd=True,
+            async_amd_status_callback="https://www.example.com/callback",
+            async_amd_status_callback_method="GET",
+            caller_id="Info",
+            cancel_playback_on_detect_message_end=False,
+            cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
+            deepfake_detection="Enable",
+            deepfake_detection_callback_method="GET",
+            deepfake_detection_callback_url="https://www.example.com/deepfake-callback",
+            detection_mode="Premium",
+            fallback_url="https://www.example.com/instructions-fallback.xml",
+            from_="+16175551212",
+            machine_detection="Enable",
+            machine_detection_prompt_end_timeout=5000,
+            machine_detection_silence_timeout=2000,
+            machine_detection_speech_end_threshold=2000,
+            machine_detection_speech_threshold=2000,
+            machine_detection_timeout=5000,
+            media_encryption="disabled",
+            preferred_codecs="PCMA,PCMU",
+            record=False,
+            recording_channels="dual",
+            recording_status_callback="https://example.com/recording_status_callback",
+            recording_status_callback_event="in-progress completed absent",
+            recording_status_callback_method="GET",
+            recording_timeout=5,
+            recording_track="inbound",
+            send_recording_url=False,
+            sip_auth_password="1234",
+            sip_auth_username="user",
+            sip_region="Canada",
+            status_callback="https://www.example.com/callback",
+            status_callback_event="initiated",
+            status_callback_method="GET",
+            supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            supervising_role="monitor",
+            texml="Texml",
+            time_limit=3600,
+            timeout_seconds=60,
+            to="+16175551212",
+            trim="trim-silence",
+            url_method="GET",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_calls(self, async_client: AsyncTelnyx) -> None:
+    async def test_raw_response_calls_overload_1(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.calls(
             account_sid="account_sid",
-            params={"url": "https://www.example.com/texml.xml"},
+            url="https://www.example.com/instructions.xml",
         )
 
         assert response.is_closed is True
@@ -662,10 +861,10 @@ class TestAsyncCalls:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_calls(self, async_client: AsyncTelnyx) -> None:
+    async def test_streaming_response_calls_overload_1(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.calls(
             account_sid="account_sid",
-            params={"url": "https://www.example.com/texml.xml"},
+            url="https://www.example.com/instructions.xml",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -677,11 +876,215 @@ class TestAsyncCalls:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_calls(self, async_client: AsyncTelnyx) -> None:
+    async def test_path_params_calls_overload_1(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
             await async_client.texml.accounts.calls.with_raw_response.calls(
                 account_sid="",
-                params={"url": "https://www.example.com/texml.xml"},
+                url="https://www.example.com/instructions.xml",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_calls_overload_2(self, async_client: AsyncTelnyx) -> None:
+        call = await async_client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_calls_with_all_params_overload_2(self, async_client: AsyncTelnyx) -> None:
+        call = await async_client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+            application_sid="ApplicationSid",
+            async_amd=True,
+            async_amd_status_callback="https://www.example.com/callback",
+            async_amd_status_callback_method="GET",
+            caller_id="Info",
+            cancel_playback_on_detect_message_end=False,
+            cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
+            deepfake_detection="Enable",
+            deepfake_detection_callback_method="GET",
+            deepfake_detection_callback_url="https://www.example.com/deepfake-callback",
+            detection_mode="Premium",
+            fallback_url="https://www.example.com/instructions-fallback.xml",
+            from_="+16175551212",
+            machine_detection="Enable",
+            machine_detection_prompt_end_timeout=5000,
+            machine_detection_silence_timeout=2000,
+            machine_detection_speech_end_threshold=2000,
+            machine_detection_speech_threshold=2000,
+            machine_detection_timeout=5000,
+            media_encryption="disabled",
+            preferred_codecs="PCMA,PCMU",
+            record=False,
+            recording_channels="dual",
+            recording_status_callback="https://example.com/recording_status_callback",
+            recording_status_callback_event="in-progress completed absent",
+            recording_status_callback_method="GET",
+            recording_timeout=5,
+            recording_track="inbound",
+            send_recording_url=False,
+            sip_auth_password="1234",
+            sip_auth_username="user",
+            sip_region="Canada",
+            status_callback="https://www.example.com/callback",
+            status_callback_event="initiated",
+            status_callback_method="GET",
+            supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            supervising_role="monitor",
+            time_limit=3600,
+            timeout_seconds=60,
+            to="+16175551212",
+            trim="trim-silence",
+            url="Url",
+            url_method="GET",
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_calls_overload_2(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.texml.accounts.calls.with_raw_response.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = await response.parse()
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_calls_overload_2(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.texml.accounts.calls.with_streaming_response.calls(
+            account_sid="account_sid",
+            texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = await response.parse()
+            assert_matches_type(CallCallsResponse, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_calls_overload_2(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
+            await async_client.texml.accounts.calls.with_raw_response.calls(
+                account_sid="",
+                texml='<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_calls_overload_3(self, async_client: AsyncTelnyx) -> None:
+        call = await async_client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_calls_with_all_params_overload_3(self, async_client: AsyncTelnyx) -> None:
+        call = await async_client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            application_sid="ApplicationSid",
+            async_amd=True,
+            async_amd_status_callback="https://www.example.com/callback",
+            async_amd_status_callback_method="GET",
+            caller_id="Info",
+            cancel_playback_on_detect_message_end=False,
+            cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
+            deepfake_detection="Enable",
+            deepfake_detection_callback_method="GET",
+            deepfake_detection_callback_url="https://www.example.com/deepfake-callback",
+            detection_mode="Premium",
+            fallback_url="https://www.example.com/instructions-fallback.xml",
+            from_="+16175551212",
+            machine_detection="Enable",
+            machine_detection_prompt_end_timeout=5000,
+            machine_detection_silence_timeout=2000,
+            machine_detection_speech_end_threshold=2000,
+            machine_detection_speech_threshold=2000,
+            machine_detection_timeout=5000,
+            media_encryption="disabled",
+            preferred_codecs="PCMA,PCMU",
+            record=False,
+            recording_channels="dual",
+            recording_status_callback="https://example.com/recording_status_callback",
+            recording_status_callback_event="in-progress completed absent",
+            recording_status_callback_method="GET",
+            recording_timeout=5,
+            recording_track="inbound",
+            send_recording_url=False,
+            sip_auth_password="1234",
+            sip_auth_username="user",
+            sip_region="Canada",
+            status_callback="https://www.example.com/callback",
+            status_callback_event="initiated",
+            status_callback_method="GET",
+            supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            supervising_role="monitor",
+            texml="Texml",
+            time_limit=3600,
+            timeout_seconds=60,
+            to="+16175551212",
+            trim="trim-silence",
+            url="Url",
+            url_method="GET",
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_calls_overload_3(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.texml.accounts.calls.with_raw_response.calls(
+            account_sid="account_sid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = await response.parse()
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_calls_overload_3(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.texml.accounts.calls.with_streaming_response.calls(
+            account_sid="account_sid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = await response.parse()
+            assert_matches_type(CallCallsResponse, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_calls_overload_3(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
+            await async_client.texml.accounts.calls.with_raw_response.calls(
+                account_sid="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

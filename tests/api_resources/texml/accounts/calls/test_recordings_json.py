@@ -10,8 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.texml.accounts.calls import (
-    RecordingsJsonRecordingsJsonResponse,
-    RecordingsJsonRetrieveRecordingsJsonResponse,
+    TexmlGetCallRecordingsResponseBody,
+    TexmlCreateCallRecordingResponseBody,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +27,7 @@ class TestRecordingsJson:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -43,7 +43,7 @@ class TestRecordingsJson:
             recording_track="inbound",
             send_recording_url=False,
         )
-        assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -56,7 +56,7 @@ class TestRecordingsJson:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recordings_json = response.parse()
-        assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -69,7 +69,7 @@ class TestRecordingsJson:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recordings_json = response.parse()
-            assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+            assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -95,7 +95,7 @@ class TestRecordingsJson:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(RecordingsJsonRetrieveRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -108,7 +108,7 @@ class TestRecordingsJson:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recordings_json = response.parse()
-        assert_matches_type(RecordingsJsonRetrieveRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -121,7 +121,7 @@ class TestRecordingsJson:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recordings_json = response.parse()
-            assert_matches_type(RecordingsJsonRetrieveRecordingsJsonResponse, recordings_json, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingsResponseBody, recordings_json, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -153,7 +153,7 @@ class TestAsyncRecordingsJson:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -169,7 +169,7 @@ class TestAsyncRecordingsJson:
             recording_track="inbound",
             send_recording_url=False,
         )
-        assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -182,7 +182,7 @@ class TestAsyncRecordingsJson:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recordings_json = await response.parse()
-        assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -195,7 +195,7 @@ class TestAsyncRecordingsJson:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recordings_json = await response.parse()
-            assert_matches_type(RecordingsJsonRecordingsJsonResponse, recordings_json, path=["response"])
+            assert_matches_type(TexmlCreateCallRecordingResponseBody, recordings_json, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -221,7 +221,7 @@ class TestAsyncRecordingsJson:
             call_sid="call_sid",
             account_sid="account_sid",
         )
-        assert_matches_type(RecordingsJsonRetrieveRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -234,7 +234,7 @@ class TestAsyncRecordingsJson:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recordings_json = await response.parse()
-        assert_matches_type(RecordingsJsonRetrieveRecordingsJsonResponse, recordings_json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingsResponseBody, recordings_json, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -247,7 +247,7 @@ class TestAsyncRecordingsJson:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recordings_json = await response.parse()
-            assert_matches_type(RecordingsJsonRetrieveRecordingsJsonResponse, recordings_json, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingsResponseBody, recordings_json, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

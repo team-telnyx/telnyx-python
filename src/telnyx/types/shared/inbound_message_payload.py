@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..messaging_error import MessagingError
+from .messaging_error import MessagingError
 
 __all__ = [
     "InboundMessagePayload",

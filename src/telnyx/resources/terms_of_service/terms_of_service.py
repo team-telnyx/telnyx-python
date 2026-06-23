@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
-from ...types import terms_of_service_info_params, terms_of_service_status_params
+from ...types import terms_of_service_retrieve_info_params, terms_of_service_retrieve_status_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -42,8 +40,10 @@ from .number_reputation import (
     NumberReputationResourceWithStreamingResponse,
     AsyncNumberReputationResourceWithStreamingResponse,
 )
-from ...types.terms_of_service_info_response import TermsOfServiceInfoResponse
-from ...types.terms_of_service_status_response import TermsOfServiceStatusResponse
+from ...types.terms_of_service import TosProductType
+from ...types.terms_of_service.tos_product_type import TosProductType
+from ...types.terms_of_service_retrieve_info_response import TermsOfServiceRetrieveInfoResponse
+from ...types.terms_of_service_retrieve_status_response import TermsOfServiceRetrieveStatusResponse
 
 __all__ = ["TermsOfServiceResource", "AsyncTermsOfServiceResource"]
 
@@ -93,17 +93,17 @@ class TermsOfServiceResource(SyncAPIResource):
         """
         return TermsOfServiceResourceWithStreamingResponse(self)
 
-    def info(
+    def retrieve_info(
         self,
         *,
-        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        product_type: TosProductType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TermsOfServiceInfoResponse:
+    ) -> TermsOfServiceRetrieveInfoResponse:
         """
         Returns the available Terms of Service agreements (product, current version,
         terms URL, effective date). Omit `product_type` to return all products; pass it
@@ -128,23 +128,24 @@ class TermsOfServiceResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"product_type": product_type}, terms_of_service_info_params.TermsOfServiceInfoParams
+                    {"product_type": product_type},
+                    terms_of_service_retrieve_info_params.TermsOfServiceRetrieveInfoParams,
                 ),
             ),
-            cast_to=TermsOfServiceInfoResponse,
+            cast_to=TermsOfServiceRetrieveInfoResponse,
         )
 
-    def status(
+    def retrieve_status(
         self,
         *,
-        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        product_type: TosProductType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TermsOfServiceStatusResponse:
+    ) -> TermsOfServiceRetrieveStatusResponse:
         """
         Returns whether the authenticated user has agreed to the current Terms of
         Service for the product given by `product_type`. Used during onboarding to
@@ -172,10 +173,11 @@ class TermsOfServiceResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"product_type": product_type}, terms_of_service_status_params.TermsOfServiceStatusParams
+                    {"product_type": product_type},
+                    terms_of_service_retrieve_status_params.TermsOfServiceRetrieveStatusParams,
                 ),
             ),
-            cast_to=TermsOfServiceStatusResponse,
+            cast_to=TermsOfServiceRetrieveStatusResponse,
         )
 
 
@@ -224,17 +226,17 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
         """
         return AsyncTermsOfServiceResourceWithStreamingResponse(self)
 
-    async def info(
+    async def retrieve_info(
         self,
         *,
-        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        product_type: TosProductType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TermsOfServiceInfoResponse:
+    ) -> TermsOfServiceRetrieveInfoResponse:
         """
         Returns the available Terms of Service agreements (product, current version,
         terms URL, effective date). Omit `product_type` to return all products; pass it
@@ -259,23 +261,24 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"product_type": product_type}, terms_of_service_info_params.TermsOfServiceInfoParams
+                    {"product_type": product_type},
+                    terms_of_service_retrieve_info_params.TermsOfServiceRetrieveInfoParams,
                 ),
             ),
-            cast_to=TermsOfServiceInfoResponse,
+            cast_to=TermsOfServiceRetrieveInfoResponse,
         )
 
-    async def status(
+    async def retrieve_status(
         self,
         *,
-        product_type: Literal["branded_calling", "number_reputation"] | Omit = omit,
+        product_type: TosProductType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TermsOfServiceStatusResponse:
+    ) -> TermsOfServiceRetrieveStatusResponse:
         """
         Returns whether the authenticated user has agreed to the current Terms of
         Service for the product given by `product_type`. Used during onboarding to
@@ -303,10 +306,11 @@ class AsyncTermsOfServiceResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"product_type": product_type}, terms_of_service_status_params.TermsOfServiceStatusParams
+                    {"product_type": product_type},
+                    terms_of_service_retrieve_status_params.TermsOfServiceRetrieveStatusParams,
                 ),
             ),
-            cast_to=TermsOfServiceStatusResponse,
+            cast_to=TermsOfServiceRetrieveStatusResponse,
         )
 
 
@@ -314,11 +318,11 @@ class TermsOfServiceResourceWithRawResponse:
     def __init__(self, terms_of_service: TermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.info = to_raw_response_wrapper(
-            terms_of_service.info,
+        self.retrieve_info = to_raw_response_wrapper(
+            terms_of_service.retrieve_info,
         )
-        self.status = to_raw_response_wrapper(
-            terms_of_service.status,
+        self.retrieve_status = to_raw_response_wrapper(
+            terms_of_service.retrieve_status,
         )
 
     @cached_property
@@ -347,11 +351,11 @@ class AsyncTermsOfServiceResourceWithRawResponse:
     def __init__(self, terms_of_service: AsyncTermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.info = async_to_raw_response_wrapper(
-            terms_of_service.info,
+        self.retrieve_info = async_to_raw_response_wrapper(
+            terms_of_service.retrieve_info,
         )
-        self.status = async_to_raw_response_wrapper(
-            terms_of_service.status,
+        self.retrieve_status = async_to_raw_response_wrapper(
+            terms_of_service.retrieve_status,
         )
 
     @cached_property
@@ -380,11 +384,11 @@ class TermsOfServiceResourceWithStreamingResponse:
     def __init__(self, terms_of_service: TermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.info = to_streamed_response_wrapper(
-            terms_of_service.info,
+        self.retrieve_info = to_streamed_response_wrapper(
+            terms_of_service.retrieve_info,
         )
-        self.status = to_streamed_response_wrapper(
-            terms_of_service.status,
+        self.retrieve_status = to_streamed_response_wrapper(
+            terms_of_service.retrieve_status,
         )
 
     @cached_property
@@ -413,11 +417,11 @@ class AsyncTermsOfServiceResourceWithStreamingResponse:
     def __init__(self, terms_of_service: AsyncTermsOfServiceResource) -> None:
         self._terms_of_service = terms_of_service
 
-        self.info = async_to_streamed_response_wrapper(
-            terms_of_service.info,
+        self.retrieve_info = async_to_streamed_response_wrapper(
+            terms_of_service.retrieve_info,
         )
-        self.status = async_to_streamed_response_wrapper(
-            terms_of_service.status,
+        self.retrieve_status = async_to_streamed_response_wrapper(
+            terms_of_service.retrieve_status,
         )
 
     @cached_property

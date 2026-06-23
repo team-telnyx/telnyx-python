@@ -2,16 +2,11 @@
 
 from typing import Optional
 
-from .record import Record
+from .network import Network
 from .._models import BaseModel
 
-__all__ = ["NetworkDeleteResponse", "Data"]
-
-
-class Data(Record):
-    name: Optional[str] = None
-    """A user specified name for the network."""
+__all__ = ["NetworkDeleteResponse"]
 
 
 class NetworkDeleteResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[Network] = None

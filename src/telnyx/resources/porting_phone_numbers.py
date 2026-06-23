@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.porting_phone_number_list_response import PortingPhoneNumberListResponse
+from ..types.porting_phone_number import PortingPhoneNumber
 
 __all__ = ["PortingPhoneNumbersResource", "AsyncPortingPhoneNumbersResource"]
 
@@ -56,7 +56,7 @@ class PortingPhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PortingPhoneNumberListResponse]:
+    ) -> SyncDefaultFlatPagination[PortingPhoneNumber]:
         """
         Returns a list of your porting phone numbers.
 
@@ -75,7 +75,7 @@ class PortingPhoneNumbersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/porting_phone_numbers",
-            page=SyncDefaultFlatPagination[PortingPhoneNumberListResponse],
+            page=SyncDefaultFlatPagination[PortingPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,7 +90,7 @@ class PortingPhoneNumbersResource(SyncAPIResource):
                     porting_phone_number_list_params.PortingPhoneNumberListParams,
                 ),
             ),
-            model=PortingPhoneNumberListResponse,
+            model=PortingPhoneNumber,
         )
 
 
@@ -128,7 +128,7 @@ class AsyncPortingPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortingPhoneNumberListResponse, AsyncDefaultFlatPagination[PortingPhoneNumberListResponse]]:
+    ) -> AsyncPaginator[PortingPhoneNumber, AsyncDefaultFlatPagination[PortingPhoneNumber]]:
         """
         Returns a list of your porting phone numbers.
 
@@ -147,7 +147,7 @@ class AsyncPortingPhoneNumbersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/porting_phone_numbers",
-            page=AsyncDefaultFlatPagination[PortingPhoneNumberListResponse],
+            page=AsyncDefaultFlatPagination[PortingPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -162,7 +162,7 @@ class AsyncPortingPhoneNumbersResource(AsyncAPIResource):
                     porting_phone_number_list_params.PortingPhoneNumberListParams,
                 ),
             ),
-            model=PortingPhoneNumberListResponse,
+            model=PortingPhoneNumber,
         )
 
 

@@ -19,7 +19,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting import event_list_params
-from ...types.porting.event_list_response import EventListResponse
+from ...types.porting.porting_event import PortingEvent
 from ...types.porting.event_retrieve_response import EventRetrieveResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
@@ -92,7 +92,7 @@ class EventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[EventListResponse]:
+    ) -> SyncDefaultFlatPagination[PortingEvent]:
         """
         Returns a list of all porting events.
 
@@ -110,7 +110,7 @@ class EventsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/porting/events",
-            page=SyncDefaultFlatPagination[EventListResponse],
+            page=SyncDefaultFlatPagination[PortingEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -125,7 +125,7 @@ class EventsResource(SyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, PortingEvent),  # Union types cannot be passed in as arguments in the type system
         )
 
     def republish(
@@ -230,7 +230,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[EventListResponse, AsyncDefaultFlatPagination[EventListResponse]]:
+    ) -> AsyncPaginator[PortingEvent, AsyncDefaultFlatPagination[PortingEvent]]:
         """
         Returns a list of all porting events.
 
@@ -248,7 +248,7 @@ class AsyncEventsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/porting/events",
-            page=AsyncDefaultFlatPagination[EventListResponse],
+            page=AsyncDefaultFlatPagination[PortingEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -263,7 +263,7 @@ class AsyncEventsResource(AsyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, PortingEvent),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def republish(

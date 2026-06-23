@@ -19,9 +19,14 @@ from ...._response import (
 )
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.ai.assistants import ConversationChannelType, scheduled_event_list_params, scheduled_event_create_params
+from ....types.ai.assistants import (
+    ConversationChannelType,
+    scheduled_event_list_params,
+    scheduled_event_create_params,
+)
 from ....types.ai.assistants.scheduled_event_response import ScheduledEventResponse
 from ....types.ai.assistants.conversation_channel_type import ConversationChannelType
+from ....types.ai.assistants.scheduled_call_settings_param import ScheduledCallSettingsParam
 from ....types.ai.assistants.scheduled_event_list_response import ScheduledEventListResponse
 
 __all__ = ["ScheduledEventsResource", "AsyncScheduledEventsResource"]
@@ -57,7 +62,7 @@ class ScheduledEventsResource(SyncAPIResource):
         telnyx_agent_target: str,
         telnyx_conversation_channel: ConversationChannelType,
         telnyx_end_user_target: str,
-        call_settings: scheduled_event_create_params.CallSettings | Omit = omit,
+        call_settings: ScheduledCallSettingsParam | Omit = omit,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         dynamic_variables: Dict[str, str] | Omit = omit,
         max_retries_client_errors: int | Omit = omit,
@@ -312,7 +317,7 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         telnyx_agent_target: str,
         telnyx_conversation_channel: ConversationChannelType,
         telnyx_end_user_target: str,
-        call_settings: scheduled_event_create_params.CallSettings | Omit = omit,
+        call_settings: ScheduledCallSettingsParam | Omit = omit,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         dynamic_variables: Dict[str, str] | Omit = omit,
         max_retries_client_errors: int | Omit = omit,

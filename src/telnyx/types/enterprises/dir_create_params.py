@@ -6,8 +6,9 @@ from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
+from ..document_param import DocumentParam
 
-__all__ = ["DirCreateParams", "Document"]
+__all__ = ["DirCreateParams"]
 
 
 class DirCreateParams(TypedDict, total=False):
@@ -46,7 +47,7 @@ class DirCreateParams(TypedDict, total=False):
     Validate phrasing against `POST /call_reasons/validate`.
     """
 
-    documents: Iterable[Document]
+    documents: Iterable[DocumentParam]
     """Supporting documents. Each `document_id` may appear at most once on a DIR."""
 
     logo_url: str
@@ -57,37 +58,3 @@ class DirCreateParams(TypedDict, total=False):
     Set to true if your organization places calls on behalf of other enterprises
     (BPO/reseller).
     """
-
-
-class Document(TypedDict, total=False):
-    document_id: Required[str]
-    """
-    Id returned by the Telnyx Documents API after you upload the file (upload via
-    `POST /v2/documents`; see https://developers.telnyx.com/api/documents).
-    """
-
-    document_type: Required[
-        Literal[
-            "letter_of_authorization",
-            "business_registration",
-            "articles_of_incorporation",
-            "tax_document",
-            "ein_letter",
-            "trademark_registration",
-            "website_ownership",
-            "business_license",
-            "professional_license",
-            "government_id",
-            "utility_bill",
-            "bank_statement",
-            "other",
-        ]
-    ]
-    """Type of supporting document.
-
-    Pick the closest match to what the file actually contains; `other` triggers
-    manual vetting and may slow approval. The matching short_name reference list is
-    at `GET /v2/dir/document_types`.
-    """
-
-    description: str

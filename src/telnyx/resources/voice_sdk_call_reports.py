@@ -19,7 +19,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.voice_sdk_call_report_list_response import VoiceSDKCallReportListResponse
+from ..types.voice_sdk_call_report import VoiceSDKCallReport
 from ..types.voice_sdk_call_report_retrieve_response import VoiceSDKCallReportRetrieveResponse
 
 __all__ = ["VoiceSDKCallReportsResource", "AsyncVoiceSDKCallReportsResource"]
@@ -96,7 +96,7 @@ class VoiceSDKCallReportsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VoiceSDKCallReportListResponse]:
+    ) -> SyncDefaultFlatPagination[VoiceSDKCallReport]:
         """
         Returns paginated raw call report stats JSON payloads stored for the
         authenticated user. The user is derived from Telnyx authentication, not from
@@ -117,7 +117,7 @@ class VoiceSDKCallReportsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/voice_sdk_call_reports",
-            page=SyncDefaultFlatPagination[VoiceSDKCallReportListResponse],
+            page=SyncDefaultFlatPagination[VoiceSDKCallReport],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -132,7 +132,7 @@ class VoiceSDKCallReportsResource(SyncAPIResource):
                     voice_sdk_call_report_list_params.VoiceSDKCallReportListParams,
                 ),
             ),
-            model=VoiceSDKCallReportListResponse,
+            model=VoiceSDKCallReport,
         )
 
 
@@ -207,7 +207,7 @@ class AsyncVoiceSDKCallReportsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VoiceSDKCallReportListResponse, AsyncDefaultFlatPagination[VoiceSDKCallReportListResponse]]:
+    ) -> AsyncPaginator[VoiceSDKCallReport, AsyncDefaultFlatPagination[VoiceSDKCallReport]]:
         """
         Returns paginated raw call report stats JSON payloads stored for the
         authenticated user. The user is derived from Telnyx authentication, not from
@@ -228,7 +228,7 @@ class AsyncVoiceSDKCallReportsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/voice_sdk_call_reports",
-            page=AsyncDefaultFlatPagination[VoiceSDKCallReportListResponse],
+            page=AsyncDefaultFlatPagination[VoiceSDKCallReport],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -243,7 +243,7 @@ class AsyncVoiceSDKCallReportsResource(AsyncAPIResource):
                     voice_sdk_call_report_list_params.VoiceSDKCallReportListParams,
                 ),
             ),
-            model=VoiceSDKCallReportListResponse,
+            model=VoiceSDKCallReport,
         )
 
 

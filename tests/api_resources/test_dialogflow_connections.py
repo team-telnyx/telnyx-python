@@ -10,9 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    DialogflowConnectionCreateResponse,
-    DialogflowConnectionUpdateResponse,
-    DialogflowConnectionRetrieveResponse,
+    DialogflowConnectionResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -39,7 +37,7 @@ class TestDialogflowConnections:
                 "client_x509_cert_url": "bar",
             },
         )
-        assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -63,7 +61,7 @@ class TestDialogflowConnections:
             environment="development",
             location="global",
         )
-        assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -87,7 +85,7 @@ class TestDialogflowConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dialogflow_connection = response.parse()
-        assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -111,7 +109,7 @@ class TestDialogflowConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dialogflow_connection = response.parse()
-            assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+            assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +139,7 @@ class TestDialogflowConnections:
         dialogflow_connection = client.dialogflow_connections.retrieve(
             "connection_id",
         )
-        assert_matches_type(DialogflowConnectionRetrieveResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -153,7 +151,7 @@ class TestDialogflowConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dialogflow_connection = response.parse()
-        assert_matches_type(DialogflowConnectionRetrieveResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -165,7 +163,7 @@ class TestDialogflowConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dialogflow_connection = response.parse()
-            assert_matches_type(DialogflowConnectionRetrieveResponse, dialogflow_connection, path=["response"])
+            assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -195,7 +193,7 @@ class TestDialogflowConnections:
                 "client_x509_cert_url": "bar",
             },
         )
-        assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -219,7 +217,7 @@ class TestDialogflowConnections:
             environment="development",
             location="global",
         )
-        assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -243,7 +241,7 @@ class TestDialogflowConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dialogflow_connection = response.parse()
-        assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -267,7 +265,7 @@ class TestDialogflowConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dialogflow_connection = response.parse()
-            assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+            assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -357,7 +355,7 @@ class TestAsyncDialogflowConnections:
                 "client_x509_cert_url": "bar",
             },
         )
-        assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -381,7 +379,7 @@ class TestAsyncDialogflowConnections:
             environment="development",
             location="global",
         )
-        assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -405,7 +403,7 @@ class TestAsyncDialogflowConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dialogflow_connection = await response.parse()
-        assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -429,7 +427,7 @@ class TestAsyncDialogflowConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dialogflow_connection = await response.parse()
-            assert_matches_type(DialogflowConnectionCreateResponse, dialogflow_connection, path=["response"])
+            assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -459,7 +457,7 @@ class TestAsyncDialogflowConnections:
         dialogflow_connection = await async_client.dialogflow_connections.retrieve(
             "connection_id",
         )
-        assert_matches_type(DialogflowConnectionRetrieveResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -471,7 +469,7 @@ class TestAsyncDialogflowConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dialogflow_connection = await response.parse()
-        assert_matches_type(DialogflowConnectionRetrieveResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -483,7 +481,7 @@ class TestAsyncDialogflowConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dialogflow_connection = await response.parse()
-            assert_matches_type(DialogflowConnectionRetrieveResponse, dialogflow_connection, path=["response"])
+            assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -513,7 +511,7 @@ class TestAsyncDialogflowConnections:
                 "client_x509_cert_url": "bar",
             },
         )
-        assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -537,7 +535,7 @@ class TestAsyncDialogflowConnections:
             environment="development",
             location="global",
         )
-        assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -561,7 +559,7 @@ class TestAsyncDialogflowConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dialogflow_connection = await response.parse()
-        assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+        assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -585,7 +583,7 @@ class TestAsyncDialogflowConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dialogflow_connection = await response.parse()
-            assert_matches_type(DialogflowConnectionUpdateResponse, dialogflow_connection, path=["response"])
+            assert_matches_type(DialogflowConnectionResponse, dialogflow_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

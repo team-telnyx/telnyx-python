@@ -4,7 +4,12 @@ from __future__ import annotations
 
 import httpx
 
-from ...types import network_list_params, network_create_params, network_update_params, network_list_interfaces_params
+from ...types import (
+    network_list_params,
+    network_create_params,
+    network_update_params,
+    network_list_interfaces_params,
+)
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -17,6 +22,7 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.network import Network
 from .default_gateway import (
     DefaultGatewayResource,
     AsyncDefaultGatewayResource,
@@ -25,7 +31,7 @@ from .default_gateway import (
     DefaultGatewayResourceWithStreamingResponse,
     AsyncDefaultGatewayResourceWithStreamingResponse,
 )
-from ...types.network_list_response import NetworkListResponse
+from ...types.network_create_param import NetworkCreateParam
 from ...types.network_create_response import NetworkCreateResponse
 from ...types.network_delete_response import NetworkDeleteResponse
 from ...types.network_update_response import NetworkUpdateResponse
@@ -65,7 +71,7 @@ class NetworksResource(SyncAPIResource):
     def create(
         self,
         *,
-        name: str,
+        network_create: NetworkCreateParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -77,8 +83,6 @@ class NetworksResource(SyncAPIResource):
         Create a new Network.
 
         Args:
-          name: A user specified name for the network.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -89,7 +93,7 @@ class NetworksResource(SyncAPIResource):
         """
         return self._post(
             "/networks",
-            body=maybe_transform({"name": name}, network_create_params.NetworkCreateParams),
+            body=maybe_transform(network_create, network_create_params.NetworkCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -133,7 +137,7 @@ class NetworksResource(SyncAPIResource):
         self,
         network_id: str,
         *,
-        name: str,
+        network_create: NetworkCreateParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -145,8 +149,6 @@ class NetworksResource(SyncAPIResource):
         Update a Network.
 
         Args:
-          name: A user specified name for the network.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -159,7 +161,7 @@ class NetworksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._patch(
             path_template("/networks/{network_id}", network_id=network_id),
-            body=maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
+            body=maybe_transform(network_create, network_update_params.NetworkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -178,7 +180,7 @@ class NetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NetworkListResponse]:
+    ) -> SyncDefaultFlatPagination[Network]:
         """
         List all Networks.
 
@@ -195,7 +197,7 @@ class NetworksResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/networks",
-            page=SyncDefaultFlatPagination[NetworkListResponse],
+            page=SyncDefaultFlatPagination[Network],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -210,7 +212,7 @@ class NetworksResource(SyncAPIResource):
                     network_list_params.NetworkListParams,
                 ),
             ),
-            model=NetworkListResponse,
+            model=Network,
         )
 
     def delete(
@@ -328,7 +330,7 @@ class AsyncNetworksResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: str,
+        network_create: NetworkCreateParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,8 +342,6 @@ class AsyncNetworksResource(AsyncAPIResource):
         Create a new Network.
 
         Args:
-          name: A user specified name for the network.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -352,7 +352,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         """
         return await self._post(
             "/networks",
-            body=await async_maybe_transform({"name": name}, network_create_params.NetworkCreateParams),
+            body=await async_maybe_transform(network_create, network_create_params.NetworkCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -396,7 +396,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         network_id: str,
         *,
-        name: str,
+        network_create: NetworkCreateParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -408,8 +408,6 @@ class AsyncNetworksResource(AsyncAPIResource):
         Update a Network.
 
         Args:
-          name: A user specified name for the network.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -422,7 +420,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._patch(
             path_template("/networks/{network_id}", network_id=network_id),
-            body=await async_maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
+            body=await async_maybe_transform(network_create, network_update_params.NetworkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -441,7 +439,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NetworkListResponse, AsyncDefaultFlatPagination[NetworkListResponse]]:
+    ) -> AsyncPaginator[Network, AsyncDefaultFlatPagination[Network]]:
         """
         List all Networks.
 
@@ -458,7 +456,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/networks",
-            page=AsyncDefaultFlatPagination[NetworkListResponse],
+            page=AsyncDefaultFlatPagination[Network],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -473,7 +471,7 @@ class AsyncNetworksResource(AsyncAPIResource):
                     network_list_params.NetworkListParams,
                 ),
             ),
-            model=NetworkListResponse,
+            model=Network,
         )
 
     async def delete(

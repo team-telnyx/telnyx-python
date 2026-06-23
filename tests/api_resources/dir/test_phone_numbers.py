@@ -10,8 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.dir import (
+    DirPhoneNumber,
     PhoneNumberAddResponse,
-    PhoneNumberListResponse,
     PhoneNumberRemoveResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
@@ -28,7 +28,7 @@ class TestPhoneNumbers:
         phone_number = client.dir.phone_numbers.list(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -39,7 +39,7 @@ class TestPhoneNumbers:
             page_size=20,
             status="submitted",
         )
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -51,7 +51,7 @@ class TestPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -63,7 +63,7 @@ class TestPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -203,7 +203,7 @@ class TestAsyncPhoneNumbers:
         phone_number = await async_client.dir.phone_numbers.list(
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -214,7 +214,7 @@ class TestAsyncPhoneNumbers:
             page_size=20,
             status="submitted",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -226,7 +226,7 @@ class TestAsyncPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -238,7 +238,7 @@ class TestAsyncPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

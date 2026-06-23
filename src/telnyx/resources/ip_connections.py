@@ -11,6 +11,7 @@ from ..types import (
     DtmfType,
     EncryptedMedia,
     AnchorsiteOverride,
+    ConnectionNoiseSuppression,
     ip_connection_list_params,
     ip_connection_create_params,
     ip_connection_update_params,
@@ -33,6 +34,7 @@ from ..types.encrypted_media import EncryptedMedia
 from ..types.inbound_ip_param import InboundIPParam
 from ..types.outbound_ip_param import OutboundIPParam
 from ..types.anchorsite_override import AnchorsiteOverride
+from ..types.connection_noise_suppression import ConnectionNoiseSuppression
 from ..types.ip_connection_create_response import IPConnectionCreateResponse
 from ..types.ip_connection_delete_response import IPConnectionDeleteResponse
 from ..types.ip_connection_update_response import IPConnectionUpdateResponse
@@ -81,7 +83,7 @@ class IPConnectionsResource(SyncAPIResource):
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
@@ -256,7 +258,7 @@ class IPConnectionsResource(SyncAPIResource):
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
@@ -522,7 +524,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
@@ -697,7 +699,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         jitter_buffer: ConnectionJitterBuffer | Omit = omit,
-        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression: ConnectionNoiseSuppression | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,

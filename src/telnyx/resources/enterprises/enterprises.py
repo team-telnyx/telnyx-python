@@ -44,11 +44,8 @@ from ...types.enterprise_public import EnterprisePublic
 from ...types.billing_address_param import BillingAddressParam
 from ...types.billing_contact_param import BillingContactParam
 from ...types.physical_address_param import PhysicalAddressParam
-from ...types.enterprise_create_response import EnterpriseCreateResponse
-from ...types.enterprise_update_response import EnterpriseUpdateResponse
+from ...types.enterprise_public_wrapped import EnterprisePublicWrapped
 from ...types.organization_contact_param import OrganizationContactParam
-from ...types.enterprise_retrieve_response import EnterpriseRetrieveResponse
-from ...types.enterprise_activate_branded_calling_response import EnterpriseActivateBrandedCallingResponse
 
 __all__ = ["EnterprisesResource", "AsyncEnterprisesResource"]
 
@@ -160,7 +157,7 @@ class EnterprisesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseCreateResponse:
+    ) -> EnterprisePublicWrapped:
         """
         Create the legal entity (enterprise) that represents your business on the Telnyx
         platform.
@@ -260,7 +257,7 @@ class EnterprisesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseCreateResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
     def retrieve(
@@ -273,7 +270,7 @@ class EnterprisesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseRetrieveResponse:
+    ) -> EnterprisePublicWrapped:
         """Retrieve a single enterprise by id.
 
         Returns `404` if the id does not exist or
@@ -295,7 +292,7 @@ class EnterprisesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseRetrieveResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
     def update(
@@ -370,7 +367,7 @@ class EnterprisesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseUpdateResponse:
+    ) -> EnterprisePublicWrapped:
         """Replace the enterprise's mutable fields.
 
         Only mutable fields may be sent.
@@ -421,7 +418,7 @@ class EnterprisesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseUpdateResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
     def list(
@@ -524,7 +521,7 @@ class EnterprisesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def activate_branded_calling(
+    def branded_calling(
         self,
         enterprise_id: str,
         *,
@@ -534,7 +531,7 @@ class EnterprisesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseActivateBrandedCallingResponse:
+    ) -> EnterprisePublicWrapped:
         """
         Branded Calling is a paid product that must be activated on each enterprise.
         Activation is idempotent:
@@ -573,7 +570,7 @@ class EnterprisesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseActivateBrandedCallingResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
 
@@ -684,7 +681,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseCreateResponse:
+    ) -> EnterprisePublicWrapped:
         """
         Create the legal entity (enterprise) that represents your business on the Telnyx
         platform.
@@ -784,7 +781,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseCreateResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
     async def retrieve(
@@ -797,7 +794,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseRetrieveResponse:
+    ) -> EnterprisePublicWrapped:
         """Retrieve a single enterprise by id.
 
         Returns `404` if the id does not exist or
@@ -819,7 +816,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseRetrieveResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
     async def update(
@@ -894,7 +891,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseUpdateResponse:
+    ) -> EnterprisePublicWrapped:
         """Replace the enterprise's mutable fields.
 
         Only mutable fields may be sent.
@@ -945,7 +942,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseUpdateResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
     def list(
@@ -1048,7 +1045,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def activate_branded_calling(
+    async def branded_calling(
         self,
         enterprise_id: str,
         *,
@@ -1058,7 +1055,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EnterpriseActivateBrandedCallingResponse:
+    ) -> EnterprisePublicWrapped:
         """
         Branded Calling is a paid product that must be activated on each enterprise.
         Activation is idempotent:
@@ -1097,7 +1094,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EnterpriseActivateBrandedCallingResponse,
+            cast_to=EnterprisePublicWrapped,
         )
 
 
@@ -1120,8 +1117,8 @@ class EnterprisesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             enterprises.delete,
         )
-        self.activate_branded_calling = to_raw_response_wrapper(
-            enterprises.activate_branded_calling,
+        self.branded_calling = to_raw_response_wrapper(
+            enterprises.branded_calling,
         )
 
     @cached_property
@@ -1156,8 +1153,8 @@ class AsyncEnterprisesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             enterprises.delete,
         )
-        self.activate_branded_calling = async_to_raw_response_wrapper(
-            enterprises.activate_branded_calling,
+        self.branded_calling = async_to_raw_response_wrapper(
+            enterprises.branded_calling,
         )
 
     @cached_property
@@ -1192,8 +1189,8 @@ class EnterprisesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             enterprises.delete,
         )
-        self.activate_branded_calling = to_streamed_response_wrapper(
-            enterprises.activate_branded_calling,
+        self.branded_calling = to_streamed_response_wrapper(
+            enterprises.branded_calling,
         )
 
     @cached_property
@@ -1228,8 +1225,8 @@ class AsyncEnterprisesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             enterprises.delete,
         )
-        self.activate_branded_calling = async_to_streamed_response_wrapper(
-            enterprises.activate_branded_calling,
+        self.branded_calling = async_to_streamed_response_wrapper(
+            enterprises.branded_calling,
         )
 
     @cached_property
