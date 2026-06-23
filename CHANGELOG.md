@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.163.2](https://github.com/team-telnyx/telnyx-python/compare/v4.163.1...v4.163.2) (2026-06-23)
+
+
+### Bug Fixes
+
+* **release-please:** restore version files after -X theirs merge ([#340](https://github.com/team-telnyx/telnyx-python/issues/340)) ([8d15e8e](https://github.com/team-telnyx/telnyx-python/commit/8d15e8ea6be01cc35370ba71fdba951f9ae93b24))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
