@@ -13,229 +13,340 @@
 
 ### Chores
 
-* add release-please.yml + remove prerelease config ([#323](https://github.com/team-telnyx/telnyx-python/issues/323)) ([daf86a8](https://github.com/team-telnyx/telnyx-python/commit/daf86a8b24295234d930e0ec470dec1a3ce1a04a))
+* preserve repo-owned files not part of SDK generation ([876026e](https://github.com/team-telnyx/telnyx-python-staging/commit/876026ebe9fa402f625417d6b35314ab2c0ccfee))
+* release python 4.162.0 ([1f1c960](https://github.com/team-telnyx/telnyx-python-staging/commit/1f1c9603d45c75f08cb431a02459a56abc59aabc))
+* remove stale files from previous generation ([db377be](https://github.com/team-telnyx/telnyx-python-staging/commit/db377befde2d3d1b605e21c661175ec567c16d36))
 
-## 4.157.0 (2026-06-18)
-
-Full Changelog: [v4.156.0...v4.157.0](https://github.com/team-telnyx/telnyx-python/compare/v4.156.0...v4.157.0)
-
-### Features
-
-* add transcriptions-search API spec (dev/external) ([c89ff29](https://github.com/team-telnyx/telnyx-python/commit/c89ff29b49c05c7e4ec6090888e9e222aa91d541))
-
-## 4.156.0 (2026-06-16)
-
-Full Changelog: [v4.155.0...v4.156.0](https://github.com/team-telnyx/telnyx-python/compare/v4.155.0...v4.156.0)
-
-### Features
-
-* ENGDESK-51290: Add Aicoustic NS engines to portal backend ([b11dfc9](https://github.com/team-telnyx/telnyx-python/commit/b11dfc9987487b68d3bca6c5be8dbfae4988e626))
-
-## 4.155.0 (2026-06-16)
-
-Full Changelog: [v4.154.0...v4.155.0](https://github.com/team-telnyx/telnyx-python/compare/v4.154.0...v4.155.0)
-
-### Features
-
-* TELAPPS-719: add Inworld inworld-tts-2 model + delivery_mode to call-control voice settings ([756ca73](https://github.com/team-telnyx/telnyx-python/commit/756ca736341a0279ada8260bc29870547f8c67fe))
-
-## 4.154.0 (2026-06-15)
-
-Full Changelog: [v4.153.0...v4.154.0](https://github.com/team-telnyx/telnyx-python/compare/v4.153.0...v4.154.0)
-
-### Features
-
-* Document POST /ai/assistants/{assistant_id}/instructions/enhance ([3d6e81a](https://github.com/team-telnyx/telnyx-python/commit/3d6e81a98f620a9d07bcc3bcc90fa702df8cb0db))
-
-## 4.153.0 (2026-06-11)
-
-Full Changelog: [v4.152.0...v4.153.0](https://github.com/team-telnyx/telnyx-python/compare/v4.152.0...v4.153.0)
-
-### Features
-
-* Add sip region to scheduled events ([5225803](https://github.com/team-telnyx/telnyx-python/commit/5225803870d8a57e40b991d30e885a71067de502))
-* branded-calling: drop 'simplified'/'no enterprise_id' framing from DIR endpoints ([f05ef19](https://github.com/team-telnyx/telnyx-python/commit/f05ef19ec11f94c9f6b93e8f435a9bfd72a5055e))
-* branded-calling: sync PATCH /dir/{dir_id} spec with deployed service behavior ([bb99c2e](https://github.com/team-telnyx/telnyx-python/commit/bb99c2e700da1ab41ad0626d3ab4a5e27c5d4a0d))
-* **branded-calling:** document LOA (DIR) + reputation remediation endpoints ([aa820e3](https://github.com/team-telnyx/telnyx-python/commit/aa820e336b1a0fe2cbc5711d47c5ae90dcc4aabe))
-* Fix cross-product leakage: de-dup shared enterprise/ToS endpoints + neutralize descriptions ([880cf47](https://github.com/team-telnyx/telnyx-python/commit/880cf4734e8016b8a17b41d916e44ea2377037ea))
-* **spec:** backfill parameter descriptions to 100% coverage ([63a56e9](https://github.com/team-telnyx/telnyx-python/commit/63a56e90e415120518fb41e2339bbf0b3e9c1106))
-* **spec:** inline 2xx response schemas — REST response coverage 41% → 91% (sync of openapi[#199](https://github.com/team-telnyx/telnyx-python/issues/199)) ([d92820a](https://github.com/team-telnyx/telnyx-python/commit/d92820a53d6aafa93880b8dd2407b54726bb0509))
-* specs: add GET /terms_of_service/info (branded-calling + number-reputation) ([22d4e2b](https://github.com/team-telnyx/telnyx-python/commit/22d4e2b153efdb4bd93eb08b28d506188f3b5285))
-* specs: drop legacy plain filter params (keep filter[] canonical) on list endpoints ([c740d4f](https://github.com/team-telnyx/telnyx-python/commit/c740d4fd45b3872a33f58a5097050cd34922d87c))
-* specs: remove em dashes from branded-calling + number-reputation descriptions ([3281ac6](https://github.com/team-telnyx/telnyx-python/commit/3281ac6208cb0bb834c4f74ad868e061bd88a400))
+## [4.161.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.161.0...v4.161.1) (2026-06-22)
 
 
 ### Bug Fixes
 
-* **number-reputation:** remediation contact_email is optional ([0ed56b8](https://github.com/team-telnyx/telnyx-python/commit/0ed56b88a8e286361fd5073232ff62844d5e6dfb))
+* **ci:** add test job to staging CI to match prod ([039286b](https://github.com/team-telnyx/telnyx-python-staging/commit/039286bb93ca9c96aebf03138683a815d378ac32))
+* **ci:** add test job to staging CI to match prod ([1d0bc11](https://github.com/team-telnyx/telnyx-python-staging/commit/1d0bc1135f1dad9fcef0f89f7259646a62dca3fe))
+* **types:** resolve circular import in texml recordings response body ([84b7ae4](https://github.com/team-telnyx/telnyx-python-staging/commit/84b7ae432c965240ce91c05d4de043d473636063))
 
-## 4.152.0 (2026-06-05)
-
-Full Changelog: [v4.151.0...v4.152.0](https://github.com/team-telnyx/telnyx-python/compare/v4.151.0...v4.152.0)
-
-### Features
-
-* NUM-6470: Add branded-calling-v2 OpenAPI specs (external + internal) ([a2c999f](https://github.com/team-telnyx/telnyx-python/commit/a2c999f01668f86406e50c6a32fbefc099ae938b))
-
-## 4.151.0 (2026-06-05)
-
-Full Changelog: [v4.150.0...v4.151.0](https://github.com/team-telnyx/telnyx-python/compare/v4.150.0...v4.151.0)
-
-### Features
-
-* Conversation flow update ([222a515](https://github.com/team-telnyx/telnyx-python/commit/222a515891253a53bbfe47ca6750ebb5daf5855f))
-
-## 4.150.0 (2026-06-04)
-
-Full Changelog: [v4.149.1...v4.150.0](https://github.com/team-telnyx/telnyx-python/compare/v4.149.1...v4.150.0)
-
-### Features
-
-* **inference:** expose description on transfer tool params ([c5e5b44](https://github.com/team-telnyx/telnyx-python/commit/c5e5b444b113f4656d5d810f071489cb85332745))
-
-## 4.149.1 (2026-06-04)
-
-Full Changelog: [v4.149.0...v4.149.1](https://github.com/team-telnyx/telnyx-python/compare/v4.149.0...v4.149.1)
-
-### Bug Fixes
-
-* **inference:** extract recursive expression AST into named Expression schema ([0f55337](https://github.com/team-telnyx/telnyx-python/commit/0f55337205bb55c0aafcf580cdf12774f0241356))
-
-## 4.149.0 (2026-06-04)
-
-Full Changelog: [v4.148.0...v4.149.0](https://github.com/team-telnyx/telnyx-python/compare/v4.148.0...v4.149.0)
-
-### Features
-
-* add assistant_id to MessagingProfile and request schemas ([b0b5e4c](https://github.com/team-telnyx/telnyx-python/commit/b0b5e4ce6d49411bb282086ed49eba40eac9ee12))
-
-## 4.148.0 (2026-06-04)
-
-Full Changelog: [v4.147.0...v4.148.0](https://github.com/team-telnyx/telnyx-python/compare/v4.147.0...v4.148.0)
-
-### Features
-
-* AI-assistants conversation flow ([f197fd5](https://github.com/team-telnyx/telnyx-python/commit/f197fd5b2a62ddab16ce53317d71884ac6992afe))
-* TELAPPS-406: nest service_types with per-service languages in STT spec ([1d6ae82](https://github.com/team-telnyx/telnyx-python/commit/1d6ae828dd5ae74f36c03d2bb9769754a2738e47))
-* Update conversation flow ([f9d06d9](https://github.com/team-telnyx/telnyx-python/commit/f9d06d91bf648327b2d8c4b595e215c89014d904))
+## [4.161.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.160.0...v4.161.0) (2026-06-22)
 
 
 ### Bug Fixes
 
-* **sip-registration-status:** move operation under UAC Connections tag ([8afb784](https://github.com/team-telnyx/telnyx-python/commit/8afb784b51274044e2fde8f8909fb49b9f892e66))
-* **sip-registration-status:** rename detail field to sip_uri_user_host ([85b385c](https://github.com/team-telnyx/telnyx-python/commit/85b385c08ba75ff058ce4d2f105a85a6aa52d844))
+* restore deleted type files to fix mypy import errors ([1a0e359](https://github.com/team-telnyx/telnyx-python-staging/commit/1a0e3596152be9982574615b6e21bd0c501384af))
+* restore dir_retrieve_document_types_response.py ([7ffd1d6](https://github.com/team-telnyx/telnyx-python-staging/commit/7ffd1d63414f3fa3d69d8069b61c946206b41609))
+* restore dir_retrieve_infringement_claims_response.py ([001ce04](https://github.com/team-telnyx/telnyx-python-staging/commit/001ce044ba388b4abbb8dccd010851d689a5b8c3))
 
-## 4.147.0 (2026-06-02)
 
-Full Changelog: [v4.146.2...v4.147.0](https://github.com/team-telnyx/telnyx-python/compare/v4.146.2...v4.147.0)
+### Chores
 
-### Features
+* add promote-to-prod workflow and fix prerelease config ([5b616aa](https://github.com/team-telnyx/telnyx-python-staging/commit/5b616aa0b946f40bc833db7de69f9831ce371a67))
+* add promote-to-prod.yml + remove prerelease config ([b97c239](https://github.com/team-telnyx/telnyx-python-staging/commit/b97c239fe6c539d3a64f0c401a408bbac66b9b98))
+* preserve repo-owned files not part of SDK generation ([847a466](https://github.com/team-telnyx/telnyx-python-staging/commit/847a46693c350cf931f3decc407da2c709fe6b82))
+* release python 4.161.0 ([86d5b64](https://github.com/team-telnyx/telnyx-python-staging/commit/86d5b64c8ad3fdec9fb6e7c72c15143c513d59fe))
+* remove stale files from previous generation ([faffa38](https://github.com/team-telnyx/telnyx-python-staging/commit/faffa3839f32371124893b3715e621a9426cfae1))
 
-* **sip-registration-status:** finalize phase 1 response shape with status mapping ([6aefc9c](https://github.com/team-telnyx/telnyx-python/commit/6aefc9c27d3668688e7e908dabffe4b8d86d9f1f))
+## [4.160.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.159.0...v4.160.0) (2026-06-18)
 
-## 4.146.2 (2026-06-02)
 
-Full Changelog: [v4.146.1...v4.146.2](https://github.com/team-telnyx/telnyx-python/compare/v4.146.1...v4.146.2)
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([3eaf0b1](https://github.com/team-telnyx/telnyx-python-staging/commit/3eaf0b14bd8d9917a9c48d5d6acc3d5a3561c341))
+* release python 4.160.0 ([fc25537](https://github.com/team-telnyx/telnyx-python-staging/commit/fc25537b503fb4e87cbfc2c8784c36b11bfa1109))
+* sync OpenAPI spec from cde0bc4 ([b8c35eb](https://github.com/team-telnyx/telnyx-python-staging/commit/b8c35eb0c4a59fee2280e1c4806fc3b77211d49e))
+* sync OpenAPI spec from cde0bc4 ([1d541f0](https://github.com/team-telnyx/telnyx-python-staging/commit/1d541f0346711191fcc24a15a9743827e0fe6fbd))
+
+## [4.159.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.158.0...v4.159.0) (2026-06-18)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([9edbc94](https://github.com/team-telnyx/telnyx-python-staging/commit/9edbc941961909af20b2c4d87ffbc423437360fe))
+* release python 4.159.0 ([a3533df](https://github.com/team-telnyx/telnyx-python-staging/commit/a3533dfb5d710f4ce0a4a764c5b9ab35750b726e))
+* sync OpenAPI spec from 18f622e ([e2d0006](https://github.com/team-telnyx/telnyx-python-staging/commit/e2d000696b4b5c8a4903324d040c6551befe1944))
+* sync OpenAPI spec from 18f622e ([a34242a](https://github.com/team-telnyx/telnyx-python-staging/commit/a34242aa4cc23989e53a6a2b1c5c2bc0bec912fb))
+
+## [4.158.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.157.0...v4.158.0) (2026-06-18)
+
 
 ### Bug Fixes
 
-* **sip-registration-status:** drop user_id query param ([8d01d62](https://github.com/team-telnyx/telnyx-python/commit/8d01d62e7f94df2a184dca5a597075b44885543d))
+* update transforms for inlined response schemas ([2a1fef9](https://github.com/team-telnyx/telnyx-python-staging/commit/2a1fef9d3f4d255e64888dbf9390067064a12832))
+* update transforms for inlined response schemas ([4d28007](https://github.com/team-telnyx/telnyx-python-staging/commit/4d28007757e0649773cb36c58fb3988fac052d23))
 
-## 4.146.1 (2026-06-01)
 
-Full Changelog: [v4.146.0...v4.146.1](https://github.com/team-telnyx/telnyx-python/compare/v4.146.0...v4.146.1)
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([1b5b215](https://github.com/team-telnyx/telnyx-python-staging/commit/1b5b215a0ff7f8509803551f1cd10bf156ddba17))
+* release python 4.158.0 ([ee068c4](https://github.com/team-telnyx/telnyx-python-staging/commit/ee068c463effeacdd45be33e8c030db20abc95ee))
+
+## [4.157.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.156.0...v4.157.0) (2026-06-16)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([10c80a0](https://github.com/team-telnyx/telnyx-python-staging/commit/10c80a0070dee50258bc2bf7ce4815f4682c29d4))
+* release python 4.157.0 ([d5b87b7](https://github.com/team-telnyx/telnyx-python-staging/commit/d5b87b780203aa1493b8f84bb4571903fcd7d1ca))
+
+## [4.156.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.155.0...v4.156.0) (2026-06-16)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([be516d9](https://github.com/team-telnyx/telnyx-python-staging/commit/be516d9f71977aaf5b958c0b4f3db682ecd4833f))
+* release python 4.156.0 ([1d81a2d](https://github.com/team-telnyx/telnyx-python-staging/commit/1d81a2d20c9ed1d6cbf629fb4a3c20a19e34ea44))
+
+## [4.155.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.154.0...v4.155.0) (2026-06-16)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([4fee0f0](https://github.com/team-telnyx/telnyx-python-staging/commit/4fee0f011d30703548107cfb4f87ef30d999ee07))
+* release python 4.155.0 ([1881884](https://github.com/team-telnyx/telnyx-python-staging/commit/1881884e30bf53afad6c7670f483d9e4b73f53bc))
+* sync OpenAPI spec from e44bbbc ([7331dc7](https://github.com/team-telnyx/telnyx-python-staging/commit/7331dc77d3c6490ef411b89fd375b5c977c3841a))
+* sync OpenAPI spec from e44bbbc ([1fdce1c](https://github.com/team-telnyx/telnyx-python-staging/commit/1fdce1c885f5955b0b8f79e89e132c051deb8af3))
+
+## [4.154.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.153.0...v4.154.0) (2026-06-15)
+
 
 ### Bug Fixes
 
-* **sip-registration-status:** scope to phase 1 uac_third-party_credential ([a505c1a](https://github.com/team-telnyx/telnyx-python/commit/a505c1ab3ea2c93d044da6b53db494d7b8b2270a))
+* rename DIR method names to match published SDKs ([8b47978](https://github.com/team-telnyx/telnyx-python-staging/commit/8b4797804f94025ce845b7e356ba9b73a810789a))
+* rename DIR method names to match published SDKs ([8348139](https://github.com/team-telnyx/telnyx-python-staging/commit/8348139162421b2f58dce1dab781f56d76787e64))
 
-## 4.146.0 (2026-05-29)
 
-Full Changelog: [v4.145.0...v4.146.0](https://github.com/team-telnyx/telnyx-python/compare/v4.145.0...v4.146.0)
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([f37648b](https://github.com/team-telnyx/telnyx-python-staging/commit/f37648b4913b63249d6a54cad3e7d948071dfaf7))
+* release python 4.154.0 ([4b813c3](https://github.com/team-telnyx/telnyx-python-staging/commit/4b813c3422c6e862c714d36a7f538dc5f19cebc5))
+
+## [4.153.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.152.0...v4.153.0) (2026-06-15)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([5d93a75](https://github.com/team-telnyx/telnyx-python-staging/commit/5d93a757b5b924d6120c3d0d2b0c39c34d12008b))
+* release python 4.153.0 ([483d685](https://github.com/team-telnyx/telnyx-python-staging/commit/483d68518420398eeb7e19c86095df5e226ce383))
+* sync OpenAPI spec from 3b5c722 ([4d4b975](https://github.com/team-telnyx/telnyx-python-staging/commit/4d4b97506fe125704cbcd8c1edcc948049280754))
+* sync OpenAPI spec from 3b5c722 ([daef305](https://github.com/team-telnyx/telnyx-python-staging/commit/daef305b81bc32c3b4a4a3bc2e30582fe49545fe))
+
+## [4.152.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.151.0...v4.152.0) (2026-06-10)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([7d5b6a6](https://github.com/team-telnyx/telnyx-python-staging/commit/7d5b6a6094d6015f66a7ef0bd2485c93f4df0cf1))
+* release python 4.152.0 ([d011493](https://github.com/team-telnyx/telnyx-python-staging/commit/d011493e0d14323b764594243fbbd00dc857259f))
+* sync OpenAPI spec from b9f127e ([344ccda](https://github.com/team-telnyx/telnyx-python-staging/commit/344ccda27799521ce819cf25eb0f0b73ea1e429a))
+* sync OpenAPI spec from b9f127e ([b8b51f7](https://github.com/team-telnyx/telnyx-python-staging/commit/b8b51f76defafbdc46fbfb334a56eeb5eaa90445))
+
+## [4.151.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.150.0...v4.151.0) (2026-06-09)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([0918186](https://github.com/team-telnyx/telnyx-python-staging/commit/0918186b22c4dc98b1cfdcd9732909c8e010d4ed))
+* release python 4.151.0 ([1340cae](https://github.com/team-telnyx/telnyx-python-staging/commit/1340caeb356e65fd82bf2cc682aa432cf627a454))
+* sync OpenAPI spec from 2677196 ([5dc39a4](https://github.com/team-telnyx/telnyx-python-staging/commit/5dc39a454fecd8e09c46e9fadd374c33c7647005))
+* sync OpenAPI spec from 2677196 ([cf0038d](https://github.com/team-telnyx/telnyx-python-staging/commit/cf0038d07c28f79ba1e2e382f6636882a7ded429))
+
+## [4.150.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.149.0...v4.150.0) (2026-06-09)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([05b428a](https://github.com/team-telnyx/telnyx-python-staging/commit/05b428aa8f823cb33be825cca8a55f5392a2d887))
+* release python 4.150.0 ([c0bfa0a](https://github.com/team-telnyx/telnyx-python-staging/commit/c0bfa0ad566fb8ef1564c4357ecf3747cca07eeb))
+* sync OpenAPI spec from c319cee ([68fc585](https://github.com/team-telnyx/telnyx-python-staging/commit/68fc585d05a8567ba2ddf23fc8e494c144213885))
+* sync OpenAPI spec from c319cee ([11d11e0](https://github.com/team-telnyx/telnyx-python-staging/commit/11d11e0c635f093ffd93e98afe241950a8fca68e))
+
+## [4.149.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.148.0...v4.149.0) (2026-06-09)
+
+
+### Chores
+
+* dedupe imports in types/__init__.py to satisfy ruff lint ([ad480b2](https://github.com/team-telnyx/telnyx-python-staging/commit/ad480b2857130a0e71f415e8eee4709159e91a69))
+* preserve repo-owned files not part of SDK generation ([c6907b7](https://github.com/team-telnyx/telnyx-python-staging/commit/c6907b7a0a3def18b36823a20358cd9c9bfe9725))
+* release python 4.149.0 ([7545d56](https://github.com/team-telnyx/telnyx-python-staging/commit/7545d56bbcf99f02e8c4100e34c8713513025166))
+* sync OpenAPI spec from aae7c19 ([52417da](https://github.com/team-telnyx/telnyx-python-staging/commit/52417daa841323303f4079251dc012e502304bdb))
+* sync OpenAPI spec from aae7c19 ([e12d12a](https://github.com/team-telnyx/telnyx-python-staging/commit/e12d12aaee733a876ea2acc8cd75eb760893e8b1))
+
+## [4.148.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.147.0...v4.148.0) (2026-06-08)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([dee6097](https://github.com/team-telnyx/telnyx-python-staging/commit/dee6097417a8b917ac8275ad4f9b051793eee0aa))
+* release python 4.148.0 ([0be1567](https://github.com/team-telnyx/telnyx-python-staging/commit/0be1567fe746b0cdec24920ead12fabc38a5378c))
+* sync OpenAPI spec from a13d4b1 ([d82de0f](https://github.com/team-telnyx/telnyx-python-staging/commit/d82de0f20054014319aa65aed3456c951727d38b))
+* sync OpenAPI spec from a13d4b1 ([1d39e9a](https://github.com/team-telnyx/telnyx-python-staging/commit/1d39e9aba3480259e3d60ab908184d66b4971515))
+
+## [4.147.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.146.0...v4.147.0) (2026-06-08)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([b2be483](https://github.com/team-telnyx/telnyx-python-staging/commit/b2be483f29a19b1e4befeeeced0f695ebc0618de))
+* release python 4.147.0 ([af82347](https://github.com/team-telnyx/telnyx-python-staging/commit/af823477eda10ff8d3d194b07eab879bcbb7cc93))
+
+## [4.146.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.145.0...v4.146.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* rename loa methods patch_all/create → update/render to match upstream ([17d87f0](https://github.com/team-telnyx/telnyx-python-staging/commit/17d87f0ae8b0aca7eda843de1daee35014ba676d))
+* rename loa methods patch_all/create → update/render to match upstream ([7457f4c](https://github.com/team-telnyx/telnyx-python-staging/commit/7457f4ca56ee8a54728916b765642638771c0221))
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([2ffc98f](https://github.com/team-telnyx/telnyx-python-staging/commit/2ffc98fe3ba54c02c9fbd4b19eeafff1d2b96c26))
+* release python 4.146.0 ([5ba7037](https://github.com/team-telnyx/telnyx-python-staging/commit/5ba703706088936da7cae8de21d939c39a3e96f9))
+
+## [4.145.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.144.0...v4.145.0) (2026-06-08)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([edbab05](https://github.com/team-telnyx/telnyx-python-staging/commit/edbab0556e49199ca2ed96c92b5ad609c55b3472))
+* release python 4.145.0 ([ba2af8a](https://github.com/team-telnyx/telnyx-python-staging/commit/ba2af8a38b1ae18905857b488cb6ef15143a32ce))
+
+## [4.144.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.142.1...v4.144.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* **ci:** pass release-please pr output via env to avoid shell injection ([6a008b0](https://github.com/team-telnyx/telnyx-python-staging/commit/6a008b03fe1571b40c6160808b114e45da08bf1f))
+* **ci:** pass release-please pr output via env to avoid shell injection ([60a9709](https://github.com/team-telnyx/telnyx-python-staging/commit/60a9709627fc4f5ec6b7b7cc73051b3de832c3f8))
+* remove agent_input model from loa subresource to fix duplicate TypeScript export ([a3952a7](https://github.com/team-telnyx/telnyx-python-staging/commit/a3952a78c23e3cc1c28d16ba03b86dec8308bd4d))
+* remove agent_input model from loa subresource to fix duplicate TypeScript export ([80e94d9](https://github.com/team-telnyx/telnyx-python-staging/commit/80e94d952f39c2c3cedd260d23e83807b5a7bd44))
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([8a39071](https://github.com/team-telnyx/telnyx-python-staging/commit/8a3907173f203e8488fcf11a19643c40e42208b8))
+* preserve repo-owned files not part of SDK generation ([ba506b4](https://github.com/team-telnyx/telnyx-python-staging/commit/ba506b4291415354204afd9d15f93cb0dfc062f6))
+* preserve repo-owned files not part of SDK generation ([7420d51](https://github.com/team-telnyx/telnyx-python-staging/commit/7420d51b41847ec26e3db2ae8f22a8847f6c6d1a))
+* preserve repo-owned files not part of SDK generation ([d66d2b6](https://github.com/team-telnyx/telnyx-python-staging/commit/d66d2b6b74697cabc70a9392c70d3ebb60efa643))
+* release python 4.143.0 ([9409310](https://github.com/team-telnyx/telnyx-python-staging/commit/940931074cb06555ef492fa60c4b9ea00493ff16))
+* release python 4.143.0 ([7b1d436](https://github.com/team-telnyx/telnyx-python-staging/commit/7b1d4369da10276b7afb4b551369d94981667381))
+* release python 4.143.0 ([a6e7046](https://github.com/team-telnyx/telnyx-python-staging/commit/a6e704643b3c75598c5fccda06ab2fd8064e1d8c))
+* release python 4.144.0 ([b5b378f](https://github.com/team-telnyx/telnyx-python-staging/commit/b5b378f53ea9193e580014135be16df5d5ee3441))
+* sync OpenAPI spec from 6eae6a5 ([387eeec](https://github.com/team-telnyx/telnyx-python-staging/commit/387eeec9cd7318ba95ba95bb1d76ed4cad2db04a))
+* sync OpenAPI spec from 6eae6a5 ([7ea3b4a](https://github.com/team-telnyx/telnyx-python-staging/commit/7ea3b4a503f39ca8a695fc531536e60492c4d809))
+* sync OpenAPI spec from 95f10ce ([b3ff600](https://github.com/team-telnyx/telnyx-python-staging/commit/b3ff600a1d285df71ce72c4b88f0c6ded67066b4))
+* sync OpenAPI spec from 95f10ce ([8d957ea](https://github.com/team-telnyx/telnyx-python-staging/commit/8d957ea2b46f39c939c116b4f41298978bdcad9f))
+* sync OpenAPI spec from 9f5f345 ([a4262e4](https://github.com/team-telnyx/telnyx-python-staging/commit/a4262e4b1e187e04ccd9dbf6d2cf323e23be29a1))
+* sync OpenAPI spec from 9f5f345 ([8827c91](https://github.com/team-telnyx/telnyx-python-staging/commit/8827c9162282a95d181b1a6d7e4f61fc794fb28f))
+
+## [4.143.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.142.1...v4.143.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* **ci:** pass release-please pr output via env to avoid shell injection ([6a008b0](https://github.com/team-telnyx/telnyx-python-staging/commit/6a008b03fe1571b40c6160808b114e45da08bf1f))
+* **ci:** pass release-please pr output via env to avoid shell injection ([60a9709](https://github.com/team-telnyx/telnyx-python-staging/commit/60a9709627fc4f5ec6b7b7cc73051b3de832c3f8))
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([ba506b4](https://github.com/team-telnyx/telnyx-python-staging/commit/ba506b4291415354204afd9d15f93cb0dfc062f6))
+* preserve repo-owned files not part of SDK generation ([7420d51](https://github.com/team-telnyx/telnyx-python-staging/commit/7420d51b41847ec26e3db2ae8f22a8847f6c6d1a))
+* preserve repo-owned files not part of SDK generation ([d66d2b6](https://github.com/team-telnyx/telnyx-python-staging/commit/d66d2b6b74697cabc70a9392c70d3ebb60efa643))
+* release python 4.143.0 ([9409310](https://github.com/team-telnyx/telnyx-python-staging/commit/940931074cb06555ef492fa60c4b9ea00493ff16))
+* release python 4.143.0 ([7b1d436](https://github.com/team-telnyx/telnyx-python-staging/commit/7b1d4369da10276b7afb4b551369d94981667381))
+* release python 4.143.0 ([a6e7046](https://github.com/team-telnyx/telnyx-python-staging/commit/a6e704643b3c75598c5fccda06ab2fd8064e1d8c))
+* sync OpenAPI spec from 6eae6a5 ([387eeec](https://github.com/team-telnyx/telnyx-python-staging/commit/387eeec9cd7318ba95ba95bb1d76ed4cad2db04a))
+* sync OpenAPI spec from 6eae6a5 ([7ea3b4a](https://github.com/team-telnyx/telnyx-python-staging/commit/7ea3b4a503f39ca8a695fc531536e60492c4d809))
+* sync OpenAPI spec from 95f10ce ([b3ff600](https://github.com/team-telnyx/telnyx-python-staging/commit/b3ff600a1d285df71ce72c4b88f0c6ded67066b4))
+* sync OpenAPI spec from 95f10ce ([8d957ea](https://github.com/team-telnyx/telnyx-python-staging/commit/8d957ea2b46f39c939c116b4f41298978bdcad9f))
+* sync OpenAPI spec from 9f5f345 ([a4262e4](https://github.com/team-telnyx/telnyx-python-staging/commit/a4262e4b1e187e04ccd9dbf6d2cf323e23be29a1))
+* sync OpenAPI spec from 9f5f345 ([8827c91](https://github.com/team-telnyx/telnyx-python-staging/commit/8827c9162282a95d181b1a6d7e4f61fc794fb28f))
+
+## [4.142.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.142.0...v4.142.1) (2026-06-07)
+
+
+### Bug Fixes
+
+* extract PR number from JSON output for auto-merge ([e330da9](https://github.com/team-telnyx/telnyx-python-staging/commit/e330da9d2d3cfec405c3a0f7ba069dfe0bf667d6))
+* extract PR number from JSON output for auto-merge ([9fac492](https://github.com/team-telnyx/telnyx-python-staging/commit/9fac4921529b62a9adfe7f1366ccd6439a70b758))
+* use release-please output directly for auto-merge (avoid race condition) ([01bc872](https://github.com/team-telnyx/telnyx-python-staging/commit/01bc872ba23389f616f0f3993dea2e522218e0b8))
+* use release-please output directly for auto-merge (avoid race condition) ([cc9f986](https://github.com/team-telnyx/telnyx-python-staging/commit/cc9f986e5111adeb1851d2ae1f9b24d5b4cae2a7))
+
+## [4.142.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.141.0...v4.142.0) (2026-06-07)
+
+
+### Chores
+
+* preserve repo-owned files not part of SDK generation ([755d760](https://github.com/team-telnyx/telnyx-python-staging/commit/755d7607ad9fcca8a159c6c1a86ae15bf62e52a4))
+* preserve repo-owned files not part of SDK generation ([bfdf0ab](https://github.com/team-telnyx/telnyx-python-staging/commit/bfdf0abb933360f64247e6511f22b8a48812d81f))
+* release python 4.142.0 ([a5f798d](https://github.com/team-telnyx/telnyx-python-staging/commit/a5f798dcab4a4b4c69904f16dcd88a4f151a7c46))
+* release python 4.142.0 ([94cd65a](https://github.com/team-telnyx/telnyx-python-staging/commit/94cd65a33412d34486e621e4a480e388fdb5f4b4))
+* sync OpenAPI spec from 0193002 ([bb2a244](https://github.com/team-telnyx/telnyx-python-staging/commit/bb2a2446d33a93b287554e58fcf6d480d5ec6b11))
+* sync OpenAPI spec from 0193002 ([8fefaf7](https://github.com/team-telnyx/telnyx-python-staging/commit/8fefaf7776c7ba11d8e18d9f0fa2f408f65a4311))
+* sync OpenAPI spec from 8faa4be ([d335481](https://github.com/team-telnyx/telnyx-python-staging/commit/d33548196842d4ab2cd1d1296b43559f97bcbdee))
+* sync OpenAPI spec from 8faa4be ([51f2211](https://github.com/team-telnyx/telnyx-python-staging/commit/51f2211469e30738650872b51078f3055e678fea))
+
+## [4.141.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.140.0...v4.141.0) (2026-06-07)
+
 
 ### Features
 
-* **sip-registration-status:** add OpenAPI spec for /v2/sip_registration_status ([c2f94b9](https://github.com/team-telnyx/telnyx-python/commit/c2f94b9976f22709bbea191040e50c1491eaf27d))
+* enable GitHub auto-merge on release PRs ([779a97e](https://github.com/team-telnyx/telnyx-python-staging/commit/779a97e8df2bebceb1e034911dc4a9c2bbfb01ca))
+* enable GitHub auto-merge on release PRs ([3d10c26](https://github.com/team-telnyx/telnyx-python-staging/commit/3d10c262ecf1dd856f178a0d3f8a2c4b53ffd8d4))
 
-## 4.145.0 (2026-05-28)
 
-Full Changelog: [v4.144.0...v4.145.0](https://github.com/team-telnyx/telnyx-python/compare/v4.144.0...v4.145.0)
+### Bug Fixes
+
+* correct auto-merge output name and PR search pattern ([a2258d1](https://github.com/team-telnyx/telnyx-python-staging/commit/a2258d1d3c3ea1b07c83500e6d0a16d348e51f53))
+* correct auto-merge output name and PR search pattern ([1c4f1ed](https://github.com/team-telnyx/telnyx-python-staging/commit/1c4f1edf0ff29d0138d65a556aa87a458c6e217d))
+* restore ${{ }} expressions in release-please workflow ([542a369](https://github.com/team-telnyx/telnyx-python-staging/commit/542a369ffa11ffaafeeedabd061f47a7ee455d7c))
+* restore ${{ }} expressions in release-please workflow ([763a252](https://github.com/team-telnyx/telnyx-python-staging/commit/763a2522485ebee99c6118ed1b010020a8b3d038))
+
+## [4.140.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.139.0...v4.140.0) (2026-06-07)
+
 
 ### Features
 
-* **api:** manual updates ([f0ff42f](https://github.com/team-telnyx/telnyx-python/commit/f0ff42f89cadfb5d18f1f98b441e58fc58eb56c1))
+* enable automerge for release PRs ([df4506a](https://github.com/team-telnyx/telnyx-python-staging/commit/df4506ab97b9053ac9a36c5d53e66e8079965400))
 
-## 4.144.0 (2026-05-28)
-
-Full Changelog: [v4.143.0...v4.144.0](https://github.com/team-telnyx/telnyx-python/compare/v4.143.0...v4.144.0)
-
-### Features
-
-* **api:** manual updates ([3ff64a1](https://github.com/team-telnyx/telnyx-python/commit/3ff64a1e448c3aa26e53fe8d5e29ba7ac47b7d91))
-* **api:** manual updates ([2c9c089](https://github.com/team-telnyx/telnyx-python/commit/2c9c089d92ed47934f12b8769f71bc2eb9042d1e))
-
-## 4.143.0 (2026-05-27)
-
-Full Changelog: [v4.142.0...v4.143.0](https://github.com/team-telnyx/telnyx-python/compare/v4.142.0...v4.143.0)
-
-### Features
-
-* TELAPPS-406: document GET /speech-to-text/providers endpoint ([53dd1b6](https://github.com/team-telnyx/telnyx-python/commit/53dd1b6a06f1b3dd83bc368a680da233fec354c1))
-
-## 4.142.0 (2026-05-27)
-
-Full Changelog: [v4.141.0...v4.142.0](https://github.com/team-telnyx/telnyx-python/compare/v4.141.0...v4.142.0)
-
-### Features
-
-* TELAPPS-5698 document conversation relay API shape ([4573d36](https://github.com/team-telnyx/telnyx-python/commit/4573d364aee2f30da464b2273d128390fa3a8123))
-
-## 4.141.0 (2026-05-27)
-
-Full Changelog: [v4.140.0...v4.141.0](https://github.com/team-telnyx/telnyx-python/compare/v4.140.0...v4.141.0)
-
-### Features
-
-* TELAPPS-531: document Rime ArcanaV3 and Coda voice models ([692f5f5](https://github.com/team-telnyx/telnyx-python/commit/692f5f5a61decc2a03260bb578b908fcb9bd5b3f))
+## [4.139.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.138.1...v4.139.0) (2026-06-07)
 
 
-### Documentation
+### Bug Fixes
 
-* add voice sdk debug call report spec ([21240ce](https://github.com/team-telnyx/telnyx-python/commit/21240ce14f4572a458cf288ed0d63a2ea11ab4c0))
+* merge fresh generated code with custom create_speech ([7a67a5a](https://github.com/team-telnyx/telnyx-python-staging/commit/7a67a5ac4221f3c02c50f4adced04d4c38992a63))
+* update custom code to use generate_speech types ([33b8112](https://github.com/team-telnyx/telnyx-python-staging/commit/33b81120e35c273c85b85f67f44f753893594cb0))
+* use PAT for release-please to trigger CI ([a82d3ed](https://github.com/team-telnyx/telnyx-python-staging/commit/a82d3eddb42ca0d6b11a5972f925f30a9a9fd9fa))
+* use PAT for release-please to trigger CI ([d9ef834](https://github.com/team-telnyx/telnyx-python-staging/commit/d9ef8342ba6ea0706e2cd1446baabca9b0afe77e))
 
-## 4.140.0 (2026-05-26)
 
-Full Changelog: [v4.139.0...v4.140.0](https://github.com/team-telnyx/telnyx-python/compare/v4.139.0...v4.140.0)
+### Chores
 
-### Features
+* preserve repo-owned files not part of SDK generation ([ebb0679](https://github.com/team-telnyx/telnyx-python-staging/commit/ebb0679bc945c1edd16c75faaa3504b77fe17f05))
+* release python 4.139.0 ([0e5b9ad](https://github.com/team-telnyx/telnyx-python-staging/commit/0e5b9ada6e73ba5eb47b7b146bf199a59e2a6fb3))
 
-* TELAPPS-523: document stop_on_conversation_end on assistant recording_settings ([f34efda](https://github.com/team-telnyx/telnyx-python/commit/f34efdaa5e6e373976a539915c4b302c3263847f))
+## [4.138.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.138.0...v4.138.1) (2026-06-05)
 
-## 4.139.0 (2026-05-22)
 
-Full Changelog: [v4.138.0...v4.139.0](https://github.com/team-telnyx/telnyx-python/compare/v4.138.0...v4.139.0)
+### Bug Fixes
 
-### Features
+* run CI build/lint on internal PRs not just forks ([f220675](https://github.com/team-telnyx/telnyx-python-staging/commit/f220675944515e5c8613d7959c1b483d8c168452))
+* use consistent single quotes in CI if condition ([e783e55](https://github.com/team-telnyx/telnyx-python-staging/commit/e783e554cf11b6d6b13bf56563d5b0670e8c33da))
+* use consistent single quotes in CI if condition ([9099d67](https://github.com/team-telnyx/telnyx-python-staging/commit/9099d675d13cca7b2b814377286acafb7b33c3c8))
 
-* MSG-919: documentation for Whatsapp user data ([731f3b5](https://github.com/team-telnyx/telnyx-python/commit/731f3b5af57c7e969fde86ff2a389c53160e2f1d))
-* TELAPPS-72: document send_digits_on_answer on Dial + Transfer ([0a1af0a](https://github.com/team-telnyx/telnyx-python/commit/0a1af0adcce436122ebd7183a23e9664f4e37311))
+## [4.138.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.137.0...v4.138.0) (2026-06-04)
 
-## 4.138.0 (2026-05-20)
 
-Full Changelog: [v4.137.0...v4.138.0](https://github.com/team-telnyx/telnyx-python/compare/v4.137.0...v4.138.0)
+### Chores
 
-### Features
+* release python 4.138.0 ([bc407ff](https://github.com/team-telnyx/telnyx-python-staging/commit/bc407ff18874f7a89d600209be8adfeb75d125c0))
 
-* TELAPPS-483: Add async webhook timeout to OpenAPI ([389886a](https://github.com/team-telnyx/telnyx-python/commit/389886a0eac81a9425aab27fb34709abbb9a4424))
+## [4.137.0](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.136.0...v4.137.0) (2026-06-03)
 
-## 4.137.0 (2026-05-18)
 
-Full Changelog: [v4.136.0...v4.137.0](https://github.com/team-telnyx/telnyx-python/compare/v4.136.0...v4.137.0)
+### Chores
 
-### Features
-
-* Add assistant background audio volume to OpenAPI spec ([8d15e8b](https://github.com/team-telnyx/telnyx-python/commit/8d15e8b6fffe01fa1e3fa241502603d7e9287fd4))
-* Telapps 101 soniox spec ([8830219](https://github.com/team-telnyx/telnyx-python/commit/8830219ba9aa47ebad7baeab25afe0cd8ffe8027))
+* release python 4.137.0 ([cc15bee](https://github.com/team-telnyx/telnyx-python-staging/commit/cc15bee0617f3adac41e777137fbb65907cb12e8))
+* sync OpenAPI spec from c2d3485 ([18bb6ce](https://github.com/team-telnyx/telnyx-python-staging/commit/18bb6ce7d3e65929fcf0298d3cd599f7ce81d451))
 
 ## 4.136.0 (2026-05-15)
 
