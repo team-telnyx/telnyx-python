@@ -118,7 +118,7 @@ jobs:
           git fetch origin "$PR_BRANCH" next
           git checkout -B "$PR_BRANCH" "origin/$PR_BRANCH"
 
-          if git merge origin/next --no-edit -X ours; then
+          if git merge origin/next --no-edit -X theirs; then
             git push origin "$PR_BRANCH"
             echo "Successfully merged next into release PR branch"
           else
