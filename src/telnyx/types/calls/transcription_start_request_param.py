@@ -20,6 +20,7 @@ __all__ = [
     "TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig",
     "TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig",
     "TranscriptionEngineConfigTranscriptionEngineSonioxConfig",
+    "TranscriptionEngineConfigTranscriptionEngineParakeetConfig",
 ]
 
 
@@ -148,6 +149,20 @@ class TranscriptionEngineConfigTranscriptionEngineSonioxConfig(TypedDict, total=
     """The model to use for transcription."""
 
 
+class TranscriptionEngineConfigTranscriptionEngineParakeetConfig(TypedDict, total=False):
+    interim_results: bool
+    """Whether to send also interim results.
+
+    If set to false, only final results will be sent.
+    """
+
+    transcription_engine: Literal["Parakeet"]
+    """Engine identifier for Parakeet transcription service"""
+
+    transcription_model: Literal["parakeet/tdt-0.6b-v3"]
+    """The model to use for transcription."""
+
+
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
@@ -156,6 +171,7 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig,
     TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineConfigTranscriptionEngineSonioxConfig,
+    TranscriptionEngineConfigTranscriptionEngineParakeetConfig,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
@@ -178,7 +194,7 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
     """
 
     transcription_engine: Literal[
-        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
+        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "Parakeet", "A", "B"
     ]
     """Engine to use for speech recognition.
 
