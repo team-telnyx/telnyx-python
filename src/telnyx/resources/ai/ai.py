@@ -248,8 +248,6 @@ class AIResource(SyncAPIResource):
         self,
         *,
         q: str,
-        record_type: Literal["voice", "message", "ai_pipeline_storage", "knowledge_base"],
-        filter_document_id: str | Omit = omit,
         filter_ingested_at_gte: Union[str, datetime] | Omit = omit,
         filter_ingested_at_lte: Union[str, datetime] | Omit = omit,
         filter_record_created_at_gte: Union[str, datetime] | Omit = omit,
@@ -259,8 +257,9 @@ class AIResource(SyncAPIResource):
         filter_retention: str | Omit = omit,
         filter_user_id: str | Omit = omit,
         min_score: float | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         region: Literal["USA", "DEU", "AUS", "UAE"] | Omit = omit,
-        top_k: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -275,12 +274,12 @@ class AIResource(SyncAPIResource):
 
         1. The query text is embedded into a 1024-dimensional vector using the
            multilingual-e5-large model.
-        2. The vector is sent to regional OpenSearch clusters for kNN search using HNSW
-           cosine similarity.
+        2. The vector is compared against indexed record chunks using semantic
+           similarity search.
         3. When no region is specified, all regions are queried in parallel (fan-out)
            and results are merged by score.
-        4. Results are ranked by cosine similarity score (descending) and truncated to
-           `top_k`.
+        4. Results are ranked by similarity score (descending) and paginated via
+           `page[number]` / `page[size]`.
 
         **Authentication:** Requires a Telnyx API key via `Authorization: Bearer <key>`.
         Results are automatically scoped to the caller's organization —
@@ -294,14 +293,14 @@ class AIResource(SyncAPIResource):
         **Filtering:** Use `filter[field][operator]=value` query parameters to narrow
         results before vector search.
 
-        Top-level filterable fields: `user_id`, `record_type`, `region`, `document_id`,
-        `record_id`, `record_created_at`, `ingested_at`, `retention`
+        Top-level filterable fields: `user_id`, `region`, `record_id`,
+        `record_created_at`, `ingested_at`, `retention`
 
         Note: `retention` is filter-only — it can be used to narrow results but is not
         returned in the response body.
 
         Metadata fields: any field not in the list above is resolved to
-        `data.metadata.<field>` in OpenSearch (e.g., `filter[language]=en` →
+        `data.metadata.<field>` (e.g., `filter[language]=en` →
         `data.metadata.language`).
 
         Supported filter operators:
@@ -314,22 +313,16 @@ class AIResource(SyncAPIResource):
         **Examples:**
 
         ```
-        GET /v2/ai/conversation_histories?q=billing+issue&record_type=voice&top_k=10
-        GET /v2/ai/conversation_histories?q=setup+guide&record_type=knowledge_base&region=USA&min_score=0.5
-        GET /v2/ai/conversation_histories?q=refund&record_type=voice&filter[record_created_at][gte]=2026-01-01T00:00:00Z
-        GET /v2/ai/conversation_histories?q=outage&record_type=voice&filter[region][in]=USA,DEU
-        GET /v2/ai/conversation_histories?q=hold+time&record_type=voice&filter[language]=en
+        GET /v2/ai/conversation_histories?q=billing+issue&page[size]=10
+        GET /v2/ai/conversation_histories?q=setup+guide&region=USA&min_score=0.5
+        GET /v2/ai/conversation_histories?q=refund&filter[record_created_at][gte]=2026-01-01T00:00:00Z
+        GET /v2/ai/conversation_histories?q=outage&filter[region][in]=USA,DEU
+        GET /v2/ai/conversation_histories?q=hold+time&filter[language]=en
         ```
 
         Args:
           q: Natural language search query. The text is embedded into a 1024-dimensional
-              vector and compared against indexed record chunks using kNN cosine similarity.
-
-          record_type: The type of records to search. Each record type is stored in a separate vector
-              index.
-
-          filter_document_id: Filter by document identifier (exact match). Populated for knowledge_base
-              records.
+              vector and compared against indexed record chunks using semantic similarity.
 
           filter_ingested_at_gte: Only include records ingested (chunked, embedded, and indexed) on or after this
               ISO 8601 timestamp.
@@ -357,11 +350,12 @@ class AIResource(SyncAPIResource):
           min_score: Minimum cosine similarity score threshold (0.0 to 1.0). Results below this
               threshold are excluded.
 
-          region: Restrict search to a specific region's OpenSearch cluster. When omitted, all
-              regions are queried in parallel (fan-out) and results are merged by cosine
-              similarity score.
+          page_number: Page number to return (1-based). Defaults to 1.
 
-          top_k: Maximum number of results to return. Defaults to 20, maximum 100.
+          page_size: Number of results per page. Defaults to 20, maximum 100.
+
+          region: Restrict search to a specific region. When omitted, all regions are queried in
+              parallel (fan-out) and results are merged by similarity score.
 
           extra_headers: Send extra headers
 
@@ -381,8 +375,6 @@ class AIResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "q": q,
-                        "record_type": record_type,
-                        "filter_document_id": filter_document_id,
                         "filter_ingested_at_gte": filter_ingested_at_gte,
                         "filter_ingested_at_lte": filter_ingested_at_lte,
                         "filter_record_created_at_gte": filter_record_created_at_gte,
@@ -392,8 +384,9 @@ class AIResource(SyncAPIResource):
                         "filter_retention": filter_retention,
                         "filter_user_id": filter_user_id,
                         "min_score": min_score,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "region": region,
-                        "top_k": top_k,
                     },
                     ai_retrieve_conversation_histories_params.AIRetrieveConversationHistoriesParams,
                 ),
@@ -608,8 +601,6 @@ class AsyncAIResource(AsyncAPIResource):
         self,
         *,
         q: str,
-        record_type: Literal["voice", "message", "ai_pipeline_storage", "knowledge_base"],
-        filter_document_id: str | Omit = omit,
         filter_ingested_at_gte: Union[str, datetime] | Omit = omit,
         filter_ingested_at_lte: Union[str, datetime] | Omit = omit,
         filter_record_created_at_gte: Union[str, datetime] | Omit = omit,
@@ -619,8 +610,9 @@ class AsyncAIResource(AsyncAPIResource):
         filter_retention: str | Omit = omit,
         filter_user_id: str | Omit = omit,
         min_score: float | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         region: Literal["USA", "DEU", "AUS", "UAE"] | Omit = omit,
-        top_k: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -635,12 +627,12 @@ class AsyncAIResource(AsyncAPIResource):
 
         1. The query text is embedded into a 1024-dimensional vector using the
            multilingual-e5-large model.
-        2. The vector is sent to regional OpenSearch clusters for kNN search using HNSW
-           cosine similarity.
+        2. The vector is compared against indexed record chunks using semantic
+           similarity search.
         3. When no region is specified, all regions are queried in parallel (fan-out)
            and results are merged by score.
-        4. Results are ranked by cosine similarity score (descending) and truncated to
-           `top_k`.
+        4. Results are ranked by similarity score (descending) and paginated via
+           `page[number]` / `page[size]`.
 
         **Authentication:** Requires a Telnyx API key via `Authorization: Bearer <key>`.
         Results are automatically scoped to the caller's organization —
@@ -654,14 +646,14 @@ class AsyncAIResource(AsyncAPIResource):
         **Filtering:** Use `filter[field][operator]=value` query parameters to narrow
         results before vector search.
 
-        Top-level filterable fields: `user_id`, `record_type`, `region`, `document_id`,
-        `record_id`, `record_created_at`, `ingested_at`, `retention`
+        Top-level filterable fields: `user_id`, `region`, `record_id`,
+        `record_created_at`, `ingested_at`, `retention`
 
         Note: `retention` is filter-only — it can be used to narrow results but is not
         returned in the response body.
 
         Metadata fields: any field not in the list above is resolved to
-        `data.metadata.<field>` in OpenSearch (e.g., `filter[language]=en` →
+        `data.metadata.<field>` (e.g., `filter[language]=en` →
         `data.metadata.language`).
 
         Supported filter operators:
@@ -674,22 +666,16 @@ class AsyncAIResource(AsyncAPIResource):
         **Examples:**
 
         ```
-        GET /v2/ai/conversation_histories?q=billing+issue&record_type=voice&top_k=10
-        GET /v2/ai/conversation_histories?q=setup+guide&record_type=knowledge_base&region=USA&min_score=0.5
-        GET /v2/ai/conversation_histories?q=refund&record_type=voice&filter[record_created_at][gte]=2026-01-01T00:00:00Z
-        GET /v2/ai/conversation_histories?q=outage&record_type=voice&filter[region][in]=USA,DEU
-        GET /v2/ai/conversation_histories?q=hold+time&record_type=voice&filter[language]=en
+        GET /v2/ai/conversation_histories?q=billing+issue&page[size]=10
+        GET /v2/ai/conversation_histories?q=setup+guide&region=USA&min_score=0.5
+        GET /v2/ai/conversation_histories?q=refund&filter[record_created_at][gte]=2026-01-01T00:00:00Z
+        GET /v2/ai/conversation_histories?q=outage&filter[region][in]=USA,DEU
+        GET /v2/ai/conversation_histories?q=hold+time&filter[language]=en
         ```
 
         Args:
           q: Natural language search query. The text is embedded into a 1024-dimensional
-              vector and compared against indexed record chunks using kNN cosine similarity.
-
-          record_type: The type of records to search. Each record type is stored in a separate vector
-              index.
-
-          filter_document_id: Filter by document identifier (exact match). Populated for knowledge_base
-              records.
+              vector and compared against indexed record chunks using semantic similarity.
 
           filter_ingested_at_gte: Only include records ingested (chunked, embedded, and indexed) on or after this
               ISO 8601 timestamp.
@@ -717,11 +703,12 @@ class AsyncAIResource(AsyncAPIResource):
           min_score: Minimum cosine similarity score threshold (0.0 to 1.0). Results below this
               threshold are excluded.
 
-          region: Restrict search to a specific region's OpenSearch cluster. When omitted, all
-              regions are queried in parallel (fan-out) and results are merged by cosine
-              similarity score.
+          page_number: Page number to return (1-based). Defaults to 1.
 
-          top_k: Maximum number of results to return. Defaults to 20, maximum 100.
+          page_size: Number of results per page. Defaults to 20, maximum 100.
+
+          region: Restrict search to a specific region. When omitted, all regions are queried in
+              parallel (fan-out) and results are merged by similarity score.
 
           extra_headers: Send extra headers
 
@@ -741,8 +728,6 @@ class AsyncAIResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "q": q,
-                        "record_type": record_type,
-                        "filter_document_id": filter_document_id,
                         "filter_ingested_at_gte": filter_ingested_at_gte,
                         "filter_ingested_at_lte": filter_ingested_at_lte,
                         "filter_record_created_at_gte": filter_record_created_at_gte,
@@ -752,8 +737,9 @@ class AsyncAIResource(AsyncAPIResource):
                         "filter_retention": filter_retention,
                         "filter_user_id": filter_user_id,
                         "min_score": min_score,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "region": region,
-                        "top_k": top_k,
                     },
                     ai_retrieve_conversation_histories_params.AIRetrieveConversationHistoriesParams,
                 ),

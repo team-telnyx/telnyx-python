@@ -30,7 +30,7 @@ jobs:
           node-version: '20'
 
       - name: Install release-please
-        run: npm install release-please@17
+        run: npm install --no-save release-please@17
 
       - name: Read Release-As version from next branch
         if: github.ref == 'refs/heads/next'
@@ -66,6 +66,7 @@ jobs:
             --target-branch master
             --config-file release-please-config.json
             --manifest-file .release-please-manifest.json
+            --local
           )
 
           if [ "${{ steps.version.outputs.has_version }}" = "true" ]; then
@@ -118,7 +119,27 @@ jobs:
           git fetch origin "$PR_BRANCH" next
           git checkout -B "$PR_BRANCH" "origin/$PR_BRANCH"
 
-          if git merge origin/next --no-edit -X ours; then
+          # Snapshot the release-please branch state BEFORE merging next.
+          # The -X theirs merge brings in generated code from staging (next),
+          # but it also overwrites version files that release-please just bumped
+          # (pyproject.toml, _version.py, CHANGELOG.md) with staging's older
+          # values. We restore these from the pre-merge commit after the merge.
+          PRE_MERGE=$(git rev-parse HEAD)
+
+          if git merge origin/next --no-edit -X theirs; then
+            # Restore release-please's version files that the -X theirs merge
+            # overwrote with staging's older versions. These files are owned by
+            # release-please, not by the staging generation pipeline.
+            RESTORE_FILES=("pyproject.toml" "src/telnyx/_version.py" "CHANGELOG.md")
+            for rf in "${RESTORE_FILES[@]}"; do
+              if git show "${PRE_MERGE}:$rf" > "$rf" 2>/dev/null; then
+                git add -- "$rf"
+                echo "Restored $rf from pre-merge (release-please version)"
+              fi
+            done
+            if ! git diff --cached --quiet; then
+              git commit --amend --no-edit
+            fi
             git push origin "$PR_BRANCH"
             echo "Successfully merged next into release PR branch"
           else

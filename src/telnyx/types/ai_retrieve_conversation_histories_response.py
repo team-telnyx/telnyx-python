@@ -24,12 +24,6 @@ class Data(BaseModel):
     chunk_total: int
     """Total number of chunks the parent record was split into."""
 
-    document_id: Optional[str] = None
-    """Document identifier.
-
-    Present only for knowledge_base records; null for all other record types.
-    """
-
     ingested_at: datetime
     """When the record was chunked, embedded, and indexed (ISO 8601)."""
 
@@ -44,9 +38,6 @@ class Data(BaseModel):
 
     Multiple chunks from the same record share this ID.
     """
-
-    record_type: Literal["voice", "message", "ai_pipeline_storage", "knowledge_base"]
-    """Type of the record."""
 
     region: Literal["USA", "DEU", "AUS", "UAE"]
     """The region where this record is stored."""
@@ -66,8 +57,7 @@ class Data(BaseModel):
     metadata: Optional[Dict[str, object]] = None
     """Arbitrary metadata attached to the record at ingestion time.
 
-    Stored as a flat_object in OpenSearch and filterable via filter[field]=value
-    query parameters.
+    Filterable via filter[field]=value query parameters.
     """
 
 
@@ -75,22 +65,16 @@ class Meta(BaseModel):
     """Pagination metadata following the standard Telnyx V2 API format."""
 
     page_number: int
-    """
-    Current page number (always 1 — this API does not support pagination, use top_k
-    instead).
-    """
+    """Current page number (1-based), matching the requested page[number]."""
 
     page_size: int
-    """Number of results per page (equals the effective top_k value)."""
+    """Number of results per page, matching the requested page[size]."""
 
     total_pages: int
     """Total number of pages."""
 
     total_results: int
-    """
-    Total number of matching results across all queried regions (before top_k
-    truncation).
-    """
+    """Total number of matching results across all queried regions."""
 
 
 class AIRetrieveConversationHistoriesResponse(BaseModel):
