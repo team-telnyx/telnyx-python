@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.164.0 (2026-06-26)
+
+Full Changelog: [v4.163.1...v4.164.0](https://github.com/team-telnyx/telnyx-python/compare/v4.163.1...v4.164.0)
+
+### Bug Fixes
+
+* add --local flag so release-please scans next branch for commits ([#343](https://github.com/team-telnyx/telnyx-python/issues/343)) ([be71009](https://github.com/team-telnyx/telnyx-python/commit/be7100906c7ce107c0aca9b8197b6fff5e5af0ec))
+
+
+### Chores
+
+* promote from staging 4d3b50b ([f206354](https://github.com/team-telnyx/telnyx-python/commit/f206354e42378f88a5ba1f44a8d6dc5584e35596))
+* sync repo ([14a9294](https://github.com/team-telnyx/telnyx-python/commit/14a9294b658c0f996cfbad3b0355782d563c8e33))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
