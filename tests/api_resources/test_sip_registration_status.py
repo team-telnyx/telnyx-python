@@ -21,17 +21,8 @@ class TestSipRegistrationStatus:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         sip_registration_status = client.sip_registration_status.retrieve(
-            credential_type="uac_external_credential",
-        )
-        assert_matches_type(SipRegistrationStatusRetrieveResponse, sip_registration_status, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
-        sip_registration_status = client.sip_registration_status.retrieve(
-            credential_type="uac_external_credential",
             connection_id="connection_id",
-            username="username",
+            credential_type="uac_external_credential",
         )
         assert_matches_type(SipRegistrationStatusRetrieveResponse, sip_registration_status, path=["response"])
 
@@ -39,6 +30,7 @@ class TestSipRegistrationStatus:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.sip_registration_status.with_raw_response.retrieve(
+            connection_id="connection_id",
             credential_type="uac_external_credential",
         )
 
@@ -51,6 +43,7 @@ class TestSipRegistrationStatus:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.sip_registration_status.with_streaming_response.retrieve(
+            connection_id="connection_id",
             credential_type="uac_external_credential",
         ) as response:
             assert not response.is_closed
@@ -71,17 +64,8 @@ class TestAsyncSipRegistrationStatus:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         sip_registration_status = await async_client.sip_registration_status.retrieve(
-            credential_type="uac_external_credential",
-        )
-        assert_matches_type(SipRegistrationStatusRetrieveResponse, sip_registration_status, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        sip_registration_status = await async_client.sip_registration_status.retrieve(
-            credential_type="uac_external_credential",
             connection_id="connection_id",
-            username="username",
+            credential_type="uac_external_credential",
         )
         assert_matches_type(SipRegistrationStatusRetrieveResponse, sip_registration_status, path=["response"])
 
@@ -89,6 +73,7 @@ class TestAsyncSipRegistrationStatus:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sip_registration_status.with_raw_response.retrieve(
+            connection_id="connection_id",
             credential_type="uac_external_credential",
         )
 
@@ -101,6 +86,7 @@ class TestAsyncSipRegistrationStatus:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sip_registration_status.with_streaming_response.retrieve(
+            connection_id="connection_id",
             credential_type="uac_external_credential",
         ) as response:
             assert not response.is_closed

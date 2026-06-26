@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import sip_registration_status_retrieve_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._types import Body, Query, Headers, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -48,9 +48,8 @@ class SipRegistrationStatusResource(SyncAPIResource):
     def retrieve(
         self,
         *,
-        credential_type: Literal["uac_external_credential", "telephony_credential"],
-        connection_id: str | Omit = omit,
-        username: str | Omit = omit,
+        connection_id: str,
+        credential_type: Literal["uac_external_credential"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,14 +63,10 @@ class SipRegistrationStatusResource(SyncAPIResource):
         received from the registrar. Only `uac_external_credential` is supported today.
 
         Args:
-          credential_type: The kind of credential to look up. `uac_external_credential` is keyed by
-              `connection_id`; `telephony_credential` is keyed by `username`.
+          connection_id: Identifier of the UAC connection to look up.
 
-          connection_id: Identifier of the UAC connection to look up. Required when `credential_type` is
-              `uac_external_credential`.
-
-          username: SIP username of the telephony credential to look up. Required when
-              `credential_type` is `telephony_credential`.
+          credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
+              today.
 
           extra_headers: Send extra headers
 
@@ -90,9 +85,8 @@ class SipRegistrationStatusResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "credential_type": credential_type,
                         "connection_id": connection_id,
-                        "username": username,
+                        "credential_type": credential_type,
                     },
                     sip_registration_status_retrieve_params.SipRegistrationStatusRetrieveParams,
                 ),
@@ -126,9 +120,8 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
     async def retrieve(
         self,
         *,
-        credential_type: Literal["uac_external_credential", "telephony_credential"],
-        connection_id: str | Omit = omit,
-        username: str | Omit = omit,
+        connection_id: str,
+        credential_type: Literal["uac_external_credential"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,14 +135,10 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
         received from the registrar. Only `uac_external_credential` is supported today.
 
         Args:
-          credential_type: The kind of credential to look up. `uac_external_credential` is keyed by
-              `connection_id`; `telephony_credential` is keyed by `username`.
+          connection_id: Identifier of the UAC connection to look up.
 
-          connection_id: Identifier of the UAC connection to look up. Required when `credential_type` is
-              `uac_external_credential`.
-
-          username: SIP username of the telephony credential to look up. Required when
-              `credential_type` is `telephony_credential`.
+          credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
+              today.
 
           extra_headers: Send extra headers
 
@@ -168,9 +157,8 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "credential_type": credential_type,
                         "connection_id": connection_id,
-                        "username": username,
+                        "credential_type": credential_type,
                     },
                     sip_registration_status_retrieve_params.SipRegistrationStatusRetrieveParams,
                 ),

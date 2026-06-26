@@ -14,30 +14,10 @@ from .transcription_engine_azure_config_param import TranscriptionEngineAzureCon
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
 from .transcription_engine_soniox_config_param import TranscriptionEngineSonioxConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
-from .transcription_engine_parakeet_config_param import TranscriptionEngineParakeetConfigParam
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = [
-    "TranscriptionStartRequestParam",
-    "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineParakeetConfig",
-]
-
-
-class TranscriptionEngineConfigTranscriptionEngineParakeetConfig(TypedDict, total=False):
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    transcription_engine: Literal["Parakeet"]
-    """Engine identifier for Parakeet transcription service"""
-
-    transcription_model: Literal["parakeet/tdt-0.6b-v3"]
-    """The model to use for transcription."""
-
+__all__ = ["TranscriptionStartRequestParam", "TranscriptionEngineConfig"]
 
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
@@ -47,7 +27,6 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineAssemblyaiConfigParam,
     TranscriptionEngineSpeechmaticsConfigParam,
     TranscriptionEngineSonioxConfigParam,
-    TranscriptionEngineParakeetConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
@@ -70,7 +49,7 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
     """
 
     transcription_engine: Literal[
-        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "Parakeet", "A", "B"
+        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
     ]
     """Engine to use for speech recognition.
 

@@ -138,9 +138,6 @@ from .transcription_engine_telnyx_config_param import (
 from .action_add_ai_assistant_messages_response import (
     ActionAddAIAssistantMessagesResponse as ActionAddAIAssistantMessagesResponse,
 )
-from .transcription_engine_parakeet_config_param import (
-    TranscriptionEngineParakeetConfigParam as TranscriptionEngineParakeetConfigParam,
-)
 from .transcription_engine_assemblyai_config_param import (
     TranscriptionEngineAssemblyaiConfigParam as TranscriptionEngineAssemblyaiConfigParam,
 )
