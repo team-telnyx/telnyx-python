@@ -18,11 +18,7 @@ from .transcription_engine_parakeet_config_param import TranscriptionEngineParak
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = [
-    "ActionStartTranscriptionParams",
-    "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineParakeetConfig",
-]
+__all__ = ["ActionStartTranscriptionParams", "TranscriptionEngineConfig"]
 
 
 class ActionStartTranscriptionParams(TypedDict, total=False):
@@ -56,20 +52,6 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
     Use `inbound` for the leg that requested the transcription, `outbound` for the
     other leg, and `both` for both legs of the call. Will default to `inbound`.
     """
-
-
-class TranscriptionEngineConfigTranscriptionEngineParakeetConfig(TypedDict, total=False):
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    transcription_engine: Literal["Parakeet"]
-    """Engine identifier for Parakeet transcription service"""
-
-    transcription_model: Literal["parakeet/tdt-0.6b-v3"]
-    """The model to use for transcription."""
 
 
 TranscriptionEngineConfig: TypeAlias = Union[

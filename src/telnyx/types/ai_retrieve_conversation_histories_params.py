@@ -16,19 +16,7 @@ class AIRetrieveConversationHistoriesParams(TypedDict, total=False):
     """Natural language search query.
 
     The text is embedded into a 1024-dimensional vector and compared against indexed
-    record chunks using kNN cosine similarity.
-    """
-
-    record_type: Required[Literal["voice", "message", "ai_pipeline_storage", "knowledge_base"]]
-    """The type of records to search.
-
-    Each record type is stored in a separate vector index.
-    """
-
-    filter_document_id: Annotated[str, PropertyInfo(alias="filter[document_id]")]
-    """Filter by document identifier (exact match).
-
-    Populated for knowledge_base records.
+    record chunks using semantic similarity.
     """
 
     filter_ingested_at_gte: Annotated[
@@ -88,12 +76,15 @@ class AIRetrieveConversationHistoriesParams(TypedDict, total=False):
     Results below this threshold are excluded.
     """
 
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    """Page number to return (1-based). Defaults to 1."""
+
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    """Number of results per page. Defaults to 20, maximum 100."""
+
     region: Literal["USA", "DEU", "AUS", "UAE"]
-    """Restrict search to a specific region's OpenSearch cluster.
+    """Restrict search to a specific region.
 
     When omitted, all regions are queried in parallel (fan-out) and results are
-    merged by cosine similarity score.
+    merged by similarity score.
     """
-
-    top_k: int
-    """Maximum number of results to return. Defaults to 20, maximum 100."""
