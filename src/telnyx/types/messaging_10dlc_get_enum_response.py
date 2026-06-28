@@ -19,5 +19,5 @@ class EnumPaginatedResponse(BaseModel):
 
 
 Messaging10dlcGetEnumResponse: TypeAlias = Union[
-    List[str], List[Dict[str, object]], Dict[str, object], Dict[str, object], EnumPaginatedResponse
+    List[str], List[Dict[str, object]], Dict[str, str], Dict[str, object], EnumPaginatedResponse
 ]
