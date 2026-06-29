@@ -196,7 +196,11 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
-class Assistant(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Assistant(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """Custom parameters for the Conversation Relay session.
 
     Pass key-value data as `assistant.dynamic_variables` to make it available to the relay session.

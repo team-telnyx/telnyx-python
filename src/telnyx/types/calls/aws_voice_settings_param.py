@@ -7,6 +7,10 @@ from typing_extensions import Literal, Required, TypedDict
 __all__ = ["AwsVoiceSettingsParam"]
 
 
-class AwsVoiceSettingsParam(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class AwsVoiceSettingsParam(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     type: Required[Literal["aws"]]
     """Voice settings provider type"""

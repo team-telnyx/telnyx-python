@@ -15,7 +15,11 @@ from .shared_params.call_control_retrieval_tool import CallControlRetrievalTool
 __all__ = ["CallAssistantRequestParam", "ExternalLlm", "FallbackConfig", "FallbackConfigExternalLlm", "Tool"]
 
 
-class ExternalLlm(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class ExternalLlm(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """External LLM configuration for bringing your own LLM endpoint."""
 
     authentication_method: Literal["token", "certificate"]
@@ -87,7 +91,11 @@ class FallbackConfigExternalLlm(TypedDict, total=False):
     """
 
 
-class FallbackConfig(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class FallbackConfig(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """Fallback LLM configuration used when the primary LLM provider is unavailable."""
 
     external_llm: FallbackConfigExternalLlm

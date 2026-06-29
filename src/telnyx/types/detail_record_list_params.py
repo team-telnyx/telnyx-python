@@ -26,7 +26,11 @@ class DetailRecordListParams(TypedDict, total=False):
     """Specifies the sort order for results. <br/>Example: sort=-created_at"""
 
 
-class Filter(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Filter(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """Filter records on a given record attribute and value.
 
     <br/>Example: filter[status]=delivered. <br/>Required: filter[record_type] must be specified.

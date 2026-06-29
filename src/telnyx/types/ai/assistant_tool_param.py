@@ -399,7 +399,11 @@ class SendDtmf(TypedDict, total=False):
     type: Required[Literal["send_dtmf"]]
 
 
-class SendMessageSendMessage(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class SendMessageSendMessage(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     message_template: Optional[str]
     """
     Optional message template with dynamic variable support using mustache syntax

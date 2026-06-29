@@ -32,7 +32,11 @@ class VerifyProfileUpdateParams(TypedDict, total=False):
     whatsapp: Whatsapp
 
 
-class Call(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Call(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     app_name: str
     """
     The name that identifies the application requesting 2fa in the verification
@@ -63,7 +67,11 @@ class Call(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg
     """
 
 
-class SMS(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class SMS(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     alpha_sender: Optional[str]
     """
     The alphanumeric sender ID to use when sending to destinations that require an
@@ -100,7 +108,11 @@ class SMS(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """
 
 
-class Whatsapp(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Whatsapp(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     default_verification_timeout_secs: int
     """
     For every request that is initiated via this Verify profile, this sets the

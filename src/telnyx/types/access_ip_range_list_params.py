@@ -67,7 +67,11 @@ class FilterCreatedAtDateRangeFilter(TypedDict, total=False):
 FilterCreatedAt: TypeAlias = Union[Union[str, datetime], FilterCreatedAtDateRangeFilter]
 
 
-class Filter(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Filter(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """Consolidated filter parameter (deepObject style).
 
     Originally: filter[cidr_block], filter[cidr_block][startswith], filter[cidr_block][endswith], filter[cidr_block][contains], filter[created_at]. Supports complex bracket operations for dynamic filtering.
