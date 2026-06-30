@@ -255,7 +255,7 @@ class DocumentsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
             path_template("/documents/{id}/download", id=id),
             options=make_request_options(
@@ -581,7 +581,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
             path_template("/documents/{id}/download", id=id),
             options=make_request_options(

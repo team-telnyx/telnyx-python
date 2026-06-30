@@ -1,10 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List
 
 from ...._models import BaseModel
 from .mission_run_data import MissionRunData
-from ..assistants.tests.test_suites.meta import Meta
+
+if TYPE_CHECKING:
+    from ..assistants.tests.test_suites.meta import Meta
 
 __all__ = ["MissionRunsListResponse"]
 

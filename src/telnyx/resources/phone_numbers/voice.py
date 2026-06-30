@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -22,13 +23,15 @@ from ...types.phone_numbers import (
     voice_list_params,
     voice_update_params,
 )
-from ...types.phone_numbers.cnam_listing_param import CnamListingParam
-from ...types.phone_numbers.call_recording_param import CallRecordingParam
-from ...types.phone_numbers.media_features_param import MediaFeaturesParam
-from ...types.phone_numbers.call_forwarding_param import CallForwardingParam
 from ...types.phone_numbers.voice_update_response import VoiceUpdateResponse
 from ...types.phone_numbers.voice_retrieve_response import VoiceRetrieveResponse
 from ...types.phone_numbers.phone_number_with_voice_settings import PhoneNumberWithVoiceSettings
+
+if TYPE_CHECKING:
+    from ...types.phone_numbers.cnam_listing_param import CnamListingParam
+    from ...types.phone_numbers.call_recording_param import CallRecordingParam
+    from ...types.phone_numbers.media_features_param import MediaFeaturesParam
+    from ...types.phone_numbers.call_forwarding_param import CallForwardingParam
 
 __all__ = ["VoiceResource", "AsyncVoiceResource"]
 

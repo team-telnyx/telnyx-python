@@ -2,15 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 from typing_extensions import Literal, TypedDict
 
-from ..stream_codec import StreamCodec
-from ..dialogflow_config_param import DialogflowConfigParam
-from ..stream_bidirectional_mode import StreamBidirectionalMode
-from ..stream_bidirectional_codec import StreamBidirectionalCodec
-from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
-from ..stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
+if TYPE_CHECKING:
+    from ..stream_codec import StreamCodec
+    from ..dialogflow_config_param import DialogflowConfigParam
+    from ..stream_bidirectional_mode import StreamBidirectionalMode
+    from ..stream_bidirectional_codec import StreamBidirectionalCodec
+    from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
+    from ..stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 
 __all__ = ["ActionStartStreamingParams", "CustomParameter"]
 

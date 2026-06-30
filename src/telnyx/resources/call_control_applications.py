@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -25,12 +25,14 @@ from .._response import (
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.call_control_application import CallControlApplication
-from ..types.call_control_application_inbound_param import CallControlApplicationInboundParam
-from ..types.call_control_application_outbound_param import CallControlApplicationOutboundParam
 from ..types.call_control_application_create_response import CallControlApplicationCreateResponse
 from ..types.call_control_application_delete_response import CallControlApplicationDeleteResponse
 from ..types.call_control_application_update_response import CallControlApplicationUpdateResponse
 from ..types.call_control_application_retrieve_response import CallControlApplicationRetrieveResponse
+
+if TYPE_CHECKING:
+    from ..types.call_control_application_inbound_param import CallControlApplicationInboundParam
+    from ..types.call_control_application_outbound_param import CallControlApplicationOutboundParam
 
 __all__ = ["CallControlApplicationsResource", "AsyncCallControlApplicationsResource"]
 

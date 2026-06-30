@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -22,7 +23,9 @@ from ...types.portouts import report_list_params, report_create_params
 from ...types.portouts.portout_report import PortoutReport
 from ...types.portouts.report_create_response import ReportCreateResponse
 from ...types.portouts.report_retrieve_response import ReportRetrieveResponse
-from ...types.portouts.export_portouts_csv_report_param import ExportPortoutsCsvReportParam
+
+if TYPE_CHECKING:
+    from ...types.portouts.export_portouts_csv_report_param import ExportPortoutsCsvReportParam
 
 __all__ = ["ReportsResource", "AsyncReportsResource"]
 

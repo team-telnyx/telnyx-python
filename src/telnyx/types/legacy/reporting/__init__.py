@@ -2,11 +2,27 @@
 
 from __future__ import annotations
 
-from .filter import Filter as Filter
+from typing import TYPE_CHECKING, Any
+
 from .filter_param import FilterParam as FilterParam
 from .usage_report_retrieve_speech_to_text_params import (
     UsageReportRetrieveSpeechToTextParams as UsageReportRetrieveSpeechToTextParams,
 )
-from .usage_report_retrieve_speech_to_text_response import (
-    UsageReportRetrieveSpeechToTextResponse as UsageReportRetrieveSpeechToTextResponse,
-)
+
+if TYPE_CHECKING:
+    from .filter import Filter as Filter
+    from .usage_report_retrieve_speech_to_text_response import (
+        UsageReportRetrieveSpeechToTextResponse as UsageReportRetrieveSpeechToTextResponse,
+    )
+
+
+def __getattr__(name: str) -> Any:
+    if name == "Filter":
+        from .filter import Filter
+
+        return Filter
+    if name == "UsageReportRetrieveSpeechToTextResponse":
+        from .usage_report_retrieve_speech_to_text_response import UsageReportRetrieveSpeechToTextResponse
+
+        return UsageReportRetrieveSpeechToTextResponse
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

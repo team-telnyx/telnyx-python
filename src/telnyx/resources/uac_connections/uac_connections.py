@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -36,22 +36,24 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.dtmf_type import DtmfType
 from ...types.uac_connection import UacConnection
-from ...types.encrypted_media import EncryptedMedia
-from ...types.uac_outbound_param import UacOutboundParam
-from ...types.anchorsite_override import AnchorsiteOverride
-from ...types.uac_inbound_request_param import UacInboundRequestParam
-from ...types.uac_external_settings_param import UacExternalSettingsParam
-from ...types.uac_internal_settings_param import UacInternalSettingsParam
-from ...types.connection_noise_suppression import ConnectionNoiseSuppression
-from ...types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ...types.uac_connection_create_response import UacConnectionCreateResponse
 from ...types.uac_connection_delete_response import UacConnectionDeleteResponse
 from ...types.uac_connection_update_response import UacConnectionUpdateResponse
 from ...types.uac_connection_retrieve_response import UacConnectionRetrieveResponse
-from ...types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
-from ...types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
+
+if TYPE_CHECKING:
+    from ...types.dtmf_type import DtmfType
+    from ...types.encrypted_media import EncryptedMedia
+    from ...types.uac_outbound_param import UacOutboundParam
+    from ...types.anchorsite_override import AnchorsiteOverride
+    from ...types.uac_inbound_request_param import UacInboundRequestParam
+    from ...types.uac_external_settings_param import UacExternalSettingsParam
+    from ...types.uac_internal_settings_param import UacInternalSettingsParam
+    from ...types.connection_noise_suppression import ConnectionNoiseSuppression
+    from ...types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+    from ...types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
+    from ...types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["UacConnectionsResource", "AsyncUacConnectionsResource"]
 

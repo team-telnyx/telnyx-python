@@ -1,9 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 from datetime import datetime
 
 from ..._models import BaseModel
-from ..messaging_10dlc.task_status import TaskStatus
+
+if TYPE_CHECKING:
+    from ..messaging_10dlc.task_status import TaskStatus
 
 __all__ = ["ClusterListResponse"]
 

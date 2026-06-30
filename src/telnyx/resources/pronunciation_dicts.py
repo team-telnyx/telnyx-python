@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Mapping, Iterable, cast
+from typing import TYPE_CHECKING, Mapping, Iterable, cast
 
 import httpx
 
@@ -22,7 +22,9 @@ from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.pronunciation_dict_data import PronunciationDictData
 from ..types.pronunciation_dict_response import PronunciationDictResponse
-from ..types.pronunciation_dict_item_param import PronunciationDictItemParam
+
+if TYPE_CHECKING:
+    from ..types.pronunciation_dict_item_param import PronunciationDictItemParam
 
 __all__ = ["PronunciationDictsResource", "AsyncPronunciationDictsResource"]
 

@@ -1,11 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..filter import Filter
 from ....._models import BaseModel
+
+if TYPE_CHECKING:
+    from ..filter import Filter
 
 __all__ = ["MdrDetailReportResponse"]
 

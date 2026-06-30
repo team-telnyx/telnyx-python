@@ -1,9 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
 
 from ..._models import BaseModel
-from ..shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
+
+if TYPE_CHECKING:
+    from ..shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
 
 __all__ = ["MessagingUpdateResponse"]
 

@@ -1,11 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..shared.messaging_feature_set import MessagingFeatureSet
+
+if TYPE_CHECKING:
+    from ..shared.messaging_feature_set import MessagingFeatureSet
 
 __all__ = ["MobilePhoneNumberWithMessagingSettings", "Features"]
 

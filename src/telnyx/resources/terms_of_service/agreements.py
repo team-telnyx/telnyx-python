@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -18,8 +20,10 @@ from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.terms_of_service import TosProductType, agreement_list_params
 from ...types.terms_of_service.tos_agreement import TosAgreement
-from ...types.terms_of_service.tos_product_type import TosProductType
 from ...types.terms_of_service.tos_agreement_wrapped import TosAgreementWrapped
+
+if TYPE_CHECKING:
+    from ...types.terms_of_service.tos_product_type import TosProductType
 
 __all__ = ["AgreementsResource", "AsyncAgreementsResource"]
 

@@ -1,9 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from __future__ import annotations
 
-from ..filter import Filter
+from typing import TYPE_CHECKING, List, Optional
+
 from ....._models import BaseModel
+
+if TYPE_CHECKING:
+    from ..filter import Filter
 
 __all__ = ["CdrDetailedReqResponse"]
 

@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 from typing_extensions import TypedDict
 
-from ..custom_sip_header_param import CustomSipHeaderParam
+if TYPE_CHECKING:
+    from ..custom_sip_header_param import CustomSipHeaderParam
 
 __all__ = ["ActionHangupParams"]
 

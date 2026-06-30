@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import TYPE_CHECKING, Dict, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -69,18 +69,8 @@ from ...types.calls import (
     action_add_ai_assistant_messages_params,
 )
 from ..._base_client import make_request_options
-from ...types.stream_codec import StreamCodec
-from ...types.sip_header_param import SipHeaderParam
-from ...types.ai.assistant_param import AssistantParam
-from ...types.calls.loopcount_param import LoopcountParam
-from ...types.custom_sip_header_param import CustomSipHeaderParam
-from ...types.dialogflow_config_param import DialogflowConfigParam
-from ...types.sound_modifications_param import SoundModificationsParam
-from ...types.stream_bidirectional_mode import StreamBidirectionalMode
-from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
 from ...types.calls.action_refer_response import ActionReferResponse
 from ...types.calls.action_speak_response import ActionSpeakResponse
-from ...types.call_assistant_request_param import CallAssistantRequestParam
 from ...types.calls.action_answer_response import ActionAnswerResponse
 from ...types.calls.action_bridge_response import ActionBridgeResponse
 from ...types.calls.action_gather_response import ActionGatherResponse
@@ -89,20 +79,14 @@ from ...types.calls.action_reject_response import ActionRejectResponse
 from ...types.calls.action_enqueue_response import ActionEnqueueResponse
 from ...types.calls.action_transfer_response import ActionTransferResponse
 from ...types.calls.action_send_dtmf_response import ActionSendDtmfResponse
-from ...types.calls.transcription_config_param import TranscriptionConfigParam
-from ...types.stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from ...types.calls.action_leave_queue_response import ActionLeaveQueueResponse
 from ...types.calls.action_stop_gather_response import ActionStopGatherResponse
 from ...types.calls.action_stop_siprec_response import ActionStopSiprecResponse
-from ...types.calls.interruption_settings_param import InterruptionSettingsParam
-from ...types.conversation_relay_language_param import ConversationRelayLanguageParam
 from ...types.calls.action_start_siprec_response import ActionStartSiprecResponse
 from ...types.calls.action_stop_forking_response import ActionStopForkingResponse
-from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 from ...types.calls.action_send_sip_info_response import ActionSendSipInfoResponse
 from ...types.calls.action_start_forking_response import ActionStartForkingResponse
 from ...types.calls.action_stop_playback_response import ActionStopPlaybackResponse
-from ...types.calls.google_transcription_language import GoogleTranscriptionLanguage
 from ...types.calls.action_start_playback_response import ActionStartPlaybackResponse
 from ...types.calls.action_stop_recording_response import ActionStopRecordingResponse
 from ...types.calls.action_stop_streaming_response import ActionStopStreamingResponse
@@ -111,25 +95,43 @@ from ...types.calls.action_pause_recording_response import ActionPauseRecordingR
 from ...types.calls.action_start_recording_response import ActionStartRecordingResponse
 from ...types.calls.action_start_streaming_response import ActionStartStreamingResponse
 from ...types.calls.action_resume_recording_response import ActionResumeRecordingResponse
-from ...types.calls.conversation_relay_interruptible import ConversationRelayInterruptible
 from ...types.calls.action_join_ai_assistant_response import ActionJoinAIAssistantResponse
 from ...types.calls.action_stop_ai_assistant_response import ActionStopAIAssistantResponse
-from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
 from ...types.calls.action_gather_using_audio_response import ActionGatherUsingAudioResponse
 from ...types.calls.action_gather_using_speak_response import ActionGatherUsingSpeakResponse
 from ...types.calls.action_start_ai_assistant_response import ActionStartAIAssistantResponse
 from ...types.calls.action_stop_transcription_response import ActionStopTranscriptionResponse
-from ...types.conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 from ...types.calls.action_start_transcription_response import ActionStartTranscriptionResponse
 from ...types.calls.action_update_client_state_response import ActionUpdateClientStateResponse
-from ...types.calls.ai_assistant_join_participant_param import AIAssistantJoinParticipantParam
 from ...types.calls.action_stop_noise_suppression_response import ActionStopNoiseSuppressionResponse
 from ...types.calls.action_switch_supervisor_role_response import ActionSwitchSupervisorRoleResponse
 from ...types.calls.action_start_noise_suppression_response import ActionStartNoiseSuppressionResponse
 from ...types.calls.action_stop_conversation_relay_response import ActionStopConversationRelayResponse
 from ...types.calls.action_start_conversation_relay_response import ActionStartConversationRelayResponse
-from ...types.conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
 from ...types.calls.action_add_ai_assistant_messages_response import ActionAddAIAssistantMessagesResponse
+
+if TYPE_CHECKING:
+    from ...types.stream_codec import StreamCodec
+    from ...types.sip_header_param import SipHeaderParam
+    from ...types.ai.assistant_param import AssistantParam
+    from ...types.calls.loopcount_param import LoopcountParam
+    from ...types.custom_sip_header_param import CustomSipHeaderParam
+    from ...types.dialogflow_config_param import DialogflowConfigParam
+    from ...types.sound_modifications_param import SoundModificationsParam
+    from ...types.stream_bidirectional_mode import StreamBidirectionalMode
+    from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
+    from ...types.call_assistant_request_param import CallAssistantRequestParam
+    from ...types.calls.transcription_config_param import TranscriptionConfigParam
+    from ...types.stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
+    from ...types.calls.interruption_settings_param import InterruptionSettingsParam
+    from ...types.conversation_relay_language_param import ConversationRelayLanguageParam
+    from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
+    from ...types.calls.google_transcription_language import GoogleTranscriptionLanguage
+    from ...types.calls.conversation_relay_interruptible import ConversationRelayInterruptible
+    from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
+    from ...types.conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
+    from ...types.calls.ai_assistant_join_participant_param import AIAssistantJoinParticipantParam
+    from ...types.conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 

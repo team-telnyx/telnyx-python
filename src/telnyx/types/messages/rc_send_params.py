@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
-from ..rcs_agent_message_param import RcsAgentMessageParam
+
+if TYPE_CHECKING:
+    from ..rcs_agent_message_param import RcsAgentMessageParam
 
 __all__ = ["RcSendParams", "MmsFallback", "SMSFallback"]
 

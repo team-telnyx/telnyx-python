@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from . import ai, event_node, session_analysis_retrieve_response
+from . import event_node, session_analysis_retrieve_response
 from .. import _compat
 from .ip import IP as IP
 from .dir import Dir as Dir
@@ -1618,12 +1618,8 @@ from .managed_account_get_allocatable_global_outbound_channels_response import (
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
 if _compat.PYDANTIC_V1:
-    ai.recursive_cluster.RecursiveCluster.update_forward_refs()  # type: ignore
-    ai.cluster_retrieve_response.ClusterRetrieveResponse.update_forward_refs()  # type: ignore
     event_node.EventNode.update_forward_refs()  # type: ignore
     session_analysis_retrieve_response.SessionAnalysisRetrieveResponse.update_forward_refs()  # type: ignore
 else:
-    ai.recursive_cluster.RecursiveCluster.model_rebuild(_parent_namespace_depth=0)
-    ai.cluster_retrieve_response.ClusterRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
-    event_node.EventNode.model_rebuild(_parent_namespace_depth=0)
-    session_analysis_retrieve_response.SessionAnalysisRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
+    event_node.EventNode.model_rebuild(_parent_namespace_depth=0)  # type: ignore
+    session_analysis_retrieve_response.SessionAnalysisRetrieveResponse.model_rebuild(_parent_namespace_depth=0)  # type: ignore

@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 from typing_extensions import Required, TypedDict
 
-from ..sip_header_param import SipHeaderParam
-from ..custom_sip_header_param import CustomSipHeaderParam
+if TYPE_CHECKING:
+    from ..sip_header_param import SipHeaderParam
+    from ..custom_sip_header_param import CustomSipHeaderParam
 
 __all__ = ["ActionReferParams"]
 

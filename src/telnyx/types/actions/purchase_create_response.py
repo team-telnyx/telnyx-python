@@ -1,10 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List, Optional
 
 from ..._models import BaseModel
-from ..wireless_error import WirelessError
-from ..shared.simple_sim_card import SimpleSimCard
+
+if TYPE_CHECKING:
+    from ..wireless_error import WirelessError
+    from ..shared.simple_sim_card import SimpleSimCard
 
 __all__ = ["PurchaseCreateResponse"]
 
