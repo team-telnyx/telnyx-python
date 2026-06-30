@@ -4,7 +4,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["VerifyEmailSendCodeResponse", "Data"]
+__all__ = ["VerifyEmailSendResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -23,6 +23,6 @@ class Data(BaseModel):
     """
 
 
-class VerifyEmailSendCodeResponse(BaseModel):
+class VerifyEmailSendResponse(BaseModel):
     data: Data
     """Verification state for a DIR's authorizer email."""

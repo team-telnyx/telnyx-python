@@ -2,28 +2,25 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing import Iterable
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = [
-    "CallCallsParams",
-    "Params",
-    "ParamsWithURL",
-    "ParamsWithURLCustomHeader",
-    "ParamsWithTeXml",
-    "ParamsWithTeXmlCustomHeader",
-    "ParamsApplicationDefault",
-    "ParamsApplicationDefaultCustomHeader",
-]
+__all__ = ["CallCallsParams", "Params", "ParamsCustomHeader"]
 
 
 class CallCallsParams(TypedDict, total=False):
     params: Required[Params]
+    """Initiate a TeXML call.
+
+    Provide either `Url` (fetches TeXML from URL) or `Texml` (inline TeXML), or
+    neither (uses the application default). `Url` and `Texml` are mutually
+    exclusive.
+    """
 
 
-class ParamsWithURLCustomHeader(TypedDict, total=False):
+class ParamsCustomHeader(TypedDict, total=False):
     name: Required[str]
     """The name of the custom header"""
 
@@ -31,12 +28,26 @@ class ParamsWithURLCustomHeader(TypedDict, total=False):
     """The value of the custom header"""
 
 
-class ParamsWithURL(TypedDict, total=False):
-    url: Required[Annotated[str, PropertyInfo(alias="Url")]]
-    """The URL from which Telnyx will retrieve the TeXML call instructions."""
+class Params(TypedDict, total=False):
+    """Initiate a TeXML call.
 
-    application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
+    Provide either `Url` (fetches TeXML from URL) or `Texml` (inline TeXML), or neither (uses the application default). `Url` and `Texml` are mutually exclusive.
+    """
+
+    application_sid: Required[Annotated[str, PropertyInfo(alias="ApplicationSid")]]
     """The ID of the TeXML Application."""
+
+    from_: Required[Annotated[str, PropertyInfo(alias="From")]]
+    """The phone number of the party that initiated the call.
+
+    Phone numbers are formatted with a `+` and country code.
+    """
+
+    to: Required[Annotated[str, PropertyInfo(alias="To")]]
+    """The phone number of the called party.
+
+    Phone numbers are formatted with a `+` and country code.
+    """
 
     async_amd: Annotated[bool, PropertyInfo(alias="AsyncAmd")]
     """Select whether to perform answering machine detection in the background.
@@ -72,7 +83,7 @@ class ParamsWithURL(TypedDict, total=False):
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
 
-    custom_headers: Annotated[Iterable[ParamsWithURLCustomHeader], PropertyInfo(alias="CustomHeaders")]
+    custom_headers: Annotated[Iterable[ParamsCustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
@@ -109,12 +120,6 @@ class ParamsWithURL(TypedDict, total=False):
     """
     A failover URL for which Telnyx will retrieve the TeXML call instructions if the
     `Url` is not responding.
-    """
-
-    from_: Annotated[str, PropertyInfo(alias="From")]
-    """The phone number of the party that initiated the call.
-
-    Phone numbers are formatted with a `+` and country code.
     """
 
     machine_detection: Annotated[
@@ -236,258 +241,13 @@ class ParamsWithURL(TypedDict, total=False):
     supervisor), monitor (hear both sides but supervisor muted). Default: barge
     """
 
-    texml: Annotated[Optional[str], PropertyInfo(alias="Texml")]
-
-    time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]
-    """The maximum duration of the call in seconds.
-
-    The minimum value is 30 and the maximum value is 14400 (4 hours). Default is
-    14400 seconds.
-    """
-
-    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
-    """
-    The number of seconds to wait for the called party to answer the call before the
-    call is canceled. The minimum value is 5 and the maximum value is 120. Default
-    is 30 seconds.
-    """
-
-    to: Annotated[str, PropertyInfo(alias="To")]
-    """The phone number of the called party.
-
-    Phone numbers are formatted with a `+` and country code.
-    """
-
-    trim: Annotated[Literal["trim-silence", "do-not-trim"], PropertyInfo(alias="Trim")]
-    """Whether to trim any leading and trailing silence from the recording.
-
-    Defaults to `trim-silence`.
-    """
-
-    url_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="UrlMethod")]
-    """HTTP request type used for `Url`.
-
-    The default value is inherited from TeXML Application setting.
-    """
-
-
-class ParamsWithTeXmlCustomHeader(TypedDict, total=False):
-    name: Required[str]
-    """The name of the custom header"""
-
-    value: Required[str]
-    """The value of the custom header"""
-
-
-class ParamsWithTeXml(TypedDict, total=False):
-    texml: Required[Annotated[str, PropertyInfo(alias="Texml")]]
+    texml: Annotated[str, PropertyInfo(alias="Texml")]
     """TeXML to be used as instructions for the call.
 
     If provided, the call will execute these instructions instead of fetching from
     the Url.
     """
 
-    application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
-    """The ID of the TeXML Application."""
-
-    async_amd: Annotated[bool, PropertyInfo(alias="AsyncAmd")]
-    """Select whether to perform answering machine detection in the background.
-
-    By default execution is blocked until Answering Machine Detection is completed.
-    """
-
-    async_amd_status_callback: Annotated[str, PropertyInfo(alias="AsyncAmdStatusCallback")]
-    """URL destination for Telnyx to send AMD callback events to for the call."""
-
-    async_amd_status_callback_method: Annotated[
-        Literal["GET", "POST"], PropertyInfo(alias="AsyncAmdStatusCallbackMethod")
-    ]
-    """HTTP request type used for `AsyncAmdStatusCallback`.
-
-    The default value is inherited from TeXML Application setting.
-    """
-
-    caller_id: Annotated[str, PropertyInfo(alias="CallerId")]
-    """
-    To be used as the caller id name (SIP From Display Name) presented to the
-    destination (`To` number). The string should have a maximum of 128 characters,
-    containing only letters, numbers, spaces, and `-_~!.+` special characters. If
-    ommited, the display name will be the same as the number in the `From` field.
-    """
-
-    cancel_playback_on_detect_message_end: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnDetectMessageEnd")]
-    """Whether to cancel ongoing playback on `greeting ended` detection.
-
-    Defaults to `true`.
-    """
-
-    cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
-    """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
-
-    custom_headers: Annotated[Iterable[ParamsWithTeXmlCustomHeader], PropertyInfo(alias="CustomHeaders")]
-    """Custom HTTP headers to be sent with the call.
-
-    Each header should be an object with 'name' and 'value' properties.
-    """
-
-    deepfake_detection: Annotated[Literal["Enable"], PropertyInfo(alias="DeepfakeDetection")]
-    """Enables Deepfake Detection on the dialed call.
-
-    When enabled, audio from the remote party is analyzed to determine whether the
-    voice is AI-generated. Results are delivered asynchronously via a callback.
-    """
-
-    deepfake_detection_callback_method: Annotated[
-        Literal["GET", "POST"], PropertyInfo(alias="DeepfakeDetectionCallbackMethod")
-    ]
-    """HTTP request type used for `DeepfakeDetectionCallbackUrl`."""
-
-    deepfake_detection_callback_url: Annotated[str, PropertyInfo(alias="DeepfakeDetectionCallbackUrl")]
-    """
-    URL destination for Telnyx to send deepfake detection callback events to for the
-    call.
-    """
-
-    detection_mode: Annotated[
-        Literal["Premium", "Regular", "PremiumCallScreening"], PropertyInfo(alias="DetectionMode")
-    ]
-    """
-    Allows you to choose between Regular, Premium, and PremiumCallScreening
-    detections. See
-    https://developers.telnyx.com/docs/voice/programmable-voice/answering-machine-detection
-    """
-
-    fallback_url: Annotated[str, PropertyInfo(alias="FallbackUrl")]
-    """
-    A failover URL for which Telnyx will retrieve the TeXML call instructions if the
-    `Url` is not responding.
-    """
-
-    from_: Annotated[str, PropertyInfo(alias="From")]
-    """The phone number of the party that initiated the call.
-
-    Phone numbers are formatted with a `+` and country code.
-    """
-
-    machine_detection: Annotated[
-        Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
-    ]
-    """Enables Answering Machine Detection."""
-
-    machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
-    """
-    Silence duration threshold after a call screening prompt before ending prompt
-    detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
-    """
-
-    machine_detection_silence_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionSilenceTimeout")]
-    """If initial silence duration is greater than this value, consider it a machine.
-
-    Ignored when `premium` detection is used.
-    """
-
-    machine_detection_speech_end_threshold: Annotated[int, PropertyInfo(alias="MachineDetectionSpeechEndThreshold")]
-    """
-    Silence duration threshold after a greeting message or voice for it be
-    considered human. Ignored when `premium` detection is used.
-    """
-
-    machine_detection_speech_threshold: Annotated[int, PropertyInfo(alias="MachineDetectionSpeechThreshold")]
-    """Maximum threshold of a human greeting.
-
-    If greeting longer than this value, considered machine. Ignored when `premium`
-    detection is used.
-    """
-
-    machine_detection_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionTimeout")]
-    """Maximum timeout threshold in milliseconds for overall detection."""
-
-    media_encryption: Annotated[Literal["disabled", "SRTP", "DTLS"], PropertyInfo(alias="MediaEncryption")]
-    """Defines whether media should be encrypted on the call.
-
-    When set to `SRTP`, the call will use Secure Real-time Transport Protocol for
-    media encryption. When set to `DTLS`, the call will use DTLS for media
-    encryption. Only supported for SIP destinations.
-    """
-
-    preferred_codecs: Annotated[str, PropertyInfo(alias="PreferredCodecs")]
-    """The list of comma-separated codecs to be offered on a call."""
-
-    record: Annotated[bool, PropertyInfo(alias="Record")]
-    """Whether to record the entire participant's call leg. Defaults to `false`."""
-
-    recording_channels: Annotated[Literal["mono", "dual"], PropertyInfo(alias="RecordingChannels")]
-    """The number of channels in the final recording. Defaults to `mono`."""
-
-    recording_status_callback: Annotated[str, PropertyInfo(alias="RecordingStatusCallback")]
-    """The URL the recording callbacks will be sent to."""
-
-    recording_status_callback_event: Annotated[str, PropertyInfo(alias="RecordingStatusCallbackEvent")]
-    """
-    The changes to the recording's state that should generate a call to
-    `RecoridngStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
-    Separate multiple values with a space. Defaults to `completed`.
-    """
-
-    recording_status_callback_method: Annotated[
-        Literal["GET", "POST"], PropertyInfo(alias="RecordingStatusCallbackMethod")
-    ]
-    """HTTP request type used for `RecordingStatusCallback`. Defaults to `POST`."""
-
-    recording_timeout: Annotated[int, PropertyInfo(alias="RecordingTimeout")]
-    """
-    The number of seconds that Telnyx will wait for the recording to be stopped if
-    silence is detected. The timer only starts when the speech is detected. Please
-    note that the transcription is used to detect silence and the related charge
-    will be applied. The minimum value is 0. The default value is 0 (infinite)
-    """
-
-    recording_track: Annotated[Literal["inbound", "outbound", "both"], PropertyInfo(alias="RecordingTrack")]
-    """The audio track to record for the call. The default is `both`."""
-
-    send_recording_url: Annotated[bool, PropertyInfo(alias="SendRecordingUrl")]
-    """Whether to send RecordingUrl in webhooks."""
-
-    sip_auth_password: Annotated[str, PropertyInfo(alias="SipAuthPassword")]
-    """The password to use for SIP authentication."""
-
-    sip_auth_username: Annotated[str, PropertyInfo(alias="SipAuthUsername")]
-    """The username to use for SIP authentication."""
-
-    sip_region: Annotated[
-        Literal["US", "Europe", "Canada", "Australia", "Middle East"], PropertyInfo(alias="SipRegion")
-    ]
-    """Defines the SIP region to be used for the call."""
-
-    status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
-    """URL destination for Telnyx to send status callback events to for the call."""
-
-    status_callback_event: Annotated[
-        Literal["initiated", "ringing", "answered", "completed"], PropertyInfo(alias="StatusCallbackEvent")
-    ]
-    """The call events for which Telnyx should send a webhook.
-
-    Multiple events can be defined when separated by a space.
-    """
-
-    status_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="StatusCallbackMethod")]
-    """HTTP request type used for `StatusCallback`."""
-
-    supervise_call_sid: Annotated[str, PropertyInfo(alias="SuperviseCallSid")]
-    """The call control ID of the existing call to supervise.
-
-    When provided, the created leg will be added to the specified call in
-    supervising mode. Status callbacks and action callbacks will NOT be sent for the
-    supervising leg.
-    """
-
-    supervising_role: Annotated[Literal["barge", "whisper", "monitor"], PropertyInfo(alias="SupervisingRole")]
-    """The supervising role for the new leg.
-
-    Determines the audio behavior: barge (hear both sides), whisper (only hear
-    supervisor), monitor (hear both sides but supervisor muted). Default: barge
-    """
-
     time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]
     """The maximum duration of the call in seconds.
 
@@ -502,272 +262,17 @@ class ParamsWithTeXml(TypedDict, total=False):
     is 30 seconds.
     """
 
-    to: Annotated[str, PropertyInfo(alias="To")]
-    """The phone number of the called party.
-
-    Phone numbers are formatted with a `+` and country code.
-    """
-
     trim: Annotated[Literal["trim-silence", "do-not-trim"], PropertyInfo(alias="Trim")]
     """Whether to trim any leading and trailing silence from the recording.
 
     Defaults to `trim-silence`.
     """
 
-    url: Annotated[Optional[str], PropertyInfo(alias="Url")]
+    url: Annotated[str, PropertyInfo(alias="Url")]
+    """The URL from which Telnyx will retrieve the TeXML call instructions."""
 
     url_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="UrlMethod")]
     """HTTP request type used for `Url`.
 
     The default value is inherited from TeXML Application setting.
     """
-
-
-class ParamsApplicationDefaultCustomHeader(TypedDict, total=False):
-    name: Required[str]
-    """The name of the custom header"""
-
-    value: Required[str]
-    """The value of the custom header"""
-
-
-class ParamsApplicationDefault(TypedDict, total=False):
-    application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
-    """The ID of the TeXML Application."""
-
-    async_amd: Annotated[bool, PropertyInfo(alias="AsyncAmd")]
-    """Select whether to perform answering machine detection in the background.
-
-    By default execution is blocked until Answering Machine Detection is completed.
-    """
-
-    async_amd_status_callback: Annotated[str, PropertyInfo(alias="AsyncAmdStatusCallback")]
-    """URL destination for Telnyx to send AMD callback events to for the call."""
-
-    async_amd_status_callback_method: Annotated[
-        Literal["GET", "POST"], PropertyInfo(alias="AsyncAmdStatusCallbackMethod")
-    ]
-    """HTTP request type used for `AsyncAmdStatusCallback`.
-
-    The default value is inherited from TeXML Application setting.
-    """
-
-    caller_id: Annotated[str, PropertyInfo(alias="CallerId")]
-    """
-    To be used as the caller id name (SIP From Display Name) presented to the
-    destination (`To` number). The string should have a maximum of 128 characters,
-    containing only letters, numbers, spaces, and `-_~!.+` special characters. If
-    ommited, the display name will be the same as the number in the `From` field.
-    """
-
-    cancel_playback_on_detect_message_end: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnDetectMessageEnd")]
-    """Whether to cancel ongoing playback on `greeting ended` detection.
-
-    Defaults to `true`.
-    """
-
-    cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
-    """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
-
-    custom_headers: Annotated[Iterable[ParamsApplicationDefaultCustomHeader], PropertyInfo(alias="CustomHeaders")]
-    """Custom HTTP headers to be sent with the call.
-
-    Each header should be an object with 'name' and 'value' properties.
-    """
-
-    deepfake_detection: Annotated[Literal["Enable"], PropertyInfo(alias="DeepfakeDetection")]
-    """Enables Deepfake Detection on the dialed call.
-
-    When enabled, audio from the remote party is analyzed to determine whether the
-    voice is AI-generated. Results are delivered asynchronously via a callback.
-    """
-
-    deepfake_detection_callback_method: Annotated[
-        Literal["GET", "POST"], PropertyInfo(alias="DeepfakeDetectionCallbackMethod")
-    ]
-    """HTTP request type used for `DeepfakeDetectionCallbackUrl`."""
-
-    deepfake_detection_callback_url: Annotated[str, PropertyInfo(alias="DeepfakeDetectionCallbackUrl")]
-    """
-    URL destination for Telnyx to send deepfake detection callback events to for the
-    call.
-    """
-
-    detection_mode: Annotated[
-        Literal["Premium", "Regular", "PremiumCallScreening"], PropertyInfo(alias="DetectionMode")
-    ]
-    """
-    Allows you to choose between Regular, Premium, and PremiumCallScreening
-    detections. See
-    https://developers.telnyx.com/docs/voice/programmable-voice/answering-machine-detection
-    """
-
-    fallback_url: Annotated[str, PropertyInfo(alias="FallbackUrl")]
-    """
-    A failover URL for which Telnyx will retrieve the TeXML call instructions if the
-    `Url` is not responding.
-    """
-
-    from_: Annotated[str, PropertyInfo(alias="From")]
-    """The phone number of the party that initiated the call.
-
-    Phone numbers are formatted with a `+` and country code.
-    """
-
-    machine_detection: Annotated[
-        Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
-    ]
-    """Enables Answering Machine Detection."""
-
-    machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
-    """
-    Silence duration threshold after a call screening prompt before ending prompt
-    detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
-    """
-
-    machine_detection_silence_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionSilenceTimeout")]
-    """If initial silence duration is greater than this value, consider it a machine.
-
-    Ignored when `premium` detection is used.
-    """
-
-    machine_detection_speech_end_threshold: Annotated[int, PropertyInfo(alias="MachineDetectionSpeechEndThreshold")]
-    """
-    Silence duration threshold after a greeting message or voice for it be
-    considered human. Ignored when `premium` detection is used.
-    """
-
-    machine_detection_speech_threshold: Annotated[int, PropertyInfo(alias="MachineDetectionSpeechThreshold")]
-    """Maximum threshold of a human greeting.
-
-    If greeting longer than this value, considered machine. Ignored when `premium`
-    detection is used.
-    """
-
-    machine_detection_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionTimeout")]
-    """Maximum timeout threshold in milliseconds for overall detection."""
-
-    media_encryption: Annotated[Literal["disabled", "SRTP", "DTLS"], PropertyInfo(alias="MediaEncryption")]
-    """Defines whether media should be encrypted on the call.
-
-    When set to `SRTP`, the call will use Secure Real-time Transport Protocol for
-    media encryption. When set to `DTLS`, the call will use DTLS for media
-    encryption. Only supported for SIP destinations.
-    """
-
-    preferred_codecs: Annotated[str, PropertyInfo(alias="PreferredCodecs")]
-    """The list of comma-separated codecs to be offered on a call."""
-
-    record: Annotated[bool, PropertyInfo(alias="Record")]
-    """Whether to record the entire participant's call leg. Defaults to `false`."""
-
-    recording_channels: Annotated[Literal["mono", "dual"], PropertyInfo(alias="RecordingChannels")]
-    """The number of channels in the final recording. Defaults to `mono`."""
-
-    recording_status_callback: Annotated[str, PropertyInfo(alias="RecordingStatusCallback")]
-    """The URL the recording callbacks will be sent to."""
-
-    recording_status_callback_event: Annotated[str, PropertyInfo(alias="RecordingStatusCallbackEvent")]
-    """
-    The changes to the recording's state that should generate a call to
-    `RecoridngStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
-    Separate multiple values with a space. Defaults to `completed`.
-    """
-
-    recording_status_callback_method: Annotated[
-        Literal["GET", "POST"], PropertyInfo(alias="RecordingStatusCallbackMethod")
-    ]
-    """HTTP request type used for `RecordingStatusCallback`. Defaults to `POST`."""
-
-    recording_timeout: Annotated[int, PropertyInfo(alias="RecordingTimeout")]
-    """
-    The number of seconds that Telnyx will wait for the recording to be stopped if
-    silence is detected. The timer only starts when the speech is detected. Please
-    note that the transcription is used to detect silence and the related charge
-    will be applied. The minimum value is 0. The default value is 0 (infinite)
-    """
-
-    recording_track: Annotated[Literal["inbound", "outbound", "both"], PropertyInfo(alias="RecordingTrack")]
-    """The audio track to record for the call. The default is `both`."""
-
-    send_recording_url: Annotated[bool, PropertyInfo(alias="SendRecordingUrl")]
-    """Whether to send RecordingUrl in webhooks."""
-
-    sip_auth_password: Annotated[str, PropertyInfo(alias="SipAuthPassword")]
-    """The password to use for SIP authentication."""
-
-    sip_auth_username: Annotated[str, PropertyInfo(alias="SipAuthUsername")]
-    """The username to use for SIP authentication."""
-
-    sip_region: Annotated[
-        Literal["US", "Europe", "Canada", "Australia", "Middle East"], PropertyInfo(alias="SipRegion")
-    ]
-    """Defines the SIP region to be used for the call."""
-
-    status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
-    """URL destination for Telnyx to send status callback events to for the call."""
-
-    status_callback_event: Annotated[
-        Literal["initiated", "ringing", "answered", "completed"], PropertyInfo(alias="StatusCallbackEvent")
-    ]
-    """The call events for which Telnyx should send a webhook.
-
-    Multiple events can be defined when separated by a space.
-    """
-
-    status_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="StatusCallbackMethod")]
-    """HTTP request type used for `StatusCallback`."""
-
-    supervise_call_sid: Annotated[str, PropertyInfo(alias="SuperviseCallSid")]
-    """The call control ID of the existing call to supervise.
-
-    When provided, the created leg will be added to the specified call in
-    supervising mode. Status callbacks and action callbacks will NOT be sent for the
-    supervising leg.
-    """
-
-    supervising_role: Annotated[Literal["barge", "whisper", "monitor"], PropertyInfo(alias="SupervisingRole")]
-    """The supervising role for the new leg.
-
-    Determines the audio behavior: barge (hear both sides), whisper (only hear
-    supervisor), monitor (hear both sides but supervisor muted). Default: barge
-    """
-
-    texml: Annotated[Optional[str], PropertyInfo(alias="Texml")]
-
-    time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]
-    """The maximum duration of the call in seconds.
-
-    The minimum value is 30 and the maximum value is 14400 (4 hours). Default is
-    14400 seconds.
-    """
-
-    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
-    """
-    The number of seconds to wait for the called party to answer the call before the
-    call is canceled. The minimum value is 5 and the maximum value is 120. Default
-    is 30 seconds.
-    """
-
-    to: Annotated[str, PropertyInfo(alias="To")]
-    """The phone number of the called party.
-
-    Phone numbers are formatted with a `+` and country code.
-    """
-
-    trim: Annotated[Literal["trim-silence", "do-not-trim"], PropertyInfo(alias="Trim")]
-    """Whether to trim any leading and trailing silence from the recording.
-
-    Defaults to `trim-silence`.
-    """
-
-    url: Annotated[Optional[str], PropertyInfo(alias="Url")]
-
-    url_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="UrlMethod")]
-    """HTTP request type used for `Url`.
-
-    The default value is inherited from TeXML Application setting.
-    """
-
-
-Params: TypeAlias = Union[ParamsWithURL, ParamsWithTeXml, ParamsApplicationDefault]

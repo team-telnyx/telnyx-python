@@ -24,12 +24,18 @@ from ....types.ai.inference_embedding import InferenceEmbedding
 from ....types.ai.assistant_tool_param import AssistantToolParam
 from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.widget_settings_param import WidgetSettingsParam
+from ....types.ai.external_llm_req_param import ExternalLlmReqParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
+from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
+from ....types.ai.assistant_mcp_server_param import AssistantMcpServerParam
+from ....types.ai.assistant_integration_param import AssistantIntegrationParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
+from ....types.ai.post_conversation_settings_req_param import PostConversationSettingsReqParam
+from ....types.ai.inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
@@ -114,20 +120,20 @@ class VersionsResource(SyncAPIResource):
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
-        external_llm: version_update_params.ExternalLlm | Omit = omit,
-        fallback_config: version_update_params.FallbackConfig | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
-        integrations: Iterable[version_update_params.Integration] | Omit = omit,
-        interruption_settings: version_update_params.InterruptionSettings | Omit = omit,
+        integrations: Iterable[AssistantIntegrationParam] | Omit = omit,
+        interruption_settings: InferenceEmbeddingInterruptionSettingsParam | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
-        mcp_servers: Iterable[version_update_params.McpServer] | Omit = omit,
+        mcp_servers: Iterable[AssistantMcpServerParam] | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: version_update_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
@@ -485,20 +491,20 @@ class AsyncVersionsResource(AsyncAPIResource):
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
-        external_llm: version_update_params.ExternalLlm | Omit = omit,
-        fallback_config: version_update_params.FallbackConfig | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
-        integrations: Iterable[version_update_params.Integration] | Omit = omit,
-        interruption_settings: version_update_params.InterruptionSettings | Omit = omit,
+        integrations: Iterable[AssistantIntegrationParam] | Omit = omit,
+        interruption_settings: InferenceEmbeddingInterruptionSettingsParam | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
-        mcp_servers: Iterable[version_update_params.McpServer] | Omit = omit,
+        mcp_servers: Iterable[AssistantMcpServerParam] | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: version_update_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,

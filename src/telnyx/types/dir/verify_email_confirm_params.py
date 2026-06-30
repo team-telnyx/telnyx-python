@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["VerifyEmailConfirmCodeParams"]
+__all__ = ["VerifyEmailConfirmParams"]
 
 
-class VerifyEmailConfirmCodeParams(TypedDict, total=False):
+class VerifyEmailConfirmParams(TypedDict, total=False):
     code: Required[str]
     """The 6-digit code sent to the authorizer email."""
