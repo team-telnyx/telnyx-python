@@ -17,3 +17,9 @@ from .business_account_retrieve_response import BusinessAccountRetrieveResponse 
 from .phone_number_resend_verification_params import (
     PhoneNumberResendVerificationParams as PhoneNumberResendVerificationParams,
 )
+from .phone_number_get_conversation_window_params import (
+    PhoneNumberGetConversationWindowParams as PhoneNumberGetConversationWindowParams,
+)
+from .phone_number_get_conversation_window_response import (
+    PhoneNumberGetConversationWindowResponse as PhoneNumberGetConversationWindowResponse,
+)

@@ -5392,13 +5392,14 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp import PhoneNumberListResponse
+from telnyx.types.whatsapp import PhoneNumberListResponse, PhoneNumberGetConversationWindowResponse
 ```
 
 Methods:
 
 - <code title="get /v2/whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">delete</a>(phone_number) -> None</code>
+- <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversation_window">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">get_conversation_window</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_get_conversation_window_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_get_conversation_window_response.py">PhoneNumberGetConversationWindowResponse</a></code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/resend_verification">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">resend_verification</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_resend_verification_params.py">params</a>) -> None</code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/verify">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">verify</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_verify_params.py">params</a>) -> None</code>
 

@@ -38,8 +38,10 @@ from ....types.whatsapp import (
     phone_number_list_params,
     phone_number_verify_params,
     phone_number_resend_verification_params,
+    phone_number_get_conversation_window_params,
 )
 from ....types.whatsapp.phone_number_list_response import PhoneNumberListResponse
+from ....types.whatsapp.phone_number_get_conversation_window_response import PhoneNumberGetConversationWindowResponse
 
 __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
 
@@ -151,6 +153,51 @@ class PhoneNumbersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def get_conversation_window(
+        self,
+        phone_number: str,
+        *,
+        destination_number: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberGetConversationWindowResponse:
+        """
+        Returns whether the 24-hour conversation window is currently open for a given
+        source/destination pair. If window_active is false, only template messages may
+        be sent.
+
+        Args:
+          destination_number: Destination phone number in E.164 format
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return self._get(
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/conversation_window", phone_number=phone_number),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"destination_number": destination_number},
+                    phone_number_get_conversation_window_params.PhoneNumberGetConversationWindowParams,
+                ),
+            ),
+            cast_to=PhoneNumberGetConversationWindowResponse,
         )
 
     def resend_verification(
@@ -338,6 +385,51 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def get_conversation_window(
+        self,
+        phone_number: str,
+        *,
+        destination_number: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberGetConversationWindowResponse:
+        """
+        Returns whether the 24-hour conversation window is currently open for a given
+        source/destination pair. If window_active is false, only template messages may
+        be sent.
+
+        Args:
+          destination_number: Destination phone number in E.164 format
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return await self._get(
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/conversation_window", phone_number=phone_number),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"destination_number": destination_number},
+                    phone_number_get_conversation_window_params.PhoneNumberGetConversationWindowParams,
+                ),
+            ),
+            cast_to=PhoneNumberGetConversationWindowResponse,
+        )
+
     async def resend_verification(
         self,
         phone_number: str,
@@ -424,6 +516,9 @@ class PhoneNumbersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             phone_numbers.delete,
         )
+        self.get_conversation_window = to_raw_response_wrapper(
+            phone_numbers.get_conversation_window,
+        )
         self.resend_verification = to_raw_response_wrapper(
             phone_numbers.resend_verification,
         )
@@ -451,6 +546,9 @@ class AsyncPhoneNumbersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             phone_numbers.delete,
+        )
+        self.get_conversation_window = async_to_raw_response_wrapper(
+            phone_numbers.get_conversation_window,
         )
         self.resend_verification = async_to_raw_response_wrapper(
             phone_numbers.resend_verification,
@@ -480,6 +578,9 @@ class PhoneNumbersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             phone_numbers.delete,
         )
+        self.get_conversation_window = to_streamed_response_wrapper(
+            phone_numbers.get_conversation_window,
+        )
         self.resend_verification = to_streamed_response_wrapper(
             phone_numbers.resend_verification,
         )
@@ -507,6 +608,9 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             phone_numbers.delete,
+        )
+        self.get_conversation_window = async_to_streamed_response_wrapper(
+            phone_numbers.get_conversation_window,
         )
         self.resend_verification = async_to_streamed_response_wrapper(
             phone_numbers.resend_verification,
