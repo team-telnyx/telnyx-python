@@ -1,5 +1,25 @@
 # Changelog
 
+## 4.164.0 (2026-06-30)
+
+Full Changelog: [v4.163.1...v4.164.0](https://github.com/team-telnyx/telnyx-python/compare/v4.163.1...v4.164.0)
+
+### Bug Fixes
+
+* add --local flag so release-please scans next branch for commits ([#343](https://github.com/team-telnyx/telnyx-python/issues/343)) ([be71009](https://github.com/team-telnyx/telnyx-python/commit/be7100906c7ce107c0aca9b8197b6fff5e5af0ec))
+
+
+### Chores
+
+* promote from staging 322daff ([ad619b4](https://github.com/team-telnyx/telnyx-python/commit/ad619b487be1848ebed2990c700db51f11f2b7ff))
+* promote from staging 4d3b50b ([f206354](https://github.com/team-telnyx/telnyx-python/commit/f206354e42378f88a5ba1f44a8d6dc5584e35596))
+* promote from staging 56a39df ([d4b3238](https://github.com/team-telnyx/telnyx-python/commit/d4b32389761511dbba505cbc4ed33bcb15d8dc07))
+* promote from staging 77782c4 ([c3283fc](https://github.com/team-telnyx/telnyx-python/commit/c3283fce9de7ca01b09768c4734ccb2d378e5d2e))
+* promote from staging 9eee92d ([9172944](https://github.com/team-telnyx/telnyx-python/commit/91729448d086075cfb59cf1b5630d5ea04b35045))
+* promote from staging d494d14 ([4c338d9](https://github.com/team-telnyx/telnyx-python/commit/4c338d9465cf1c9a4b6cac6d0d492afd111edc95))
+* remove leaked staging-only promote-to-prod.yml from prod ([#346](https://github.com/team-telnyx/telnyx-python/issues/346)) ([addb7ca](https://github.com/team-telnyx/telnyx-python/commit/addb7ca8e8701ecf6c391a1e1ca273a5c0441524))
+* sync repo ([14a9294](https://github.com/team-telnyx/telnyx-python/commit/14a9294b658c0f996cfbad3b0355782d563c8e33))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
