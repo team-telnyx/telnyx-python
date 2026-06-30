@@ -5851,6 +5851,38 @@ Methods:
 - <code title="post /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">add</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_add_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_add_response.py">PhoneNumberAddResponse</a></code>
 - <code title="delete /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">remove</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_remove_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_remove_response.py">PhoneNumberRemoveResponse</a></code>
 
+## References
+
+Types:
+
+```python
+from telnyx.types.dir import ReferenceUpdateResponse, ReferenceListResponse, ReferenceSubmitResponse
+```
+
+Methods:
+
+- <code title="patch /dir/{dir_id}/references/{ref_type}/{slot}">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">update</a>(slot, \*, dir_id, ref_type, \*\*<a href="src/telnyx/types/dir/reference_update_params.py">params</a>) -> <a href="./src/telnyx/types/dir/reference_update_response.py">ReferenceUpdateResponse</a></code>
+- <code title="get /dir/{dir_id}/references">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">list</a>(dir_id) -> <a href="./src/telnyx/types/dir/reference_list_response.py">ReferenceListResponse</a></code>
+- <code title="post /dir/{dir_id}/references">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">submit</a>(dir_id, \*\*<a href="src/telnyx/types/dir/reference_submit_params.py">params</a>) -> <a href="./src/telnyx/types/dir/reference_submit_response.py">ReferenceSubmitResponse</a></code>
+
+## VerifyEmail
+
+Types:
+
+```python
+from telnyx.types.dir import (
+    VerifyEmailConfirmCodeResponse,
+    VerifyEmailSendCodeResponse,
+    VerifyEmailStatusResponse,
+)
+```
+
+Methods:
+
+- <code title="post /dir/{dir_id}/verify_email/confirm">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">confirm_code</a>(dir_id, \*\*<a href="src/telnyx/types/dir/verify_email_confirm_code_params.py">params</a>) -> <a href="./src/telnyx/types/dir/verify_email_confirm_code_response.py">VerifyEmailConfirmCodeResponse</a></code>
+- <code title="post /dir/{dir_id}/verify_email">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">send_code</a>(dir_id) -> <a href="./src/telnyx/types/dir/verify_email_send_code_response.py">VerifyEmailSendCodeResponse</a></code>
+- <code title="get /dir/{dir_id}/verify_email">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">status</a>(dir_id) -> <a href="./src/telnyx/types/dir/verify_email_status_response.py">VerifyEmailStatusResponse</a></code>
+
 # InfringementClaims
 
 Types:

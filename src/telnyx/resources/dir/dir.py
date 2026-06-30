@@ -26,6 +26,14 @@ from .comments import (
     AsyncCommentsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .references import (
+    ReferencesResource,
+    AsyncReferencesResource,
+    ReferencesResourceWithRawResponse,
+    AsyncReferencesResourceWithRawResponse,
+    ReferencesResourceWithStreamingResponse,
+    AsyncReferencesResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     BinaryAPIResponse,
@@ -42,6 +50,14 @@ from ..._response import (
     async_to_custom_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .verify_email import (
+    VerifyEmailResource,
+    AsyncVerifyEmailResource,
+    VerifyEmailResourceWithRawResponse,
+    AsyncVerifyEmailResourceWithRawResponse,
+    VerifyEmailResourceWithStreamingResponse,
+    AsyncVerifyEmailResourceWithStreamingResponse,
+)
 from .phone_numbers import (
     PhoneNumbersResource,
     AsyncPhoneNumbersResource,
@@ -92,6 +108,21 @@ class DirResource(SyncAPIResource):
         Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
         """
         return PhoneNumbersResource(self._client)
+
+    @cached_property
+    def references(self) -> ReferencesResource:
+        """
+        Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+        """
+        return ReferencesResource(self._client)
+
+    @cached_property
+    def verify_email(self) -> VerifyEmailResource:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return VerifyEmailResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DirResourceWithRawResponse:
@@ -671,6 +702,21 @@ class AsyncDirResource(AsyncAPIResource):
         Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
         """
         return AsyncPhoneNumbersResource(self._client)
+
+    @cached_property
+    def references(self) -> AsyncReferencesResource:
+        """
+        Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+        """
+        return AsyncReferencesResource(self._client)
+
+    @cached_property
+    def verify_email(self) -> AsyncVerifyEmailResource:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return AsyncVerifyEmailResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDirResourceWithRawResponse:
@@ -1285,6 +1331,21 @@ class DirResourceWithRawResponse:
         """
         return PhoneNumbersResourceWithRawResponse(self._dir.phone_numbers)
 
+    @cached_property
+    def references(self) -> ReferencesResourceWithRawResponse:
+        """
+        Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+        """
+        return ReferencesResourceWithRawResponse(self._dir.references)
+
+    @cached_property
+    def verify_email(self) -> VerifyEmailResourceWithRawResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return VerifyEmailResourceWithRawResponse(self._dir.verify_email)
+
 
 class AsyncDirResourceWithRawResponse:
     def __init__(self, dir: AsyncDirResource) -> None:
@@ -1340,6 +1401,21 @@ class AsyncDirResourceWithRawResponse:
         Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
         """
         return AsyncPhoneNumbersResourceWithRawResponse(self._dir.phone_numbers)
+
+    @cached_property
+    def references(self) -> AsyncReferencesResourceWithRawResponse:
+        """
+        Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+        """
+        return AsyncReferencesResourceWithRawResponse(self._dir.references)
+
+    @cached_property
+    def verify_email(self) -> AsyncVerifyEmailResourceWithRawResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return AsyncVerifyEmailResourceWithRawResponse(self._dir.verify_email)
 
 
 class DirResourceWithStreamingResponse:
@@ -1397,6 +1473,21 @@ class DirResourceWithStreamingResponse:
         """
         return PhoneNumbersResourceWithStreamingResponse(self._dir.phone_numbers)
 
+    @cached_property
+    def references(self) -> ReferencesResourceWithStreamingResponse:
+        """
+        Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+        """
+        return ReferencesResourceWithStreamingResponse(self._dir.references)
+
+    @cached_property
+    def verify_email(self) -> VerifyEmailResourceWithStreamingResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return VerifyEmailResourceWithStreamingResponse(self._dir.verify_email)
+
 
 class AsyncDirResourceWithStreamingResponse:
     def __init__(self, dir: AsyncDirResource) -> None:
@@ -1452,3 +1543,18 @@ class AsyncDirResourceWithStreamingResponse:
         Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
         """
         return AsyncPhoneNumbersResourceWithStreamingResponse(self._dir.phone_numbers)
+
+    @cached_property
+    def references(self) -> AsyncReferencesResourceWithStreamingResponse:
+        """
+        Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+        """
+        return AsyncReferencesResourceWithStreamingResponse(self._dir.references)
+
+    @cached_property
+    def verify_email(self) -> AsyncVerifyEmailResourceWithStreamingResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return AsyncVerifyEmailResourceWithStreamingResponse(self._dir.verify_email)
