@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import TYPE_CHECKING, Union, Iterable
 from datetime import datetime
 
 import httpx
@@ -18,12 +18,14 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.legacy.reporting.filter_param import FilterParam
 from .....types.legacy.reporting.batch_detail_records import messaging_create_params
 from .....types.legacy.reporting.batch_detail_records.messaging_list_response import MessagingListResponse
 from .....types.legacy.reporting.batch_detail_records.messaging_create_response import MessagingCreateResponse
 from .....types.legacy.reporting.batch_detail_records.messaging_delete_response import MessagingDeleteResponse
 from .....types.legacy.reporting.batch_detail_records.messaging_retrieve_response import MessagingRetrieveResponse
+
+if TYPE_CHECKING:
+    from .....types.legacy.reporting.filter_param import FilterParam
 
 __all__ = ["MessagingResource", "AsyncMessagingResource"]
 

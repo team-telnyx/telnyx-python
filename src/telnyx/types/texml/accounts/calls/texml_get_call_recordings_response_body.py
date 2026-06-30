@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, List, Optional
 
+from ....._models import BaseModel
+
 if TYPE_CHECKING:
     from ...texml_get_call_recording_response_body import TexmlGetCallRecordingResponseBody
-
-from ....._models import BaseModel
 
 __all__ = ["TexmlGetCallRecordingsResponseBody"]
 

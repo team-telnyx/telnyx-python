@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import TYPE_CHECKING, Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .aws_voice_settings_param import AwsVoiceSettingsParam
@@ -10,13 +10,15 @@ from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .conversation_relay_interruptible import ConversationRelayInterruptible
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
-from ..conversation_relay_language_param import ConversationRelayLanguageParam
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.inworld_voice_settings import InworldVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
-from ..conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
+
+if TYPE_CHECKING:
+    from ..conversation_relay_language_param import ConversationRelayLanguageParam
+    from ..conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
 
 __all__ = ["ActionStartConversationRelayParams", "Assistant", "ConversationRelaySettings", "VoiceSettings"]
 

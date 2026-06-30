@@ -1,10 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-from ...shared.reputation_data import ReputationData
+
+if TYPE_CHECKING:
+    from ...shared.reputation_data import ReputationData
 
 __all__ = ["ReputationPhoneNumber"]
 

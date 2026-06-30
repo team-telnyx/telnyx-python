@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
 from typing import Dict, List, Union
 from typing_extensions import TypeAlias
 
@@ -19,5 +21,5 @@ class EnumPaginatedResponse(BaseModel):
 
 
 Messaging10dlcGetEnumResponse: TypeAlias = Union[
-    List[str], List[Dict[str, object]], Dict[str, object], Dict[str, object], EnumPaginatedResponse
+    List[str], List[Dict[str, object]], Dict[str, str], Dict[str, object], EnumPaginatedResponse
 ]

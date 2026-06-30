@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -41,11 +41,13 @@ from .reputation.reputation import (
     AsyncReputationResourceWithStreamingResponse,
 )
 from ...types.enterprise_public import EnterprisePublic
-from ...types.billing_address_param import BillingAddressParam
-from ...types.billing_contact_param import BillingContactParam
-from ...types.physical_address_param import PhysicalAddressParam
 from ...types.enterprise_public_wrapped import EnterprisePublicWrapped
-from ...types.organization_contact_param import OrganizationContactParam
+
+if TYPE_CHECKING:
+    from ...types.billing_address_param import BillingAddressParam
+    from ...types.billing_contact_param import BillingContactParam
+    from ...types.physical_address_param import PhysicalAddressParam
+    from ...types.organization_contact_param import OrganizationContactParam
 
 __all__ = ["EnterprisesResource", "AsyncEnterprisesResource"]
 

@@ -1,10 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List
 
 from ...._models import BaseModel
 from .reputation_phone_number import ReputationPhoneNumber
-from ...number_reputation_pagination_meta import NumberReputationPaginationMeta
+
+if TYPE_CHECKING:
+    from ...number_reputation_pagination_meta import NumberReputationPaginationMeta
 
 __all__ = ["ReputationPhoneNumberList"]
 

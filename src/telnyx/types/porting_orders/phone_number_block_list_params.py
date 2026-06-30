@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import TYPE_CHECKING, List, Union
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
-from ..porting_order_activation_status import PortingOrderActivationStatus
+
+if TYPE_CHECKING:
+    from ..porting_order_activation_status import PortingOrderActivationStatus
 
 __all__ = ["PhoneNumberBlockListParams", "Filter", "Sort"]
 

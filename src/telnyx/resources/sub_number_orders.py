@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 
 import httpx
 
@@ -27,8 +27,10 @@ from ..types.sub_number_order_list_response import SubNumberOrderListResponse
 from ..types.sub_number_order_cancel_response import SubNumberOrderCancelResponse
 from ..types.sub_number_order_update_response import SubNumberOrderUpdateResponse
 from ..types.sub_number_order_retrieve_response import SubNumberOrderRetrieveResponse
-from ..types.update_regulatory_requirement_param import UpdateRegulatoryRequirementParam
 from ..types.sub_number_order_update_requirement_group_response import SubNumberOrderUpdateRequirementGroupResponse
+
+if TYPE_CHECKING:
+    from ..types.update_regulatory_requirement_param import UpdateRegulatoryRequirementParam
 
 __all__ = ["SubNumberOrdersResource", "AsyncSubNumberOrdersResource"]
 

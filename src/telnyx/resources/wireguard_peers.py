@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import httpx
 
 from ..types import wireguard_peer_list_params, wireguard_peer_create_params, wireguard_peer_update_params
@@ -22,6 +24,9 @@ from ..types.wireguard_peer_create_response import WireguardPeerCreateResponse
 from ..types.wireguard_peer_delete_response import WireguardPeerDeleteResponse
 from ..types.wireguard_peer_update_response import WireguardPeerUpdateResponse
 from ..types.wireguard_peer_retrieve_response import WireguardPeerRetrieveResponse
+
+if TYPE_CHECKING:
+    pass
 
 __all__ = ["WireguardPeersResource", "AsyncWireguardPeersResource"]
 

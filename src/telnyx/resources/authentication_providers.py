@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -23,12 +24,14 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.settings_param import SettingsParam
 from ..types.authentication_provider import AuthenticationProvider
 from ..types.authentication_provider_create_response import AuthenticationProviderCreateResponse
 from ..types.authentication_provider_delete_response import AuthenticationProviderDeleteResponse
 from ..types.authentication_provider_update_response import AuthenticationProviderUpdateResponse
 from ..types.authentication_provider_retrieve_response import AuthenticationProviderRetrieveResponse
+
+if TYPE_CHECKING:
+    from ..types.settings_param import SettingsParam
 
 __all__ = ["AuthenticationProvidersResource", "AsyncAuthenticationProvidersResource"]
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 
 import httpx
 
@@ -36,7 +36,9 @@ from .test_suites.test_suites import (
     AsyncTestSuitesResourceWithStreamingResponse,
 )
 from .....types.ai.assistants.assistant_test import AssistantTest
-from .....types.ai.assistants.telnyx_conversation_channel import TelnyxConversationChannel
+
+if TYPE_CHECKING:
+    from .....types.ai.assistants.telnyx_conversation_channel import TelnyxConversationChannel
 
 __all__ = ["TestsResource", "AsyncTestsResource"]
 

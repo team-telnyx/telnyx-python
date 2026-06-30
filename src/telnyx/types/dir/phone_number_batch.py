@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from ..document import Document
 from .dir_phone_number import DirPhoneNumber
 from .dir_phone_number_status import DirPhoneNumberStatus
+
+if TYPE_CHECKING:
+    from ..document import Document
 
 __all__ = ["PhoneNumberBatch"]
 

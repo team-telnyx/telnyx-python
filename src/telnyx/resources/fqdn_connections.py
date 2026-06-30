@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -30,22 +30,24 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.dtmf_type import DtmfType
-from ..types.encrypted_media import EncryptedMedia
 from ..types.fqdn_connection import FqdnConnection
-from ..types.inbound_fqdn_param import InboundFqdnParam
-from ..types.transport_protocol import TransportProtocol
-from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.outbound_fqdn_param import OutboundFqdnParam
-from ..types.webhook_api_version import WebhookAPIVersion
-from ..types.connection_noise_suppression import ConnectionNoiseSuppression
-from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
 from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
 from ..types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
 from ..types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
-from ..types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
-from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
+
+if TYPE_CHECKING:
+    from ..types.dtmf_type import DtmfType
+    from ..types.encrypted_media import EncryptedMedia
+    from ..types.inbound_fqdn_param import InboundFqdnParam
+    from ..types.transport_protocol import TransportProtocol
+    from ..types.anchorsite_override import AnchorsiteOverride
+    from ..types.outbound_fqdn_param import OutboundFqdnParam
+    from ..types.webhook_api_version import WebhookAPIVersion
+    from ..types.connection_noise_suppression import ConnectionNoiseSuppression
+    from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+    from ..types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
+    from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["FqdnConnectionsResource", "AsyncFqdnConnectionsResource"]
 

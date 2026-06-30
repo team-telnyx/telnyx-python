@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -37,8 +38,6 @@ from ...types.conferences import (
     action_end_conference_params,
     action_gather_dtmf_audio_params,
 )
-from ...types.calls.loopcount_param import LoopcountParam
-from ...types.conferences.conference_region import ConferenceRegion
 from ...types.conferences.action_hold_response import ActionHoldResponse
 from ...types.conferences.action_join_response import ActionJoinResponse
 from ...types.conferences.action_mute_response import ActionMuteResponse
@@ -56,6 +55,10 @@ from ...types.conferences.action_record_start_response import ActionRecordStartR
 from ...types.conferences.action_record_resume_response import ActionRecordResumeResponse
 from ...types.conferences.action_end_conference_response import ActionEndConferenceResponse
 from ...types.conferences.action_gather_dtmf_audio_response import ActionGatherDtmfAudioResponse
+
+if TYPE_CHECKING:
+    from ...types.calls.loopcount_param import LoopcountParam
+    from ...types.conferences.conference_region import ConferenceRegion
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 

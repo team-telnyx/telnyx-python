@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import httpx
 
 from ...types import terms_of_service_retrieve_info_params, terms_of_service_retrieve_status_params
@@ -41,9 +43,11 @@ from .number_reputation import (
     AsyncNumberReputationResourceWithStreamingResponse,
 )
 from ...types.terms_of_service import TosProductType
-from ...types.terms_of_service.tos_product_type import TosProductType
 from ...types.terms_of_service_retrieve_info_response import TermsOfServiceRetrieveInfoResponse
 from ...types.terms_of_service_retrieve_status_response import TermsOfServiceRetrieveStatusResponse
+
+if TYPE_CHECKING:
+    from ...types.terms_of_service.tos_product_type import TosProductType
 
 __all__ = ["TermsOfServiceResource", "AsyncTermsOfServiceResource"]
 

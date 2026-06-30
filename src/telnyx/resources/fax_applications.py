@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -26,11 +26,13 @@ from .._response import (
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.fax_application import FaxApplication
-from ..types.anchorsite_override import AnchorsiteOverride
 from ..types.fax_application_create_response import FaxApplicationCreateResponse
 from ..types.fax_application_delete_response import FaxApplicationDeleteResponse
 from ..types.fax_application_update_response import FaxApplicationUpdateResponse
 from ..types.fax_application_retrieve_response import FaxApplicationRetrieveResponse
+
+if TYPE_CHECKING:
+    from ..types.anchorsite_override import AnchorsiteOverride
 
 __all__ = ["FaxApplicationsResource", "AsyncFaxApplicationsResource"]
 

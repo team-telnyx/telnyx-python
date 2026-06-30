@@ -2,27 +2,29 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import TYPE_CHECKING, Dict, List, Iterable
 from typing_extensions import Required, TypedDict
 
 from ...._types import SequenceNotStr
-from ..enabled_features import EnabledFeatures
-from ..assistant_tool_param import AssistantToolParam
-from ..voice_settings_param import VoiceSettingsParam
-from ..widget_settings_param import WidgetSettingsParam
-from ..external_llm_req_param import ExternalLlmReqParam
-from ..insight_settings_param import InsightSettingsParam
-from ..privacy_settings_param import PrivacySettingsParam
-from ..observability_req_param import ObservabilityReqParam
-from ..messaging_settings_param import MessagingSettingsParam
-from ..telephony_settings_param import TelephonySettingsParam
-from ..fallback_config_req_param import FallbackConfigReqParam
-from ..assistant_mcp_server_param import AssistantMcpServerParam
-from ..assistant_integration_param import AssistantIntegrationParam
-from ..conversation_flow_req_param import ConversationFlowReqParam
-from ..transcription_settings_param import TranscriptionSettingsParam
-from ..post_conversation_settings_req_param import PostConversationSettingsReqParam
-from ..inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
+
+if TYPE_CHECKING:
+    from ..enabled_features import EnabledFeatures
+    from ..assistant_tool_param import AssistantToolParam
+    from ..voice_settings_param import VoiceSettingsParam
+    from ..widget_settings_param import WidgetSettingsParam
+    from ..external_llm_req_param import ExternalLlmReqParam
+    from ..insight_settings_param import InsightSettingsParam
+    from ..privacy_settings_param import PrivacySettingsParam
+    from ..observability_req_param import ObservabilityReqParam
+    from ..messaging_settings_param import MessagingSettingsParam
+    from ..telephony_settings_param import TelephonySettingsParam
+    from ..fallback_config_req_param import FallbackConfigReqParam
+    from ..assistant_mcp_server_param import AssistantMcpServerParam
+    from ..assistant_integration_param import AssistantIntegrationParam
+    from ..conversation_flow_req_param import ConversationFlowReqParam
+    from ..transcription_settings_param import TranscriptionSettingsParam
+    from ..post_conversation_settings_req_param import PostConversationSettingsReqParam
+    from ..inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
 __all__ = ["VersionUpdateParams"]
 

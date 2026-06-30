@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import TYPE_CHECKING, Dict
 
 import httpx
 
@@ -49,9 +49,11 @@ from .....types.ai.missions import (
     run_update_params,
     run_list_runs_params,
 )
-from .....types.ai.missions.run_status import RunStatus
 from .....types.ai.missions.mission_run_data import MissionRunData
 from .....types.ai.missions.mission_run_response import MissionRunResponse
+
+if TYPE_CHECKING:
+    from .....types.ai.missions.run_status import RunStatus
 
 __all__ = ["RunsResource", "AsyncRunsResource"]
 

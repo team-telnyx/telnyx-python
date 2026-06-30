@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..phone_number_blocks.job_error import JobError
-from ..shared.phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber
+
+if TYPE_CHECKING:
+    from ..phone_number_blocks.job_error import JobError
+    from ..shared.phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber
 
 __all__ = ["PhoneNumbersJob", "FailedOperation", "PendingOperation", "SuccessfulOperation"]
 

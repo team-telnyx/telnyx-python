@@ -1,9 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
 
 from ..record import Record
-from ..interface_status import InterfaceStatus
+
+if TYPE_CHECKING:
+    from ..interface_status import InterfaceStatus
 
 __all__ = ["DefaultGateway"]
 
