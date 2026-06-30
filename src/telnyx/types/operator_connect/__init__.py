@@ -2,4 +2,15 @@
 
 from __future__ import annotations
 
-from .action_refresh_response import ActionRefreshResponse as ActionRefreshResponse
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from .action_refresh_response import ActionRefreshResponse as ActionRefreshResponse
+
+
+def __getattr__(name: str) -> Any:
+    if name == "ActionRefreshResponse":
+        from .action_refresh_response import ActionRefreshResponse
+
+        return ActionRefreshResponse
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
