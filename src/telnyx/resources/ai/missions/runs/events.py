@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import TYPE_CHECKING, Dict
 
 import httpx
 
@@ -20,8 +20,10 @@ from .....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPaginatio
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.ai.missions.runs import EventType, event_log_params, event_list_params
 from .....types.ai.missions.runs.event_data import EventData
-from .....types.ai.missions.runs.event_type import EventType
 from .....types.ai.missions.runs.event_response import EventResponse
+
+if TYPE_CHECKING:
+    from .....types.ai.missions.runs.event_type import EventType
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 

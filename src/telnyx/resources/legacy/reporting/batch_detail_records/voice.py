@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import TYPE_CHECKING, Union, Iterable
 from datetime import datetime
 
 import httpx
@@ -18,13 +18,15 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.legacy.reporting.filter_param import FilterParam
 from .....types.legacy.reporting.batch_detail_records import voice_create_params
 from .....types.legacy.reporting.batch_detail_records.voice_list_response import VoiceListResponse
 from .....types.legacy.reporting.batch_detail_records.voice_create_response import VoiceCreateResponse
 from .....types.legacy.reporting.batch_detail_records.voice_delete_response import VoiceDeleteResponse
 from .....types.legacy.reporting.batch_detail_records.voice_retrieve_response import VoiceRetrieveResponse
 from .....types.legacy.reporting.batch_detail_records.voice_retrieve_fields_response import VoiceRetrieveFieldsResponse
+
+if TYPE_CHECKING:
+    from .....types.legacy.reporting.filter_param import FilterParam
 
 __all__ = ["VoiceResource", "AsyncVoiceResource"]
 

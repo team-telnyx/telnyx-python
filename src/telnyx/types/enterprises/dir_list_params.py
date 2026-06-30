@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import TYPE_CHECKING, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..dir_status import DirStatus
+
+if TYPE_CHECKING:
+    from ..dir_status import DirStatus
 
 __all__ = ["DirListParams"]
 

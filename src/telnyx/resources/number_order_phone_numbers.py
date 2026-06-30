@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 
 import httpx
 
@@ -22,7 +22,6 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.update_regulatory_requirement_param import UpdateRegulatoryRequirementParam
 from ..types.number_order_phone_number_list_response import NumberOrderPhoneNumberListResponse
 from ..types.number_order_phone_number_retrieve_response import NumberOrderPhoneNumberRetrieveResponse
 from ..types.number_order_phone_number_update_requirements_response import (
@@ -31,6 +30,9 @@ from ..types.number_order_phone_number_update_requirements_response import (
 from ..types.number_order_phone_number_update_requirement_group_response import (
     NumberOrderPhoneNumberUpdateRequirementGroupResponse,
 )
+
+if TYPE_CHECKING:
+    from ..types.update_regulatory_requirement_param import UpdateRegulatoryRequirementParam
 
 __all__ = ["NumberOrderPhoneNumbersResource", "AsyncNumberOrderPhoneNumbersResource"]
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing import TYPE_CHECKING, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -69,7 +69,6 @@ from .phone_numbers import (
 )
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dir.dir import Dir
-from ...types.dir_status import DirStatus
 from ...types.dir_wrapped import DirWrapped
 from .phone_number_batches import (
     PhoneNumberBatchesResource,
@@ -79,10 +78,13 @@ from .phone_number_batches import (
     PhoneNumberBatchesResourceWithStreamingResponse,
     AsyncPhoneNumberBatchesResourceWithStreamingResponse,
 )
-from ...types.document_param import DocumentParam
 from ...types.infringement_claim import InfringementClaim
 from ...types.dir_list_document_types_response import DirListDocumentTypesResponse
-from ...types.enterprises.reputation.agent_input_param import AgentInputParam
+
+if TYPE_CHECKING:
+    from ...types.dir_status import DirStatus
+    from ...types.document_param import DocumentParam
+    from ...types.enterprises.reputation.agent_input_param import AgentInputParam
 
 __all__ = ["DirResource", "AsyncDirResource"]
 

@@ -24,7 +24,9 @@ class EventHandlerRegistry:
         if self._lock is not None:
             self._lock.release()
 
-    def add(self, event_type: str, handler: EventHandler, *, once: bool = False) -> None:
+    def add(self, event_type: str | None, handler: EventHandler, *, once: bool = False) -> None:
+        if event_type is None:
+            return
         self._acquire()
         try:
             handlers = self._handlers.setdefault(event_type, [])
@@ -34,7 +36,9 @@ class EventHandlerRegistry:
         finally:
             self._release()
 
-    def remove(self, event_type: str, handler: EventHandler) -> None:
+    def remove(self, event_type: str | None, handler: EventHandler) -> None:
+        if event_type is None:
+            return
         self._acquire()
         try:
             handlers = self._handlers.get(event_type)
@@ -47,8 +51,10 @@ class EventHandlerRegistry:
         finally:
             self._release()
 
-    def get_handlers(self, event_type: str) -> list[EventHandler]:
+    def get_handlers(self, event_type: str | None) -> list[EventHandler]:
         """Return a snapshot of handlers for the given event type, removing once-handlers."""
+        if event_type is None:
+            return []
         self._acquire()
         try:
             handlers = self._handlers.get(event_type)
@@ -63,7 +69,9 @@ class EventHandlerRegistry:
         finally:
             self._release()
 
-    def has_handlers(self, event_type: str) -> bool:
+    def has_handlers(self, event_type: str | None) -> bool:
+        if event_type is None:
+            return False
         self._acquire()
         try:
             handlers = self._handlers.get(event_type)

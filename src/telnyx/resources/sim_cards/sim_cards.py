@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -38,11 +38,13 @@ from ...types.shared.simple_sim_card import SimpleSimCard
 from ...types.sim_card_delete_response import SimCardDeleteResponse
 from ...types.sim_card_update_response import SimCardUpdateResponse
 from ...types.sim_card_retrieve_response import SimCardRetrieveResponse
-from ...types.shared_params.sim_card_status import SimCardStatus
 from ...types.sim_card_get_public_ip_response import SimCardGetPublicIPResponse
 from ...types.sim_card_get_device_details_response import SimCardGetDeviceDetailsResponse
 from ...types.sim_card_get_activation_code_response import SimCardGetActivationCodeResponse
 from ...types.sim_card_list_wireless_connectivity_logs_response import SimCardListWirelessConnectivityLogsResponse
+
+if TYPE_CHECKING:
+    from ...types.shared_params.sim_card_status import SimCardStatus
 
 __all__ = ["SimCardsResource", "AsyncSimCardsResource"]
 

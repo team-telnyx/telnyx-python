@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -25,13 +26,15 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.dtmf_type import DtmfType
 from ..types.texml_application import TexmlApplication
-from ..types.anchorsite_override import AnchorsiteOverride
 from ..types.texml_application_create_response import TexmlApplicationCreateResponse
 from ..types.texml_application_delete_response import TexmlApplicationDeleteResponse
 from ..types.texml_application_update_response import TexmlApplicationUpdateResponse
 from ..types.texml_application_retrieve_response import TexmlApplicationRetrieveResponse
+
+if TYPE_CHECKING:
+    from ..types.dtmf_type import DtmfType
+    from ..types.anchorsite_override import AnchorsiteOverride
 
 __all__ = ["TexmlApplicationsResource", "AsyncTexmlApplicationsResource"]
 

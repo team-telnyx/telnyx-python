@@ -1,10 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List
 
 from .meta import Meta
 from ......_models import BaseModel
-from ..test_run_response import TestRunResponse
+
+if TYPE_CHECKING:
+    from ..test_run_response import TestRunResponse
 
 __all__ = ["PaginatedTestRunList"]
 

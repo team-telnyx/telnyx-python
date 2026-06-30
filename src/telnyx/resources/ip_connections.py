@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -28,20 +28,22 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.dtmf_type import DtmfType
 from ..types.ip_connection import IPConnection
-from ..types.encrypted_media import EncryptedMedia
-from ..types.inbound_ip_param import InboundIPParam
-from ..types.outbound_ip_param import OutboundIPParam
-from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.connection_noise_suppression import ConnectionNoiseSuppression
 from ..types.ip_connection_create_response import IPConnectionCreateResponse
 from ..types.ip_connection_delete_response import IPConnectionDeleteResponse
 from ..types.ip_connection_update_response import IPConnectionUpdateResponse
-from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ..types.ip_connection_retrieve_response import IPConnectionRetrieveResponse
-from ..types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
-from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
+
+if TYPE_CHECKING:
+    from ..types.dtmf_type import DtmfType
+    from ..types.encrypted_media import EncryptedMedia
+    from ..types.inbound_ip_param import InboundIPParam
+    from ..types.outbound_ip_param import OutboundIPParam
+    from ..types.anchorsite_override import AnchorsiteOverride
+    from ..types.connection_noise_suppression import ConnectionNoiseSuppression
+    from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+    from ..types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
+    from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["IPConnectionsResource", "AsyncIPConnectionsResource"]
 

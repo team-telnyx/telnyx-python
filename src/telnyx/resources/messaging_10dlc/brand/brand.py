@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -39,17 +40,19 @@ from ....types.messaging_10dlc import (
     brand_trigger_sms_otp_params,
     brand_get_sms_otp_by_reference_params,
 )
-from ....types.messaging_10dlc.vertical import Vertical
-from ....types.messaging_10dlc.entity_type import EntityType
 from ....types.messaging_10dlc.telnyx_brand import TelnyxBrand
-from ....types.messaging_10dlc.stock_exchange import StockExchange
 from ....types.messaging_10dlc.brand_list_response import BrandListResponse
-from ....types.messaging_10dlc.alt_business_id_type import AltBusinessIDType
 from ....types.messaging_10dlc.brand_sms_otp_status import BrandSMSOtpStatus
-from ....types.messaging_10dlc.brand_identity_status import BrandIdentityStatus
 from ....types.messaging_10dlc.brand_retrieve_response import BrandRetrieveResponse
 from ....types.messaging_10dlc.brand_get_feedback_response import BrandGetFeedbackResponse
 from ....types.messaging_10dlc.brand_trigger_sms_otp_response import BrandTriggerSMSOtpResponse
+
+if TYPE_CHECKING:
+    from ....types.messaging_10dlc.vertical import Vertical
+    from ....types.messaging_10dlc.entity_type import EntityType
+    from ....types.messaging_10dlc.stock_exchange import StockExchange
+    from ....types.messaging_10dlc.alt_business_id_type import AltBusinessIDType
+    from ....types.messaging_10dlc.brand_identity_status import BrandIdentityStatus
 
 __all__ = ["BrandResource", "AsyncBrandResource"]
 
