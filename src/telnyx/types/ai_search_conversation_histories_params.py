@@ -8,10 +8,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["AIListConversationHistoriesParams"]
+__all__ = ["AISearchConversationHistoriesParams"]
 
 
-class AIListConversationHistoriesParams(TypedDict, total=False):
+class AISearchConversationHistoriesParams(TypedDict, total=False):
     q: Required[str]
     """Natural language search query.
 

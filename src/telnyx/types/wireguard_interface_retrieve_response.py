@@ -2,11 +2,39 @@
 
 from typing import Optional
 
+from .record import Record
 from .._models import BaseModel
-from .wireguard_interface_read import WireguardInterfaceRead
+from .network_interface import NetworkInterface
 
-__all__ = ["WireguardInterfaceRetrieveResponse"]
+__all__ = ["WireguardInterfaceRetrieveResponse", "Data", "DataRegion"]
+
+
+class DataRegion(BaseModel):
+    code: Optional[str] = None
+    """Region code of the interface."""
+
+    name: Optional[str] = None
+    """Region name of the interface."""
+
+    record_type: Optional[str] = None
+    """Identifies the type of the resource."""
+
+
+class Data(Record, NetworkInterface):
+    enable_sip_trunking: Optional[bool] = None
+    """Enable SIP traffic forwarding over VPN interface."""
+
+    endpoint: Optional[str] = None
+    """The Telnyx WireGuard peers `Peer.endpoint` value."""
+
+    public_key: Optional[str] = None
+    """The Telnyx WireGuard peers `Peer.PublicKey`."""
+
+    region: Optional[DataRegion] = None
+
+    region_code: Optional[str] = None
+    """The region interface is deployed to."""
 
 
 class WireguardInterfaceRetrieveResponse(BaseModel):
-    data: Optional[WireguardInterfaceRead] = None
+    data: Optional[Data] = None

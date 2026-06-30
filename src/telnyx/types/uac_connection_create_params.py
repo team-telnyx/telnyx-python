@@ -8,15 +8,12 @@ from typing_extensions import Literal, Required, TypedDict
 from .._types import SequenceNotStr
 from .dtmf_type import DtmfType
 from .encrypted_media import EncryptedMedia
-from .uac_outbound_param import UacOutboundParam
 from .anchorsite_override import AnchorsiteOverride
-from .uac_external_settings_param import UacExternalSettingsParam
-from .uac_internal_settings_param import UacInternalSettingsParam
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from .shared_params.connection_jitter_buffer import ConnectionJitterBuffer
 from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
-__all__ = ["UacConnectionCreateParams", "Inbound"]
+__all__ = ["UacConnectionCreateParams", "ExternalUacSettings", "Inbound", "InternalUacSettings", "Outbound"]
 
 
 class UacConnectionCreateParams(TypedDict, total=False):
@@ -65,7 +62,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     Cannot be set if the transport_portocol is TLS.
     """
 
-    external_uac_settings: UacExternalSettingsParam
+    external_uac_settings: ExternalUacSettings
     """
     External SIP peer settings used by Telnyx when registering to your PBX and
     routing outbound calls.
@@ -79,7 +76,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     Telnyx and are not accepted as request parameters.
     """
 
-    internal_uac_settings: UacInternalSettingsParam
+    internal_uac_settings: InternalUacSettings
     """Internal Telnyx-side settings for a UAC connection."""
 
     ios_push_credential_id: Optional[str]
@@ -118,7 +115,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     use T38 on just one leg of the call depending on each leg's settings.
     """
 
-    outbound: UacOutboundParam
+    outbound: Outbound
 
     password: str
     """The password to be used as part of the credentials.
@@ -168,6 +165,58 @@ class UacConnectionCreateParams(TypedDict, total=False):
 
     webhook_timeout_secs: Optional[int]
     """Specifies how many seconds to wait before timing out a webhook."""
+
+
+class ExternalUacSettings(TypedDict, total=False):
+    """
+    External SIP peer settings used by Telnyx when registering to your PBX and routing outbound calls.
+    """
+
+    auth_username: Optional[str]
+    """The authentication username used in SIP digest authentication.
+
+    If not set, the Username value will be used.
+    """
+
+    expiration_sec: Optional[int]
+    """
+    The registration interval, in seconds, indicating how often the system refreshes
+    the SIP registration with the external SIP peer.
+    """
+
+    from_user: Optional[str]
+    """The user portion of the SIP From header used in outbound requests.
+
+    This controls the caller identity presented to the external SIP peer.
+    """
+
+    outbound_proxy: Optional[str]
+    """
+    An optional SIP proxy used to route outbound requests before reaching the
+    external SIP peer.
+    """
+
+    password: str
+    """The SIP password used for digest authentication with the external SIP peer."""
+
+    proxy: str
+    """
+    The SIP proxy address of the external SIP peer used for registrations and
+    outbound call routing.
+    """
+
+    transport: Optional[Literal["UDP", "TLS", "TCP"]]
+    """
+    The transport protocol used for SIP signaling when communicating with the
+    external SIP peer. One of UDP, TLS, or TCP.
+    """
+
+    username: str
+    """
+    The SIP username used to authenticate with the external SIP peer for
+    registrations and outbound calls. Must start with a letter or number and contain
+    only letters, numbers, hyphens, and underscores.
+    """
 
 
 class Inbound(TypedDict, total=False):
@@ -235,3 +284,72 @@ class Inbound(TypedDict, total=False):
 
     timeout_2xx_secs: int
     """Time(sec) before aborting if call is unanswered (min: 1, max: 600)."""
+
+
+class InternalUacSettings(TypedDict, total=False):
+    """Internal Telnyx-side settings for a UAC connection."""
+
+    destination_uri: str
+    """
+    The SIP URI that Telnyx will call when handling an inbound request from the
+    external peer. Do not include a `sip:` prefix. The value must be in the format
+    `userinfo@<subdomain.>sip.telnyx.com` or
+    `userinfo@<subdomain.>sipdev.telnyx.com`; the userinfo portion may contain only
+    letters, digits, hyphens, and underscores.
+    """
+
+
+class Outbound(TypedDict, total=False):
+    ani_override: str
+    """
+    Set a phone number as the ani_override value to override caller id number on
+    outbound calls.
+    """
+
+    ani_override_type: Literal["always", "normal", "emergency"]
+    """Specifies when we apply your ani_override setting.
+
+    Only applies when ani_override is not blank.
+    """
+
+    call_parking_enabled: Optional[bool]
+    """
+    Forces all SIP calls originated on this connection to be "parked" instead of
+    "bridged" to the destination specified on the URI. Parked calls will return
+    ringback to the caller and will await for a Call Control command to define which
+    action will be taken next.
+    """
+
+    channel_limit: int
+    """
+    When set, this will limit the total number of outbound calls to phone numbers
+    associated with this connection.
+    """
+
+    generate_ringback_tone: bool
+    """Generate ringback tone through 183 session progress message with early media."""
+
+    instant_ringback_enabled: bool
+    """
+    When set, ringback will not wait for indication before sending ringback tone to
+    calling party.
+    """
+
+    localization: str
+    """
+    A 2-character country code specifying the country whose national dialing rules
+    should be used. For example, if set to `US` then any US number can be dialed
+    without preprending +1 to the number. When left blank, Telnyx will try US and GB
+    dialing rules, in that order, by default.
+    """
+
+    outbound_voice_profile_id: str
+    """Identifies the associated outbound voice profile."""
+
+    t38_reinvite_source: Literal["telnyx", "customer", "disabled", "passthru", "caller-passthru", "callee-passthru"]
+    """This setting only affects connections with Fax-type Outbound Voice Profiles.
+
+    The setting dictates whether or not Telnyx sends a t.38 reinvite.<br/><br/> By
+    default, Telnyx will send the re-invite. If set to `customer`, the caller is
+    expected to send the t.38 reinvite.
+    """

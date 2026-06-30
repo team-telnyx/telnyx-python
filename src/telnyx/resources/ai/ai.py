@@ -33,7 +33,7 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
-from ...types import ai_summarize_params, ai_create_response_params, ai_list_conversation_histories_params
+from ...types import ai_summarize_params, ai_create_response_deprecated_params, ai_search_conversation_histories_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .clusters import (
@@ -60,7 +60,6 @@ from .mcp_servers import (
     McpServersResourceWithStreamingResponse,
     AsyncMcpServersResourceWithStreamingResponse,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .openai.openai import (
     OpenAIResource,
     AsyncOpenAIResource,
@@ -69,7 +68,7 @@ from .openai.openai import (
     OpenAIResourceWithStreamingResponse,
     AsyncOpenAIResourceWithStreamingResponse,
 )
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .missions.missions import (
     MissionsResource,
     AsyncMissionsResource,
@@ -119,9 +118,9 @@ from .conversations.conversations import (
     AsyncConversationsResourceWithStreamingResponse,
 )
 from ...types.ai_summarize_response import AISummarizeResponse
-from ...types.ai_create_response_response import AICreateResponseResponse
 from ...types.ai_retrieve_models_response import AIRetrieveModelsResponse
-from ...types.ai_list_conversation_histories_response import AIListConversationHistoriesResponse
+from ...types.ai_create_response_deprecated_response import AICreateResponseDeprecatedResponse
+from ...types.ai_search_conversation_histories_response import AISearchConversationHistoriesResponse
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
@@ -201,17 +200,17 @@ class AIResource(SyncAPIResource):
         return AIResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated("deprecated")
-    def create_response(
+    def create_response_deprecated(
         self,
         *,
-        input: Dict[str, object],
+        body: Dict[str, object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AICreateResponseResponse:
+    ) -> AICreateResponseDeprecatedResponse:
         """**Deprecated**: Use `POST /v2/ai/openai/responses` instead.
 
         This endpoint is
@@ -232,14 +231,44 @@ class AIResource(SyncAPIResource):
         """
         return self._post(
             "/ai/responses",
-            body=maybe_transform(input, ai_create_response_params.AICreateResponseParams),
+            body=maybe_transform(body, ai_create_response_deprecated_params.AICreateResponseDeprecatedParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AICreateResponseResponse,
+            cast_to=AICreateResponseDeprecatedResponse,
         )
 
-    def list_conversation_histories(
+    @typing_extensions.deprecated("deprecated")
+    def retrieve_models(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AIRetrieveModelsResponse:
+        """
+        **Deprecated**: Use `GET /v2/ai/openai/models` instead.
+
+        Returns the same `ModelsResponse` payload as the OpenAI-compatible endpoint —
+        open-source LLMs hosted on Telnyx (e.g. `moonshotai/Kimi-K2.6`,
+        `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M2.7`), embedding models, and
+        fine-tuned models — kept around for backwards compatibility. New integrations
+        should use `/v2/ai/openai/models`.
+
+        Model ids follow the `{organization}/{model_name}` convention from Hugging Face.
+        """
+        return self._get(
+            "/ai/models",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AIRetrieveModelsResponse,
+        )
+
+    def search_conversation_histories(
         self,
         *,
         q: str,
@@ -261,7 +290,7 @@ class AIResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[AIListConversationHistoriesResponse]:
+    ) -> AISearchConversationHistoriesResponse:
         """
         Performs semantic vector search across conversation history records.
 
@@ -360,9 +389,8 @@ class AIResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/ai/conversation_histories",
-            page=SyncDefaultFlatPagination[AIListConversationHistoriesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -384,40 +412,10 @@ class AIResource(SyncAPIResource):
                         "page_size": page_size,
                         "region": region,
                     },
-                    ai_list_conversation_histories_params.AIListConversationHistoriesParams,
+                    ai_search_conversation_histories_params.AISearchConversationHistoriesParams,
                 ),
             ),
-            model=AIListConversationHistoriesResponse,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    def retrieve_models(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AIRetrieveModelsResponse:
-        """
-        **Deprecated**: Use `GET /v2/ai/openai/models` instead.
-
-        Returns the same `ModelsResponse` payload as the OpenAI-compatible endpoint —
-        open-source LLMs hosted on Telnyx (e.g. `moonshotai/Kimi-K2.6`,
-        `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M2.7`), embedding models, and
-        fine-tuned models — kept around for backwards compatibility. New integrations
-        should use `/v2/ai/openai/models`.
-
-        Model ids follow the `{organization}/{model_name}` convention from Hugging Face.
-        """
-        return self._get(
-            "/ai/models",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=AIRetrieveModelsResponse,
+            cast_to=AISearchConversationHistoriesResponse,
         )
 
     def summarize(
@@ -553,17 +551,17 @@ class AsyncAIResource(AsyncAPIResource):
         return AsyncAIResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated("deprecated")
-    async def create_response(
+    async def create_response_deprecated(
         self,
         *,
-        input: Dict[str, object],
+        body: Dict[str, object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AICreateResponseResponse:
+    ) -> AICreateResponseDeprecatedResponse:
         """**Deprecated**: Use `POST /v2/ai/openai/responses` instead.
 
         This endpoint is
@@ -584,14 +582,46 @@ class AsyncAIResource(AsyncAPIResource):
         """
         return await self._post(
             "/ai/responses",
-            body=await async_maybe_transform(input, ai_create_response_params.AICreateResponseParams),
+            body=await async_maybe_transform(
+                body, ai_create_response_deprecated_params.AICreateResponseDeprecatedParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AICreateResponseResponse,
+            cast_to=AICreateResponseDeprecatedResponse,
         )
 
-    def list_conversation_histories(
+    @typing_extensions.deprecated("deprecated")
+    async def retrieve_models(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AIRetrieveModelsResponse:
+        """
+        **Deprecated**: Use `GET /v2/ai/openai/models` instead.
+
+        Returns the same `ModelsResponse` payload as the OpenAI-compatible endpoint —
+        open-source LLMs hosted on Telnyx (e.g. `moonshotai/Kimi-K2.6`,
+        `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M2.7`), embedding models, and
+        fine-tuned models — kept around for backwards compatibility. New integrations
+        should use `/v2/ai/openai/models`.
+
+        Model ids follow the `{organization}/{model_name}` convention from Hugging Face.
+        """
+        return await self._get(
+            "/ai/models",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AIRetrieveModelsResponse,
+        )
+
+    async def search_conversation_histories(
         self,
         *,
         q: str,
@@ -613,9 +643,7 @@ class AsyncAIResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        AIListConversationHistoriesResponse, AsyncDefaultFlatPagination[AIListConversationHistoriesResponse]
-    ]:
+    ) -> AISearchConversationHistoriesResponse:
         """
         Performs semantic vector search across conversation history records.
 
@@ -714,15 +742,14 @@ class AsyncAIResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/ai/conversation_histories",
-            page=AsyncDefaultFlatPagination[AIListConversationHistoriesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "q": q,
                         "filter_ingested_at_gte": filter_ingested_at_gte,
@@ -738,40 +765,10 @@ class AsyncAIResource(AsyncAPIResource):
                         "page_size": page_size,
                         "region": region,
                     },
-                    ai_list_conversation_histories_params.AIListConversationHistoriesParams,
+                    ai_search_conversation_histories_params.AISearchConversationHistoriesParams,
                 ),
             ),
-            model=AIListConversationHistoriesResponse,
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    async def retrieve_models(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AIRetrieveModelsResponse:
-        """
-        **Deprecated**: Use `GET /v2/ai/openai/models` instead.
-
-        Returns the same `ModelsResponse` payload as the OpenAI-compatible endpoint —
-        open-source LLMs hosted on Telnyx (e.g. `moonshotai/Kimi-K2.6`,
-        `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M2.7`), embedding models, and
-        fine-tuned models — kept around for backwards compatibility. New integrations
-        should use `/v2/ai/openai/models`.
-
-        Model ids follow the `{organization}/{model_name}` convention from Hugging Face.
-        """
-        return await self._get(
-            "/ai/models",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=AIRetrieveModelsResponse,
+            cast_to=AISearchConversationHistoriesResponse,
         )
 
     async def summarize(
@@ -836,18 +833,18 @@ class AIResourceWithRawResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
-        )
-        self.list_conversation_histories = to_raw_response_wrapper(
-            ai.list_conversation_histories,
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.search_conversation_histories = to_raw_response_wrapper(
+            ai.search_conversation_histories,
         )
         self.summarize = to_raw_response_wrapper(
             ai.summarize,
@@ -912,18 +909,18 @@ class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
-        )
-        self.list_conversation_histories = async_to_raw_response_wrapper(
-            ai.list_conversation_histories,
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.search_conversation_histories = async_to_raw_response_wrapper(
+            ai.search_conversation_histories,
         )
         self.summarize = async_to_raw_response_wrapper(
             ai.summarize,
@@ -988,18 +985,18 @@ class AIResourceWithStreamingResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
-        )
-        self.list_conversation_histories = to_streamed_response_wrapper(
-            ai.list_conversation_histories,
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.search_conversation_histories = to_streamed_response_wrapper(
+            ai.search_conversation_histories,
         )
         self.summarize = to_streamed_response_wrapper(
             ai.summarize,
@@ -1064,18 +1061,18 @@ class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
-        )
-        self.list_conversation_histories = async_to_streamed_response_wrapper(
-            ai.list_conversation_histories,
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.search_conversation_histories = async_to_streamed_response_wrapper(
+            ai.search_conversation_histories,
         )
         self.summarize = async_to_streamed_response_wrapper(
             ai.summarize,

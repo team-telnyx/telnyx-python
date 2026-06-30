@@ -1288,13 +1288,6 @@ class Telnyx(SyncAPIClient):
         return ReportsResource(self)
 
     @cached_property
-    def speech_to_text(self) -> SpeechToTextResource:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import SpeechToTextResource
-
-        return SpeechToTextResource(self)
-
-    @cached_property
     def requirement_groups(self) -> RequirementGroupsResource:
         """Requirement Groups"""
         from .resources.requirement_groups import RequirementGroupsResource
@@ -1680,29 +1673,6 @@ class Telnyx(SyncAPIClient):
         return PronunciationDictsResource(self)
 
     @cached_property
-    def uac_connections(self) -> UacConnectionsResource:
-        """UAC connection operations"""
-        from .resources.uac_connections import UacConnectionsResource
-
-        return UacConnectionsResource(self)
-
-    @cached_property
-    def voice_sdk_call_reports(self) -> VoiceSDKCallReportsResource:
-        """
-        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
-        """
-        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResource
-
-        return VoiceSDKCallReportsResource(self)
-
-    @cached_property
-    def sip_registration_status(self) -> SipRegistrationStatusResource:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import SipRegistrationStatusResource
-
-        return SipRegistrationStatusResource(self)
-
-    @cached_property
     def call_reasons(self) -> CallReasonsResource:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -1726,6 +1696,36 @@ class Telnyx(SyncAPIClient):
         from .resources.infringement_claims import InfringementClaimsResource
 
         return InfringementClaimsResource(self)
+
+    @cached_property
+    def sip_registration_status(self) -> SipRegistrationStatusResource:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import SipRegistrationStatusResource
+
+        return SipRegistrationStatusResource(self)
+
+    @cached_property
+    def speech_to_text(self) -> SpeechToTextResource:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResource
+
+        return SpeechToTextResource(self)
+
+    @cached_property
+    def uac_connections(self) -> UacConnectionsResource:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResource
+
+        return UacConnectionsResource(self)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> VoiceSDKCallReportsResource:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResource
+
+        return VoiceSDKCallReportsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2695,13 +2695,6 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncReportsResource(self)
 
     @cached_property
-    def speech_to_text(self) -> AsyncSpeechToTextResource:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import AsyncSpeechToTextResource
-
-        return AsyncSpeechToTextResource(self)
-
-    @cached_property
     def requirement_groups(self) -> AsyncRequirementGroupsResource:
         """Requirement Groups"""
         from .resources.requirement_groups import AsyncRequirementGroupsResource
@@ -3087,29 +3080,6 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncPronunciationDictsResource(self)
 
     @cached_property
-    def uac_connections(self) -> AsyncUacConnectionsResource:
-        """UAC connection operations"""
-        from .resources.uac_connections import AsyncUacConnectionsResource
-
-        return AsyncUacConnectionsResource(self)
-
-    @cached_property
-    def voice_sdk_call_reports(self) -> AsyncVoiceSDKCallReportsResource:
-        """
-        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
-        """
-        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResource
-
-        return AsyncVoiceSDKCallReportsResource(self)
-
-    @cached_property
-    def sip_registration_status(self) -> AsyncSipRegistrationStatusResource:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import AsyncSipRegistrationStatusResource
-
-        return AsyncSipRegistrationStatusResource(self)
-
-    @cached_property
     def call_reasons(self) -> AsyncCallReasonsResource:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -3133,6 +3103,36 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.infringement_claims import AsyncInfringementClaimsResource
 
         return AsyncInfringementClaimsResource(self)
+
+    @cached_property
+    def sip_registration_status(self) -> AsyncSipRegistrationStatusResource:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResource
+
+        return AsyncSipRegistrationStatusResource(self)
+
+    @cached_property
+    def speech_to_text(self) -> AsyncSpeechToTextResource:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResource
+
+        return AsyncSpeechToTextResource(self)
+
+    @cached_property
+    def uac_connections(self) -> AsyncUacConnectionsResource:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResource
+
+        return AsyncUacConnectionsResource(self)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> AsyncVoiceSDKCallReportsResource:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResource
+
+        return AsyncVoiceSDKCallReportsResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
@@ -4034,13 +4034,6 @@ class TelnyxWithRawResponse:
         return ReportsResourceWithRawResponse(self._client.reports)
 
     @cached_property
-    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
-
-        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
-
-    @cached_property
     def requirement_groups(self) -> requirement_groups.RequirementGroupsResourceWithRawResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import RequirementGroupsResourceWithRawResponse
@@ -4430,29 +4423,6 @@ class TelnyxWithRawResponse:
         return PronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import UacConnectionsResourceWithRawResponse
-
-        return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
-
-    @cached_property
-    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithRawResponse:
-        """
-        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
-        """
-        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithRawResponse
-
-        return VoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
-
-    @cached_property
-    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import SipRegistrationStatusResourceWithRawResponse
-
-        return SipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
-
-    @cached_property
     def call_reasons(self) -> call_reasons.CallReasonsResourceWithRawResponse:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -4476,6 +4446,36 @@ class TelnyxWithRawResponse:
         from .resources.infringement_claims import InfringementClaimsResourceWithRawResponse
 
         return InfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
+
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import SipRegistrationStatusResourceWithRawResponse
+
+        return SipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
+
+        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResourceWithRawResponse
+
+        return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithRawResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithRawResponse
+
+        return VoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
 
 
 class AsyncTelnyxWithRawResponse:
@@ -5240,13 +5240,6 @@ class AsyncTelnyxWithRawResponse:
         return AsyncReportsResourceWithRawResponse(self._client.reports)
 
     @cached_property
-    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
-
-        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
-
-    @cached_property
     def requirement_groups(self) -> requirement_groups.AsyncRequirementGroupsResourceWithRawResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import AsyncRequirementGroupsResourceWithRawResponse
@@ -5644,29 +5637,6 @@ class AsyncTelnyxWithRawResponse:
         return AsyncPronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
-
-        return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
-
-    @cached_property
-    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithRawResponse:
-        """
-        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
-        """
-        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithRawResponse
-
-        return AsyncVoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
-
-    @cached_property
-    def sip_registration_status(self) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
-
-        return AsyncSipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
-
-    @cached_property
     def call_reasons(self) -> call_reasons.AsyncCallReasonsResourceWithRawResponse:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -5690,6 +5660,36 @@ class AsyncTelnyxWithRawResponse:
         from .resources.infringement_claims import AsyncInfringementClaimsResourceWithRawResponse
 
         return AsyncInfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
+
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
+
+        return AsyncSipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
+
+        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
+
+        return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithRawResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithRawResponse
+
+        return AsyncVoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
 
 
 class TelnyxWithStreamedResponse:
@@ -6454,13 +6454,6 @@ class TelnyxWithStreamedResponse:
         return ReportsResourceWithStreamingResponse(self._client.reports)
 
     @cached_property
-    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
-
-        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
-
-    @cached_property
     def requirement_groups(self) -> requirement_groups.RequirementGroupsResourceWithStreamingResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import RequirementGroupsResourceWithStreamingResponse
@@ -6860,29 +6853,6 @@ class TelnyxWithStreamedResponse:
         return PronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
-
-        return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
-
-    @cached_property
-    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithStreamingResponse:
-        """
-        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
-        """
-        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithStreamingResponse
-
-        return VoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
-
-    @cached_property
-    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
-
-        return SipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
-
-    @cached_property
     def call_reasons(self) -> call_reasons.CallReasonsResourceWithStreamingResponse:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -6906,6 +6876,36 @@ class TelnyxWithStreamedResponse:
         from .resources.infringement_claims import InfringementClaimsResourceWithStreamingResponse
 
         return InfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
+
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
+
+        return SipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
+
+        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
+
+        return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithStreamingResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithStreamingResponse
+
+        return VoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7702,13 +7702,6 @@ class AsyncTelnyxWithStreamedResponse:
         return AsyncReportsResourceWithStreamingResponse(self._client.reports)
 
     @cached_property
-    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
-
-        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
-
-    @cached_property
     def requirement_groups(self) -> requirement_groups.AsyncRequirementGroupsResourceWithStreamingResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import AsyncRequirementGroupsResourceWithStreamingResponse
@@ -8122,31 +8115,6 @@ class AsyncTelnyxWithStreamedResponse:
         return AsyncPronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
 
     @cached_property
-    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
-
-        return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
-
-    @cached_property
-    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithStreamingResponse:
-        """
-        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
-        """
-        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithStreamingResponse
-
-        return AsyncVoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
-
-    @cached_property
-    def sip_registration_status(
-        self,
-    ) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithStreamingResponse
-
-        return AsyncSipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
-
-    @cached_property
     def call_reasons(self) -> call_reasons.AsyncCallReasonsResourceWithStreamingResponse:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -8170,6 +8138,38 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.infringement_claims import AsyncInfringementClaimsResourceWithStreamingResponse
 
         return AsyncInfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
+
+    @cached_property
+    def sip_registration_status(
+        self,
+    ) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithStreamingResponse
+
+        return AsyncSipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
+
+        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
+
+        return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithStreamingResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithStreamingResponse
+
+        return AsyncVoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
 
 
 Client = Telnyx

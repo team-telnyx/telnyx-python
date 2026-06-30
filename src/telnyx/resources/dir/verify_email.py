@@ -14,11 +14,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.dir import verify_email_confirm_params
+from ...types.dir import verify_email_confirm_code_params
 from ..._base_client import make_request_options
-from ...types.dir.verify_email_send_response import VerifyEmailSendResponse
 from ...types.dir.verify_email_status_response import VerifyEmailStatusResponse
-from ...types.dir.verify_email_confirm_response import VerifyEmailConfirmResponse
+from ...types.dir.verify_email_send_code_response import VerifyEmailSendCodeResponse
+from ...types.dir.verify_email_confirm_code_response import VerifyEmailConfirmCodeResponse
 
 __all__ = ["VerifyEmailResource", "AsyncVerifyEmailResource"]
 
@@ -48,7 +48,7 @@ class VerifyEmailResource(SyncAPIResource):
         """
         return VerifyEmailResourceWithStreamingResponse(self)
 
-    def confirm(
+    def confirm_code(
         self,
         dir_id: str,
         *,
@@ -59,7 +59,7 @@ class VerifyEmailResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyEmailConfirmResponse:
+    ) -> VerifyEmailConfirmCodeResponse:
         """Submit the 6-digit code that was emailed to the DIR's authorizer email.
 
         On
@@ -83,14 +83,14 @@ class VerifyEmailResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
         return self._post(
             path_template("/dir/{dir_id}/verify_email/confirm", dir_id=dir_id),
-            body=maybe_transform({"code": code}, verify_email_confirm_params.VerifyEmailConfirmParams),
+            body=maybe_transform({"code": code}, verify_email_confirm_code_params.VerifyEmailConfirmCodeParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyEmailConfirmResponse,
+            cast_to=VerifyEmailConfirmCodeResponse,
         )
 
-    def send(
+    def send_code(
         self,
         dir_id: str,
         *,
@@ -100,7 +100,7 @@ class VerifyEmailResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyEmailSendResponse:
+    ) -> VerifyEmailSendCodeResponse:
         """
         Email a 6-digit code to the DIR's authorizer email to confirm ownership of that
         address.
@@ -125,7 +125,7 @@ class VerifyEmailResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyEmailSendResponse,
+            cast_to=VerifyEmailSendCodeResponse,
         )
 
     def status(
@@ -187,7 +187,7 @@ class AsyncVerifyEmailResource(AsyncAPIResource):
         """
         return AsyncVerifyEmailResourceWithStreamingResponse(self)
 
-    async def confirm(
+    async def confirm_code(
         self,
         dir_id: str,
         *,
@@ -198,7 +198,7 @@ class AsyncVerifyEmailResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyEmailConfirmResponse:
+    ) -> VerifyEmailConfirmCodeResponse:
         """Submit the 6-digit code that was emailed to the DIR's authorizer email.
 
         On
@@ -222,14 +222,16 @@ class AsyncVerifyEmailResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
         return await self._post(
             path_template("/dir/{dir_id}/verify_email/confirm", dir_id=dir_id),
-            body=await async_maybe_transform({"code": code}, verify_email_confirm_params.VerifyEmailConfirmParams),
+            body=await async_maybe_transform(
+                {"code": code}, verify_email_confirm_code_params.VerifyEmailConfirmCodeParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyEmailConfirmResponse,
+            cast_to=VerifyEmailConfirmCodeResponse,
         )
 
-    async def send(
+    async def send_code(
         self,
         dir_id: str,
         *,
@@ -239,7 +241,7 @@ class AsyncVerifyEmailResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyEmailSendResponse:
+    ) -> VerifyEmailSendCodeResponse:
         """
         Email a 6-digit code to the DIR's authorizer email to confirm ownership of that
         address.
@@ -264,7 +266,7 @@ class AsyncVerifyEmailResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyEmailSendResponse,
+            cast_to=VerifyEmailSendCodeResponse,
         )
 
     async def status(
@@ -305,11 +307,11 @@ class VerifyEmailResourceWithRawResponse:
     def __init__(self, verify_email: VerifyEmailResource) -> None:
         self._verify_email = verify_email
 
-        self.confirm = to_raw_response_wrapper(
-            verify_email.confirm,
+        self.confirm_code = to_raw_response_wrapper(
+            verify_email.confirm_code,
         )
-        self.send = to_raw_response_wrapper(
-            verify_email.send,
+        self.send_code = to_raw_response_wrapper(
+            verify_email.send_code,
         )
         self.status = to_raw_response_wrapper(
             verify_email.status,
@@ -320,11 +322,11 @@ class AsyncVerifyEmailResourceWithRawResponse:
     def __init__(self, verify_email: AsyncVerifyEmailResource) -> None:
         self._verify_email = verify_email
 
-        self.confirm = async_to_raw_response_wrapper(
-            verify_email.confirm,
+        self.confirm_code = async_to_raw_response_wrapper(
+            verify_email.confirm_code,
         )
-        self.send = async_to_raw_response_wrapper(
-            verify_email.send,
+        self.send_code = async_to_raw_response_wrapper(
+            verify_email.send_code,
         )
         self.status = async_to_raw_response_wrapper(
             verify_email.status,
@@ -335,11 +337,11 @@ class VerifyEmailResourceWithStreamingResponse:
     def __init__(self, verify_email: VerifyEmailResource) -> None:
         self._verify_email = verify_email
 
-        self.confirm = to_streamed_response_wrapper(
-            verify_email.confirm,
+        self.confirm_code = to_streamed_response_wrapper(
+            verify_email.confirm_code,
         )
-        self.send = to_streamed_response_wrapper(
-            verify_email.send,
+        self.send_code = to_streamed_response_wrapper(
+            verify_email.send_code,
         )
         self.status = to_streamed_response_wrapper(
             verify_email.status,
@@ -350,11 +352,11 @@ class AsyncVerifyEmailResourceWithStreamingResponse:
     def __init__(self, verify_email: AsyncVerifyEmailResource) -> None:
         self._verify_email = verify_email
 
-        self.confirm = async_to_streamed_response_wrapper(
-            verify_email.confirm,
+        self.confirm_code = async_to_streamed_response_wrapper(
+            verify_email.confirm_code,
         )
-        self.send = async_to_streamed_response_wrapper(
-            verify_email.send,
+        self.send_code = async_to_streamed_response_wrapper(
+            verify_email.send_code,
         )
         self.status = async_to_streamed_response_wrapper(
             verify_email.status,

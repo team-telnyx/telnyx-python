@@ -92,9 +92,6 @@ from .action_start_noise_suppression_params import (
 from .action_stop_conversation_relay_params import (
     ActionStopConversationRelayParams as ActionStopConversationRelayParams,
 )
-from .transcription_engine_xai_config_param import (
-    TranscriptionEngineXaiConfigParam as TranscriptionEngineXaiConfigParam,
-)
 from .action_start_conversation_relay_params import (
     ActionStartConversationRelayParams as ActionStartConversationRelayParams,
 )
@@ -122,20 +119,11 @@ from .action_start_conversation_relay_response import (
 from .transcription_engine_google_config_param import (
     TranscriptionEngineGoogleConfigParam as TranscriptionEngineGoogleConfigParam,
 )
-from .transcription_engine_soniox_config_param import (
-    TranscriptionEngineSonioxConfigParam as TranscriptionEngineSonioxConfigParam,
-)
 from .transcription_engine_telnyx_config_param import (
     TranscriptionEngineTelnyxConfigParam as TranscriptionEngineTelnyxConfigParam,
 )
 from .action_add_ai_assistant_messages_response import (
     ActionAddAIAssistantMessagesResponse as ActionAddAIAssistantMessagesResponse,
-)
-from .transcription_engine_assemblyai_config_param import (
-    TranscriptionEngineAssemblyaiConfigParam as TranscriptionEngineAssemblyaiConfigParam,
-)
-from .transcription_engine_speechmatics_config_param import (
-    TranscriptionEngineSpeechmaticsConfigParam as TranscriptionEngineSpeechmaticsConfigParam,
 )
 from .call_control_command_result_with_conversation_id import (
     CallControlCommandResultWithConversationID as CallControlCommandResultWithConversationID,

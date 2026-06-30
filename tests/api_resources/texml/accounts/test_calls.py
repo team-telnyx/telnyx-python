@@ -150,11 +150,7 @@ class TestCalls:
     def test_method_calls(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            params={
-                "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
-            },
+            params={"url": "https://www.example.com/texml.xml"},
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
 
@@ -164,9 +160,8 @@ class TestCalls:
         call = client.texml.accounts.calls.calls(
             account_sid="account_sid",
             params={
+                "url": "https://www.example.com/texml.xml",
                 "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
                 "async_amd": True,
                 "async_amd_status_callback": "https://www.example.com/callback",
                 "async_amd_status_callback_method": "GET",
@@ -184,6 +179,7 @@ class TestCalls:
                 "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
                 "detection_mode": "Premium",
                 "fallback_url": "https://www.example.com/instructions-fallback.xml",
+                "from_": "+13120001234",
                 "machine_detection": "Enable",
                 "machine_detection_prompt_end_timeout": 5000,
                 "machine_detection_silence_timeout": 2000,
@@ -204,15 +200,15 @@ class TestCalls:
                 "sip_auth_username": "user",
                 "sip_region": "Canada",
                 "status_callback": "https://www.example.com/statuscallback-listener",
-                "status_callback_event": "initiated",
+                "status_callback_event": "initiated answered",
                 "status_callback_method": "GET",
                 "supervise_call_sid": "v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
                 "supervising_role": "monitor",
-                "texml": '<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+                "texml": "Texml",
                 "time_limit": 3600,
                 "timeout": 60,
+                "to": "+13121230000",
                 "trim": "trim-silence",
-                "url": "https://www.example.com/texml.xml",
                 "url_method": "GET",
             },
         )
@@ -223,11 +219,7 @@ class TestCalls:
     def test_raw_response_calls(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.calls(
             account_sid="account_sid",
-            params={
-                "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
-            },
+            params={"url": "https://www.example.com/texml.xml"},
         )
 
         assert response.is_closed is True
@@ -240,11 +232,7 @@ class TestCalls:
     def test_streaming_response_calls(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.calls(
             account_sid="account_sid",
-            params={
-                "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
-            },
+            params={"url": "https://www.example.com/texml.xml"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,11 +248,7 @@ class TestCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
             client.texml.accounts.calls.with_raw_response.calls(
                 account_sid="",
-                params={
-                    "application_sid": "example-app-sid",
-                    "from_": "+13120001234",
-                    "to": "+13121230000",
-                },
+                params={"url": "https://www.example.com/texml.xml"},
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -599,11 +583,7 @@ class TestAsyncCalls:
     async def test_method_calls(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            params={
-                "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
-            },
+            params={"url": "https://www.example.com/texml.xml"},
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
 
@@ -613,9 +593,8 @@ class TestAsyncCalls:
         call = await async_client.texml.accounts.calls.calls(
             account_sid="account_sid",
             params={
+                "url": "https://www.example.com/texml.xml",
                 "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
                 "async_amd": True,
                 "async_amd_status_callback": "https://www.example.com/callback",
                 "async_amd_status_callback_method": "GET",
@@ -633,6 +612,7 @@ class TestAsyncCalls:
                 "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
                 "detection_mode": "Premium",
                 "fallback_url": "https://www.example.com/instructions-fallback.xml",
+                "from_": "+13120001234",
                 "machine_detection": "Enable",
                 "machine_detection_prompt_end_timeout": 5000,
                 "machine_detection_silence_timeout": 2000,
@@ -653,15 +633,15 @@ class TestAsyncCalls:
                 "sip_auth_username": "user",
                 "sip_region": "Canada",
                 "status_callback": "https://www.example.com/statuscallback-listener",
-                "status_callback_event": "initiated",
+                "status_callback_event": "initiated answered",
                 "status_callback_method": "GET",
                 "supervise_call_sid": "v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
                 "supervising_role": "monitor",
-                "texml": '<?xml version="1.0" encoding="UTF-8"?><Response><Say>Hello</Say></Response>',
+                "texml": "Texml",
                 "time_limit": 3600,
                 "timeout": 60,
+                "to": "+13121230000",
                 "trim": "trim-silence",
-                "url": "https://www.example.com/texml.xml",
                 "url_method": "GET",
             },
         )
@@ -672,11 +652,7 @@ class TestAsyncCalls:
     async def test_raw_response_calls(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.calls(
             account_sid="account_sid",
-            params={
-                "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
-            },
+            params={"url": "https://www.example.com/texml.xml"},
         )
 
         assert response.is_closed is True
@@ -689,11 +665,7 @@ class TestAsyncCalls:
     async def test_streaming_response_calls(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.calls(
             account_sid="account_sid",
-            params={
-                "application_sid": "example-app-sid",
-                "from_": "+13120001234",
-                "to": "+13121230000",
-            },
+            params={"url": "https://www.example.com/texml.xml"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -709,11 +681,7 @@ class TestAsyncCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
             await async_client.texml.accounts.calls.with_raw_response.calls(
                 account_sid="",
-                params={
-                    "application_sid": "example-app-sid",
-                    "from_": "+13120001234",
-                    "to": "+13121230000",
-                },
+                params={"url": "https://www.example.com/texml.xml"},
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
