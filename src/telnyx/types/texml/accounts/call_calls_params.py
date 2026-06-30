@@ -197,9 +197,7 @@ class WithURL(TypedDict, total=False):
     status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
     """URL destination for Telnyx to send status callback events to for the call."""
 
-    status_callback_event: Annotated[
-        Literal["initiated", "ringing", "answered", "completed"], PropertyInfo(alias="StatusCallbackEvent")
-    ]
+    status_callback_event: Annotated[str, PropertyInfo(alias="StatusCallbackEvent")]
     """The call events for which Telnyx should send a webhook.
 
     Multiple events can be defined when separated by a space.
@@ -449,9 +447,7 @@ class WithTeXml(TypedDict, total=False):
     status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
     """URL destination for Telnyx to send status callback events to for the call."""
 
-    status_callback_event: Annotated[
-        Literal["initiated", "ringing", "answered", "completed"], PropertyInfo(alias="StatusCallbackEvent")
-    ]
+    status_callback_event: Annotated[str, PropertyInfo(alias="StatusCallbackEvent")]
     """The call events for which Telnyx should send a webhook.
 
     Multiple events can be defined when separated by a space.
@@ -694,9 +690,7 @@ class ApplicationDefault(TypedDict, total=False):
     status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
     """URL destination for Telnyx to send status callback events to for the call."""
 
-    status_callback_event: Annotated[
-        Literal["initiated", "ringing", "answered", "completed"], PropertyInfo(alias="StatusCallbackEvent")
-    ]
+    status_callback_event: Annotated[str, PropertyInfo(alias="StatusCallbackEvent")]
     """The call events for which Telnyx should send a webhook.
 
     Multiple events can be defined when separated by a space.
