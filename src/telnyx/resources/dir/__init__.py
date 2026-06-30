@@ -16,6 +16,22 @@ from .comments import (
     CommentsResourceWithStreamingResponse,
     AsyncCommentsResourceWithStreamingResponse,
 )
+from .references import (
+    ReferencesResource,
+    AsyncReferencesResource,
+    ReferencesResourceWithRawResponse,
+    AsyncReferencesResourceWithRawResponse,
+    ReferencesResourceWithStreamingResponse,
+    AsyncReferencesResourceWithStreamingResponse,
+)
+from .verify_email import (
+    VerifyEmailResource,
+    AsyncVerifyEmailResource,
+    VerifyEmailResourceWithRawResponse,
+    AsyncVerifyEmailResourceWithRawResponse,
+    VerifyEmailResourceWithStreamingResponse,
+    AsyncVerifyEmailResourceWithStreamingResponse,
+)
 from .phone_numbers import (
     PhoneNumbersResource,
     AsyncPhoneNumbersResource,
@@ -52,6 +68,18 @@ __all__ = [
     "AsyncPhoneNumbersResourceWithRawResponse",
     "PhoneNumbersResourceWithStreamingResponse",
     "AsyncPhoneNumbersResourceWithStreamingResponse",
+    "ReferencesResource",
+    "AsyncReferencesResource",
+    "ReferencesResourceWithRawResponse",
+    "AsyncReferencesResourceWithRawResponse",
+    "ReferencesResourceWithStreamingResponse",
+    "AsyncReferencesResourceWithStreamingResponse",
+    "VerifyEmailResource",
+    "AsyncVerifyEmailResource",
+    "VerifyEmailResourceWithRawResponse",
+    "AsyncVerifyEmailResourceWithRawResponse",
+    "VerifyEmailResourceWithStreamingResponse",
+    "AsyncVerifyEmailResourceWithStreamingResponse",
     "DirResource",
     "AsyncDirResource",
     "DirResourceWithRawResponse",

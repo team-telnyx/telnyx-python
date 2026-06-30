@@ -5909,6 +5909,34 @@ Methods:
 - <code title="post /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">add</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_add_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_add_response.py">PhoneNumberAddResponse</a></code>
 - <code title="delete /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">remove</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_remove_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_remove_response.py">PhoneNumberRemoveResponse</a></code>
 
+## References
+
+Types:
+
+```python
+from telnyx.types.dir import Reference, ReferenceInput, ReferenceList, ReferenceUpdateResponse
+```
+
+Methods:
+
+- <code title="post /dir/{dir_id}/references">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">create</a>(dir_id, \*\*<a href="src/telnyx/types/dir/reference_create_params.py">params</a>) -> <a href="./src/telnyx/types/dir/reference_list.py">ReferenceList</a></code>
+- <code title="patch /dir/{dir_id}/references/{ref_type}/{slot}">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">update</a>(slot, \*, dir_id, ref_type, \*\*<a href="src/telnyx/types/dir/reference_update_params.py">params</a>) -> <a href="./src/telnyx/types/dir/reference_update_response.py">ReferenceUpdateResponse</a></code>
+- <code title="get /dir/{dir_id}/references">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">list</a>(dir_id) -> <a href="./src/telnyx/types/dir/reference_list.py">ReferenceList</a></code>
+
+## VerifyEmail
+
+Types:
+
+```python
+from telnyx.types.dir import EmailVerificationStatusWrapped
+```
+
+Methods:
+
+- <code title="post /dir/{dir_id}/verify_email">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">create</a>(dir_id) -> <a href="./src/telnyx/types/dir/email_verification_status_wrapped.py">EmailVerificationStatusWrapped</a></code>
+- <code title="get /dir/{dir_id}/verify_email">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">list</a>(dir_id) -> <a href="./src/telnyx/types/dir/email_verification_status_wrapped.py">EmailVerificationStatusWrapped</a></code>
+- <code title="post /dir/{dir_id}/verify_email/confirm">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">confirm</a>(dir_id, \*\*<a href="src/telnyx/types/dir/verify_email_confirm_params.py">params</a>) -> <a href="./src/telnyx/types/dir/email_verification_status_wrapped.py">EmailVerificationStatusWrapped</a></code>
+
 # InfringementClaims
 
 Types:

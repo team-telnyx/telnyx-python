@@ -3,19 +3,27 @@
 from __future__ import annotations
 
 from .dir import Dir as Dir
+from .reference import Reference as Reference
 from .dir_comment import DirComment as DirComment
 from .comment_type import CommentType as CommentType
+from .reference_list import ReferenceList as ReferenceList
 from .dir_phone_number import DirPhoneNumber as DirPhoneNumber
 from .rejection_reason import RejectionReason as RejectionReason
 from .phone_number_batch import PhoneNumberBatch as PhoneNumberBatch
 from .comment_list_params import CommentListParams as CommentListParams
 from .comment_create_params import CommentCreateParams as CommentCreateParams
+from .reference_input_param import ReferenceInputParam as ReferenceInputParam
 from .comment_create_response import CommentCreateResponse as CommentCreateResponse
 from .dir_phone_number_status import DirPhoneNumberStatus as DirPhoneNumberStatus
 from .phone_number_add_params import PhoneNumberAddParams as PhoneNumberAddParams
+from .reference_create_params import ReferenceCreateParams as ReferenceCreateParams
+from .reference_update_params import ReferenceUpdateParams as ReferenceUpdateParams
 from .phone_number_list_params import PhoneNumberListParams as PhoneNumberListParams
 from .phone_number_add_response import PhoneNumberAddResponse as PhoneNumberAddResponse
+from .reference_update_response import ReferenceUpdateResponse as ReferenceUpdateResponse
 from .phone_number_remove_params import PhoneNumberRemoveParams as PhoneNumberRemoveParams
+from .verify_email_confirm_params import VerifyEmailConfirmParams as VerifyEmailConfirmParams
 from .phone_number_remove_response import PhoneNumberRemoveResponse as PhoneNumberRemoveResponse
 from .phone_number_batch_list_params import PhoneNumberBatchListParams as PhoneNumberBatchListParams
+from .email_verification_status_wrapped import EmailVerificationStatusWrapped as EmailVerificationStatusWrapped
 from .phone_number_batch_retrieve_response import PhoneNumberBatchRetrieveResponse as PhoneNumberBatchRetrieveResponse
