@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union
+from typing import Union
 from datetime import datetime
 
 import httpx
@@ -20,11 +20,9 @@ from ...._response import (
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.enterprises.reputation import RemediationStatus, remediation_list_params, remediation_create_params
+from ....types.enterprises.reputation.remediation_status import RemediationStatus
 from ....types.enterprises.reputation.remediation_list_response import RemediationListResponse
 from ....types.enterprises.reputation.remediation_request_wrapped import RemediationRequestWrapped
-
-if TYPE_CHECKING:
-    from ....types.enterprises.reputation.remediation_status import RemediationStatus
 
 __all__ = ["RemediationResource", "AsyncRemediationResource"]
 

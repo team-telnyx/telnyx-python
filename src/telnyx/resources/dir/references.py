@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -20,10 +20,8 @@ from ..._response import (
 from ...types.dir import reference_create_params, reference_update_params
 from ..._base_client import make_request_options
 from ...types.dir.reference_list import ReferenceList
+from ...types.dir.reference_input_param import ReferenceInputParam
 from ...types.dir.reference_update_response import ReferenceUpdateResponse
-
-if TYPE_CHECKING:
-    from ...types.dir.reference_input_param import ReferenceInputParam
 
 __all__ = ["ReferencesResource", "AsyncReferencesResource"]
 

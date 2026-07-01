@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import httpx
 
 from .loa import (
@@ -42,10 +40,8 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.enterprises import ReputationCheckFrequency, reputation_enable_params, reputation_update_frequency_params
+from ....types.enterprises.reputation_check_frequency import ReputationCheckFrequency
 from ....types.enterprises.enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
-
-if TYPE_CHECKING:
-    from ....types.enterprises.reputation_check_frequency import ReputationCheckFrequency
 
 __all__ = ["ReputationResource", "AsyncReputationResource"]
 

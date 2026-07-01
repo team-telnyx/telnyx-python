@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
 
 import httpx
@@ -29,21 +29,17 @@ from ....types.messaging_tollfree.verification import (
     request_update_params,
     request_retrieve_status_history_params,
 )
+from ....types.messaging_tollfree.verification.volume import Volume
+from ....types.messaging_tollfree.verification.url_param import URLParam
+from ....types.messaging_tollfree.verification.use_case_categories import UseCaseCategories
+from ....types.messaging_tollfree.verification.tf_phone_number_param import TfPhoneNumberParam
+from ....types.messaging_tollfree.verification.tf_verification_status import TfVerificationStatus
 from ....types.messaging_tollfree.verification.verification_request_egress import VerificationRequestEgress
 from ....types.messaging_tollfree.verification.verification_request_status import VerificationRequestStatus
+from ....types.messaging_tollfree.verification.toll_free_verification_entity_type import TollFreeVerificationEntityType
 from ....types.messaging_tollfree.verification.request_retrieve_status_history_response import (
     RequestRetrieveStatusHistoryResponse,
 )
-
-if TYPE_CHECKING:
-    from ....types.messaging_tollfree.verification.volume import Volume
-    from ....types.messaging_tollfree.verification.url_param import URLParam
-    from ....types.messaging_tollfree.verification.use_case_categories import UseCaseCategories
-    from ....types.messaging_tollfree.verification.tf_phone_number_param import TfPhoneNumberParam
-    from ....types.messaging_tollfree.verification.tf_verification_status import TfVerificationStatus
-    from ....types.messaging_tollfree.verification.toll_free_verification_entity_type import (
-        TollFreeVerificationEntityType,
-    )
 
 __all__ = ["RequestsResource", "AsyncRequestsResource"]
 

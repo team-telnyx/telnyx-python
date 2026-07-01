@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from typing import List
 
 from ..._models import BaseModel
 from .verify_meta import VerifyMeta
-
-if TYPE_CHECKING:
-    from ..verification import Verification
+from ..verification import Verification
 
 __all__ = ["ByPhoneNumberListResponse"]
 

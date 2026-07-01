@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from typing import List
 
 from ...._models import BaseModel
 from .mission_run_data import MissionRunData
-
-if TYPE_CHECKING:
-    from ..assistants.tests.test_suites.meta import Meta
+from ..assistants.tests.test_suites.meta import Meta
 
 __all__ = ["MissionRunsListResponse"]
 

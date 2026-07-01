@@ -2,21 +2,19 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ..stream_codec import StreamCodec
+from ..sip_header_param import SipHeaderParam
+from ..custom_sip_header_param import CustomSipHeaderParam
+from ..sound_modifications_param import SoundModificationsParam
+from ..stream_bidirectional_mode import StreamBidirectionalMode
+from ..stream_bidirectional_codec import StreamBidirectionalCodec
+from ..call_assistant_request_param import CallAssistantRequestParam
+from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from .transcription_start_request_param import TranscriptionStartRequestParam
-
-if TYPE_CHECKING:
-    from ..stream_codec import StreamCodec
-    from ..sip_header_param import SipHeaderParam
-    from ..custom_sip_header_param import CustomSipHeaderParam
-    from ..sound_modifications_param import SoundModificationsParam
-    from ..stream_bidirectional_mode import StreamBidirectionalMode
-    from ..stream_bidirectional_codec import StreamBidirectionalCodec
-    from ..call_assistant_request_param import CallAssistantRequestParam
-    from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
-    from ..conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
+from ..conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 
 __all__ = ["ActionAnswerParams", "DeepfakeDetection", "WebhookRetriesPolicies"]
 

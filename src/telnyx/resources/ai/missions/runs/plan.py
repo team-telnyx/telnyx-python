@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Iterable
+from typing import Dict, Iterable
 
 import httpx
 
@@ -23,13 +23,11 @@ from .....types.ai.missions.runs import (
     plan_update_step_params,
     plan_add_steps_to_plan_params,
 )
+from .....types.ai.missions.runs.step_status import StepStatus
 from .....types.ai.missions.runs.plan_step_response import PlanStepResponse
 from .....types.ai.missions.runs.plan_retrieve_response import PlanRetrieveResponse
 from .....types.ai.missions.runs.plan_steps_created_response import PlanStepsCreatedResponse
-
-if TYPE_CHECKING:
-    from .....types.ai.missions.runs.step_status import StepStatus
-    from .....types.ai.missions.runs.create_plan_step_request_param import CreatePlanStepRequestParam
+from .....types.ai.missions.runs.create_plan_step_request_param import CreatePlanStepRequestParam
 
 __all__ = ["PlanResource", "AsyncPlanResource"]
 

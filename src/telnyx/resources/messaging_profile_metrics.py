@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import httpx
 
 from ..types import MessagingMetricsTimeFrame, messaging_profile_metric_list_params
@@ -18,10 +16,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
 from ..types.messaging_profile_metric_list_response import MessagingProfileMetricListResponse
-
-if TYPE_CHECKING:
-    from ..types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
 
 __all__ = ["MessagingProfileMetricsResource", "AsyncMessagingProfileMetricsResource"]
 

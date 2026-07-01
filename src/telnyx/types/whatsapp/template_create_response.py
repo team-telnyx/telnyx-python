@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..shared.whatsapp_template_data import WhatsappTemplateData
+from ..shared.whatsapp_template_data import WhatsappTemplateData
 
 __all__ = ["TemplateCreateResponse"]
 

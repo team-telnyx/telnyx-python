@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -26,10 +24,8 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.enterprises.reputation import loa_render_params, loa_update_params
+from ....types.enterprises.reputation.agent_input_param import AgentInputParam
 from ....types.enterprises.enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
-
-if TYPE_CHECKING:
-    from ....types.enterprises.reputation.agent_input_param import AgentInputParam
 
 __all__ = ["LoaResource", "AsyncLoaResource"]
 

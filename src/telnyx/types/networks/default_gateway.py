@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from ..record import Record
-
-if TYPE_CHECKING:
-    from ..interface_status import InterfaceStatus
+from ..interface_status import InterfaceStatus
 
 __all__ = ["DefaultGateway"]
 

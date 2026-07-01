@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -22,9 +22,6 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.sub_number_orders_report_create_response import SubNumberOrdersReportCreateResponse
 from ..types.sub_number_orders_report_retrieve_response import SubNumberOrdersReportRetrieveResponse
-
-if TYPE_CHECKING:
-    pass
 
 __all__ = ["SubNumberOrdersReportResource", "AsyncSubNumberOrdersReportResource"]
 

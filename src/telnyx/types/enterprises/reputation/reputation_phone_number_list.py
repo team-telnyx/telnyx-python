@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from typing import List
 
 from ...._models import BaseModel
 from .reputation_phone_number import ReputationPhoneNumber
-
-if TYPE_CHECKING:
-    from ...number_reputation_pagination_meta import NumberReputationPaginationMeta
+from ...number_reputation_pagination_meta import NumberReputationPaginationMeta
 
 __all__ = ["ReputationPhoneNumberList"]
 

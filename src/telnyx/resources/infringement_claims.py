@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterable
+from typing import Iterable
 
 import httpx
 
@@ -18,10 +18,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.document_param import DocumentParam
 from ..types.infringement_claim_wrapped import InfringementClaimWrapped
-
-if TYPE_CHECKING:
-    from ..types.document_param import DocumentParam
 
 __all__ = ["InfringementClaimsResource", "AsyncInfringementClaimsResource"]
 

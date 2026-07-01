@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..phone_number_blocks.job_error import JobError
-    from ..shared.phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber
+from ..phone_number_blocks.job_error import JobError
+from ..shared.phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber
 
 __all__ = ["PhoneNumbersJob", "FailedOperation", "PendingOperation", "SuccessfulOperation"]
 

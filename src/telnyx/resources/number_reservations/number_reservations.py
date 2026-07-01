@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterable
+from typing import Iterable
 
 import httpx
 
@@ -28,11 +28,9 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.number_reservation import NumberReservation
+from ...types.reserved_phone_number_param import ReservedPhoneNumberParam
 from ...types.number_reservation_create_response import NumberReservationCreateResponse
 from ...types.number_reservation_retrieve_response import NumberReservationRetrieveResponse
-
-if TYPE_CHECKING:
-    from ...types.reserved_phone_number_param import ReservedPhoneNumberParam
 
 __all__ = ["NumberReservationsResource", "AsyncNumberReservationsResource"]
 

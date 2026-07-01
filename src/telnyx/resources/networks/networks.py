@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import httpx
 
 from ...types import (
@@ -33,14 +31,12 @@ from .default_gateway import (
     DefaultGatewayResourceWithStreamingResponse,
     AsyncDefaultGatewayResourceWithStreamingResponse,
 )
+from ...types.network_create_param import NetworkCreateParam
 from ...types.network_create_response import NetworkCreateResponse
 from ...types.network_delete_response import NetworkDeleteResponse
 from ...types.network_update_response import NetworkUpdateResponse
 from ...types.network_retrieve_response import NetworkRetrieveResponse
 from ...types.network_list_interfaces_response import NetworkListInterfacesResponse
-
-if TYPE_CHECKING:
-    from ...types.network_create_param import NetworkCreateParam
 
 __all__ = ["NetworksResource", "AsyncNetworksResource"]
 

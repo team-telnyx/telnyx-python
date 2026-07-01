@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
-
-if TYPE_CHECKING:
-    from ..bucket_ids_param import BucketIDsParam
+from ..bucket_ids_param import BucketIDsParam
 
 __all__ = [
     "ChatCreateCompletionParams",

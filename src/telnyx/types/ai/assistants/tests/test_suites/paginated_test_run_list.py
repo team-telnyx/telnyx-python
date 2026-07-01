@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from typing import List
 
 from .meta import Meta
 from ......_models import BaseModel
-
-if TYPE_CHECKING:
-    from ..test_run_response import TestRunResponse
+from ..test_run_response import TestRunResponse
 
 __all__ = ["PaginatedTestRunList"]
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterable, Optional
+from typing import Iterable, Optional
 
 import httpx
 
@@ -115,20 +115,18 @@ from .phone_number_configurations import (
     PhoneNumberConfigurationsResourceWithStreamingResponse,
     AsyncPhoneNumberConfigurationsResourceWithStreamingResponse,
 )
+from ...types.porting_order_misc_param import PortingOrderMiscParam
+from ...types.porting_order_end_user_param import PortingOrderEndUserParam
 from ...types.porting_order_create_response import PortingOrderCreateResponse
+from ...types.porting_order_documents_param import PortingOrderDocumentsParam
 from ...types.porting_order_update_response import PortingOrderUpdateResponse
 from ...types.porting_order_retrieve_response import PortingOrderRetrieveResponse
+from ...types.porting_order_user_feedback_param import PortingOrderUserFeedbackParam
 from ...types.porting_order_retrieve_sub_request_response import PortingOrderRetrieveSubRequestResponse
 from ...types.porting_order_retrieve_requirements_response import PortingOrderRetrieveRequirementsResponse
+from ...types.porting_order_phone_number_configuration_param import PortingOrderPhoneNumberConfigurationParam
 from ...types.porting_order_retrieve_exception_types_response import PortingOrderRetrieveExceptionTypesResponse
 from ...types.porting_order_retrieve_allowed_foc_windows_response import PortingOrderRetrieveAllowedFocWindowsResponse
-
-if TYPE_CHECKING:
-    from ...types.porting_order_misc_param import PortingOrderMiscParam
-    from ...types.porting_order_end_user_param import PortingOrderEndUserParam
-    from ...types.porting_order_documents_param import PortingOrderDocumentsParam
-    from ...types.porting_order_user_feedback_param import PortingOrderUserFeedbackParam
-    from ...types.porting_order_phone_number_configuration_param import PortingOrderPhoneNumberConfigurationParam
 
 __all__ = ["PortingOrdersResource", "AsyncPortingOrdersResource"]
 

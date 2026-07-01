@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 import httpx
 
@@ -18,9 +18,6 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.ai.assistants import instruction_enhance_params
-
-if TYPE_CHECKING:
-    pass
 
 __all__ = ["InstructionsResource", "AsyncInstructionsResource"]
 

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..ai.assistant_param import AssistantParam
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .transcription_config_param import TranscriptionConfigParam
 from .interruption_settings_param import InterruptionSettingsParam
@@ -15,9 +16,6 @@ from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
-
-if TYPE_CHECKING:
-    from ..ai.assistant_param import AssistantParam
 
 __all__ = ["ActionGatherUsingAIParams", "MessageHistory", "VoiceSettings"]
 

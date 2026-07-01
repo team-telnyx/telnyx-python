@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Iterable
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
-
-if TYPE_CHECKING:
-    from ..filter_param import FilterParam
+from ..filter_param import FilterParam
 
 __all__ = ["MessagingCreateParams"]
 

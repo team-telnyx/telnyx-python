@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..porting_orders_activation_job import PortingOrdersActivationJob
+from ..porting_orders_activation_job import PortingOrdersActivationJob
 
 __all__ = ["ActionActivateResponse"]
 

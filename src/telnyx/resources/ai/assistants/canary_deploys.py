@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterable
+from typing import Iterable
 
 import httpx
 
@@ -18,10 +18,8 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.ai.assistants import canary_deploy_create_params, canary_deploy_update_params
+from ....types.ai.assistants.rule_input_param import RuleInputParam
 from ....types.ai.assistants.canary_deploy_response import CanaryDeployResponse
-
-if TYPE_CHECKING:
-    from ....types.ai.assistants.rule_input_param import RuleInputParam
 
 __all__ = ["CanaryDeploysResource", "AsyncCanaryDeploysResource"]
 

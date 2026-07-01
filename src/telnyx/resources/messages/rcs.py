@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -19,11 +18,9 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.messages import rc_send_params, rc_generate_deeplink_params
+from ...types.rcs_agent_message_param import RcsAgentMessageParam
 from ...types.messages.rc_send_response import RcSendResponse
 from ...types.messages.rc_generate_deeplink_response import RcGenerateDeeplinkResponse
-
-if TYPE_CHECKING:
-    from ...types.rcs_agent_message_param import RcsAgentMessageParam
 
 __all__ = ["RcsResource", "AsyncRcsResource"]
 

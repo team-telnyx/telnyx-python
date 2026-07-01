@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
@@ -25,9 +24,6 @@ from ...types.messaging_profiles import (
 )
 from ...types.messaging_profiles.auto_resp_config_response import AutoRespConfigResponse
 from ...types.messaging_profiles.autoresp_config_list_response import AutorespConfigListResponse
-
-if TYPE_CHECKING:
-    pass
 
 __all__ = ["AutorespConfigsResource", "AsyncAutorespConfigsResource"]
 

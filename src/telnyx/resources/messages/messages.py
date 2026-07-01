@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -41,6 +41,7 @@ from ...types.message_send_response import MessageSendResponse
 from ...types.message_retrieve_response import MessageRetrieveResponse
 from ...types.message_schedule_response import MessageScheduleResponse
 from ...types.message_send_whatsapp_response import MessageSendWhatsappResponse
+from ...types.whatsapp_message_content_param import WhatsappMessageContentParam
 from ...types.message_send_group_mms_response import MessageSendGroupMmsResponse
 from ...types.message_send_long_code_response import MessageSendLongCodeResponse
 from ...types.message_send_short_code_response import MessageSendShortCodeResponse
@@ -48,9 +49,6 @@ from ...types.message_cancel_scheduled_response import MessageCancelScheduledRes
 from ...types.message_send_number_pool_response import MessageSendNumberPoolResponse
 from ...types.message_retrieve_group_messages_response import MessageRetrieveGroupMessagesResponse
 from ...types.message_send_with_alphanumeric_sender_response import MessageSendWithAlphanumericSenderResponse
-
-if TYPE_CHECKING:
-    from ...types.whatsapp_message_content_param import WhatsappMessageContentParam
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 

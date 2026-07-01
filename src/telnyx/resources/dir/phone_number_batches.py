@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -20,10 +18,8 @@ from ...types.dir import DirPhoneNumberStatus, phone_number_batch_list_params
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dir.phone_number_batch import PhoneNumberBatch
+from ...types.dir.dir_phone_number_status import DirPhoneNumberStatus
 from ...types.dir.phone_number_batch_retrieve_response import PhoneNumberBatchRetrieveResponse
-
-if TYPE_CHECKING:
-    from ...types.dir.dir_phone_number_status import DirPhoneNumberStatus
 
 __all__ = ["PhoneNumberBatchesResource", "AsyncPhoneNumberBatchesResource"]
 

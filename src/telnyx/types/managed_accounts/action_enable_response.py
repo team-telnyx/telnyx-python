@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..managed_account import ManagedAccount
+from ..managed_account import ManagedAccount
 
 __all__ = ["ActionEnableResponse"]
 

@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from ...._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..organization_user import OrganizationUser
+from ..organization_user import OrganizationUser
 
 __all__ = ["ActionRemoveResponse"]
 

@@ -2,14 +2,12 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..shared.porting_order_status import PortingOrderStatus
+from ..shared.porting_order_status import PortingOrderStatus
 
 __all__ = ["PortingEventStatusChangedEvent", "Payload"]
 

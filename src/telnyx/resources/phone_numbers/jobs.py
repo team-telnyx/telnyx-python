@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -29,10 +29,8 @@ from ...types.phone_numbers.phone_numbers_job import PhoneNumbersJob
 from ...types.phone_numbers.job_retrieve_response import JobRetrieveResponse
 from ...types.phone_numbers.job_delete_batch_response import JobDeleteBatchResponse
 from ...types.phone_numbers.job_update_batch_response import JobUpdateBatchResponse
+from ...types.phone_numbers.update_voice_settings_param import UpdateVoiceSettingsParam
 from ...types.phone_numbers.job_update_emergency_settings_batch_response import JobUpdateEmergencySettingsBatchResponse
-
-if TYPE_CHECKING:
-    from ...types.phone_numbers.update_voice_settings_param import UpdateVoiceSettingsParam
 
 __all__ = ["JobsResource", "AsyncJobsResource"]
 

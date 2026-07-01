@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import TypeAlias, TypedDict
 
 from .tool_message_param import ToolMessageParam
@@ -14,15 +14,13 @@ from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .transcription_config_param import TranscriptionConfigParam
 from .interruption_settings_param import InterruptionSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
+from ..call_assistant_request_param import CallAssistantRequestParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from .ai_assistant_join_participant_param import AIAssistantJoinParticipantParam
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
-
-if TYPE_CHECKING:
-    from ..call_assistant_request_param import CallAssistantRequestParam
 
 __all__ = ["ActionStartAIAssistantParams", "MessageHistory", "VoiceSettings"]
 

@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 
 from ..._models import BaseModel
 from .portout_comment import PortoutComment
-
-if TYPE_CHECKING:
-    from ..shared.metadata import Metadata
+from ..shared.metadata import Metadata
 
 __all__ = ["CommentListResponse"]
 

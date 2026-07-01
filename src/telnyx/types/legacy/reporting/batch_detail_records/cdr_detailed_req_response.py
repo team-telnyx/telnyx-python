@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 
+from ..filter import Filter
 from ....._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..filter import Filter
 
 __all__ = ["CdrDetailedReqResponse"]
 

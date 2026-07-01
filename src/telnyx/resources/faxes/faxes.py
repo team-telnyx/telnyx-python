@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Mapping, cast
+from typing import Mapping, cast
 from typing_extensions import Literal
 
 import httpx
@@ -30,11 +30,9 @@ from ..._response import (
 from ...types.fax import Fax
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.quality import Quality
 from ...types.fax_create_response import FaxCreateResponse
 from ...types.fax_retrieve_response import FaxRetrieveResponse
-
-if TYPE_CHECKING:
-    from ...types.quality import Quality
 
 __all__ = ["FaxesResource", "AsyncFaxesResource"]
 

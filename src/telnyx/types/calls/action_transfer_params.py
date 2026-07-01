@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-if TYPE_CHECKING:
-    from ..sip_header_param import SipHeaderParam
-    from ..custom_sip_header_param import CustomSipHeaderParam
-    from ..sound_modifications_param import SoundModificationsParam
+from ..sip_header_param import SipHeaderParam
+from ..custom_sip_header_param import CustomSipHeaderParam
+from ..sound_modifications_param import SoundModificationsParam
 
 __all__ = ["ActionTransferParams", "AnsweringMachineDetectionConfig", "WebhookRetriesPolicies"]
 

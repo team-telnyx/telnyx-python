@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -20,10 +18,8 @@ from ...types.dir import CommentType, comment_list_params, comment_create_params
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dir.dir_comment import DirComment
+from ...types.dir.comment_type import CommentType
 from ...types.dir.comment_create_response import CommentCreateResponse
-
-if TYPE_CHECKING:
-    from ...types.dir.comment_type import CommentType
 
 __all__ = ["CommentsResource", "AsyncCommentsResource"]
 

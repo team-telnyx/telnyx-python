@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -34,22 +34,20 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.stream_codec import StreamCodec
+from ...types.sip_header_param import SipHeaderParam
 from ...types.call_dial_response import CallDialResponse
+from ...types.custom_sip_header_param import CustomSipHeaderParam
+from ...types.dialogflow_config_param import DialogflowConfigParam
+from ...types.sound_modifications_param import SoundModificationsParam
+from ...types.stream_bidirectional_mode import StreamBidirectionalMode
+from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
+from ...types.call_assistant_request_param import CallAssistantRequestParam
 from ...types.call_retrieve_status_response import CallRetrieveStatusResponse
-
-if TYPE_CHECKING:
-    from ...types.stream_codec import StreamCodec
-    from ...types.sip_header_param import SipHeaderParam
-    from ...types.custom_sip_header_param import CustomSipHeaderParam
-    from ...types.dialogflow_config_param import DialogflowConfigParam
-    from ...types.sound_modifications_param import SoundModificationsParam
-    from ...types.stream_bidirectional_mode import StreamBidirectionalMode
-    from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
-    from ...types.call_assistant_request_param import CallAssistantRequestParam
-    from ...types.stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
-    from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
-    from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
-    from ...types.conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
+from ...types.stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
+from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
+from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
+from ...types.conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 
 __all__ = ["CallsResource", "AsyncCallsResource"]
 

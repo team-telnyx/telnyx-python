@@ -2,14 +2,12 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..shared.messaging_feature_set import MessagingFeatureSet
+from ..shared.messaging_feature_set import MessagingFeatureSet
 
 __all__ = ["MobilePhoneNumberWithMessagingSettings", "Features"]
 

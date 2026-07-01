@@ -2,16 +2,14 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..rcs_to_item import RcsToItem
-    from ..rcs_agent_message import RcsAgentMessage
+from ..rcs_to_item import RcsToItem
+from ..rcs_agent_message import RcsAgentMessage
 
 __all__ = ["RcSendResponse", "Data", "DataFrom"]
 

@@ -8,9 +8,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..shared.api_error import APIError
+from ..shared.api_error import APIError
 
 __all__ = ["ActionValidateResponse", "Data", "DataSuggested"]
 

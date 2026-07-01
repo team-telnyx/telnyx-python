@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -27,17 +27,15 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.service_plan import ServicePlan
+from ..types.traffic_type import TrafficType
+from ..types.usage_payment_method import UsagePaymentMethod
 from ..types.outbound_voice_profile import OutboundVoiceProfile
+from ..types.outbound_call_recording_param import OutboundCallRecordingParam
 from ..types.outbound_voice_profile_create_response import OutboundVoiceProfileCreateResponse
 from ..types.outbound_voice_profile_delete_response import OutboundVoiceProfileDeleteResponse
 from ..types.outbound_voice_profile_update_response import OutboundVoiceProfileUpdateResponse
 from ..types.outbound_voice_profile_retrieve_response import OutboundVoiceProfileRetrieveResponse
-
-if TYPE_CHECKING:
-    from ..types.service_plan import ServicePlan
-    from ..types.traffic_type import TrafficType
-    from ..types.usage_payment_method import UsagePaymentMethod
-    from ..types.outbound_call_recording_param import OutboundCallRecordingParam
 
 __all__ = ["OutboundVoiceProfilesResource", "AsyncOutboundVoiceProfilesResource"]
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict
+from typing import Dict
 
 import httpx
 
@@ -58,11 +58,9 @@ from .knowledge_bases import (
     AsyncKnowledgeBasesResourceWithStreamingResponse,
 )
 from ....types.ai.mission_data import MissionData
+from ....types.ai.execution_mode import ExecutionMode
 from ....types.ai.mission_response import MissionResponse
 from ....types.ai.missions.runs.event_data import EventData
-
-if TYPE_CHECKING:
-    from ....types.ai.execution_mode import ExecutionMode
 
 __all__ = ["MissionsResource", "AsyncMissionsResource"]
 

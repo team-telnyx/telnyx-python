@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from ....._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..whatsapp_profile_data import WhatsappProfileData
+from ..whatsapp_profile_data import WhatsappProfileData
 
 __all__ = ["PhotoUploadResponse"]
 

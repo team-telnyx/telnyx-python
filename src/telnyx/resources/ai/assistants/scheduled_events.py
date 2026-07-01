@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Union, cast
+from typing import Any, Dict, Union, cast
 from datetime import datetime
 
 import httpx
@@ -25,11 +25,9 @@ from ....types.ai.assistants import (
     scheduled_event_create_params,
 )
 from ....types.ai.assistants.scheduled_event_response import ScheduledEventResponse
+from ....types.ai.assistants.conversation_channel_type import ConversationChannelType
+from ....types.ai.assistants.scheduled_call_settings_param import ScheduledCallSettingsParam
 from ....types.ai.assistants.scheduled_event_list_response import ScheduledEventListResponse
-
-if TYPE_CHECKING:
-    from ....types.ai.assistants.conversation_channel_type import ConversationChannelType
-    from ....types.ai.assistants.scheduled_call_settings_param import ScheduledCallSettingsParam
 
 __all__ = ["ScheduledEventsResource", "AsyncScheduledEventsResource"]
 

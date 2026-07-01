@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterable
+from typing import Iterable
 
 import httpx
 
@@ -24,13 +24,11 @@ from ...types.dir import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.document_param import DocumentParam
 from ...types.dir.dir_phone_number import DirPhoneNumber
+from ...types.dir.dir_phone_number_status import DirPhoneNumberStatus
 from ...types.dir.phone_number_add_response import PhoneNumberAddResponse
 from ...types.dir.phone_number_remove_response import PhoneNumberRemoveResponse
-
-if TYPE_CHECKING:
-    from ...types.document_param import DocumentParam
-    from ...types.dir.dir_phone_number_status import DirPhoneNumberStatus
 
 __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
 

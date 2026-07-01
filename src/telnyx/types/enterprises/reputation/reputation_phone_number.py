@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-
-if TYPE_CHECKING:
-    from ...shared.reputation_data import ReputationData
+from ...shared.reputation_data import ReputationData
 
 __all__ = ["ReputationPhoneNumber"]
 

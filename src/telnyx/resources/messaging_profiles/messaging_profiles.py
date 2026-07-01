@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -48,17 +48,15 @@ from .autoresp_configs import (
 from ...types.messaging_profile import MessagingProfile
 from ...types.shared.short_code import ShortCode
 from ...types.alphanumeric_sender_id import AlphanumericSenderID
+from ...types.number_pool_settings_param import NumberPoolSettingsParam
+from ...types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
+from ...types.url_shortener_settings_param import URLShortenerSettingsParam
 from ...types.messaging_profile_create_response import MessagingProfileCreateResponse
 from ...types.messaging_profile_delete_response import MessagingProfileDeleteResponse
 from ...types.messaging_profile_update_response import MessagingProfileUpdateResponse
 from ...types.messaging_profile_retrieve_response import MessagingProfileRetrieveResponse
 from ...types.messaging_profile_retrieve_metrics_response import MessagingProfileRetrieveMetricsResponse
 from ...types.shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
-
-if TYPE_CHECKING:
-    from ...types.number_pool_settings_param import NumberPoolSettingsParam
-    from ...types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
-    from ...types.url_shortener_settings_param import URLShortenerSettingsParam
 
 __all__ = ["MessagingProfilesResource", "AsyncMessagingProfilesResource"]
 

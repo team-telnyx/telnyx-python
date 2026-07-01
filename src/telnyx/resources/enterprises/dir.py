@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Iterable
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -22,12 +22,10 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dir.dir import Dir
+from ...types.dir_status import DirStatus
 from ...types.dir_wrapped import DirWrapped
 from ...types.enterprises import dir_list_params, dir_create_params
-
-if TYPE_CHECKING:
-    from ...types.dir_status import DirStatus
-    from ...types.document_param import DocumentParam
+from ...types.document_param import DocumentParam
 
 __all__ = ["DirResource", "AsyncDirResource"]
 

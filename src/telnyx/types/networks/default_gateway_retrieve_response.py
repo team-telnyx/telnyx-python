@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 
 from ..._models import BaseModel
 from .default_gateway import DefaultGateway
-
-if TYPE_CHECKING:
-    from ..pagination_meta import PaginationMeta
+from ..pagination_meta import PaginationMeta
 
 __all__ = ["DefaultGatewayRetrieveResponse"]
 

@@ -2,14 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
 from .conference_region import ConferenceRegion
-
-if TYPE_CHECKING:
-    from ..calls.loopcount_param import LoopcountParam
+from ..calls.loopcount_param import LoopcountParam
 
 __all__ = ["ActionPlayParams"]
 

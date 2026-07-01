@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import httpx
 
 from ..types import (
@@ -28,9 +26,6 @@ from ..types.telephony_credential_create_response import TelephonyCredentialCrea
 from ..types.telephony_credential_delete_response import TelephonyCredentialDeleteResponse
 from ..types.telephony_credential_update_response import TelephonyCredentialUpdateResponse
 from ..types.telephony_credential_retrieve_response import TelephonyCredentialRetrieveResponse
-
-if TYPE_CHECKING:
-    pass
 
 __all__ = ["TelephonyCredentialsResource", "AsyncTelephonyCredentialsResource"]
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict
+from typing import Dict
 
 import httpx
 
@@ -20,11 +20,9 @@ from .._response import (
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.room_composition import RoomComposition
+from ..types.video_region_param import VideoRegionParam
 from ..types.room_composition_create_response import RoomCompositionCreateResponse
 from ..types.room_composition_retrieve_response import RoomCompositionRetrieveResponse
-
-if TYPE_CHECKING:
-    from ..types.video_region_param import VideoRegionParam
 
 __all__ = ["RoomCompositionsResource", "AsyncRoomCompositionsResource"]
 

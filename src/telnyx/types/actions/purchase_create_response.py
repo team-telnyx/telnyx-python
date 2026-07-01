@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 
 from ..._models import BaseModel
-
-if TYPE_CHECKING:
-    from ..wireless_error import WirelessError
-    from ..shared.simple_sim_card import SimpleSimCard
+from ..wireless_error import WirelessError
+from ..shared.simple_sim_card import SimpleSimCard
 
 __all__ = ["PurchaseCreateResponse"]
 
