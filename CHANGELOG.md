@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.164.2 (2026-07-01)
+
+Full Changelog: [v4.164.1...v4.164.2](https://github.com/team-telnyx/telnyx-python/compare/v4.164.1...v4.164.2)
+
+### Chores
+
+* trigger release-please workflow ([e61c2d8](https://github.com/team-telnyx/telnyx-python/commit/e61c2d823a16d16dd5d265e48630b2afbd125019))
+
 ## 4.164.1 (2026-07-01)
 
 Full Changelog: [v4.164.0...v4.164.1](https://github.com/team-telnyx/telnyx-python/compare/v4.164.0...v4.164.1)
