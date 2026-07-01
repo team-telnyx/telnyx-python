@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.164.1 (2026-07-01)
+
+Full Changelog: [v4.164.0...v4.164.1](https://github.com/team-telnyx/telnyx-python/compare/v4.164.0...v4.164.1)
+
+### Bug Fixes
+
+* add head -1 to Release-As grep to prevent multi-line output breaking $GITHUB_OUTPUT ([3279a22](https://github.com/team-telnyx/telnyx-python/commit/3279a222e0ac6f3891ba37eb8fc22ea7864c47b3))
+
 ## 4.164.0 (2026-07-01)
 
 Full Changelog: [v4.163.1...v4.164.0](https://github.com/team-telnyx/telnyx-python/compare/v4.163.1...v4.164.0)
