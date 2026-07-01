@@ -12,6 +12,9 @@ else
   uv run ruff check .
 fi
 
+echo "==> Installing optional dependencies for type checking"
+uv sync --all-extras
+
 echo "==> Running pyright"
 uv run pyright
 

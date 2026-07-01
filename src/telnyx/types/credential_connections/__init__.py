@@ -2,6 +2,17 @@
 
 from __future__ import annotations
 
-from .action_check_registration_status_response import (
-    ActionCheckRegistrationStatusResponse as ActionCheckRegistrationStatusResponse,
-)
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from .action_check_registration_status_response import (
+        ActionCheckRegistrationStatusResponse as ActionCheckRegistrationStatusResponse,
+    )
+
+
+def __getattr__(name: str) -> Any:
+    if name == "ActionCheckRegistrationStatusResponse":
+        from .action_check_registration_status_response import ActionCheckRegistrationStatusResponse
+
+        return ActionCheckRegistrationStatusResponse
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

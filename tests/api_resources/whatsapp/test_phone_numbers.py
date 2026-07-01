@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.whatsapp import (
     PhoneNumberListResponse,
+    PhoneNumberRetrieveConversationWindowResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -148,6 +149,52 @@ class TestPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
             client.whatsapp.phone_numbers.with_raw_response.resend_verification(
                 phone_number="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_conversation_window(self, client: Telnyx) -> None:
+        phone_number = client.whatsapp.phone_numbers.retrieve_conversation_window(
+            phone_number="phone_number",
+            destination_number="+353894650851",
+        )
+        assert_matches_type(PhoneNumberRetrieveConversationWindowResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_conversation_window(self, client: Telnyx) -> None:
+        response = client.whatsapp.phone_numbers.with_raw_response.retrieve_conversation_window(
+            phone_number="phone_number",
+            destination_number="+353894650851",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        phone_number = response.parse()
+        assert_matches_type(PhoneNumberRetrieveConversationWindowResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_conversation_window(self, client: Telnyx) -> None:
+        with client.whatsapp.phone_numbers.with_streaming_response.retrieve_conversation_window(
+            phone_number="phone_number",
+            destination_number="+353894650851",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            phone_number = response.parse()
+            assert_matches_type(PhoneNumberRetrieveConversationWindowResponse, phone_number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_conversation_window(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
+            client.whatsapp.phone_numbers.with_raw_response.retrieve_conversation_window(
+                phone_number="",
+                destination_number="+353894650851",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -330,6 +377,52 @@ class TestAsyncPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
             await async_client.whatsapp.phone_numbers.with_raw_response.resend_verification(
                 phone_number="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_conversation_window(self, async_client: AsyncTelnyx) -> None:
+        phone_number = await async_client.whatsapp.phone_numbers.retrieve_conversation_window(
+            phone_number="phone_number",
+            destination_number="+353894650851",
+        )
+        assert_matches_type(PhoneNumberRetrieveConversationWindowResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_conversation_window(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.whatsapp.phone_numbers.with_raw_response.retrieve_conversation_window(
+            phone_number="phone_number",
+            destination_number="+353894650851",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        phone_number = await response.parse()
+        assert_matches_type(PhoneNumberRetrieveConversationWindowResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_conversation_window(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.whatsapp.phone_numbers.with_streaming_response.retrieve_conversation_window(
+            phone_number="phone_number",
+            destination_number="+353894650851",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            phone_number = await response.parse()
+            assert_matches_type(PhoneNumberRetrieveConversationWindowResponse, phone_number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_conversation_window(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
+            await async_client.whatsapp.phone_numbers.with_raw_response.retrieve_conversation_window(
+                phone_number="",
+                destination_number="+353894650851",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

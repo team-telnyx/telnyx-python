@@ -5414,7 +5414,10 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp import PhoneNumberListResponse
+from telnyx.types.whatsapp import (
+    PhoneNumberListResponse,
+    PhoneNumberRetrieveConversationWindowResponse,
+)
 ```
 
 Methods:
@@ -5422,6 +5425,7 @@ Methods:
 - <code title="get /v2/whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">delete</a>(phone_number) -> None</code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/resend_verification">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">resend_verification</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_resend_verification_params.py">params</a>) -> None</code>
+- <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversation_window">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">retrieve_conversation_window</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_retrieve_conversation_window_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_retrieve_conversation_window_response.py">PhoneNumberRetrieveConversationWindowResponse</a></code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/verify">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">verify</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_verify_params.py">params</a>) -> None</code>
 
 ### CallingSettings
@@ -5908,6 +5912,34 @@ Methods:
 - <code title="get /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">list</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/dir_phone_number.py">SyncDefaultFlatPagination[DirPhoneNumber]</a></code>
 - <code title="post /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">add</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_add_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_add_response.py">PhoneNumberAddResponse</a></code>
 - <code title="delete /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">remove</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_remove_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_remove_response.py">PhoneNumberRemoveResponse</a></code>
+
+## References
+
+Types:
+
+```python
+from telnyx.types.dir import Reference, ReferenceInput, ReferenceList, ReferenceUpdateResponse
+```
+
+Methods:
+
+- <code title="post /dir/{dir_id}/references">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">create</a>(dir_id, \*\*<a href="src/telnyx/types/dir/reference_create_params.py">params</a>) -> <a href="./src/telnyx/types/dir/reference_list.py">ReferenceList</a></code>
+- <code title="patch /dir/{dir_id}/references/{ref_type}/{slot}">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">update</a>(slot, \*, dir_id, ref_type, \*\*<a href="src/telnyx/types/dir/reference_update_params.py">params</a>) -> <a href="./src/telnyx/types/dir/reference_update_response.py">ReferenceUpdateResponse</a></code>
+- <code title="get /dir/{dir_id}/references">client.dir.references.<a href="./src/telnyx/resources/dir/references.py">list</a>(dir_id) -> <a href="./src/telnyx/types/dir/reference_list.py">ReferenceList</a></code>
+
+## VerifyEmail
+
+Types:
+
+```python
+from telnyx.types.dir import EmailVerificationStatusWrapped
+```
+
+Methods:
+
+- <code title="post /dir/{dir_id}/verify_email">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">create</a>(dir_id) -> <a href="./src/telnyx/types/dir/email_verification_status_wrapped.py">EmailVerificationStatusWrapped</a></code>
+- <code title="get /dir/{dir_id}/verify_email">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">list</a>(dir_id) -> <a href="./src/telnyx/types/dir/email_verification_status_wrapped.py">EmailVerificationStatusWrapped</a></code>
+- <code title="post /dir/{dir_id}/verify_email/confirm">client.dir.verify_email.<a href="./src/telnyx/resources/dir/verify_email.py">confirm</a>(dir_id, \*\*<a href="src/telnyx/types/dir/verify_email_confirm_params.py">params</a>) -> <a href="./src/telnyx/types/dir/email_verification_status_wrapped.py">EmailVerificationStatusWrapped</a></code>
 
 # InfringementClaims
 
