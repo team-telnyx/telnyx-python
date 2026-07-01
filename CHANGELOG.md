@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.165.0 (2026-07-01)
+
+Full Changelog: [v4.164.2...v4.165.0](https://github.com/team-telnyx/telnyx-python/compare/v4.164.2...v4.165.0)
+
+### Chores
+
+* promote from staging ad1bac4 ([485559c](https://github.com/team-telnyx/telnyx-python/commit/485559c262c62366db11e5862024538f04b99677))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
