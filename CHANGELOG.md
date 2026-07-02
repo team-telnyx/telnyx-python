@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.166.0 (2026-07-02)
+
+Full Changelog: [v4.165.0...v4.166.0](https://github.com/team-telnyx/telnyx-python/compare/v4.165.0...v4.166.0)
+
+### Chores
+
+* promote from staging ec25e68 ([eeb1454](https://github.com/team-telnyx/telnyx-python/commit/eeb1454a299fdf326d6178556b4726bedde9f423))
+* sync repo ([0d61f8c](https://github.com/team-telnyx/telnyx-python/commit/0d61f8cec6ce42eb9ca4416aa7b5f598c83d4fc0))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
