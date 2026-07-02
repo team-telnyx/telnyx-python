@@ -4353,6 +4353,41 @@ Methods:
 
 - <code title="post /storage/migrations/{id}/actions/stop">client.storage.migrations.actions.<a href="./src/telnyx/resources/storage/migrations/actions.py">stop</a>(id) -> <a href="./src/telnyx/types/storage/migrations/action_stop_response.py">ActionStopResponse</a></code>
 
+## Kvs
+
+Types:
+
+```python
+from telnyx.types.storage import (
+    KvCreateResponse,
+    KvRetrieveResponse,
+    KvListResponse,
+    KvDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /storage/kvs">client.storage.kvs.<a href="./src/telnyx/resources/storage/kvs/kvs.py">create</a>(\*\*<a href="src/telnyx/types/storage/kv_create_params.py">params</a>) -> <a href="./src/telnyx/types/storage/kv_create_response.py">KvCreateResponse</a></code>
+- <code title="get /storage/kvs/{id}">client.storage.kvs.<a href="./src/telnyx/resources/storage/kvs/kvs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/storage/kv_retrieve_response.py">KvRetrieveResponse</a></code>
+- <code title="get /storage/kvs">client.storage.kvs.<a href="./src/telnyx/resources/storage/kvs/kvs.py">list</a>(\*\*<a href="src/telnyx/types/storage/kv_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/kv_list_response.py">SyncDefaultFlatPagination[KvListResponse]</a></code>
+- <code title="delete /storage/kvs/{id}">client.storage.kvs.<a href="./src/telnyx/resources/storage/kvs/kvs.py">delete</a>(id) -> <a href="./src/telnyx/types/storage/kv_delete_response.py">KvDeleteResponse</a></code>
+
+### Keys
+
+Types:
+
+```python
+from telnyx.types.storage.kvs import KeyListResponse
+```
+
+Methods:
+
+- <code title="get /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">retrieve</a>(key, \*, id) -> BinaryAPIResponse</code>
+- <code title="get /storage/kvs/{id}/keys">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">list</a>(id, \*\*<a href="src/telnyx/types/storage/kvs/key_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/kvs/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">delete</a>(key, \*, id) -> None</code>
+- <code title="put /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">set</a>(key, \*, id, \*\*<a href="src/telnyx/types/storage/kvs/key_set_params.py">params</a>) -> None</code>
+
 # SubNumberOrders
 
 Types:
