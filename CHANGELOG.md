@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.166.0 (2026-07-02)
+
+Full Changelog: [v4.165.0...v4.166.0](https://github.com/team-telnyx/telnyx-python/compare/v4.165.0...v4.166.0)
+
+### Bug Fixes
+
+* add git clean -fdx to tree replacement step in release-please.yml ([#369](https://github.com/team-telnyx/telnyx-python/issues/369)) ([a02399e](https://github.com/team-telnyx/telnyx-python/commit/a02399ebab3db0de24c5c1a15b56f6dbbfb49b4a))
+* replace git merge with tree replacement in release-please.yml ([#366](https://github.com/team-telnyx/telnyx-python/issues/366)) ([69c7c42](https://github.com/team-telnyx/telnyx-python/commit/69c7c42142e05e4ecf5b53552b20ee20f8b7ec97))
+* use git reset --hard for tree replacement in release-please.yml ([#375](https://github.com/team-telnyx/telnyx-python/issues/375)) ([d6801f1](https://github.com/team-telnyx/telnyx-python/commit/d6801f1f031ea02be8d70d9d82c06c7eff6aa880))
+* use SDK_WRITE_TOKEN in check-release-environment ([#372](https://github.com/team-telnyx/telnyx-python/issues/372)) ([6c3aed9](https://github.com/team-telnyx/telnyx-python/commit/6c3aed97d03f47ae02683b2c5204ab1dfe4dd8cc))
+
+
+### Chores
+
+* promote from staging ec25e68 ([1819e5f](https://github.com/team-telnyx/telnyx-python/commit/1819e5f6181bfbebc957b24074e6e8b5491d94df))
+* sync repo ([5bce5b0](https://github.com/team-telnyx/telnyx-python/commit/5bce5b060bd9384998732b03a98bbe16422e3fe8))
+* trigger release-please workflow ([e0ca548](https://github.com/team-telnyx/telnyx-python/commit/e0ca5489ff26bb95db30dadb56d41a86dd590ec3))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
