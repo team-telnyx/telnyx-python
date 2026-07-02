@@ -31,7 +31,10 @@ class DirUpdateInfringementParams(TypedDict, total=False):
     display_name: Optional[str]
 
     documents: Optional[Iterable[Document]]
-    """Append-only supporting documents."""
+    """Append-only supporting documents to attach while resolving the claim (e.g.
+
+    authorization or licensing proof).
+    """
 
     logo_url: Optional[str]
     """Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB)."""

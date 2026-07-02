@@ -130,7 +130,7 @@ class DirResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return DirResourceWithRawResponse(self)
 
@@ -139,7 +139,7 @@ class DirResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return DirResourceWithStreamingResponse(self)
 
@@ -643,7 +643,8 @@ class DirResource(SyncAPIResource):
 
           infringement_resolution_notes: Explanation of how the infringement concern was addressed.
 
-          documents: Append-only supporting documents.
+          documents: Append-only supporting documents to attach while resolving the claim (e.g.
+              authorization or licensing proof).
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
@@ -724,7 +725,7 @@ class AsyncDirResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncDirResourceWithRawResponse(self)
 
@@ -733,7 +734,7 @@ class AsyncDirResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncDirResourceWithStreamingResponse(self)
 
@@ -1239,7 +1240,8 @@ class AsyncDirResource(AsyncAPIResource):
 
           infringement_resolution_notes: Explanation of how the infringement concern was addressed.
 
-          documents: Append-only supporting documents.
+          documents: Append-only supporting documents to attach while resolving the claim (e.g.
+              authorization or licensing proof).
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 

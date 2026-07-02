@@ -24,6 +24,12 @@ class DirCreateParams(TypedDict, total=False):
     Must be a real individual (used for audit and trademark-claim contests).
     """
 
+    call_reasons: Required[SequenceNotStr[str]]
+    """1–10 reasons your business calls customers.
+
+    Validate phrasing against `POST /call_reasons/validate`.
+    """
+
     certify_brand_is_accurate: Required[Literal[True]]
     """Must be `true`."""
 
@@ -39,12 +45,6 @@ class DirCreateParams(TypedDict, total=False):
 
     display_name: Required[str]
     """Name shown to call recipients. No emoji; not whitespace-only."""
-
-    call_reasons: SequenceNotStr[str]
-    """1–10 reasons your business calls customers.
-
-    Validate phrasing against `POST /call_reasons/validate`.
-    """
 
     documents: Iterable[Document]
     """Supporting documents. Each `document_id` may appear at most once on a DIR."""

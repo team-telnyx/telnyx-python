@@ -38,7 +38,7 @@ class DirResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return DirResourceWithRawResponse(self)
 
@@ -47,7 +47,7 @@ class DirResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return DirResourceWithStreamingResponse(self)
 
@@ -57,11 +57,11 @@ class DirResource(SyncAPIResource):
         *,
         authorizer_email: str,
         authorizer_name: str,
+        call_reasons: SequenceNotStr[str],
         certify_brand_is_accurate: Literal[True],
         certify_ip_ownership: Literal[True],
         certify_no_shaft_content: Literal[True],
         display_name: str,
-        call_reasons: SequenceNotStr[str] | Omit = omit,
         documents: Iterable[dir_create_params.Document] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
@@ -107,6 +107,9 @@ class DirResource(SyncAPIResource):
           authorizer_name: Name of the person at your enterprise who is authorizing this DIR registration.
               Must be a real individual (used for audit and trademark-claim contests).
 
+          call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
+              `POST /call_reasons/validate`.
+
           certify_brand_is_accurate: Must be `true`.
 
           certify_ip_ownership: Must be `true`. Confirms ownership of any logos/trademarks shown.
@@ -115,9 +118,6 @@ class DirResource(SyncAPIResource):
               Alcohol, Firearms, Tobacco) where prohibited.
 
           display_name: Name shown to call recipients. No emoji; not whitespace-only.
-
-          call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
-              `POST /call_reasons/validate`.
 
           documents: Supporting documents. Each `document_id` may appear at most once on a DIR.
 
@@ -142,11 +142,11 @@ class DirResource(SyncAPIResource):
                 {
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
+                    "call_reasons": call_reasons,
                     "certify_brand_is_accurate": certify_brand_is_accurate,
                     "certify_ip_ownership": certify_ip_ownership,
                     "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
-                    "call_reasons": call_reasons,
                     "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
@@ -290,7 +290,7 @@ class AsyncDirResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncDirResourceWithRawResponse(self)
 
@@ -299,7 +299,7 @@ class AsyncDirResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncDirResourceWithStreamingResponse(self)
 
@@ -309,11 +309,11 @@ class AsyncDirResource(AsyncAPIResource):
         *,
         authorizer_email: str,
         authorizer_name: str,
+        call_reasons: SequenceNotStr[str],
         certify_brand_is_accurate: Literal[True],
         certify_ip_ownership: Literal[True],
         certify_no_shaft_content: Literal[True],
         display_name: str,
-        call_reasons: SequenceNotStr[str] | Omit = omit,
         documents: Iterable[dir_create_params.Document] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
@@ -359,6 +359,9 @@ class AsyncDirResource(AsyncAPIResource):
           authorizer_name: Name of the person at your enterprise who is authorizing this DIR registration.
               Must be a real individual (used for audit and trademark-claim contests).
 
+          call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
+              `POST /call_reasons/validate`.
+
           certify_brand_is_accurate: Must be `true`.
 
           certify_ip_ownership: Must be `true`. Confirms ownership of any logos/trademarks shown.
@@ -367,9 +370,6 @@ class AsyncDirResource(AsyncAPIResource):
               Alcohol, Firearms, Tobacco) where prohibited.
 
           display_name: Name shown to call recipients. No emoji; not whitespace-only.
-
-          call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
-              `POST /call_reasons/validate`.
 
           documents: Supporting documents. Each `document_id` may appear at most once on a DIR.
 
@@ -394,11 +394,11 @@ class AsyncDirResource(AsyncAPIResource):
                 {
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
+                    "call_reasons": call_reasons,
                     "certify_brand_is_accurate": certify_brand_is_accurate,
                     "certify_ip_ownership": certify_ip_ownership,
                     "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
-                    "call_reasons": call_reasons,
                     "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
