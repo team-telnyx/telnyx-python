@@ -85,19 +85,33 @@ jobs:
             echo "prs_created=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Merge next code into release PR
+      - name: Sync next code into release PR (tree replacement, not merge)
         if: github.ref == 'refs/heads/next'
         env:
           GH_TOKEN: ${{ secrets.SDK_WRITE_TOKEN }}
           REPO: ${{ github.repository }}
           PR_NUM: ${{ steps.release-pr.outputs.pr_number }}
         run: |
+          # release-please creates a PR with only version bumps (CHANGELOG,
+          # pyproject.toml, _version.py, CHANGELOG.md, .release-please-manifest.json).
+          # The actual SDK code changes are on `next` but NOT included in the
+          # release PR. This step syncs `next` code into the release PR branch.
+          #
+          # CRITICAL: We use tree replacement (checkout + restore version files)
+          # instead of git merge. A 3-way merge produces duplicate method
+          # implementations when staging and prod have different method ordering
+          # (git sees them as non-conflicting additions and keeps both copies).
+          # Tree replacement avoids this entirely — the code tree comes from
+          # `next` as-is, and only the version-bump files from release-please
+          # are preserved on top.
+
           PR_BRANCH=""
           if [ -n "$PR_NUM" ]; then
-            sleep 3
+            sleep 3  # brief propagation delay
             PR_BRANCH=$(gh pr view "$PR_NUM" --repo "$REPO" --json headRefName --jq '.headRefName' 2>/dev/null || true)
           fi
 
+          # Fallback: query by label with retry
           if [ -z "$PR_BRANCH" ]; then
             for i in 1 2 3; do
               PR_BRANCH=$(gh pr list --repo "$REPO" --state open --label "autorelease: pending" --json headRefName --jq '.[0].headRefName' 2>/dev/null || true)
@@ -108,7 +122,7 @@ jobs:
           fi
 
           if [ -z "$PR_BRANCH" ]; then
-            echo "::warning::No open release PR found after retries, skipping merge"
+            echo "::warning::No open release PR found after retries, skipping sync"
             exit 0
           fi
 
@@ -119,35 +133,37 @@ jobs:
           git fetch origin "$PR_BRANCH" next
           git checkout -B "$PR_BRANCH" "origin/$PR_BRANCH"
 
-          # Snapshot the release-please branch state BEFORE merging next.
-          # The -X theirs merge brings in generated code from staging (next),
-          # but it also overwrites version files that release-please just bumped
-          # (pyproject.toml, _version.py, CHANGELOG.md) with staging's older
-          # values. We restore these from the pre-merge commit after the merge.
-          PRE_MERGE=$(git rev-parse HEAD)
-
-          if git merge origin/next --no-edit -X theirs; then
-            # Restore release-please's version files that the -X theirs merge
-            # overwrote with staging's older versions. These files are owned by
-            # release-please, not by the staging generation pipeline.
-            RESTORE_FILES=("pyproject.toml" "src/telnyx/_version.py" "CHANGELOG.md")
-            for rf in "${RESTORE_FILES[@]}"; do
-              if git show "${PRE_MERGE}:$rf" > "$rf" 2>/dev/null; then
-                git add -- "$rf"
-                echo "Restored $rf from pre-merge (release-please version)"
-              fi
-            done
-            if ! git diff --cached --quiet; then
-              git commit --amend --no-edit
+          # Save version-bump files from the release PR branch (release-please output)
+          STASH_DIR=$(mktemp -d)
+          for f in CHANGELOG.md pyproject.toml src/telnyx/_version.py .release-please-manifest.json; do
+            if [ -f "$f" ]; then
+              mkdir -p "$STASH_DIR/$(dirname "$f")"
+              cp "$f" "$STASH_DIR/$f"
             fi
-            git push origin "$PR_BRANCH"
-            echo "Successfully merged next into release PR branch"
-          else
-            echo "::error::Failed to merge next into release PR"
-            git merge --abort
-            exit 1
-          fi
+          done
 
+          # Replace entire working tree from next (exact tree, no merge)
+          git checkout origin/next -- .
+          git add -A
+
+          # Restore version-bump files from the release PR branch
+          for f in CHANGELOG.md pyproject.toml src/telnyx/_version.py .release-please-manifest.json; do
+            if [ -f "$STASH_DIR/$f" ]; then
+              mkdir -p "$(dirname "$f")"
+              cp "$STASH_DIR/$f" "$f"
+              git add "$f"
+            fi
+          done
+          rm -rf "$STASH_DIR"
+
+          # Commit if there are changes
+          if git diff --cached --quiet; then
+            echo "No changes after syncing next code"
+          else
+            git commit -m "chore: sync code from next into release PR"
+            git push origin "$PR_BRANCH"
+            echo "Successfully synced next code into release PR branch (tree replacement)"
+          fi
       - name: Run release-please (github-release)
         if: github.ref == 'refs/heads/master'
         run: |
