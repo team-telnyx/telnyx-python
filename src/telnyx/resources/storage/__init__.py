@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .kvs import (
+    KvsResource,
+    AsyncKvsResource,
+    KvsResourceWithRawResponse,
+    AsyncKvsResourceWithRawResponse,
+    KvsResourceWithStreamingResponse,
+    AsyncKvsResourceWithStreamingResponse,
+)
 from .buckets import (
     BucketsResource,
     AsyncBucketsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncMigrationsResourceWithRawResponse",
     "MigrationsResourceWithStreamingResponse",
     "AsyncMigrationsResourceWithStreamingResponse",
+    "KvsResource",
+    "AsyncKvsResource",
+    "KvsResourceWithRawResponse",
+    "AsyncKvsResourceWithRawResponse",
+    "KvsResourceWithStreamingResponse",
+    "AsyncKvsResourceWithStreamingResponse",
     "StorageResource",
     "AsyncStorageResource",
     "StorageResourceWithRawResponse",
