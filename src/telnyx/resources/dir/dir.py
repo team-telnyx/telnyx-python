@@ -632,7 +632,8 @@ class DirResource(SyncAPIResource):
 
           infringement_resolution_notes: Explanation of how the infringement concern was addressed.
 
-          documents: Append-only supporting documents.
+          documents: Append-only supporting documents to attach while resolving the claim (e.g.
+              authorization or licensing proof).
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
@@ -1214,7 +1215,8 @@ class AsyncDirResource(AsyncAPIResource):
 
           infringement_resolution_notes: Explanation of how the infringement concern was addressed.
 
-          documents: Append-only supporting documents.
+          documents: Append-only supporting documents to attach while resolving the claim (e.g.
+              authorization or licensing proof).
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
