@@ -30,7 +30,7 @@ class BillingBundlesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return BillingBundlesResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class BillingBundlesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
         """
         return BillingBundlesResourceWithStreamingResponse(self)
 
@@ -143,7 +143,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncBillingBundlesResourceWithRawResponse(self)
 
@@ -152,7 +152,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
         """
         return AsyncBillingBundlesResourceWithStreamingResponse(self)
 
