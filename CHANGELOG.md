@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.166.0](https://github.com/team-telnyx/telnyx-python/compare/v4.165.0...v4.166.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* replace git merge with tree replacement in release-please.yml ([#366](https://github.com/team-telnyx/telnyx-python/issues/366)) ([69c7c42](https://github.com/team-telnyx/telnyx-python/commit/69c7c42142e05e4ecf5b53552b20ee20f8b7ec97))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
