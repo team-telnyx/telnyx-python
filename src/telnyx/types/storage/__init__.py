@@ -4,16 +4,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
+from .kv_list_params import KvListParams as KvListParams
+from .kv_create_params import KvCreateParams as KvCreateParams
 from .migration_create_params import MigrationCreateParams as MigrationCreateParams
 from .migration_source_create_params import MigrationSourceCreateParams as MigrationSourceCreateParams
 from .bucket_create_presigned_url_params import BucketCreatePresignedURLParams as BucketCreatePresignedURLParams
 
 if TYPE_CHECKING:
+    from .kv_namespace import KvNamespace as KvNamespace
     from .migration_params import MigrationParams as MigrationParams
     from .migration_list_response import MigrationListResponse as MigrationListResponse
     from .migration_source_params import MigrationSourceParams as MigrationSourceParams
     from .migration_create_response import MigrationCreateResponse as MigrationCreateResponse
     from .migration_retrieve_response import MigrationRetrieveResponse as MigrationRetrieveResponse
+    from .kv_namespace_response_wrapper import KvNamespaceResponseWrapper as KvNamespaceResponseWrapper
     from .migration_source_list_response import MigrationSourceListResponse as MigrationSourceListResponse
     from .migration_source_create_response import MigrationSourceCreateResponse as MigrationSourceCreateResponse
     from .migration_source_delete_response import MigrationSourceDeleteResponse as MigrationSourceDeleteResponse
@@ -64,4 +68,12 @@ def __getattr__(name: str) -> Any:
         from .migration_list_response import MigrationListResponse
 
         return MigrationListResponse
+    if name == "KvNamespace":
+        from .kv_namespace import KvNamespace
+
+        return KvNamespace
+    if name == "KvNamespaceResponseWrapper":
+        from .kv_namespace_response_wrapper import KvNamespaceResponseWrapper
+
+        return KvNamespaceResponseWrapper
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
