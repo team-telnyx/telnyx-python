@@ -4,6 +4,14 @@ from __future__ import annotations
 
 import httpx
 
+from .kvs.kvs import (
+    KvsResource,
+    AsyncKvsResource,
+    KvsResourceWithRawResponse,
+    AsyncKvsResourceWithRawResponse,
+    KvsResourceWithStreamingResponse,
+    AsyncKvsResourceWithStreamingResponse,
+)
 from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -62,6 +70,11 @@ class StorageResource(SyncAPIResource):
         return MigrationsResource(self._client)
 
     @cached_property
+    def kvs(self) -> KvsResource:
+        """Manage KV storage namespaces"""
+        return KvsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> StorageResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -117,6 +130,11 @@ class AsyncStorageResource(AsyncAPIResource):
     def migrations(self) -> AsyncMigrationsResource:
         """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationsResource(self._client)
+
+    @cached_property
+    def kvs(self) -> AsyncKvsResource:
+        """Manage KV storage namespaces"""
+        return AsyncKvsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncStorageResourceWithRawResponse:
@@ -180,6 +198,11 @@ class StorageResourceWithRawResponse:
         """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationsResourceWithRawResponse(self._storage.migrations)
 
+    @cached_property
+    def kvs(self) -> KvsResourceWithRawResponse:
+        """Manage KV storage namespaces"""
+        return KvsResourceWithRawResponse(self._storage.kvs)
+
 
 class AsyncStorageResourceWithRawResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
@@ -203,6 +226,11 @@ class AsyncStorageResourceWithRawResponse:
     def migrations(self) -> AsyncMigrationsResourceWithRawResponse:
         """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationsResourceWithRawResponse(self._storage.migrations)
+
+    @cached_property
+    def kvs(self) -> AsyncKvsResourceWithRawResponse:
+        """Manage KV storage namespaces"""
+        return AsyncKvsResourceWithRawResponse(self._storage.kvs)
 
 
 class StorageResourceWithStreamingResponse:
@@ -228,6 +256,11 @@ class StorageResourceWithStreamingResponse:
         """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationsResourceWithStreamingResponse(self._storage.migrations)
 
+    @cached_property
+    def kvs(self) -> KvsResourceWithStreamingResponse:
+        """Manage KV storage namespaces"""
+        return KvsResourceWithStreamingResponse(self._storage.kvs)
+
 
 class AsyncStorageResourceWithStreamingResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
@@ -251,3 +284,8 @@ class AsyncStorageResourceWithStreamingResponse:
     def migrations(self) -> AsyncMigrationsResourceWithStreamingResponse:
         """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationsResourceWithStreamingResponse(self._storage.migrations)
+
+    @cached_property
+    def kvs(self) -> AsyncKvsResourceWithStreamingResponse:
+        """Manage KV storage namespaces"""
+        return AsyncKvsResourceWithStreamingResponse(self._storage.kvs)
