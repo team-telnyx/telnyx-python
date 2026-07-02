@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.166.0](https://github.com/team-telnyx/telnyx-python/compare/v4.165.0...v4.166.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* add git clean -fdx to tree replacement step in release-please.yml ([#369](https://github.com/team-telnyx/telnyx-python/issues/369)) ([a02399e](https://github.com/team-telnyx/telnyx-python/commit/a02399ebab3db0de24c5c1a15b56f6dbbfb49b4a))
+* replace git merge with tree replacement in release-please.yml ([#366](https://github.com/team-telnyx/telnyx-python/issues/366)) ([69c7c42](https://github.com/team-telnyx/telnyx-python/commit/69c7c42142e05e4ecf5b53552b20ee20f8b7ec97))
+* use SDK_WRITE_TOKEN in check-release-environment ([#372](https://github.com/team-telnyx/telnyx-python/issues/372)) ([6c3aed9](https://github.com/team-telnyx/telnyx-python/commit/6c3aed97d03f47ae02683b2c5204ab1dfe4dd8cc))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
