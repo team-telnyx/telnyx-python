@@ -143,12 +143,12 @@ jobs:
           done
 
           # Replace entire working tree from next (exact tree, no merge)
-          # git rm handles deletions (files removed in next but still in this branch)
+          # git reset --hard atomically replaces index + working tree from origin/next,
+          # avoiding the empty-index pathspec resolution bug that made
+          # "git rm -rf . && git checkout origin/next -- ." a no-op.
           # git clean removes untracked files (node_modules created by npx release-please)
-          git rm -rf . 2>/dev/null || true
-          git checkout origin/next -- .
+          git reset --hard origin/next
           git clean -fdx
-          git add -A
 
           # Restore version-bump files from the release PR branch
           for f in CHANGELOG.md pyproject.toml src/telnyx/_version.py .release-please-manifest.json; do
