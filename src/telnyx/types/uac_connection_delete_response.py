@@ -129,6 +129,12 @@ class DataInbound(BaseModel):
     sip_compact_headers_enabled: Optional[bool] = None
     """Defaults to true."""
 
+    sip_region: Optional[Literal["US", "Europe", "Australia"]] = None
+    """Selects which `sip_region` to receive inbound calls from.
+
+    If null, the default region (US) will be used.
+    """
+
     sip_subdomain: Optional[str] = None
     """The Telnyx-generated SIP subdomain for this UAC connection."""
 
