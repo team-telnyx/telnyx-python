@@ -4,16 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ...._types import FileTypes
-
 __all__ = ["KeyUpdateParams"]
 
 
 class KeyUpdateParams(TypedDict, total=False):
     id: Required[str]
-
-    body: Required[FileTypes]
-    """Raw value bytes, stored verbatim."""
 
     ttl_secs: int
     """Time-to-live in seconds.

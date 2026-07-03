@@ -17,6 +17,7 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
+from telnyx.pagination import SyncCursorFlatPagination, AsyncCursorFlatPagination
 from telnyx.types.storage.kvs import KeyListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -96,8 +97,8 @@ class TestKeys:
     def test_method_update(self, client: Telnyx) -> None:
         key = client.storage.kvs.keys.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert key is None
 
@@ -106,8 +107,8 @@ class TestKeys:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         key = client.storage.kvs.keys.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ttl_secs=1,
         )
         assert key is None
@@ -117,8 +118,8 @@ class TestKeys:
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.storage.kvs.keys.with_raw_response.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -131,8 +132,8 @@ class TestKeys:
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.storage.kvs.keys.with_streaming_response.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,15 +149,15 @@ class TestKeys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.storage.kvs.keys.with_raw_response.update(
                 key="key",
-                id="",
                 body=b"Example data",
+                id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.storage.kvs.keys.with_raw_response.update(
                 key="",
-                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 body=b"Example data",
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -165,7 +166,7 @@ class TestKeys:
         key = client.storage.kvs.keys.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -176,7 +177,7 @@ class TestKeys:
             limit=1,
             prefix="prefix",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -188,7 +189,7 @@ class TestKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -200,7 +201,7 @@ class TestKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
+            assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,8 +342,8 @@ class TestAsyncKeys:
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         key = await async_client.storage.kvs.keys.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert key is None
 
@@ -351,8 +352,8 @@ class TestAsyncKeys:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         key = await async_client.storage.kvs.keys.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ttl_secs=1,
         )
         assert key is None
@@ -362,8 +363,8 @@ class TestAsyncKeys:
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.kvs.keys.with_raw_response.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -376,8 +377,8 @@ class TestAsyncKeys:
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.kvs.keys.with_streaming_response.update(
             key="key",
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=b"Example data",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -393,15 +394,15 @@ class TestAsyncKeys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.storage.kvs.keys.with_raw_response.update(
                 key="key",
-                id="",
                 body=b"Example data",
+                id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.storage.kvs.keys.with_raw_response.update(
                 key="",
-                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 body=b"Example data",
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -410,7 +411,7 @@ class TestAsyncKeys:
         key = await async_client.storage.kvs.keys.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -421,7 +422,7 @@ class TestAsyncKeys:
             limit=1,
             prefix="prefix",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -433,7 +434,7 @@ class TestAsyncKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = await response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -445,7 +446,7 @@ class TestAsyncKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = await response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
+            assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

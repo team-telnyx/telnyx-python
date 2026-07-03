@@ -2,9 +2,24 @@
 
 from __future__ import annotations
 
+import os
+
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, FileTypes, omit, not_given
+from ...._files import read_file_content, async_read_file_content
+from ...._types import (
+    Body,
+    Omit,
+    Query,
+    Headers,
+    NoneType,
+    NotGiven,
+    BinaryTypes,
+    FileContent,
+    AsyncBinaryTypes,
+    omit,
+    not_given,
+)
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -22,7 +37,8 @@ from ...._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncCursorFlatPagination, AsyncCursorFlatPagination
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.storage.kvs import key_list_params, key_update_params
 from ....types.storage.kvs.key_list_response import KeyListResponse
 
@@ -82,7 +98,7 @@ class KeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
             path_template("/storage/kvs/{id}/keys/{key}", id=id, key=key),
             options=make_request_options(
@@ -94,9 +110,9 @@ class KeysResource(SyncAPIResource):
     def update(
         self,
         key: str,
+        body: FileContent | BinaryTypes,
         *,
         id: str,
-        body: FileTypes,
         ttl_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -132,9 +148,10 @@ class KeysResource(SyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers["Content-Type"] = "application/octet-stream"
         return self._put(
             path_template("/storage/kvs/{id}/keys/{key}", id=id, key=key),
-            body=maybe_transform(body, key_update_params.KeyUpdateParams),
+            content=read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,7 +175,7 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KeyListResponse:
+    ) -> SyncCursorFlatPagination[KeyListResponse]:
         """Lists the keys in a namespace.
 
         Returns key names and metadata only, never
@@ -181,8 +198,9 @@ class KeysResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/storage/kvs/{id}/keys", id=id),
+            page=SyncCursorFlatPagination[KeyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -197,7 +215,7 @@ class KeysResource(SyncAPIResource):
                     key_list_params.KeyListParams,
                 ),
             ),
-            cast_to=KeyListResponse,
+            model=KeyListResponse,
         )
 
     def delete(
@@ -293,7 +311,7 @@ class AsyncKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
             path_template("/storage/kvs/{id}/keys/{key}", id=id, key=key),
             options=make_request_options(
@@ -305,9 +323,9 @@ class AsyncKeysResource(AsyncAPIResource):
     async def update(
         self,
         key: str,
+        body: FileContent | AsyncBinaryTypes,
         *,
         id: str,
-        body: FileTypes,
         ttl_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -343,9 +361,10 @@ class AsyncKeysResource(AsyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers["Content-Type"] = "application/octet-stream"
         return await self._put(
             path_template("/storage/kvs/{id}/keys/{key}", id=id, key=key),
-            body=await async_maybe_transform(body, key_update_params.KeyUpdateParams),
+            content=await async_read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -356,7 +375,7 @@ class AsyncKeysResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def list(
+    def list(
         self,
         id: str,
         *,
@@ -369,7 +388,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KeyListResponse:
+    ) -> AsyncPaginator[KeyListResponse, AsyncCursorFlatPagination[KeyListResponse]]:
         """Lists the keys in a namespace.
 
         Returns key names and metadata only, never
@@ -392,14 +411,15 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/storage/kvs/{id}/keys", id=id),
+            page=AsyncCursorFlatPagination[KeyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "cursor": cursor,
                         "limit": limit,
@@ -408,7 +428,7 @@ class AsyncKeysResource(AsyncAPIResource):
                     key_list_params.KeyListParams,
                 ),
             ),
-            cast_to=KeyListResponse,
+            model=KeyListResponse,
         )
 
     async def delete(

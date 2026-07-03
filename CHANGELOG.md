@@ -1,15 +1,16 @@
 # Changelog
 
-## [4.166.0](https://github.com/team-telnyx/telnyx-python/compare/v4.165.0...v4.166.0) (2026-07-02)
+## 4.167.0 (2026-07-03)
 
+Full Changelog: [v4.166.0...v4.167.0](https://github.com/team-telnyx/telnyx-python/compare/v4.166.0...v4.167.0)
 
-### Bug Fixes
+### Chores
 
-* add git clean -fdx to tree replacement step in release-please.yml ([#369](https://github.com/team-telnyx/telnyx-python/issues/369)) ([a02399e](https://github.com/team-telnyx/telnyx-python/commit/a02399ebab3db0de24c5c1a15b56f6dbbfb49b4a))
-* force-push sync and fix PR URL regex in release-please.yml ([#380](https://github.com/team-telnyx/telnyx-python/issues/380)) ([6e9984a](https://github.com/team-telnyx/telnyx-python/commit/6e9984ab36b2a2b3acd55fa30b590209874bdf7c))
-* replace git merge with tree replacement in release-please.yml ([#366](https://github.com/team-telnyx/telnyx-python/issues/366)) ([69c7c42](https://github.com/team-telnyx/telnyx-python/commit/69c7c42142e05e4ecf5b53552b20ee20f8b7ec97))
-* use git reset --hard for tree replacement in release-please.yml ([#375](https://github.com/team-telnyx/telnyx-python/issues/375)) ([d6801f1](https://github.com/team-telnyx/telnyx-python/commit/d6801f1f031ea02be8d70d9d82c06c7eff6aa880))
-* use SDK_WRITE_TOKEN in check-release-environment ([#372](https://github.com/team-telnyx/telnyx-python/issues/372)) ([6c3aed9](https://github.com/team-telnyx/telnyx-python/commit/6c3aed97d03f47ae02683b2c5204ab1dfe4dd8cc))
+* promote from staging 0025ac2 ([39a4b5e](https://github.com/team-telnyx/telnyx-python/commit/39a4b5e5412b282f23b161b3d58bb9977c3c12c4))
+* promote from staging 0f3fa65 ([8aac0fe](https://github.com/team-telnyx/telnyx-python/commit/8aac0fef14e4d566eb99cf508e1d9fa492ccb8f2))
+* promote from staging a77e469 ([f8ab201](https://github.com/team-telnyx/telnyx-python/commit/f8ab201a41fe6b0a8f043b6ce5b33f4763340ecb))
+* promote from staging bb0ac19 ([6934fa5](https://github.com/team-telnyx/telnyx-python/commit/6934fa58cf61ae58ade1c05722257090365ef4f1))
+* restore prod-owned bin/check-release-environment (SDK_WRITE_TOKEN check) ([50b542a](https://github.com/team-telnyx/telnyx-python/commit/50b542abf6984452334232e4d1a6f820011d9a41))
 
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 

@@ -11,7 +11,9 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
     input_format: Required[Literal["mp3", "wav"]]
     """The format of input audio stream."""
 
-    transcription_engine: Required[Literal["Azure", "Deepgram", "Google", "Telnyx", "xAI", "Speechmatics", "Soniox"]]
+    transcription_engine: Required[
+        Literal["Azure", "Deepgram", "Google", "Telnyx", "xAI", "Speechmatics", "Soniox", "Parakeet"]
+    ]
     """The transcription engine to use for processing the audio stream."""
 
     endpointing: int
@@ -59,6 +61,7 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
         "xai/grok-stt",
         "speechmatics/standard",
         "soniox/stt-rt-v4",
+        "parakeet/tdt-0.6b-v3",
     ]
     """The specific model to use within the selected transcription engine."""
 
