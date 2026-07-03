@@ -1,17 +1,5 @@
 # Changelog
 
-## 4.167.0 (2026-07-03)
-
-Full Changelog: [v4.166.0...v4.167.0](https://github.com/team-telnyx/telnyx-python/compare/v4.166.0...v4.167.0)
-
-### Chores
-
-* promote from staging 0025ac2 ([39a4b5e](https://github.com/team-telnyx/telnyx-python/commit/39a4b5e5412b282f23b161b3d58bb9977c3c12c4))
-* promote from staging 0f3fa65 ([8aac0fe](https://github.com/team-telnyx/telnyx-python/commit/8aac0fef14e4d566eb99cf508e1d9fa492ccb8f2))
-* promote from staging a77e469 ([f8ab201](https://github.com/team-telnyx/telnyx-python/commit/f8ab201a41fe6b0a8f043b6ce5b33f4763340ecb))
-* promote from staging bb0ac19 ([6934fa5](https://github.com/team-telnyx/telnyx-python/commit/6934fa58cf61ae58ade1c05722257090365ef4f1))
-* restore prod-owned bin/check-release-environment (SDK_WRITE_TOKEN check) ([50b542a](https://github.com/team-telnyx/telnyx-python/commit/50b542abf6984452334232e4d1a6f820011d9a41))
-
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
