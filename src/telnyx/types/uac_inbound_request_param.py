@@ -69,6 +69,12 @@ class UacInboundRequestParam(TypedDict, total=False):
     sip_compact_headers_enabled: bool
     """Defaults to true."""
 
+    sip_region: Literal["US", "Europe", "Australia"]
+    """Selects which `sip_region` to receive inbound calls from.
+
+    If null, the default region (US) will be used.
+    """
+
     timeout_1xx_secs: int
     """Time(sec) before aborting if connection is not made."""
 
