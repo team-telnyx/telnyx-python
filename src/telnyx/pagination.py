@@ -31,6 +31,9 @@ __all__ = [
     "AsyncPerPagePagination",
     "SyncPerPagePaginationV2",
     "AsyncPerPagePaginationV2",
+    "CursorFlatPaginationMeta",
+    "SyncCursorFlatPagination",
+    "AsyncCursorFlatPagination",
 ]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
@@ -476,3 +479,55 @@ class AsyncPerPagePaginationV2(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"page": current_page + 1})
+
+
+class CursorFlatPaginationMeta(BaseModel):
+    cursor: Optional[str] = None
+
+    has_more: Optional[bool] = None
+
+
+class SyncCursorFlatPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[CursorFlatPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        cursor = None
+        if self.meta is not None:
+            if self.meta.cursor is not None:
+                cursor = self.meta.cursor
+        if not cursor:
+            return None
+
+        return PageInfo(params={"cursor": cursor})
+
+
+class AsyncCursorFlatPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[CursorFlatPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        cursor = None
+        if self.meta is not None:
+            if self.meta.cursor is not None:
+                cursor = self.meta.cursor
+        if not cursor:
+            return None
+
+        return PageInfo(params={"cursor": cursor})

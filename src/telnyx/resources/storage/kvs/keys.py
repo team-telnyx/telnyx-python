@@ -37,7 +37,8 @@ from ...._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncCursorFlatPagination, AsyncCursorFlatPagination
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.storage.kvs import key_list_params, key_update_params
 from ....types.storage.kvs.key_list_response import KeyListResponse
 
@@ -174,7 +175,7 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KeyListResponse:
+    ) -> SyncCursorFlatPagination[KeyListResponse]:
         """Lists the keys in a namespace.
 
         Returns key names and metadata only, never
@@ -197,8 +198,9 @@ class KeysResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/storage/kvs/{id}/keys", id=id),
+            page=SyncCursorFlatPagination[KeyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -213,7 +215,7 @@ class KeysResource(SyncAPIResource):
                     key_list_params.KeyListParams,
                 ),
             ),
-            cast_to=KeyListResponse,
+            model=KeyListResponse,
         )
 
     def delete(
@@ -373,7 +375,7 @@ class AsyncKeysResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def list(
+    def list(
         self,
         id: str,
         *,
@@ -386,7 +388,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> KeyListResponse:
+    ) -> AsyncPaginator[KeyListResponse, AsyncCursorFlatPagination[KeyListResponse]]:
         """Lists the keys in a namespace.
 
         Returns key names and metadata only, never
@@ -409,14 +411,15 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/storage/kvs/{id}/keys", id=id),
+            page=AsyncCursorFlatPagination[KeyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "cursor": cursor,
                         "limit": limit,
@@ -425,7 +428,7 @@ class AsyncKeysResource(AsyncAPIResource):
                     key_list_params.KeyListParams,
                 ),
             ),
-            cast_to=KeyListResponse,
+            model=KeyListResponse,
         )
 
     async def delete(

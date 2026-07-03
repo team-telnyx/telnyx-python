@@ -17,6 +17,7 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
+from telnyx.pagination import SyncCursorFlatPagination, AsyncCursorFlatPagination
 from telnyx.types.storage.kvs import KeyListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -165,7 +166,7 @@ class TestKeys:
         key = client.storage.kvs.keys.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -176,7 +177,7 @@ class TestKeys:
             limit=1,
             prefix="prefix",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -188,7 +189,7 @@ class TestKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -200,7 +201,7 @@ class TestKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
+            assert_matches_type(SyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -410,7 +411,7 @@ class TestAsyncKeys:
         key = await async_client.storage.kvs.keys.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -421,7 +422,7 @@ class TestAsyncKeys:
             limit=1,
             prefix="prefix",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -433,7 +434,7 @@ class TestAsyncKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = await response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -445,7 +446,7 @@ class TestAsyncKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = await response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
+            assert_matches_type(AsyncCursorFlatPagination[KeyListResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
