@@ -4386,7 +4386,7 @@ Methods:
 - <code title="get /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">retrieve</a>(key, \*, id) -> BinaryAPIResponse</code>
 - <code title="get /storage/kvs/{id}/keys">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">list</a>(id, \*\*<a href="src/telnyx/types/storage/kvs/key_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/kvs/key_list_response.py">KeyListResponse</a></code>
 - <code title="delete /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">delete</a>(key, \*, id) -> None</code>
-- <code title="put /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">set</a>(key, \*, id, \*\*<a href="src/telnyx/types/storage/kvs/key_set_params.py">params</a>) -> None</code>
+- <code title="put /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">set</a>(key, body, \*, id, \*\*<a href="src/telnyx/types/storage/kvs/key_set_params.py">params</a>) -> None</code>
 
 # SubNumberOrders
 
