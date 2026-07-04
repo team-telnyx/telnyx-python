@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.168.0 (2026-07-04)
+
+Full Changelog: [v4.167.0...v4.168.0](https://github.com/team-telnyx/telnyx-python/compare/v4.167.0...v4.168.0)
+
+### Bug Fixes
+
+* **release:** ghost guard also verifies the GitHub Release exists ([#393](https://github.com/team-telnyx/telnyx-python/issues/393)) ([81acd42](https://github.com/team-telnyx/telnyx-python/commit/81acd426b7b036b30144949f58ce672698624854))
+* **release:** scan next's commits in release-pr (stop depending on master hotfixes) ([#390](https://github.com/team-telnyx/telnyx-python/issues/390)) ([73db53e](https://github.com/team-telnyx/telnyx-python/commit/73db53e071b2a1c0b014a1504882b33d6bd55b3d))
+
+
+### Chores
+
+* promote from staging 0c7aef3 ([c2abb7b](https://github.com/team-telnyx/telnyx-python/commit/c2abb7b57ba47ca8eabf111096868715e7487980))
+* promote from staging f53f99c ([ed57c57](https://github.com/team-telnyx/telnyx-python/commit/ed57c5780abf5287304f49ddd46e2efb6ff663a6))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
