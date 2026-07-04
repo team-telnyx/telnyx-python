@@ -59,7 +59,10 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     """Telnyx provider-specific parameters.
 
     Use `voice_speed` and `temperature` for `Natural` and `NaturalHD` models. For
-    the `Ultra` model, use `voice_speed`, `volume`, and `emotion`.
+    the `Ultra` model, use `voice_speed`, `volume`, and `emotion`. `Bayan` and
+    `Sukhan` don't use `temperature`, `volume`, or `emotion`, and don't support
+    `voice_speed`. `Sukhan`'s `response_format` is restricted to `mp3` or `pcm` (no
+    `wav`).
     """
 
     text: str
@@ -72,10 +75,10 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     """
     Voice identifier in the format `provider.model_id.voice_id` or
     `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-    `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
-    `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
-    `voice_id` are extracted automatically and take precedence over individual
-    parameters.
+    `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`, `Telnyx.Sukhan.urdu-professor`,
+    `azure.en-US-AvaMultilingualNeural`, `aws.Polly.Generative.Lucia`. When
+    provided, `provider`, `model_id`, and `voice_id` are extracted automatically and
+    take precedence over individual parameters.
     """
 
     voice_settings: Dict[str, object]
@@ -199,7 +202,7 @@ class Rime(TypedDict, total=False):
 class Telnyx(TypedDict, total=False):
     """Telnyx provider-specific parameters.
 
-    Use `voice_speed` and `temperature` for `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`, `volume`, and `emotion`.
+    Use `voice_speed` and `temperature` for `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`, `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`, or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is restricted to `mp3` or `pcm` (no `wav`).
     """
 
     emotion: Literal["neutral", "happy", "sad", "angry", "fearful", "disgusted", "surprised"]
@@ -218,7 +221,11 @@ class Telnyx(TypedDict, total=False):
     """Sampling temperature. Applies to `Natural` and `NaturalHD` models only."""
 
     voice_speed: float
-    """Voice speed multiplier. Applies to all models. Range: 0.5 to 2.0."""
+    """Voice speed multiplier.
+
+    Applies to all models except `Bayan` and `Sukhan`, which don't support it.
+    Range: 0.5 to 2.0.
+    """
 
     volume: float
     """Volume level for the Ultra model. Range: 0.0 to 2.0."""

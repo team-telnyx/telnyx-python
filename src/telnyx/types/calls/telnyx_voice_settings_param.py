@@ -14,5 +14,6 @@ class TelnyxVoiceSettingsParam(TypedDict, total=False):
     voice_speed: float
     """The voice speed to be used for the voice.
 
-    The voice speed must be between 0.1 and 2.0. Default value is 1.0.
+    The voice speed must be between 0.1 and 2.0. Default value is 1.0. Not supported
+    for `Telnyx.Bayan.*` or `Telnyx.Sukhan.*` voices.
     """
