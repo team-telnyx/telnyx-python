@@ -8,7 +8,9 @@ __all__ = ["SpeechToTextListProvidersParams"]
 
 
 class SpeechToTextListProvidersParams(TypedDict, total=False):
-    provider: Literal["deepgram", "speechmatics", "assemblyai", "xai", "soniox", "azure", "openai", "google", "telnyx"]
+    provider: Literal[
+        "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "parakeet", "azure", "openai", "google", "telnyx"
+    ]
     """Filter to entries for a specific STT provider.
 
     The enum mirrors the providers advertised across the speech-to-text spec

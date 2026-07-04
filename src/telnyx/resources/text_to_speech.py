@@ -141,7 +141,9 @@ class TextToSpeechResource(SyncAPIResource):
 
           telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
               `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
-              `volume`, and `emotion`.
+              `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`,
+              or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is
+              restricted to `mp3` or `pcm` (no `wav`).
 
           text: The text to convert to speech.
 
@@ -149,10 +151,10 @@ class TextToSpeechResource(SyncAPIResource):
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
               `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
-              `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
-              `voice_id` are extracted automatically and take precedence over individual
-              parameters.
+              `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`, `Telnyx.Sukhan.urdu-professor`,
+              `azure.en-US-AvaMultilingualNeural`, `aws.Polly.Generative.Lucia`. When
+              provided, `provider`, `model_id`, and `voice_id` are extracted automatically and
+              take precedence over individual parameters.
 
           voice_settings: Provider-specific voice settings. Contents vary by provider — see
               provider-specific parameter objects below.
@@ -364,7 +366,9 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
               `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
-              `volume`, and `emotion`.
+              `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`,
+              or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is
+              restricted to `mp3` or `pcm` (no `wav`).
 
           text: The text to convert to speech.
 
@@ -372,10 +376,10 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
               `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
-              `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
-              `voice_id` are extracted automatically and take precedence over individual
-              parameters.
+              `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`, `Telnyx.Sukhan.urdu-professor`,
+              `azure.en-US-AvaMultilingualNeural`, `aws.Polly.Generative.Lucia`. When
+              provided, `provider`, `model_id`, and `voice_id` are extracted automatically and
+              take precedence over individual parameters.
 
           voice_settings: Provider-specific voice settings. Contents vary by provider — see
               provider-specific parameter objects below.

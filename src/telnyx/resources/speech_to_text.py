@@ -49,7 +49,7 @@ class SpeechToTextResource(SyncAPIResource):
         self,
         *,
         provider: Literal[
-            "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "azure", "openai", "google", "telnyx"
+            "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "parakeet", "azure", "openai", "google", "telnyx"
         ]
         | Omit = omit,
         service_type: Literal["streaming", "file_based", "in_call", "ai_assistant"] | Omit = omit,
@@ -147,7 +147,7 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
         self,
         *,
         provider: Literal[
-            "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "azure", "openai", "google", "telnyx"
+            "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "parakeet", "azure", "openai", "google", "telnyx"
         ]
         | Omit = omit,
         service_type: Literal["streaming", "file_based", "in_call", "ai_assistant"] | Omit = omit,
