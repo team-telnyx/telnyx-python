@@ -569,7 +569,6 @@ Types:
 from telnyx.types import (
     ModelMetadata,
     ModelsResponse,
-    AICreateResponseDeprecatedResponse,
     AIRetrieveConversationHistoriesResponse,
     AISummarizeResponse,
 )
@@ -577,9 +576,7 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="post /ai/responses">client.ai.<a href="./src/telnyx/resources/ai/ai.py">create_response_deprecated</a>(\*\*<a href="src/telnyx/types/ai_create_response_deprecated_params.py">params</a>) -> <a href="./src/telnyx/types/ai_create_response_deprecated_response.py">AICreateResponseDeprecatedResponse</a></code>
 - <code title="get /ai/conversation_histories">client.ai.<a href="./src/telnyx/resources/ai/ai.py">retrieve_conversation_histories</a>(\*\*<a href="src/telnyx/types/ai_retrieve_conversation_histories_params.py">params</a>) -> <a href="./src/telnyx/types/ai_retrieve_conversation_histories_response.py">AIRetrieveConversationHistoriesResponse</a></code>
-- <code title="get /ai/models">client.ai.<a href="./src/telnyx/resources/ai/ai.py">retrieve_models</a>() -> <a href="./src/telnyx/types/models_response.py">ModelsResponse</a></code>
 - <code title="post /ai/summarize">client.ai.<a href="./src/telnyx/resources/ai/ai.py">summarize</a>(\*\*<a href="src/telnyx/types/ai_summarize_params.py">params</a>) -> <a href="./src/telnyx/types/ai_summarize_response.py">AISummarizeResponse</a></code>
 
 ## Assistants
@@ -830,12 +827,8 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import BucketIDs, ChatCompletionRequest, ChatCreateCompletionResponse
+from telnyx.types.ai import BucketIDs, ChatCompletionRequest
 ```
-
-Methods:
-
-- <code title="post /ai/chat/completions">client.ai.chat.<a href="./src/telnyx/resources/ai/chat.py">create_completion</a>(\*\*<a href="src/telnyx/types/ai/chat_create_completion_params.py">params</a>) -> <a href="./src/telnyx/types/ai/chat_create_completion_response.py">ChatCreateCompletionResponse</a></code>
 
 ## Clusters
 
@@ -2491,7 +2484,6 @@ from telnyx.types import (
     MessageSendLongCodeResponse,
     MessageSendNumberPoolResponse,
     MessageSendShortCodeResponse,
-    MessageSendWhatsappResponse,
     MessageSendWithAlphanumericSenderResponse,
 )
 ```
@@ -2507,7 +2499,6 @@ Methods:
 - <code title="post /messages/long_code">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_long_code</a>(\*\*<a href="src/telnyx/types/message_send_long_code_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_long_code_response.py">MessageSendLongCodeResponse</a></code>
 - <code title="post /messages/number_pool">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_number_pool</a>(\*\*<a href="src/telnyx/types/message_send_number_pool_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_number_pool_response.py">MessageSendNumberPoolResponse</a></code>
 - <code title="post /messages/short_code">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_short_code</a>(\*\*<a href="src/telnyx/types/message_send_short_code_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_short_code_response.py">MessageSendShortCodeResponse</a></code>
-- <code title="post /messages/whatsapp">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_whatsapp</a>(\*\*<a href="src/telnyx/types/message_send_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_whatsapp_response.py">MessageSendWhatsappResponse</a></code>
 - <code title="post /messages/alphanumeric_sender_id">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_with_alphanumeric_sender</a>(\*\*<a href="src/telnyx/types/message_send_with_alphanumeric_sender_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_with_alphanumeric_sender_response.py">MessageSendWithAlphanumericSenderResponse</a></code>
 
 ## Rcs
