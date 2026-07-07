@@ -15,6 +15,9 @@ from .inference_embedding_webhook_tool_params import InferenceEmbeddingWebhookTo
 
 __all__ = [
     "AssistantTool",
+    "ClientSideTool",
+    "ClientSideToolClientSideTool",
+    "ClientSideToolClientSideToolParameters",
     "Handoff",
     "HandoffHandoff",
     "HandoffHandoffAIAssistant",
@@ -43,6 +46,43 @@ __all__ = [
     "SkipTurn",
     "SkipTurnSkipTurn",
 ]
+
+
+class ClientSideToolClientSideToolParameters(BaseModel):
+    """The parameters the tool accepts, described as a JSON Schema object.
+
+    See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
+    """
+
+    properties: Optional[Dict[str, object]] = None
+    """The properties of the parameters."""
+
+    required: Optional[List[str]] = None
+    """The required properties of the parameters."""
+
+    type: Optional[Literal["object"]] = None
+
+
+class ClientSideToolClientSideTool(BaseModel):
+    description: str
+    """The description of the tool."""
+
+    name: str
+    """The name of the tool."""
+
+    parameters: ClientSideToolClientSideToolParameters
+    """The parameters the tool accepts, described as a JSON Schema object.
+
+    See the
+    [JSON Schema reference](https://json-schema.org/understanding-json-schema) for
+    documentation about the format
+    """
+
+
+class ClientSideTool(BaseModel):
+    client_side_tool: ClientSideToolClientSideTool
+
+    type: Literal["client_side_tool"]
 
 
 class HandoffHandoffAIAssistant(BaseModel):
@@ -438,6 +478,7 @@ class SkipTurn(BaseModel):
 AssistantTool: TypeAlias = Annotated[
     Union[
         InferenceEmbeddingWebhookToolParams,
+        ClientSideTool,
         RetrievalTool,
         Handoff,
         HangupTool,

@@ -9,6 +9,8 @@ __all__ = ["ToolUpdateParams"]
 
 
 class ToolUpdateParams(TypedDict, total=False):
+    client_side_tool: Dict[str, object]
+
     display_name: str
 
     function: Dict[str, object]
