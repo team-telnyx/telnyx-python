@@ -926,6 +926,18 @@ Methods:
 
 - <code title="get /ai/conversations/{conversation_id}/messages">client.ai.conversations.messages.<a href="./src/telnyx/resources/ai/conversations/messages.py">list</a>(conversation_id, \*\*<a href="src/telnyx/types/ai/conversations/message_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/message_list_response.py">SyncDefaultFlatPagination[MessageListResponse]</a></code>
 
+### ConversationInsights
+
+Types:
+
+```python
+from telnyx.types.ai.conversations import ConversationInsightRetrieveAggregatesResponse
+```
+
+Methods:
+
+- <code title="get /ai/conversations/conversation-insights/aggregates">client.ai.conversations.conversation_insights.<a href="./src/telnyx/resources/ai/conversations/conversation_insights.py">retrieve_aggregates</a>(\*\*<a href="src/telnyx/types/ai/conversations/conversation_insight_retrieve_aggregates_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/conversation_insight_retrieve_aggregates_response.py">ConversationInsightRetrieveAggregatesResponse</a></code>
+
 ## Embeddings
 
 Types:

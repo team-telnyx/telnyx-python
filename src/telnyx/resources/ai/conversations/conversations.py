@@ -40,6 +40,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from .conversation_insights import (
+    ConversationInsightsResource,
+    AsyncConversationInsightsResource,
+    ConversationInsightsResourceWithRawResponse,
+    AsyncConversationInsightsResourceWithRawResponse,
+    ConversationInsightsResourceWithStreamingResponse,
+    AsyncConversationInsightsResourceWithStreamingResponse,
+)
 from ....types.ai.conversation import Conversation
 from .insight_groups.insight_groups import (
     InsightGroupsResource,
@@ -76,6 +84,11 @@ class ConversationsResource(SyncAPIResource):
     def messages(self) -> MessagesResource:
         """Manage historical AI assistant conversations"""
         return MessagesResource(self._client)
+
+    @cached_property
+    def conversation_insights(self) -> ConversationInsightsResource:
+        """Manage historical AI assistant conversations"""
+        return ConversationInsightsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ConversationsResourceWithRawResponse:
@@ -452,6 +465,11 @@ class AsyncConversationsResource(AsyncAPIResource):
     def messages(self) -> AsyncMessagesResource:
         """Manage historical AI assistant conversations"""
         return AsyncMessagesResource(self._client)
+
+    @cached_property
+    def conversation_insights(self) -> AsyncConversationInsightsResource:
+        """Manage historical AI assistant conversations"""
+        return AsyncConversationInsightsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncConversationsResourceWithRawResponse:
@@ -854,6 +872,11 @@ class ConversationsResourceWithRawResponse:
         """Manage historical AI assistant conversations"""
         return MessagesResourceWithRawResponse(self._conversations.messages)
 
+    @cached_property
+    def conversation_insights(self) -> ConversationInsightsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
+        return ConversationInsightsResourceWithRawResponse(self._conversations.conversation_insights)
+
 
 class AsyncConversationsResourceWithRawResponse:
     def __init__(self, conversations: AsyncConversationsResource) -> None:
@@ -895,6 +918,11 @@ class AsyncConversationsResourceWithRawResponse:
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
         """Manage historical AI assistant conversations"""
         return AsyncMessagesResourceWithRawResponse(self._conversations.messages)
+
+    @cached_property
+    def conversation_insights(self) -> AsyncConversationInsightsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
+        return AsyncConversationInsightsResourceWithRawResponse(self._conversations.conversation_insights)
 
 
 class ConversationsResourceWithStreamingResponse:
@@ -938,6 +966,11 @@ class ConversationsResourceWithStreamingResponse:
         """Manage historical AI assistant conversations"""
         return MessagesResourceWithStreamingResponse(self._conversations.messages)
 
+    @cached_property
+    def conversation_insights(self) -> ConversationInsightsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
+        return ConversationInsightsResourceWithStreamingResponse(self._conversations.conversation_insights)
+
 
 class AsyncConversationsResourceWithStreamingResponse:
     def __init__(self, conversations: AsyncConversationsResource) -> None:
@@ -979,3 +1012,8 @@ class AsyncConversationsResourceWithStreamingResponse:
     def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
         """Manage historical AI assistant conversations"""
         return AsyncMessagesResourceWithStreamingResponse(self._conversations.messages)
+
+    @cached_property
+    def conversation_insights(self) -> AsyncConversationInsightsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
+        return AsyncConversationInsightsResourceWithStreamingResponse(self._conversations.conversation_insights)
