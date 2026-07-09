@@ -33,6 +33,7 @@ class TestTools:
         tool = client.ai.tools.create(
             display_name="display_name",
             type="type",
+            client_side_tool={"foo": "bar"},
             function={"foo": "bar"},
             handoff={"foo": "bar"},
             invite={"foo": "bar"},
@@ -125,6 +126,7 @@ class TestTools:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         tool = client.ai.tools.update(
             tool_id="tool_id",
+            client_side_tool={"foo": "bar"},
             display_name="display_name",
             function={"foo": "bar"},
             handoff={"foo": "bar"},
@@ -272,6 +274,7 @@ class TestAsyncTools:
         tool = await async_client.ai.tools.create(
             display_name="display_name",
             type="type",
+            client_side_tool={"foo": "bar"},
             function={"foo": "bar"},
             handoff={"foo": "bar"},
             invite={"foo": "bar"},
@@ -364,6 +367,7 @@ class TestAsyncTools:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         tool = await async_client.ai.tools.update(
             tool_id="tool_id",
+            client_side_tool={"foo": "bar"},
             display_name="display_name",
             function={"foo": "bar"},
             handoff={"foo": "bar"},

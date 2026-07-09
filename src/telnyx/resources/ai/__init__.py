@@ -8,14 +8,6 @@ from .ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
-from .chat import (
-    ChatResource,
-    AsyncChatResource,
-    ChatResourceWithRawResponse,
-    AsyncChatResourceWithRawResponse,
-    ChatResourceWithStreamingResponse,
-    AsyncChatResourceWithStreamingResponse,
-)
 from .audio import (
     AudioResource,
     AsyncAudioResource,
@@ -118,12 +110,6 @@ __all__ = [
     "AsyncAudioResourceWithRawResponse",
     "AudioResourceWithStreamingResponse",
     "AsyncAudioResourceWithStreamingResponse",
-    "ChatResource",
-    "AsyncChatResource",
-    "ChatResourceWithRawResponse",
-    "AsyncChatResourceWithRawResponse",
-    "ChatResourceWithStreamingResponse",
-    "AsyncChatResourceWithStreamingResponse",
     "ClustersResource",
     "AsyncClustersResource",
     "ClustersResourceWithRawResponse",

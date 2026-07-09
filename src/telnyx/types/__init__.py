@@ -118,7 +118,6 @@ from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
 from .uac_connection import UacConnection as UacConnection
 from .verify_profile import VerifyProfile as VerifyProfile
-from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .wireguard_peer import WireguardPeer as WireguardPeer
 from .wireless_error import WirelessError as WirelessError
 from .access_ip_range import AccessIPRange as AccessIPRange
@@ -160,7 +159,6 @@ from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
 from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .webhook_delivery import WebhookDelivery as WebhookDelivery
-from .whatsapp_contact import WhatsappContact as WhatsappContact
 from .available_service import AvailableService as AvailableService
 from .call_fork_started import CallForkStarted as CallForkStarted
 from .call_fork_stopped import CallForkStopped as CallForkStopped
@@ -178,8 +176,6 @@ from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
 from .voice_design_data import VoiceDesignData as VoiceDesignData
-from .whatsapp_location import WhatsappLocation as WhatsappLocation
-from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
 from .call_dtmf_received import CallDtmfReceived as CallDtmfReceived
 from .call_refer_started import CallReferStarted as CallReferStarted
@@ -272,8 +268,6 @@ from .unwrap_webhook_event import UnwrapWebhookEvent as UnwrapWebhookEvent
 from .usage_payment_method import UsagePaymentMethod as UsagePaymentMethod
 from .user_tag_list_params import UserTagListParams as UserTagListParams
 from .voice_clone_response import VoiceCloneResponse as VoiceCloneResponse
-from .whatsapp_interactive import WhatsappInteractive as WhatsappInteractive
-from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
 from .wireguard_peer_param import WireguardPeerParam as WireguardPeerParam
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
@@ -339,7 +333,6 @@ from .websocket_reconnection import (
     ReconnectingEvent as ReconnectingEvent,
     ReconnectingOverrides as ReconnectingOverrides,
 )
-from .whatsapp_contact_param import WhatsappContactParam as WhatsappContactParam
 from .address_create_response import AddressCreateResponse as AddressCreateResponse
 from .address_delete_response import AddressDeleteResponse as AddressDeleteResponse
 from .audit_event_list_params import AuditEventListParams as AuditEventListParams
@@ -381,8 +374,6 @@ from .requirement_list_params import RequirementListParams as RequirementListPar
 from .transcribe_client_event import TranscribeClientEvent as TranscribeClientEvent
 from .transcribe_server_event import TranscribeServerEvent as TranscribeServerEvent
 from .voice_clone_list_params import VoiceCloneListParams as VoiceCloneListParams
-from .whatsapp_location_param import WhatsappLocationParam as WhatsappLocationParam
-from .whatsapp_reaction_param import WhatsappReactionParam as WhatsappReactionParam
 from .azure_configuration_data import AzureConfigurationData as AzureConfigurationData
 from .call_control_application import CallControlApplication as CallControlApplication
 from .call_event_list_response import CallEventListResponse as CallEventListResponse
@@ -414,7 +405,6 @@ from .sub_number_orders_report import SubNumberOrdersReport as SubNumberOrdersRe
 from .usage_report_list_params import UsageReportListParams as UsageReportListParams
 from .user_address_list_params import UserAddressListParams as UserAddressListParams
 from .voice_design_list_params import VoiceDesignListParams as VoiceDesignListParams
-from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
 from .wireguard_interface_read import WireguardInterfaceRead as WireguardInterfaceRead
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
@@ -485,7 +475,6 @@ from .user_address_create_params import UserAddressCreateParams as UserAddressCr
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
 from .voice_design_create_params import VoiceDesignCreateParams as VoiceDesignCreateParams
 from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRenameParams
-from .whatsapp_interactive_param import WhatsappInteractiveParam as WhatsappInteractiveParam
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
 from .billing_group_create_params import BillingGroupCreateParams as BillingGroupCreateParams
@@ -529,7 +518,6 @@ from .connection_retrieve_response import ConnectionRetrieveResponse as Connecti
 from .create_verification_response import CreateVerificationResponse as CreateVerificationResponse
 from .custom_storage_configuration import CustomStorageConfiguration as CustomStorageConfiguration
 from .gcs_configuration_data_param import GcsConfigurationDataParam as GcsConfigurationDataParam
-from .message_send_whatsapp_params import MessageSendWhatsappParams as MessageSendWhatsappParams
 from .messaging_metrics_time_frame import MessagingMetricsTimeFrame as MessagingMetricsTimeFrame
 from .messaging_optout_list_params import MessagingOptoutListParams as MessagingOptoutListParams
 from .network_coverage_list_params import NetworkCoverageListParams as NetworkCoverageListParams
@@ -627,7 +615,6 @@ from .integration_secret_list_params import IntegrationSecretListParams as Integ
 from .inventory_coverage_list_params import InventoryCoverageListParams as InventoryCoverageListParams
 from .list_retrieve_by_zone_response import ListRetrieveByZoneResponse as ListRetrieveByZoneResponse
 from .message_send_short_code_params import MessageSendShortCodeParams as MessageSendShortCodeParams
-from .message_send_whatsapp_response import MessageSendWhatsappResponse as MessageSendWhatsappResponse
 from .messaging_optout_list_response import MessagingOptoutListResponse as MessagingOptoutListResponse
 from .network_coverage_list_response import NetworkCoverageListResponse as NetworkCoverageListResponse
 from .network_interface_region_param import NetworkInterfaceRegionParam as NetworkInterfaceRegionParam
@@ -659,7 +646,6 @@ from .uac_connection_update_response import UacConnectionUpdateResponse as UacCo
 from .user_address_retrieve_response import UserAddressRetrieveResponse as UserAddressRetrieveResponse
 from .verification_retrieve_response import VerificationRetrieveResponse as VerificationRetrieveResponse
 from .virtual_cross_connect_combined import VirtualCrossConnectCombined as VirtualCrossConnectCombined
-from .whatsapp_message_content_param import WhatsappMessageContentParam as WhatsappMessageContentParam
 from .wireguard_peer_create_response import WireguardPeerCreateResponse as WireguardPeerCreateResponse
 from .wireguard_peer_delete_response import WireguardPeerDeleteResponse as WireguardPeerDeleteResponse
 from .wireguard_peer_update_response import WireguardPeerUpdateResponse as WireguardPeerUpdateResponse
@@ -865,7 +851,6 @@ from .virtual_cross_connect_update_params import VirtualCrossConnectUpdateParams
 from .voice_design_download_sample_params import VoiceDesignDownloadSampleParams as VoiceDesignDownloadSampleParams
 from .wireguard_interface_create_response import WireguardInterfaceCreateResponse as WireguardInterfaceCreateResponse
 from .wireguard_interface_delete_response import WireguardInterfaceDeleteResponse as WireguardInterfaceDeleteResponse
-from .ai_create_response_deprecated_params import AICreateResponseDeprecatedParams as AICreateResponseDeprecatedParams
 from .alphanumeric_sender_id_create_params import AlphanumericSenderIDCreateParams as AlphanumericSenderIDCreateParams
 from .available_phone_number_list_response import AvailablePhoneNumberListResponse as AvailablePhoneNumberListResponse
 from .call_control_application_list_params import CallControlApplicationListParams as CallControlApplicationListParams
@@ -996,9 +981,6 @@ from .virtual_cross_connect_update_response import (
 from .voice_clone_create_from_upload_params import VoiceCloneCreateFromUploadParams as VoiceCloneCreateFromUploadParams
 from .wireguard_interface_retrieve_response import (
     WireguardInterfaceRetrieveResponse as WireguardInterfaceRetrieveResponse,
-)
-from .ai_create_response_deprecated_response import (
-    AICreateResponseDeprecatedResponse as AICreateResponseDeprecatedResponse,
 )
 from .alphanumeric_sender_id_create_response import (
     AlphanumericSenderIDCreateResponse as AlphanumericSenderIDCreateResponse,

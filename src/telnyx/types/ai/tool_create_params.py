@@ -13,6 +13,8 @@ class ToolCreateParams(TypedDict, total=False):
 
     type: Required[str]
 
+    client_side_tool: Dict[str, object]
+
     function: Dict[str, object]
 
     handoff: Dict[str, object]

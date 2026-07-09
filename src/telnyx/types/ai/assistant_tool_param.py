@@ -5,12 +5,16 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .hangup_tool_param import HangupToolParam
 from .retrieval_tool_param import RetrievalToolParam
 from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam
 
 __all__ = [
     "AssistantToolParam",
+    "ClientSideTool",
+    "ClientSideToolClientSideTool",
+    "ClientSideToolClientSideToolParameters",
     "Handoff",
     "HandoffHandoff",
     "HandoffHandoffAIAssistant",
@@ -39,6 +43,43 @@ __all__ = [
     "SkipTurn",
     "SkipTurnSkipTurn",
 ]
+
+
+class ClientSideToolClientSideToolParameters(TypedDict, total=False):
+    """The parameters the tool accepts, described as a JSON Schema object.
+
+    See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
+    """
+
+    properties: Dict[str, object]
+    """The properties of the parameters."""
+
+    required: SequenceNotStr[str]
+    """The required properties of the parameters."""
+
+    type: Literal["object"]
+
+
+class ClientSideToolClientSideTool(TypedDict, total=False):
+    description: Required[str]
+    """The description of the tool."""
+
+    name: Required[str]
+    """The name of the tool."""
+
+    parameters: Required[ClientSideToolClientSideToolParameters]
+    """The parameters the tool accepts, described as a JSON Schema object.
+
+    See the
+    [JSON Schema reference](https://json-schema.org/understanding-json-schema) for
+    documentation about the format
+    """
+
+
+class ClientSideTool(TypedDict, total=False):
+    client_side_tool: Required[ClientSideToolClientSideTool]
+
+    type: Required[Literal["client_side_tool"]]
 
 
 class HandoffHandoffAIAssistant(TypedDict, total=False):
@@ -433,6 +474,7 @@ class SkipTurn(TypedDict, total=False):
 
 AssistantToolParam: TypeAlias = Union[
     InferenceEmbeddingWebhookToolParamsParam,
+    ClientSideTool,
     RetrievalToolParam,
     Handoff,
     HangupToolParam,

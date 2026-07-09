@@ -51,6 +51,7 @@ class ToolsResource(SyncAPIResource):
         *,
         display_name: str,
         type: str,
+        client_side_tool: Dict[str, object] | Omit = omit,
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
         invite: Dict[str, object] | Omit = omit,
@@ -82,6 +83,7 @@ class ToolsResource(SyncAPIResource):
                 {
                     "display_name": display_name,
                     "type": type,
+                    "client_side_tool": client_side_tool,
                     "function": function,
                     "handoff": handoff,
                     "invite": invite,
@@ -134,6 +136,7 @@ class ToolsResource(SyncAPIResource):
         self,
         tool_id: str,
         *,
+        client_side_tool: Dict[str, object] | Omit = omit,
         display_name: str | Omit = omit,
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
@@ -167,6 +170,7 @@ class ToolsResource(SyncAPIResource):
             path_template("/ai/tools/{tool_id}", tool_id=tool_id),
             body=maybe_transform(
                 {
+                    "client_side_tool": client_side_tool,
                     "display_name": display_name,
                     "function": function,
                     "handoff": handoff,
@@ -300,6 +304,7 @@ class AsyncToolsResource(AsyncAPIResource):
         *,
         display_name: str,
         type: str,
+        client_side_tool: Dict[str, object] | Omit = omit,
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
         invite: Dict[str, object] | Omit = omit,
@@ -331,6 +336,7 @@ class AsyncToolsResource(AsyncAPIResource):
                 {
                     "display_name": display_name,
                     "type": type,
+                    "client_side_tool": client_side_tool,
                     "function": function,
                     "handoff": handoff,
                     "invite": invite,
@@ -383,6 +389,7 @@ class AsyncToolsResource(AsyncAPIResource):
         self,
         tool_id: str,
         *,
+        client_side_tool: Dict[str, object] | Omit = omit,
         display_name: str | Omit = omit,
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
@@ -416,6 +423,7 @@ class AsyncToolsResource(AsyncAPIResource):
             path_template("/ai/tools/{tool_id}", tool_id=tool_id),
             body=await async_maybe_transform(
                 {
+                    "client_side_tool": client_side_tool,
                     "display_name": display_name,
                     "function": function,
                     "handoff": handoff,

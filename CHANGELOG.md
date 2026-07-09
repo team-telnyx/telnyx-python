@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.168.0](https://github.com/team-telnyx/telnyx-python/compare/v4.167.0...v4.168.0) (2026-07-09)
+
+
+### Bug Fixes
+
+* **release:** ghost guard also verifies the GitHub Release exists ([#393](https://github.com/team-telnyx/telnyx-python/issues/393)) ([81acd42](https://github.com/team-telnyx/telnyx-python/commit/81acd426b7b036b30144949f58ce672698624854))
+* **release:** scan next's commits in release-pr (stop depending on master hotfixes) ([#390](https://github.com/team-telnyx/telnyx-python/issues/390)) ([73db53e](https://github.com/team-telnyx/telnyx-python/commit/73db53e071b2a1c0b014a1504882b33d6bd55b3d))
+
 ## 4.167.0 (2026-07-03)
 
 Full Changelog: [v4.166.0...v4.167.0](https://github.com/team-telnyx/telnyx-python/compare/v4.166.0...v4.167.0)

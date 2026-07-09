@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -13,6 +14,14 @@ __all__ = ["PhoneNumberDeleteResponse", "Data"]
 class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
+
+    activated_at: Optional[datetime] = None
+    """
+    ISO 8601 formatted date indicating when the phone number was first activated
+    (transitioned from purchase-pending or port-pending to active). Will be null for
+    numbers that have not yet been activated, or for legacy numbers activated before
+    this field was tracked.
+    """
 
     billing_group_id: Optional[str] = None
     """Identifies the billing group associated with the phone number."""
