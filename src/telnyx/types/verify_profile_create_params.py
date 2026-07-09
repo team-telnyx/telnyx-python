@@ -140,7 +140,7 @@ class Whatsapp(TypedDict, total=False, extra_items=object):  # type: ignore[call
     """Phone number registered on the customer WABA to send OTPs from"""
 
     template_id: Optional[str]
-    """Customer pre-approved authentication template name registered on Meta"""
+    """Customer pre-approved authentication template ID registered on Meta"""
 
     waba_id: Optional[str]
     """Customer Meta WABA ID for Bring-Your-Own-WABA sending"""
