@@ -30,8 +30,8 @@ class TestAuditEvents:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         audit_event = client.audit_events.list(
             filter={
-                "created_after": parse_datetime("2021-01-05T00:00:00Z"),
-                "created_before": parse_datetime("2021-01-05T00:00:00Z"),
+                "created_after": parse_datetime("2021-01-06T00:00:00Z"),
+                "created_before": parse_datetime("2021-01-06T00:00:00Z"),
             },
             page_number=0,
             page_size=0,
@@ -78,8 +78,8 @@ class TestAsyncAuditEvents:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         audit_event = await async_client.audit_events.list(
             filter={
-                "created_after": parse_datetime("2021-01-05T00:00:00Z"),
-                "created_before": parse_datetime("2021-01-05T00:00:00Z"),
+                "created_after": parse_datetime("2021-01-06T00:00:00Z"),
+                "created_before": parse_datetime("2021-01-06T00:00:00Z"),
             },
             page_number=0,
             page_size=0,
