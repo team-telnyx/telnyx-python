@@ -48,6 +48,14 @@ from .missions import (
     MissionsResourceWithStreamingResponse,
     AsyncMissionsResourceWithStreamingResponse,
 )
+from .anthropic import (
+    AnthropicResource,
+    AsyncAnthropicResource,
+    AnthropicResourceWithRawResponse,
+    AsyncAnthropicResourceWithRawResponse,
+    AnthropicResourceWithStreamingResponse,
+    AsyncAnthropicResourceWithStreamingResponse,
+)
 from .assistants import (
     AssistantsResource,
     AsyncAssistantsResource,
@@ -164,6 +172,12 @@ __all__ = [
     "AsyncToolsResourceWithRawResponse",
     "ToolsResourceWithStreamingResponse",
     "AsyncToolsResourceWithStreamingResponse",
+    "AnthropicResource",
+    "AsyncAnthropicResource",
+    "AnthropicResourceWithRawResponse",
+    "AsyncAnthropicResourceWithRawResponse",
+    "AnthropicResourceWithStreamingResponse",
+    "AsyncAnthropicResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

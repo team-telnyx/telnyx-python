@@ -1222,6 +1222,20 @@ Methods:
 - <code title="get /ai/tools">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">list</a>(\*\*<a href="src/telnyx/types/ai/tool_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SyncDefaultFlatPagination[SharedToolResponse]</a></code>
 - <code title="delete /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">delete</a>(tool_id) -> object</code>
 
+## Anthropic
+
+### V1
+
+Types:
+
+```python
+from telnyx.types.ai.anthropic import V1MessagesResponse
+```
+
+Methods:
+
+- <code title="post /ai/anthropic/v1/messages">client.ai.anthropic.v1.<a href="./src/telnyx/resources/ai/anthropic/v1.py">messages</a>(\*\*<a href="src/telnyx/types/ai/anthropic/v1_messages_params.py">params</a>) -> <a href="./src/telnyx/types/ai/anthropic/v1_messages_response.py">V1MessagesResponse</a></code>
+
 # AuditEvents
 
 Types:
