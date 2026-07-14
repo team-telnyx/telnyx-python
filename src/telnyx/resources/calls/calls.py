@@ -117,6 +117,7 @@ class CallsResource(SyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        retry_on_timeout: bool | Omit = omit,
         send_digits_on_answer: str | Omit = omit,
         send_silence_when_idle: bool | Omit = omit,
         sip_auth_password: str | Omit = omit,
@@ -323,6 +324,12 @@ class CallsResource(SyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          retry_on_timeout: Whether to keep trying the remaining routing paths (e.g. alternate
+              providers/gateways) for the same destination after `timeout_secs` is reached for
+              the current attempt. When set to `false`, reaching `timeout_secs` aborts the
+              entire dial attempt and the `call.hangup` webhook reports a `hangup_cause` of
+              `no_answer` instead of `timeout`.
+
           send_digits_on_answer: DTMF digits to send automatically after the called party answers. Useful for
               reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once the
               called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause), `W`
@@ -453,6 +460,7 @@ class CallsResource(SyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "retry_on_timeout": retry_on_timeout,
                     "send_digits_on_answer": send_digits_on_answer,
                     "send_silence_when_idle": send_silence_when_idle,
                     "sip_auth_password": sip_auth_password,
@@ -589,6 +597,7 @@ class AsyncCallsResource(AsyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        retry_on_timeout: bool | Omit = omit,
         send_digits_on_answer: str | Omit = omit,
         send_silence_when_idle: bool | Omit = omit,
         sip_auth_password: str | Omit = omit,
@@ -795,6 +804,12 @@ class AsyncCallsResource(AsyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          retry_on_timeout: Whether to keep trying the remaining routing paths (e.g. alternate
+              providers/gateways) for the same destination after `timeout_secs` is reached for
+              the current attempt. When set to `false`, reaching `timeout_secs` aborts the
+              entire dial attempt and the `call.hangup` webhook reports a `hangup_cause` of
+              `no_answer` instead of `timeout`.
+
           send_digits_on_answer: DTMF digits to send automatically after the called party answers. Useful for
               reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once the
               called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause), `W`
@@ -925,6 +940,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "retry_on_timeout": retry_on_timeout,
                     "send_digits_on_answer": send_digits_on_answer,
                     "send_silence_when_idle": send_silence_when_idle,
                     "sip_auth_password": sip_auth_password,

@@ -17,5 +17,5 @@ class TranscriptionEngineParakeetConfigParam(TypedDict, total=False):
     transcription_engine: Literal["Parakeet"]
     """Engine identifier for Parakeet transcription service"""
 
-    transcription_model: Literal["parakeet/tdt-0.6b-v3"]
+    transcription_model: Literal["nvidia/parakeet-v3"]
     """The model to use for transcription."""
