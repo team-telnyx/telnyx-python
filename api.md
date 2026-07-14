@@ -3952,7 +3952,7 @@ from telnyx.types import DocReqsRequirement, RequirementRetrieveResponse
 
 Methods:
 
-- <code title="get /requirements/{id}">client.requirements.<a href="./src/telnyx/resources/requirements.py">retrieve</a>(id) -> <a href="./src/telnyx/types/requirement_retrieve_response.py">RequirementRetrieveResponse</a></code>
+- <code title="get /requirements/{id}">client.requirements.<a href="./src/telnyx/resources/requirements.py">retrieve</a>(id, \*\*<a href="src/telnyx/types/requirement_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/requirement_retrieve_response.py">RequirementRetrieveResponse</a></code>
 - <code title="get /requirements">client.requirements.<a href="./src/telnyx/resources/requirements.py">list</a>(\*\*<a href="src/telnyx/types/requirement_list_params.py">params</a>) -> <a href="./src/telnyx/types/doc_reqs_requirement.py">SyncDefaultFlatPagination[DocReqsRequirement]</a></code>
 
 # RoomCompositions
