@@ -29,11 +29,14 @@ class Data(BaseModel):
     """
 
     meta_url: Optional[str] = None
-    """
-    PostgreSQL connection URL for the filesystem's metadata database, including the
-    metadata token as the password. Pass it to `juicefs mount`: the storage
-    configuration is baked in at provisioning, so the metadata URL is all a client
-    needs to mount the filesystem.
+    """PostgreSQL connection URL for the filesystem's metadata database.
+
+    In create and rotate-meta-token responses it embeds the metadata token as the
+    password:
+    `postgres://<database>:<meta_token>@us-east-1.telnyxcloudfs.com:5432/<database>?sslmode=require`
+    (the example below is shown without the credential; the actual response includes
+    it). Pass it to `juicefs mount`: the storage configuration is baked in at
+    provisioning, so the metadata URL is all a client needs to mount the filesystem.
     """
 
     name: Optional[str] = None
