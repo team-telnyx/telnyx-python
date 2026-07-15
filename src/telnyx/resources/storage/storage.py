@@ -30,6 +30,14 @@ from .buckets.buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
+from .cloudfs.cloudfs import (
+    CloudfsResource,
+    AsyncCloudfsResource,
+    CloudfsResourceWithRawResponse,
+    AsyncCloudfsResourceWithRawResponse,
+    CloudfsResourceWithStreamingResponse,
+    AsyncCloudfsResourceWithStreamingResponse,
+)
 from .migration_sources import (
     MigrationSourcesResource,
     AsyncMigrationSourcesResource,
@@ -73,6 +81,13 @@ class StorageResource(SyncAPIResource):
     def kvs(self) -> KvsResource:
         """Manage KV storage namespaces"""
         return KvsResource(self._client)
+
+    @cached_property
+    def cloudfs(self) -> CloudfsResource:
+        """
+        Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
+        """
+        return CloudfsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> StorageResourceWithRawResponse:
@@ -135,6 +150,13 @@ class AsyncStorageResource(AsyncAPIResource):
     def kvs(self) -> AsyncKvsResource:
         """Manage KV storage namespaces"""
         return AsyncKvsResource(self._client)
+
+    @cached_property
+    def cloudfs(self) -> AsyncCloudfsResource:
+        """
+        Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
+        """
+        return AsyncCloudfsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncStorageResourceWithRawResponse:
@@ -203,6 +225,13 @@ class StorageResourceWithRawResponse:
         """Manage KV storage namespaces"""
         return KvsResourceWithRawResponse(self._storage.kvs)
 
+    @cached_property
+    def cloudfs(self) -> CloudfsResourceWithRawResponse:
+        """
+        Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
+        """
+        return CloudfsResourceWithRawResponse(self._storage.cloudfs)
+
 
 class AsyncStorageResourceWithRawResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
@@ -231,6 +260,13 @@ class AsyncStorageResourceWithRawResponse:
     def kvs(self) -> AsyncKvsResourceWithRawResponse:
         """Manage KV storage namespaces"""
         return AsyncKvsResourceWithRawResponse(self._storage.kvs)
+
+    @cached_property
+    def cloudfs(self) -> AsyncCloudfsResourceWithRawResponse:
+        """
+        Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
+        """
+        return AsyncCloudfsResourceWithRawResponse(self._storage.cloudfs)
 
 
 class StorageResourceWithStreamingResponse:
@@ -261,6 +297,13 @@ class StorageResourceWithStreamingResponse:
         """Manage KV storage namespaces"""
         return KvsResourceWithStreamingResponse(self._storage.kvs)
 
+    @cached_property
+    def cloudfs(self) -> CloudfsResourceWithStreamingResponse:
+        """
+        Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
+        """
+        return CloudfsResourceWithStreamingResponse(self._storage.cloudfs)
+
 
 class AsyncStorageResourceWithStreamingResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
@@ -289,3 +332,10 @@ class AsyncStorageResourceWithStreamingResponse:
     def kvs(self) -> AsyncKvsResourceWithStreamingResponse:
         """Manage KV storage namespaces"""
         return AsyncKvsResourceWithStreamingResponse(self._storage.kvs)
+
+    @cached_property
+    def cloudfs(self) -> AsyncCloudfsResourceWithStreamingResponse:
+        """
+        Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
+        """
+        return AsyncCloudfsResourceWithStreamingResponse(self._storage.cloudfs)

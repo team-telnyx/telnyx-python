@@ -4423,6 +4423,33 @@ Methods:
 - <code title="get /storage/kvs/{id}/keys">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">list</a>(id, \*\*<a href="src/telnyx/types/storage/kvs/key_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/kvs/key_list_response.py">SyncCursorFlatPagination[KeyListResponse]</a></code>
 - <code title="delete /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">delete</a>(key, \*, id) -> None</code>
 
+## Cloudfs
+
+Types:
+
+```python
+from telnyx.types.storage import (
+    CloudfsFilesystemDetailResponseWrapper,
+    CloudfsFilesystemResponseWrapper,
+    CloudfsFilesystemStatus,
+    CloudfListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /storage/cloudfs">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">create</a>(\*\*<a href="src/telnyx/types/storage/cloudf_create_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_response_wrapper.py">CloudfsFilesystemResponseWrapper</a></code>
+- <code title="get /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
+- <code title="patch /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">update</a>(id, \*\*<a href="src/telnyx/types/storage/cloudf_update_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
+- <code title="get /storage/cloudfs">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">list</a>(\*\*<a href="src/telnyx/types/storage/cloudf_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudf_list_response.py">CloudfListResponse</a></code>
+- <code title="delete /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">delete</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
+
+### Actions
+
+Methods:
+
+- <code title="post /storage/cloudfs/{id}/actions/rotate-meta-token">client.storage.cloudfs.actions.<a href="./src/telnyx/resources/storage/cloudfs/actions.py">rotate_meta_token</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_response_wrapper.py">CloudfsFilesystemResponseWrapper</a></code>
+
 # SubNumberOrders
 
 Types:
