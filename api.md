@@ -1211,7 +1211,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import SharedToolResponse
+from telnyx.types.ai import PayToolParams, SharedToolResponse
 ```
 
 Methods:
