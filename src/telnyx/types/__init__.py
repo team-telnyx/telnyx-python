@@ -129,7 +129,6 @@ from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
 from .fax_list_params import FaxListParams as FaxListParams
 from .fqdn_connection import FqdnConnection as FqdnConnection
-from .inbound_message import InboundMessage as InboundMessage
 from .managed_account import ManagedAccount as ManagedAccount
 from .models_response import ModelsResponse as ModelsResponse
 from .pagination_meta import PaginationMeta as PaginationMeta
