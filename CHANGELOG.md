@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.169.0](https://github.com/team-telnyx/telnyx-python/compare/v4.168.0...v4.169.0) (2026-07-20)
+
+
+### Bug Fixes
+
+* **release:** assert a release PR exists for unreleased commits ([#401](https://github.com/team-telnyx/telnyx-python/issues/401)) ([9488a1d](https://github.com/team-telnyx/telnyx-python/commit/9488a1ddac7d33cbe99ea6050af4a2c61cf272ed))
+* **release:** make the --local scan clone see the repointed release branch ([#399](https://github.com/team-telnyx/telnyx-python/issues/399)) ([34c0f66](https://github.com/team-telnyx/telnyx-python/commit/34c0f66aa5e584bcd69719d1455af68b7f66a434))
+
 ## [4.168.0](https://github.com/team-telnyx/telnyx-python/compare/v4.167.0...v4.168.0) (2026-07-09)
 
 

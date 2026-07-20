@@ -23,7 +23,10 @@ class TranscriptionConfigParam(TypedDict, total=False):
     language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
     and `nl`. For `soniox/stt-rt-v4`, `auto` omits the language hint and lets Soniox
     auto-detect; ISO 639-1 codes (e.g. `en`, `es`) bias detection toward that
-    language.
+    language. For `assemblyai/universal-streaming`, `auto` (or unset) enables native
+    multilingual code-switching; ISO 639-1 codes (`en`, `es`, `de`, `fr`, `pt`,
+    `it`, `tr`, `nl`, `sv`, `no`, `da`, `fi`, `hi`, `vi`, `ar`, `he`, `ja`, `zh`)
+    bias the session to that language.
     """
 
     model: Literal[
@@ -36,7 +39,7 @@ class TranscriptionConfigParam(TypedDict, total=False):
         "assemblyai/universal-streaming",
         "xai/grok-stt",
         "soniox/stt-rt-v4",
-        "parakeet/tdt-0.6b-v3",
+        "nvidia/parakeet-v3",
         "azure/fast",
         "azure/realtime",
         "google/latest_long",
@@ -55,7 +58,7 @@ class TranscriptionConfigParam(TypedDict, total=False):
     - `xai/grok-stt` for live streaming transcription.
     - `soniox/stt-rt-v4` for live streaming multilingual transcription with
       automatic language detection.
-    - `parakeet/tdt-0.6b-v3` for multilingual transcription with automatic language
+    - `nvidia/parakeet-v3` for multilingual transcription with automatic language
       detection.
     - `azure/fast` and `azure/realtime`; Azure models require `region`, and
       unsupported regions require `api_key_ref`.

@@ -37,7 +37,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
         "assemblyai/universal-streaming",
         "xai/grok-stt",
         "soniox/stt-rt-v4",
-        "parakeet/tdt-0.6b-v3",
+        "nvidia/parakeet-v3",
         "distil-whisper/distil-large-v2",
         "openai/whisper-large-v3-turbo",
     ]
@@ -54,7 +54,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     - `xai/grok-stt` is a multilingual Grok STT model.
     - `soniox/stt-rt-v4` is a multilingual streaming model with automatic language
       detection and configurable endpointing.
-    - `parakeet/tdt-0.6b-v3` is a multilingual transcription model with automatic
+    - `nvidia/parakeet-v3` is a multilingual transcription model with automatic
       language detection.
     """
 

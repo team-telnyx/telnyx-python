@@ -16,6 +16,14 @@ from .buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
+from .cloudfs import (
+    CloudfsResource,
+    AsyncCloudfsResource,
+    CloudfsResourceWithRawResponse,
+    AsyncCloudfsResourceWithRawResponse,
+    CloudfsResourceWithStreamingResponse,
+    AsyncCloudfsResourceWithStreamingResponse,
+)
 from .storage import (
     StorageResource,
     AsyncStorageResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncKvsResourceWithRawResponse",
     "KvsResourceWithStreamingResponse",
     "AsyncKvsResourceWithStreamingResponse",
+    "CloudfsResource",
+    "AsyncCloudfsResource",
+    "CloudfsResourceWithRawResponse",
+    "AsyncCloudfsResourceWithRawResponse",
+    "CloudfsResourceWithStreamingResponse",
+    "AsyncCloudfsResourceWithStreamingResponse",
     "StorageResource",
     "AsyncStorageResource",
     "StorageResourceWithRawResponse",

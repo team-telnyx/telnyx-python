@@ -61,7 +61,7 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
         "xai/grok-stt",
         "speechmatics/standard",
         "soniox/stt-rt-v4",
-        "parakeet/tdt-0.6b-v3",
+        "nvidia/parakeet-v3",
     ]
     """The specific model to use within the selected transcription engine."""
 

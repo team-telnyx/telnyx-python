@@ -129,7 +129,6 @@ from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
 from .fax_list_params import FaxListParams as FaxListParams
 from .fqdn_connection import FqdnConnection as FqdnConnection
-from .inbound_message import InboundMessage as InboundMessage
 from .managed_account import ManagedAccount as ManagedAccount
 from .models_response import ModelsResponse as ModelsResponse
 from .pagination_meta import PaginationMeta as PaginationMeta
@@ -500,6 +499,7 @@ from .porting_order_create_params import PortingOrderCreateParams as PortingOrde
 from .porting_order_update_params import PortingOrderUpdateParams as PortingOrderUpdateParams
 from .porting_order_user_feedback import PortingOrderUserFeedback as PortingOrderUserFeedback
 from .pronunciation_dict_response import PronunciationDictResponse as PronunciationDictResponse
+from .requirement_retrieve_params import RequirementRetrieveParams as RequirementRetrieveParams
 from .reserved_phone_number_param import ReservedPhoneNumberParam as ReservedPhoneNumberParam
 from .s3_configuration_data_param import S3ConfigurationDataParam as S3ConfigurationDataParam
 from .transcription_webhook_event import TranscriptionWebhookEvent as TranscriptionWebhookEvent

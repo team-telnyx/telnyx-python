@@ -38,6 +38,12 @@ class RequirementListParams(TypedDict, total=False):
     Originally: sort[]
     """
 
+    version: int
+    """Filter by requirement version number.
+
+    When omitted, returns the currently-active version.
+    """
+
 
 class Filter(TypedDict, total=False):
     """Consolidated filter parameter for requirements (deepObject style).

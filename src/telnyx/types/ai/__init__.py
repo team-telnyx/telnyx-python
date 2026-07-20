@@ -29,6 +29,7 @@ from .assistant_chat_params import AssistantChatParams as AssistantChatParams
 from .authentication_method import AuthenticationMethod as AuthenticationMethod
 from .embedding_list_params import EmbeddingListParams as EmbeddingListParams
 from .mission_create_params import MissionCreateParams as MissionCreateParams
+from .pay_tool_params_param import PayToolParamsParam as PayToolParamsParam
 from .widget_settings_param import WidgetSettingsParam as WidgetSettingsParam
 from .background_task_status import BackgroundTaskStatus as BackgroundTaskStatus
 from .cluster_compute_params import ClusterComputeParams as ClusterComputeParams
@@ -94,6 +95,7 @@ if TYPE_CHECKING:
     from .assistants_list import AssistantsList as AssistantsList
     from .fallback_config import FallbackConfig as FallbackConfig
     from .import_metadata import ImportMetadata as ImportMetadata
+    from .pay_tool_params import PayToolParams as PayToolParams
     from .widget_settings import WidgetSettings as WidgetSettings
     from .insight_settings import InsightSettings as InsightSettings
     from .mission_response import MissionResponse as MissionResponse
@@ -348,6 +350,10 @@ def __getattr__(name: str) -> Any:
         from .mission_response import MissionResponse
 
         return MissionResponse
+    if name == "PayToolParams":
+        from .pay_tool_params import PayToolParams
+
+        return PayToolParams
     if name == "SharedToolResponse":
         from .shared_tool_response import SharedToolResponse
 

@@ -32,6 +32,14 @@ from .insight_groups import (
     InsightGroupsResourceWithStreamingResponse,
     AsyncInsightGroupsResourceWithStreamingResponse,
 )
+from .conversation_insights import (
+    ConversationInsightsResource,
+    AsyncConversationInsightsResource,
+    ConversationInsightsResourceWithRawResponse,
+    AsyncConversationInsightsResourceWithRawResponse,
+    ConversationInsightsResourceWithStreamingResponse,
+    AsyncConversationInsightsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "InsightGroupsResource",
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncMessagesResourceWithRawResponse",
     "MessagesResourceWithStreamingResponse",
     "AsyncMessagesResourceWithStreamingResponse",
+    "ConversationInsightsResource",
+    "AsyncConversationInsightsResource",
+    "ConversationInsightsResourceWithRawResponse",
+    "AsyncConversationInsightsResourceWithRawResponse",
+    "ConversationInsightsResourceWithStreamingResponse",
+    "AsyncConversationInsightsResourceWithStreamingResponse",
     "ConversationsResource",
     "AsyncConversationsResource",
     "ConversationsResourceWithRawResponse",

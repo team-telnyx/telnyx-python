@@ -926,6 +926,18 @@ Methods:
 
 - <code title="get /ai/conversations/{conversation_id}/messages">client.ai.conversations.messages.<a href="./src/telnyx/resources/ai/conversations/messages.py">list</a>(conversation_id, \*\*<a href="src/telnyx/types/ai/conversations/message_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/message_list_response.py">SyncDefaultFlatPagination[MessageListResponse]</a></code>
 
+### ConversationInsights
+
+Types:
+
+```python
+from telnyx.types.ai.conversations import ConversationInsightRetrieveAggregatesResponse
+```
+
+Methods:
+
+- <code title="get /ai/conversations/conversation-insights/aggregates">client.ai.conversations.conversation_insights.<a href="./src/telnyx/resources/ai/conversations/conversation_insights.py">retrieve_aggregates</a>(\*\*<a href="src/telnyx/types/ai/conversations/conversation_insight_retrieve_aggregates_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/conversation_insight_retrieve_aggregates_response.py">ConversationInsightRetrieveAggregatesResponse</a></code>
+
 ## Embeddings
 
 Types:
@@ -1199,7 +1211,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import SharedToolResponse
+from telnyx.types.ai import PayToolParams, SharedToolResponse
 ```
 
 Methods:
@@ -1209,6 +1221,20 @@ Methods:
 - <code title="patch /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">update</a>(tool_id, \*\*<a href="src/telnyx/types/ai/tool_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SharedToolResponse</a></code>
 - <code title="get /ai/tools">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">list</a>(\*\*<a href="src/telnyx/types/ai/tool_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SyncDefaultFlatPagination[SharedToolResponse]</a></code>
 - <code title="delete /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">delete</a>(tool_id) -> object</code>
+
+## Anthropic
+
+### V1
+
+Types:
+
+```python
+from telnyx.types.ai.anthropic import V1MessagesResponse
+```
+
+Methods:
+
+- <code title="post /ai/anthropic/v1/messages">client.ai.anthropic.v1.<a href="./src/telnyx/resources/ai/anthropic/v1.py">messages</a>(\*\*<a href="src/telnyx/types/ai/anthropic/v1_messages_params.py">params</a>) -> <a href="./src/telnyx/types/ai/anthropic/v1_messages_response.py">V1MessagesResponse</a></code>
 
 # AuditEvents
 
@@ -3926,7 +3952,7 @@ from telnyx.types import DocReqsRequirement, RequirementRetrieveResponse
 
 Methods:
 
-- <code title="get /requirements/{id}">client.requirements.<a href="./src/telnyx/resources/requirements.py">retrieve</a>(id) -> <a href="./src/telnyx/types/requirement_retrieve_response.py">RequirementRetrieveResponse</a></code>
+- <code title="get /requirements/{id}">client.requirements.<a href="./src/telnyx/resources/requirements.py">retrieve</a>(id, \*\*<a href="src/telnyx/types/requirement_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/requirement_retrieve_response.py">RequirementRetrieveResponse</a></code>
 - <code title="get /requirements">client.requirements.<a href="./src/telnyx/resources/requirements.py">list</a>(\*\*<a href="src/telnyx/types/requirement_list_params.py">params</a>) -> <a href="./src/telnyx/types/doc_reqs_requirement.py">SyncDefaultFlatPagination[DocReqsRequirement]</a></code>
 
 # RoomCompositions
@@ -4396,6 +4422,33 @@ Methods:
 - <code title="put /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">update</a>(key, body, \*, id, \*\*<a href="src/telnyx/types/storage/kvs/key_update_params.py">params</a>) -> None</code>
 - <code title="get /storage/kvs/{id}/keys">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">list</a>(id, \*\*<a href="src/telnyx/types/storage/kvs/key_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/kvs/key_list_response.py">SyncCursorFlatPagination[KeyListResponse]</a></code>
 - <code title="delete /storage/kvs/{id}/keys/{key}">client.storage.kvs.keys.<a href="./src/telnyx/resources/storage/kvs/keys.py">delete</a>(key, \*, id) -> None</code>
+
+## Cloudfs
+
+Types:
+
+```python
+from telnyx.types.storage import (
+    CloudfsFilesystemDetailResponseWrapper,
+    CloudfsFilesystemResponseWrapper,
+    CloudfsFilesystemStatus,
+    CloudfListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /storage/cloudfs">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">create</a>(\*\*<a href="src/telnyx/types/storage/cloudf_create_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_response_wrapper.py">CloudfsFilesystemResponseWrapper</a></code>
+- <code title="get /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
+- <code title="patch /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">update</a>(id, \*\*<a href="src/telnyx/types/storage/cloudf_update_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
+- <code title="get /storage/cloudfs">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">list</a>(\*\*<a href="src/telnyx/types/storage/cloudf_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudf_list_response.py">CloudfListResponse</a></code>
+- <code title="delete /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">delete</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
+
+### Actions
+
+Methods:
+
+- <code title="post /storage/cloudfs/{id}/actions/rotate-meta-token">client.storage.cloudfs.actions.<a href="./src/telnyx/resources/storage/cloudfs/actions.py">rotate_meta_token</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_response_wrapper.py">CloudfsFilesystemResponseWrapper</a></code>
 
 # SubNumberOrders
 

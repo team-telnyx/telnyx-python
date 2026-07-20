@@ -6,7 +6,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["ManagedAccountListParams", "Filter", "FilterEmail", "FilterOrganizationName"]
+__all__ = ["ManagedAccountListParams", "Filter", "FilterEmail", "FilterOrganizationName", "FilterStatus"]
 
 
 class ManagedAccountListParams(TypedDict, total=False):
@@ -14,7 +14,8 @@ class ManagedAccountListParams(TypedDict, total=False):
     """Consolidated filter parameter (deepObject style).
 
     Originally: filter[email][contains], filter[email][eq],
-    filter[organization_name][contains], filter[organization_name][eq]
+    filter[organization_name][contains], filter[organization_name][eq],
+    filter[status][eq]
     """
 
     include_cancelled_accounts: bool
@@ -72,12 +73,23 @@ class FilterOrganizationName(TypedDict, total=False):
     """
 
 
+class FilterStatus(TypedDict, total=False):
+    eq: Literal["all", "active", "enabled", "cancelled", "disabled", "blocked"]
+    """
+    If present, only returns managed accounts with the <code>status</code> matching
+    exactly the value given. Use <code>enabled</code> or <code>disabled</code> to
+    filter accounts by whether they are currently able to use Telnyx services.
+    """
+
+
 class Filter(TypedDict, total=False):
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[email][contains], filter[email][eq], filter[organization_name][contains], filter[organization_name][eq]
+    Originally: filter[email][contains], filter[email][eq], filter[organization_name][contains], filter[organization_name][eq], filter[status][eq]
     """
 
     email: FilterEmail
 
     organization_name: FilterOrganizationName
+
+    status: FilterStatus

@@ -20,6 +20,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ai.shared_tool_response import SharedToolResponse
+from ...types.ai.pay_tool_params_param import PayToolParamsParam
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
 
@@ -55,6 +56,7 @@ class ToolsResource(SyncAPIResource):
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
         invite: Dict[str, object] | Omit = omit,
+        pay: PayToolParamsParam | Omit = omit,
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
@@ -87,6 +89,7 @@ class ToolsResource(SyncAPIResource):
                     "function": function,
                     "handoff": handoff,
                     "invite": invite,
+                    "pay": pay,
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "webhook": webhook,
@@ -141,6 +144,7 @@ class ToolsResource(SyncAPIResource):
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
         invite: Dict[str, object] | Omit = omit,
+        pay: PayToolParamsParam | Omit = omit,
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         type: str | Omit = omit,
@@ -175,6 +179,7 @@ class ToolsResource(SyncAPIResource):
                     "function": function,
                     "handoff": handoff,
                     "invite": invite,
+                    "pay": pay,
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "type": type,
@@ -308,6 +313,7 @@ class AsyncToolsResource(AsyncAPIResource):
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
         invite: Dict[str, object] | Omit = omit,
+        pay: PayToolParamsParam | Omit = omit,
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
@@ -340,6 +346,7 @@ class AsyncToolsResource(AsyncAPIResource):
                     "function": function,
                     "handoff": handoff,
                     "invite": invite,
+                    "pay": pay,
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "webhook": webhook,
@@ -394,6 +401,7 @@ class AsyncToolsResource(AsyncAPIResource):
         function: Dict[str, object] | Omit = omit,
         handoff: Dict[str, object] | Omit = omit,
         invite: Dict[str, object] | Omit = omit,
+        pay: PayToolParamsParam | Omit = omit,
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         type: str | Omit = omit,
@@ -428,6 +436,7 @@ class AsyncToolsResource(AsyncAPIResource):
                     "function": function,
                     "handoff": handoff,
                     "invite": invite,
+                    "pay": pay,
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "type": type,

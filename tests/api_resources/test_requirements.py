@@ -9,7 +9,10 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import DocReqsRequirement, RequirementRetrieveResponse
+from telnyx.types import (
+    DocReqsRequirement,
+    RequirementRetrieveResponse,
+)
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -22,7 +25,16 @@ class TestRequirements:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         requirement = client.requirements.retrieve(
-            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+        )
+        assert_matches_type(RequirementRetrieveResponse, requirement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
+        requirement = client.requirements.retrieve(
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            version=0,
         )
         assert_matches_type(RequirementRetrieveResponse, requirement, path=["response"])
 
@@ -30,7 +42,7 @@ class TestRequirements:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.requirements.with_raw_response.retrieve(
-            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         )
 
         assert response.is_closed is True
@@ -42,7 +54,7 @@ class TestRequirements:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.requirements.with_streaming_response.retrieve(
-            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -57,7 +69,7 @@ class TestRequirements:
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.requirements.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -78,6 +90,7 @@ class TestRequirements:
             page_number=0,
             page_size=0,
             sort=["country_code"],
+            version=0,
         )
         assert_matches_type(SyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 
@@ -113,7 +126,16 @@ class TestAsyncRequirements:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         requirement = await async_client.requirements.retrieve(
-            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+        )
+        assert_matches_type(RequirementRetrieveResponse, requirement, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        requirement = await async_client.requirements.retrieve(
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            version=0,
         )
         assert_matches_type(RequirementRetrieveResponse, requirement, path=["response"])
 
@@ -121,7 +143,7 @@ class TestAsyncRequirements:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.requirements.with_raw_response.retrieve(
-            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         )
 
         assert response.is_closed is True
@@ -133,7 +155,7 @@ class TestAsyncRequirements:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.requirements.with_streaming_response.retrieve(
-            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
+            id="a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,7 +170,7 @@ class TestAsyncRequirements:
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.requirements.with_raw_response.retrieve(
-                "",
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -169,6 +191,7 @@ class TestAsyncRequirements:
             page_number=0,
             page_size=0,
             sort=["country_code"],
+            version=0,
         )
         assert_matches_type(AsyncDefaultFlatPagination[DocReqsRequirement], requirement, path=["response"])
 

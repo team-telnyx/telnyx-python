@@ -240,7 +240,7 @@ class ManagedAccountsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[email][contains], filter[email][eq], filter[organization_name][contains],
-              filter[organization_name][eq]
+              filter[organization_name][eq], filter[status][eq]
 
           include_cancelled_accounts: Specifies if cancelled accounts should be included in the results.
 
@@ -552,7 +552,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[email][contains], filter[email][eq], filter[organization_name][contains],
-              filter[organization_name][eq]
+              filter[organization_name][eq], filter[status][eq]
 
           include_cancelled_accounts: Specifies if cancelled accounts should be included in the results.
 

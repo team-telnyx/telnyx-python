@@ -268,6 +268,15 @@ class CallDialParams(TypedDict, total=False):
     of the recording.
     """
 
+    retry_on_timeout: bool
+    """Whether to keep trying the remaining routing paths (e.g.
+
+    alternate providers/gateways) for the same destination after `timeout_secs` is
+    reached for the current attempt. When set to `false`, reaching `timeout_secs`
+    aborts the entire dial attempt and the `call.hangup` webhook reports a
+    `hangup_cause` of `no_answer` instead of `timeout`.
+    """
+
     send_digits_on_answer: str
     """DTMF digits to send automatically after the called party answers.
 

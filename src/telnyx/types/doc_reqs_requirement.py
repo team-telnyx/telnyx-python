@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -29,6 +30,15 @@ class DocReqsRequirement(BaseModel):
     created_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was created."""
 
+    effective_end_at: Optional[datetime] = None
+    """When this version was superseded.
+
+    NULL means this is the active or pending version.
+    """
+
+    effective_start_at: Optional[datetime] = None
+    """When this version became (or will become) active."""
+
     locality: Optional[str] = None
     """The locality where this requirement applies"""
 
@@ -41,8 +51,11 @@ class DocReqsRequirement(BaseModel):
     record_type: Optional[str] = None
     """Identifies the type of the resource."""
 
-    requirements_types: Optional[List[DocReqsRequirementType]] = None
+    requirement_types: Optional[List[DocReqsRequirementType]] = None
     """Lists the requirement types necessary to fulfill this requirement"""
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was last updated."""
+
+    version: Optional[int] = None
+    """Version number. Increments with each new version. Defaults to 1."""

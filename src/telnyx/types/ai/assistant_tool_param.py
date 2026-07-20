@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from ..._types import SequenceNotStr
 from .hangup_tool_param import HangupToolParam
 from .retrieval_tool_param import RetrievalToolParam
+from .pay_tool_params_param import PayToolParamsParam
 from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam
 
 __all__ = [
@@ -42,6 +43,7 @@ __all__ = [
     "SendMessageSendMessage",
     "SkipTurn",
     "SkipTurnSkipTurn",
+    "Pay",
 ]
 
 
@@ -472,6 +474,16 @@ class SkipTurn(TypedDict, total=False):
     type: Required[Literal["skip_turn"]]
 
 
+class Pay(TypedDict, total=False):
+    """
+    (BETA) The pay tool allows the assistant to collect card payments from the caller via DTMF during the conversation. Recording is automatically paused while the pay tool is active and resumes when the payment flow completes. The connector_name must reference a pay connector configured in the Telnyx API.
+    """
+
+    pay: Required[PayToolParamsParam]
+
+    type: Required[Literal["pay"]]
+
+
 AssistantToolParam: TypeAlias = Union[
     InferenceEmbeddingWebhookToolParamsParam,
     ClientSideTool,
@@ -484,4 +496,5 @@ AssistantToolParam: TypeAlias = Union[
     SendDtmf,
     SendMessage,
     SkipTurn,
+    Pay,
 ]

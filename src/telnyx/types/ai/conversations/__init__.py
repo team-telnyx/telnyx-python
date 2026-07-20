@@ -13,6 +13,9 @@ from .insight_group_insight_groups_params import InsightGroupInsightGroupsParams
 from .insight_group_retrieve_insight_groups_params import (
     InsightGroupRetrieveInsightGroupsParams as InsightGroupRetrieveInsightGroupsParams,
 )
+from .conversation_insight_retrieve_aggregates_params import (
+    ConversationInsightRetrieveAggregatesParams as ConversationInsightRetrieveAggregatesParams,
+)
 
 if TYPE_CHECKING:
     from .insight_template import InsightTemplate as InsightTemplate
@@ -20,6 +23,9 @@ if TYPE_CHECKING:
     from .insight_template_group import InsightTemplateGroup as InsightTemplateGroup
     from .insight_template_detail import InsightTemplateDetail as InsightTemplateDetail
     from .insight_template_group_detail import InsightTemplateGroupDetail as InsightTemplateGroupDetail
+    from .conversation_insight_retrieve_aggregates_response import (
+        ConversationInsightRetrieveAggregatesResponse as ConversationInsightRetrieveAggregatesResponse,
+    )
 
 
 def __getattr__(name: str) -> Any:
@@ -43,4 +49,8 @@ def __getattr__(name: str) -> Any:
         from .message_list_response import MessageListResponse
 
         return MessageListResponse
+    if name == "ConversationInsightRetrieveAggregatesResponse":
+        from .conversation_insight_retrieve_aggregates_response import ConversationInsightRetrieveAggregatesResponse
+
+        return ConversationInsightRetrieveAggregatesResponse
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

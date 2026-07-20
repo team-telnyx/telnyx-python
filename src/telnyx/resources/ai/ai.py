@@ -68,6 +68,14 @@ from .missions.missions import (
     MissionsResourceWithStreamingResponse,
     AsyncMissionsResourceWithStreamingResponse,
 )
+from .anthropic.anthropic import (
+    AnthropicResource,
+    AsyncAnthropicResource,
+    AnthropicResourceWithRawResponse,
+    AsyncAnthropicResourceWithRawResponse,
+    AnthropicResourceWithStreamingResponse,
+    AsyncAnthropicResourceWithStreamingResponse,
+)
 from .assistants.assistants import (
     AssistantsResource,
     AsyncAssistantsResource,
@@ -163,6 +171,10 @@ class AIResource(SyncAPIResource):
     def tools(self) -> ToolsResource:
         """Configure AI assistant specifications"""
         return ToolsResource(self._client)
+
+    @cached_property
+    def anthropic(self) -> AnthropicResource:
+        return AnthropicResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -440,6 +452,10 @@ class AsyncAIResource(AsyncAPIResource):
     def tools(self) -> AsyncToolsResource:
         """Configure AI assistant specifications"""
         return AsyncToolsResource(self._client)
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResource:
+        return AsyncAnthropicResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -728,6 +744,10 @@ class AIResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return ToolsResourceWithRawResponse(self._ai.tools)
 
+    @cached_property
+    def anthropic(self) -> AnthropicResourceWithRawResponse:
+        return AnthropicResourceWithRawResponse(self._ai.anthropic)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -788,6 +808,10 @@ class AsyncAIResourceWithRawResponse:
     def tools(self) -> AsyncToolsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return AsyncToolsResourceWithRawResponse(self._ai.tools)
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResourceWithRawResponse:
+        return AsyncAnthropicResourceWithRawResponse(self._ai.anthropic)
 
 
 class AIResourceWithStreamingResponse:
@@ -850,6 +874,10 @@ class AIResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return ToolsResourceWithStreamingResponse(self._ai.tools)
 
+    @cached_property
+    def anthropic(self) -> AnthropicResourceWithStreamingResponse:
+        return AnthropicResourceWithStreamingResponse(self._ai.anthropic)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -910,3 +938,7 @@ class AsyncAIResourceWithStreamingResponse:
     def tools(self) -> AsyncToolsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return AsyncToolsResourceWithStreamingResponse(self._ai.tools)
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResourceWithStreamingResponse:
+        return AsyncAnthropicResourceWithStreamingResponse(self._ai.anthropic)

@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import TypedDict
 
+from .pay_tool_params_param import PayToolParamsParam
+
 __all__ = ["ToolUpdateParams"]
 
 
@@ -18,6 +20,8 @@ class ToolUpdateParams(TypedDict, total=False):
     handoff: Dict[str, object]
 
     invite: Dict[str, object]
+
+    pay: PayToolParamsParam
 
     retrieval: Dict[str, object]
 
