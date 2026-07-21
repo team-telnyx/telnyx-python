@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.170.0](https://github.com/team-telnyx/telnyx-python/compare/v4.169.0...v4.170.0) (2026-07-21)
+
+
+### Features
+
+* promote from staging 5d3739d ([e78a632](https://github.com/team-telnyx/telnyx-python/commit/e78a632442b630b8ac5f0f1bdf4b28780ffa0937))
+* promote from staging 5d3739d ([4631f9c](https://github.com/team-telnyx/telnyx-python/commit/4631f9c500266e78e6d4d7f23ef7c97be583b2ad))
+
+
+### Bug Fixes
+
+* scan next commits when creating release PR ([#403](https://github.com/team-telnyx/telnyx-python/issues/403)) ([8483b51](https://github.com/team-telnyx/telnyx-python/commit/8483b51f6bf52bbcefd4b9a3aeff91b80bca7902))
+
+
+### Chores
+
+* merge master into next for release ancestry ([6e165f4](https://github.com/team-telnyx/telnyx-python/commit/6e165f45da497e67312d6a1fa0bd620077407ec6))
+* merge master into next for release ancestry ([a62f6e8](https://github.com/team-telnyx/telnyx-python/commit/a62f6e85f94fc49f5242753896a4b494dab4b9d8))
+
 ## [4.162.1](https://github.com/team-telnyx/telnyx-python-staging/compare/v4.162.0...v4.162.1) (2026-06-22)
 
 
