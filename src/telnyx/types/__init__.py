@@ -74,7 +74,6 @@ from .event_node import EventNode as EventNode
 from .fax_failed import FaxFailed as FaxFailed
 from .fax_queued import FaxQueued as FaxQueued
 from .inbound_ip import InboundIP as InboundIP
-from .sip_header import SipHeader as SipHeader
 from .call_hangup import CallHangup as CallHangup
 from .dir_wrapped import DirWrapped as DirWrapped
 from .oauth_grant import OAuthGrant as OAuthGrant
