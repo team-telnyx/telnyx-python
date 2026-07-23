@@ -3795,6 +3795,7 @@ class ActionsResource(SyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        route_to_mobile: bool | Omit = omit,
         send_digits_on_answer: str | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
@@ -3939,6 +3940,13 @@ class ActionsResource(SyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          route_to_mobile: When set to true, routes the call directly to the mobile device associated with
+              the destination Telnyx Mobile number, bypassing Inbound Calls Interception
+              configured in the Telnyx Portal under Mobile Numbers → select the number → Voice
+              → Call Interception. Use this when transferring an intercepted call to the
+              mobile device to prevent the call from being intercepted again. Defaults to
+              false.
+
           send_digits_on_answer: DTMF digits to send automatically after the transfer destination answers. Useful
               for reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once
               the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause),
@@ -4029,6 +4037,7 @@ class ActionsResource(SyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "route_to_mobile": route_to_mobile,
                     "send_digits_on_answer": send_digits_on_answer,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
@@ -7757,6 +7766,7 @@ class AsyncActionsResource(AsyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        route_to_mobile: bool | Omit = omit,
         send_digits_on_answer: str | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
@@ -7901,6 +7911,13 @@ class AsyncActionsResource(AsyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          route_to_mobile: When set to true, routes the call directly to the mobile device associated with
+              the destination Telnyx Mobile number, bypassing Inbound Calls Interception
+              configured in the Telnyx Portal under Mobile Numbers → select the number → Voice
+              → Call Interception. Use this when transferring an intercepted call to the
+              mobile device to prevent the call from being intercepted again. Defaults to
+              false.
+
           send_digits_on_answer: DTMF digits to send automatically after the transfer destination answers. Useful
               for reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once
               the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause),
@@ -7991,6 +8008,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "route_to_mobile": route_to_mobile,
                     "send_digits_on_answer": send_digits_on_answer,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
