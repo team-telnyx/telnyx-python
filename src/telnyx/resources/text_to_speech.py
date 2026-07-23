@@ -80,10 +80,12 @@ class TextToSpeechResource(SyncAPIResource):
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_speech_params.Elevenlabs | Omit = omit,
+        humain: text_to_speech_generate_speech_params.Humain | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
@@ -114,7 +116,7 @@ class TextToSpeechResource(SyncAPIResource):
         with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`, `xai`.
+        `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
         adjustment, and volume control. Use the `telnyx` provider-specific parameters to
@@ -128,6 +130,10 @@ class TextToSpeechResource(SyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
+
+          humain: Humain provider-specific parameters. Unlike other providers, Humain has no
+              format/sample-rate negotiation (output is always PCM16 24kHz mono) and no
+              language parameter — language is fixed per voice.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -178,6 +184,7 @@ class TextToSpeechResource(SyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
+                    "humain": humain,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -199,7 +206,6 @@ class TextToSpeechResource(SyncAPIResource):
             cast_to=TextToSpeechGenerateSpeechResponse,
         )
 
-
     def generate_speech(
         self,
         *,
@@ -207,10 +213,12 @@ class TextToSpeechResource(SyncAPIResource):
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_speech_params.Elevenlabs | Omit = omit,
+        humain: text_to_speech_generate_speech_params.Humain | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
@@ -241,7 +249,7 @@ class TextToSpeechResource(SyncAPIResource):
         with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`, `xai`.
+        `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
         adjustment, and volume control. Use the `telnyx` provider-specific parameters to
@@ -255,6 +263,10 @@ class TextToSpeechResource(SyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
+
+          humain: Humain provider-specific parameters. Unlike other providers, Humain has no
+              format/sample-rate negotiation (output is always PCM16 24kHz mono) and no
+              language parameter — language is fixed per voice.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -305,6 +317,7 @@ class TextToSpeechResource(SyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
+                    "humain": humain,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -330,7 +343,8 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,7 +397,9 @@ class TextToSpeechResource(SyncAPIResource):
         audio_format: Literal["pcm", "wav", "mp3"] | Omit = omit,
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai"]
+        provider: Literal[
+            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai", "humain"
+        ]
         | Omit = omit,
         socket_id: str | Omit = omit,
         voice: str | Omit = omit,
@@ -402,7 +418,7 @@ class TextToSpeechResource(SyncAPIResource):
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
         Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`, `xai`.
+        `resemble`, `elevenlabs`, `xai`, `humain`.
 
         **Connection flow:**
 
@@ -530,10 +546,12 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_speech_params.Elevenlabs | Omit = omit,
+        humain: text_to_speech_generate_speech_params.Humain | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
@@ -564,7 +582,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`, `xai`.
+        `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
         adjustment, and volume control. Use the `telnyx` provider-specific parameters to
@@ -578,6 +596,10 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
+
+          humain: Humain provider-specific parameters. Unlike other providers, Humain has no
+              format/sample-rate negotiation (output is always PCM16 24kHz mono) and no
+              language parameter — language is fixed per voice.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -628,6 +650,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
+                    "humain": humain,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -649,7 +672,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
             cast_to=TextToSpeechGenerateSpeechResponse,
         )
 
-
     async def generate_speech(
         self,
         *,
@@ -657,10 +679,12 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_speech_params.Elevenlabs | Omit = omit,
+        humain: text_to_speech_generate_speech_params.Humain | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
@@ -691,7 +715,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`, `xai`.
+        `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
         adjustment, and volume control. Use the `telnyx` provider-specific parameters to
@@ -705,6 +729,10 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
+
+          humain: Humain provider-specific parameters. Unlike other providers, Humain has no
+              format/sample-rate negotiation (output is always PCM16 24kHz mono) and no
+              language parameter — language is fixed per voice.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -755,6 +783,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
+                    "humain": humain,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -780,7 +809,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -833,7 +863,9 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         audio_format: Literal["pcm", "wav", "mp3"] | Omit = omit,
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai"]
+        provider: Literal[
+            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai", "humain"
+        ]
         | Omit = omit,
         socket_id: str | Omit = omit,
         voice: str | Omit = omit,
@@ -852,7 +884,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
         Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`, `xai`.
+        `resemble`, `elevenlabs`, `xai`, `humain`.
 
         **Connection flow:**
 
