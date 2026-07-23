@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["ActionChangeBundleStatusParams"]
 
 
 class ActionChangeBundleStatusParams(TypedDict, total=False):
-    bundle_id: Required[str]
+    bundle_id: Required[Optional[str]]
     """The new bundle_id setting for the number.
 
     If you are assigning the number to a bundle, this is the unique ID of the bundle
