@@ -5549,6 +5549,22 @@ Methods:
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">delete</a>(phone_number) -> None</code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">upload</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_response.py">PhotoUploadResponse</a></code>
 
+### ConversationalComponents
+
+Types:
+
+```python
+from telnyx.types.whatsapp.phone_numbers import (
+    ConversationalComponentListResponse,
+    ConversationalComponentPatchAllResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">list</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_list_response.py">ConversationalComponentListResponse</a></code>
+- <code title="patch /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">patch_all</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_response.py">ConversationalComponentPatchAllResponse</a></code>
+
 ## UserData
 
 Types:
