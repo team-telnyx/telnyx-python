@@ -169,7 +169,6 @@ from telnyx.types.legacy.reporting.usage_reports import (
     TelcoDataUsageReportResponse,
     NumberLookupCreateResponse,
     NumberLookupRetrieveResponse,
-    NumberLookupListResponse,
 )
 ```
 
@@ -177,7 +176,7 @@ Methods:
 
 - <code title="post /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/number_lookup_create_response.py">NumberLookupCreateResponse</a></code>
 - <code title="get /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/number_lookup_retrieve_response.py">NumberLookupRetrieveResponse</a></code>
-- <code title="get /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/number_lookup_list_response.py">NumberLookupListResponse</a></code>
+- <code title="get /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_list_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/telco_data_usage_report_response.py">SyncPerPagePagination[TelcoDataUsageReportResponse]</a></code>
 - <code title="delete /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">delete</a>(id) -> None</code>
 
 #### Voice

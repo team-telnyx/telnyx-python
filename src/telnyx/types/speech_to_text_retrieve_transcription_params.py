@@ -12,7 +12,7 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
     """The format of input audio stream."""
 
     transcription_engine: Required[
-        Literal["Azure", "Deepgram", "Google", "Telnyx", "xAI", "Speechmatics", "Soniox", "Parakeet"]
+        Literal["Azure", "Deepgram", "Google", "Telnyx", "xAI", "Speechmatics", "Soniox", "Parakeet", "Humain"]
     ]
     """The transcription engine to use for processing the audio stream."""
 
@@ -62,6 +62,7 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
         "speechmatics/standard",
         "soniox/stt-rt-v4",
         "nvidia/parakeet-v3",
+        "humain/realtime",
     ]
     """The specific model to use within the selected transcription engine."""
 

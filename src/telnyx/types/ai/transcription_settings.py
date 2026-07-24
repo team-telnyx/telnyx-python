@@ -28,7 +28,10 @@ class TranscriptionSettings(BaseModel):
     language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
     and `nl`. For `soniox/stt-rt-v4`, `auto` omits the language hint and lets Soniox
     auto-detect; ISO 639-1 codes (e.g. `en`, `es`) bias detection toward that
-    language.
+    language. For `humain/realtime`, supported values are `ar`, `en`, `codeswitch`
+    (Arabic/English code-switching), and `auto` (resolves server-side to
+    code-switching). Unlike other models, `humain/realtime` does not fall back to
+    `auto` when `language` is omitted — omitting it applies `en` instead.
     """
 
     model: Optional[
@@ -41,6 +44,7 @@ class TranscriptionSettings(BaseModel):
             "xai/grok-stt",
             "soniox/stt-rt-v4",
             "nvidia/parakeet-v3",
+            "humain/realtime",
             "distil-whisper/distil-large-v2",
             "openai/whisper-large-v3-turbo",
         ]
@@ -60,6 +64,8 @@ class TranscriptionSettings(BaseModel):
       detection and configurable endpointing.
     - `nvidia/parakeet-v3` is a multilingual transcription model with automatic
       language detection.
+    - `humain/realtime` is a streaming model with native Arabic and Arabic/English
+      code-switching support.
     """
 
     region: Optional[str] = None

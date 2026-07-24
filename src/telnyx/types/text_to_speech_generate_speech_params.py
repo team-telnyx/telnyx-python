@@ -12,6 +12,7 @@ __all__ = [
     "Aws",
     "Azure",
     "Elevenlabs",
+    "Humain",
     "Minimax",
     "Resemble",
     "Rime",
@@ -33,6 +34,14 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     elevenlabs: Elevenlabs
     """ElevenLabs provider-specific parameters."""
 
+    humain: Humain
+    """Humain provider-specific parameters.
+
+    Unlike other providers, Humain has no format/sample-rate negotiation (output is
+    always PCM16 24kHz mono) and no language parameter — language is fixed per
+    voice.
+    """
+
     language: str
     """Language code (e.g. `en-US`). Usage varies by provider."""
 
@@ -46,7 +55,7 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     audio in JSON.
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"]
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
     """TTS provider. Required unless `voice` is provided."""
 
     resemble: Resemble
@@ -149,6 +158,19 @@ class Elevenlabs(TypedDict, total=False):
 
     voice_settings: Dict[str, object]
     """ElevenLabs voice settings (stability, similarity_boost, etc.)."""
+
+
+class Humain(TypedDict, total=False):
+    """Humain provider-specific parameters.
+
+    Unlike other providers, Humain has no format/sample-rate negotiation (output is always PCM16 24kHz mono) and no language parameter — language is fixed per voice.
+    """
+
+    voice_id: Required[Literal["sara-en", "abdulaziz-en", "sara-ar", "abdulaziz-ar", "nourah-ar", "abdullah-ar"]]
+    """Humain voice identifier."""
+
+    ttfb_eagerness: float
+    """Time-to-first-byte eagerness, trading synthesis latency for quality."""
 
 
 class Minimax(TypedDict, total=False):

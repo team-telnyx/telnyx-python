@@ -53,6 +53,10 @@ class TestTextToSpeech:
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
             },
+            humain={
+                "voice_id": "sara-en",
+                "ttfb_eagerness": 0,
+            },
             language="language",
             minimax={
                 "language_boost": "language_boost",
@@ -234,6 +238,10 @@ class TestAsyncTextToSpeech:
                 "api_key": "api_key",
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
+            },
+            humain={
+                "voice_id": "sara-en",
+                "ttfb_eagerness": 0,
             },
             language="language",
             minimax={

@@ -18,7 +18,27 @@ from .transcription_engine_parakeet_config_param import TranscriptionEngineParak
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = ["TranscriptionStartRequestParam", "TranscriptionEngineConfig"]
+__all__ = [
+    "TranscriptionStartRequestParam",
+    "TranscriptionEngineConfig",
+    "TranscriptionEngineConfigTranscriptionEngineHumainConfig",
+]
+
+
+class TranscriptionEngineConfigTranscriptionEngineHumainConfig(TypedDict, total=False):
+    language: Literal["ar", "en", "codeswitch", "auto"]
+    """The language of the audio to be transcribed.
+
+    `codeswitch` enables Arabic/English code-switching. `auto` resolves server-side
+    to code-switching.
+    """
+
+    transcription_engine: Literal["Humain"]
+    """Engine identifier for Humain transcription service"""
+
+    transcription_model: Literal["humain/realtime"]
+    """The model to use for transcription."""
+
 
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
@@ -29,6 +49,7 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineSpeechmaticsConfigParam,
     TranscriptionEngineSonioxConfigParam,
     TranscriptionEngineParakeetConfigParam,
+    TranscriptionEngineConfigTranscriptionEngineHumainConfig,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
@@ -51,7 +72,18 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
     """
 
     transcription_engine: Literal[
-        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "Parakeet", "A", "B"
+        "Google",
+        "Telnyx",
+        "Deepgram",
+        "Azure",
+        "xAI",
+        "AssemblyAI",
+        "Speechmatics",
+        "Soniox",
+        "Parakeet",
+        "Humain",
+        "A",
+        "B",
     ]
     """Engine to use for speech recognition.
 

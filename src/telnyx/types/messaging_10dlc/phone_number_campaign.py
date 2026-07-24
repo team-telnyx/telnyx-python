@@ -40,6 +40,9 @@ class PhoneNumberCampaign(BaseModel):
     FAILED_UNASSIGNMENT
     """
 
+    non_tmobile_number_mapping_status: Optional[str] = FieldInfo(alias="nonTmobileNumberMappingStatus", default=None)
+    """The assignment status of the number towards other carriers."""
+
     tcr_brand_id: Optional[str] = FieldInfo(alias="tcrBrandId", default=None)
     """TCR's alphanumeric ID for the brand."""
 
@@ -48,3 +51,6 @@ class PhoneNumberCampaign(BaseModel):
 
     telnyx_campaign_id: Optional[str] = FieldInfo(alias="telnyxCampaignId", default=None)
     """Campaign ID. Empty if the number is associated to a shared campaign."""
+
+    tmobile_number_mapping_status: Optional[str] = FieldInfo(alias="tmobileNumberMappingStatus", default=None)
+    """The T-Mobile assignment status of the number."""

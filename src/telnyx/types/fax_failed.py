@@ -23,14 +23,23 @@ class DataPayload(BaseModel):
     direction: Optional[Literal["inbound", "outbound"]] = None
     """The direction of the fax."""
 
-    failure_reason: Optional[Literal["rejected"]] = None
-    """Cause of the sending failure"""
+    failure_reason: Optional[str] = None
+    """Customer-facing cause of the fax failure.
+
+    Mapped from the more granular `internal_failure_reason`.
+    """
 
     fax_id: Optional[str] = None
     """Identifies the fax."""
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """The phone number, in E.164 format, the fax will be sent from."""
+
+    internal_failure_reason: Optional[str] = None
+    """Internal, more granular cause of the fax failure.
+
+    Useful for deeper debugging beyond the customer-facing `failure_reason`.
+    """
 
     media_name: Optional[str] = None
     """The media_name used for the fax's media.
