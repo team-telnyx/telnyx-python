@@ -14,3 +14,4 @@ class ShortCodeUpdateParams(TypedDict, total=False):
     """Unique identifier for a messaging profile."""
 
     tags: SequenceNotStr[str]
+    """Tags associated with the resource."""
