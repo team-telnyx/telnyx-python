@@ -633,6 +633,7 @@ class AssistantsResource(SyncAPIResource):
         content: str,
         conversation_id: str,
         name: str | Omit = omit,
+        stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -657,6 +658,13 @@ class AssistantsResource(SyncAPIResource):
 
           name: The optional display name of the user sending the message
 
+          stream:
+              When true, the response is streamed as Server-Sent Events (`text/event-stream`):
+              `delta` events carry content fragments as they are generated, a final `done`
+              event carries the full content plus `whatsapp_template`, and a terminal `error`
+              event reports failures that happen after streaming started. When false
+              (default), the response is a single JSON object.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -674,6 +682,7 @@ class AssistantsResource(SyncAPIResource):
                     "content": content,
                     "conversation_id": conversation_id,
                     "name": name,
+                    "stream": stream,
                 },
                 assistant_chat_params.AssistantChatParams,
             ),
@@ -1387,6 +1396,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         content: str,
         conversation_id: str,
         name: str | Omit = omit,
+        stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1411,6 +1421,13 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           name: The optional display name of the user sending the message
 
+          stream:
+              When true, the response is streamed as Server-Sent Events (`text/event-stream`):
+              `delta` events carry content fragments as they are generated, a final `done`
+              event carries the full content plus `whatsapp_template`, and a terminal `error`
+              event reports failures that happen after streaming started. When false
+              (default), the response is a single JSON object.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1428,6 +1445,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "content": content,
                     "conversation_id": conversation_id,
                     "name": name,
+                    "stream": stream,
                 },
                 assistant_chat_params.AssistantChatParams,
             ),
