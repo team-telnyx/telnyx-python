@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -11,17 +10,17 @@ __all__ = ["S3ConfigurationData"]
 
 
 class S3ConfigurationData(BaseModel):
+    aws_access_key_id: str
+    """AWS credentials access key id."""
+
+    aws_secret_access_key: str
+    """AWS secret access key."""
+
     backend: Literal["s3"]
     """Storage backend type"""
 
-    aws_access_key_id: Optional[str] = None
-    """AWS credentials access key id."""
-
-    aws_secret_access_key: Optional[str] = None
-    """AWS secret access key."""
-
-    bucket: Optional[str] = None
+    bucket: str
     """Name of the bucket to be used to store recording files."""
 
-    region: Optional[str] = None
+    region: str
     """Region where the bucket is located."""

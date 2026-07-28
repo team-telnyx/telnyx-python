@@ -8,17 +8,17 @@ __all__ = ["S3ConfigurationDataParam"]
 
 
 class S3ConfigurationDataParam(TypedDict, total=False):
+    aws_access_key_id: Required[str]
+    """AWS credentials access key id."""
+
+    aws_secret_access_key: Required[str]
+    """AWS secret access key."""
+
     backend: Required[Literal["s3"]]
     """Storage backend type"""
 
-    aws_access_key_id: str
-    """AWS credentials access key id."""
-
-    aws_secret_access_key: str
-    """AWS secret access key."""
-
-    bucket: str
+    bucket: Required[str]
     """Name of the bucket to be used to store recording files."""
 
-    region: str
+    region: Required[str]
     """Region where the bucket is located."""
