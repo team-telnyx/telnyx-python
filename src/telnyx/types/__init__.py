@@ -70,17 +70,23 @@ from .rcs_agent import RcsAgent as RcsAgent
 from .conference import Conference as Conference
 from .connection import Connection as Connection
 from .dir_status import DirStatus as DirStatus
+from .dns_record import DNSRecord as DNSRecord
 from .event_node import EventNode as EventNode
 from .fax_failed import FaxFailed as FaxFailed
 from .fax_queued import FaxQueued as FaxQueued
 from .inbound_ip import InboundIP as InboundIP
+from .time_range import TimeRange as TimeRange
 from .call_hangup import CallHangup as CallHangup
 from .dir_wrapped import DirWrapped as DirWrapped
+from .email_block import EmailBlock as EmailBlock
+from .email_inbox import EmailInbox as EmailInbox
 from .oauth_grant import OAuthGrant as OAuthGrant
+from .offset_meta import OffsetMeta as OffsetMeta
 from .outbound_ip import OutboundIP as OutboundIP
 from .rcs_to_item import RcsToItem as RcsToItem
 from .uac_inbound import UacInbound as UacInbound
 from .call_bridged import CallBridged as CallBridged
+from .email_domain import EmailDomain as EmailDomain
 from .inbound_fqdn import InboundFqdn as InboundFqdn
 from .month_detail import MonthDetail as MonthDetail
 from .oauth_client import OAuthClient as OAuthClient
@@ -100,6 +106,7 @@ from .call_enqueued import CallEnqueued as CallEnqueued
 from .consumed_data import ConsumedData as ConsumedData
 from .fax_delivered import FaxDelivered as FaxDelivered
 from .ip_connection import IPConnection as IPConnection
+from .message_event import MessageEvent as MessageEvent
 from .network_param import NetworkParam as NetworkParam
 from .outbound_fqdn import OutboundFqdn as OutboundFqdn
 from .porting_order import PortingOrder as PortingOrder
@@ -107,6 +114,7 @@ from .transcription import Transcription as Transcription
 from .advanced_order import AdvancedOrder as AdvancedOrder
 from .call_initiated import CallInitiated as CallInitiated
 from .document_param import DocumentParam as DocumentParam
+from .email_template import EmailTemplate as EmailTemplate
 from .ip_list_params import IPListParams as IPListParams
 from .media_resource import MediaResource as MediaResource
 from .model_metadata import ModelMetadata as ModelMetadata
@@ -128,6 +136,8 @@ from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
 from .fax_list_params import FaxListParams as FaxListParams
 from .fqdn_connection import FqdnConnection as FqdnConnection
+from .group_list_meta import GroupListMeta as GroupListMeta
+from .inbound_message import InboundMessage as InboundMessage
 from .managed_account import ManagedAccount as ManagedAccount
 from .models_response import ModelsResponse as ModelsResponse
 from .pagination_meta import PaginationMeta as PaginationMeta
@@ -138,6 +148,7 @@ from .call_dial_params import CallDialParams as CallDialParams
 from .call_speak_ended import CallSpeakEnded as CallSpeakEnded
 from .conference_ended import ConferenceEnded as ConferenceEnded
 from .country_coverage import CountryCoverage as CountryCoverage
+from .email_event_type import EmailEventType as EmailEventType
 from .fqdn_list_params import FqdnListParams as FqdnListParams
 from .gcb_channel_zone import GcbChannelZone as GcbChannelZone
 from .inbound_ip_param import InboundIPParam as InboundIPParam
@@ -164,6 +175,7 @@ from .call_gather_ended import CallGatherEnded as CallGatherEnded
 from .call_refer_failed import CallReferFailed as CallReferFailed
 from .custom_sip_header import CustomSipHeader as CustomSipHeader
 from .dir_update_params import DirUpdateParams as DirUpdateParams
+from .email_domain_type import EmailDomainType as EmailDomainType
 from .enterprise_public import EnterprisePublic as EnterprisePublic
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .media_list_params import MediaListParams as MediaListParams
@@ -173,6 +185,7 @@ from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
+from .unsubscribe_group import UnsubscribeGroup as UnsubscribeGroup
 from .voice_design_data import VoiceDesignData as VoiceDesignData
 from .call_dial_response import CallDialResponse as CallDialResponse
 from .call_dtmf_received import CallDtmfReceived as CallDtmfReceived
@@ -183,6 +196,7 @@ from .conference_created import ConferenceCreated as ConferenceCreated
 from .credential_inbound import CredentialInbound as CredentialInbound
 from .dir_new_loa_params import DirNewLoaParams as DirNewLoaParams
 from .doc_service_record import DocServiceRecord as DocServiceRecord
+from .email_dmarc_policy import EmailDmarcPolicy as EmailDmarcPolicy
 from .fqdn_create_params import FqdnCreateParams as FqdnCreateParams
 from .fqdn_update_params import FqdnUpdateParams as FqdnUpdateParams
 from .inbound_fqdn_param import InboundFqdnParam as InboundFqdnParam
@@ -212,6 +226,7 @@ from .call_siprec_started import CallSiprecStarted as CallSiprecStarted
 from .call_siprec_stopped import CallSiprecStopped as CallSiprecStopped
 from .comment_list_params import CommentListParams as CommentListParams
 from .credential_outbound import CredentialOutbound as CredentialOutbound
+from .email_domain_status import EmailDomainStatus as EmailDomainStatus
 from .external_connection import ExternalConnection as ExternalConnection
 from .fax_create_response import FaxCreateResponse as FaxCreateResponse
 from .fax_media_processed import FaxMediaProcessed as FaxMediaProcessed
@@ -241,6 +256,8 @@ from .credentials_response import CredentialsResponse as CredentialsResponse
 from .doc_reqs_requirement import DocReqsRequirement as DocReqsRequirement
 from .doc_service_document import DocServiceDocument as DocServiceDocument
 from .document_list_params import DocumentListParams as DocumentListParams
+from .email_block_response import EmailBlockResponse as EmailBlockResponse
+from .email_inbox_response import EmailInboxResponse as EmailInboxResponse
 from .fqdn_create_response import FqdnCreateResponse as FqdnCreateResponse
 from .fqdn_delete_response import FqdnDeleteResponse as FqdnDeleteResponse
 from .fqdn_update_response import FqdnUpdateResponse as FqdnUpdateResponse
@@ -276,6 +293,7 @@ from .call_streaming_failed import CallStreamingFailed as CallStreamingFailed
 from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_list_response import CommentListResponse as CommentListResponse
 from .credential_connection import CredentialConnection as CredentialConnection
+from .email_domain_response import EmailDomainResponse as EmailDomainResponse
 from .fax_retrieve_response import FaxRetrieveResponse as FaxRetrieveResponse
 from .global_ip_list_params import GlobalIPListParams as GlobalIPListParams
 from .invoice_list_response import InvoiceListResponse as InvoiceListResponse
@@ -309,6 +327,7 @@ from .conference_speak_ended import ConferenceSpeakEnded as ConferenceSpeakEnded
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
 from .document_upload_params import DocumentUploadParams as DocumentUploadParams
+from .email_validation_check import EmailValidationCheck as EmailValidationCheck
 from .enterprise_list_params import EnterpriseListParams as EnterpriseListParams
 from .fqdn_retrieve_response import FqdnRetrieveResponse as FqdnRetrieveResponse
 from .gcs_configuration_data import GcsConfigurationData as GcsConfigurationData
@@ -343,6 +362,10 @@ from .comment_create_response import CommentCreateResponse as CommentCreateRespo
 from .custom_sip_header_param import CustomSipHeaderParam as CustomSipHeaderParam
 from .customer_service_record import CustomerServiceRecord as CustomerServiceRecord
 from .dialogflow_config_param import DialogflowConfigParam as DialogflowConfigParam
+from .email_block_list_params import EmailBlockListParams as EmailBlockListParams
+from .email_event_list_params import EmailEventListParams as EmailEventListParams
+from .email_inbox_list_params import EmailInboxListParams as EmailInboxListParams
+from .email_template_response import EmailTemplateResponse as EmailTemplateResponse
 from .global_ip_create_params import GlobalIPCreateParams as GlobalIPCreateParams
 from .invoice_retrieve_params import InvoiceRetrieveParams as InvoiceRetrieveParams
 from .managed_account_balance import ManagedAccountBalance as ManagedAccountBalance
@@ -369,9 +392,11 @@ from .recording_transcription import RecordingTranscription as RecordingTranscri
 from .report_list_mdrs_params import ReportListMdrsParams as ReportListMdrsParams
 from .report_list_wdrs_params import ReportListWdrsParams as ReportListWdrsParams
 from .requirement_list_params import RequirementListParams as RequirementListParams
+from .tracking_settings_param import TrackingSettingsParam as TrackingSettingsParam
 from .transcribe_client_event import TranscribeClientEvent as TranscribeClientEvent
 from .transcribe_server_event import TranscribeServerEvent as TranscribeServerEvent
 from .voice_clone_list_params import VoiceCloneListParams as VoiceCloneListParams
+from .attachment_request_param import AttachmentRequestParam as AttachmentRequestParam
 from .azure_configuration_data import AzureConfigurationData as AzureConfigurationData
 from .call_control_application import CallControlApplication as CallControlApplication
 from .call_event_list_response import CallEventListResponse as CallEventListResponse
@@ -384,6 +409,9 @@ from .credential_inbound_param import CredentialInboundParam as CredentialInboun
 from .document_delete_response import DocumentDeleteResponse as DocumentDeleteResponse
 from .document_update_response import DocumentUpdateResponse as DocumentUpdateResponse
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
+from .email_dmarc_policy_param import EmailDmarcPolicyParam as EmailDmarcPolicyParam
+from .email_domain_list_params import EmailDomainListParams as EmailDomainListParams
+from .email_thread_list_params import EmailThreadListParams as EmailThreadListParams
 from .enterprise_create_params import EnterpriseCreateParams as EnterpriseCreateParams
 from .enterprise_update_params import EnterpriseUpdateParams as EnterpriseUpdateParams
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
@@ -416,7 +444,15 @@ from .conference_playback_ended import ConferencePlaybackEnded as ConferencePlay
 from .credential_outbound_param import CredentialOutboundParam as CredentialOutboundParam
 from .detail_record_list_params import DetailRecordListParams as DetailRecordListParams
 from .document_link_list_params import DocumentLinkListParams as DocumentLinkListParams
+from .domains_tracking_settings import DomainsTrackingSettings as DomainsTrackingSettings
 from .dynamic_emergency_address import DynamicEmergencyAddress as DynamicEmergencyAddress
+from .email_address_input_param import EmailAddressInputParam as EmailAddressInputParam
+from .email_block_create_params import EmailBlockCreateParams as EmailBlockCreateParams
+from .email_domain_verification import EmailDomainVerification as EmailDomainVerification
+from .email_event_list_response import EmailEventListResponse as EmailEventListResponse
+from .email_inbox_create_params import EmailInboxCreateParams as EmailInboxCreateParams
+from .email_inbox_list_response import EmailInboxListResponse as EmailInboxListResponse
+from .email_message_list_params import EmailMessageListParams as EmailMessageListParams
 from .enterprise_public_wrapped import EnterprisePublicWrapped as EnterprisePublicWrapped
 from .global_ip_create_response import GlobalIPCreateResponse as GlobalIPCreateResponse
 from .global_ip_delete_response import GlobalIPDeleteResponse as GlobalIPDeleteResponse
@@ -449,6 +485,11 @@ from .conference_recording_saved import ConferenceRecordingSaved as ConferenceRe
 from .conference_retrieve_params import ConferenceRetrieveParams as ConferenceRetrieveParams
 from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetrieveResponse
 from .dynamic_emergency_endpoint import DynamicEmergencyEndpoint as DynamicEmergencyEndpoint
+from .email_domain_create_params import EmailDomainCreateParams as EmailDomainCreateParams
+from .email_domain_delete_params import EmailDomainDeleteParams as EmailDomainDeleteParams
+from .email_domain_update_params import EmailDomainUpdateParams as EmailDomainUpdateParams
+from .email_message_batch_params import EmailMessageBatchParams as EmailMessageBatchParams
+from .email_template_list_params import EmailTemplateListParams as EmailTemplateListParams
 from .global_ip_assignment_param import GlobalIPAssignmentParam as GlobalIPAssignmentParam
 from .infringement_claim_wrapped import InfringementClaimWrapped as InfringementClaimWrapped
 from .list_retrieve_all_response import ListRetrieveAllResponse as ListRetrieveAllResponse
@@ -468,6 +509,7 @@ from .sim_card_order_list_params import SimCardOrderListParams as SimCardOrderLi
 from .sim_card_retrieve_response import SimCardRetrieveResponse as SimCardRetrieveResponse
 from .stream_bidirectional_codec import StreamBidirectionalCodec as StreamBidirectionalCodec
 from .uac_connection_list_params import UacConnectionListParams as UacConnectionListParams
+from .unsubscribe_group_response import UnsubscribeGroupResponse as UnsubscribeGroupResponse
 from .usage_report_list_response import UsageReportListResponse as UsageReportListResponse
 from .user_address_create_params import UserAddressCreateParams as UserAddressCreateParams
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
@@ -486,6 +528,8 @@ from .conference_playback_started import ConferencePlaybackStarted as Conference
 from .detail_record_list_response import DetailRecordListResponse as DetailRecordListResponse
 from .document_link_list_response import DocumentLinkListResponse as DocumentLinkListResponse
 from .document_upload_json_params import DocumentUploadJsonParams as DocumentUploadJsonParams
+from .email_message_create_params import EmailMessageCreateParams as EmailMessageCreateParams
+from .email_message_list_response import EmailMessageListResponse as EmailMessageListResponse
 from .fax_application_list_params import FaxApplicationListParams as FaxApplicationListParams
 from .fqdn_connection_list_params import FqdnConnectionListParams as FqdnConnectionListParams
 from .global_ip_retrieve_response import GlobalIPRetrieveResponse as GlobalIPRetrieveResponse
@@ -516,6 +560,12 @@ from .connection_noise_suppression import ConnectionNoiseSuppression as Connecti
 from .connection_retrieve_response import ConnectionRetrieveResponse as ConnectionRetrieveResponse
 from .create_verification_response import CreateVerificationResponse as CreateVerificationResponse
 from .custom_storage_configuration import CustomStorageConfiguration as CustomStorageConfiguration
+from .email_message_batch_response import EmailMessageBatchResponse as EmailMessageBatchResponse
+from .email_template_create_params import EmailTemplateCreateParams as EmailTemplateCreateParams
+from .email_template_list_response import EmailTemplateListResponse as EmailTemplateListResponse
+from .email_template_render_params import EmailTemplateRenderParams as EmailTemplateRenderParams
+from .email_template_update_params import EmailTemplateUpdateParams as EmailTemplateUpdateParams
+from .email_thread_retrieve_params import EmailThreadRetrieveParams as EmailThreadRetrieveParams
 from .gcs_configuration_data_param import GcsConfigurationDataParam as GcsConfigurationDataParam
 from .messaging_metrics_time_frame import MessagingMetricsTimeFrame as MessagingMetricsTimeFrame
 from .messaging_optout_list_params import MessagingOptoutListParams as MessagingOptoutListParams
@@ -610,6 +660,9 @@ from .conference_ended_webhook_event import ConferenceEndedWebhookEvent as Confe
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam as ConnectionRtcpSettingsParam
 from .dialogflow_connection_response import DialogflowConnectionResponse as DialogflowConnectionResponse
 from .dir_update_infringement_params import DirUpdateInfringementParams as DirUpdateInfringementParams
+from .email_template_render_response import EmailTemplateRenderResponse as EmailTemplateRenderResponse
+from .email_thread_retrieve_response import EmailThreadRetrieveResponse as EmailThreadRetrieveResponse
+from .email_validation_create_params import EmailValidationCreateParams as EmailValidationCreateParams
 from .integration_secret_list_params import IntegrationSecretListParams as IntegrationSecretListParams
 from .inventory_coverage_list_params import InventoryCoverageListParams as InventoryCoverageListParams
 from .list_retrieve_by_zone_response import ListRetrieveByZoneResponse as ListRetrieveByZoneResponse
@@ -658,6 +711,9 @@ from .call_gather_ended_webhook_event import CallGatherEndedWebhookEvent as Call
 from .call_refer_failed_webhook_event import CallReferFailedWebhookEvent as CallReferFailedWebhookEvent
 from .charges_summary_retrieve_params import ChargesSummaryRetrieveParams as ChargesSummaryRetrieveParams
 from .conference_participant_resource import ConferenceParticipantResource as ConferenceParticipantResource
+from .domains_tracking_settings_param import DomainsTrackingSettingsParam as DomainsTrackingSettingsParam
+from .email_message_delete_all_params import EmailMessageDeleteAllParams as EmailMessageDeleteAllParams
+from .email_message_retrieve_response import EmailMessageRetrieveResponse as EmailMessageRetrieveResponse
 from .external_connection_list_params import ExternalConnectionListParams as ExternalConnectionListParams
 from .fax_application_create_response import FaxApplicationCreateResponse as FaxApplicationCreateResponse
 from .fax_application_delete_response import FaxApplicationDeleteResponse as FaxApplicationDeleteResponse
@@ -706,6 +762,7 @@ from .call_siprec_failed_webhook_event import CallSiprecFailedWebhookEvent as Ca
 from .call_speak_started_webhook_event import CallSpeakStartedWebhookEvent as CallSpeakStartedWebhookEvent
 from .conference_created_webhook_event import ConferenceCreatedWebhookEvent as ConferenceCreatedWebhookEvent
 from .dir_list_document_types_response import DirListDocumentTypesResponse as DirListDocumentTypesResponse
+from .email_validation_create_response import EmailValidationCreateResponse as EmailValidationCreateResponse
 from .global_ip_assignment_list_params import GlobalIPAssignmentListParams as GlobalIPAssignmentListParams
 from .global_ip_protocol_list_response import GlobalIPProtocolListResponse as GlobalIPProtocolListResponse
 from .inexplicit_number_order_response import InexplicitNumberOrderResponse as InexplicitNumberOrderResponse
@@ -748,6 +805,7 @@ from .charges_breakdown_retrieve_params import ChargesBreakdownRetrieveParams as
 from .charges_summary_retrieve_response import ChargesSummaryRetrieveResponse as ChargesSummaryRetrieveResponse
 from .conversation_relay_language_param import ConversationRelayLanguageParam as ConversationRelayLanguageParam
 from .credential_connection_list_params import CredentialConnectionListParams as CredentialConnectionListParams
+from .email_event_retrieve_stats_params import EmailEventRetrieveStatsParams as EmailEventRetrieveStatsParams
 from .external_connection_create_params import ExternalConnectionCreateParams as ExternalConnectionCreateParams
 from .external_connection_update_params import ExternalConnectionUpdateParams as ExternalConnectionUpdateParams
 from .fax_application_retrieve_response import FaxApplicationRetrieveResponse as FaxApplicationRetrieveResponse
@@ -786,6 +844,8 @@ from .call_recording_transcription_saved import CallRecordingTranscriptionSaved 
 from .call_refer_completed_webhook_event import CallReferCompletedWebhookEvent as CallReferCompletedWebhookEvent
 from .conference_participant_speak_ended import ConferenceParticipantSpeakEnded as ConferenceParticipantSpeakEnded
 from .country_coverage_retrieve_response import CountryCoverageRetrieveResponse as CountryCoverageRetrieveResponse
+from .email_block_retrieve_events_params import EmailBlockRetrieveEventsParams as EmailBlockRetrieveEventsParams
+from .email_block_retrieve_export_params import EmailBlockRetrieveExportParams as EmailBlockRetrieveExportParams
 from .global_ip_assignment_update_params import GlobalIPAssignmentUpdateParams as GlobalIPAssignmentUpdateParams
 from .global_ip_health_check_list_params import GlobalIPHealthCheckListParams as GlobalIPHealthCheckListParams
 from .integration_secret_create_response import IntegrationSecretCreateResponse as IntegrationSecretCreateResponse
@@ -827,6 +887,8 @@ from .customer_service_record_list_params import CustomerServiceRecordListParams
 from .dialogflow_connection_create_params import DialogflowConnectionCreateParams as DialogflowConnectionCreateParams
 from .dialogflow_connection_update_params import DialogflowConnectionUpdateParams as DialogflowConnectionUpdateParams
 from .dir_list_infringement_claims_params import DirListInfringementClaimsParams as DirListInfringementClaimsParams
+from .email_event_retrieve_stats_response import EmailEventRetrieveStatsResponse as EmailEventRetrieveStatsResponse
+from .email_unsubscribe_group_list_params import EmailUnsubscribeGroupListParams as EmailUnsubscribeGroupListParams
 from .external_connection_create_response import ExternalConnectionCreateResponse as ExternalConnectionCreateResponse
 from .external_connection_delete_response import ExternalConnectionDeleteResponse as ExternalConnectionDeleteResponse
 from .external_connection_update_response import ExternalConnectionUpdateResponse as ExternalConnectionUpdateResponse
@@ -860,6 +922,9 @@ from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEve
 from .conference_participant_speak_started import ConferenceParticipantSpeakStarted as ConferenceParticipantSpeakStarted
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent as ConferenceSpeakEndedWebhookEvent
 from .conference_update_participant_params import ConferenceUpdateParticipantParams as ConferenceUpdateParticipantParams
+from .email_block_retrieve_events_response import EmailBlockRetrieveEventsResponse as EmailBlockRetrieveEventsResponse
+from .email_block_retrieve_export_response import EmailBlockRetrieveExportResponse as EmailBlockRetrieveExportResponse
+from .email_message_retrieve_events_params import EmailMessageRetrieveEventsParams as EmailMessageRetrieveEventsParams
 from .global_ip_allowed_port_list_response import GlobalIPAllowedPortListResponse as GlobalIPAllowedPortListResponse
 from .global_ip_assignment_create_response import GlobalIPAssignmentCreateResponse as GlobalIPAssignmentCreateResponse
 from .global_ip_assignment_delete_response import GlobalIPAssignmentDeleteResponse as GlobalIPAssignmentDeleteResponse
@@ -921,6 +986,18 @@ from .customer_service_record_create_params import (
 )
 from .dynamic_emergency_address_list_params import (
     DynamicEmergencyAddressListParams as DynamicEmergencyAddressListParams,
+)
+from .email_domain_retrieve_health_response import (
+    EmailDomainRetrieveHealthResponse as EmailDomainRetrieveHealthResponse,
+)
+from .email_unsubscribe_group_create_params import (
+    EmailUnsubscribeGroupCreateParams as EmailUnsubscribeGroupCreateParams,
+)
+from .email_unsubscribe_group_delete_params import (
+    EmailUnsubscribeGroupDeleteParams as EmailUnsubscribeGroupDeleteParams,
+)
+from .email_unsubscribe_group_update_params import (
+    EmailUnsubscribeGroupUpdateParams as EmailUnsubscribeGroupUpdateParams,
 )
 from .external_connection_retrieve_response import (
     ExternalConnectionRetrieveResponse as ExternalConnectionRetrieveResponse,
@@ -1007,6 +1084,9 @@ from .conference_speak_started_webhook_event import (
 )
 from .dynamic_emergency_endpoint_list_params import (
     DynamicEmergencyEndpointListParams as DynamicEmergencyEndpointListParams,
+)
+from .email_message_retrieve_events_response import (
+    EmailMessageRetrieveEventsResponse as EmailMessageRetrieveEventsResponse,
 )
 from .global_ip_assignment_retrieve_response import (
     GlobalIPAssignmentRetrieveResponse as GlobalIPAssignmentRetrieveResponse,
@@ -1304,6 +1384,9 @@ from .dynamic_emergency_endpoint_create_response import (
 )
 from .dynamic_emergency_endpoint_delete_response import (
     DynamicEmergencyEndpointDeleteResponse as DynamicEmergencyEndpointDeleteResponse,
+)
+from .email_domain_retrieve_dns_records_response import (
+    EmailDomainRetrieveDNSRecordsResponse as EmailDomainRetrieveDNSRecordsResponse,
 )
 from .external_connection_update_location_params import (
     ExternalConnectionUpdateLocationParams as ExternalConnectionUpdateLocationParams,
