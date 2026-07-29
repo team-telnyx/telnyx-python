@@ -197,15 +197,8 @@ class DraftsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDraftResponse:
-        """Updates the supplied fields on a draft.
-
-        `account_id` and `inbox_id` are
-        server-owned and ignored if present in the body, so a draft can never be moved
-        between accounts or inboxes.
-
-        A draft that is being sent or has already been sent is immutable and returns 422
-        — modifying it would race with delivery or rewrite the record of what was
-        actually sent.
+        """
+        Identical to `PUT`; both apply a partial update to the supplied fields.
 
         Args:
           html: Alias for `html_body`, matching the send endpoint.
@@ -224,7 +217,7 @@ class DraftsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
         if not draft_id:
             raise ValueError(f"Expected a non-empty value for `draft_id` but received {draft_id!r}")
-        return self._put(
+        return self._patch(
             path_template("/email_inboxes/{inbox_id}/drafts/{draft_id}", inbox_id=inbox_id, draft_id=draft_id),
             body=maybe_transform(
                 {
@@ -563,15 +556,8 @@ class AsyncDraftsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDraftResponse:
-        """Updates the supplied fields on a draft.
-
-        `account_id` and `inbox_id` are
-        server-owned and ignored if present in the body, so a draft can never be moved
-        between accounts or inboxes.
-
-        A draft that is being sent or has already been sent is immutable and returns 422
-        — modifying it would race with delivery or rewrite the record of what was
-        actually sent.
+        """
+        Identical to `PUT`; both apply a partial update to the supplied fields.
 
         Args:
           html: Alias for `html_body`, matching the send endpoint.
@@ -590,7 +576,7 @@ class AsyncDraftsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
         if not draft_id:
             raise ValueError(f"Expected a non-empty value for `draft_id` but received {draft_id!r}")
-        return await self._put(
+        return await self._patch(
             path_template("/email_inboxes/{inbox_id}/drafts/{draft_id}", inbox_id=inbox_id, draft_id=draft_id),
             body=await async_maybe_transform(
                 {

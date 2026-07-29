@@ -159,10 +159,8 @@ class EmailTemplatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
-        """Replaces template fields.
-
-        Behaves identically to PATCH; provided for
-        compatibility with Phoenix resource routes.
+        """
+        Updates one or more template fields.
 
         Args:
           html_body: Liquid template HTML body.
@@ -181,7 +179,7 @@ class EmailTemplatesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._put(
+        return self._patch(
             path_template("/email_templates/{id}", id=id),
             body=maybe_transform(
                 {
@@ -452,10 +450,8 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
-        """Replaces template fields.
-
-        Behaves identically to PATCH; provided for
-        compatibility with Phoenix resource routes.
+        """
+        Updates one or more template fields.
 
         Args:
           html_body: Liquid template HTML body.
@@ -474,7 +470,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._put(
+        return await self._patch(
             path_template("/email_templates/{id}", id=id),
             body=await async_maybe_transform(
                 {

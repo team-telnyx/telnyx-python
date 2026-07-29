@@ -26,16 +26,8 @@ class TestFilters:
     def test_method_create(self, client: Telnyx) -> None:
         filter = client.email_inboxes.filters.create(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(FilterCreateResponse, filter, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_create_with_all_params(self, client: Telnyx) -> None:
-        filter = client.email_inboxes.filters.create(
-            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            allowlist=["trusted@example.com", "@partner.example"],
-            blocklist=["@spam.example"],
+            entries=["@spam.example"],
+            type="blocklist",
         )
         assert_matches_type(FilterCreateResponse, filter, path=["response"])
 
@@ -44,6 +36,8 @@ class TestFilters:
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.email_inboxes.filters.with_raw_response.create(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entries=["@spam.example"],
+            type="blocklist",
         )
 
         assert response.is_closed is True
@@ -56,6 +50,8 @@ class TestFilters:
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.email_inboxes.filters.with_streaming_response.create(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entries=["@spam.example"],
+            type="blocklist",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,6 +67,8 @@ class TestFilters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `inbox_id` but received ''"):
             client.email_inboxes.filters.with_raw_response.create(
                 inbox_id="",
+                entries=["@spam.example"],
+                type="blocklist",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -176,16 +174,8 @@ class TestAsyncFilters:
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         filter = await async_client.email_inboxes.filters.create(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(FilterCreateResponse, filter, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        filter = await async_client.email_inboxes.filters.create(
-            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            allowlist=["trusted@example.com", "@partner.example"],
-            blocklist=["@spam.example"],
+            entries=["@spam.example"],
+            type="blocklist",
         )
         assert_matches_type(FilterCreateResponse, filter, path=["response"])
 
@@ -194,6 +184,8 @@ class TestAsyncFilters:
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.email_inboxes.filters.with_raw_response.create(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entries=["@spam.example"],
+            type="blocklist",
         )
 
         assert response.is_closed is True
@@ -206,6 +198,8 @@ class TestAsyncFilters:
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.email_inboxes.filters.with_streaming_response.create(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entries=["@spam.example"],
+            type="blocklist",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -221,6 +215,8 @@ class TestAsyncFilters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `inbox_id` but received ''"):
             await async_client.email_inboxes.filters.with_raw_response.create(
                 inbox_id="",
+                entries=["@spam.example"],
+                type="blocklist",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

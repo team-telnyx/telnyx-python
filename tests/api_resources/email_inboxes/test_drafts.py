@@ -170,10 +170,10 @@ class TestDrafts:
             labels=["string"],
             metadata={},
             reply_to="reply_to",
-            subject="Quarterly update (revised)",
+            subject="subject",
             tags=["string"],
             text="text",
-            text_body="Updated body.",
+            text_body="text_body",
             to=["string"],
         )
         assert_matches_type(EmailDraftResponse, draft, path=["response"])
@@ -533,10 +533,10 @@ class TestAsyncDrafts:
             labels=["string"],
             metadata={},
             reply_to="reply_to",
-            subject="Quarterly update (revised)",
+            subject="subject",
             tags=["string"],
             text="text",
-            text_body="Updated body.",
+            text_body="text_body",
             to=["string"],
         )
         assert_matches_type(EmailDraftResponse, draft, path=["response"])
