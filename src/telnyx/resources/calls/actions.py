@@ -27,6 +27,7 @@ from ..._response import (
 from ...types.calls import (
     GoogleTranscriptionLanguage,
     ConversationRelayInterruptible,
+    action_pay_params,
     action_refer_params,
     action_speak_params,
     action_answer_params,
@@ -75,6 +76,7 @@ from ...types.ai.assistant_param import AssistantParam
 from ...types.calls.loopcount_param import LoopcountParam
 from ...types.custom_sip_header_param import CustomSipHeaderParam
 from ...types.dialogflow_config_param import DialogflowConfigParam
+from ...types.calls.action_pay_response import ActionPayResponse
 from ...types.sound_modifications_param import SoundModificationsParam
 from ...types.stream_bidirectional_mode import StreamBidirectionalMode
 from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
@@ -1485,6 +1487,139 @@ class ActionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionPauseRecordingResponse,
+        )
+
+    def pay(
+        self,
+        call_control_id: str,
+        *,
+        amount: float | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        connector_name: str | Omit = omit,
+        currency: Literal["USD", "usd"] | Omit = omit,
+        description: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        language: str | Omit = omit,
+        max_attempts: int | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        parameters: Dict[str, object] | Omit = omit,
+        payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
+        payment_token: str | Omit = omit,
+        prompts: action_pay_params.Prompts | Omit = omit,
+        service_level: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        transaction_type: Literal["charge", "tokenize"] | Omit = omit,
+        voice: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionPayResponse:
+        """
+        Collect payment details from the caller using DTMF and either charge or tokenize
+        the payment method through a configured Pay connector. Pay pauses active call
+        recordings while sensitive payment details are collected.
+
+        When `payment_token` is supplied, the DTMF collection steps are skipped and the
+        existing token is sent to the connector.
+
+        **Expected Webhooks:**
+
+        - `call.payment.progress`
+        - `call.payment.completed`
+
+        **Test mode card numbers:** `4111111111111111` (Visa), `5555555555554444`
+        (Mastercard), `378282246310005` (American Express), `6011111111111117`
+        (Discover), `3065930009020004` (Diners Club), `3566002020360505` (JCB),
+        `6200000000000005` (UnionPay), and `6771798021000008` (Maestro). Test-mode
+        connectors reject other card numbers before contacting the configured processor.
+        The UnionPay and Maestro numbers are accepted for processor testing, but Pay
+        currently does not emit a card type for them.
+
+        Args:
+          amount: Amount to charge. Required when `transaction_type` is `charge`.
+
+          client_state: Base64-encoded state included in subsequent webhooks.
+
+          command_id: Idempotency key for the command. Telnyx ignores a duplicate command with the
+              same `command_id` for the same `call_control_id`.
+
+          connector_name: Name of the Pay connector used to process the transaction.
+
+          currency: Currency used for the transaction. Pay currently supports USD only.
+
+          description: Optional description forwarded with the payment transaction.
+
+          inter_digit_timeout_millis: Time in milliseconds to wait between consecutive DTMF digits.
+
+          language: Language used for payment prompts.
+
+          max_attempts: Maximum number of attempts for each payment collection step.
+
+          metadata: Metadata forwarded to the Pay connector.
+
+          parameters: Additional parameters forwarded to the Pay connector.
+
+          payment_method: Payment method to collect.
+
+          payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          prompts: Custom text-to-speech prompts keyed by payment collection step.
+
+          service_level: Speech synthesis service level used for payment prompts. Pay defaults to
+              `premium`.
+
+          timeout_millis: Time in milliseconds to wait for DTMF input for each collection step.
+
+          transaction_type: Transaction to perform. If omitted, Pay infers `tokenize` when `amount` is
+              absent or zero and `charge` when `amount` is positive.
+
+          voice: Voice used for payment prompts. Accepts `male`, `female`, or a provider voice in
+              `<Provider>.<Model>.<VoiceId>` format, for example `AWS.Polly.Joanna` or
+              `Telnyx.KokoroTTS.af`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return self._post(
+            path_template("/calls/{call_control_id}/actions/pay", call_control_id=call_control_id),
+            body=maybe_transform(
+                {
+                    "amount": amount,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "connector_name": connector_name,
+                    "currency": currency,
+                    "description": description,
+                    "inter_digit_timeout_millis": inter_digit_timeout_millis,
+                    "language": language,
+                    "max_attempts": max_attempts,
+                    "metadata": metadata,
+                    "parameters": parameters,
+                    "payment_method": payment_method,
+                    "payment_token": payment_token,
+                    "prompts": prompts,
+                    "service_level": service_level,
+                    "timeout_millis": timeout_millis,
+                    "transaction_type": transaction_type,
+                    "voice": voice,
+                },
+                action_pay_params.ActionPayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionPayResponse,
         )
 
     def refer(
@@ -5476,6 +5611,139 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionPauseRecordingResponse,
         )
 
+    async def pay(
+        self,
+        call_control_id: str,
+        *,
+        amount: float | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        connector_name: str | Omit = omit,
+        currency: Literal["USD", "usd"] | Omit = omit,
+        description: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        language: str | Omit = omit,
+        max_attempts: int | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        parameters: Dict[str, object] | Omit = omit,
+        payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
+        payment_token: str | Omit = omit,
+        prompts: action_pay_params.Prompts | Omit = omit,
+        service_level: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        transaction_type: Literal["charge", "tokenize"] | Omit = omit,
+        voice: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionPayResponse:
+        """
+        Collect payment details from the caller using DTMF and either charge or tokenize
+        the payment method through a configured Pay connector. Pay pauses active call
+        recordings while sensitive payment details are collected.
+
+        When `payment_token` is supplied, the DTMF collection steps are skipped and the
+        existing token is sent to the connector.
+
+        **Expected Webhooks:**
+
+        - `call.payment.progress`
+        - `call.payment.completed`
+
+        **Test mode card numbers:** `4111111111111111` (Visa), `5555555555554444`
+        (Mastercard), `378282246310005` (American Express), `6011111111111117`
+        (Discover), `3065930009020004` (Diners Club), `3566002020360505` (JCB),
+        `6200000000000005` (UnionPay), and `6771798021000008` (Maestro). Test-mode
+        connectors reject other card numbers before contacting the configured processor.
+        The UnionPay and Maestro numbers are accepted for processor testing, but Pay
+        currently does not emit a card type for them.
+
+        Args:
+          amount: Amount to charge. Required when `transaction_type` is `charge`.
+
+          client_state: Base64-encoded state included in subsequent webhooks.
+
+          command_id: Idempotency key for the command. Telnyx ignores a duplicate command with the
+              same `command_id` for the same `call_control_id`.
+
+          connector_name: Name of the Pay connector used to process the transaction.
+
+          currency: Currency used for the transaction. Pay currently supports USD only.
+
+          description: Optional description forwarded with the payment transaction.
+
+          inter_digit_timeout_millis: Time in milliseconds to wait between consecutive DTMF digits.
+
+          language: Language used for payment prompts.
+
+          max_attempts: Maximum number of attempts for each payment collection step.
+
+          metadata: Metadata forwarded to the Pay connector.
+
+          parameters: Additional parameters forwarded to the Pay connector.
+
+          payment_method: Payment method to collect.
+
+          payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          prompts: Custom text-to-speech prompts keyed by payment collection step.
+
+          service_level: Speech synthesis service level used for payment prompts. Pay defaults to
+              `premium`.
+
+          timeout_millis: Time in milliseconds to wait for DTMF input for each collection step.
+
+          transaction_type: Transaction to perform. If omitted, Pay infers `tokenize` when `amount` is
+              absent or zero and `charge` when `amount` is positive.
+
+          voice: Voice used for payment prompts. Accepts `male`, `female`, or a provider voice in
+              `<Provider>.<Model>.<VoiceId>` format, for example `AWS.Polly.Joanna` or
+              `Telnyx.KokoroTTS.af`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return await self._post(
+            path_template("/calls/{call_control_id}/actions/pay", call_control_id=call_control_id),
+            body=await async_maybe_transform(
+                {
+                    "amount": amount,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "connector_name": connector_name,
+                    "currency": currency,
+                    "description": description,
+                    "inter_digit_timeout_millis": inter_digit_timeout_millis,
+                    "language": language,
+                    "max_attempts": max_attempts,
+                    "metadata": metadata,
+                    "parameters": parameters,
+                    "payment_method": payment_method,
+                    "payment_token": payment_token,
+                    "prompts": prompts,
+                    "service_level": service_level,
+                    "timeout_millis": timeout_millis,
+                    "transaction_type": transaction_type,
+                    "voice": voice,
+                },
+                action_pay_params.ActionPayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionPayResponse,
+        )
+
     async def refer(
         self,
         call_control_id: str,
@@ -8154,6 +8422,9 @@ class ActionsResourceWithRawResponse:
         self.pause_recording = to_raw_response_wrapper(
             actions.pause_recording,
         )
+        self.pay = to_raw_response_wrapper(
+            actions.pay,
+        )
         self.refer = to_raw_response_wrapper(
             actions.refer,
         )
@@ -8279,6 +8550,9 @@ class AsyncActionsResourceWithRawResponse:
         )
         self.pause_recording = async_to_raw_response_wrapper(
             actions.pause_recording,
+        )
+        self.pay = async_to_raw_response_wrapper(
+            actions.pay,
         )
         self.refer = async_to_raw_response_wrapper(
             actions.refer,
@@ -8406,6 +8680,9 @@ class ActionsResourceWithStreamingResponse:
         self.pause_recording = to_streamed_response_wrapper(
             actions.pause_recording,
         )
+        self.pay = to_streamed_response_wrapper(
+            actions.pay,
+        )
         self.refer = to_streamed_response_wrapper(
             actions.refer,
         )
@@ -8531,6 +8808,9 @@ class AsyncActionsResourceWithStreamingResponse:
         )
         self.pause_recording = async_to_streamed_response_wrapper(
             actions.pause_recording,
+        )
+        self.pay = async_to_streamed_response_wrapper(
+            actions.pay,
         )
         self.refer = async_to_streamed_response_wrapper(
             actions.refer,

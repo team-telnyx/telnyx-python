@@ -349,6 +349,8 @@ from telnyx.types import (
     CallMachineGreetingEndedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
+    CallPaymentCompletedWebhookEvent,
+    CallPaymentProgressWebhookEvent,
     CallPlaybackEndedWebhookEvent,
     CallPlaybackStartedWebhookEvent,
     CallRecordingErrorWebhookEvent,
@@ -407,6 +409,8 @@ from telnyx.types import (
     CallMachineGreetingEndedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
+    CallPaymentCompletedWebhookEvent,
+    CallPaymentProgressWebhookEvent,
     CallPlaybackEndedWebhookEvent,
     CallPlaybackStartedWebhookEvent,
     CallRecordingErrorWebhookEvent,
@@ -1474,6 +1478,7 @@ from telnyx.types.calls import (
     GoogleTranscriptionLanguage,
     InterruptionSettings,
     Loopcount,
+    PayPromptValue,
     StopRecordingRequest,
     SystemMessage,
     TelnyxTranscriptionLanguage,
@@ -1505,6 +1510,7 @@ from telnyx.types.calls import (
     ActionJoinAIAssistantResponse,
     ActionLeaveQueueResponse,
     ActionPauseRecordingResponse,
+    ActionPayResponse,
     ActionReferResponse,
     ActionRejectResponse,
     ActionResumeRecordingResponse,
@@ -1550,6 +1556,7 @@ Methods:
 - <code title="post /calls/{call_control_id}/actions/ai_assistant_join">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">join_ai_assistant</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_join_ai_assistant_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_join_ai_assistant_response.py">ActionJoinAIAssistantResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/leave_queue">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">leave_queue</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_leave_queue_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_leave_queue_response.py">ActionLeaveQueueResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/record_pause">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">pause_recording</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_pause_recording_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_pause_recording_response.py">ActionPauseRecordingResponse</a></code>
+- <code title="post /calls/{call_control_id}/actions/pay">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">pay</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_pay_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_pay_response.py">ActionPayResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/refer">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">refer</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_refer_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_refer_response.py">ActionReferResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/reject">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">reject</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_reject_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_reject_response.py">ActionRejectResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/record_resume">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">resume_recording</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_resume_recording_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_resume_recording_response.py">ActionResumeRecordingResponse</a></code>
