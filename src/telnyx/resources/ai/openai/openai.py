@@ -78,6 +78,7 @@ class OpenAIResource(SyncAPIResource):
         input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
         model: str | Omit = omit,
+        service_tier: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -131,6 +132,10 @@ class OpenAIResource(SyncAPIResource):
           model: Model identifier to use for the response, for example `zai-org/GLM-5.1-FP8` or
               another model available from the Telnyx OpenAI-compatible models endpoint.
 
+          service_tier: The service tier to use for this request. Supported values vary by model; use
+              `GET /v2/ai/openai/models` and inspect the model's `service_tiers` field. If
+              omitted, Telnyx-hosted models use `default`.
+
           stream: Set to `true` to stream Server-Sent Events, matching OpenAI's Responses
               streaming format.
 
@@ -150,6 +155,7 @@ class OpenAIResource(SyncAPIResource):
                     "input": input,
                     "instructions": instructions,
                     "model": model,
+                    "service_tier": service_tier,
                     "stream": stream,
                 },
                 openai_create_response_params.OpenAICreateResponseParams,
@@ -234,6 +240,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
         input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
         model: str | Omit = omit,
+        service_tier: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -287,6 +294,10 @@ class AsyncOpenAIResource(AsyncAPIResource):
           model: Model identifier to use for the response, for example `zai-org/GLM-5.1-FP8` or
               another model available from the Telnyx OpenAI-compatible models endpoint.
 
+          service_tier: The service tier to use for this request. Supported values vary by model; use
+              `GET /v2/ai/openai/models` and inspect the model's `service_tiers` field. If
+              omitted, Telnyx-hosted models use `default`.
+
           stream: Set to `true` to stream Server-Sent Events, matching OpenAI's Responses
               streaming format.
 
@@ -306,6 +317,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
                     "input": input,
                     "instructions": instructions,
                     "model": model,
+                    "service_tier": service_tier,
                     "stream": stream,
                 },
                 openai_create_response_params.OpenAICreateResponseParams,

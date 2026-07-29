@@ -111,7 +111,9 @@ class V1Resource(SyncAPIResource):
 
           metadata: An object describing metadata about the request.
 
-          service_tier: Service tier for the request.
+          service_tier: The service tier to use for this request. Supported values vary by model; use
+              the Telnyx models endpoint and inspect the model's `service_tiers` field. If
+              omitted, Telnyx-hosted models use `default`.
 
           stop_sequences: Custom sequences that will cause the model to stop generating.
 
@@ -266,7 +268,9 @@ class AsyncV1Resource(AsyncAPIResource):
 
           metadata: An object describing metadata about the request.
 
-          service_tier: Service tier for the request.
+          service_tier: The service tier to use for this request. Supported values vary by model; use
+              the Telnyx models endpoint and inspect the model's `service_tiers` field. If
+              omitted, Telnyx-hosted models use `default`.
 
           stop_sequences: Custom sequences that will cause the model to stop generating.
 
