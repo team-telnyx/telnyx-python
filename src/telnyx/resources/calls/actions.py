@@ -165,6 +165,7 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         messages: Iterable[action_add_ai_assistant_messages_params.Message] | Omit = omit,
+        trigger_response: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -183,6 +184,10 @@ class ActionsResource(SyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           messages: The messages to add to the conversation.
+
+          trigger_response: When `true`, the injected messages immediately trigger an assistant
+              response/turn instead of waiting for the next natural turn or idle timeout. This
+              may interrupt a user who is still speaking.
 
           extra_headers: Send extra headers
 
@@ -203,6 +208,7 @@ class ActionsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "messages": messages,
+                    "trigger_response": trigger_response,
                 },
                 action_add_ai_assistant_messages_params.ActionAddAIAssistantMessagesParams,
             ),
@@ -4287,6 +4293,7 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         messages: Iterable[action_add_ai_assistant_messages_params.Message] | Omit = omit,
+        trigger_response: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4305,6 +4312,10 @@ class AsyncActionsResource(AsyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           messages: The messages to add to the conversation.
+
+          trigger_response: When `true`, the injected messages immediately trigger an assistant
+              response/turn instead of waiting for the next natural turn or idle timeout. This
+              may interrupt a user who is still speaking.
 
           extra_headers: Send extra headers
 
@@ -4325,6 +4336,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "messages": messages,
+                    "trigger_response": trigger_response,
                 },
                 action_add_ai_assistant_messages_params.ActionAddAIAssistantMessagesParams,
             ),

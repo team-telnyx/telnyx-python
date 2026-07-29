@@ -81,6 +81,7 @@ class TestActions:
                     "metadata": {"foo": "bar"},
                 }
             ],
+            trigger_response=False,
         )
         assert_matches_type(ActionAddAIAssistantMessagesResponse, action, path=["response"])
 
@@ -2988,6 +2989,7 @@ class TestAsyncActions:
                     "metadata": {"foo": "bar"},
                 }
             ],
+            trigger_response=False,
         )
         assert_matches_type(ActionAddAIAssistantMessagesResponse, action, path=["response"])
 
