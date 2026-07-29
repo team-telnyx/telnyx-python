@@ -152,6 +152,14 @@ from .porting import (
     PortingResourceWithStreamingResponse,
     AsyncPortingResourceWithStreamingResponse,
 )
+from .pricing import (
+    PricingResource,
+    AsyncPricingResource,
+    PricingResourceWithRawResponse,
+    AsyncPricingResourceWithRawResponse,
+    PricingResourceWithStreamingResponse,
+    AsyncPricingResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -2483,4 +2491,10 @@ __all__ = [
     "AsyncEmailValidationsResourceWithRawResponse",
     "EmailValidationsResourceWithStreamingResponse",
     "AsyncEmailValidationsResourceWithStreamingResponse",
+    "PricingResource",
+    "AsyncPricingResource",
+    "PricingResourceWithRawResponse",
+    "AsyncPricingResourceWithRawResponse",
+    "PricingResourceWithStreamingResponse",
+    "AsyncPricingResourceWithStreamingResponse",
 ]

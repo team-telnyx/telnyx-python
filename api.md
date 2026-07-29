@@ -6434,3 +6434,23 @@ Methods:
 
 - <code title="post /email_validations/batch">client.email_validations.batch.<a href="./src/telnyx/resources/email_validations/batch.py">create</a>(\*\*<a href="src/telnyx/types/email_validations/batch_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_validations/batch_create_response.py">BatchCreateResponse</a></code>
 - <code title="get /email_validations/batch/{id}">client.email_validations.batch.<a href="./src/telnyx/resources/email_validations/batch.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_validations/batch_retrieve_response.py">BatchRetrieveResponse</a></code>
+
+# Pricing
+
+## Products
+
+Types:
+
+```python
+from telnyx.types.pricing import (
+    PricingPaginationMeta,
+    PricingTier,
+    ProductRetrieveResponse,
+    ProductListResponse,
+)
+```
+
+Methods:
+
+- <code title="get /pricing/products/{slug}">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">retrieve</a>(slug, \*\*<a href="src/telnyx/types/pricing/product_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_retrieve_response.py">ProductRetrieveResponse</a></code>
+- <code title="get /pricing/products">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">list</a>(\*\*<a href="src/telnyx/types/pricing/product_list_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_list_response.py">SyncDefaultFlatPaginationForInexplicitNumberOrders[ProductListResponse]</a></code>

@@ -56,6 +56,7 @@ if TYPE_CHECKING:
         balance,
         payment,
         porting,
+        pricing,
         regions,
         reports,
         storage,
@@ -270,6 +271,7 @@ if TYPE_CHECKING:
     from .resources.global_ip_usage import GlobalIPUsageResource, AsyncGlobalIPUsageResource
     from .resources.payment.payment import PaymentResource, AsyncPaymentResource
     from .resources.porting.porting import PortingResource, AsyncPortingResource
+    from .resources.pricing.pricing import PricingResource, AsyncPricingResource
     from .resources.reports.reports import ReportsResource, AsyncReportsResource
     from .resources.room_recordings import RoomRecordingsResource, AsyncRoomRecordingsResource
     from .resources.sim_card_orders import SimCardOrdersResource, AsyncSimCardOrdersResource
@@ -1818,6 +1820,12 @@ class Telnyx(SyncAPIClient):
         return EmailValidationsResource(self)
 
     @cached_property
+    def pricing(self) -> PricingResource:
+        from .resources.pricing import PricingResource
+
+        return PricingResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3294,6 +3302,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncEmailValidationsResource(self)
 
     @cached_property
+    def pricing(self) -> AsyncPricingResource:
+        from .resources.pricing import AsyncPricingResource
+
+        return AsyncPricingResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4705,6 +4719,12 @@ class TelnyxWithRawResponse:
 
         return EmailValidationsResourceWithRawResponse(self._client.email_validations)
 
+    @cached_property
+    def pricing(self) -> pricing.PricingResourceWithRawResponse:
+        from .resources.pricing import PricingResourceWithRawResponse
+
+        return PricingResourceWithRawResponse(self._client.pricing)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5987,6 +6007,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.email_validations import AsyncEmailValidationsResourceWithRawResponse
 
         return AsyncEmailValidationsResourceWithRawResponse(self._client.email_validations)
+
+    @cached_property
+    def pricing(self) -> pricing.AsyncPricingResourceWithRawResponse:
+        from .resources.pricing import AsyncPricingResourceWithRawResponse
+
+        return AsyncPricingResourceWithRawResponse(self._client.pricing)
 
 
 class TelnyxWithStreamedResponse:
@@ -7272,6 +7298,12 @@ class TelnyxWithStreamedResponse:
         from .resources.email_validations import EmailValidationsResourceWithStreamingResponse
 
         return EmailValidationsResourceWithStreamingResponse(self._client.email_validations)
+
+    @cached_property
+    def pricing(self) -> pricing.PricingResourceWithStreamingResponse:
+        from .resources.pricing import PricingResourceWithStreamingResponse
+
+        return PricingResourceWithStreamingResponse(self._client.pricing)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -8607,6 +8639,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.email_validations import AsyncEmailValidationsResourceWithStreamingResponse
 
         return AsyncEmailValidationsResourceWithStreamingResponse(self._client.email_validations)
+
+    @cached_property
+    def pricing(self) -> pricing.AsyncPricingResourceWithStreamingResponse:
+        from .resources.pricing import AsyncPricingResourceWithStreamingResponse
+
+        return AsyncPricingResourceWithStreamingResponse(self._client.pricing)
 
 
 Client = Telnyx
