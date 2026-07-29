@@ -170,10 +170,10 @@ class TestDrafts:
             labels=["string"],
             metadata={},
             reply_to="reply_to",
-            subject="subject",
+            subject="Quarterly update (revised)",
             tags=["string"],
             text="text",
-            text_body="text_body",
+            text_body="Updated body.",
             to=["string"],
         )
         assert_matches_type(EmailDraftResponse, draft, path=["response"])
@@ -322,6 +322,83 @@ class TestDrafts:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `draft_id` but received ''"):
             client.email_inboxes.drafts.with_raw_response.delete(
+                draft_id="",
+                inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_patch(self, client: Telnyx) -> None:
+        draft = client.email_inboxes.drafts.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_patch_with_all_params(self, client: Telnyx) -> None:
+        draft = client.email_inboxes.drafts.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            attachments=[{}],
+            bcc=["string"],
+            cc=["string"],
+            from_email="from_email",
+            from_name="from_name",
+            headers={"foo": "string"},
+            html="html",
+            html_body="html_body",
+            labels=["string"],
+            metadata={},
+            reply_to="reply_to",
+            subject="subject",
+            tags=["string"],
+            text="text",
+            text_body="text_body",
+            to=["string"],
+        )
+        assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_patch(self, client: Telnyx) -> None:
+        response = client.email_inboxes.drafts.with_raw_response.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        draft = response.parse()
+        assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_patch(self, client: Telnyx) -> None:
+        with client.email_inboxes.drafts.with_streaming_response.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            draft = response.parse()
+            assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_patch(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `inbox_id` but received ''"):
+            client.email_inboxes.drafts.with_raw_response.patch(
+                draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                inbox_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `draft_id` but received ''"):
+            client.email_inboxes.drafts.with_raw_response.patch(
                 draft_id="",
                 inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
@@ -533,10 +610,10 @@ class TestAsyncDrafts:
             labels=["string"],
             metadata={},
             reply_to="reply_to",
-            subject="subject",
+            subject="Quarterly update (revised)",
             tags=["string"],
             text="text",
-            text_body="text_body",
+            text_body="Updated body.",
             to=["string"],
         )
         assert_matches_type(EmailDraftResponse, draft, path=["response"])
@@ -685,6 +762,83 @@ class TestAsyncDrafts:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `draft_id` but received ''"):
             await async_client.email_inboxes.drafts.with_raw_response.delete(
+                draft_id="",
+                inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_patch(self, async_client: AsyncTelnyx) -> None:
+        draft = await async_client.email_inboxes.drafts.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_patch_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        draft = await async_client.email_inboxes.drafts.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            attachments=[{}],
+            bcc=["string"],
+            cc=["string"],
+            from_email="from_email",
+            from_name="from_name",
+            headers={"foo": "string"},
+            html="html",
+            html_body="html_body",
+            labels=["string"],
+            metadata={},
+            reply_to="reply_to",
+            subject="subject",
+            tags=["string"],
+            text="text",
+            text_body="text_body",
+            to=["string"],
+        )
+        assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_patch(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.email_inboxes.drafts.with_raw_response.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        draft = await response.parse()
+        assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_patch(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.email_inboxes.drafts.with_streaming_response.patch(
+            draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            draft = await response.parse()
+            assert_matches_type(EmailDraftResponse, draft, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_patch(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `inbox_id` but received ''"):
+            await async_client.email_inboxes.drafts.with_raw_response.patch(
+                draft_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                inbox_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `draft_id` but received ''"):
+            await async_client.email_inboxes.drafts.with_raw_response.patch(
                 draft_id="",
                 inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )

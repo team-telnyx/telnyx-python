@@ -18,7 +18,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.email_inboxes import draft_list_params, draft_create_params, draft_update_params
+from ...types.email_inboxes import draft_list_params, draft_patch_params, draft_create_params, draft_update_params
 from ...types.email_address_input_param import EmailAddressInputParam
 from ...types.email_inboxes.draft_list_response import DraftListResponse
 from ...types.email_inboxes.email_draft_response import EmailDraftResponse
@@ -197,8 +197,15 @@ class DraftsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDraftResponse:
-        """
-        Identical to `PUT`; both apply a partial update to the supplied fields.
+        """Updates the supplied fields on a draft.
+
+        `account_id` and `inbox_id` are
+        server-owned and ignored if present in the body, so a draft can never be moved
+        between accounts or inboxes.
+
+        A draft that is being sent or has already been sent is immutable and returns 422
+        — modifying it would race with delivery or rewrite the record of what was
+        actually sent.
 
         Args:
           html: Alias for `html_body`, matching the send endpoint.
@@ -217,7 +224,7 @@ class DraftsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
         if not draft_id:
             raise ValueError(f"Expected a non-empty value for `draft_id` but received {draft_id!r}")
-        return self._patch(
+        return self._put(
             path_template("/email_inboxes/{inbox_id}/drafts/{draft_id}", inbox_id=inbox_id, draft_id=draft_id),
             body=maybe_transform(
                 {
@@ -338,6 +345,83 @@ class DraftsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def patch(
+        self,
+        draft_id: str,
+        *,
+        inbox_id: str,
+        attachments: Iterable[object] | Omit = omit,
+        bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
+        cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
+        from_email: str | Omit = omit,
+        from_name: str | Omit = omit,
+        headers: Dict[str, str] | Omit = omit,
+        html: str | Omit = omit,
+        html_body: str | Omit = omit,
+        labels: SequenceNotStr[str] | Omit = omit,
+        metadata: object | Omit = omit,
+        reply_to: str | Omit = omit,
+        subject: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        text: str | Omit = omit,
+        text_body: str | Omit = omit,
+        to: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailDraftResponse:
+        """
+        Identical to `PUT`; both apply a partial update to the supplied fields.
+
+        Args:
+          html: Alias for `html_body`, matching the send endpoint.
+
+          text: Alias for `text_body`, matching the send endpoint.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not inbox_id:
+            raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
+        if not draft_id:
+            raise ValueError(f"Expected a non-empty value for `draft_id` but received {draft_id!r}")
+        return self._patch(
+            path_template("/email_inboxes/{inbox_id}/drafts/{draft_id}", inbox_id=inbox_id, draft_id=draft_id),
+            body=maybe_transform(
+                {
+                    "attachments": attachments,
+                    "bcc": bcc,
+                    "cc": cc,
+                    "from_email": from_email,
+                    "from_name": from_name,
+                    "headers": headers,
+                    "html": html,
+                    "html_body": html_body,
+                    "labels": labels,
+                    "metadata": metadata,
+                    "reply_to": reply_to,
+                    "subject": subject,
+                    "tags": tags,
+                    "text": text,
+                    "text_body": text_body,
+                    "to": to,
+                },
+                draft_patch_params.DraftPatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailDraftResponse,
         )
 
     def send(
@@ -556,8 +640,15 @@ class AsyncDraftsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDraftResponse:
-        """
-        Identical to `PUT`; both apply a partial update to the supplied fields.
+        """Updates the supplied fields on a draft.
+
+        `account_id` and `inbox_id` are
+        server-owned and ignored if present in the body, so a draft can never be moved
+        between accounts or inboxes.
+
+        A draft that is being sent or has already been sent is immutable and returns 422
+        — modifying it would race with delivery or rewrite the record of what was
+        actually sent.
 
         Args:
           html: Alias for `html_body`, matching the send endpoint.
@@ -576,7 +667,7 @@ class AsyncDraftsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
         if not draft_id:
             raise ValueError(f"Expected a non-empty value for `draft_id` but received {draft_id!r}")
-        return await self._patch(
+        return await self._put(
             path_template("/email_inboxes/{inbox_id}/drafts/{draft_id}", inbox_id=inbox_id, draft_id=draft_id),
             body=await async_maybe_transform(
                 {
@@ -699,6 +790,83 @@ class AsyncDraftsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def patch(
+        self,
+        draft_id: str,
+        *,
+        inbox_id: str,
+        attachments: Iterable[object] | Omit = omit,
+        bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
+        cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
+        from_email: str | Omit = omit,
+        from_name: str | Omit = omit,
+        headers: Dict[str, str] | Omit = omit,
+        html: str | Omit = omit,
+        html_body: str | Omit = omit,
+        labels: SequenceNotStr[str] | Omit = omit,
+        metadata: object | Omit = omit,
+        reply_to: str | Omit = omit,
+        subject: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        text: str | Omit = omit,
+        text_body: str | Omit = omit,
+        to: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailDraftResponse:
+        """
+        Identical to `PUT`; both apply a partial update to the supplied fields.
+
+        Args:
+          html: Alias for `html_body`, matching the send endpoint.
+
+          text: Alias for `text_body`, matching the send endpoint.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not inbox_id:
+            raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
+        if not draft_id:
+            raise ValueError(f"Expected a non-empty value for `draft_id` but received {draft_id!r}")
+        return await self._patch(
+            path_template("/email_inboxes/{inbox_id}/drafts/{draft_id}", inbox_id=inbox_id, draft_id=draft_id),
+            body=await async_maybe_transform(
+                {
+                    "attachments": attachments,
+                    "bcc": bcc,
+                    "cc": cc,
+                    "from_email": from_email,
+                    "from_name": from_name,
+                    "headers": headers,
+                    "html": html,
+                    "html_body": html_body,
+                    "labels": labels,
+                    "metadata": metadata,
+                    "reply_to": reply_to,
+                    "subject": subject,
+                    "tags": tags,
+                    "text": text,
+                    "text_body": text_body,
+                    "to": to,
+                },
+                draft_patch_params.DraftPatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailDraftResponse,
+        )
+
     async def send(
         self,
         draft_id: str,
@@ -764,6 +932,9 @@ class DraftsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             drafts.delete,
         )
+        self.patch = to_raw_response_wrapper(
+            drafts.patch,
+        )
         self.send = to_raw_response_wrapper(
             drafts.send,
         )
@@ -787,6 +958,9 @@ class AsyncDraftsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             drafts.delete,
+        )
+        self.patch = async_to_raw_response_wrapper(
+            drafts.patch,
         )
         self.send = async_to_raw_response_wrapper(
             drafts.send,
@@ -812,6 +986,9 @@ class DraftsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             drafts.delete,
         )
+        self.patch = to_streamed_response_wrapper(
+            drafts.patch,
+        )
         self.send = to_streamed_response_wrapper(
             drafts.send,
         )
@@ -835,6 +1012,9 @@ class AsyncDraftsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             drafts.delete,
+        )
+        self.patch = async_to_streamed_response_wrapper(
+            drafts.patch,
         )
         self.send = async_to_streamed_response_wrapper(
             drafts.send,

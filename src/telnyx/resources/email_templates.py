@@ -11,6 +11,7 @@ from ..types import (
     email_template_create_params,
     email_template_render_params,
     email_template_update_params,
+    email_template_replace_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
@@ -320,6 +321,62 @@ class EmailTemplatesResource(SyncAPIResource):
             cast_to=EmailTemplateRenderResponse,
         )
 
+    def replace(
+        self,
+        id: str,
+        *,
+        html_body: Optional[str] | Omit = omit,
+        name: str | Omit = omit,
+        subject: Optional[str] | Omit = omit,
+        text_body: Optional[str] | Omit = omit,
+        variables: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailTemplateResponse:
+        """Replaces template fields.
+
+        Behaves identically to PATCH; provided for
+        compatibility with Phoenix resource routes.
+
+        Args:
+          html_body: Liquid template HTML body.
+
+          subject: Liquid template subject.
+
+          text_body: Liquid template text body.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._put(
+            path_template("/email_templates/{id}", id=id),
+            body=maybe_transform(
+                {
+                    "html_body": html_body,
+                    "name": name,
+                    "subject": subject,
+                    "text_body": text_body,
+                    "variables": variables,
+                },
+                email_template_replace_params.EmailTemplateReplaceParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailTemplateResponse,
+        )
+
 
 class AsyncEmailTemplatesResource(AsyncAPIResource):
     """Create, list, retrieve, update, delete, and render Liquid email templates."""
@@ -611,6 +668,62 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
             cast_to=EmailTemplateRenderResponse,
         )
 
+    async def replace(
+        self,
+        id: str,
+        *,
+        html_body: Optional[str] | Omit = omit,
+        name: str | Omit = omit,
+        subject: Optional[str] | Omit = omit,
+        text_body: Optional[str] | Omit = omit,
+        variables: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailTemplateResponse:
+        """Replaces template fields.
+
+        Behaves identically to PATCH; provided for
+        compatibility with Phoenix resource routes.
+
+        Args:
+          html_body: Liquid template HTML body.
+
+          subject: Liquid template subject.
+
+          text_body: Liquid template text body.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._put(
+            path_template("/email_templates/{id}", id=id),
+            body=await async_maybe_transform(
+                {
+                    "html_body": html_body,
+                    "name": name,
+                    "subject": subject,
+                    "text_body": text_body,
+                    "variables": variables,
+                },
+                email_template_replace_params.EmailTemplateReplaceParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailTemplateResponse,
+        )
+
 
 class EmailTemplatesResourceWithRawResponse:
     def __init__(self, email_templates: EmailTemplatesResource) -> None:
@@ -633,6 +746,9 @@ class EmailTemplatesResourceWithRawResponse:
         )
         self.render = to_raw_response_wrapper(
             email_templates.render,
+        )
+        self.replace = to_raw_response_wrapper(
+            email_templates.replace,
         )
 
 
@@ -658,6 +774,9 @@ class AsyncEmailTemplatesResourceWithRawResponse:
         self.render = async_to_raw_response_wrapper(
             email_templates.render,
         )
+        self.replace = async_to_raw_response_wrapper(
+            email_templates.replace,
+        )
 
 
 class EmailTemplatesResourceWithStreamingResponse:
@@ -682,6 +801,9 @@ class EmailTemplatesResourceWithStreamingResponse:
         self.render = to_streamed_response_wrapper(
             email_templates.render,
         )
+        self.replace = to_streamed_response_wrapper(
+            email_templates.replace,
+        )
 
 
 class AsyncEmailTemplatesResourceWithStreamingResponse:
@@ -705,4 +827,7 @@ class AsyncEmailTemplatesResourceWithStreamingResponse:
         )
         self.render = async_to_streamed_response_wrapper(
             email_templates.render,
+        )
+        self.replace = async_to_streamed_response_wrapper(
+            email_templates.replace,
         )

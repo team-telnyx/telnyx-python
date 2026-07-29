@@ -6183,9 +6183,10 @@ Methods:
 
 - <code title="post /email_inboxes/{inbox_id}/drafts">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">create</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
 - <code title="get /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">retrieve</a>(draft_id, \*, inbox_id) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
-- <code title="patch /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">update</a>(draft_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
+- <code title="put /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">update</a>(draft_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
 - <code title="get /email_inboxes/{inbox_id}/drafts">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/draft_list_response.py">DraftListResponse</a></code>
 - <code title="delete /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">delete</a>(draft_id, \*, inbox_id) -> None</code>
+- <code title="patch /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">patch</a>(draft_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_patch_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
 - <code title="post /email_inboxes/{inbox_id}/drafts/{draft_id}/send">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">send</a>(draft_id, \*, inbox_id) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
 
 ## Filters
@@ -6195,17 +6196,19 @@ Types:
 ```python
 from telnyx.types.email_inboxes import (
     MutateInboxFiltersRequest,
-    FilterCreateResponse,
     FilterListResponse,
+    FilterAddResponse,
     FilterDeleteAllResponse,
+    FilterReplaceResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">create</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/filter_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/filter_create_response.py">FilterCreateResponse</a></code>
 - <code title="get /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">list</a>(inbox_id) -> <a href="./src/telnyx/types/email_inboxes/filter_list_response.py">FilterListResponse</a></code>
+- <code title="post /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">add</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/filter_add_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/filter_add_response.py">FilterAddResponse</a></code>
 - <code title="delete /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">delete_all</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/filter_delete_all_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/filter_delete_all_response.py">FilterDeleteAllResponse</a></code>
+- <code title="put /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">replace</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/filter_replace_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/filter_replace_response.py">FilterReplaceResponse</a></code>
 
 ## Messages
 
@@ -6357,6 +6360,7 @@ Methods:
 - <code title="get /email_templates">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">list</a>(\*\*<a href="src/telnyx/types/email_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_list_response.py">EmailTemplateListResponse</a></code>
 - <code title="delete /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">delete</a>(id) -> None</code>
 - <code title="post /email_templates/{id}/render">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">render</a>(id, \*\*<a href="src/telnyx/types/email_template_render_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_render_response.py">EmailTemplateRenderResponse</a></code>
+- <code title="put /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">replace</a>(id, \*\*<a href="src/telnyx/types/email_template_replace_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
 
 # EmailThreads
 

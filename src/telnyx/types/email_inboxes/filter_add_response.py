@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["FilterCreateResponse", "Data"]
+__all__ = ["FilterAddResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -18,5 +18,5 @@ class Data(BaseModel):
     record_type: Literal["email_inbox_filters"]
 
 
-class FilterCreateResponse(BaseModel):
+class FilterAddResponse(BaseModel):
     data: Data

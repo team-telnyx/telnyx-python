@@ -6,10 +6,10 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["FilterCreateParams"]
+__all__ = ["FilterAddParams"]
 
 
-class FilterCreateParams(TypedDict, total=False):
+class FilterAddParams(TypedDict, total=False):
     entries: Required[SequenceNotStr[str]]
 
     type: Required[Literal["allowlist", "blocklist"]]

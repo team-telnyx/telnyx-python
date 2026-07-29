@@ -295,6 +295,61 @@ class TestEmailTemplates:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_replace(self, client: Telnyx) -> None:
+        email_template = client.email_templates.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_replace_with_all_params(self, client: Telnyx) -> None:
+        email_template = client.email_templates.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            html_body="html_body",
+            name="name",
+            subject="subject",
+            text_body="text_body",
+            variables=["string"],
+        )
+        assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_replace(self, client: Telnyx) -> None:
+        response = client.email_templates.with_raw_response.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        email_template = response.parse()
+        assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_replace(self, client: Telnyx) -> None:
+        with client.email_templates.with_streaming_response.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            email_template = response.parse()
+            assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_replace(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.email_templates.with_raw_response.replace(
+                id="",
+            )
+
 
 class TestAsyncEmailTemplates:
     parametrize = pytest.mark.parametrize(
@@ -572,5 +627,60 @@ class TestAsyncEmailTemplates:
     async def test_path_params_render(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.email_templates.with_raw_response.render(
+                id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_replace(self, async_client: AsyncTelnyx) -> None:
+        email_template = await async_client.email_templates.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_replace_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        email_template = await async_client.email_templates.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            html_body="html_body",
+            name="name",
+            subject="subject",
+            text_body="text_body",
+            variables=["string"],
+        )
+        assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_replace(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.email_templates.with_raw_response.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        email_template = await response.parse()
+        assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_replace(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.email_templates.with_streaming_response.replace(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            email_template = await response.parse()
+            assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_replace(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.email_templates.with_raw_response.replace(
                 id="",
             )
