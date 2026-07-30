@@ -174,6 +174,23 @@ class TestActions:
                         "type": "hangup",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
@@ -1564,6 +1581,23 @@ class TestActions:
                         "type": "book_appointment",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -1588,11 +1622,6 @@ class TestActions:
             transcription={
                 "language": "auto",
                 "model": "distil-whisper/distil-large-v2",
-            },
-            voice="Telnyx.KokoroTTS.af",
-            voice_settings={
-                "type": "elevenlabs",
-                "api_key_ref": "my_elevenlabs_api_key",
             },
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])
@@ -3082,6 +3111,23 @@ class TestAsyncActions:
                         "type": "hangup",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
@@ -4472,6 +4518,23 @@ class TestAsyncActions:
                         "type": "book_appointment",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -4496,11 +4559,6 @@ class TestAsyncActions:
             transcription={
                 "language": "auto",
                 "model": "distil-whisper/distil-large-v2",
-            },
-            voice="Telnyx.KokoroTTS.af",
-            voice_settings={
-                "type": "elevenlabs",
-                "api_key_ref": "my_elevenlabs_api_key",
             },
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])

@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .ai.hangup_tool_param import HangupToolParam
 from .ai.webhook_tool_param import WebhookToolParam
 from .ai.transfer_tool_param import TransferToolParam
+from .ai.voice_settings_param import VoiceSettingsParam
 from .shared_params.book_appointment_tool import BookAppointmentTool
 from .shared_params.check_availability_tool import CheckAvailabilityTool
 from .shared_params.call_control_retrieval_tool import CallControlRetrievalTool
@@ -196,3 +197,5 @@ class CallAssistantRequestParam(TypedDict, total=False):
     Inline tool definitions available to the assistant (webhook, retrieval,
     transfer, hangup, etc.). Overrides the assistant's stored tools if provided.
     """
+
+    voice_settings: VoiceSettingsParam
