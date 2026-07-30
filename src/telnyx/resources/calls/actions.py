@@ -3294,6 +3294,7 @@ class ActionsResource(SyncAPIResource):
             "Soniox",
             "Parakeet",
             "Humain",
+            "Reson8",
             "A",
             "B",
         ]
@@ -7422,6 +7423,7 @@ class AsyncActionsResource(AsyncAPIResource):
             "Soniox",
             "Parakeet",
             "Humain",
+            "Reson8",
             "A",
             "B",
         ]

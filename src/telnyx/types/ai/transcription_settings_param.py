@@ -29,7 +29,10 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     language. For `humain/realtime`, supported values are `ar`, `en`, `codeswitch`
     (Arabic/English code-switching), and `auto` (resolves server-side to
     code-switching). Unlike other models, `humain/realtime` does not fall back to
-    `auto` when `language` is omitted — omitting it applies `en` instead.
+    `auto` when `language` is omitted — omitting it applies `en` instead. For
+    `reson8/turns`, supported values are `auto` (or unset) for automatic language
+    detection, and the language codes `nl`, `en`, `fr`, `fy`, `de`, `it`, `pl`,
+    `pt`, `es`, and `sv` to fix the transcription language.
     """
 
     model: Literal[
@@ -42,6 +45,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
         "soniox/stt-rt-v4",
         "nvidia/parakeet-v3",
         "humain/realtime",
+        "reson8/turns",
         "distil-whisper/distil-large-v2",
         "openai/whisper-large-v3-turbo",
     ]
@@ -62,6 +66,8 @@ class TranscriptionSettingsParam(TypedDict, total=False):
       language detection.
     - `humain/realtime` is a streaming model with native Arabic and Arabic/English
       code-switching support.
+    - `reson8/turns` is a turn-based streaming model covering 10 European languages
+      with automatic language detection.
     """
 
     region: str

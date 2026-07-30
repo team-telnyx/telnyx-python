@@ -18,6 +18,7 @@ class SpeechToTextListProvidersParams(TypedDict, total=False):
         "soniox",
         "parakeet",
         "humain",
+        "reson8",
         "azure",
         "openai",
         "google",

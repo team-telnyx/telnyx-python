@@ -22,6 +22,7 @@ __all__ = [
     "ActionStartTranscriptionParams",
     "TranscriptionEngineConfig",
     "TranscriptionEngineConfigTranscriptionEngineHumainConfig",
+    "TranscriptionEngineConfigTranscriptionEngineReson8Config",
 ]
 
 
@@ -50,6 +51,7 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
         "Soniox",
         "Parakeet",
         "Humain",
+        "Reson8",
         "A",
         "B",
     ]
@@ -84,6 +86,21 @@ class TranscriptionEngineConfigTranscriptionEngineHumainConfig(TypedDict, total=
     """The model to use for transcription."""
 
 
+class TranscriptionEngineConfigTranscriptionEngineReson8Config(TypedDict, total=False):
+    language: Literal["auto", "nl", "en", "fr", "fy", "de", "it", "pl", "pt", "es", "sv"]
+    """The language of the audio to be transcribed.
+
+    `auto` (the default, also applied when `language` is omitted) enables automatic
+    language detection.
+    """
+
+    transcription_engine: Literal["Reson8"]
+    """Engine identifier for Reson8 transcription service"""
+
+    transcription_model: Literal["reson8/turns"]
+    """The model to use for transcription."""
+
+
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
@@ -94,6 +111,7 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineSonioxConfigParam,
     TranscriptionEngineParakeetConfigParam,
     TranscriptionEngineConfigTranscriptionEngineHumainConfig,
+    TranscriptionEngineConfigTranscriptionEngineReson8Config,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
