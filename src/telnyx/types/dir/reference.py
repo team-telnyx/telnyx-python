@@ -29,10 +29,11 @@ class Reference(BaseModel):
     """Whether this is a business reference or the financial reference."""
 
     slot: int
-    """Position within the reference type.
+    """Position within the reference type, counting from 1.
 
-    Business references occupy slots 0 and 1; the financial reference occupies
-    slot 0.
+    Business references occupy slots 1 and 2, in the order they were sent in the
+    `business_references` array; the financial reference occupies slot 1. Use this
+    value together with `ref_type` to address the reference when updating it.
     """
 
     timezone: str

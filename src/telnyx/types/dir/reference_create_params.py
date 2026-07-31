@@ -12,7 +12,12 @@ __all__ = ["ReferenceCreateParams"]
 
 class ReferenceCreateParams(TypedDict, total=False):
     business_references: Required[Iterable[ReferenceInputParam]]
-    """Exactly two business references."""
+    """Exactly two business references.
+
+    Array order determines each one's slot: the first entry becomes slot 1 and the
+    second becomes slot 2. Those slots are what you pass when updating a single
+    reference later.
+    """
 
     financial_reference: Required[ReferenceInputParam]
     """One reference supplied at submit.

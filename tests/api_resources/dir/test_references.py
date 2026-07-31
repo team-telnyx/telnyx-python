@@ -183,7 +183,7 @@ class TestReferences:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         reference = client.dir.references.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
         )
@@ -193,7 +193,7 @@ class TestReferences:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         reference = client.dir.references.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
             email="dana.reyes@example.com",
@@ -210,7 +210,7 @@ class TestReferences:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.dir.references.with_raw_response.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
         )
@@ -224,7 +224,7 @@ class TestReferences:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.dir.references.with_streaming_response.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
         ) as response:
@@ -241,7 +241,7 @@ class TestReferences:
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
             client.dir.references.with_raw_response.update(
-                slot=0,
+                slot=1,
                 dir_id="",
                 ref_type="business",
             )
@@ -457,7 +457,7 @@ class TestAsyncReferences:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         reference = await async_client.dir.references.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
         )
@@ -467,7 +467,7 @@ class TestAsyncReferences:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         reference = await async_client.dir.references.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
             email="dana.reyes@example.com",
@@ -484,7 +484,7 @@ class TestAsyncReferences:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.dir.references.with_raw_response.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
         )
@@ -498,7 +498,7 @@ class TestAsyncReferences:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.dir.references.with_streaming_response.update(
-            slot=0,
+            slot=1,
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             ref_type="business",
         ) as response:
@@ -515,7 +515,7 @@ class TestAsyncReferences:
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dir_id` but received ''"):
             await async_client.dir.references.with_raw_response.update(
-                slot=0,
+                slot=1,
                 dir_id="",
                 ref_type="business",
             )
