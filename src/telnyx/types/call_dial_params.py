@@ -277,6 +277,16 @@ class CallDialParams(TypedDict, total=False):
     `hangup_cause` of `no_answer` instead of `timeout`.
     """
 
+    route_to_mobile: bool
+    """
+    When set to true, routes the call directly to the mobile device associated with
+    the destination Telnyx Mobile number, bypassing Inbound Calls Interception
+    configured in the Telnyx Portal under Mobile Numbers → select the number → Voice
+    → Call Interception. Use this when transferring an intercepted call to the
+    mobile device to prevent the call from being intercepted again. Defaults to
+    false.
+    """
+
     send_digits_on_answer: str
     """DTMF digits to send automatically after the called party answers.
 

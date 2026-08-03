@@ -18,11 +18,12 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
-from .....types.legacy.reporting.usage_reports import number_lookup_create_params
-from .....types.legacy.reporting.usage_reports.number_lookup_list_response import NumberLookupListResponse
+from .....pagination import SyncPerPagePagination, AsyncPerPagePagination
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.legacy.reporting.usage_reports import number_lookup_list_params, number_lookup_create_params
 from .....types.legacy.reporting.usage_reports.number_lookup_create_response import NumberLookupCreateResponse
 from .....types.legacy.reporting.usage_reports.number_lookup_retrieve_response import NumberLookupRetrieveResponse
+from .....types.legacy.reporting.usage_reports.telco_data_usage_report_response import TelcoDataUsageReportResponse
 
 __all__ = ["NumberLookupResource", "AsyncNumberLookupResource"]
 
@@ -136,20 +137,48 @@ class NumberLookupResource(SyncAPIResource):
     def list(
         self,
         *,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberLookupListResponse:
-        """Retrieve a paginated list of telco data usage reports"""
-        return self._get(
+    ) -> SyncPerPagePagination[TelcoDataUsageReportResponse]:
+        """
+        Retrieve a paginated list of telco data usage reports
+
+        Args:
+          page: Page number to retrieve (1-based).
+
+          per_page: Filter results by per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
             "/legacy/reporting/usage_reports/number_lookup",
+            page=SyncPerPagePagination[TelcoDataUsageReportResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    number_lookup_list_params.NumberLookupListParams,
+                ),
             ),
-            cast_to=NumberLookupListResponse,
+            model=TelcoDataUsageReportResponse,
         )
 
     def delete(
@@ -293,23 +322,51 @@ class AsyncNumberLookupResource(AsyncAPIResource):
             cast_to=NumberLookupRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberLookupListResponse:
-        """Retrieve a paginated list of telco data usage reports"""
-        return await self._get(
+    ) -> AsyncPaginator[TelcoDataUsageReportResponse, AsyncPerPagePagination[TelcoDataUsageReportResponse]]:
+        """
+        Retrieve a paginated list of telco data usage reports
+
+        Args:
+          page: Page number to retrieve (1-based).
+
+          per_page: Filter results by per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
             "/legacy/reporting/usage_reports/number_lookup",
+            page=AsyncPerPagePagination[TelcoDataUsageReportResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    number_lookup_list_params.NumberLookupListParams,
+                ),
             ),
-            cast_to=NumberLookupListResponse,
+            model=TelcoDataUsageReportResponse,
         )
 
     async def delete(

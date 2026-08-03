@@ -979,6 +979,7 @@ class TestAssistants:
             content="Tell me a joke about cats",
             conversation_id="42b20469-1215-4a9a-8964-c36f66b406f4",
             name="Charlie",
+            stream=True,
         )
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 
@@ -2178,6 +2179,7 @@ class TestAsyncAssistants:
             content="Tell me a joke about cats",
             conversation_id="42b20469-1215-4a9a-8964-c36f66b406f4",
             name="Charlie",
+            stream=True,
         )
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 

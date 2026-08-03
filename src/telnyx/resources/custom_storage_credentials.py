@@ -49,7 +49,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         self,
         connection_id: str,
         *,
-        backend: Literal["gcs", "s3", "azure"],
+        backend: Literal["gcs", "s3", "s3-generic", "azure"],
         configuration: custom_storage_credential_create_params.Configuration,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,7 +124,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         self,
         connection_id: str,
         *,
-        backend: Literal["gcs", "s3", "azure"],
+        backend: Literal["gcs", "s3", "s3-generic", "azure"],
         configuration: custom_storage_credential_update_params.Configuration,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -223,7 +223,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         self,
         connection_id: str,
         *,
-        backend: Literal["gcs", "s3", "azure"],
+        backend: Literal["gcs", "s3", "s3-generic", "azure"],
         configuration: custom_storage_credential_create_params.Configuration,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,7 +298,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         self,
         connection_id: str,
         *,
-        backend: Literal["gcs", "s3", "azure"],
+        backend: Literal["gcs", "s3", "s3-generic", "azure"],
         configuration: custom_storage_credential_update_params.Configuration,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

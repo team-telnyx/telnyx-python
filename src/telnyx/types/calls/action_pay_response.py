@@ -1,0 +1,14 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Optional
+
+from ..._models import BaseModel
+from .call_control_command_result import CallControlCommandResult
+
+__all__ = ["ActionPayResponse"]
+
+
+class ActionPayResponse(BaseModel):
+    data: Optional[CallControlCommandResult] = None

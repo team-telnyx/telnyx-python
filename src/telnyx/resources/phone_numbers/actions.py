@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
@@ -53,7 +55,7 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        bundle_id: str,
+        bundle_id: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,7 +205,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        bundle_id: str,
+        bundle_id: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

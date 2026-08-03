@@ -65,6 +65,7 @@ class ChatResource(SyncAPIResource):
         presence_penalty: float | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
         seed: int | Omit = omit,
+        service_tier: str | Omit = omit,
         stop: Union[str, SequenceNotStr[str]] | Omit = omit,
         stream: bool | Omit = omit,
         temperature: float | Omit = omit,
@@ -140,6 +141,10 @@ class ChatResource(SyncAPIResource):
               such that repeated requests with the same `seed` and parameters should return
               the same result.
 
+          service_tier: The service tier to use for this request. Supported values vary by model; use
+              `GET /v2/ai/openai/models` and inspect the model's `service_tiers` field. If
+              omitted, Telnyx-hosted models use `default`.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -196,6 +201,7 @@ class ChatResource(SyncAPIResource):
                     "presence_penalty": presence_penalty,
                     "response_format": response_format,
                     "seed": seed,
+                    "service_tier": service_tier,
                     "stop": stop,
                     "stream": stream,
                     "temperature": temperature,
@@ -255,6 +261,7 @@ class AsyncChatResource(AsyncAPIResource):
         presence_penalty: float | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
         seed: int | Omit = omit,
+        service_tier: str | Omit = omit,
         stop: Union[str, SequenceNotStr[str]] | Omit = omit,
         stream: bool | Omit = omit,
         temperature: float | Omit = omit,
@@ -330,6 +337,10 @@ class AsyncChatResource(AsyncAPIResource):
               such that repeated requests with the same `seed` and parameters should return
               the same result.
 
+          service_tier: The service tier to use for this request. Supported values vary by model; use
+              `GET /v2/ai/openai/models` and inspect the model's `service_tiers` field. If
+              omitted, Telnyx-hosted models use `default`.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -386,6 +397,7 @@ class AsyncChatResource(AsyncAPIResource):
                     "presence_penalty": presence_penalty,
                     "response_format": response_format,
                     "seed": seed,
+                    "service_tier": service_tier,
                     "stop": stop,
                     "stream": stream,
                     "temperature": temperature,

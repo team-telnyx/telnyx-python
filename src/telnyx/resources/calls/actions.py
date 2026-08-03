@@ -27,6 +27,7 @@ from ..._response import (
 from ...types.calls import (
     GoogleTranscriptionLanguage,
     ConversationRelayInterruptible,
+    action_pay_params,
     action_refer_params,
     action_speak_params,
     action_answer_params,
@@ -75,6 +76,7 @@ from ...types.ai.assistant_param import AssistantParam
 from ...types.calls.loopcount_param import LoopcountParam
 from ...types.custom_sip_header_param import CustomSipHeaderParam
 from ...types.dialogflow_config_param import DialogflowConfigParam
+from ...types.calls.action_pay_response import ActionPayResponse
 from ...types.sound_modifications_param import SoundModificationsParam
 from ...types.stream_bidirectional_mode import StreamBidirectionalMode
 from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
@@ -163,6 +165,7 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         messages: Iterable[action_add_ai_assistant_messages_params.Message] | Omit = omit,
+        trigger_response: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,6 +184,10 @@ class ActionsResource(SyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           messages: The messages to add to the conversation.
+
+          trigger_response: When `true`, the injected messages immediately trigger an assistant
+              response/turn instead of waiting for the next natural turn or idle timeout. This
+              may interrupt a user who is still speaking.
 
           extra_headers: Send extra headers
 
@@ -201,6 +208,7 @@ class ActionsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "messages": messages,
+                    "trigger_response": trigger_response,
                 },
                 action_add_ai_assistant_messages_params.ActionAddAIAssistantMessagesParams,
             ),
@@ -894,6 +902,10 @@ class ActionsResource(SyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
           voice_settings: The settings associated with the voice selected
 
@@ -1179,6 +1191,10 @@ class ActionsResource(SyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -1477,6 +1493,139 @@ class ActionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionPauseRecordingResponse,
+        )
+
+    def pay(
+        self,
+        call_control_id: str,
+        *,
+        amount: float | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        connector_name: str | Omit = omit,
+        currency: Literal["USD", "usd"] | Omit = omit,
+        description: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        language: str | Omit = omit,
+        max_attempts: int | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        parameters: Dict[str, object] | Omit = omit,
+        payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
+        payment_token: str | Omit = omit,
+        prompts: action_pay_params.Prompts | Omit = omit,
+        service_level: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        transaction_type: Literal["charge", "tokenize"] | Omit = omit,
+        voice: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionPayResponse:
+        """
+        Collect payment details from the caller using DTMF and either charge or tokenize
+        the payment method through a configured Pay connector. Pay pauses active call
+        recordings while sensitive payment details are collected.
+
+        When `payment_token` is supplied, the DTMF collection steps are skipped and the
+        existing token is sent to the connector.
+
+        **Expected Webhooks:**
+
+        - `call.payment.progress`
+        - `call.payment.completed`
+
+        **Test mode card numbers:** `4111111111111111` (Visa), `5555555555554444`
+        (Mastercard), `378282246310005` (American Express), `6011111111111117`
+        (Discover), `3065930009020004` (Diners Club), `3566002020360505` (JCB),
+        `6200000000000005` (UnionPay), and `6771798021000008` (Maestro). Test-mode
+        connectors reject other card numbers before contacting the configured processor.
+        The UnionPay and Maestro numbers are accepted for processor testing, but Pay
+        currently does not emit a card type for them.
+
+        Args:
+          amount: Amount to charge. Required when `transaction_type` is `charge`.
+
+          client_state: Base64-encoded state included in subsequent webhooks.
+
+          command_id: Idempotency key for the command. Telnyx ignores a duplicate command with the
+              same `command_id` for the same `call_control_id`.
+
+          connector_name: Name of the Pay connector used to process the transaction.
+
+          currency: Currency used for the transaction. Pay currently supports USD only.
+
+          description: Optional description forwarded with the payment transaction.
+
+          inter_digit_timeout_millis: Time in milliseconds to wait between consecutive DTMF digits.
+
+          language: Language used for payment prompts.
+
+          max_attempts: Maximum number of attempts for each payment collection step.
+
+          metadata: Metadata forwarded to the Pay connector.
+
+          parameters: Additional parameters forwarded to the Pay connector.
+
+          payment_method: Payment method to collect.
+
+          payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          prompts: Custom text-to-speech prompts keyed by payment collection step.
+
+          service_level: Speech synthesis service level used for payment prompts. Pay defaults to
+              `premium`.
+
+          timeout_millis: Time in milliseconds to wait for DTMF input for each collection step.
+
+          transaction_type: Transaction to perform. If omitted, Pay infers `tokenize` when `amount` is
+              absent or zero and `charge` when `amount` is positive.
+
+          voice: Voice used for payment prompts. Accepts `male`, `female`, or a provider voice in
+              `<Provider>.<Model>.<VoiceId>` format, for example `AWS.Polly.Joanna` or
+              `Telnyx.KokoroTTS.af`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return self._post(
+            path_template("/calls/{call_control_id}/actions/pay", call_control_id=call_control_id),
+            body=maybe_transform(
+                {
+                    "amount": amount,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "connector_name": connector_name,
+                    "currency": currency,
+                    "description": description,
+                    "inter_digit_timeout_millis": inter_digit_timeout_millis,
+                    "language": language,
+                    "max_attempts": max_attempts,
+                    "metadata": metadata,
+                    "parameters": parameters,
+                    "payment_method": payment_method,
+                    "payment_token": payment_token,
+                    "prompts": prompts,
+                    "service_level": service_level,
+                    "timeout_millis": timeout_millis,
+                    "transaction_type": transaction_type,
+                    "voice": voice,
+                },
+                action_pay_params.ActionPayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionPayResponse,
         )
 
     def refer(
@@ -1910,6 +2059,10 @@ class ActionsResource(SyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -1988,8 +2141,6 @@ class ActionsResource(SyncAPIResource):
         participants: Iterable[AIAssistantJoinParticipantParam] | Omit = omit,
         send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
-        voice: str | Omit = omit,
-        voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2035,39 +2186,6 @@ class ActionsResource(SyncAPIResource):
               using a model with native audio support (e.g. `fixie-ai/ultravox-v0_4`) will
               ignore this field.
 
-          voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
-              Telnyx and AWS voices.
-
-              **Supported Providers:**
-
-              - **AWS:** Use `AWS.Polly.<VoiceId>` (e.g., `AWS.Polly.Joanna`). For neural
-                voices, which provide more realistic, human-like speech, append `-Neural` to
-                the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
-                [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
-                for compatibility.
-              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
-              - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
-                `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
-                ElevenLabs, you must provide your ElevenLabs API key as an integration secret
-                under `"voice_settings": {"api_key_ref": "<secret_id>"}`. See
-                [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-                for details. Check
-                [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
-              - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
-              - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
-                `Inworld.Max.Oliver`, `Inworld.TTS2.Loretta`). Supported models: `Mini`,
-                `Max`, `TTS2`.
-              - **Fish Audio:** Use `FishAudio.<ModelId>.<VoiceId>` (e.g.,
-                `FishAudio.s2.1-pro.<reference_id>`). Supported models: `s2.1-pro`, `s2-pro`,
-                `s1`. `VoiceId` is a Fish Voice-Library reference ID.
-              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
-                `ara`, `rex`, `sal`, `leo`.
-
-          voice_settings: The settings associated with the voice selected
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2091,8 +2209,6 @@ class ActionsResource(SyncAPIResource):
                     "participants": participants,
                     "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
-                    "voice": voice,
-                    "voice_settings": voice_settings,
                 },
                 action_start_ai_assistant_params.ActionStartAIAssistantParams,
             ),
@@ -2251,6 +2367,10 @@ class ActionsResource(SyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
           voice_settings: The settings associated with the voice selected
 
@@ -3123,7 +3243,19 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         transcription_engine: Literal[
-            "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "Parakeet", "A", "B"
+            "Google",
+            "Telnyx",
+            "Deepgram",
+            "Azure",
+            "xAI",
+            "AssemblyAI",
+            "Speechmatics",
+            "Soniox",
+            "Parakeet",
+            "Humain",
+            "Reson8",
+            "A",
+            "B",
         ]
         | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
@@ -3784,6 +3916,7 @@ class ActionsResource(SyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        route_to_mobile: bool | Omit = omit,
         send_digits_on_answer: str | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
@@ -3928,6 +4061,13 @@ class ActionsResource(SyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          route_to_mobile: When set to true, routes the call directly to the mobile device associated with
+              the destination Telnyx Mobile number, bypassing Inbound Calls Interception
+              configured in the Telnyx Portal under Mobile Numbers → select the number → Voice
+              → Call Interception. Use this when transferring an intercepted call to the
+              mobile device to prevent the call from being intercepted again. Defaults to
+              false.
+
           send_digits_on_answer: DTMF digits to send automatically after the transfer destination answers. Useful
               for reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once
               the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause),
@@ -4018,6 +4158,7 @@ class ActionsResource(SyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "route_to_mobile": route_to_mobile,
                     "send_digits_on_answer": send_digits_on_answer,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
@@ -4112,6 +4253,7 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         messages: Iterable[action_add_ai_assistant_messages_params.Message] | Omit = omit,
+        trigger_response: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4130,6 +4272,10 @@ class AsyncActionsResource(AsyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           messages: The messages to add to the conversation.
+
+          trigger_response: When `true`, the injected messages immediately trigger an assistant
+              response/turn instead of waiting for the next natural turn or idle timeout. This
+              may interrupt a user who is still speaking.
 
           extra_headers: Send extra headers
 
@@ -4150,6 +4296,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "messages": messages,
+                    "trigger_response": trigger_response,
                 },
                 action_add_ai_assistant_messages_params.ActionAddAIAssistantMessagesParams,
             ),
@@ -4843,6 +4990,10 @@ class AsyncActionsResource(AsyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
           voice_settings: The settings associated with the voice selected
 
@@ -5128,6 +5279,10 @@ class AsyncActionsResource(AsyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -5426,6 +5581,139 @@ class AsyncActionsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionPauseRecordingResponse,
+        )
+
+    async def pay(
+        self,
+        call_control_id: str,
+        *,
+        amount: float | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        connector_name: str | Omit = omit,
+        currency: Literal["USD", "usd"] | Omit = omit,
+        description: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        language: str | Omit = omit,
+        max_attempts: int | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        parameters: Dict[str, object] | Omit = omit,
+        payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
+        payment_token: str | Omit = omit,
+        prompts: action_pay_params.Prompts | Omit = omit,
+        service_level: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        transaction_type: Literal["charge", "tokenize"] | Omit = omit,
+        voice: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionPayResponse:
+        """
+        Collect payment details from the caller using DTMF and either charge or tokenize
+        the payment method through a configured Pay connector. Pay pauses active call
+        recordings while sensitive payment details are collected.
+
+        When `payment_token` is supplied, the DTMF collection steps are skipped and the
+        existing token is sent to the connector.
+
+        **Expected Webhooks:**
+
+        - `call.payment.progress`
+        - `call.payment.completed`
+
+        **Test mode card numbers:** `4111111111111111` (Visa), `5555555555554444`
+        (Mastercard), `378282246310005` (American Express), `6011111111111117`
+        (Discover), `3065930009020004` (Diners Club), `3566002020360505` (JCB),
+        `6200000000000005` (UnionPay), and `6771798021000008` (Maestro). Test-mode
+        connectors reject other card numbers before contacting the configured processor.
+        The UnionPay and Maestro numbers are accepted for processor testing, but Pay
+        currently does not emit a card type for them.
+
+        Args:
+          amount: Amount to charge. Required when `transaction_type` is `charge`.
+
+          client_state: Base64-encoded state included in subsequent webhooks.
+
+          command_id: Idempotency key for the command. Telnyx ignores a duplicate command with the
+              same `command_id` for the same `call_control_id`.
+
+          connector_name: Name of the Pay connector used to process the transaction.
+
+          currency: Currency used for the transaction. Pay currently supports USD only.
+
+          description: Optional description forwarded with the payment transaction.
+
+          inter_digit_timeout_millis: Time in milliseconds to wait between consecutive DTMF digits.
+
+          language: Language used for payment prompts.
+
+          max_attempts: Maximum number of attempts for each payment collection step.
+
+          metadata: Metadata forwarded to the Pay connector.
+
+          parameters: Additional parameters forwarded to the Pay connector.
+
+          payment_method: Payment method to collect.
+
+          payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          prompts: Custom text-to-speech prompts keyed by payment collection step.
+
+          service_level: Speech synthesis service level used for payment prompts. Pay defaults to
+              `premium`.
+
+          timeout_millis: Time in milliseconds to wait for DTMF input for each collection step.
+
+          transaction_type: Transaction to perform. If omitted, Pay infers `tokenize` when `amount` is
+              absent or zero and `charge` when `amount` is positive.
+
+          voice: Voice used for payment prompts. Accepts `male`, `female`, or a provider voice in
+              `<Provider>.<Model>.<VoiceId>` format, for example `AWS.Polly.Joanna` or
+              `Telnyx.KokoroTTS.af`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return await self._post(
+            path_template("/calls/{call_control_id}/actions/pay", call_control_id=call_control_id),
+            body=await async_maybe_transform(
+                {
+                    "amount": amount,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "connector_name": connector_name,
+                    "currency": currency,
+                    "description": description,
+                    "inter_digit_timeout_millis": inter_digit_timeout_millis,
+                    "language": language,
+                    "max_attempts": max_attempts,
+                    "metadata": metadata,
+                    "parameters": parameters,
+                    "payment_method": payment_method,
+                    "payment_token": payment_token,
+                    "prompts": prompts,
+                    "service_level": service_level,
+                    "timeout_millis": timeout_millis,
+                    "transaction_type": transaction_type,
+                    "voice": voice,
+                },
+                action_pay_params.ActionPayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionPayResponse,
         )
 
     async def refer(
@@ -5859,6 +6147,10 @@ class AsyncActionsResource(AsyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -5937,8 +6229,6 @@ class AsyncActionsResource(AsyncAPIResource):
         participants: Iterable[AIAssistantJoinParticipantParam] | Omit = omit,
         send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
-        voice: str | Omit = omit,
-        voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5984,39 +6274,6 @@ class AsyncActionsResource(AsyncAPIResource):
               using a model with native audio support (e.g. `fixie-ai/ultravox-v0_4`) will
               ignore this field.
 
-          voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
-              Telnyx and AWS voices.
-
-              **Supported Providers:**
-
-              - **AWS:** Use `AWS.Polly.<VoiceId>` (e.g., `AWS.Polly.Joanna`). For neural
-                voices, which provide more realistic, human-like speech, append `-Neural` to
-                the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
-                [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
-                for compatibility.
-              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
-              - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
-                `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
-                ElevenLabs, you must provide your ElevenLabs API key as an integration secret
-                under `"voice_settings": {"api_key_ref": "<secret_id>"}`. See
-                [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-                for details. Check
-                [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
-              - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
-              - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
-                `Inworld.Max.Oliver`, `Inworld.TTS2.Loretta`). Supported models: `Mini`,
-                `Max`, `TTS2`.
-              - **Fish Audio:** Use `FishAudio.<ModelId>.<VoiceId>` (e.g.,
-                `FishAudio.s2.1-pro.<reference_id>`). Supported models: `s2.1-pro`, `s2-pro`,
-                `s1`. `VoiceId` is a Fish Voice-Library reference ID.
-              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
-                `ara`, `rex`, `sal`, `leo`.
-
-          voice_settings: The settings associated with the voice selected
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6040,8 +6297,6 @@ class AsyncActionsResource(AsyncAPIResource):
                     "participants": participants,
                     "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
-                    "voice": voice,
-                    "voice_settings": voice_settings,
                 },
                 action_start_ai_assistant_params.ActionStartAIAssistantParams,
             ),
@@ -6200,6 +6455,10 @@ class AsyncActionsResource(AsyncAPIResource):
                 `s1`. `VoiceId` is a Fish Voice-Library reference ID.
               - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
                 `ara`, `rex`, `sal`, `leo`.
+              - **Humain:** Use `Humain.<VoiceId>` (e.g., `Humain.sara-ar`). Available voices:
+                `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
+                `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
+                `ModelId` segment.
 
           voice_settings: The settings associated with the voice selected
 
@@ -7072,7 +7331,19 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         transcription_engine: Literal[
-            "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "Parakeet", "A", "B"
+            "Google",
+            "Telnyx",
+            "Deepgram",
+            "Azure",
+            "xAI",
+            "AssemblyAI",
+            "Speechmatics",
+            "Soniox",
+            "Parakeet",
+            "Humain",
+            "Reson8",
+            "A",
+            "B",
         ]
         | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
@@ -7735,6 +8006,7 @@ class AsyncActionsResource(AsyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        route_to_mobile: bool | Omit = omit,
         send_digits_on_answer: str | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
@@ -7879,6 +8151,13 @@ class AsyncActionsResource(AsyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          route_to_mobile: When set to true, routes the call directly to the mobile device associated with
+              the destination Telnyx Mobile number, bypassing Inbound Calls Interception
+              configured in the Telnyx Portal under Mobile Numbers → select the number → Voice
+              → Call Interception. Use this when transferring an intercepted call to the
+              mobile device to prevent the call from being intercepted again. Defaults to
+              false.
+
           send_digits_on_answer: DTMF digits to send automatically after the transfer destination answers. Useful
               for reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once
               the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause),
@@ -7969,6 +8248,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "route_to_mobile": route_to_mobile,
                     "send_digits_on_answer": send_digits_on_answer,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
@@ -8073,6 +8353,9 @@ class ActionsResourceWithRawResponse:
         )
         self.pause_recording = to_raw_response_wrapper(
             actions.pause_recording,
+        )
+        self.pay = to_raw_response_wrapper(
+            actions.pay,
         )
         self.refer = to_raw_response_wrapper(
             actions.refer,
@@ -8200,6 +8483,9 @@ class AsyncActionsResourceWithRawResponse:
         self.pause_recording = async_to_raw_response_wrapper(
             actions.pause_recording,
         )
+        self.pay = async_to_raw_response_wrapper(
+            actions.pay,
+        )
         self.refer = async_to_raw_response_wrapper(
             actions.refer,
         )
@@ -8326,6 +8612,9 @@ class ActionsResourceWithStreamingResponse:
         self.pause_recording = to_streamed_response_wrapper(
             actions.pause_recording,
         )
+        self.pay = to_streamed_response_wrapper(
+            actions.pay,
+        )
         self.refer = to_streamed_response_wrapper(
             actions.refer,
         )
@@ -8451,6 +8740,9 @@ class AsyncActionsResourceWithStreamingResponse:
         )
         self.pause_recording = async_to_streamed_response_wrapper(
             actions.pause_recording,
+        )
+        self.pay = async_to_streamed_response_wrapper(
+            actions.pay,
         )
         self.refer = async_to_streamed_response_wrapper(
             actions.refer,

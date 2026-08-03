@@ -8,6 +8,7 @@ from .voice_list_params import VoiceListParams as VoiceListParams
 from .voice_create_params import VoiceCreateParams as VoiceCreateParams
 from .messaging_list_params import MessagingListParams as MessagingListParams
 from .messaging_create_params import MessagingCreateParams as MessagingCreateParams
+from .number_lookup_list_params import NumberLookupListParams as NumberLookupListParams
 from .number_lookup_create_params import NumberLookupCreateParams as NumberLookupCreateParams
 
 if TYPE_CHECKING:
@@ -20,7 +21,6 @@ if TYPE_CHECKING:
     from .messaging_create_response import MessagingCreateResponse as MessagingCreateResponse
     from .messaging_delete_response import MessagingDeleteResponse as MessagingDeleteResponse
     from .messaging_retrieve_response import MessagingRetrieveResponse as MessagingRetrieveResponse
-    from .number_lookup_list_response import NumberLookupListResponse as NumberLookupListResponse
     from .number_lookup_create_response import NumberLookupCreateResponse as NumberLookupCreateResponse
     from .number_lookup_retrieve_response import NumberLookupRetrieveResponse as NumberLookupRetrieveResponse
     from .cdr_usage_report_response_legacy import CdrUsageReportResponseLegacy as CdrUsageReportResponseLegacy
@@ -69,10 +69,6 @@ def __getattr__(name: str) -> Any:
         from .number_lookup_retrieve_response import NumberLookupRetrieveResponse
 
         return NumberLookupRetrieveResponse
-    if name == "NumberLookupListResponse":
-        from .number_lookup_list_response import NumberLookupListResponse
-
-        return NumberLookupListResponse
     if name == "CdrUsageReportResponseLegacy":
         from .cdr_usage_report_response_legacy import CdrUsageReportResponseLegacy
 

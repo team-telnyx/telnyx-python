@@ -119,6 +119,13 @@ class ModelMetadata(BaseModel):
     `us-central-1`, `eu-central-1`).
     """
 
+    service_tiers: Optional[List[Literal["default", "priority", "flex"]]] = None
+    """Service tiers supported by this Telnyx-hosted model.
+
+    Use one of these values as `service_tier` in Chat Completions or Responses
+    requests. This field is omitted for externally hosted models.
+    """
+
     task: Optional[str] = None
     """Primary task the model is intended for, e.g.
 

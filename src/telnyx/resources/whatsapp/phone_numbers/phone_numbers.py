@@ -40,6 +40,14 @@ from ....types.whatsapp import (
     phone_number_resend_verification_params,
     phone_number_retrieve_conversation_window_params,
 )
+from .conversational_components import (
+    ConversationalComponentsResource,
+    AsyncConversationalComponentsResource,
+    ConversationalComponentsResourceWithRawResponse,
+    AsyncConversationalComponentsResourceWithRawResponse,
+    ConversationalComponentsResourceWithStreamingResponse,
+    AsyncConversationalComponentsResourceWithStreamingResponse,
+)
 from ....types.whatsapp.phone_number_list_response import PhoneNumberListResponse
 from ....types.whatsapp.phone_number_retrieve_conversation_window_response import (
     PhoneNumberRetrieveConversationWindowResponse,
@@ -60,6 +68,11 @@ class PhoneNumbersResource(SyncAPIResource):
     def profile(self) -> ProfileResource:
         """Manage Whatsapp phone numbers"""
         return ProfileResource(self._client)
+
+    @cached_property
+    def conversational_components(self) -> ConversationalComponentsResource:
+        """Manage Whatsapp phone numbers"""
+        return ConversationalComponentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> PhoneNumbersResourceWithRawResponse:
@@ -290,6 +303,11 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
     def profile(self) -> AsyncProfileResource:
         """Manage Whatsapp phone numbers"""
         return AsyncProfileResource(self._client)
+
+    @cached_property
+    def conversational_components(self) -> AsyncConversationalComponentsResource:
+        """Manage Whatsapp phone numbers"""
+        return AsyncConversationalComponentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncPhoneNumbersResourceWithRawResponse:
@@ -538,6 +556,11 @@ class PhoneNumbersResourceWithRawResponse:
         """Manage Whatsapp phone numbers"""
         return ProfileResourceWithRawResponse(self._phone_numbers.profile)
 
+    @cached_property
+    def conversational_components(self) -> ConversationalComponentsResourceWithRawResponse:
+        """Manage Whatsapp phone numbers"""
+        return ConversationalComponentsResourceWithRawResponse(self._phone_numbers.conversational_components)
+
 
 class AsyncPhoneNumbersResourceWithRawResponse:
     def __init__(self, phone_numbers: AsyncPhoneNumbersResource) -> None:
@@ -568,6 +591,11 @@ class AsyncPhoneNumbersResourceWithRawResponse:
     def profile(self) -> AsyncProfileResourceWithRawResponse:
         """Manage Whatsapp phone numbers"""
         return AsyncProfileResourceWithRawResponse(self._phone_numbers.profile)
+
+    @cached_property
+    def conversational_components(self) -> AsyncConversationalComponentsResourceWithRawResponse:
+        """Manage Whatsapp phone numbers"""
+        return AsyncConversationalComponentsResourceWithRawResponse(self._phone_numbers.conversational_components)
 
 
 class PhoneNumbersResourceWithStreamingResponse:
@@ -600,6 +628,11 @@ class PhoneNumbersResourceWithStreamingResponse:
         """Manage Whatsapp phone numbers"""
         return ProfileResourceWithStreamingResponse(self._phone_numbers.profile)
 
+    @cached_property
+    def conversational_components(self) -> ConversationalComponentsResourceWithStreamingResponse:
+        """Manage Whatsapp phone numbers"""
+        return ConversationalComponentsResourceWithStreamingResponse(self._phone_numbers.conversational_components)
+
 
 class AsyncPhoneNumbersResourceWithStreamingResponse:
     def __init__(self, phone_numbers: AsyncPhoneNumbersResource) -> None:
@@ -630,3 +663,8 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
     def profile(self) -> AsyncProfileResourceWithStreamingResponse:
         """Manage Whatsapp phone numbers"""
         return AsyncProfileResourceWithStreamingResponse(self._phone_numbers.profile)
+
+    @cached_property
+    def conversational_components(self) -> AsyncConversationalComponentsResourceWithStreamingResponse:
+        """Manage Whatsapp phone numbers"""
+        return AsyncConversationalComponentsResourceWithStreamingResponse(self._phone_numbers.conversational_components)

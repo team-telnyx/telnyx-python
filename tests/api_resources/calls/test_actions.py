@@ -10,6 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.calls import (
+    ActionPayResponse,
     ActionReferResponse,
     ActionSpeakResponse,
     ActionAnswerResponse,
@@ -80,6 +81,7 @@ class TestActions:
                     "metadata": {"foo": "bar"},
                 }
             ],
+            trigger_response=False,
         )
         assert_matches_type(ActionAddAIAssistantMessagesResponse, action, path=["response"])
 
@@ -172,6 +174,23 @@ class TestActions:
                         "type": "hangup",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
@@ -1039,6 +1058,94 @@ class TestActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_pay(self, client: Telnyx) -> None:
+        action = client.calls.actions.pay(
+            call_control_id="call_control_id",
+        )
+        assert_matches_type(ActionPayResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_pay_with_all_params(self, client: Telnyx) -> None:
+        action = client.calls.actions.pay(
+            call_control_id="call_control_id",
+            amount=10.5,
+            client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
+            command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            connector_name="Default",
+            currency="USD",
+            description="Order 12345",
+            inter_digit_timeout_millis=5000,
+            language="en-US",
+            max_attempts=3,
+            metadata={"order_id": "bar"},
+            parameters={"customer_id": "bar"},
+            payment_method="credit-card",
+            payment_token="tok_abc123",
+            prompts={
+                "bank_account_number": "x",
+                "bank_routing_number": "x",
+                "expiration_date": "x",
+                "payment_card_number": [
+                    {
+                        "text": "Please enter your card number.",
+                        "attempt": "2 3",
+                        "card_type": "amex",
+                        "error_type": "invalid-card-number",
+                    },
+                    {
+                        "text": "That card number was not accepted. Please try again.",
+                        "attempt": "2 3",
+                        "card_type": "amex",
+                        "error_type": "invalid-card-number",
+                    },
+                ],
+                "postal_code": "x",
+                "security_code": "x",
+            },
+            service_level="service_level",
+            timeout_millis=5000,
+            transaction_type="charge",
+            voice="female",
+        )
+        assert_matches_type(ActionPayResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_pay(self, client: Telnyx) -> None:
+        response = client.calls.actions.with_raw_response.pay(
+            call_control_id="call_control_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = response.parse()
+        assert_matches_type(ActionPayResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_pay(self, client: Telnyx) -> None:
+        with client.calls.actions.with_streaming_response.pay(
+            call_control_id="call_control_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = response.parse()
+            assert_matches_type(ActionPayResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_pay(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
+            client.calls.actions.with_raw_response.pay(
+                call_control_id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_refer(self, client: Telnyx) -> None:
         action = client.calls.actions.refer(
             call_control_id="call_control_id",
@@ -1474,6 +1581,23 @@ class TestActions:
                         "type": "book_appointment",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -1498,11 +1622,6 @@ class TestActions:
             transcription={
                 "language": "auto",
                 "model": "distil-whisper/distil-large-v2",
-            },
-            voice="Telnyx.KokoroTTS.af",
-            voice_settings={
-                "type": "elevenlabs",
-                "api_key_ref": "my_elevenlabs_api_key",
             },
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])
@@ -2756,6 +2875,7 @@ class TestActions:
             record_timeout_secs=100,
             record_track="outbound",
             record_trim="trim-silence",
+            route_to_mobile=True,
             send_digits_on_answer="wwww200",
             sip_auth_password="password",
             sip_auth_username="username",
@@ -2898,6 +3018,7 @@ class TestAsyncActions:
                     "metadata": {"foo": "bar"},
                 }
             ],
+            trigger_response=False,
         )
         assert_matches_type(ActionAddAIAssistantMessagesResponse, action, path=["response"])
 
@@ -2990,6 +3111,23 @@ class TestAsyncActions:
                         "type": "hangup",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
@@ -3857,6 +3995,94 @@ class TestAsyncActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_pay(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.calls.actions.pay(
+            call_control_id="call_control_id",
+        )
+        assert_matches_type(ActionPayResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_pay_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.calls.actions.pay(
+            call_control_id="call_control_id",
+            amount=10.5,
+            client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
+            command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            connector_name="Default",
+            currency="USD",
+            description="Order 12345",
+            inter_digit_timeout_millis=5000,
+            language="en-US",
+            max_attempts=3,
+            metadata={"order_id": "bar"},
+            parameters={"customer_id": "bar"},
+            payment_method="credit-card",
+            payment_token="tok_abc123",
+            prompts={
+                "bank_account_number": "x",
+                "bank_routing_number": "x",
+                "expiration_date": "x",
+                "payment_card_number": [
+                    {
+                        "text": "Please enter your card number.",
+                        "attempt": "2 3",
+                        "card_type": "amex",
+                        "error_type": "invalid-card-number",
+                    },
+                    {
+                        "text": "That card number was not accepted. Please try again.",
+                        "attempt": "2 3",
+                        "card_type": "amex",
+                        "error_type": "invalid-card-number",
+                    },
+                ],
+                "postal_code": "x",
+                "security_code": "x",
+            },
+            service_level="service_level",
+            timeout_millis=5000,
+            transaction_type="charge",
+            voice="female",
+        )
+        assert_matches_type(ActionPayResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_pay(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.calls.actions.with_raw_response.pay(
+            call_control_id="call_control_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = await response.parse()
+        assert_matches_type(ActionPayResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_pay(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.calls.actions.with_streaming_response.pay(
+            call_control_id="call_control_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = await response.parse()
+            assert_matches_type(ActionPayResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_pay(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
+            await async_client.calls.actions.with_raw_response.pay(
+                call_control_id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_method_refer(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.refer(
             call_control_id="call_control_id",
@@ -4292,6 +4518,23 @@ class TestAsyncActions:
                         "type": "book_appointment",
                     }
                 ],
+                "voice_settings": {
+                    "voice": "voice",
+                    "api_key_ref": "api_key_ref",
+                    "background_audio": {
+                        "type": "predefined_media",
+                        "value": "silence",
+                        "volume": 0.1,
+                    },
+                    "expressive_mode": True,
+                    "language_boost": "auto",
+                    "similarity_boost": 0,
+                    "speed": 0,
+                    "style": 0,
+                    "temperature": 0,
+                    "use_speaker_boost": True,
+                    "voice_speed": 0,
+                },
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -4316,11 +4559,6 @@ class TestAsyncActions:
             transcription={
                 "language": "auto",
                 "model": "distil-whisper/distil-large-v2",
-            },
-            voice="Telnyx.KokoroTTS.af",
-            voice_settings={
-                "type": "elevenlabs",
-                "api_key_ref": "my_elevenlabs_api_key",
             },
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])
@@ -5574,6 +5812,7 @@ class TestAsyncActions:
             record_timeout_secs=100,
             record_track="outbound",
             record_trim="trim-silence",
+            route_to_mobile=True,
             send_digits_on_answer="wwww200",
             sip_auth_password="password",
             sip_auth_username="username",
