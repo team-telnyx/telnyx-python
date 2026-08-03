@@ -53,6 +53,7 @@ class TestUacConnections:
                 "password": "testtesttest",
                 "proxy": "sip-pbx.acme.example",
                 "transport": "TLS",
+                "user_agent": "Telnyx-Usage-Voice-Trunk/1.0",
                 "username": "ext8492",
             },
             inbound={
@@ -209,6 +210,7 @@ class TestUacConnections:
                 "password": "testtesttest",
                 "proxy": "sip-pbx.acme.example",
                 "transport": "TLS",
+                "user_agent": None,
                 "username": "ext8492",
             },
             inbound={
@@ -421,6 +423,7 @@ class TestAsyncUacConnections:
                 "password": "testtesttest",
                 "proxy": "sip-pbx.acme.example",
                 "transport": "TLS",
+                "user_agent": "Telnyx-Usage-Voice-Trunk/1.0",
                 "username": "ext8492",
             },
             inbound={
@@ -577,6 +580,7 @@ class TestAsyncUacConnections:
                 "password": "testtesttest",
                 "proxy": "sip-pbx.acme.example",
                 "transport": "TLS",
+                "user_agent": None,
                 "username": "ext8492",
             },
             inbound={
