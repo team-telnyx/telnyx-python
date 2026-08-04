@@ -9,7 +9,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .shared.messaging_error import MessagingError
+from .messaging_error_0b38e7044b import MessagingError0b38e7044b
 
 __all__ = [
     "MessageCancelScheduledResponse",
@@ -161,7 +161,7 @@ class MessageCancelScheduledResponse(BaseModel):
     encoding: Optional[str] = None
     """Encoding scheme used for the message body."""
 
-    errors: Optional[List[MessagingError]] = None
+    errors: Optional[List[MessagingError0b38e7044b]] = None
     """
     These errors may point at addressees when referring to unsuccessful/unconfirmed
     delivery statuses.

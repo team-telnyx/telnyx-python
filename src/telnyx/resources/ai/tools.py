@@ -9,7 +9,11 @@ import httpx
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
-from ...types.ai import tool_list_params, tool_create_params, tool_update_params
+from ...types.ai import (
+    tool_list_params,
+    tool_create_params,
+    tool_update_params,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -21,6 +25,7 @@ from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ai.shared_tool_response import SharedToolResponse
 from ...types.ai.pay_tool_params_param import PayToolParamsParam
+from ...types.ai.update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
 
@@ -59,6 +64,7 @@ class ToolsResource(SyncAPIResource):
         pay: PayToolParamsParam | Omit = omit,
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
+        update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -71,6 +77,8 @@ class ToolsResource(SyncAPIResource):
         Create Tool
 
         Args:
+          update_dynamic_variables: Configuration for an update_dynamic_variables tool.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -92,6 +100,7 @@ class ToolsResource(SyncAPIResource):
                     "pay": pay,
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
+                    "update_dynamic_variables": update_dynamic_variables,
                     "webhook": webhook,
                 },
                 tool_create_params.ToolCreateParams,
@@ -148,6 +157,7 @@ class ToolsResource(SyncAPIResource):
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         type: str | Omit = omit,
+        update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -160,6 +170,8 @@ class ToolsResource(SyncAPIResource):
         Update Tool
 
         Args:
+          update_dynamic_variables: Configuration for an update_dynamic_variables tool.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -183,6 +195,7 @@ class ToolsResource(SyncAPIResource):
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "type": type,
+                    "update_dynamic_variables": update_dynamic_variables,
                     "webhook": webhook,
                 },
                 tool_update_params.ToolUpdateParams,
@@ -316,6 +329,7 @@ class AsyncToolsResource(AsyncAPIResource):
         pay: PayToolParamsParam | Omit = omit,
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
+        update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -328,6 +342,8 @@ class AsyncToolsResource(AsyncAPIResource):
         Create Tool
 
         Args:
+          update_dynamic_variables: Configuration for an update_dynamic_variables tool.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -349,6 +365,7 @@ class AsyncToolsResource(AsyncAPIResource):
                     "pay": pay,
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
+                    "update_dynamic_variables": update_dynamic_variables,
                     "webhook": webhook,
                 },
                 tool_create_params.ToolCreateParams,
@@ -405,6 +422,7 @@ class AsyncToolsResource(AsyncAPIResource):
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         type: str | Omit = omit,
+        update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -417,6 +435,8 @@ class AsyncToolsResource(AsyncAPIResource):
         Update Tool
 
         Args:
+          update_dynamic_variables: Configuration for an update_dynamic_variables tool.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -440,6 +460,7 @@ class AsyncToolsResource(AsyncAPIResource):
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "type": type,
+                    "update_dynamic_variables": update_dynamic_variables,
                     "webhook": webhook,
                 },
                 tool_update_params.ToolUpdateParams,

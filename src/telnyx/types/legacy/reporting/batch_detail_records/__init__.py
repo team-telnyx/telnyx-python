@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from .voice_delete_response import VoiceDeleteResponse as VoiceDeleteResponse
     from .messaging_list_response import MessagingListResponse as MessagingListResponse
     from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
-    from .batch_csv_pagination_meta import BatchCsvPaginationMeta as BatchCsvPaginationMeta
     from .cdr_detailed_req_response import CdrDetailedReqResponse as CdrDetailedReqResponse
     from .messaging_create_response import MessagingCreateResponse as MessagingCreateResponse
     from .messaging_delete_response import MessagingDeleteResponse as MessagingDeleteResponse
@@ -26,13 +25,16 @@ if TYPE_CHECKING:
     from .speech_to_text_delete_response import SpeechToTextDeleteResponse as SpeechToTextDeleteResponse
     from .voice_retrieve_fields_response import VoiceRetrieveFieldsResponse as VoiceRetrieveFieldsResponse
     from .speech_to_text_retrieve_response import SpeechToTextRetrieveResponse as SpeechToTextRetrieveResponse
+    from .batch_csv_pagination_meta_705dfa7312 import (
+        BatchCsvPaginationMeta705dfa7312 as BatchCsvPaginationMeta705dfa7312,
+    )
 
 
 def __getattr__(name: str) -> Any:
-    if name == "BatchCsvPaginationMeta":
-        from .batch_csv_pagination_meta import BatchCsvPaginationMeta
+    if name == "BatchCsvPaginationMeta705dfa7312":
+        from .batch_csv_pagination_meta_705dfa7312 import BatchCsvPaginationMeta705dfa7312
 
-        return BatchCsvPaginationMeta
+        return BatchCsvPaginationMeta705dfa7312
     if name == "MdrDetailReportResponse":
         from .mdr_detail_report_response import MdrDetailReportResponse
 

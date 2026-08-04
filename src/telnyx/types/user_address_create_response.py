@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
-from .user_address import UserAddress
+from .user_addresses_user_address import UserAddressesUserAddress
 
 __all__ = ["UserAddressCreateResponse"]
 
 
 class UserAddressCreateResponse(BaseModel):
-    data: Optional[UserAddress] = None
+    data: Optional[UserAddressesUserAddress] = None

@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
-from .outbound_message_payload import OutboundMessagePayload
+from .messaging_outbound_message_payload import MessagingOutboundMessagePayload
 
 __all__ = ["MessageSendResponse"]
 
 
 class MessageSendResponse(BaseModel):
-    data: Optional[OutboundMessagePayload] = None
+    data: Optional[MessagingOutboundMessagePayload] = None

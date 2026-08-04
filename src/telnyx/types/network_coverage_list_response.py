@@ -6,7 +6,7 @@ from typing import List, Optional
 
 from .._models import BaseModel
 from .available_service import AvailableService
-from .shared.netapps_location import NetappsLocation
+from .netapps_location_17904fcfbc import NetappsLocation17904fcfbc
 
 __all__ = ["NetworkCoverageListResponse"]
 
@@ -15,7 +15,7 @@ class NetworkCoverageListResponse(BaseModel):
     available_services: Optional[List[AvailableService]] = None
     """List of interface types supported in this region."""
 
-    location: Optional[NetappsLocation] = None
+    location: Optional[NetappsLocation17904fcfbc] = None
 
     record_type: Optional[str] = None
     """Identifies the type of the resource."""

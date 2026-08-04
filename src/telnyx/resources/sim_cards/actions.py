@@ -24,10 +24,10 @@ from ...types.sim_cards import (
     action_bulk_set_public_ips_params,
     action_validate_registration_codes_params,
 )
-from ...types.sim_cards.sim_card_action import SimCardAction
 from ...types.sim_cards.action_enable_response import ActionEnableResponse
 from ...types.sim_cards.action_disable_response import ActionDisableResponse
 from ...types.sim_cards.action_retrieve_response import ActionRetrieveResponse
+from ...types.sim_cards.wireless_sim_card_action import WirelessSimCardAction
 from ...types.sim_cards.action_set_standby_response import ActionSetStandbyResponse
 from ...types.sim_cards.action_set_public_ip_response import ActionSetPublicIPResponse
 from ...types.sim_cards.action_remove_public_ip_response import ActionRemovePublicIPResponse
@@ -105,7 +105,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[SimCardAction]:
+    ) -> SyncDefaultFlatPagination[WirelessSimCardAction]:
         """This API lists a paginated collection of SIM card actions.
 
         It enables exploring
@@ -126,7 +126,7 @@ class ActionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/sim_card_actions",
-            page=SyncDefaultFlatPagination[SimCardAction],
+            page=SyncDefaultFlatPagination[WirelessSimCardAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -141,7 +141,7 @@ class ActionsResource(SyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            model=SimCardAction,
+            model=WirelessSimCardAction,
         )
 
     def bulk_disable_voice(
@@ -574,7 +574,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimCardAction, AsyncDefaultFlatPagination[SimCardAction]]:
+    ) -> AsyncPaginator[WirelessSimCardAction, AsyncDefaultFlatPagination[WirelessSimCardAction]]:
         """This API lists a paginated collection of SIM card actions.
 
         It enables exploring
@@ -595,7 +595,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/sim_card_actions",
-            page=AsyncDefaultFlatPagination[SimCardAction],
+            page=AsyncDefaultFlatPagination[WirelessSimCardAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -610,7 +610,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            model=SimCardAction,
+            model=WirelessSimCardAction,
         )
 
     async def bulk_disable_voice(

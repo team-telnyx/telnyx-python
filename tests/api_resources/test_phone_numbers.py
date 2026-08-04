@@ -10,9 +10,9 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    PhoneNumberDetailed,
     PhoneNumberDeleteResponse,
     PhoneNumberUpdateResponse,
+    NumbersPhoneNumberDetailed,
     PhoneNumberRetrieveResponse,
     PhoneNumberSlimListResponse,
 )
@@ -127,7 +127,7 @@ class TestPhoneNumbers:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         phone_number = client.phone_numbers.list()
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -158,7 +158,7 @@ class TestPhoneNumbers:
             page_size=0,
             sort="connection_name",
         )
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -168,7 +168,7 @@ class TestPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -178,7 +178,7 @@ class TestPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -392,7 +392,7 @@ class TestAsyncPhoneNumbers:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.phone_numbers.list()
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -423,7 +423,7 @@ class TestAsyncPhoneNumbers:
             page_size=0,
             sort="connection_name",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -433,7 +433,7 @@ class TestAsyncPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -443,7 +443,7 @@ class TestAsyncPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberDetailed], phone_number, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[NumbersPhoneNumberDetailed], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
