@@ -30,6 +30,28 @@ class Fax(BaseModel):
     direction: Optional[Literal["inbound", "outbound"]] = None
     """The direction of the fax."""
 
+    failure_reason: Optional[str] = None
+    """Customer-facing failure reason for the fax.
+
+    Present on every fax object (null when the fax has not failed). Mapped from the
+    more granular `internal_failure_reason`. Common values include:
+    `receiver_call_dropped`, `sender_call_dropped`, `sender_canceled`,
+    `carrier_lost`, `service_unavailable`, `fax_signaling_error`,
+    `receiver_communication_error`, `sender_communication_error`,
+    `receiver_decline`, `receiver_recovery_on_timer_expire`, `receiver_no_response`,
+    `receiver_invalid_number_format`, `receiver_no_answer`,
+    `receiver_incompatible_destination`, `receiver_unallocated_number`,
+    `destination_unreachable`, `user_busy`, `invalid_ecm_response_from_receiver`,
+    `fax_initial_communication_timeout`, `destination_not_in_service_plan`,
+    `account_disabled`, `destination_invalid`, `no_outbound_profile`,
+    `destination_not_in_countries_whitelist`, `user_channel_limit_exceeded`,
+    `outbound_profile_channel_limit_exceeded`, `connection_channel_limit_exceeded`,
+    `outbound_profile_daily_spend_limit_exceeded`, `unverified_origination_number`,
+    `unverified_destination_not_allowed`, `file_format_invalid`,
+    `file_download_failed`, `file_size_limit_exceeded`, `page_count_limit_exceeded`,
+    `media_processing_exception`.
+    """
+
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """The phone number, in E.164 format, the fax will be sent from."""
 
@@ -37,6 +59,13 @@ class Fax(BaseModel):
     """
     The string used as the caller id name (SIP From Display Name) presented to the
     destination (`to` number).
+    """
+
+    internal_failure_reason: Optional[str] = None
+    """Internal, more granular failure reason for the fax.
+
+    Present on every fax object (null when the fax has not failed). Useful for
+    deeper debugging beyond the customer-facing `failure_reason`.
     """
 
     media_name: Optional[str] = None

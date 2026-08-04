@@ -10,10 +10,11 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx._utils import parse_date
+from telnyx.pagination import SyncPerPagePagination, AsyncPerPagePagination
 from telnyx.types.legacy.reporting.usage_reports import (
-    NumberLookupListResponse,
     NumberLookupCreateResponse,
     NumberLookupRetrieveResponse,
+    TelcoDataUsageReportResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -107,7 +108,16 @@ class TestNumberLookup:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.list()
-        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
+        assert_matches_type(SyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Telnyx) -> None:
+        number_lookup = client.legacy.reporting.usage_reports.number_lookup.list(
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(SyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -117,7 +127,7 @@ class TestNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = response.parse()
-        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
+        assert_matches_type(SyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -127,7 +137,7 @@ class TestNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = response.parse()
-            assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
+            assert_matches_type(SyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -266,7 +276,16 @@ class TestAsyncNumberLookup:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.list()
-        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
+        assert_matches_type(AsyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.list(
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(AsyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -276,7 +295,7 @@ class TestAsyncNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = await response.parse()
-        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
+        assert_matches_type(AsyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -286,7 +305,7 @@ class TestAsyncNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = await response.parse()
-            assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
+            assert_matches_type(AsyncPerPagePagination[TelcoDataUsageReportResponse], number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -44,8 +44,10 @@ from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
 from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent
 from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent
 from .call_refer_completed_webhook_event import CallReferCompletedWebhookEvent
+from .call_payment_progress_webhook_event import CallPaymentProgressWebhookEvent
 from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent
 from .call_streaming_failed_webhook_event import CallStreamingFailedWebhookEvent
+from .call_payment_completed_webhook_event import CallPaymentCompletedWebhookEvent
 from .call_streaming_started_webhook_event import CallStreamingStartedWebhookEvent
 from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEvent
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent
@@ -98,6 +100,8 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CallMachineGreetingEndedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
+    CallPaymentCompletedWebhookEvent,
+    CallPaymentProgressWebhookEvent,
     CallPlaybackEndedWebhookEvent,
     CallPlaybackStartedWebhookEvent,
     CallRecordingErrorWebhookEvent,

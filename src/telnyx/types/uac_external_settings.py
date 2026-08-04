@@ -54,6 +54,12 @@ class UacExternalSettings(BaseModel):
     external SIP peer. One of UDP, TLS, or TCP.
     """
 
+    user_agent: Optional[str] = None
+    """
+    Custom SIP User-Agent header value that Telnyx uses on outbound REGISTER and
+    INVITE messages. Set to null to use Telnyx's default User-Agent.
+    """
+
     username: Optional[str] = None
     """
     The SIP username used to authenticate with the external SIP peer for

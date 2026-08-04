@@ -31,6 +31,13 @@ class ActionAddAIAssistantMessagesParams(TypedDict, total=False):
     messages: Iterable[Message]
     """The messages to add to the conversation."""
 
+    trigger_response: bool
+    """
+    When `true`, the injected messages immediately trigger an assistant
+    response/turn instead of waiting for the next natural turn or idle timeout. This
+    may interrupt a user who is still speaking.
+    """
+
 
 Message: TypeAlias = Union[
     UserMessageParam, AssistantMessageParam, ToolMessageParam, SystemMessageParam, DeveloperMessageParam

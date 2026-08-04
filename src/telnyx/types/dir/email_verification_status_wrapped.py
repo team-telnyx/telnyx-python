@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -22,6 +24,18 @@ class Data(BaseModel):
     """
     `sent` after a code is emailed; `verified` after a successful confirm;
     `unverified` when no verification is in progress.
+    """
+
+    expires_at: Optional[datetime] = None
+    """When the outstanding code stops being accepted.
+
+    Null when no verification is in progress.
+    """
+
+    sends_remaining_today: Optional[int] = None
+    """How many more codes may be requested for this DIR today.
+
+    Null when the daily cap does not apply.
     """
 
 

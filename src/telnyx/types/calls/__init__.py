@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 from .loopcount_param import LoopcountParam as LoopcountParam
+from .action_pay_params import ActionPayParams as ActionPayParams
 from .tool_message_param import ToolMessageParam as ToolMessageParam
 from .user_message_param import UserMessageParam as UserMessageParam
 from .action_refer_params import ActionReferParams as ActionReferParams
@@ -17,6 +18,7 @@ from .action_reject_params import ActionRejectParams as ActionRejectParams
 from .system_message_param import SystemMessageParam as SystemMessageParam
 from .action_enqueue_params import ActionEnqueueParams as ActionEnqueueParams
 from .action_transfer_params import ActionTransferParams as ActionTransferParams
+from .pay_prompt_value_param import PayPromptValueParam as PayPromptValueParam
 from .action_send_dtmf_params import ActionSendDtmfParams as ActionSendDtmfParams
 from .assistant_message_param import AssistantMessageParam as AssistantMessageParam
 from .developer_message_param import DeveloperMessageParam as DeveloperMessageParam
@@ -98,6 +100,7 @@ from .transcription_engine_speechmatics_config_param import (
 )
 
 if TYPE_CHECKING:
+    from .action_pay_response import ActionPayResponse as ActionPayResponse
     from .action_refer_response import ActionReferResponse as ActionReferResponse
     from .action_speak_response import ActionSpeakResponse as ActionSpeakResponse
     from .action_answer_response import ActionAnswerResponse as ActionAnswerResponse
@@ -215,6 +218,10 @@ def __getattr__(name: str) -> Any:
         from .action_pause_recording_response import ActionPauseRecordingResponse
 
         return ActionPauseRecordingResponse
+    if name == "ActionPayResponse":
+        from .action_pay_response import ActionPayResponse
+
+        return ActionPayResponse
     if name == "ActionReferResponse":
         from .action_refer_response import ActionReferResponse
 

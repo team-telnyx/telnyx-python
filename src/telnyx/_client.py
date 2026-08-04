@@ -56,6 +56,7 @@ if TYPE_CHECKING:
         balance,
         payment,
         porting,
+        pricing,
         regions,
         reports,
         storage,
@@ -83,10 +84,15 @@ if TYPE_CHECKING:
         short_codes,
         audit_events,
         call_reasons,
+        email_blocks,
+        email_events,
         oauth_grants,
         requirements,
         voice_clones,
         channel_zones,
+        email_domains,
+        email_inboxes,
+        email_threads,
         number_lookup,
         number_orders,
         oauth_clients,
@@ -99,6 +105,7 @@ if TYPE_CHECKING:
         bundle_pricing,
         detail_records,
         document_links,
+        email_messages,
         ip_connections,
         porting_orders,
         speech_to_text,
@@ -106,6 +113,7 @@ if TYPE_CHECKING:
         user_addresses,
         advanced_orders,
         charges_summary,
+        email_templates,
         global_ip_usage,
         messaging_10dlc,
         room_recordings,
@@ -128,6 +136,7 @@ if TYPE_CHECKING:
         verified_numbers,
         access_ip_address,
         charges_breakdown,
+        email_validations,
         global_ip_latency,
         messaging_optouts,
         requirement_types,
@@ -178,6 +187,7 @@ if TYPE_CHECKING:
         traffic_policy_profiles,
         authentication_providers,
         customer_service_records,
+        email_unsubscribe_groups,
         inexplicit_number_orders,
         messaging_hosted_numbers,
         mobile_network_operators,
@@ -234,10 +244,12 @@ if TYPE_CHECKING:
     from .resources.texml.texml import TexmlResource, AsyncTexmlResource
     from .resources.audit_events import AuditEventsResource, AsyncAuditEventsResource
     from .resources.call_reasons import CallReasonsResource, AsyncCallReasonsResource
+    from .resources.email_events import EmailEventsResource, AsyncEmailEventsResource
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
     from .resources.voice_clones import VoiceClonesResource, AsyncVoiceClonesResource
     from .resources.channel_zones import ChannelZonesResource, AsyncChannelZonesResource
+    from .resources.email_threads import EmailThreadsResource, AsyncEmailThreadsResource
     from .resources.legacy.legacy import LegacyResource, AsyncLegacyResource
     from .resources.number_lookup import NumberLookupResource, AsyncNumberLookupResource
     from .resources.number_orders import NumberOrdersResource, AsyncNumberOrdersResource
@@ -255,9 +267,11 @@ if TYPE_CHECKING:
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
     from .resources.advanced_orders import AdvancedOrdersResource, AsyncAdvancedOrdersResource
     from .resources.charges_summary import ChargesSummaryResource, AsyncChargesSummaryResource
+    from .resources.email_templates import EmailTemplatesResource, AsyncEmailTemplatesResource
     from .resources.global_ip_usage import GlobalIPUsageResource, AsyncGlobalIPUsageResource
     from .resources.payment.payment import PaymentResource, AsyncPaymentResource
     from .resources.porting.porting import PortingResource, AsyncPortingResource
+    from .resources.pricing.pricing import PricingResource, AsyncPricingResource
     from .resources.reports.reports import ReportsResource, AsyncReportsResource
     from .resources.room_recordings import RoomRecordingsResource, AsyncRoomRecordingsResource
     from .resources.sim_card_orders import SimCardOrdersResource, AsyncSimCardOrdersResource
@@ -345,6 +359,7 @@ if TYPE_CHECKING:
         CallControlApplicationsResource,
         AsyncCallControlApplicationsResource,
     )
+    from .resources.email_blocks.email_blocks import EmailBlocksResource, AsyncEmailBlocksResource
     from .resources.messaging_profile_metrics import (
         MessagingProfileMetricsResource,
         AsyncMessagingProfileMetricsResource,
@@ -377,6 +392,8 @@ if TYPE_CHECKING:
         DynamicEmergencyEndpointsResource,
         AsyncDynamicEmergencyEndpointsResource,
     )
+    from .resources.email_domains.email_domains import EmailDomainsResource, AsyncEmailDomainsResource
+    from .resources.email_inboxes.email_inboxes import EmailInboxesResource, AsyncEmailInboxesResource
     from .resources.global_ip_assignment_health import (
         GlobalIPAssignmentHealthResource,
         AsyncGlobalIPAssignmentHealthResource,
@@ -401,6 +418,7 @@ if TYPE_CHECKING:
         AsyncAvailablePhoneNumberBlocksResource,
     )
     from .resources.bundle_pricing.bundle_pricing import BundlePricingResource, AsyncBundlePricingResource
+    from .resources.email_messages.email_messages import EmailMessagesResource, AsyncEmailMessagesResource
     from .resources.notification_event_conditions import (
         NotificationEventConditionsResource,
         AsyncNotificationEventConditionsResource,
@@ -426,6 +444,7 @@ if TYPE_CHECKING:
     )
     from .resources.terms_of_service.terms_of_service import TermsOfServiceResource, AsyncTermsOfServiceResource
     from .resources.verified_numbers.verified_numbers import VerifiedNumbersResource, AsyncVerifiedNumbersResource
+    from .resources.email_validations.email_validations import EmailValidationsResource, AsyncEmailValidationsResource
     from .resources.messaging_profiles.messaging_profiles import (
         MessagingProfilesResource,
         AsyncMessagingProfilesResource,
@@ -457,6 +476,10 @@ if TYPE_CHECKING:
     from .resources.credential_connections.credential_connections import (
         CredentialConnectionsResource,
         AsyncCredentialConnectionsResource,
+    )
+    from .resources.email_unsubscribe_groups.email_unsubscribe_groups import (
+        EmailUnsubscribeGroupsResource,
+        AsyncEmailUnsubscribeGroupsResource,
     )
     from .resources.messaging_hosted_number_orders.messaging_hosted_number_orders import (
         MessagingHostedNumberOrdersResource,
@@ -1726,6 +1749,81 @@ class Telnyx(SyncAPIClient):
         from .resources.infringement_claims import InfringementClaimsResource
 
         return InfringementClaimsResource(self)
+
+    @cached_property
+    def email_blocks(self) -> EmailBlocksResource:
+        """Recipient suppression records (`/v2/email_blocks`)."""
+        from .resources.email_blocks import EmailBlocksResource
+
+        return EmailBlocksResource(self)
+
+    @cached_property
+    def email_domains(self) -> EmailDomainsResource:
+        from .resources.email_domains import EmailDomainsResource
+
+        return EmailDomainsResource(self)
+
+    @cached_property
+    def email_events(self) -> EmailEventsResource:
+        """Retrieve account-level email events and event statistics."""
+        from .resources.email_events import EmailEventsResource
+
+        return EmailEventsResource(self)
+
+    @cached_property
+    def email_inboxes(self) -> EmailInboxesResource:
+        """
+        Create and manage agent inboxes, retrieve inbound messages and threads, and reply to or forward messages.
+        """
+        from .resources.email_inboxes import EmailInboxesResource
+
+        return EmailInboxesResource(self)
+
+    @cached_property
+    def email_messages(self) -> EmailMessagesResource:
+        """Send and manage email messages.
+
+        Legacy `/v2/emails` routes are aliases for these endpoints.
+        """
+        from .resources.email_messages import EmailMessagesResource
+
+        return EmailMessagesResource(self)
+
+    @cached_property
+    def email_templates(self) -> EmailTemplatesResource:
+        """Create, list, retrieve, update, delete, and render Liquid email templates."""
+        from .resources.email_templates import EmailTemplatesResource
+
+        return EmailTemplatesResource(self)
+
+    @cached_property
+    def email_threads(self) -> EmailThreadsResource:
+        """
+        Account-wide conversation threads across every inbox, for agents operating many inboxes at once.
+        """
+        from .resources.email_threads import EmailThreadsResource
+
+        return EmailThreadsResource(self)
+
+    @cached_property
+    def email_unsubscribe_groups(self) -> EmailUnsubscribeGroupsResource:
+        """Named groups and group-scoped suppressions."""
+        from .resources.email_unsubscribe_groups import EmailUnsubscribeGroupsResource
+
+        return EmailUnsubscribeGroupsResource(self)
+
+    @cached_property
+    def email_validations(self) -> EmailValidationsResource:
+        """Validate email addresses synchronously or in asynchronous batches."""
+        from .resources.email_validations import EmailValidationsResource
+
+        return EmailValidationsResource(self)
+
+    @cached_property
+    def pricing(self) -> PricingResource:
+        from .resources.pricing import PricingResource
+
+        return PricingResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3135,6 +3233,81 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncInfringementClaimsResource(self)
 
     @cached_property
+    def email_blocks(self) -> AsyncEmailBlocksResource:
+        """Recipient suppression records (`/v2/email_blocks`)."""
+        from .resources.email_blocks import AsyncEmailBlocksResource
+
+        return AsyncEmailBlocksResource(self)
+
+    @cached_property
+    def email_domains(self) -> AsyncEmailDomainsResource:
+        from .resources.email_domains import AsyncEmailDomainsResource
+
+        return AsyncEmailDomainsResource(self)
+
+    @cached_property
+    def email_events(self) -> AsyncEmailEventsResource:
+        """Retrieve account-level email events and event statistics."""
+        from .resources.email_events import AsyncEmailEventsResource
+
+        return AsyncEmailEventsResource(self)
+
+    @cached_property
+    def email_inboxes(self) -> AsyncEmailInboxesResource:
+        """
+        Create and manage agent inboxes, retrieve inbound messages and threads, and reply to or forward messages.
+        """
+        from .resources.email_inboxes import AsyncEmailInboxesResource
+
+        return AsyncEmailInboxesResource(self)
+
+    @cached_property
+    def email_messages(self) -> AsyncEmailMessagesResource:
+        """Send and manage email messages.
+
+        Legacy `/v2/emails` routes are aliases for these endpoints.
+        """
+        from .resources.email_messages import AsyncEmailMessagesResource
+
+        return AsyncEmailMessagesResource(self)
+
+    @cached_property
+    def email_templates(self) -> AsyncEmailTemplatesResource:
+        """Create, list, retrieve, update, delete, and render Liquid email templates."""
+        from .resources.email_templates import AsyncEmailTemplatesResource
+
+        return AsyncEmailTemplatesResource(self)
+
+    @cached_property
+    def email_threads(self) -> AsyncEmailThreadsResource:
+        """
+        Account-wide conversation threads across every inbox, for agents operating many inboxes at once.
+        """
+        from .resources.email_threads import AsyncEmailThreadsResource
+
+        return AsyncEmailThreadsResource(self)
+
+    @cached_property
+    def email_unsubscribe_groups(self) -> AsyncEmailUnsubscribeGroupsResource:
+        """Named groups and group-scoped suppressions."""
+        from .resources.email_unsubscribe_groups import AsyncEmailUnsubscribeGroupsResource
+
+        return AsyncEmailUnsubscribeGroupsResource(self)
+
+    @cached_property
+    def email_validations(self) -> AsyncEmailValidationsResource:
+        """Validate email addresses synchronously or in asynchronous batches."""
+        from .resources.email_validations import AsyncEmailValidationsResource
+
+        return AsyncEmailValidationsResource(self)
+
+    @cached_property
+    def pricing(self) -> AsyncPricingResource:
+        from .resources.pricing import AsyncPricingResource
+
+        return AsyncPricingResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4477,6 +4650,81 @@ class TelnyxWithRawResponse:
 
         return InfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
 
+    @cached_property
+    def email_blocks(self) -> email_blocks.EmailBlocksResourceWithRawResponse:
+        """Recipient suppression records (`/v2/email_blocks`)."""
+        from .resources.email_blocks import EmailBlocksResourceWithRawResponse
+
+        return EmailBlocksResourceWithRawResponse(self._client.email_blocks)
+
+    @cached_property
+    def email_domains(self) -> email_domains.EmailDomainsResourceWithRawResponse:
+        from .resources.email_domains import EmailDomainsResourceWithRawResponse
+
+        return EmailDomainsResourceWithRawResponse(self._client.email_domains)
+
+    @cached_property
+    def email_events(self) -> email_events.EmailEventsResourceWithRawResponse:
+        """Retrieve account-level email events and event statistics."""
+        from .resources.email_events import EmailEventsResourceWithRawResponse
+
+        return EmailEventsResourceWithRawResponse(self._client.email_events)
+
+    @cached_property
+    def email_inboxes(self) -> email_inboxes.EmailInboxesResourceWithRawResponse:
+        """
+        Create and manage agent inboxes, retrieve inbound messages and threads, and reply to or forward messages.
+        """
+        from .resources.email_inboxes import EmailInboxesResourceWithRawResponse
+
+        return EmailInboxesResourceWithRawResponse(self._client.email_inboxes)
+
+    @cached_property
+    def email_messages(self) -> email_messages.EmailMessagesResourceWithRawResponse:
+        """Send and manage email messages.
+
+        Legacy `/v2/emails` routes are aliases for these endpoints.
+        """
+        from .resources.email_messages import EmailMessagesResourceWithRawResponse
+
+        return EmailMessagesResourceWithRawResponse(self._client.email_messages)
+
+    @cached_property
+    def email_templates(self) -> email_templates.EmailTemplatesResourceWithRawResponse:
+        """Create, list, retrieve, update, delete, and render Liquid email templates."""
+        from .resources.email_templates import EmailTemplatesResourceWithRawResponse
+
+        return EmailTemplatesResourceWithRawResponse(self._client.email_templates)
+
+    @cached_property
+    def email_threads(self) -> email_threads.EmailThreadsResourceWithRawResponse:
+        """
+        Account-wide conversation threads across every inbox, for agents operating many inboxes at once.
+        """
+        from .resources.email_threads import EmailThreadsResourceWithRawResponse
+
+        return EmailThreadsResourceWithRawResponse(self._client.email_threads)
+
+    @cached_property
+    def email_unsubscribe_groups(self) -> email_unsubscribe_groups.EmailUnsubscribeGroupsResourceWithRawResponse:
+        """Named groups and group-scoped suppressions."""
+        from .resources.email_unsubscribe_groups import EmailUnsubscribeGroupsResourceWithRawResponse
+
+        return EmailUnsubscribeGroupsResourceWithRawResponse(self._client.email_unsubscribe_groups)
+
+    @cached_property
+    def email_validations(self) -> email_validations.EmailValidationsResourceWithRawResponse:
+        """Validate email addresses synchronously or in asynchronous batches."""
+        from .resources.email_validations import EmailValidationsResourceWithRawResponse
+
+        return EmailValidationsResourceWithRawResponse(self._client.email_validations)
+
+    @cached_property
+    def pricing(self) -> pricing.PricingResourceWithRawResponse:
+        from .resources.pricing import PricingResourceWithRawResponse
+
+        return PricingResourceWithRawResponse(self._client.pricing)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5690,6 +5938,81 @@ class AsyncTelnyxWithRawResponse:
         from .resources.infringement_claims import AsyncInfringementClaimsResourceWithRawResponse
 
         return AsyncInfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
+
+    @cached_property
+    def email_blocks(self) -> email_blocks.AsyncEmailBlocksResourceWithRawResponse:
+        """Recipient suppression records (`/v2/email_blocks`)."""
+        from .resources.email_blocks import AsyncEmailBlocksResourceWithRawResponse
+
+        return AsyncEmailBlocksResourceWithRawResponse(self._client.email_blocks)
+
+    @cached_property
+    def email_domains(self) -> email_domains.AsyncEmailDomainsResourceWithRawResponse:
+        from .resources.email_domains import AsyncEmailDomainsResourceWithRawResponse
+
+        return AsyncEmailDomainsResourceWithRawResponse(self._client.email_domains)
+
+    @cached_property
+    def email_events(self) -> email_events.AsyncEmailEventsResourceWithRawResponse:
+        """Retrieve account-level email events and event statistics."""
+        from .resources.email_events import AsyncEmailEventsResourceWithRawResponse
+
+        return AsyncEmailEventsResourceWithRawResponse(self._client.email_events)
+
+    @cached_property
+    def email_inboxes(self) -> email_inboxes.AsyncEmailInboxesResourceWithRawResponse:
+        """
+        Create and manage agent inboxes, retrieve inbound messages and threads, and reply to or forward messages.
+        """
+        from .resources.email_inboxes import AsyncEmailInboxesResourceWithRawResponse
+
+        return AsyncEmailInboxesResourceWithRawResponse(self._client.email_inboxes)
+
+    @cached_property
+    def email_messages(self) -> email_messages.AsyncEmailMessagesResourceWithRawResponse:
+        """Send and manage email messages.
+
+        Legacy `/v2/emails` routes are aliases for these endpoints.
+        """
+        from .resources.email_messages import AsyncEmailMessagesResourceWithRawResponse
+
+        return AsyncEmailMessagesResourceWithRawResponse(self._client.email_messages)
+
+    @cached_property
+    def email_templates(self) -> email_templates.AsyncEmailTemplatesResourceWithRawResponse:
+        """Create, list, retrieve, update, delete, and render Liquid email templates."""
+        from .resources.email_templates import AsyncEmailTemplatesResourceWithRawResponse
+
+        return AsyncEmailTemplatesResourceWithRawResponse(self._client.email_templates)
+
+    @cached_property
+    def email_threads(self) -> email_threads.AsyncEmailThreadsResourceWithRawResponse:
+        """
+        Account-wide conversation threads across every inbox, for agents operating many inboxes at once.
+        """
+        from .resources.email_threads import AsyncEmailThreadsResourceWithRawResponse
+
+        return AsyncEmailThreadsResourceWithRawResponse(self._client.email_threads)
+
+    @cached_property
+    def email_unsubscribe_groups(self) -> email_unsubscribe_groups.AsyncEmailUnsubscribeGroupsResourceWithRawResponse:
+        """Named groups and group-scoped suppressions."""
+        from .resources.email_unsubscribe_groups import AsyncEmailUnsubscribeGroupsResourceWithRawResponse
+
+        return AsyncEmailUnsubscribeGroupsResourceWithRawResponse(self._client.email_unsubscribe_groups)
+
+    @cached_property
+    def email_validations(self) -> email_validations.AsyncEmailValidationsResourceWithRawResponse:
+        """Validate email addresses synchronously or in asynchronous batches."""
+        from .resources.email_validations import AsyncEmailValidationsResourceWithRawResponse
+
+        return AsyncEmailValidationsResourceWithRawResponse(self._client.email_validations)
+
+    @cached_property
+    def pricing(self) -> pricing.AsyncPricingResourceWithRawResponse:
+        from .resources.pricing import AsyncPricingResourceWithRawResponse
+
+        return AsyncPricingResourceWithRawResponse(self._client.pricing)
 
 
 class TelnyxWithStreamedResponse:
@@ -6906,6 +7229,81 @@ class TelnyxWithStreamedResponse:
         from .resources.infringement_claims import InfringementClaimsResourceWithStreamingResponse
 
         return InfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
+
+    @cached_property
+    def email_blocks(self) -> email_blocks.EmailBlocksResourceWithStreamingResponse:
+        """Recipient suppression records (`/v2/email_blocks`)."""
+        from .resources.email_blocks import EmailBlocksResourceWithStreamingResponse
+
+        return EmailBlocksResourceWithStreamingResponse(self._client.email_blocks)
+
+    @cached_property
+    def email_domains(self) -> email_domains.EmailDomainsResourceWithStreamingResponse:
+        from .resources.email_domains import EmailDomainsResourceWithStreamingResponse
+
+        return EmailDomainsResourceWithStreamingResponse(self._client.email_domains)
+
+    @cached_property
+    def email_events(self) -> email_events.EmailEventsResourceWithStreamingResponse:
+        """Retrieve account-level email events and event statistics."""
+        from .resources.email_events import EmailEventsResourceWithStreamingResponse
+
+        return EmailEventsResourceWithStreamingResponse(self._client.email_events)
+
+    @cached_property
+    def email_inboxes(self) -> email_inboxes.EmailInboxesResourceWithStreamingResponse:
+        """
+        Create and manage agent inboxes, retrieve inbound messages and threads, and reply to or forward messages.
+        """
+        from .resources.email_inboxes import EmailInboxesResourceWithStreamingResponse
+
+        return EmailInboxesResourceWithStreamingResponse(self._client.email_inboxes)
+
+    @cached_property
+    def email_messages(self) -> email_messages.EmailMessagesResourceWithStreamingResponse:
+        """Send and manage email messages.
+
+        Legacy `/v2/emails` routes are aliases for these endpoints.
+        """
+        from .resources.email_messages import EmailMessagesResourceWithStreamingResponse
+
+        return EmailMessagesResourceWithStreamingResponse(self._client.email_messages)
+
+    @cached_property
+    def email_templates(self) -> email_templates.EmailTemplatesResourceWithStreamingResponse:
+        """Create, list, retrieve, update, delete, and render Liquid email templates."""
+        from .resources.email_templates import EmailTemplatesResourceWithStreamingResponse
+
+        return EmailTemplatesResourceWithStreamingResponse(self._client.email_templates)
+
+    @cached_property
+    def email_threads(self) -> email_threads.EmailThreadsResourceWithStreamingResponse:
+        """
+        Account-wide conversation threads across every inbox, for agents operating many inboxes at once.
+        """
+        from .resources.email_threads import EmailThreadsResourceWithStreamingResponse
+
+        return EmailThreadsResourceWithStreamingResponse(self._client.email_threads)
+
+    @cached_property
+    def email_unsubscribe_groups(self) -> email_unsubscribe_groups.EmailUnsubscribeGroupsResourceWithStreamingResponse:
+        """Named groups and group-scoped suppressions."""
+        from .resources.email_unsubscribe_groups import EmailUnsubscribeGroupsResourceWithStreamingResponse
+
+        return EmailUnsubscribeGroupsResourceWithStreamingResponse(self._client.email_unsubscribe_groups)
+
+    @cached_property
+    def email_validations(self) -> email_validations.EmailValidationsResourceWithStreamingResponse:
+        """Validate email addresses synchronously or in asynchronous batches."""
+        from .resources.email_validations import EmailValidationsResourceWithStreamingResponse
+
+        return EmailValidationsResourceWithStreamingResponse(self._client.email_validations)
+
+    @cached_property
+    def pricing(self) -> pricing.PricingResourceWithStreamingResponse:
+        from .resources.pricing import PricingResourceWithStreamingResponse
+
+        return PricingResourceWithStreamingResponse(self._client.pricing)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -8170,6 +8568,83 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.infringement_claims import AsyncInfringementClaimsResourceWithStreamingResponse
 
         return AsyncInfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
+
+    @cached_property
+    def email_blocks(self) -> email_blocks.AsyncEmailBlocksResourceWithStreamingResponse:
+        """Recipient suppression records (`/v2/email_blocks`)."""
+        from .resources.email_blocks import AsyncEmailBlocksResourceWithStreamingResponse
+
+        return AsyncEmailBlocksResourceWithStreamingResponse(self._client.email_blocks)
+
+    @cached_property
+    def email_domains(self) -> email_domains.AsyncEmailDomainsResourceWithStreamingResponse:
+        from .resources.email_domains import AsyncEmailDomainsResourceWithStreamingResponse
+
+        return AsyncEmailDomainsResourceWithStreamingResponse(self._client.email_domains)
+
+    @cached_property
+    def email_events(self) -> email_events.AsyncEmailEventsResourceWithStreamingResponse:
+        """Retrieve account-level email events and event statistics."""
+        from .resources.email_events import AsyncEmailEventsResourceWithStreamingResponse
+
+        return AsyncEmailEventsResourceWithStreamingResponse(self._client.email_events)
+
+    @cached_property
+    def email_inboxes(self) -> email_inboxes.AsyncEmailInboxesResourceWithStreamingResponse:
+        """
+        Create and manage agent inboxes, retrieve inbound messages and threads, and reply to or forward messages.
+        """
+        from .resources.email_inboxes import AsyncEmailInboxesResourceWithStreamingResponse
+
+        return AsyncEmailInboxesResourceWithStreamingResponse(self._client.email_inboxes)
+
+    @cached_property
+    def email_messages(self) -> email_messages.AsyncEmailMessagesResourceWithStreamingResponse:
+        """Send and manage email messages.
+
+        Legacy `/v2/emails` routes are aliases for these endpoints.
+        """
+        from .resources.email_messages import AsyncEmailMessagesResourceWithStreamingResponse
+
+        return AsyncEmailMessagesResourceWithStreamingResponse(self._client.email_messages)
+
+    @cached_property
+    def email_templates(self) -> email_templates.AsyncEmailTemplatesResourceWithStreamingResponse:
+        """Create, list, retrieve, update, delete, and render Liquid email templates."""
+        from .resources.email_templates import AsyncEmailTemplatesResourceWithStreamingResponse
+
+        return AsyncEmailTemplatesResourceWithStreamingResponse(self._client.email_templates)
+
+    @cached_property
+    def email_threads(self) -> email_threads.AsyncEmailThreadsResourceWithStreamingResponse:
+        """
+        Account-wide conversation threads across every inbox, for agents operating many inboxes at once.
+        """
+        from .resources.email_threads import AsyncEmailThreadsResourceWithStreamingResponse
+
+        return AsyncEmailThreadsResourceWithStreamingResponse(self._client.email_threads)
+
+    @cached_property
+    def email_unsubscribe_groups(
+        self,
+    ) -> email_unsubscribe_groups.AsyncEmailUnsubscribeGroupsResourceWithStreamingResponse:
+        """Named groups and group-scoped suppressions."""
+        from .resources.email_unsubscribe_groups import AsyncEmailUnsubscribeGroupsResourceWithStreamingResponse
+
+        return AsyncEmailUnsubscribeGroupsResourceWithStreamingResponse(self._client.email_unsubscribe_groups)
+
+    @cached_property
+    def email_validations(self) -> email_validations.AsyncEmailValidationsResourceWithStreamingResponse:
+        """Validate email addresses synchronously or in asynchronous batches."""
+        from .resources.email_validations import AsyncEmailValidationsResourceWithStreamingResponse
+
+        return AsyncEmailValidationsResourceWithStreamingResponse(self._client.email_validations)
+
+    @cached_property
+    def pricing(self) -> pricing.AsyncPricingResourceWithStreamingResponse:
+        from .resources.pricing import AsyncPricingResourceWithStreamingResponse
+
+        return AsyncPricingResourceWithStreamingResponse(self._client.pricing)
 
 
 Client = Telnyx

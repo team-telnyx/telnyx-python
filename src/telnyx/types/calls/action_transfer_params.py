@@ -185,6 +185,16 @@ class ActionTransferParams(TypedDict, total=False):
     of the recording.
     """
 
+    route_to_mobile: bool
+    """
+    When set to true, routes the call directly to the mobile device associated with
+    the destination Telnyx Mobile number, bypassing Inbound Calls Interception
+    configured in the Telnyx Portal under Mobile Numbers → select the number → Voice
+    → Call Interception. Use this when transferring an intercepted call to the
+    mobile device to prevent the call from being intercepted again. Defaults to
+    false.
+    """
+
     send_digits_on_answer: str
     """DTMF digits to send automatically after the transfer destination answers.
 

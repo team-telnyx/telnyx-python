@@ -101,6 +101,8 @@ class ShortCodesResource(SyncAPIResource):
         Args:
           messaging_profile_id: Unique identifier for a messaging profile.
 
+          tags: Tags associated with the resource.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,6 +254,8 @@ class AsyncShortCodesResource(AsyncAPIResource):
 
         Args:
           messaging_profile_id: Unique identifier for a messaging profile.
+
+          tags: Tags associated with the resource.
 
           extra_headers: Send extra headers
 

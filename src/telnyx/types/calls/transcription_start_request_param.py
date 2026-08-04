@@ -18,7 +18,43 @@ from .transcription_engine_parakeet_config_param import TranscriptionEngineParak
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = ["TranscriptionStartRequestParam", "TranscriptionEngineConfig"]
+__all__ = [
+    "TranscriptionStartRequestParam",
+    "TranscriptionEngineConfig",
+    "TranscriptionEngineConfigTranscriptionEngineHumainConfig",
+    "TranscriptionEngineConfigTranscriptionEngineReson8Config",
+]
+
+
+class TranscriptionEngineConfigTranscriptionEngineHumainConfig(TypedDict, total=False):
+    language: Literal["ar", "en", "codeswitch", "auto"]
+    """The language of the audio to be transcribed.
+
+    `codeswitch` enables Arabic/English code-switching. `auto` resolves server-side
+    to code-switching.
+    """
+
+    transcription_engine: Literal["Humain"]
+    """Engine identifier for Humain transcription service"""
+
+    transcription_model: Literal["humain/realtime"]
+    """The model to use for transcription."""
+
+
+class TranscriptionEngineConfigTranscriptionEngineReson8Config(TypedDict, total=False):
+    language: Literal["auto", "nl", "en", "fr", "fy", "de", "it", "pl", "pt", "es", "sv"]
+    """The language of the audio to be transcribed.
+
+    `auto` (the default, also applied when `language` is omitted) enables automatic
+    language detection.
+    """
+
+    transcription_engine: Literal["Reson8"]
+    """Engine identifier for Reson8 transcription service"""
+
+    transcription_model: Literal["reson8/turns"]
+    """The model to use for transcription."""
+
 
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
@@ -29,6 +65,8 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineSpeechmaticsConfigParam,
     TranscriptionEngineSonioxConfigParam,
     TranscriptionEngineParakeetConfigParam,
+    TranscriptionEngineConfigTranscriptionEngineHumainConfig,
+    TranscriptionEngineConfigTranscriptionEngineReson8Config,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
@@ -51,7 +89,19 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
     """
 
     transcription_engine: Literal[
-        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "Parakeet", "A", "B"
+        "Google",
+        "Telnyx",
+        "Deepgram",
+        "Azure",
+        "xAI",
+        "AssemblyAI",
+        "Speechmatics",
+        "Soniox",
+        "Parakeet",
+        "Humain",
+        "Reson8",
+        "A",
+        "B",
     ]
     """Engine to use for speech recognition.
 

@@ -31,6 +31,7 @@ class ShortCode(BaseModel):
     """Short digit sequence used to address messages."""
 
     tags: Optional[List[str]] = None
+    """Tags associated with the resource."""
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was updated."""

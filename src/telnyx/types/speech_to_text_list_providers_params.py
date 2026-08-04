@@ -11,7 +11,18 @@ __all__ = ["SpeechToTextListProvidersParams"]
 
 class SpeechToTextListProvidersParams(TypedDict, total=False):
     provider: Literal[
-        "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "parakeet", "azure", "openai", "google", "telnyx"
+        "deepgram",
+        "speechmatics",
+        "assemblyai",
+        "xai",
+        "soniox",
+        "parakeet",
+        "humain",
+        "reson8",
+        "azure",
+        "openai",
+        "google",
+        "telnyx",
     ]
     """Filter to entries for a specific STT provider.
 

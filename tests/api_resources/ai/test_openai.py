@@ -32,6 +32,7 @@ class TestOpenAI:
             input={"0": "bar"},
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
+            service_tier="service_tier",
             stream=True,
         )
         assert_matches_type(OpenAICreateResponseResponse, openai, path=["response"])
@@ -106,6 +107,7 @@ class TestAsyncOpenAI:
             input={"0": "bar"},
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
+            service_tier="service_tier",
             stream=True,
         )
         assert_matches_type(OpenAICreateResponseResponse, openai, path=["response"])

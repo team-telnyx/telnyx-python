@@ -169,7 +169,6 @@ from telnyx.types.legacy.reporting.usage_reports import (
     TelcoDataUsageReportResponse,
     NumberLookupCreateResponse,
     NumberLookupRetrieveResponse,
-    NumberLookupListResponse,
 )
 ```
 
@@ -177,7 +176,7 @@ Methods:
 
 - <code title="post /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/number_lookup_create_response.py">NumberLookupCreateResponse</a></code>
 - <code title="get /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/number_lookup_retrieve_response.py">NumberLookupRetrieveResponse</a></code>
-- <code title="get /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/number_lookup_list_response.py">NumberLookupListResponse</a></code>
+- <code title="get /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_list_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/telco_data_usage_report_response.py">SyncPerPagePagination[TelcoDataUsageReportResponse]</a></code>
 - <code title="delete /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">delete</a>(id) -> None</code>
 
 #### Voice
@@ -350,6 +349,8 @@ from telnyx.types import (
     CallMachineGreetingEndedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
+    CallPaymentCompletedWebhookEvent,
+    CallPaymentProgressWebhookEvent,
     CallPlaybackEndedWebhookEvent,
     CallPlaybackStartedWebhookEvent,
     CallRecordingErrorWebhookEvent,
@@ -408,6 +409,8 @@ from telnyx.types import (
     CallMachineGreetingEndedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
+    CallPaymentCompletedWebhookEvent,
+    CallPaymentProgressWebhookEvent,
     CallPlaybackEndedWebhookEvent,
     CallPlaybackStartedWebhookEvent,
     CallRecordingErrorWebhookEvent,
@@ -1475,6 +1478,7 @@ from telnyx.types.calls import (
     GoogleTranscriptionLanguage,
     InterruptionSettings,
     Loopcount,
+    PayPromptValue,
     StopRecordingRequest,
     SystemMessage,
     TelnyxTranscriptionLanguage,
@@ -1506,6 +1510,7 @@ from telnyx.types.calls import (
     ActionJoinAIAssistantResponse,
     ActionLeaveQueueResponse,
     ActionPauseRecordingResponse,
+    ActionPayResponse,
     ActionReferResponse,
     ActionRejectResponse,
     ActionResumeRecordingResponse,
@@ -1551,6 +1556,7 @@ Methods:
 - <code title="post /calls/{call_control_id}/actions/ai_assistant_join">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">join_ai_assistant</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_join_ai_assistant_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_join_ai_assistant_response.py">ActionJoinAIAssistantResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/leave_queue">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">leave_queue</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_leave_queue_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_leave_queue_response.py">ActionLeaveQueueResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/record_pause">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">pause_recording</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_pause_recording_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_pause_recording_response.py">ActionPauseRecordingResponse</a></code>
+- <code title="post /calls/{call_control_id}/actions/pay">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">pay</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_pay_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_pay_response.py">ActionPayResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/refer">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">refer</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_refer_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_refer_response.py">ActionReferResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/reject">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">reject</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_reject_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_reject_response.py">ActionRejectResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/record_resume">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">resume_recording</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_resume_recording_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_resume_recording_response.py">ActionResumeRecordingResponse</a></code>
@@ -5550,6 +5556,22 @@ Methods:
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">delete</a>(phone_number) -> None</code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">upload</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_response.py">PhotoUploadResponse</a></code>
 
+### ConversationalComponents
+
+Types:
+
+```python
+from telnyx.types.whatsapp.phone_numbers import (
+    ConversationalComponentListResponse,
+    ConversationalComponentPatchAllResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">list</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_list_response.py">ConversationalComponentListResponse</a></code>
+- <code title="patch /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">patch_all</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_response.py">ConversationalComponentPatchAllResponse</a></code>
+
 ## UserData
 
 Types:
@@ -6027,3 +6049,408 @@ Methods:
 
 - <code title="get /infringement_claims/{claim_id}">client.infringement_claims.<a href="./src/telnyx/resources/infringement_claims.py">retrieve</a>(claim_id) -> <a href="./src/telnyx/types/infringement_claim_wrapped.py">InfringementClaimWrapped</a></code>
 - <code title="post /infringement_claims/{claim_id}/contest">client.infringement_claims.<a href="./src/telnyx/resources/infringement_claims.py">contest</a>(claim_id, \*\*<a href="src/telnyx/types/infringement_claim_contest_params.py">params</a>) -> <a href="./src/telnyx/types/infringement_claim_wrapped.py">InfringementClaimWrapped</a></code>
+
+# EmailBlocks
+
+Types:
+
+```python
+from telnyx.types import (
+    EmailBlock,
+    EmailBlockResponse,
+    OffsetMeta,
+    EmailBlockRetrieveEventsResponse,
+    EmailBlockRetrieveExportResponse,
+)
+```
+
+Methods:
+
+- <code title="post /email_blocks">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">create</a>(\*\*<a href="src/telnyx/types/email_block_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_block_response.py">EmailBlockResponse</a></code>
+- <code title="get /email_blocks/{id}">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_block_response.py">EmailBlockResponse</a></code>
+- <code title="get /email_blocks">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">list</a>(\*\*<a href="src/telnyx/types/email_block_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_block.py">SyncDefaultFlatPagination[EmailBlock]</a></code>
+- <code title="delete /email_blocks/{id}">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">delete</a>(id) -> <a href="./src/telnyx/types/email_block_response.py">EmailBlockResponse</a></code>
+- <code title="get /email_blocks/{id}/events">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve_events</a>(id, \*\*<a href="src/telnyx/types/email_block_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/email_block_retrieve_events_response.py">EmailBlockRetrieveEventsResponse</a></code>
+- <code title="get /email_blocks/export">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve_export</a>(\*\*<a href="src/telnyx/types/email_block_retrieve_export_params.py">params</a>) -> str</code>
+
+## Import
+
+Types:
+
+```python
+from telnyx.types.email_blocks import EmailBlockImportResponse
+```
+
+Methods:
+
+- <code title="post /email_blocks/import">client.email*blocks.import*.<a href="./src/telnyx/resources/email_blocks/import_.py">create</a>(\*\*<a href="src/telnyx/types/email_blocks/import_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_blocks/email_block_import_response.py">EmailBlockImportResponse</a></code>
+- <code title="get /email_blocks/import/{id}">client.email*blocks.import*.<a href="./src/telnyx/resources/email_blocks/import_.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_blocks/email_block_import_response.py">EmailBlockImportResponse</a></code>
+
+# EmailDomains
+
+Types:
+
+```python
+from telnyx.types import (
+    DNSRecord,
+    DomainsTrackingSettings,
+    EmailDmarcPolicy,
+    EmailDomain,
+    EmailDomainResponse,
+    EmailDomainStatus,
+    EmailDomainType,
+    EmailDomainVerification,
+    EmailDomainRetrieveDNSRecordsResponse,
+    EmailDomainRetrieveHealthResponse,
+)
+```
+
+Methods:
+
+- <code title="post /email_domains">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">create</a>(\*\*<a href="src/telnyx/types/email_domain_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_domain_response.py">EmailDomainResponse</a></code>
+- <code title="get /email_domains/{id}">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_domain_response.py">EmailDomainResponse</a></code>
+- <code title="patch /email_domains/{id}">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">update</a>(id, \*\*<a href="src/telnyx/types/email_domain_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_domain_response.py">EmailDomainResponse</a></code>
+- <code title="get /email_domains">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">list</a>(\*\*<a href="src/telnyx/types/email_domain_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_domain.py">SyncDefaultFlatPagination[EmailDomain]</a></code>
+- <code title="delete /email_domains/{id}">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">delete</a>(id, \*\*<a href="src/telnyx/types/email_domain_delete_params.py">params</a>) -> <a href="./src/telnyx/types/email_domain_response.py">EmailDomainResponse</a></code>
+- <code title="get /email_domains/{domain_id}/dns_records">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">retrieve_dns_records</a>(domain_id) -> <a href="./src/telnyx/types/email_domain_retrieve_dns_records_response.py">EmailDomainRetrieveDNSRecordsResponse</a></code>
+- <code title="get /email_domains/{id}/health">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">retrieve_health</a>(id) -> <a href="./src/telnyx/types/email_domain_retrieve_health_response.py">EmailDomainRetrieveHealthResponse</a></code>
+- <code title="post /email_domains/{domain_id}/verify">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">verify</a>(domain_id) -> <a href="./src/telnyx/types/email_domain_response.py">EmailDomainResponse</a></code>
+
+## Webhooks
+
+Types:
+
+```python
+from telnyx.types.email_domains import (
+    EmailWebhook,
+    EmailWebhookEvent,
+    EmailWebhookResponse,
+    OffsetPaginationMeta,
+)
+```
+
+Methods:
+
+- <code title="post /email_domains/{domain_id}/webhooks">client.email_domains.webhooks.<a href="./src/telnyx/resources/email_domains/webhooks.py">create</a>(domain_id, \*\*<a href="src/telnyx/types/email_domains/webhook_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_domains/email_webhook_response.py">EmailWebhookResponse</a></code>
+- <code title="get /email_domains/{domain_id}/webhooks/{id}">client.email_domains.webhooks.<a href="./src/telnyx/resources/email_domains/webhooks.py">retrieve</a>(id, \*, domain_id) -> <a href="./src/telnyx/types/email_domains/email_webhook_response.py">EmailWebhookResponse</a></code>
+- <code title="patch /email_domains/{domain_id}/webhooks/{id}">client.email_domains.webhooks.<a href="./src/telnyx/resources/email_domains/webhooks.py">update</a>(id, \*, domain_id, \*\*<a href="src/telnyx/types/email_domains/webhook_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_domains/email_webhook_response.py">EmailWebhookResponse</a></code>
+- <code title="get /email_domains/{domain_id}/webhooks">client.email_domains.webhooks.<a href="./src/telnyx/resources/email_domains/webhooks.py">list</a>(domain_id, \*\*<a href="src/telnyx/types/email_domains/webhook_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_domains/email_webhook.py">SyncDefaultFlatPagination[EmailWebhook]</a></code>
+- <code title="delete /email_domains/{domain_id}/webhooks/{id}">client.email_domains.webhooks.<a href="./src/telnyx/resources/email_domains/webhooks.py">delete</a>(id, \*, domain_id) -> <a href="./src/telnyx/types/email_domains/email_webhook_response.py">EmailWebhookResponse</a></code>
+
+# EmailEvents
+
+Types:
+
+```python
+from telnyx.types import (
+    EmailEventType,
+    TimeRange,
+    EmailEventListResponse,
+    EmailEventRetrieveStatsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /email_events">client.email_events.<a href="./src/telnyx/resources/email_events.py">list</a>(\*\*<a href="src/telnyx/types/email_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_list_response.py">EmailEventListResponse</a></code>
+- <code title="get /email_events/stats">client.email_events.<a href="./src/telnyx/resources/email_events.py">retrieve_stats</a>(\*\*<a href="src/telnyx/types/email_event_retrieve_stats_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_retrieve_stats_response.py">EmailEventRetrieveStatsResponse</a></code>
+
+# EmailInboxes
+
+Types:
+
+```python
+from telnyx.types import EmailInbox, EmailInboxResponse, EmailInboxListResponse
+```
+
+Methods:
+
+- <code title="post /email_inboxes">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">create</a>(\*\*<a href="src/telnyx/types/email_inbox_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inbox_response.py">EmailInboxResponse</a></code>
+- <code title="get /email_inboxes/{id}">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_inbox_response.py">EmailInboxResponse</a></code>
+- <code title="get /email_inboxes">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">list</a>(\*\*<a href="src/telnyx/types/email_inbox_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inbox_list_response.py">EmailInboxListResponse</a></code>
+- <code title="delete /email_inboxes/{id}">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">delete</a>(id) -> None</code>
+
+## Drafts
+
+Types:
+
+```python
+from telnyx.types.email_inboxes import (
+    EmailAddress,
+    EmailDraft,
+    EmailDraftRequest,
+    EmailDraftResponse,
+    EmailMessage,
+    EmailMessageResponse,
+    DraftListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /email_inboxes/{inbox_id}/drafts">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">create</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
+- <code title="get /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">retrieve</a>(draft_id, \*, inbox_id) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
+- <code title="put /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">update</a>(draft_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
+- <code title="get /email_inboxes/{inbox_id}/drafts">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/draft_list_response.py">DraftListResponse</a></code>
+- <code title="delete /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">delete</a>(draft_id, \*, inbox_id) -> None</code>
+- <code title="patch /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">patch</a>(draft_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_patch_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
+- <code title="post /email_inboxes/{inbox_id}/drafts/{draft_id}/send">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">send</a>(draft_id, \*, inbox_id) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
+
+## Filters
+
+Types:
+
+```python
+from telnyx.types.email_inboxes import (
+    MutateInboxFiltersRequest,
+    FilterListResponse,
+    FilterAddResponse,
+    FilterDeleteAllResponse,
+    FilterReplaceResponse,
+)
+```
+
+Methods:
+
+- <code title="get /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">list</a>(inbox_id) -> <a href="./src/telnyx/types/email_inboxes/filter_list_response.py">FilterListResponse</a></code>
+- <code title="post /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">add</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/filter_add_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/filter_add_response.py">FilterAddResponse</a></code>
+- <code title="delete /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">delete_all</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/filter_delete_all_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/filter_delete_all_response.py">FilterDeleteAllResponse</a></code>
+- <code title="put /email_inboxes/{inbox_id}/filters">client.email_inboxes.filters.<a href="./src/telnyx/resources/email_inboxes/filters.py">replace</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/filter_replace_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/filter_replace_response.py">FilterReplaceResponse</a></code>
+
+## Messages
+
+Types:
+
+```python
+from telnyx.types.email_inboxes import MessageUpdateResponse, MessageListResponse
+```
+
+Methods:
+
+- <code title="patch /email_inboxes/{inbox_id}/messages/{message_id}">client.email_inboxes.messages.<a href="./src/telnyx/resources/email_inboxes/messages/messages.py">update</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/message_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/message_update_response.py">MessageUpdateResponse</a></code>
+- <code title="get /email_inboxes/{inbox_id}/messages">client.email_inboxes.messages.<a href="./src/telnyx/resources/email_inboxes/messages/messages.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/message_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/message_list_response.py">MessageListResponse</a></code>
+- <code title="post /email_inboxes/{inbox_id}/messages/{message_id}/drafts">client.email_inboxes.messages.<a href="./src/telnyx/resources/email_inboxes/messages/messages.py">drafts</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/message_drafts_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
+
+### Actions
+
+Types:
+
+```python
+from telnyx.types.email_inboxes.messages import (
+    InboxActionEmailAddressInput,
+    InboxActionRecipientInput,
+    ReplyEmailInboxMessageRequest,
+)
+```
+
+Methods:
+
+- <code title="post /email_inboxes/{inbox_id}/messages/{message_id}/actions/forward">client.email_inboxes.messages.actions.<a href="./src/telnyx/resources/email_inboxes/messages/actions.py">forward</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/messages/action_forward_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
+- <code title="post /email_inboxes/{inbox_id}/messages/{message_id}/actions/reply">client.email_inboxes.messages.actions.<a href="./src/telnyx/resources/email_inboxes/messages/actions.py">reply</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/messages/action_reply_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
+- <code title="post /email_inboxes/{inbox_id}/messages/{message_id}/actions/reply_all">client.email_inboxes.messages.actions.<a href="./src/telnyx/resources/email_inboxes/messages/actions.py">reply_all</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/messages/action_reply_all_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
+
+### Labels
+
+Types:
+
+```python
+from telnyx.types.email_inboxes.messages import (
+    LabelMutationRequest,
+    LabelCreateResponse,
+    LabelDeleteAllResponse,
+)
+```
+
+Methods:
+
+- <code title="post /email_inboxes/{inbox_id}/messages/{message_id}/labels">client.email_inboxes.messages.labels.<a href="./src/telnyx/resources/email_inboxes/messages/labels.py">create</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/messages/label_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/messages/label_create_response.py">LabelCreateResponse</a></code>
+- <code title="delete /email_inboxes/{inbox_id}/messages/{message_id}/labels">client.email_inboxes.messages.labels.<a href="./src/telnyx/resources/email_inboxes/messages/labels.py">delete_all</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/messages/label_delete_all_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/messages/label_delete_all_response.py">LabelDeleteAllResponse</a></code>
+
+## Threads
+
+Types:
+
+```python
+from telnyx.types.email_inboxes import (
+    EmailPaginationMeta,
+    InboundEmailAddress,
+    InboundThread,
+    InboundThreadDetail,
+    InboundThreadListResponse,
+    ThreadMessage,
+    ThreadRetrieveResponse,
+)
+```
+
+Methods:
+
+- <code title="get /email_inboxes/{inbox_id}/threads/{thread_id}">client.email_inboxes.threads.<a href="./src/telnyx/resources/email_inboxes/threads/threads.py">retrieve</a>(thread_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/thread_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/thread_retrieve_response.py">ThreadRetrieveResponse</a></code>
+- <code title="get /email_inboxes/{inbox_id}/threads">client.email_inboxes.threads.<a href="./src/telnyx/resources/email_inboxes/threads/threads.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/thread_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/inbound_thread_list_response.py">InboundThreadListResponse</a></code>
+
+### Labels
+
+Types:
+
+```python
+from telnyx.types.email_inboxes.threads import LabelCreateResponse, LabelDeleteAllResponse
+```
+
+Methods:
+
+- <code title="post /email_inboxes/{inbox_id}/threads/{thread_id}/labels">client.email_inboxes.threads.labels.<a href="./src/telnyx/resources/email_inboxes/threads/labels.py">create</a>(thread_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/threads/label_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/threads/label_create_response.py">LabelCreateResponse</a></code>
+- <code title="delete /email_inboxes/{inbox_id}/threads/{thread_id}/labels">client.email_inboxes.threads.labels.<a href="./src/telnyx/resources/email_inboxes/threads/labels.py">delete_all</a>(thread_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/threads/label_delete_all_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/threads/label_delete_all_response.py">LabelDeleteAllResponse</a></code>
+
+# EmailMessages
+
+Types:
+
+```python
+from telnyx.types import (
+    AttachmentRequest,
+    EmailAddressInput,
+    MessageEvent,
+    TrackingSettings,
+    EmailMessageRetrieveResponse,
+    EmailMessageListResponse,
+    EmailMessageBatchResponse,
+    EmailMessageRetrieveEventsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">create</a>(\*\*<a href="src/telnyx/types/email_message_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
+- <code title="get /email_messages/{id}">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_message_retrieve_response.py">EmailMessageRetrieveResponse</a></code>
+- <code title="get /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">list</a>(\*\*<a href="src/telnyx/types/email_message_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_list_response.py">EmailMessageListResponse</a></code>
+- <code title="delete /email_messages/{id}">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete</a>(id) -> None</code>
+- <code title="post /email_messages/batch">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">batch</a>(\*\*<a href="src/telnyx/types/email_message_batch_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_batch_response.py">EmailMessageBatchResponse</a></code>
+- <code title="delete /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete_all</a>(\*\*<a href="src/telnyx/types/email_message_delete_all_params.py">params</a>) -> None</code>
+- <code title="delete /email_messages/{email_id}/schedule">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete_schedule</a>(email_id) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
+- <code title="get /email_messages/{email_id}/events">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve_events</a>(email_id, \*\*<a href="src/telnyx/types/email_message_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_retrieve_events_response.py">EmailMessageRetrieveEventsResponse</a></code>
+
+## Recipients
+
+Types:
+
+```python
+from telnyx.types.email_messages import (
+    EmailRecipient,
+    RecipientRetrieveResponse,
+    RecipientListResponse,
+)
+```
+
+Methods:
+
+- <code title="get /email_messages/{email_id}/recipients/{recipient_id}">client.email_messages.recipients.<a href="./src/telnyx/resources/email_messages/recipients.py">retrieve</a>(recipient_id, \*, email_id) -> <a href="./src/telnyx/types/email_messages/recipient_retrieve_response.py">RecipientRetrieveResponse</a></code>
+- <code title="get /email_messages/{email_id}/recipients">client.email_messages.recipients.<a href="./src/telnyx/resources/email_messages/recipients.py">list</a>(email_id, \*\*<a href="src/telnyx/types/email_messages/recipient_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_messages/recipient_list_response.py">RecipientListResponse</a></code>
+
+# EmailTemplates
+
+Types:
+
+```python
+from telnyx.types import (
+    EmailTemplate,
+    EmailTemplateResponse,
+    UpdateEmailTemplateRequest,
+    EmailTemplateListResponse,
+    EmailTemplateRenderResponse,
+)
+```
+
+Methods:
+
+- <code title="post /email_templates">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">create</a>(\*\*<a href="src/telnyx/types/email_template_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
+- <code title="get /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
+- <code title="patch /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">update</a>(id, \*\*<a href="src/telnyx/types/email_template_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
+- <code title="get /email_templates">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">list</a>(\*\*<a href="src/telnyx/types/email_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_list_response.py">EmailTemplateListResponse</a></code>
+- <code title="delete /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">delete</a>(id) -> None</code>
+- <code title="post /email_templates/{id}/render">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">render</a>(id, \*\*<a href="src/telnyx/types/email_template_render_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_render_response.py">EmailTemplateRenderResponse</a></code>
+- <code title="put /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">replace</a>(id, \*\*<a href="src/telnyx/types/email_template_replace_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
+
+# EmailThreads
+
+Types:
+
+```python
+from telnyx.types import EmailThreadRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /email_threads/{thread_id}">client.email_threads.<a href="./src/telnyx/resources/email_threads.py">retrieve</a>(thread_id, \*\*<a href="src/telnyx/types/email_thread_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/email_thread_retrieve_response.py">EmailThreadRetrieveResponse</a></code>
+- <code title="get /email_threads">client.email_threads.<a href="./src/telnyx/resources/email_threads.py">list</a>(\*\*<a href="src/telnyx/types/email_thread_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/inbound_thread_list_response.py">InboundThreadListResponse</a></code>
+
+# EmailUnsubscribeGroups
+
+Types:
+
+```python
+from telnyx.types import GroupListMeta, UnsubscribeGroup, UnsubscribeGroupResponse
+```
+
+Methods:
+
+- <code title="post /email_unsubscribe_groups">client.email_unsubscribe_groups.<a href="./src/telnyx/resources/email_unsubscribe_groups/email_unsubscribe_groups.py">create</a>(\*\*<a href="src/telnyx/types/email_unsubscribe_group_create_params.py">params</a>) -> <a href="./src/telnyx/types/unsubscribe_group_response.py">UnsubscribeGroupResponse</a></code>
+- <code title="get /email_unsubscribe_groups/{id}">client.email_unsubscribe_groups.<a href="./src/telnyx/resources/email_unsubscribe_groups/email_unsubscribe_groups.py">retrieve</a>(id) -> <a href="./src/telnyx/types/unsubscribe_group_response.py">UnsubscribeGroupResponse</a></code>
+- <code title="patch /email_unsubscribe_groups/{id}">client.email_unsubscribe_groups.<a href="./src/telnyx/resources/email_unsubscribe_groups/email_unsubscribe_groups.py">update</a>(id, \*\*<a href="src/telnyx/types/email_unsubscribe_group_update_params.py">params</a>) -> <a href="./src/telnyx/types/unsubscribe_group_response.py">UnsubscribeGroupResponse</a></code>
+- <code title="get /email_unsubscribe_groups">client.email_unsubscribe_groups.<a href="./src/telnyx/resources/email_unsubscribe_groups/email_unsubscribe_groups.py">list</a>(\*\*<a href="src/telnyx/types/email_unsubscribe_group_list_params.py">params</a>) -> <a href="./src/telnyx/types/unsubscribe_group.py">SyncDefaultFlatPagination[UnsubscribeGroup]</a></code>
+- <code title="delete /email_unsubscribe_groups/{id}">client.email_unsubscribe_groups.<a href="./src/telnyx/resources/email_unsubscribe_groups/email_unsubscribe_groups.py">delete</a>(id, \*\*<a href="src/telnyx/types/email_unsubscribe_group_delete_params.py">params</a>) -> None</code>
+
+## Suppressions
+
+Methods:
+
+- <code title="post /email_unsubscribe_groups/{id}/suppressions">client.email_unsubscribe_groups.suppressions.<a href="./src/telnyx/resources/email_unsubscribe_groups/suppressions.py">create</a>(id, \*\*<a href="src/telnyx/types/email_unsubscribe_groups/suppression_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_block_response.py">EmailBlockResponse</a></code>
+- <code title="get /email_unsubscribe_groups/{id}/suppressions">client.email_unsubscribe_groups.suppressions.<a href="./src/telnyx/resources/email_unsubscribe_groups/suppressions.py">list</a>(id, \*\*<a href="src/telnyx/types/email_unsubscribe_groups/suppression_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_block.py">SyncDefaultFlatPagination[EmailBlock]</a></code>
+- <code title="delete /email_unsubscribe_groups/{id}/suppressions/{email}">client.email_unsubscribe_groups.suppressions.<a href="./src/telnyx/resources/email_unsubscribe_groups/suppressions.py">delete</a>(email, \*, id) -> None</code>
+
+# EmailValidations
+
+Types:
+
+```python
+from telnyx.types import EmailValidationCheck, EmailValidationCreateResponse
+```
+
+Methods:
+
+- <code title="post /email_validations">client.email_validations.<a href="./src/telnyx/resources/email_validations/email_validations.py">create</a>(\*\*<a href="src/telnyx/types/email_validation_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_validation_create_response.py">EmailValidationCreateResponse</a></code>
+
+## Batch
+
+Types:
+
+```python
+from telnyx.types.email_validations import (
+    EmailValidationBatchStatus,
+    BatchCreateResponse,
+    BatchRetrieveResponse,
+)
+```
+
+Methods:
+
+- <code title="post /email_validations/batch">client.email_validations.batch.<a href="./src/telnyx/resources/email_validations/batch.py">create</a>(\*\*<a href="src/telnyx/types/email_validations/batch_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_validations/batch_create_response.py">BatchCreateResponse</a></code>
+- <code title="get /email_validations/batch/{id}">client.email_validations.batch.<a href="./src/telnyx/resources/email_validations/batch.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_validations/batch_retrieve_response.py">BatchRetrieveResponse</a></code>
+
+# Pricing
+
+## Products
+
+Types:
+
+```python
+from telnyx.types.pricing import (
+    PricingPaginationMeta,
+    PricingTier,
+    ProductRetrieveResponse,
+    ProductListResponse,
+)
+```
+
+Methods:
+
+- <code title="get /pricing/products/{slug}">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">retrieve</a>(slug, \*\*<a href="src/telnyx/types/pricing/product_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_retrieve_response.py">ProductRetrieveResponse</a></code>
+- <code title="get /pricing/products">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">list</a>(\*\*<a href="src/telnyx/types/pricing/product_list_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_list_response.py">SyncDefaultFlatPaginationForInexplicitNumberOrders[ProductListResponse]</a></code>

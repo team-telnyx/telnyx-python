@@ -152,6 +152,14 @@ from .porting import (
     PortingResourceWithStreamingResponse,
     AsyncPortingResourceWithStreamingResponse,
 )
+from .pricing import (
+    PricingResource,
+    AsyncPricingResource,
+    PricingResourceWithRawResponse,
+    AsyncPricingResourceWithRawResponse,
+    PricingResourceWithStreamingResponse,
+    AsyncPricingResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -369,6 +377,22 @@ from .call_reasons import (
     CallReasonsResourceWithStreamingResponse,
     AsyncCallReasonsResourceWithStreamingResponse,
 )
+from .email_blocks import (
+    EmailBlocksResource,
+    AsyncEmailBlocksResource,
+    EmailBlocksResourceWithRawResponse,
+    AsyncEmailBlocksResourceWithRawResponse,
+    EmailBlocksResourceWithStreamingResponse,
+    AsyncEmailBlocksResourceWithStreamingResponse,
+)
+from .email_events import (
+    EmailEventsResource,
+    AsyncEmailEventsResource,
+    EmailEventsResourceWithRawResponse,
+    AsyncEmailEventsResourceWithRawResponse,
+    EmailEventsResourceWithStreamingResponse,
+    AsyncEmailEventsResourceWithStreamingResponse,
+)
 from .oauth_grants import (
     OAuthGrantsResource,
     AsyncOAuthGrantsResource,
@@ -400,6 +424,30 @@ from .channel_zones import (
     AsyncChannelZonesResourceWithRawResponse,
     ChannelZonesResourceWithStreamingResponse,
     AsyncChannelZonesResourceWithStreamingResponse,
+)
+from .email_domains import (
+    EmailDomainsResource,
+    AsyncEmailDomainsResource,
+    EmailDomainsResourceWithRawResponse,
+    AsyncEmailDomainsResourceWithRawResponse,
+    EmailDomainsResourceWithStreamingResponse,
+    AsyncEmailDomainsResourceWithStreamingResponse,
+)
+from .email_inboxes import (
+    EmailInboxesResource,
+    AsyncEmailInboxesResource,
+    EmailInboxesResourceWithRawResponse,
+    AsyncEmailInboxesResourceWithRawResponse,
+    EmailInboxesResourceWithStreamingResponse,
+    AsyncEmailInboxesResourceWithStreamingResponse,
+)
+from .email_threads import (
+    EmailThreadsResource,
+    AsyncEmailThreadsResource,
+    EmailThreadsResourceWithRawResponse,
+    AsyncEmailThreadsResourceWithRawResponse,
+    EmailThreadsResourceWithStreamingResponse,
+    AsyncEmailThreadsResourceWithStreamingResponse,
 )
 from .number_lookup import (
     NumberLookupResource,
@@ -497,6 +545,14 @@ from .document_links import (
     DocumentLinksResourceWithStreamingResponse,
     AsyncDocumentLinksResourceWithStreamingResponse,
 )
+from .email_messages import (
+    EmailMessagesResource,
+    AsyncEmailMessagesResource,
+    EmailMessagesResourceWithRawResponse,
+    AsyncEmailMessagesResourceWithRawResponse,
+    EmailMessagesResourceWithStreamingResponse,
+    AsyncEmailMessagesResourceWithStreamingResponse,
+)
 from .ip_connections import (
     IPConnectionsResource,
     AsyncIPConnectionsResource,
@@ -552,6 +608,14 @@ from .charges_summary import (
     AsyncChargesSummaryResourceWithRawResponse,
     ChargesSummaryResourceWithStreamingResponse,
     AsyncChargesSummaryResourceWithStreamingResponse,
+)
+from .email_templates import (
+    EmailTemplatesResource,
+    AsyncEmailTemplatesResource,
+    EmailTemplatesResourceWithRawResponse,
+    AsyncEmailTemplatesResourceWithRawResponse,
+    EmailTemplatesResourceWithStreamingResponse,
+    AsyncEmailTemplatesResourceWithStreamingResponse,
 )
 from .global_ip_usage import (
     GlobalIPUsageResource,
@@ -728,6 +792,14 @@ from .charges_breakdown import (
     AsyncChargesBreakdownResourceWithRawResponse,
     ChargesBreakdownResourceWithStreamingResponse,
     AsyncChargesBreakdownResourceWithStreamingResponse,
+)
+from .email_validations import (
+    EmailValidationsResource,
+    AsyncEmailValidationsResource,
+    EmailValidationsResourceWithRawResponse,
+    AsyncEmailValidationsResourceWithRawResponse,
+    EmailValidationsResourceWithStreamingResponse,
+    AsyncEmailValidationsResourceWithStreamingResponse,
 )
 from .global_ip_latency import (
     GlobalIPLatencyResource,
@@ -1128,6 +1200,14 @@ from .customer_service_records import (
     AsyncCustomerServiceRecordsResourceWithRawResponse,
     CustomerServiceRecordsResourceWithStreamingResponse,
     AsyncCustomerServiceRecordsResourceWithStreamingResponse,
+)
+from .email_unsubscribe_groups import (
+    EmailUnsubscribeGroupsResource,
+    AsyncEmailUnsubscribeGroupsResource,
+    EmailUnsubscribeGroupsResourceWithRawResponse,
+    AsyncEmailUnsubscribeGroupsResourceWithRawResponse,
+    EmailUnsubscribeGroupsResourceWithStreamingResponse,
+    AsyncEmailUnsubscribeGroupsResourceWithStreamingResponse,
 )
 from .inexplicit_number_orders import (
     InexplicitNumberOrdersResource,
@@ -2357,4 +2437,64 @@ __all__ = [
     "AsyncInfringementClaimsResourceWithRawResponse",
     "InfringementClaimsResourceWithStreamingResponse",
     "AsyncInfringementClaimsResourceWithStreamingResponse",
+    "EmailBlocksResource",
+    "AsyncEmailBlocksResource",
+    "EmailBlocksResourceWithRawResponse",
+    "AsyncEmailBlocksResourceWithRawResponse",
+    "EmailBlocksResourceWithStreamingResponse",
+    "AsyncEmailBlocksResourceWithStreamingResponse",
+    "EmailDomainsResource",
+    "AsyncEmailDomainsResource",
+    "EmailDomainsResourceWithRawResponse",
+    "AsyncEmailDomainsResourceWithRawResponse",
+    "EmailDomainsResourceWithStreamingResponse",
+    "AsyncEmailDomainsResourceWithStreamingResponse",
+    "EmailEventsResource",
+    "AsyncEmailEventsResource",
+    "EmailEventsResourceWithRawResponse",
+    "AsyncEmailEventsResourceWithRawResponse",
+    "EmailEventsResourceWithStreamingResponse",
+    "AsyncEmailEventsResourceWithStreamingResponse",
+    "EmailInboxesResource",
+    "AsyncEmailInboxesResource",
+    "EmailInboxesResourceWithRawResponse",
+    "AsyncEmailInboxesResourceWithRawResponse",
+    "EmailInboxesResourceWithStreamingResponse",
+    "AsyncEmailInboxesResourceWithStreamingResponse",
+    "EmailMessagesResource",
+    "AsyncEmailMessagesResource",
+    "EmailMessagesResourceWithRawResponse",
+    "AsyncEmailMessagesResourceWithRawResponse",
+    "EmailMessagesResourceWithStreamingResponse",
+    "AsyncEmailMessagesResourceWithStreamingResponse",
+    "EmailTemplatesResource",
+    "AsyncEmailTemplatesResource",
+    "EmailTemplatesResourceWithRawResponse",
+    "AsyncEmailTemplatesResourceWithRawResponse",
+    "EmailTemplatesResourceWithStreamingResponse",
+    "AsyncEmailTemplatesResourceWithStreamingResponse",
+    "EmailThreadsResource",
+    "AsyncEmailThreadsResource",
+    "EmailThreadsResourceWithRawResponse",
+    "AsyncEmailThreadsResourceWithRawResponse",
+    "EmailThreadsResourceWithStreamingResponse",
+    "AsyncEmailThreadsResourceWithStreamingResponse",
+    "EmailUnsubscribeGroupsResource",
+    "AsyncEmailUnsubscribeGroupsResource",
+    "EmailUnsubscribeGroupsResourceWithRawResponse",
+    "AsyncEmailUnsubscribeGroupsResourceWithRawResponse",
+    "EmailUnsubscribeGroupsResourceWithStreamingResponse",
+    "AsyncEmailUnsubscribeGroupsResourceWithStreamingResponse",
+    "EmailValidationsResource",
+    "AsyncEmailValidationsResource",
+    "EmailValidationsResourceWithRawResponse",
+    "AsyncEmailValidationsResourceWithRawResponse",
+    "EmailValidationsResourceWithStreamingResponse",
+    "AsyncEmailValidationsResourceWithStreamingResponse",
+    "PricingResource",
+    "AsyncPricingResource",
+    "PricingResourceWithRawResponse",
+    "AsyncPricingResourceWithRawResponse",
+    "PricingResourceWithStreamingResponse",
+    "AsyncPricingResourceWithStreamingResponse",
 ]

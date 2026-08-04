@@ -33,6 +33,13 @@ class OpenAICreateResponseParams(TypedDict, total=False):
     another model available from the Telnyx OpenAI-compatible models endpoint.
     """
 
+    service_tier: str
+    """The service tier to use for this request.
+
+    Supported values vary by model; use `GET /v2/ai/openai/models` and inspect the
+    model's `service_tiers` field. If omitted, Telnyx-hosted models use `default`.
+    """
+
     stream: bool
     """
     Set to `true` to stream Server-Sent Events, matching OpenAI's Responses

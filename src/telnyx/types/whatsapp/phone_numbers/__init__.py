@@ -6,6 +6,9 @@ from typing import TYPE_CHECKING, Any
 
 from .profile_update_params import ProfileUpdateParams as ProfileUpdateParams
 from .calling_setting_update_params import CallingSettingUpdateParams as CallingSettingUpdateParams
+from .conversational_component_patch_all_params import (
+    ConversationalComponentPatchAllParams as ConversationalComponentPatchAllParams,
+)
 
 if TYPE_CHECKING:
     from .whatsapp_profile_data import WhatsappProfileData as WhatsappProfileData
@@ -14,6 +17,12 @@ if TYPE_CHECKING:
     from .whatsapp_calling_settings_data import WhatsappCallingSettingsData as WhatsappCallingSettingsData
     from .calling_setting_update_response import CallingSettingUpdateResponse as CallingSettingUpdateResponse
     from .calling_setting_retrieve_response import CallingSettingRetrieveResponse as CallingSettingRetrieveResponse
+    from .conversational_component_list_response import (
+        ConversationalComponentListResponse as ConversationalComponentListResponse,
+    )
+    from .conversational_component_patch_all_response import (
+        ConversationalComponentPatchAllResponse as ConversationalComponentPatchAllResponse,
+    )
 
 
 def __getattr__(name: str) -> Any:
@@ -41,4 +50,12 @@ def __getattr__(name: str) -> Any:
         from .profile_update_response import ProfileUpdateResponse
 
         return ProfileUpdateResponse
+    if name == "ConversationalComponentListResponse":
+        from .conversational_component_list_response import ConversationalComponentListResponse
+
+        return ConversationalComponentListResponse
+    if name == "ConversationalComponentPatchAllResponse":
+        from .conversational_component_patch_all_response import ConversationalComponentPatchAllResponse
+
+        return ConversationalComponentPatchAllResponse
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
