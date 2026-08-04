@@ -1,0 +1,29 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Dict, Optional
+
+from ..._models import BaseModel
+
+__all__ = ["WirelessErrorC5290d5308", "Source"]
+
+
+class Source(BaseModel):
+    parameter: Optional[str] = None
+    """Indicates which query parameter caused the error."""
+
+    pointer: Optional[str] = None
+    """JSON pointer (RFC6901) to the offending entity."""
+
+
+class WirelessErrorC5290d5308(BaseModel):
+    code: str
+
+    title: str
+
+    detail: Optional[str] = None
+
+    meta: Optional[Dict[str, object]] = None
+
+    source: Optional[Source] = None

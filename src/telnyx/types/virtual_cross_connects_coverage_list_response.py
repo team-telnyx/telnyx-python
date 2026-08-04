@@ -6,7 +6,7 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .shared.netapps_location import NetappsLocation
+from .netapps_location_17904fcfbc import NetappsLocation17904fcfbc
 
 __all__ = ["VirtualCrossConnectsCoverageListResponse"]
 
@@ -31,7 +31,7 @@ class VirtualCrossConnectsCoverageListResponse(BaseModel):
     AWS but Frankfurt for Azure
     """
 
-    location: Optional[NetappsLocation] = None
+    location: Optional[NetappsLocation17904fcfbc] = None
 
     record_type: Optional[str] = None
     """Identifies the type of the resource."""

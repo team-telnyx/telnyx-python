@@ -6,10 +6,10 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["UserAddress"]
+__all__ = ["UserAddressesUserAddress"]
 
 
-class UserAddress(BaseModel):
+class UserAddressesUserAddress(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the user address."""
 

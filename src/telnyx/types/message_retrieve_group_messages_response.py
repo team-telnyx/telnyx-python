@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List, Optional
 
 from .._models import BaseModel
-from .outbound_message_payload import OutboundMessagePayload
+from .messaging_outbound_message_payload import MessagingOutboundMessagePayload
 
 __all__ = ["MessageRetrieveGroupMessagesResponse"]
 
 
 class MessageRetrieveGroupMessagesResponse(BaseModel):
-    data: Optional[List[OutboundMessagePayload]] = None
+    data: Optional[List[MessagingOutboundMessagePayload]] = None

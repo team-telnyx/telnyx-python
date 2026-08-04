@@ -12,21 +12,19 @@ from .._models import BaseModel
 from .messaging_error_0b38e7044b import MessagingError0b38e7044b
 
 __all__ = [
-    "InboundMessageWebhookEvent",
-    "Data",
-    "DataPayload",
-    "DataPayloadCc",
-    "DataPayloadCost",
-    "DataPayloadCostBreakdown",
-    "DataPayloadCostBreakdownCarrierFee",
-    "DataPayloadCostBreakdownRate",
-    "DataPayloadFrom",
-    "DataPayloadMedia",
-    "DataPayloadTo",
+    "MessagingOutboundMessagePayload",
+    "Cc",
+    "Cost",
+    "CostBreakdown",
+    "CostBreakdownCarrierFee",
+    "CostBreakdownRate",
+    "From",
+    "Media",
+    "To",
 ]
 
 
-class DataPayloadCc(BaseModel):
+class Cc(BaseModel):
     carrier: Optional[str] = None
     """The carrier of the receiver."""
 
@@ -41,7 +39,7 @@ class DataPayloadCc(BaseModel):
     ] = None
 
 
-class DataPayloadCost(BaseModel):
+class Cost(BaseModel):
     amount: Optional[str] = None
     """The amount deducted from your account."""
 
@@ -49,7 +47,7 @@ class DataPayloadCost(BaseModel):
     """The ISO 4217 currency identifier."""
 
 
-class DataPayloadCostBreakdownCarrierFee(BaseModel):
+class CostBreakdownCarrierFee(BaseModel):
     amount: Optional[str] = None
     """The carrier fee amount."""
 
@@ -57,7 +55,7 @@ class DataPayloadCostBreakdownCarrierFee(BaseModel):
     """The ISO 4217 currency identifier."""
 
 
-class DataPayloadCostBreakdownRate(BaseModel):
+class CostBreakdownRate(BaseModel):
     amount: Optional[str] = None
     """The rate amount applied."""
 
@@ -65,20 +63,20 @@ class DataPayloadCostBreakdownRate(BaseModel):
     """The ISO 4217 currency identifier."""
 
 
-class DataPayloadCostBreakdown(BaseModel):
+class CostBreakdown(BaseModel):
     """Detailed breakdown of the message cost components."""
 
-    carrier_fee: Optional[DataPayloadCostBreakdownCarrierFee] = None
+    carrier_fee: Optional[CostBreakdownCarrierFee] = None
 
-    rate: Optional[DataPayloadCostBreakdownRate] = None
+    rate: Optional[CostBreakdownRate] = None
 
 
-class DataPayloadFrom(BaseModel):
+class From(BaseModel):
     carrier: Optional[str] = None
-    """The carrier of the sender."""
+    """The carrier of the receiver."""
 
     line_type: Optional[Literal["Wireline", "Wireless", "VoWiFi", "VoIP", "Pre-Paid Wireless", ""]] = None
-    """The line-type of the sender."""
+    """The line-type of the receiver."""
 
     phone_number: Optional[str] = None
     """
@@ -86,14 +84,12 @@ class DataPayloadFrom(BaseModel):
     code).
     """
 
-    status: Optional[Literal["received", "delivered"]] = None
 
-
-class DataPayloadMedia(BaseModel):
+class Media(BaseModel):
     content_type: Optional[str] = None
     """The MIME type of the requested media."""
 
-    hash_sha256: Optional[str] = None
+    sha256: Optional[str] = None
     """The SHA256 hash of the requested media."""
 
     size: Optional[int] = None
@@ -103,7 +99,7 @@ class DataPayloadMedia(BaseModel):
     """The url of the media requested to be sent."""
 
 
-class DataPayloadTo(BaseModel):
+class To(BaseModel):
     carrier: Optional[str] = None
     """The carrier of the receiver."""
 
@@ -118,30 +114,31 @@ class DataPayloadTo(BaseModel):
             "queued",
             "sending",
             "sent",
-            "delivered",
+            "expired",
             "sending_failed",
-            "delivery_failed",
             "delivery_unconfirmed",
-            "webhook_delivered",
+            "delivered",
+            "delivery_failed",
         ]
     ] = None
+    """The delivery status of the message."""
 
 
-class DataPayload(BaseModel):
+class MessagingOutboundMessagePayload(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
-    cc: Optional[List[DataPayloadCc]] = None
+    cc: Optional[List[Cc]] = None
 
     completed_at: Optional[datetime] = None
-    """Not used for inbound messages."""
+    """ISO 8601 formatted date indicating when the message was finalized."""
 
-    cost: Optional[DataPayloadCost] = None
+    cost: Optional[Cost] = None
 
-    cost_breakdown: Optional[DataPayloadCostBreakdown] = None
+    cost_breakdown: Optional[CostBreakdown] = None
     """Detailed breakdown of the message cost components."""
 
-    direction: Optional[Literal["inbound"]] = None
+    direction: Optional[Literal["outbound"]] = None
     """The direction of the message.
 
     Inbound messages are sent to you whereas outbound messages are sent from you.
@@ -156,9 +153,9 @@ class DataPayload(BaseModel):
     delivery statuses.
     """
 
-    from_: Optional[DataPayloadFrom] = FieldInfo(alias="from", default=None)
+    from_: Optional[From] = FieldInfo(alias="from", default=None)
 
-    media: Optional[List[DataPayloadMedia]] = None
+    media: Optional[List[Media]] = None
 
     messaging_profile_id: Optional[str] = None
     """Unique identifier for a messaging profile."""
@@ -167,7 +164,7 @@ class DataPayload(BaseModel):
     """The number of characters in the message text"""
 
     organization_id: Optional[str] = None
-    """Unique identifier for a messaging profile."""
+    """The id of the organization the messaging profile belongs to."""
 
     parts: Optional[int] = None
     """Number of parts into which the message's body must be split."""
@@ -179,10 +176,18 @@ class DataPayload(BaseModel):
     """Identifies the type of the resource."""
 
     sent_at: Optional[datetime] = None
-    """Not used for inbound messages."""
+    """ISO 8601 formatted date indicating when the message was sent."""
+
+    smart_encoding_applied: Optional[bool] = None
+    """Indicates whether smart encoding was applied to this message.
+
+    When `true`, one or more Unicode characters were automatically replaced with
+    GSM-7 equivalents to reduce segment count and cost. The original message text is
+    preserved in webhooks.
+    """
 
     subject: Optional[str] = None
-    """Message subject."""
+    """Subject of multimedia message"""
 
     tags: Optional[List[str]] = None
     """Tags associated with the resource."""
@@ -202,13 +207,24 @@ class DataPayload(BaseModel):
     **Required for SMS**
     """
 
-    to: Optional[List[DataPayloadTo]] = None
+    to: Optional[List[To]] = None
 
     type: Optional[Literal["SMS", "MMS"]] = None
-    """The type of message. This value can be either 'sms' or 'mms'."""
+    """The type of message."""
 
     valid_until: Optional[datetime] = None
-    """Not used for inbound messages."""
+    """
+    Message must be out of the queue by this time or else it will be discarded and
+    marked as 'sending_failed'. Once the message moves out of the queue, this field
+    will be nulled
+    """
+
+    wait_seconds: Optional[float] = None
+    """
+    Seconds the message is queued due to rate limiting before being sent to the
+    carrier. Represents the maximum wait across all applicable rate limits (account,
+    carrier, campaign). 0.0 = no queuing delay.
+    """
 
     webhook_failover_url: Optional[str] = None
     """
@@ -218,23 +234,3 @@ class DataPayload(BaseModel):
 
     webhook_url: Optional[str] = None
     """The URL where webhooks related to this message will be sent."""
-
-
-class Data(BaseModel):
-    id: Optional[str] = None
-    """Identifies the type of resource."""
-
-    event_type: Optional[Literal["message.received"]] = None
-    """The type of event being delivered."""
-
-    occurred_at: Optional[datetime] = None
-    """ISO 8601 formatted date indicating when the resource was created."""
-
-    payload: Optional[DataPayload] = None
-
-    record_type: Optional[Literal["event"]] = None
-    """Identifies the type of the resource."""
-
-
-class InboundMessageWebhookEvent(BaseModel):
-    data: Optional[Data] = None

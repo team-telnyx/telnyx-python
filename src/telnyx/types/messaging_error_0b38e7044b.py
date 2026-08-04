@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["WirelessError", "Source"]
+__all__ = ["MessagingError0b38e7044b", "Source"]
 
 
 class Source(BaseModel):
@@ -17,13 +17,13 @@ class Source(BaseModel):
     """JSON pointer (RFC6901) to the offending entity."""
 
 
-class WirelessError(BaseModel):
+class MessagingError0b38e7044b(BaseModel):
     code: str
 
     title: str
 
     detail: Optional[str] = None
 
-    meta: Optional[Dict[str, object]] = None
+    meta: Optional[object] = None
 
     source: Optional[Source] = None

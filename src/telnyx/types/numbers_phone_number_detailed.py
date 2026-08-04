@@ -8,10 +8,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["PhoneNumberDetailed"]
+__all__ = ["NumbersPhoneNumberDetailed"]
 
 
-class PhoneNumberDetailed(BaseModel):
+class NumbersPhoneNumberDetailed(BaseModel):
     id: str
     """Identifies the resource."""
 

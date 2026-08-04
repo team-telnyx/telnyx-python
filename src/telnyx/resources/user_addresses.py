@@ -19,7 +19,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.user_address import UserAddress
+from ..types.user_addresses_user_address import UserAddressesUserAddress
 from ..types.user_address_create_response import UserAddressCreateResponse
 from ..types.user_address_retrieve_response import UserAddressRetrieveResponse
 
@@ -203,7 +203,7 @@ class UserAddressesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[UserAddress]:
+    ) -> SyncDefaultFlatPagination[UserAddressesUserAddress]:
         """
         Returns a list of your user addresses.
 
@@ -238,7 +238,7 @@ class UserAddressesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/user_addresses",
-            page=SyncDefaultFlatPagination[UserAddress],
+            page=SyncDefaultFlatPagination[UserAddressesUserAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -254,7 +254,7 @@ class UserAddressesResource(SyncAPIResource):
                     user_address_list_params.UserAddressListParams,
                 ),
             ),
-            model=UserAddress,
+            model=UserAddressesUserAddress,
         )
 
 
@@ -435,7 +435,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[UserAddress, AsyncDefaultFlatPagination[UserAddress]]:
+    ) -> AsyncPaginator[UserAddressesUserAddress, AsyncDefaultFlatPagination[UserAddressesUserAddress]]:
         """
         Returns a list of your user addresses.
 
@@ -470,7 +470,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user_addresses",
-            page=AsyncDefaultFlatPagination[UserAddress],
+            page=AsyncDefaultFlatPagination[UserAddressesUserAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -486,7 +486,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
                     user_address_list_params.UserAddressListParams,
                 ),
             ),
-            model=UserAddress,
+            model=UserAddressesUserAddress,
         )
 
 

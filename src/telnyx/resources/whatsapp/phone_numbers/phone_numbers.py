@@ -35,6 +35,7 @@ from .calling_settings import (
     AsyncCallingSettingsResourceWithStreamingResponse,
 )
 from ....types.whatsapp import (
+    phone_number_get_params,
     phone_number_list_params,
     phone_number_verify_params,
     phone_number_resend_verification_params,
@@ -48,6 +49,7 @@ from .conversational_components import (
     ConversationalComponentsResourceWithStreamingResponse,
     AsyncConversationalComponentsResourceWithStreamingResponse,
 )
+from ....types.whatsapp.phone_number_get_response import PhoneNumberGetResponse
 from ....types.whatsapp.phone_number_list_response import PhoneNumberListResponse
 from ....types.whatsapp.phone_number_retrieve_conversation_window_response import (
     PhoneNumberRetrieveConversationWindowResponse,
@@ -168,6 +170,48 @@ class PhoneNumbersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def get(
+        self,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberGetResponse:
+        """
+        List Whatsapp phone numbers
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/whatsapp/phone_numbers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    phone_number_get_params.PhoneNumberGetParams,
+                ),
+            ),
+            cast_to=PhoneNumberGetResponse,
         )
 
     def resend_verification(
@@ -405,6 +449,48 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def get(
+        self,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberGetResponse:
+        """
+        List Whatsapp phone numbers
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/whatsapp/phone_numbers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    phone_number_get_params.PhoneNumberGetParams,
+                ),
+            ),
+            cast_to=PhoneNumberGetResponse,
+        )
+
     async def resend_verification(
         self,
         phone_number: str,
@@ -536,6 +622,9 @@ class PhoneNumbersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             phone_numbers.delete,
         )
+        self.get = to_raw_response_wrapper(
+            phone_numbers.get,
+        )
         self.resend_verification = to_raw_response_wrapper(
             phone_numbers.resend_verification,
         )
@@ -571,6 +660,9 @@ class AsyncPhoneNumbersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             phone_numbers.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            phone_numbers.get,
         )
         self.resend_verification = async_to_raw_response_wrapper(
             phone_numbers.resend_verification,
@@ -608,6 +700,9 @@ class PhoneNumbersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             phone_numbers.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            phone_numbers.get,
+        )
         self.resend_verification = to_streamed_response_wrapper(
             phone_numbers.resend_verification,
         )
@@ -643,6 +738,9 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             phone_numbers.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            phone_numbers.get,
         )
         self.resend_verification = async_to_streamed_response_wrapper(
             phone_numbers.resend_verification,

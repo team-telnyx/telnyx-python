@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
@@ -12,13 +13,13 @@ from ...._models import BaseModel
 from .tf_phone_number import TfPhoneNumber
 from .use_case_categories import UseCaseCategories
 from .tf_verification_status import TfVerificationStatus
-from .toll_free_verification_entity_type import TollFreeVerificationEntityType
+from .messaging_toll_free_verification_entity_type import MessagingTollFreeVerificationEntityType
 
-__all__ = ["VerificationRequestEgress"]
+__all__ = ["RequestRetrieveResponse"]
 
 
-class VerificationRequestEgress(BaseModel):
-    """A verification request as it comes out of the database"""
+class RequestRetrieveResponse(BaseModel):
+    """A verification request and its status, suitable for returning to users"""
 
     id: str
 
@@ -60,7 +61,8 @@ class VerificationRequestEgress(BaseModel):
 
     use_case_summary: str = FieldInfo(alias="useCaseSummary")
 
-    verification_request_id: str = FieldInfo(alias="verificationRequestId")
+    verification_status: TfVerificationStatus = FieldInfo(alias="verificationStatus")
+    """Tollfree verification status"""
 
     age_gated_content: Optional[bool] = FieldInfo(alias="ageGatedContent", default=None)
 
@@ -80,9 +82,11 @@ class VerificationRequestEgress(BaseModel):
     starting February 17, 2026
     """
 
+    created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
+
     doing_business_as: Optional[str] = FieldInfo(alias="doingBusinessAs", default=None)
 
-    entity_type: Optional[TollFreeVerificationEntityType] = FieldInfo(alias="entityType", default=None)
+    entity_type: Optional[MessagingTollFreeVerificationEntityType] = FieldInfo(alias="entityType", default=None)
     """Business entity classification"""
 
     help_message_response: Optional[str] = FieldInfo(alias="helpMessageResponse", default=None)
@@ -95,9 +99,10 @@ class VerificationRequestEgress(BaseModel):
 
     privacy_policy_url: Optional[str] = FieldInfo(alias="privacyPolicyURL", default=None)
 
+    reason: Optional[str] = None
+
     terms_and_condition_url: Optional[str] = FieldInfo(alias="termsAndConditionURL", default=None)
 
-    verification_status: Optional[TfVerificationStatus] = FieldInfo(alias="verificationStatus", default=None)
-    """Tollfree verification status"""
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
 
     webhook_url: Optional[str] = FieldInfo(alias="webhookUrl", default=None)

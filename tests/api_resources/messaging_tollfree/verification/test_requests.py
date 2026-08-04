@@ -12,9 +12,10 @@ from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
 from telnyx.pagination import SyncDefaultPaginationForMessagingTollfree, AsyncDefaultPaginationForMessagingTollfree
 from telnyx.types.messaging_tollfree.verification import (
-    VerificationRequestEgress,
+    RequestRetrieveResponse,
     VerificationRequestStatus,
     RequestRetrieveStatusHistoryResponse,
+    MessagingTollFreeVerificationVerificationRequestEgress,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -49,7 +50,7 @@ class TestRequests:
             use_case="2FA",
             use_case_summary="This is a use case where Telnyx sends out 2FA codes to portal users to verify their identity in order to sign into the portal",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -92,7 +93,7 @@ class TestRequests:
             terms_and_condition_url="https://example.com/terms",
             webhook_url="http://example-webhook.com",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -124,7 +125,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -156,7 +157,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(VerificationRequestEgress, request, path=["response"])
+            assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -166,7 +167,7 @@ class TestRequests:
         request = client.messaging_tollfree.verification.requests.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(VerificationRequestStatus, request, path=["response"])
+        assert_matches_type(RequestRetrieveResponse, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -178,7 +179,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(VerificationRequestStatus, request, path=["response"])
+        assert_matches_type(RequestRetrieveResponse, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -190,7 +191,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(VerificationRequestStatus, request, path=["response"])
+            assert_matches_type(RequestRetrieveResponse, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,7 +230,7 @@ class TestRequests:
             use_case="2FA",
             use_case_summary="This is a use case where Telnyx sends out 2FA codes to portal users to verify their identity in order to sign into the portal",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -273,7 +274,7 @@ class TestRequests:
             terms_and_condition_url="https://example.com/terms",
             webhook_url="http://example-webhook.com",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -306,7 +307,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -339,7 +340,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(VerificationRequestEgress, request, path=["response"])
+            assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -555,7 +556,7 @@ class TestAsyncRequests:
             use_case="2FA",
             use_case_summary="This is a use case where Telnyx sends out 2FA codes to portal users to verify their identity in order to sign into the portal",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -598,7 +599,7 @@ class TestAsyncRequests:
             terms_and_condition_url="https://example.com/terms",
             webhook_url="http://example-webhook.com",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -630,7 +631,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -662,7 +663,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(VerificationRequestEgress, request, path=["response"])
+            assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -672,7 +673,7 @@ class TestAsyncRequests:
         request = await async_client.messaging_tollfree.verification.requests.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(VerificationRequestStatus, request, path=["response"])
+        assert_matches_type(RequestRetrieveResponse, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -684,7 +685,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(VerificationRequestStatus, request, path=["response"])
+        assert_matches_type(RequestRetrieveResponse, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -696,7 +697,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(VerificationRequestStatus, request, path=["response"])
+            assert_matches_type(RequestRetrieveResponse, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -735,7 +736,7 @@ class TestAsyncRequests:
             use_case="2FA",
             use_case_summary="This is a use case where Telnyx sends out 2FA codes to portal users to verify their identity in order to sign into the portal",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -779,7 +780,7 @@ class TestAsyncRequests:
             terms_and_condition_url="https://example.com/terms",
             webhook_url="http://example-webhook.com",
         )
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -812,7 +813,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(VerificationRequestEgress, request, path=["response"])
+        assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -845,7 +846,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(VerificationRequestEgress, request, path=["response"])
+            assert_matches_type(MessagingTollFreeVerificationVerificationRequestEgress, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

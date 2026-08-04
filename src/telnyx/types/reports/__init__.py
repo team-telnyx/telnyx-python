@@ -11,12 +11,14 @@ from .mdr_usage_report_fetch_sync_params import MdrUsageReportFetchSyncParams as
 
 if TYPE_CHECKING:
     from .mdr_usage_report import MdrUsageReport as MdrUsageReport
-    from .pagination_meta_reporting import PaginationMetaReporting as PaginationMetaReporting
     from .mdr_usage_report_create_response import MdrUsageReportCreateResponse as MdrUsageReportCreateResponse
     from .mdr_usage_report_delete_response import MdrUsageReportDeleteResponse as MdrUsageReportDeleteResponse
     from .mdr_usage_report_retrieve_response import MdrUsageReportRetrieveResponse as MdrUsageReportRetrieveResponse
     from .cdr_usage_report_fetch_sync_response import CdrUsageReportFetchSyncResponse as CdrUsageReportFetchSyncResponse
     from .mdr_usage_report_fetch_sync_response import MdrUsageReportFetchSyncResponse as MdrUsageReportFetchSyncResponse
+    from .reporting_pagination_meta_77109e5d17 import (
+        ReportingPaginationMeta77109e5d17 as ReportingPaginationMeta77109e5d17,
+    )
 
 
 def __getattr__(name: str) -> Any:
@@ -28,10 +30,10 @@ def __getattr__(name: str) -> Any:
         from .mdr_usage_report import MdrUsageReport
 
         return MdrUsageReport
-    if name == "PaginationMetaReporting":
-        from .pagination_meta_reporting import PaginationMetaReporting
+    if name == "ReportingPaginationMeta77109e5d17":
+        from .reporting_pagination_meta_77109e5d17 import ReportingPaginationMeta77109e5d17
 
-        return PaginationMetaReporting
+        return ReportingPaginationMeta77109e5d17
     if name == "MdrUsageReportCreateResponse":
         from .mdr_usage_report_create_response import MdrUsageReportCreateResponse
 

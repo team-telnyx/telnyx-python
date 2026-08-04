@@ -16,18 +16,30 @@ from .toll_free_verification_entity_type import TollFreeVerificationEntityType a
 from .request_retrieve_status_history_params import (
     RequestRetrieveStatusHistoryParams as RequestRetrieveStatusHistoryParams,
 )
+from .messaging_toll_free_verification_entity_type import (
+    MessagingTollFreeVerificationEntityType as MessagingTollFreeVerificationEntityType,
+)
 
 if TYPE_CHECKING:
     from .url import URL as URL
     from .tf_phone_number import TfPhoneNumber as TfPhoneNumber
-    from .verification_request_egress import VerificationRequestEgress as VerificationRequestEgress
+    from .request_retrieve_response import RequestRetrieveResponse as RequestRetrieveResponse
     from .verification_request_status import VerificationRequestStatus as VerificationRequestStatus
     from .request_retrieve_status_history_response import (
         RequestRetrieveStatusHistoryResponse as RequestRetrieveStatusHistoryResponse,
     )
+    from .messaging_toll_free_verification_verification_request_egress import (
+        MessagingTollFreeVerificationVerificationRequestEgress as MessagingTollFreeVerificationVerificationRequestEgress,
+    )
 
 
 def __getattr__(name: str) -> Any:
+    if name == "MessagingTollFreeVerificationVerificationRequestEgress":
+        from .messaging_toll_free_verification_verification_request_egress import (
+            MessagingTollFreeVerificationVerificationRequestEgress,
+        )
+
+        return MessagingTollFreeVerificationVerificationRequestEgress
     if name == "TfPhoneNumber":
         from .tf_phone_number import TfPhoneNumber
 
@@ -36,14 +48,14 @@ def __getattr__(name: str) -> Any:
         from .url import URL
 
         return URL
-    if name == "VerificationRequestEgress":
-        from .verification_request_egress import VerificationRequestEgress
-
-        return VerificationRequestEgress
     if name == "VerificationRequestStatus":
         from .verification_request_status import VerificationRequestStatus
 
         return VerificationRequestStatus
+    if name == "RequestRetrieveResponse":
+        from .request_retrieve_response import RequestRetrieveResponse
+
+        return RequestRetrieveResponse
     if name == "RequestRetrieveStatusHistoryResponse":
         from .request_retrieve_status_history_response import RequestRetrieveStatusHistoryResponse
 

@@ -67,9 +67,9 @@ from .csv_downloads import (
     AsyncCsvDownloadsResourceWithStreamingResponse,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.phone_number_detailed import PhoneNumberDetailed
 from ...types.phone_number_delete_response import PhoneNumberDeleteResponse
 from ...types.phone_number_update_response import PhoneNumberUpdateResponse
+from ...types.numbers_phone_number_detailed import NumbersPhoneNumberDetailed
 from ...types.phone_number_retrieve_response import PhoneNumberRetrieveResponse
 from ...types.phone_number_slim_list_response import PhoneNumberSlimListResponse
 
@@ -243,7 +243,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumberDetailed]:
+    ) -> SyncDefaultFlatPagination[NumbersPhoneNumberDetailed]:
         """
         List phone numbers
 
@@ -275,7 +275,7 @@ class PhoneNumbersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers",
-            page=SyncDefaultFlatPagination[PhoneNumberDetailed],
+            page=SyncDefaultFlatPagination[NumbersPhoneNumberDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -292,7 +292,7 @@ class PhoneNumbersResource(SyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberDetailed,
+            model=NumbersPhoneNumberDetailed,
         )
 
     def delete(
@@ -562,7 +562,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberDetailed, AsyncDefaultFlatPagination[PhoneNumberDetailed]]:
+    ) -> AsyncPaginator[NumbersPhoneNumberDetailed, AsyncDefaultFlatPagination[NumbersPhoneNumberDetailed]]:
         """
         List phone numbers
 
@@ -594,7 +594,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers",
-            page=AsyncDefaultFlatPagination[PhoneNumberDetailed],
+            page=AsyncDefaultFlatPagination[NumbersPhoneNumberDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -611,7 +611,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberDetailed,
+            model=NumbersPhoneNumberDetailed,
         )
 
     async def delete(

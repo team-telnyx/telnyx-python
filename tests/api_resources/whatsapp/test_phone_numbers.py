@@ -11,6 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.whatsapp import (
+    PhoneNumberGetResponse,
     PhoneNumberListResponse,
     PhoneNumberRetrieveConversationWindowResponse,
 )
@@ -99,6 +100,43 @@ class TestPhoneNumbers:
             client.whatsapp.phone_numbers.with_raw_response.delete(
                 "",
             )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_get(self, client: Telnyx) -> None:
+        phone_number = client.whatsapp.phone_numbers.get()
+        assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_get_with_all_params(self, client: Telnyx) -> None:
+        phone_number = client.whatsapp.phone_numbers.get(
+            page_number=0,
+            page_size=0,
+        )
+        assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_get(self, client: Telnyx) -> None:
+        response = client.whatsapp.phone_numbers.with_raw_response.get()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        phone_number = response.parse()
+        assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_get(self, client: Telnyx) -> None:
+        with client.whatsapp.phone_numbers.with_streaming_response.get() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            phone_number = response.parse()
+            assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -327,6 +365,43 @@ class TestAsyncPhoneNumbers:
             await async_client.whatsapp.phone_numbers.with_raw_response.delete(
                 "",
             )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_get(self, async_client: AsyncTelnyx) -> None:
+        phone_number = await async_client.whatsapp.phone_numbers.get()
+        assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        phone_number = await async_client.whatsapp.phone_numbers.get(
+            page_number=0,
+            page_size=0,
+        )
+        assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.whatsapp.phone_numbers.with_raw_response.get()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        phone_number = await response.parse()
+        assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.whatsapp.phone_numbers.with_streaming_response.get() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            phone_number = await response.parse()
+            assert_matches_type(PhoneNumberGetResponse, phone_number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

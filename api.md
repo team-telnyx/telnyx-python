@@ -66,6 +66,7 @@ Types:
 ```python
 from telnyx.types.legacy.reporting.batch_detail_records import (
     BatchCsvPaginationMeta,
+    BatchCsvPaginationMeta705dfa7312,
     MdrDetailReportResponse,
     MessagingCreateResponse,
     MessagingRetrieveResponse,
@@ -145,6 +146,7 @@ Types:
 from telnyx.types.legacy.reporting.usage_reports import (
     MdrUsageReportResponseLegacy,
     StandardPaginationMeta,
+    StandardPaginationMetaFfba4faa88,
     MessagingCreateResponse,
     MessagingRetrieveResponse,
     MessagingDeleteResponse,
@@ -231,6 +233,7 @@ Types:
 ```python
 from telnyx.types import (
     OAuthClient,
+    OAuthOAuthPaginationMeta,
     PaginationMetaOAuth,
     OAuthClientCreateResponse,
     OAuthClientRetrieveResponse,
@@ -497,7 +500,7 @@ from telnyx.types import WirelessError
 Types:
 
 ```python
-from telnyx.types.actions import PurchaseCreateResponse
+from telnyx.types.actions import WirelessErrorC5290d5308, PurchaseCreateResponse
 ```
 
 Methods:
@@ -2495,6 +2498,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    MessagingError0b38e7044b,
+    MessagingOutboundMessagePayload,
     OutboundMessagePayload,
     RcsAgentMessage,
     RcsCardContent,
@@ -2734,6 +2739,9 @@ Types:
 
 ```python
 from telnyx.types.messaging_tollfree.verification import (
+    MessagingTollFreeVerificationEntityType,
+    MessagingTollFreeVerificationTfVerificationRequest,
+    MessagingTollFreeVerificationVerificationRequestEgress,
     TfPhoneNumber,
     TfVerificationRequest,
     TfVerificationStatus,
@@ -2743,15 +2751,16 @@ from telnyx.types.messaging_tollfree.verification import (
     VerificationRequestEgress,
     VerificationRequestStatus,
     Volume,
+    RequestRetrieveResponse,
     RequestRetrieveStatusHistoryResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /messaging_tollfree/verification/requests">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">create</a>(\*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_create_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/verification_request_egress.py">VerificationRequestEgress</a></code>
-- <code title="get /messaging_tollfree/verification/requests/{id}">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">retrieve</a>(id) -> <a href="./src/telnyx/types/messaging_tollfree/verification/verification_request_status.py">VerificationRequestStatus</a></code>
-- <code title="patch /messaging_tollfree/verification/requests/{id}">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/verification_request_egress.py">VerificationRequestEgress</a></code>
+- <code title="post /messaging_tollfree/verification/requests">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">create</a>(\*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_create_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/messaging_toll_free_verification_verification_request_egress.py">MessagingTollFreeVerificationVerificationRequestEgress</a></code>
+- <code title="get /messaging_tollfree/verification/requests/{id}">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">retrieve</a>(id) -> <a href="./src/telnyx/types/messaging_tollfree/verification/request_retrieve_response.py">RequestRetrieveResponse</a></code>
+- <code title="patch /messaging_tollfree/verification/requests/{id}">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/messaging_toll_free_verification_verification_request_egress.py">MessagingTollFreeVerificationVerificationRequestEgress</a></code>
 - <code title="get /messaging_tollfree/verification/requests">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">list</a>(\*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/verification_request_status.py">SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus]</a></code>
 - <code title="delete /messaging_tollfree/verification/requests/{id}">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">delete</a>(id) -> None</code>
 - <code title="get /messaging_tollfree/verification/requests/{id}/status_history">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">retrieve_status_history</a>(id, \*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_retrieve_status_history_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/request_retrieve_status_history_response.py">RequestRetrieveStatusHistoryResponse</a></code>
@@ -2800,7 +2809,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import AvailableService, NetworkCoverageListResponse
+from telnyx.types import AvailableService, NetappsLocation17904fcfbc, NetworkCoverageListResponse
 ```
 
 Methods:
@@ -3166,6 +3175,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumbersPhoneNumberDetailed,
     PhoneNumberDetailed,
     PhoneNumberRetrieveResponse,
     PhoneNumberUpdateResponse,
@@ -3178,7 +3188,7 @@ Methods:
 
 - <code title="get /phone_numbers/{id}">client.phone_numbers.<a href="./src/telnyx/resources/phone_numbers/phone_numbers.py">retrieve</a>(id) -> <a href="./src/telnyx/types/phone_number_retrieve_response.py">PhoneNumberRetrieveResponse</a></code>
 - <code title="patch /phone_numbers/{id}">client.phone_numbers.<a href="./src/telnyx/resources/phone_numbers/phone_numbers.py">update</a>(phone_number_id, \*\*<a href="src/telnyx/types/phone_number_update_params.py">params</a>) -> <a href="./src/telnyx/types/phone_number_update_response.py">PhoneNumberUpdateResponse</a></code>
-- <code title="get /phone_numbers">client.phone_numbers.<a href="./src/telnyx/resources/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/phone_number_detailed.py">SyncDefaultFlatPagination[PhoneNumberDetailed]</a></code>
+- <code title="get /phone_numbers">client.phone_numbers.<a href="./src/telnyx/resources/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/numbers_phone_number_detailed.py">SyncDefaultFlatPagination[NumbersPhoneNumberDetailed]</a></code>
 - <code title="delete /phone_numbers/{id}">client.phone_numbers.<a href="./src/telnyx/resources/phone_numbers/phone_numbers.py">delete</a>(id) -> <a href="./src/telnyx/types/phone_number_delete_response.py">PhoneNumberDeleteResponse</a></code>
 - <code title="get /phone_numbers/slim">client.phone_numbers.<a href="./src/telnyx/resources/phone_numbers/phone_numbers.py">slim_list</a>(\*\*<a href="src/telnyx/types/phone_number_slim_list_params.py">params</a>) -> <a href="./src/telnyx/types/phone_number_slim_list_response.py">SyncDefaultFlatPagination[PhoneNumberSlimListResponse]</a></code>
 
@@ -3885,6 +3895,7 @@ Types:
 from telnyx.types.reports import (
     MdrUsageReport,
     PaginationMetaReporting,
+    ReportingPaginationMeta77109e5d17,
     MdrUsageReportCreateResponse,
     MdrUsageReportRetrieveResponse,
     MdrUsageReportDeleteResponse,
@@ -4245,6 +4256,7 @@ Types:
 from telnyx.types.sim_cards import (
     BulkSimCardAction,
     SimCardAction,
+    WirelessSimCardAction,
     ActionRetrieveResponse,
     ActionBulkDisableVoiceResponse,
     ActionBulkEnableVoiceResponse,
@@ -4261,7 +4273,7 @@ from telnyx.types.sim_cards import (
 Methods:
 
 - <code title="get /sim_card_actions/{id}">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">retrieve</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_retrieve_response.py">ActionRetrieveResponse</a></code>
-- <code title="get /sim_card_actions">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">list</a>(\*\*<a href="src/telnyx/types/sim_cards/action_list_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/sim_card_action.py">SyncDefaultFlatPagination[SimCardAction]</a></code>
+- <code title="get /sim_card_actions">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">list</a>(\*\*<a href="src/telnyx/types/sim_cards/action_list_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/wireless_sim_card_action.py">SyncDefaultFlatPagination[WirelessSimCardAction]</a></code>
 - <code title="post /sim_cards/actions/bulk_disable_voice">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_disable_voice</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_disable_voice_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_disable_voice_response.py">ActionBulkDisableVoiceResponse</a></code>
 - <code title="post /sim_cards/actions/bulk_enable_voice">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_enable_voice</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_enable_voice_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_enable_voice_response.py">ActionBulkEnableVoiceResponse</a></code>
 - <code title="post /sim_cards/actions/bulk_set_public_ips">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_set_public_ips</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_set_public_ips_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_set_public_ips_response.py">ActionBulkSetPublicIPsResponse</a></code>
@@ -4764,14 +4776,19 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import UserAddress, UserAddressCreateResponse, UserAddressRetrieveResponse
+from telnyx.types import (
+    UserAddress,
+    UserAddressesUserAddress,
+    UserAddressCreateResponse,
+    UserAddressRetrieveResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /user_addresses">client.user_addresses.<a href="./src/telnyx/resources/user_addresses.py">create</a>(\*\*<a href="src/telnyx/types/user_address_create_params.py">params</a>) -> <a href="./src/telnyx/types/user_address_create_response.py">UserAddressCreateResponse</a></code>
 - <code title="get /user_addresses/{id}">client.user_addresses.<a href="./src/telnyx/resources/user_addresses.py">retrieve</a>(id) -> <a href="./src/telnyx/types/user_address_retrieve_response.py">UserAddressRetrieveResponse</a></code>
-- <code title="get /user_addresses">client.user_addresses.<a href="./src/telnyx/resources/user_addresses.py">list</a>(\*\*<a href="src/telnyx/types/user_address_list_params.py">params</a>) -> <a href="./src/telnyx/types/user_address.py">SyncDefaultFlatPagination[UserAddress]</a></code>
+- <code title="get /user_addresses">client.user_addresses.<a href="./src/telnyx/resources/user_addresses.py">list</a>(\*\*<a href="src/telnyx/types/user_address_list_params.py">params</a>) -> <a href="./src/telnyx/types/user_addresses_user_address.py">SyncDefaultFlatPagination[UserAddressesUserAddress]</a></code>
 
 # UserTags
 
@@ -5367,6 +5384,7 @@ Types:
 ```python
 from telnyx.types import (
     AlphanumericSenderID,
+    MessagingPaginationMeta0b38e7044b,
     AlphanumericSenderIDCreateResponse,
     AlphanumericSenderIDRetrieveResponse,
     AlphanumericSenderIDDeleteResponse,
@@ -5496,6 +5514,7 @@ Types:
 ```python
 from telnyx.types.whatsapp import (
     PhoneNumberListResponse,
+    PhoneNumberGetResponse,
     PhoneNumberRetrieveConversationWindowResponse,
 )
 ```
@@ -5504,6 +5523,7 @@ Methods:
 
 - <code title="get /v2/whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">delete</a>(phone_number) -> None</code>
+- <code title="get /whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">get</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_get_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_get_response.py">PhoneNumberGetResponse</a></code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/resend_verification">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">resend_verification</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_resend_verification_params.py">params</a>) -> None</code>
 - <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversation_window">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">retrieve_conversation_window</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_retrieve_conversation_window_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_retrieve_conversation_window_response.py">PhoneNumberRetrieveConversationWindowResponse</a></code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/verify">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">verify</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_verify_params.py">params</a>) -> None</code>

@@ -6,18 +6,18 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["PaginationMetaOAuth"]
+__all__ = ["OAuthOAuthPaginationMeta"]
 
 
-class PaginationMetaOAuth(BaseModel):
-    page_number: int
+class OAuthOAuthPaginationMeta(BaseModel):
+    page_number: Optional[int] = None
     """Current page number"""
-
-    total_pages: int
-    """Total number of pages"""
 
     page_size: Optional[int] = None
     """Number of items per page"""
+
+    total_pages: Optional[int] = None
+    """Total number of pages"""
 
     total_results: Optional[int] = None
     """Total number of results"""
