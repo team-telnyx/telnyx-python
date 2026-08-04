@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["ProductListParams"]
 
 
 class ProductListParams(TypedDict, total=False):
-    page_number: int
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
     """Page number (1-based)."""
 
-    page_size: int
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Number of items per page (max 100)."""

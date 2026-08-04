@@ -1217,7 +1217,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import PayToolParams, SharedToolResponse
+from telnyx.types.ai import PayToolParams, SharedToolResponse, UpdateDynamicVariablesToolParams
 ```
 
 Methods:
@@ -6473,4 +6473,4 @@ from telnyx.types.pricing import (
 Methods:
 
 - <code title="get /pricing/products/{slug}">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">retrieve</a>(slug, \*\*<a href="src/telnyx/types/pricing/product_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_retrieve_response.py">ProductRetrieveResponse</a></code>
-- <code title="get /pricing/products">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">list</a>(\*\*<a href="src/telnyx/types/pricing/product_list_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_list_response.py">SyncDefaultFlatPaginationForInexplicitNumberOrders[ProductListResponse]</a></code>
+- <code title="get /pricing/products">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">list</a>(\*\*<a href="src/telnyx/types/pricing/product_list_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_list_response.py">SyncDefaultFlatPagination[ProductListResponse]</a></code>

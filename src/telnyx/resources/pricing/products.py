@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -14,10 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import (
-    SyncDefaultFlatPaginationForInexplicitNumberOrders,
-    AsyncDefaultFlatPaginationForInexplicitNumberOrders,
-)
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.pricing import product_list_params, product_retrieve_params
 from ...types.pricing.product_list_response import ProductListResponse
@@ -52,6 +51,7 @@ class ProductsResource(SyncAPIResource):
         self,
         slug: str,
         *,
+        filter_country_iso: Optional[str] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -93,6 +93,7 @@ class ProductsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_country_iso": filter_country_iso,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -113,7 +114,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPaginationForInexplicitNumberOrders[ProductListResponse]:
+    ) -> SyncDefaultFlatPagination[ProductListResponse]:
         """Returns the full product catalog with pagination.
 
         Each entry contains a slug,
@@ -135,7 +136,7 @@ class ProductsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/pricing/products",
-            page=SyncDefaultFlatPaginationForInexplicitNumberOrders[ProductListResponse],
+            page=SyncDefaultFlatPagination[ProductListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -179,6 +180,7 @@ class AsyncProductsResource(AsyncAPIResource):
         self,
         slug: str,
         *,
+        filter_country_iso: Optional[str] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -220,6 +222,7 @@ class AsyncProductsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "filter_country_iso": filter_country_iso,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -240,7 +243,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ProductListResponse, AsyncDefaultFlatPaginationForInexplicitNumberOrders[ProductListResponse]]:
+    ) -> AsyncPaginator[ProductListResponse, AsyncDefaultFlatPagination[ProductListResponse]]:
         """Returns the full product catalog with pagination.
 
         Each entry contains a slug,
@@ -262,7 +265,7 @@ class AsyncProductsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/pricing/products",
-            page=AsyncDefaultFlatPaginationForInexplicitNumberOrders[ProductListResponse],
+            page=AsyncDefaultFlatPagination[ProductListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
