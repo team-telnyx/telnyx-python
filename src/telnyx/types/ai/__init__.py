@@ -72,6 +72,9 @@ from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams 
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam as PostConversationSettingsReqParam
 from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam as TranscriptionEndpointingPlanParam
+from .update_dynamic_variables_tool_params_param import (
+    UpdateDynamicVariablesToolParamsParam as UpdateDynamicVariablesToolParamsParam,
+)
 from .inference_embedding_webhook_tool_params_param import (
     InferenceEmbeddingWebhookToolParamsParam as InferenceEmbeddingWebhookToolParamsParam,
 )
@@ -131,6 +134,9 @@ if TYPE_CHECKING:
     from .transcription_endpointing_plan import TranscriptionEndpointingPlan as TranscriptionEndpointingPlan
     from .embedding_similarity_search_response import (
         EmbeddingSimilaritySearchResponse as EmbeddingSimilaritySearchResponse,
+    )
+    from .update_dynamic_variables_tool_params import (
+        UpdateDynamicVariablesToolParams as UpdateDynamicVariablesToolParams,
     )
     from .inference_embedding_webhook_tool_params import (
         InferenceEmbeddingWebhookToolParams as InferenceEmbeddingWebhookToolParams,
@@ -358,4 +364,8 @@ def __getattr__(name: str) -> Any:
         from .shared_tool_response import SharedToolResponse
 
         return SharedToolResponse
+    if name == "UpdateDynamicVariablesToolParams":
+        from .update_dynamic_variables_tool_params import UpdateDynamicVariablesToolParams
+
+        return UpdateDynamicVariablesToolParams
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

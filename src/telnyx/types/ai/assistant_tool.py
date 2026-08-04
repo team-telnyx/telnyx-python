@@ -12,6 +12,7 @@ from ..._models import BaseModel
 from .hangup_tool import HangupTool
 from .retrieval_tool import RetrievalTool
 from .pay_tool_params import PayToolParams
+from .update_dynamic_variables_tool_params import UpdateDynamicVariablesToolParams
 from .inference_embedding_webhook_tool_params import InferenceEmbeddingWebhookToolParams
 
 __all__ = [
@@ -47,6 +48,7 @@ __all__ = [
     "SkipTurn",
     "SkipTurnSkipTurn",
     "Pay",
+    "UpdateDynamicVariables",
 ]
 
 
@@ -487,6 +489,17 @@ class Pay(BaseModel):
     type: Literal["pay"]
 
 
+class UpdateDynamicVariables(BaseModel):
+    """
+    The update_dynamic_variables tool lets the assistant write values into the conversation's dynamic-variables context during the call. Updated variables are available to later `{{variable}}` interpolation (prompts, speak nodes, message templates) and to flow edge conditions. Declare each variable the assistant is allowed to set under `updatable_variables`.
+    """
+
+    type: Literal["update_dynamic_variables"]
+
+    update_dynamic_variables: UpdateDynamicVariablesToolParams
+    """Configuration for an update_dynamic_variables tool."""
+
+
 AssistantTool: TypeAlias = Annotated[
     Union[
         InferenceEmbeddingWebhookToolParams,
@@ -501,6 +514,7 @@ AssistantTool: TypeAlias = Annotated[
         SendMessage,
         SkipTurn,
         Pay,
+        UpdateDynamicVariables,
     ],
     PropertyInfo(discriminator="type"),
 ]

@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from .telco_data_aggregation import TelcoDataAggregation as TelcoDataAggregation
     from .telco_data_usage_record import TelcoDataUsageRecord as TelcoDataUsageRecord
     from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
-    from .standard_pagination_meta import StandardPaginationMeta as StandardPaginationMeta
     from .messaging_create_response import MessagingCreateResponse as MessagingCreateResponse
     from .messaging_delete_response import MessagingDeleteResponse as MessagingDeleteResponse
     from .messaging_retrieve_response import MessagingRetrieveResponse as MessagingRetrieveResponse
@@ -26,6 +25,9 @@ if TYPE_CHECKING:
     from .cdr_usage_report_response_legacy import CdrUsageReportResponseLegacy as CdrUsageReportResponseLegacy
     from .mdr_usage_report_response_legacy import MdrUsageReportResponseLegacy as MdrUsageReportResponseLegacy
     from .telco_data_usage_report_response import TelcoDataUsageReportResponse as TelcoDataUsageReportResponse
+    from .standard_pagination_meta_ffba4faa88 import (
+        StandardPaginationMetaFfba4faa88 as StandardPaginationMetaFfba4faa88,
+    )
 
 
 def __getattr__(name: str) -> Any:
@@ -33,10 +35,10 @@ def __getattr__(name: str) -> Any:
         from .mdr_usage_report_response_legacy import MdrUsageReportResponseLegacy
 
         return MdrUsageReportResponseLegacy
-    if name == "StandardPaginationMeta":
-        from .standard_pagination_meta import StandardPaginationMeta
+    if name == "StandardPaginationMetaFfba4faa88":
+        from .standard_pagination_meta_ffba4faa88 import StandardPaginationMetaFfba4faa88
 
-        return StandardPaginationMeta
+        return StandardPaginationMetaFfba4faa88
     if name == "MessagingCreateResponse":
         from .messaging_create_response import MessagingCreateResponse
 

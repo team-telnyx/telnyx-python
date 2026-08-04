@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
-from .phone_number_detailed import PhoneNumberDetailed
+from .numbers_phone_number_detailed import NumbersPhoneNumberDetailed
 
 __all__ = ["PhoneNumberRetrieveResponse"]
 
 
 class PhoneNumberRetrieveResponse(BaseModel):
-    data: Optional[PhoneNumberDetailed] = None
+    data: Optional[NumbersPhoneNumberDetailed] = None

@@ -14,11 +14,11 @@ from .action_validate_registration_codes_params import (
 )
 
 if TYPE_CHECKING:
-    from .sim_card_action import SimCardAction as SimCardAction
     from .bulk_sim_card_action import BulkSimCardAction as BulkSimCardAction
     from .action_enable_response import ActionEnableResponse as ActionEnableResponse
     from .action_disable_response import ActionDisableResponse as ActionDisableResponse
     from .action_retrieve_response import ActionRetrieveResponse as ActionRetrieveResponse
+    from .wireless_sim_card_action import WirelessSimCardAction as WirelessSimCardAction
     from .action_set_standby_response import ActionSetStandbyResponse as ActionSetStandbyResponse
     from .action_set_public_ip_response import ActionSetPublicIPResponse as ActionSetPublicIPResponse
     from .action_remove_public_ip_response import ActionRemovePublicIPResponse as ActionRemovePublicIPResponse
@@ -35,10 +35,10 @@ def __getattr__(name: str) -> Any:
         from .bulk_sim_card_action import BulkSimCardAction
 
         return BulkSimCardAction
-    if name == "SimCardAction":
-        from .sim_card_action import SimCardAction
+    if name == "WirelessSimCardAction":
+        from .wireless_sim_card_action import WirelessSimCardAction
 
-        return SimCardAction
+        return WirelessSimCardAction
     if name == "ActionRetrieveResponse":
         from .action_retrieve_response import ActionRetrieveResponse
 

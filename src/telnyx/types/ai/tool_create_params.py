@@ -6,6 +6,7 @@ from typing import Dict
 from typing_extensions import Required, TypedDict
 
 from .pay_tool_params_param import PayToolParamsParam
+from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
 
 __all__ = ["ToolCreateParams"]
 
@@ -28,5 +29,8 @@ class ToolCreateParams(TypedDict, total=False):
     retrieval: Dict[str, object]
 
     timeout_ms: int
+
+    update_dynamic_variables: UpdateDynamicVariablesToolParamsParam
+    """Configuration for an update_dynamic_variables tool."""
 
     webhook: Dict[str, object]

@@ -9,7 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.ai import SharedToolResponse
+from telnyx.types.ai import (
+    SharedToolResponse,
+)
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -45,6 +47,17 @@ class TestTools:
             },
             retrieval={"foo": "bar"},
             timeout_ms=0,
+            update_dynamic_variables={
+                "description": "Collect caller details into conversation variables.",
+                "name": "collect_details",
+                "updatable_variables": [
+                    {
+                        "name": "customer_name",
+                        "description": "The caller's full name.",
+                        "type": "string",
+                    }
+                ],
+            },
             webhook={"foo": "bar"},
         )
         assert_matches_type(SharedToolResponse, tool, path=["response"])
@@ -146,6 +159,17 @@ class TestTools:
             retrieval={"foo": "bar"},
             timeout_ms=0,
             type="type",
+            update_dynamic_variables={
+                "description": "Collect caller details into conversation variables.",
+                "name": "collect_details",
+                "updatable_variables": [
+                    {
+                        "name": "customer_name",
+                        "description": "The caller's full name.",
+                        "type": "string",
+                    }
+                ],
+            },
             webhook={"foo": "bar"},
         )
         assert_matches_type(SharedToolResponse, tool, path=["response"])
@@ -298,6 +322,17 @@ class TestAsyncTools:
             },
             retrieval={"foo": "bar"},
             timeout_ms=0,
+            update_dynamic_variables={
+                "description": "Collect caller details into conversation variables.",
+                "name": "collect_details",
+                "updatable_variables": [
+                    {
+                        "name": "customer_name",
+                        "description": "The caller's full name.",
+                        "type": "string",
+                    }
+                ],
+            },
             webhook={"foo": "bar"},
         )
         assert_matches_type(SharedToolResponse, tool, path=["response"])
@@ -399,6 +434,17 @@ class TestAsyncTools:
             retrieval={"foo": "bar"},
             timeout_ms=0,
             type="type",
+            update_dynamic_variables={
+                "description": "Collect caller details into conversation variables.",
+                "name": "collect_details",
+                "updatable_variables": [
+                    {
+                        "name": "customer_name",
+                        "description": "The caller's full name.",
+                        "type": "string",
+                    }
+                ],
+            },
             webhook={"foo": "bar"},
         )
         assert_matches_type(SharedToolResponse, tool, path=["response"])

@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Any
 
 from .template_list_params import TemplateListParams as TemplateListParams
 from .template_create_params import TemplateCreateParams as TemplateCreateParams
+from .phone_number_get_params import PhoneNumberGetParams as PhoneNumberGetParams
 from .user_data_update_params import UserDataUpdateParams as UserDataUpdateParams
 from .phone_number_list_params import PhoneNumberListParams as PhoneNumberListParams
 from .phone_number_verify_params import PhoneNumberVerifyParams as PhoneNumberVerifyParams
@@ -35,6 +36,7 @@ from .phone_number_retrieve_conversation_window_params import (
 if TYPE_CHECKING:
     from .whatsapp_user_data import WhatsappUserData as WhatsappUserData
     from .template_create_response import TemplateCreateResponse as TemplateCreateResponse
+    from .phone_number_get_response import PhoneNumberGetResponse as PhoneNumberGetResponse
     from .user_data_update_response import UserDataUpdateResponse as UserDataUpdateResponse
     from .phone_number_list_response import PhoneNumberListResponse as PhoneNumberListResponse
     from .user_data_retrieve_response import UserDataRetrieveResponse as UserDataRetrieveResponse
@@ -62,6 +64,10 @@ def __getattr__(name: str) -> Any:
         from .phone_number_list_response import PhoneNumberListResponse
 
         return PhoneNumberListResponse
+    if name == "PhoneNumberGetResponse":
+        from .phone_number_get_response import PhoneNumberGetResponse
+
+        return PhoneNumberGetResponse
     if name == "PhoneNumberRetrieveConversationWindowResponse":
         from .phone_number_retrieve_conversation_window_response import PhoneNumberRetrieveConversationWindowResponse
 

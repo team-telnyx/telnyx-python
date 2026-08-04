@@ -23,7 +23,7 @@ from ....types.messaging_tollfree.verification import (
     Volume,
     UseCaseCategories,
     TfVerificationStatus,
-    TollFreeVerificationEntityType,
+    MessagingTollFreeVerificationEntityType,
     request_list_params,
     request_create_params,
     request_update_params,
@@ -34,11 +34,16 @@ from ....types.messaging_tollfree.verification.url_param import URLParam
 from ....types.messaging_tollfree.verification.use_case_categories import UseCaseCategories
 from ....types.messaging_tollfree.verification.tf_phone_number_param import TfPhoneNumberParam
 from ....types.messaging_tollfree.verification.tf_verification_status import TfVerificationStatus
-from ....types.messaging_tollfree.verification.verification_request_egress import VerificationRequestEgress
+from ....types.messaging_tollfree.verification.request_retrieve_response import RequestRetrieveResponse
 from ....types.messaging_tollfree.verification.verification_request_status import VerificationRequestStatus
-from ....types.messaging_tollfree.verification.toll_free_verification_entity_type import TollFreeVerificationEntityType
 from ....types.messaging_tollfree.verification.request_retrieve_status_history_response import (
     RequestRetrieveStatusHistoryResponse,
+)
+from ....types.messaging_tollfree.verification.messaging_toll_free_verification_entity_type import (
+    MessagingTollFreeVerificationEntityType,
+)
+from ....types.messaging_tollfree.verification.messaging_toll_free_verification_verification_request_egress import (
+    MessagingTollFreeVerificationVerificationRequestEgress,
 )
 
 __all__ = ["RequestsResource", "AsyncRequestsResource"]
@@ -94,7 +99,7 @@ class RequestsResource(SyncAPIResource):
         business_registration_type: Optional[str] | Omit = omit,
         campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
+        entity_type: Optional[MessagingTollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
@@ -108,7 +113,7 @@ class RequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationRequestEgress:
+    ) -> MessagingTollFreeVerificationVerificationRequestEgress:
         """
         Submit a new tollfree verification request
 
@@ -242,7 +247,7 @@ class RequestsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerificationRequestEgress,
+            cast_to=MessagingTollFreeVerificationVerificationRequestEgress,
         )
 
     def retrieve(
@@ -255,7 +260,7 @@ class RequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationRequestStatus:
+    ) -> RequestRetrieveResponse:
         """
         Get a single verification request by its ID.
 
@@ -275,7 +280,7 @@ class RequestsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerificationRequestStatus,
+            cast_to=RequestRetrieveResponse,
         )
 
     def update(
@@ -307,7 +312,7 @@ class RequestsResource(SyncAPIResource):
         business_registration_type: Optional[str] | Omit = omit,
         campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
+        entity_type: Optional[MessagingTollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
@@ -321,7 +326,7 @@ class RequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationRequestEgress:
+    ) -> MessagingTollFreeVerificationVerificationRequestEgress:
         """Update an existing tollfree verification request.
 
         This is particularly useful
@@ -459,7 +464,7 @@ class RequestsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerificationRequestEgress,
+            cast_to=MessagingTollFreeVerificationVerificationRequestEgress,
         )
 
     def list(
@@ -674,7 +679,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_registration_type: Optional[str] | Omit = omit,
         campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
+        entity_type: Optional[MessagingTollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
@@ -688,7 +693,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationRequestEgress:
+    ) -> MessagingTollFreeVerificationVerificationRequestEgress:
         """
         Submit a new tollfree verification request
 
@@ -822,7 +827,7 @@ class AsyncRequestsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerificationRequestEgress,
+            cast_to=MessagingTollFreeVerificationVerificationRequestEgress,
         )
 
     async def retrieve(
@@ -835,7 +840,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationRequestStatus:
+    ) -> RequestRetrieveResponse:
         """
         Get a single verification request by its ID.
 
@@ -855,7 +860,7 @@ class AsyncRequestsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerificationRequestStatus,
+            cast_to=RequestRetrieveResponse,
         )
 
     async def update(
@@ -887,7 +892,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_registration_type: Optional[str] | Omit = omit,
         campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
+        entity_type: Optional[MessagingTollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
@@ -901,7 +906,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationRequestEgress:
+    ) -> MessagingTollFreeVerificationVerificationRequestEgress:
         """Update an existing tollfree verification request.
 
         This is particularly useful
@@ -1039,7 +1044,7 @@ class AsyncRequestsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerificationRequestEgress,
+            cast_to=MessagingTollFreeVerificationVerificationRequestEgress,
         )
 
     def list(

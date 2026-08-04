@@ -10,7 +10,7 @@ from ...._utils import PropertyInfo
 from .url_param import URLParam
 from .use_case_categories import UseCaseCategories
 from .tf_phone_number_param import TfPhoneNumberParam
-from .toll_free_verification_entity_type import TollFreeVerificationEntityType
+from .messaging_toll_free_verification_entity_type import MessagingTollFreeVerificationEntityType
 
 __all__ = ["RequestCreateParams"]
 
@@ -119,7 +119,7 @@ class RequestCreateParams(TypedDict, total=False):
     doing_business_as: Annotated[Optional[str], PropertyInfo(alias="doingBusinessAs")]
     """Doing Business As (DBA) name if different from legal name"""
 
-    entity_type: Annotated[Optional[TollFreeVerificationEntityType], PropertyInfo(alias="entityType")]
+    entity_type: Annotated[Optional[MessagingTollFreeVerificationEntityType], PropertyInfo(alias="entityType")]
     """Business entity classification"""
 
     help_message_response: Annotated[Optional[str], PropertyInfo(alias="helpMessageResponse")]

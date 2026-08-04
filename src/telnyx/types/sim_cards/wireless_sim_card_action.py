@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SimCardAction", "Status"]
+__all__ = ["WirelessSimCardAction", "Status"]
 
 
 class Status(BaseModel):
@@ -23,7 +23,7 @@ class Status(BaseModel):
     """The current status of the SIM card action."""
 
 
-class SimCardAction(BaseModel):
+class WirelessSimCardAction(BaseModel):
     """This object represents a SIM card action.
 
     It allows tracking the current status of an operation that impacts the SIM card.

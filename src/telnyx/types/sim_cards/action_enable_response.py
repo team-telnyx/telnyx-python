@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import Optional
 
 from ..._models import BaseModel
-from .sim_card_action import SimCardAction
+from .wireless_sim_card_action import WirelessSimCardAction
 
 __all__ = ["ActionEnableResponse"]
 
 
 class ActionEnableResponse(BaseModel):
-    data: Optional[SimCardAction] = None
+    data: Optional[WirelessSimCardAction] = None
     """This object represents a SIM card action.
 
     It allows tracking the current status of an operation that impacts the SIM card.

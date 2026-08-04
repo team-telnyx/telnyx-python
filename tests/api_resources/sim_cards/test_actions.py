@@ -11,9 +11,9 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.sim_cards import (
-    SimCardAction,
     ActionEnableResponse,
     ActionDisableResponse,
+    WirelessSimCardAction,
     ActionRetrieveResponse,
     ActionSetStandbyResponse,
     ActionSetPublicIPResponse,
@@ -76,7 +76,7 @@ class TestActions:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         action = client.sim_cards.actions.list()
-        assert_matches_type(SyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -91,7 +91,7 @@ class TestActions:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -101,7 +101,7 @@ class TestActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -111,7 +111,7 @@ class TestActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -524,7 +524,7 @@ class TestAsyncActions:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.sim_cards.actions.list()
-        assert_matches_type(AsyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -539,7 +539,7 @@ class TestAsyncActions:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -549,7 +549,7 @@ class TestAsyncActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -559,7 +559,7 @@ class TestAsyncActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[WirelessSimCardAction], action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -7,7 +7,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .reports.pagination_meta_reporting import PaginationMetaReporting
+from .reports.reporting_pagination_meta_77109e5d17 import ReportingPaginationMeta77109e5d17
 
 __all__ = ["ReportListMdrsResponse", "Data"]
 
@@ -64,4 +64,4 @@ class Data(BaseModel):
 class ReportListMdrsResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMetaReporting] = None
+    meta: Optional[ReportingPaginationMeta77109e5d17] = None

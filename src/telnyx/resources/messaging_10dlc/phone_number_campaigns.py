@@ -140,7 +140,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
-        Create New Phone Number Campaign
+        Update Phone Number Campaign
 
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.
@@ -383,7 +383,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
-        Create New Phone Number Campaign
+        Update Phone Number Campaign
 
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.

@@ -6,14 +6,14 @@ from typing import Optional
 
 from ....._models import BaseModel
 
-__all__ = ["BatchCsvPaginationMeta"]
+__all__ = ["StandardPaginationMetaFfba4faa88"]
 
 
-class BatchCsvPaginationMeta(BaseModel):
-    page_number: int
-
-    total_pages: int
+class StandardPaginationMetaFfba4faa88(BaseModel):
+    page_number: Optional[int] = None
 
     page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
 
     total_results: Optional[int] = None
