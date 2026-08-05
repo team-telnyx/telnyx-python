@@ -492,7 +492,6 @@ from .list_retrieve_all_response import ListRetrieveAllResponse as ListRetrieveA
 from .messaging_error_0b38e7044b import MessagingError0b38e7044b as MessagingError0b38e7044b
 from .number_order_create_params import NumberOrderCreateParams as NumberOrderCreateParams
 from .number_order_list_response import NumberOrderListResponse as NumberOrderListResponse
-from .number_order_status_update import NumberOrderStatusUpdate as NumberOrderStatusUpdate
 from .number_order_update_params import NumberOrderUpdateParams as NumberOrderUpdateParams
 from .number_pool_settings_param import NumberPoolSettingsParam as NumberPoolSettingsParam
 from .oauth_client_create_params import OAuthClientCreateParams as OAuthClientCreateParams
@@ -1285,6 +1284,9 @@ from .message_retrieve_group_messages_response import (
 )
 from .notification_event_condition_list_params import (
     NotificationEventConditionListParams as NotificationEventConditionListParams,
+)
+from .number_order_status_update_webhook_event import (
+    NumberOrderStatusUpdateWebhookEvent as NumberOrderStatusUpdateWebhookEvent,
 )
 from .outbound_voice_profile_retrieve_response import (
     OutboundVoiceProfileRetrieveResponse as OutboundVoiceProfileRetrieveResponse,
