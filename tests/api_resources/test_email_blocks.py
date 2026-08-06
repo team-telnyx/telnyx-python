@@ -27,7 +27,7 @@ class TestEmailBlocks:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         email_block = client.email_blocks.create(
-            to="to",
+            to="spammer@bad.tld",
         )
         assert_matches_type(EmailBlockResponse, email_block, path=["response"])
 
@@ -35,9 +35,9 @@ class TestEmailBlocks:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         email_block = client.email_blocks.create(
-            to="to",
+            to="spammer@bad.tld",
             domain_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            expires_at=parse_datetime("2026-12-31T23:59:59Z"),
             from_="from",
         )
         assert_matches_type(EmailBlockResponse, email_block, path=["response"])
@@ -46,7 +46,7 @@ class TestEmailBlocks:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.email_blocks.with_raw_response.create(
-            to="to",
+            to="spammer@bad.tld",
         )
 
         assert response.is_closed is True
@@ -58,7 +58,7 @@ class TestEmailBlocks:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.email_blocks.with_streaming_response.create(
-            to="to",
+            to="spammer@bad.tld",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -300,7 +300,7 @@ class TestAsyncEmailBlocks:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         email_block = await async_client.email_blocks.create(
-            to="to",
+            to="spammer@bad.tld",
         )
         assert_matches_type(EmailBlockResponse, email_block, path=["response"])
 
@@ -308,9 +308,9 @@ class TestAsyncEmailBlocks:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         email_block = await async_client.email_blocks.create(
-            to="to",
+            to="spammer@bad.tld",
             domain_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            expires_at=parse_datetime("2026-12-31T23:59:59Z"),
             from_="from",
         )
         assert_matches_type(EmailBlockResponse, email_block, path=["response"])
@@ -319,7 +319,7 @@ class TestAsyncEmailBlocks:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.email_blocks.with_raw_response.create(
-            to="to",
+            to="spammer@bad.tld",
         )
 
         assert response.is_closed is True
@@ -331,7 +331,7 @@ class TestAsyncEmailBlocks:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.email_blocks.with_streaming_response.create(
-            to="to",
+            to="spammer@bad.tld",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

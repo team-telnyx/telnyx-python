@@ -139,7 +139,8 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberRetrieveResponse:
         """
-        Retrieve a phone number
+        Returns the detailed configuration and current state of the phone number
+        identified by `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -178,8 +179,10 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberUpdateResponse:
-        """
-        Update a phone number
+        """Updates the configurable settings of the specified phone number.
+
+        The response
+        contains the complete updated phone-number representation.
 
         Args:
           address_id: Identifies the address associated with the phone number.
@@ -244,8 +247,11 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[NumbersPhoneNumberDetailed]:
-        """
-        List phone numbers
+        """Returns phone numbers associated with the account.
+
+        Results support pagination,
+        sorting, and filters for number attributes, status, source, connections, billing
+        groups, emergency addresses, tags, and customer references.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[tag],
@@ -306,8 +312,10 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberDeleteResponse:
-        """
-        Delete a phone number
+        """Deletes the specified phone number from the account.
+
+        The response contains the
+        phone number's final deleted representation.
 
         Args:
           extra_headers: Send extra headers
@@ -458,7 +466,8 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberRetrieveResponse:
         """
-        Retrieve a phone number
+        Returns the detailed configuration and current state of the phone number
+        identified by `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -497,8 +506,10 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberUpdateResponse:
-        """
-        Update a phone number
+        """Updates the configurable settings of the specified phone number.
+
+        The response
+        contains the complete updated phone-number representation.
 
         Args:
           address_id: Identifies the address associated with the phone number.
@@ -563,8 +574,11 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NumbersPhoneNumberDetailed, AsyncDefaultFlatPagination[NumbersPhoneNumberDetailed]]:
-        """
-        List phone numbers
+        """Returns phone numbers associated with the account.
+
+        Results support pagination,
+        sorting, and filters for number attributes, status, source, connections, billing
+        groups, emergency addresses, tags, and customer references.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[tag],
@@ -625,8 +639,10 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberDeleteResponse:
-        """
-        Delete a phone number
+        """Deletes the specified phone number from the account.
+
+        The response contains the
+        phone number's final deleted representation.
 
         Args:
           extra_headers: Send extra headers

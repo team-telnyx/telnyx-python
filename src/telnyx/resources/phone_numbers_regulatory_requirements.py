@@ -57,7 +57,9 @@ class PhoneNumbersRegulatoryRequirementsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumbersRegulatoryRequirementRetrieveResponse:
         """
-        Retrieve regulatory requirements for a list of phone numbers
+        Returns the regulatory requirements that apply to the supplied comma-separated
+        phone numbers. The response includes the matching requirement records and
+        pagination metadata.
 
         Args:
           filter:
@@ -122,7 +124,9 @@ class AsyncPhoneNumbersRegulatoryRequirementsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumbersRegulatoryRequirementRetrieveResponse:
         """
-        Retrieve regulatory requirements for a list of phone numbers
+        Returns the regulatory requirements that apply to the supplied comma-separated
+        phone numbers. The response includes the matching requirement records and
+        pagination metadata.
 
         Args:
           filter:

@@ -63,8 +63,10 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrder:
-        """
-        Create Advanced Order
+        """Creates an advanced number order from the requested order configuration.
+
+        The
+        response contains the resulting advanced order and its initial state.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate with this advanced order
@@ -110,7 +112,8 @@ class AdvancedOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrder:
         """
-        Get Advanced Order
+        Returns the advanced number order identified by `order_id`, including its
+        configuration and current state.
 
         Args:
           extra_headers: Send extra headers
@@ -141,7 +144,11 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrderListResponse:
-        """List Advanced Orders"""
+        """Returns the advanced number orders associated with the account.
+
+        Each result
+        includes the order configuration and its current state.
+        """
         return self._get(
             "/advanced_orders",
             options=make_request_options(
@@ -170,7 +177,8 @@ class AdvancedOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrder:
         """
-        Update Advanced Order
+        Updates the requirement-group configuration for the specified advanced number
+        order. The response contains the updated advanced order.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate with this advanced order
@@ -247,8 +255,10 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrder:
-        """
-        Create Advanced Order
+        """Creates an advanced number order from the requested order configuration.
+
+        The
+        response contains the resulting advanced order and its initial state.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate with this advanced order
@@ -294,7 +304,8 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrder:
         """
-        Get Advanced Order
+        Returns the advanced number order identified by `order_id`, including its
+        configuration and current state.
 
         Args:
           extra_headers: Send extra headers
@@ -325,7 +336,11 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrderListResponse:
-        """List Advanced Orders"""
+        """Returns the advanced number orders associated with the account.
+
+        Each result
+        includes the order configuration and its current state.
+        """
         return await self._get(
             "/advanced_orders",
             options=make_request_options(
@@ -354,7 +369,8 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdvancedOrder:
         """
-        Update Advanced Order
+        Updates the requirement-group configuration for the specified advanced number
+        order. The response contains the updated advanced order.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate with this advanced order

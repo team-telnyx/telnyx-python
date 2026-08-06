@@ -125,7 +125,7 @@ class TestEmailTemplates:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             html_body="html_body",
             name="name",
-            subject="subject",
+            subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
             variables=["string"],
         )
@@ -310,7 +310,7 @@ class TestEmailTemplates:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             html_body="html_body",
             name="name",
-            subject="subject",
+            subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
             variables=["string"],
         )
@@ -460,7 +460,7 @@ class TestAsyncEmailTemplates:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             html_body="html_body",
             name="name",
-            subject="subject",
+            subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
             variables=["string"],
         )
@@ -645,7 +645,7 @@ class TestAsyncEmailTemplates:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             html_body="html_body",
             name="name",
-            subject="subject",
+            subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
             variables=["string"],
         )

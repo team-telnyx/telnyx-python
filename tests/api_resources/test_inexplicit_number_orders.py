@@ -31,9 +31,9 @@ class TestInexplicitNumberOrders:
         inexplicit_number_order = client.inexplicit_number_orders.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
+                    "phone_number_type": "local",
                 }
             ],
         )
@@ -45,12 +45,12 @@ class TestInexplicitNumberOrders:
         inexplicit_number_order = client.inexplicit_number_orders.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
-                    "administrative_area": "administrative_area",
+                    "phone_number_type": "local",
+                    "administrative_area": "CA",
                     "exclude_held_numbers": True,
-                    "features": ["string"],
+                    "features": ["voice"],
                     "locality": "locality",
                     "national_destination_code": "national_destination_code",
                     "phone_number": {
@@ -75,9 +75,9 @@ class TestInexplicitNumberOrders:
         response = client.inexplicit_number_orders.with_raw_response.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
+                    "phone_number_type": "local",
                 }
             ],
         )
@@ -93,9 +93,9 @@ class TestInexplicitNumberOrders:
         with client.inexplicit_number_orders.with_streaming_response.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
+                    "phone_number_type": "local",
                 }
             ],
         ) as response:
@@ -214,9 +214,9 @@ class TestAsyncInexplicitNumberOrders:
         inexplicit_number_order = await async_client.inexplicit_number_orders.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
+                    "phone_number_type": "local",
                 }
             ],
         )
@@ -228,12 +228,12 @@ class TestAsyncInexplicitNumberOrders:
         inexplicit_number_order = await async_client.inexplicit_number_orders.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
-                    "administrative_area": "administrative_area",
+                    "phone_number_type": "local",
+                    "administrative_area": "CA",
                     "exclude_held_numbers": True,
-                    "features": ["string"],
+                    "features": ["voice"],
                     "locality": "locality",
                     "national_destination_code": "national_destination_code",
                     "phone_number": {
@@ -258,9 +258,9 @@ class TestAsyncInexplicitNumberOrders:
         response = await async_client.inexplicit_number_orders.with_raw_response.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
+                    "phone_number_type": "local",
                 }
             ],
         )
@@ -276,9 +276,9 @@ class TestAsyncInexplicitNumberOrders:
         async with async_client.inexplicit_number_orders.with_streaming_response.create(
             ordering_groups=[
                 {
-                    "count_requested": "count_requested",
+                    "count_requested": "5",
                     "country_iso": "US",
-                    "phone_number_type": "phone_number_type",
+                    "phone_number_type": "local",
                 }
             ],
         ) as response:

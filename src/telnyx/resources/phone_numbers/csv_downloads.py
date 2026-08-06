@@ -59,7 +59,9 @@ class CsvDownloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadCreateResponse:
         """
-        Create a CSV download
+        Starts generation of a CSV export for phone numbers matching the supplied
+        filters. The `csv_format` parameter selects the output format, and the response
+        contains the resulting download record.
 
         Args:
           csv_format: Which format to use when generating the CSV file. The default for backwards
@@ -110,7 +112,8 @@ class CsvDownloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadRetrieveResponse:
         """
-        Retrieve a CSV download
+        Returns the current status and download details for the CSV export identified by
+        `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -144,7 +147,8 @@ class CsvDownloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[CsvDownload]:
         """
-        List CSV downloads
+        Returns CSV export jobs created for account phone numbers, including each
+        export's current status and pagination metadata.
 
         Args:
           extra_headers: Send extra headers
@@ -208,7 +212,9 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadCreateResponse:
         """
-        Create a CSV download
+        Starts generation of a CSV export for phone numbers matching the supplied
+        filters. The `csv_format` parameter selects the output format, and the response
+        contains the resulting download record.
 
         Args:
           csv_format: Which format to use when generating the CSV file. The default for backwards
@@ -259,7 +265,8 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadRetrieveResponse:
         """
-        Retrieve a CSV download
+        Returns the current status and download details for the CSV export identified by
+        `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -293,7 +300,8 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CsvDownload, AsyncDefaultFlatPagination[CsvDownload]]:
         """
-        List CSV downloads
+        Returns CSV export jobs created for account phone numbers, including each
+        export's current status and pagination metadata.
 
         Args:
           extra_headers: Send extra headers
