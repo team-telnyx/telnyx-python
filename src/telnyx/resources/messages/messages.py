@@ -413,8 +413,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendGroupMmsResponse:
-        """
-        Send a group MMS message
+        """Queues an MMS addressed to multiple recipients as a group conversation.
+
+        Delivery
+        events are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -486,8 +488,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendLongCodeResponse:
-        """
-        Send a long code message
+        """Queues an outbound SMS or MMS using a long-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -577,8 +581,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendNumberPoolResponse:
-        """
-        Send a message using number pool
+        """Queues an outbound message using a number pool.
+
+        Telnyx selects an eligible
+        sender from the pool according to its messaging profile configuration.
 
         Args:
           messaging_profile_id: Unique identifier for a messaging profile.
@@ -668,8 +674,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendShortCodeResponse:
-        """
-        Send a short code message
+        """Queues an outbound SMS or MMS using a short-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -1166,8 +1174,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendGroupMmsResponse:
-        """
-        Send a group MMS message
+        """Queues an MMS addressed to multiple recipients as a group conversation.
+
+        Delivery
+        events are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -1239,8 +1249,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendLongCodeResponse:
-        """
-        Send a long code message
+        """Queues an outbound SMS or MMS using a long-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -1330,8 +1342,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendNumberPoolResponse:
-        """
-        Send a message using number pool
+        """Queues an outbound message using a number pool.
+
+        Telnyx selects an eligible
+        sender from the pool according to its messaging profile configuration.
 
         Args:
           messaging_profile_id: Unique identifier for a messaging profile.
@@ -1421,8 +1435,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendShortCodeResponse:
-        """
-        Send a short code message
+        """Queues an outbound SMS or MMS using a short-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.

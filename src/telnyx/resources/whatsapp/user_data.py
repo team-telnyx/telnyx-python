@@ -54,7 +54,10 @@ class UserDataResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDataRetrieveResponse:
-        """Fetch Whatsapp user data"""
+        """
+        Returns the WhatsApp user-data settings associated with the authenticated Telnyx
+        account.
+        """
         return self._get(
             "/v2/whatsapp/user_data",
             options=make_request_options(
@@ -76,7 +79,8 @@ class UserDataResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDataUpdateResponse:
         """
-        Update Whatsapp user data
+        Updates the supplied WhatsApp user-data settings for the authenticated Telnyx
+        account.
 
         Args:
           webhook_failover_url: Failover URL to send Whatsapp signup events
@@ -139,7 +143,10 @@ class AsyncUserDataResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDataRetrieveResponse:
-        """Fetch Whatsapp user data"""
+        """
+        Returns the WhatsApp user-data settings associated with the authenticated Telnyx
+        account.
+        """
         return await self._get(
             "/v2/whatsapp/user_data",
             options=make_request_options(
@@ -161,7 +168,8 @@ class AsyncUserDataResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDataUpdateResponse:
         """
-        Update Whatsapp user data
+        Updates the supplied WhatsApp user-data settings for the authenticated Telnyx
+        account.
 
         Args:
           webhook_failover_url: Failover URL to send Whatsapp signup events

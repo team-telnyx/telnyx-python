@@ -82,7 +82,7 @@ class BusinessAccountsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BusinessAccountRetrieveResponse:
         """
-        Get a single Whatsapp Business Account
+        Returns the configuration and status of the specified WhatsApp Business Account.
 
         Args:
           extra_headers: Send extra headers
@@ -116,7 +116,7 @@ class BusinessAccountsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[BusinessAccountListResponse]:
         """
-        List Whatsapp Business Accounts
+        Returns WhatsApp Business Accounts linked to the authenticated Telnyx account.
 
         Args:
           extra_headers: Send extra headers
@@ -158,7 +158,8 @@ class BusinessAccountsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Whatsapp Business Account
+        Unlinks and deletes the specified WhatsApp Business Account resource from
+        Telnyx.
 
         Args:
           extra_headers: Send extra headers
@@ -224,7 +225,7 @@ class AsyncBusinessAccountsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BusinessAccountRetrieveResponse:
         """
-        Get a single Whatsapp Business Account
+        Returns the configuration and status of the specified WhatsApp Business Account.
 
         Args:
           extra_headers: Send extra headers
@@ -258,7 +259,7 @@ class AsyncBusinessAccountsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BusinessAccountListResponse, AsyncDefaultFlatPagination[BusinessAccountListResponse]]:
         """
-        List Whatsapp Business Accounts
+        Returns WhatsApp Business Accounts linked to the authenticated Telnyx account.
 
         Args:
           extra_headers: Send extra headers
@@ -300,7 +301,8 @@ class AsyncBusinessAccountsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Whatsapp Business Account
+        Unlinks and deletes the specified WhatsApp Business Account resource from
+        Telnyx.
 
         Args:
           extra_headers: Send extra headers

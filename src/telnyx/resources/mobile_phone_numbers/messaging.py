@@ -57,7 +57,7 @@ class MessagingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
-        Retrieve a mobile phone number with messaging settings
+        Returns the messaging configuration for the specified mobile phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -91,7 +91,7 @@ class MessagingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings]:
         """
-        List mobile phone numbers with messaging settings
+        Returns mobile phone numbers with their current messaging configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -154,7 +154,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
-        Retrieve a mobile phone number with messaging settings
+        Returns the messaging configuration for the specified mobile phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -190,7 +190,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         MobilePhoneNumberWithMessagingSettings, AsyncDefaultFlatPagination[MobilePhoneNumberWithMessagingSettings]
     ]:
         """
-        List mobile phone numbers with messaging settings
+        Returns mobile phone numbers with their current messaging configuration.
 
         Args:
           extra_headers: Send extra headers

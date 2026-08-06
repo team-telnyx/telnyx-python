@@ -148,8 +148,10 @@ class Messaging10dlcResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Messaging10dlcGetEnumResponse:
-        """
-        Get Enum
+        """Returns the accepted values for the selected 10DLC enumeration endpoint.
+
+        Use
+        these values when constructing brand and campaign requests.
 
         Args:
           extra_headers: Send extra headers
@@ -253,8 +255,10 @@ class AsyncMessaging10dlcResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Messaging10dlcGetEnumResponse:
-        """
-        Get Enum
+        """Returns the accepted values for the selected 10DLC enumeration endpoint.
+
+        Use
+        these values when constructing brand and campaign requests.
 
         Args:
           extra_headers: Send extra headers

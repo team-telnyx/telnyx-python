@@ -65,8 +65,10 @@ class AutorespConfigsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
-        """
-        Create auto-response setting
+        """Creates an auto-response rule on the specified messaging profile.
+
+        Matching
+        inbound messages trigger the configured response.
 
         Args:
           extra_headers: Send extra headers
@@ -109,7 +111,8 @@ class AutorespConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
         """
-        Get Auto-Response Setting
+        Returns the matching criteria and response content for the specified
+        auto-response rule.
 
         Args:
           extra_headers: Send extra headers
@@ -153,7 +156,7 @@ class AutorespConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
         """
-        Update Auto-Response Setting
+        Replaces the configuration of the specified auto-response rule.
 
         Args:
           extra_headers: Send extra headers
@@ -204,7 +207,7 @@ class AutorespConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutorespConfigListResponse:
         """
-        List Auto-Response Settings
+        Returns the auto-response rules configured for the specified messaging profile.
 
         Args:
           country_code: Filter results by country code.
@@ -259,7 +262,7 @@ class AutorespConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Delete Auto-Response Setting
+        Deletes the specified auto-response rule from the messaging profile.
 
         Args:
           extra_headers: Send extra headers
@@ -324,8 +327,10 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
-        """
-        Create auto-response setting
+        """Creates an auto-response rule on the specified messaging profile.
+
+        Matching
+        inbound messages trigger the configured response.
 
         Args:
           extra_headers: Send extra headers
@@ -368,7 +373,8 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
         """
-        Get Auto-Response Setting
+        Returns the matching criteria and response content for the specified
+        auto-response rule.
 
         Args:
           extra_headers: Send extra headers
@@ -412,7 +418,7 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
         """
-        Update Auto-Response Setting
+        Replaces the configuration of the specified auto-response rule.
 
         Args:
           extra_headers: Send extra headers
@@ -463,7 +469,7 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutorespConfigListResponse:
         """
-        List Auto-Response Settings
+        Returns the auto-response rules configured for the specified messaging profile.
 
         Args:
           country_code: Filter results by country code.
@@ -518,7 +524,7 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Delete Auto-Response Setting
+        Deletes the specified auto-response rule from the messaging profile.
 
         Args:
           extra_headers: Send extra headers
