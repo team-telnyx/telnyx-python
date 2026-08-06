@@ -147,7 +147,9 @@ class RoomsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRetrieveResponse:
         """
-        View a room.
+        Returns the room identified by `room_id`, including its participant limit,
+        recording and webhook configuration, and active session identifier. Use
+        `include_sessions` to include its sessions.
 
         Args:
           include_sessions: To decide if room sessions should be included in the response.
@@ -253,8 +255,10 @@ class RoomsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[Room]:
-        """
-        View a list of rooms.
+        """Returns a paginated list of rooms.
+
+        Filter the results by creation or update date
+        and unique name, and use `include_sessions` to include each room’s sessions.
 
         Args:
           filter:
@@ -438,7 +442,9 @@ class AsyncRoomsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRetrieveResponse:
         """
-        View a room.
+        Returns the room identified by `room_id`, including its participant limit,
+        recording and webhook configuration, and active session identifier. Use
+        `include_sessions` to include its sessions.
 
         Args:
           include_sessions: To decide if room sessions should be included in the response.
@@ -546,8 +552,10 @@ class AsyncRoomsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Room, AsyncDefaultFlatPagination[Room]]:
-        """
-        View a list of rooms.
+        """Returns a paginated list of rooms.
+
+        Filter the results by creation or update date
+        and unique name, and use `include_sessions` to include each room’s sessions.
 
         Args:
           filter:

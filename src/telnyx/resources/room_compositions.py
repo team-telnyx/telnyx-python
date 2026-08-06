@@ -128,7 +128,9 @@ class RoomCompositionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionRetrieveResponse:
         """
-        View a room composition.
+        Returns the composition identified by `room_composition_id`, including its room
+        and session, processing status, media details, video layout, lifecycle
+        timestamps, and download URL.
 
         Args:
           extra_headers: Send extra headers
@@ -164,8 +166,10 @@ class RoomCompositionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RoomComposition]:
-        """
-        View a list of room compositions.
+        """Returns a paginated list of room compositions.
+
+        Filter compositions by creation
+        date, room session, or processing status.
 
         Args:
           filter:
@@ -339,7 +343,9 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionRetrieveResponse:
         """
-        View a room composition.
+        Returns the composition identified by `room_composition_id`, including its room
+        and session, processing status, media details, video layout, lifecycle
+        timestamps, and download URL.
 
         Args:
           extra_headers: Send extra headers
@@ -375,8 +381,10 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RoomComposition, AsyncDefaultFlatPagination[RoomComposition]]:
-        """
-        View a list of room compositions.
+        """Returns a paginated list of room compositions.
+
+        Filter compositions by creation
+        date, room session, or processing status.
 
         Args:
           filter:

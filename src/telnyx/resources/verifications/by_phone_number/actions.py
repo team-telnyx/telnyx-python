@@ -57,7 +57,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyVerificationCodeResponse:
         """
-        Verify verification code by phone number
+        Submits a verification code for the specified phone number and Verify profile.
+        The response indicates whether the code was accepted or rejected.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -128,7 +129,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyVerificationCodeResponse:
         """
-        Verify verification code by phone number
+        Submits a verification code for the specified phone number and Verify profile.
+        The response indicates whether the code was accepted or rejected.
 
         Args:
           phone_number: +E164 formatted phone number.
