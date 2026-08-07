@@ -165,7 +165,7 @@ class TestClusters:
     @parametrize
     def test_method_compute(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.compute(
-            bucket="bucket",
+            bucket="string",
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
@@ -173,11 +173,11 @@ class TestClusters:
     @parametrize
     def test_method_compute_with_all_params(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.compute(
-            bucket="bucket",
+            bucket="string",
             files=["string"],
-            min_cluster_size=0,
-            min_subcluster_size=0,
-            prefix="prefix",
+            min_cluster_size=25,
+            min_subcluster_size=5,
+            prefix="string",
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
@@ -185,7 +185,7 @@ class TestClusters:
     @parametrize
     def test_raw_response_compute(self, client: Telnyx) -> None:
         response = client.ai.clusters.with_raw_response.compute(
-            bucket="bucket",
+            bucket="string",
         )
 
         assert response.is_closed is True
@@ -197,7 +197,7 @@ class TestClusters:
     @parametrize
     def test_streaming_response_compute(self, client: Telnyx) -> None:
         with client.ai.clusters.with_streaming_response.compute(
-            bucket="bucket",
+            bucket="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -411,7 +411,7 @@ class TestAsyncClusters:
     @parametrize
     async def test_method_compute(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.compute(
-            bucket="bucket",
+            bucket="string",
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
@@ -419,11 +419,11 @@ class TestAsyncClusters:
     @parametrize
     async def test_method_compute_with_all_params(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.compute(
-            bucket="bucket",
+            bucket="string",
             files=["string"],
-            min_cluster_size=0,
-            min_subcluster_size=0,
-            prefix="prefix",
+            min_cluster_size=25,
+            min_subcluster_size=5,
+            prefix="string",
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
@@ -431,7 +431,7 @@ class TestAsyncClusters:
     @parametrize
     async def test_raw_response_compute(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.clusters.with_raw_response.compute(
-            bucket="bucket",
+            bucket="string",
         )
 
         assert response.is_closed is True
@@ -443,7 +443,7 @@ class TestAsyncClusters:
     @parametrize
     async def test_streaming_response_compute(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.clusters.with_streaming_response.compute(
-            bucket="bucket",
+            bucket="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

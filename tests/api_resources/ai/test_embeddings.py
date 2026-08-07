@@ -26,7 +26,7 @@ class TestEmbeddings:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         embedding = client.ai.embeddings.create(
-            bucket_name="bucket_name",
+            bucket_name="Bucket Name",
         )
         assert_matches_type(EmbeddingResponse, embedding, path=["response"])
 
@@ -34,9 +34,9 @@ class TestEmbeddings:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         embedding = client.ai.embeddings.create(
-            bucket_name="bucket_name",
-            document_chunk_overlap_size=0,
-            document_chunk_size=0,
+            bucket_name="Bucket Name",
+            document_chunk_overlap_size=512,
+            document_chunk_size=1024,
             embedding_model="thenlper/gte-large",
             loader="default",
         )
@@ -46,7 +46,7 @@ class TestEmbeddings:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.embeddings.with_raw_response.create(
-            bucket_name="bucket_name",
+            bucket_name="Bucket Name",
         )
 
         assert response.is_closed is True
@@ -58,7 +58,7 @@ class TestEmbeddings:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.embeddings.with_streaming_response.create(
-            bucket_name="bucket_name",
+            bucket_name="Bucket Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -150,8 +150,8 @@ class TestEmbeddings:
     @parametrize
     def test_method_similarity_search(self, client: Telnyx) -> None:
         embedding = client.ai.embeddings.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
+            bucket_name="Bucket Name",
+            query="Query",
         )
         assert_matches_type(EmbeddingSimilaritySearchResponse, embedding, path=["response"])
 
@@ -159,9 +159,9 @@ class TestEmbeddings:
     @parametrize
     def test_method_similarity_search_with_all_params(self, client: Telnyx) -> None:
         embedding = client.ai.embeddings.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
-            num_of_docs=0,
+            bucket_name="Bucket Name",
+            query="Query",
+            num_of_docs=3,
         )
         assert_matches_type(EmbeddingSimilaritySearchResponse, embedding, path=["response"])
 
@@ -169,8 +169,8 @@ class TestEmbeddings:
     @parametrize
     def test_raw_response_similarity_search(self, client: Telnyx) -> None:
         response = client.ai.embeddings.with_raw_response.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
+            bucket_name="Bucket Name",
+            query="Query",
         )
 
         assert response.is_closed is True
@@ -182,8 +182,8 @@ class TestEmbeddings:
     @parametrize
     def test_streaming_response_similarity_search(self, client: Telnyx) -> None:
         with client.ai.embeddings.with_streaming_response.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
+            bucket_name="Bucket Name",
+            query="Query",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,8 +197,8 @@ class TestEmbeddings:
     @parametrize
     def test_method_url(self, client: Telnyx) -> None:
         embedding = client.ai.embeddings.url(
-            bucket_name="bucket_name",
-            url="url",
+            bucket_name="Bucket Name",
+            url="URL",
         )
         assert_matches_type(EmbeddingResponse, embedding, path=["response"])
 
@@ -206,8 +206,8 @@ class TestEmbeddings:
     @parametrize
     def test_raw_response_url(self, client: Telnyx) -> None:
         response = client.ai.embeddings.with_raw_response.url(
-            bucket_name="bucket_name",
-            url="url",
+            bucket_name="Bucket Name",
+            url="URL",
         )
 
         assert response.is_closed is True
@@ -219,8 +219,8 @@ class TestEmbeddings:
     @parametrize
     def test_streaming_response_url(self, client: Telnyx) -> None:
         with client.ai.embeddings.with_streaming_response.url(
-            bucket_name="bucket_name",
-            url="url",
+            bucket_name="Bucket Name",
+            url="URL",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -240,7 +240,7 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         embedding = await async_client.ai.embeddings.create(
-            bucket_name="bucket_name",
+            bucket_name="Bucket Name",
         )
         assert_matches_type(EmbeddingResponse, embedding, path=["response"])
 
@@ -248,9 +248,9 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         embedding = await async_client.ai.embeddings.create(
-            bucket_name="bucket_name",
-            document_chunk_overlap_size=0,
-            document_chunk_size=0,
+            bucket_name="Bucket Name",
+            document_chunk_overlap_size=512,
+            document_chunk_size=1024,
             embedding_model="thenlper/gte-large",
             loader="default",
         )
@@ -260,7 +260,7 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.embeddings.with_raw_response.create(
-            bucket_name="bucket_name",
+            bucket_name="Bucket Name",
         )
 
         assert response.is_closed is True
@@ -272,7 +272,7 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.embeddings.with_streaming_response.create(
-            bucket_name="bucket_name",
+            bucket_name="Bucket Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -364,8 +364,8 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_method_similarity_search(self, async_client: AsyncTelnyx) -> None:
         embedding = await async_client.ai.embeddings.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
+            bucket_name="Bucket Name",
+            query="Query",
         )
         assert_matches_type(EmbeddingSimilaritySearchResponse, embedding, path=["response"])
 
@@ -373,9 +373,9 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_method_similarity_search_with_all_params(self, async_client: AsyncTelnyx) -> None:
         embedding = await async_client.ai.embeddings.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
-            num_of_docs=0,
+            bucket_name="Bucket Name",
+            query="Query",
+            num_of_docs=3,
         )
         assert_matches_type(EmbeddingSimilaritySearchResponse, embedding, path=["response"])
 
@@ -383,8 +383,8 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_raw_response_similarity_search(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.embeddings.with_raw_response.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
+            bucket_name="Bucket Name",
+            query="Query",
         )
 
         assert response.is_closed is True
@@ -396,8 +396,8 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_streaming_response_similarity_search(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.embeddings.with_streaming_response.similarity_search(
-            bucket_name="bucket_name",
-            query="query",
+            bucket_name="Bucket Name",
+            query="Query",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -411,8 +411,8 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_method_url(self, async_client: AsyncTelnyx) -> None:
         embedding = await async_client.ai.embeddings.url(
-            bucket_name="bucket_name",
-            url="url",
+            bucket_name="Bucket Name",
+            url="URL",
         )
         assert_matches_type(EmbeddingResponse, embedding, path=["response"])
 
@@ -420,8 +420,8 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_raw_response_url(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.embeddings.with_raw_response.url(
-            bucket_name="bucket_name",
-            url="url",
+            bucket_name="Bucket Name",
+            url="URL",
         )
 
         assert response.is_closed is True
@@ -433,8 +433,8 @@ class TestAsyncEmbeddings:
     @parametrize
     async def test_streaming_response_url(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.embeddings.with_streaming_response.url(
-            bucket_name="bucket_name",
-            url="url",
+            bucket_name="Bucket Name",
+            url="URL",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

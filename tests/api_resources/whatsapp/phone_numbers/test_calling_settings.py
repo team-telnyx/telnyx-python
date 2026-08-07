@@ -67,7 +67,7 @@ class TestCallingSettings:
     def test_method_update(self, client: Telnyx) -> None:
         calling_setting = client.whatsapp.phone_numbers.calling_settings.update(
             phone_number="phone_number",
-            enabled=True,
+            enabled=False,
         )
         assert_matches_type(CallingSettingUpdateResponse, calling_setting, path=["response"])
 
@@ -76,7 +76,7 @@ class TestCallingSettings:
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.whatsapp.phone_numbers.calling_settings.with_raw_response.update(
             phone_number="phone_number",
-            enabled=True,
+            enabled=False,
         )
 
         assert response.is_closed is True
@@ -89,7 +89,7 @@ class TestCallingSettings:
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.whatsapp.phone_numbers.calling_settings.with_streaming_response.update(
             phone_number="phone_number",
-            enabled=True,
+            enabled=False,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,7 +105,7 @@ class TestCallingSettings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
             client.whatsapp.phone_numbers.calling_settings.with_raw_response.update(
                 phone_number="",
-                enabled=True,
+                enabled=False,
             )
 
 
@@ -161,7 +161,7 @@ class TestAsyncCallingSettings:
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         calling_setting = await async_client.whatsapp.phone_numbers.calling_settings.update(
             phone_number="phone_number",
-            enabled=True,
+            enabled=False,
         )
         assert_matches_type(CallingSettingUpdateResponse, calling_setting, path=["response"])
 
@@ -170,7 +170,7 @@ class TestAsyncCallingSettings:
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.whatsapp.phone_numbers.calling_settings.with_raw_response.update(
             phone_number="phone_number",
-            enabled=True,
+            enabled=False,
         )
 
         assert response.is_closed is True
@@ -183,7 +183,7 @@ class TestAsyncCallingSettings:
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.whatsapp.phone_numbers.calling_settings.with_streaming_response.update(
             phone_number="phone_number",
-            enabled=True,
+            enabled=False,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -199,5 +199,5 @@ class TestAsyncCallingSettings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
             await async_client.whatsapp.phone_numbers.calling_settings.with_raw_response.update(
                 phone_number="",
-                enabled=True,
+                enabled=False,
             )

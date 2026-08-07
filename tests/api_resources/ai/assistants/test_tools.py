@@ -136,8 +136,8 @@ class TestTools:
         tool = client.ai.assistants.tools.test(
             tool_id="tool_id",
             assistant_id="assistant_id",
-            arguments={"foo": "bar"},
-            dynamic_variables={"foo": "bar"},
+            arguments={"order_id": "bar"},
+            dynamic_variables={"customer_name": "bar"},
         )
         assert_matches_type(ToolTestResponse, tool, path=["response"])
 
@@ -309,8 +309,8 @@ class TestAsyncTools:
         tool = await async_client.ai.assistants.tools.test(
             tool_id="tool_id",
             assistant_id="assistant_id",
-            arguments={"foo": "bar"},
-            dynamic_variables={"foo": "bar"},
+            arguments={"order_id": "bar"},
+            dynamic_variables={"customer_name": "bar"},
         )
         assert_matches_type(ToolTestResponse, tool, path=["response"])
 

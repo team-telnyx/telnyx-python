@@ -25,8 +25,8 @@ class TestInsights:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
@@ -34,10 +34,10 @@ class TestInsights:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
             json_schema="string",
-            webhook="webhook",
+            webhook="",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
@@ -45,8 +45,8 @@ class TestInsights:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.conversations.insights.with_raw_response.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
         )
 
         assert response.is_closed is True
@@ -58,8 +58,8 @@ class TestInsights:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.conversations.insights.with_streaming_response.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -124,10 +124,10 @@ class TestInsights:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.update(
             insight_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            instructions="instructions",
+            instructions="Instructions",
             json_schema="string",
-            name="name",
-            webhook="webhook",
+            name="Name",
+            webhook="Webhook",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
@@ -254,8 +254,8 @@ class TestAsyncInsights:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
@@ -263,10 +263,10 @@ class TestAsyncInsights:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
             json_schema="string",
-            webhook="webhook",
+            webhook="",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
@@ -274,8 +274,8 @@ class TestAsyncInsights:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insights.with_raw_response.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
         )
 
         assert response.is_closed is True
@@ -287,8 +287,8 @@ class TestAsyncInsights:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insights.with_streaming_response.create(
-            instructions="instructions",
-            name="name",
+            instructions="Instructions",
+            name="Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -353,10 +353,10 @@ class TestAsyncInsights:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.update(
             insight_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            instructions="instructions",
+            instructions="Instructions",
             json_schema="string",
-            name="name",
-            webhook="webhook",
+            name="Name",
+            webhook="Webhook",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 

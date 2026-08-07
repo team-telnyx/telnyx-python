@@ -23,9 +23,9 @@ class TestMcpServers:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         mcp_server = client.ai.mcp_servers.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
         )
         assert_matches_type(McpServer, mcp_server, path=["response"])
 
@@ -33,9 +33,9 @@ class TestMcpServers:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         mcp_server = client.ai.mcp_servers.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
             allowed_tools=["string"],
             api_key_ref="api_key_ref",
         )
@@ -45,9 +45,9 @@ class TestMcpServers:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.mcp_servers.with_raw_response.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
         )
 
         assert response.is_closed is True
@@ -59,9 +59,9 @@ class TestMcpServers:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.mcp_servers.with_streaming_response.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,13 +126,13 @@ class TestMcpServers:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         mcp_server = client.ai.mcp_servers.update(
             mcp_server_id="mcp_server_id",
-            id="id",
+            id="Id",
             allowed_tools=["string"],
             api_key_ref="api_key_ref",
-            created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            name="name",
-            type="type",
-            url="url",
+            created_at=parse_datetime("2024-01-23T18:10:02.574Z"),
+            name="Name",
+            type="Type",
+            url="Url",
         )
         assert_matches_type(McpServer, mcp_server, path=["response"])
 
@@ -261,9 +261,9 @@ class TestAsyncMcpServers:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         mcp_server = await async_client.ai.mcp_servers.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
         )
         assert_matches_type(McpServer, mcp_server, path=["response"])
 
@@ -271,9 +271,9 @@ class TestAsyncMcpServers:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mcp_server = await async_client.ai.mcp_servers.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
             allowed_tools=["string"],
             api_key_ref="api_key_ref",
         )
@@ -283,9 +283,9 @@ class TestAsyncMcpServers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.mcp_servers.with_raw_response.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
         )
 
         assert response.is_closed is True
@@ -297,9 +297,9 @@ class TestAsyncMcpServers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.mcp_servers.with_streaming_response.create(
-            name="name",
-            type="type",
-            url="url",
+            name="Name",
+            type="Type",
+            url="Url",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -364,13 +364,13 @@ class TestAsyncMcpServers:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mcp_server = await async_client.ai.mcp_servers.update(
             mcp_server_id="mcp_server_id",
-            id="id",
+            id="Id",
             allowed_tools=["string"],
             api_key_ref="api_key_ref",
-            created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            name="name",
-            type="type",
-            url="url",
+            created_at=parse_datetime("2024-01-23T18:10:02.574Z"),
+            name="Name",
+            type="Type",
+            url="Url",
         )
         assert_matches_type(McpServer, mcp_server, path=["response"])
 

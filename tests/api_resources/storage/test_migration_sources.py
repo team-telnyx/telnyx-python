@@ -26,7 +26,7 @@ class TestMigrationSources:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={},
         )
@@ -36,13 +36,13 @@ class TestMigrationSources:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={
-                "access_key": "access_key",
-                "secret_access_key": "secret_access_key",
+                "access_key": "string",
+                "secret_access_key": "string",
             },
-            source_region="source_region",
+            source_region="string",
         )
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
@@ -50,7 +50,7 @@ class TestMigrationSources:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.storage.migration_sources.with_raw_response.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={},
         )
@@ -64,7 +64,7 @@ class TestMigrationSources:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.storage.migration_sources.with_streaming_response.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={},
         ) as response:
@@ -198,7 +198,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={},
         )
@@ -208,13 +208,13 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={
-                "access_key": "access_key",
-                "secret_access_key": "secret_access_key",
+                "access_key": "string",
+                "secret_access_key": "string",
             },
-            source_region="source_region",
+            source_region="string",
         )
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
@@ -222,7 +222,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migration_sources.with_raw_response.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={},
         )
@@ -236,7 +236,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migration_sources.with_streaming_response.create(
-            bucket_name="bucket_name",
+            bucket_name="string",
             provider="aws",
             provider_auth={},
         ) as response:

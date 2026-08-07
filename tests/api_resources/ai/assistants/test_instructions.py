@@ -29,8 +29,8 @@ class TestInstructions:
     def test_method_enhance_with_all_params(self, client: Telnyx) -> None:
         instruction = client.ai.assistants.instructions.enhance(
             assistant_id="assistant_id",
-            enhancement_prompt="enhancement_prompt",
-            instructions="instructions",
+            enhancement_prompt="string",
+            instructions="string",
         )
         assert_matches_type(str, instruction, path=["response"])
 
@@ -87,8 +87,8 @@ class TestAsyncInstructions:
     async def test_method_enhance_with_all_params(self, async_client: AsyncTelnyx) -> None:
         instruction = await async_client.ai.assistants.instructions.enhance(
             assistant_id="assistant_id",
-            enhancement_prompt="enhancement_prompt",
-            instructions="instructions",
+            enhancement_prompt="string",
+            instructions="string",
         )
         assert_matches_type(str, instruction, path=["response"])
 

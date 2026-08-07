@@ -67,8 +67,8 @@ class TestExternalVetting:
     def test_method_imports(self, client: Telnyx) -> None:
         external_vetting = client.messaging_10dlc.brand.external_vetting.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
         )
         assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
@@ -77,9 +77,9 @@ class TestExternalVetting:
     def test_method_imports_with_all_params(self, client: Telnyx) -> None:
         external_vetting = client.messaging_10dlc.brand.external_vetting.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
-            vetting_token="vettingToken",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
+            vetting_token="Vettingtoken",
         )
         assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
@@ -88,8 +88,8 @@ class TestExternalVetting:
     def test_raw_response_imports(self, client: Telnyx) -> None:
         response = client.messaging_10dlc.brand.external_vetting.with_raw_response.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
         )
 
         assert response.is_closed is True
@@ -102,8 +102,8 @@ class TestExternalVetting:
     def test_streaming_response_imports(self, client: Telnyx) -> None:
         with client.messaging_10dlc.brand.external_vetting.with_streaming_response.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -119,8 +119,8 @@ class TestExternalVetting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
             client.messaging_10dlc.brand.external_vetting.with_raw_response.imports(
                 brand_id="",
-                evp_id="evpId",
-                vetting_id="vettingId",
+                evp_id="Evpid",
+                vetting_id="Vettingid",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -128,8 +128,8 @@ class TestExternalVetting:
     def test_method_order(self, client: Telnyx) -> None:
         external_vetting = client.messaging_10dlc.brand.external_vetting.order(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_class="vettingClass",
+            evp_id="Evpid",
+            vetting_class="Vettingclass",
         )
         assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
@@ -138,8 +138,8 @@ class TestExternalVetting:
     def test_raw_response_order(self, client: Telnyx) -> None:
         response = client.messaging_10dlc.brand.external_vetting.with_raw_response.order(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_class="vettingClass",
+            evp_id="Evpid",
+            vetting_class="Vettingclass",
         )
 
         assert response.is_closed is True
@@ -152,8 +152,8 @@ class TestExternalVetting:
     def test_streaming_response_order(self, client: Telnyx) -> None:
         with client.messaging_10dlc.brand.external_vetting.with_streaming_response.order(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_class="vettingClass",
+            evp_id="Evpid",
+            vetting_class="Vettingclass",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -169,8 +169,8 @@ class TestExternalVetting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
             client.messaging_10dlc.brand.external_vetting.with_raw_response.order(
                 brand_id="",
-                evp_id="evpId",
-                vetting_class="vettingClass",
+                evp_id="Evpid",
+                vetting_class="Vettingclass",
             )
 
 
@@ -226,8 +226,8 @@ class TestAsyncExternalVetting:
     async def test_method_imports(self, async_client: AsyncTelnyx) -> None:
         external_vetting = await async_client.messaging_10dlc.brand.external_vetting.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
         )
         assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
@@ -236,9 +236,9 @@ class TestAsyncExternalVetting:
     async def test_method_imports_with_all_params(self, async_client: AsyncTelnyx) -> None:
         external_vetting = await async_client.messaging_10dlc.brand.external_vetting.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
-            vetting_token="vettingToken",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
+            vetting_token="Vettingtoken",
         )
         assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
@@ -247,8 +247,8 @@ class TestAsyncExternalVetting:
     async def test_raw_response_imports(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_10dlc.brand.external_vetting.with_raw_response.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
         )
 
         assert response.is_closed is True
@@ -261,8 +261,8 @@ class TestAsyncExternalVetting:
     async def test_streaming_response_imports(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_10dlc.brand.external_vetting.with_streaming_response.imports(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_id="vettingId",
+            evp_id="Evpid",
+            vetting_id="Vettingid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -278,8 +278,8 @@ class TestAsyncExternalVetting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
             await async_client.messaging_10dlc.brand.external_vetting.with_raw_response.imports(
                 brand_id="",
-                evp_id="evpId",
-                vetting_id="vettingId",
+                evp_id="Evpid",
+                vetting_id="Vettingid",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -287,8 +287,8 @@ class TestAsyncExternalVetting:
     async def test_method_order(self, async_client: AsyncTelnyx) -> None:
         external_vetting = await async_client.messaging_10dlc.brand.external_vetting.order(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_class="vettingClass",
+            evp_id="Evpid",
+            vetting_class="Vettingclass",
         )
         assert_matches_type(ExternalVetting, external_vetting, path=["response"])
 
@@ -297,8 +297,8 @@ class TestAsyncExternalVetting:
     async def test_raw_response_order(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_10dlc.brand.external_vetting.with_raw_response.order(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_class="vettingClass",
+            evp_id="Evpid",
+            vetting_class="Vettingclass",
         )
 
         assert response.is_closed is True
@@ -311,8 +311,8 @@ class TestAsyncExternalVetting:
     async def test_streaming_response_order(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_10dlc.brand.external_vetting.with_streaming_response.order(
             brand_id="brandId",
-            evp_id="evpId",
-            vetting_class="vettingClass",
+            evp_id="Evpid",
+            vetting_class="Vettingclass",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -328,6 +328,6 @@ class TestAsyncExternalVetting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
             await async_client.messaging_10dlc.brand.external_vetting.with_raw_response.order(
                 brand_id="",
-                evp_id="evpId",
-                vetting_class="vettingClass",
+                evp_id="Evpid",
+                vetting_class="Vettingclass",
             )

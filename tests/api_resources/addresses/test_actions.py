@@ -33,7 +33,7 @@ class TestActions:
     def test_method_accept_suggestions_with_all_params(self, client: Telnyx) -> None:
         action = client.addresses.actions.accept_suggestions(
             address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="string",
         )
         assert_matches_type(ActionAcceptSuggestionsResponse, action, path=["response"])
 
@@ -143,7 +143,7 @@ class TestAsyncActions:
     async def test_method_accept_suggestions_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.addresses.actions.accept_suggestions(
             address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            id="string",
         )
         assert_matches_type(ActionAcceptSuggestionsResponse, action, path=["response"])
 

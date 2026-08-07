@@ -1111,7 +1111,7 @@ class TestAssistants:
     @parametrize
     def test_method_imports(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
         )
         assert_matches_type(AssistantsList, assistant, path=["response"])
@@ -1120,7 +1120,7 @@ class TestAssistants:
     @parametrize
     def test_method_imports_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
             import_ids=["string"],
         )
@@ -1130,7 +1130,7 @@ class TestAssistants:
     @parametrize
     def test_raw_response_imports(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
         )
 
@@ -1143,7 +1143,7 @@ class TestAssistants:
     @parametrize
     def test_streaming_response_imports(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
         ) as response:
             assert not response.is_closed
@@ -1159,8 +1159,8 @@ class TestAssistants:
     def test_method_send_sms(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -1169,11 +1169,11 @@ class TestAssistants:
     def test_method_send_sms_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
             conversation_metadata={"foo": "string"},
-            should_create_conversation=True,
-            text="text",
+            should_create_conversation=False,
+            text="Text",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -1182,8 +1182,8 @@ class TestAssistants:
     def test_raw_response_send_sms(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
         )
 
         assert response.is_closed is True
@@ -1196,8 +1196,8 @@ class TestAssistants:
     def test_streaming_response_send_sms(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1213,8 +1213,8 @@ class TestAssistants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             client.ai.assistants.with_raw_response.send_sms(
                 assistant_id="",
-                from_="from",
-                to="to",
+                from_="From",
+                to="To",
             )
 
 
@@ -2311,7 +2311,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_method_imports(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
         )
         assert_matches_type(AssistantsList, assistant, path=["response"])
@@ -2320,7 +2320,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_method_imports_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
             import_ids=["string"],
         )
@@ -2330,7 +2330,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_raw_response_imports(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
         )
 
@@ -2343,7 +2343,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_streaming_response_imports(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.imports(
-            api_key_ref="api_key_ref",
+            api_key_ref="string",
             provider="elevenlabs",
         ) as response:
             assert not response.is_closed
@@ -2359,8 +2359,8 @@ class TestAsyncAssistants:
     async def test_method_send_sms(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -2369,11 +2369,11 @@ class TestAsyncAssistants:
     async def test_method_send_sms_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
             conversation_metadata={"foo": "string"},
-            should_create_conversation=True,
-            text="text",
+            should_create_conversation=False,
+            text="Text",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -2382,8 +2382,8 @@ class TestAsyncAssistants:
     async def test_raw_response_send_sms(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
         )
 
         assert response.is_closed is True
@@ -2396,8 +2396,8 @@ class TestAsyncAssistants:
     async def test_streaming_response_send_sms(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.send_sms(
             assistant_id="assistant_id",
-            from_="from",
-            to="to",
+            from_="From",
+            to="To",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2413,6 +2413,6 @@ class TestAsyncAssistants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             await async_client.ai.assistants.with_raw_response.send_sms(
                 assistant_id="",
-                from_="from",
-                to="to",
+                from_="From",
+                to="To",
             )

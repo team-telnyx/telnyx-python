@@ -78,25 +78,25 @@ class TestMobilePhoneNumbers:
         mobile_phone_number = client.mobile_phone_numbers.update(
             id="id",
             call_forwarding={
-                "call_forwarding_enabled": True,
+                "call_forwarding_enabled": False,
                 "forwarding_type": "always",
                 "forwards_to": "forwards_to",
             },
             call_recording={
                 "inbound_call_recording_channels": "single",
-                "inbound_call_recording_enabled": True,
+                "inbound_call_recording_enabled": False,
                 "inbound_call_recording_format": "wav",
             },
-            caller_id_name_enabled=True,
+            caller_id_name_enabled=False,
             cnam_listing={
                 "cnam_listing_details": "cnam_listing_details",
-                "cnam_listing_enabled": True,
+                "cnam_listing_enabled": False,
             },
             connection_id="connection_id",
             customer_reference="customer_reference",
             inbound={"interception_app_id": "interception_app_id"},
             inbound_call_screening="disabled",
-            noise_suppression=True,
+            noise_suppression=False,
             outbound={"interception_app_id": "interception_app_id"},
             tags=["string"],
         )
@@ -235,25 +235,25 @@ class TestAsyncMobilePhoneNumbers:
         mobile_phone_number = await async_client.mobile_phone_numbers.update(
             id="id",
             call_forwarding={
-                "call_forwarding_enabled": True,
+                "call_forwarding_enabled": False,
                 "forwarding_type": "always",
                 "forwards_to": "forwards_to",
             },
             call_recording={
                 "inbound_call_recording_channels": "single",
-                "inbound_call_recording_enabled": True,
+                "inbound_call_recording_enabled": False,
                 "inbound_call_recording_format": "wav",
             },
-            caller_id_name_enabled=True,
+            caller_id_name_enabled=False,
             cnam_listing={
                 "cnam_listing_details": "cnam_listing_details",
-                "cnam_listing_enabled": True,
+                "cnam_listing_enabled": False,
             },
             connection_id="connection_id",
             customer_reference="customer_reference",
             inbound={"interception_app_id": "interception_app_id"},
             inbound_call_screening="disabled",
-            noise_suppression=True,
+            noise_suppression=False,
             outbound={"interception_app_id": "interception_app_id"},
             tags=["string"],
         )

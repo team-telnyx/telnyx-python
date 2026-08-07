@@ -169,19 +169,19 @@ class TestTests:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.update(
             test_id="test_id",
-            description="description",
-            destination="x",
-            instructions="x",
-            max_duration_seconds=1,
-            name="x",
+            description="Description",
+            destination="Destination",
+            instructions="Instructions",
+            max_duration_seconds=30,
+            name="Name",
             rubric=[
                 {
-                    "criteria": "criteria",
-                    "name": "name",
+                    "criteria": "string",
+                    "name": "string",
                 }
             ],
             telnyx_conversation_channel="phone_call",
-            test_suite="test_suite",
+            test_suite="Test Suite",
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
@@ -456,19 +456,19 @@ class TestAsyncTests:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.update(
             test_id="test_id",
-            description="description",
-            destination="x",
-            instructions="x",
-            max_duration_seconds=1,
-            name="x",
+            description="Description",
+            destination="Destination",
+            instructions="Instructions",
+            max_duration_seconds=30,
+            name="Name",
             rubric=[
                 {
-                    "criteria": "criteria",
-                    "name": "name",
+                    "criteria": "string",
+                    "name": "string",
                 }
             ],
             telnyx_conversation_channel="phone_call",
-            test_suite="test_suite",
+            test_suite="Test Suite",
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 

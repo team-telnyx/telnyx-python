@@ -55,8 +55,8 @@ class TestUserData:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         user_data = client.whatsapp.user_data.update(
-            webhook_failover_url="webhook_failover_url",
-            webhook_url="webhook_url",
+            webhook_failover_url="https://example.com",
+            webhook_url="https://example.com",
         )
         assert_matches_type(UserDataUpdateResponse, user_data, path=["response"])
 
@@ -126,8 +126,8 @@ class TestAsyncUserData:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_data = await async_client.whatsapp.user_data.update(
-            webhook_failover_url="webhook_failover_url",
-            webhook_url="webhook_url",
+            webhook_failover_url="https://example.com",
+            webhook_url="https://example.com",
         )
         assert_matches_type(UserDataUpdateResponse, user_data, path=["response"])
 

@@ -154,7 +154,7 @@ class TestEvents:
         event = client.ai.missions.runs.events.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
         )
         assert_matches_type(EventResponse, event, path=["response"])
@@ -165,12 +165,12 @@ class TestEvents:
         event = client.ai.missions.runs.events.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
-            agent_id="agent_id",
-            idempotency_key="idempotency_key",
+            agent_id="Agent Id",
+            idempotency_key="Idempotency Key",
             payload={"foo": "bar"},
-            step_id="step_id",
+            step_id="Step Id",
         )
         assert_matches_type(EventResponse, event, path=["response"])
 
@@ -180,7 +180,7 @@ class TestEvents:
         response = client.ai.missions.runs.events.with_raw_response.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
         )
 
@@ -195,7 +195,7 @@ class TestEvents:
         with client.ai.missions.runs.events.with_streaming_response.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
         ) as response:
             assert not response.is_closed
@@ -213,7 +213,7 @@ class TestEvents:
             client.ai.missions.runs.events.with_raw_response.log(
                 run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 mission_id="",
-                summary="summary",
+                summary="Summary",
                 type="status_change",
             )
 
@@ -221,7 +221,7 @@ class TestEvents:
             client.ai.missions.runs.events.with_raw_response.log(
                 run_id="",
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                summary="summary",
+                summary="Summary",
                 type="status_change",
             )
 
@@ -367,7 +367,7 @@ class TestAsyncEvents:
         event = await async_client.ai.missions.runs.events.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
         )
         assert_matches_type(EventResponse, event, path=["response"])
@@ -378,12 +378,12 @@ class TestAsyncEvents:
         event = await async_client.ai.missions.runs.events.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
-            agent_id="agent_id",
-            idempotency_key="idempotency_key",
+            agent_id="Agent Id",
+            idempotency_key="Idempotency Key",
             payload={"foo": "bar"},
-            step_id="step_id",
+            step_id="Step Id",
         )
         assert_matches_type(EventResponse, event, path=["response"])
 
@@ -393,7 +393,7 @@ class TestAsyncEvents:
         response = await async_client.ai.missions.runs.events.with_raw_response.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
         )
 
@@ -408,7 +408,7 @@ class TestAsyncEvents:
         async with async_client.ai.missions.runs.events.with_streaming_response.log(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            summary="summary",
+            summary="Summary",
             type="status_change",
         ) as response:
             assert not response.is_closed
@@ -426,7 +426,7 @@ class TestAsyncEvents:
             await async_client.ai.missions.runs.events.with_raw_response.log(
                 run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 mission_id="",
-                summary="summary",
+                summary="Summary",
                 type="status_change",
             )
 
@@ -434,6 +434,6 @@ class TestAsyncEvents:
             await async_client.ai.missions.runs.events.with_raw_response.log(
                 run_id="",
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                summary="summary",
+                summary="Summary",
                 type="status_change",
             )

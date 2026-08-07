@@ -89,7 +89,7 @@ class TestPhoneNumbers:
         phone_number = client.external_connections.phone_numbers.update(
             phone_number_id="1234567889",
             id="1293384261075731499",
-            location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            location_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
         assert_matches_type(PhoneNumberUpdateResponse, phone_number, path=["response"])
 
@@ -271,7 +271,7 @@ class TestAsyncPhoneNumbers:
         phone_number = await async_client.external_connections.phone_numbers.update(
             phone_number_id="1234567889",
             id="1293384261075731499",
-            location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            location_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
         assert_matches_type(PhoneNumberUpdateResponse, phone_number, path=["response"])
 

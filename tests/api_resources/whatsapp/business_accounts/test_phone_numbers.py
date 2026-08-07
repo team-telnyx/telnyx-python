@@ -77,8 +77,8 @@ class TestPhoneNumbers:
     def test_method_initialize_verification(self, client: Telnyx) -> None:
         phone_number = client.whatsapp.business_accounts.phone_numbers.initialize_verification(
             id="id",
-            display_name="display_name",
-            phone_number="phone_number",
+            display_name="string",
+            phone_number="string",
         )
         assert phone_number is None
 
@@ -87,9 +87,9 @@ class TestPhoneNumbers:
     def test_method_initialize_verification_with_all_params(self, client: Telnyx) -> None:
         phone_number = client.whatsapp.business_accounts.phone_numbers.initialize_verification(
             id="id",
-            display_name="display_name",
-            phone_number="phone_number",
-            language="language",
+            display_name="string",
+            phone_number="string",
+            language="en_US",
             verification_method="sms",
         )
         assert phone_number is None
@@ -99,8 +99,8 @@ class TestPhoneNumbers:
     def test_raw_response_initialize_verification(self, client: Telnyx) -> None:
         response = client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
             id="id",
-            display_name="display_name",
-            phone_number="phone_number",
+            display_name="string",
+            phone_number="string",
         )
 
         assert response.is_closed is True
@@ -113,8 +113,8 @@ class TestPhoneNumbers:
     def test_streaming_response_initialize_verification(self, client: Telnyx) -> None:
         with client.whatsapp.business_accounts.phone_numbers.with_streaming_response.initialize_verification(
             id="id",
-            display_name="display_name",
-            phone_number="phone_number",
+            display_name="string",
+            phone_number="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,8 +130,8 @@ class TestPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
                 id="",
-                display_name="display_name",
-                phone_number="phone_number",
+                display_name="string",
+                phone_number="string",
             )
 
 
@@ -197,8 +197,8 @@ class TestAsyncPhoneNumbers:
     async def test_method_initialize_verification(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.whatsapp.business_accounts.phone_numbers.initialize_verification(
             id="id",
-            display_name="display_name",
-            phone_number="phone_number",
+            display_name="string",
+            phone_number="string",
         )
         assert phone_number is None
 
@@ -207,9 +207,9 @@ class TestAsyncPhoneNumbers:
     async def test_method_initialize_verification_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.whatsapp.business_accounts.phone_numbers.initialize_verification(
             id="id",
-            display_name="display_name",
-            phone_number="phone_number",
-            language="language",
+            display_name="string",
+            phone_number="string",
+            language="en_US",
             verification_method="sms",
         )
         assert phone_number is None
@@ -220,8 +220,8 @@ class TestAsyncPhoneNumbers:
         response = (
             await async_client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
                 id="id",
-                display_name="display_name",
-                phone_number="phone_number",
+                display_name="string",
+                phone_number="string",
             )
         )
 
@@ -236,8 +236,8 @@ class TestAsyncPhoneNumbers:
         async with (
             async_client.whatsapp.business_accounts.phone_numbers.with_streaming_response.initialize_verification(
                 id="id",
-                display_name="display_name",
-                phone_number="phone_number",
+                display_name="string",
+                phone_number="string",
             )
         ) as response:
             assert not response.is_closed
@@ -254,6 +254,6 @@ class TestAsyncPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
                 id="",
-                display_name="display_name",
-                phone_number="phone_number",
+                display_name="string",
+                phone_number="string",
             )
