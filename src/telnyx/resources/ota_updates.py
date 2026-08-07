@@ -92,7 +92,8 @@ class OtaUpdatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[OtaUpdateListResponse]:
         """
-        List OTA updates
+        Retrieve a paginated list of over-the-air (OTA) update operations for your SIM
+        cards.
 
         Args:
           filter:
@@ -197,7 +198,8 @@ class AsyncOtaUpdatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OtaUpdateListResponse, AsyncDefaultFlatPagination[OtaUpdateListResponse]]:
         """
-        List OTA updates
+        Retrieve a paginated list of over-the-air (OTA) update operations for your SIM
+        cards.
 
         Args:
           filter:

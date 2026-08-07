@@ -55,7 +55,7 @@ class GlobalIPAssignmentHealthResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentHealthRetrieveResponse:
         """
-        Global IP Assignment Health Check Metrics
+        Retrieve health check metrics for your Global IP assignments.
 
         Args:
           filter:
@@ -120,7 +120,7 @@ class AsyncGlobalIPAssignmentHealthResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentHealthRetrieveResponse:
         """
-        Global IP Assignment Health Check Metrics
+        Retrieve health check metrics for your Global IP assignments.
 
         Args:
           filter:

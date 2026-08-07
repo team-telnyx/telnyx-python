@@ -68,7 +68,7 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterRetrieveResponse:
         """
-        Fetch a cluster
+        Fetch the results of a clustering task, including the discovered clusters.
 
         Args:
           show_subclusters: Whether or not to include subclusters and their nodes in the response.
@@ -117,7 +117,7 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[ClusterListResponse]:
         """
-        List all clusters
+        Retrieve a paginated list of clustering tasks and their statuses.
 
         Args:
           extra_headers: Send extra headers
@@ -159,7 +159,7 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a cluster
+        Delete a clustering task and its computed results.
 
         Args:
           extra_headers: Send extra headers
@@ -255,7 +255,7 @@ class ClustersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
-        Fetch a cluster visualization
+        Fetch a visualization image of the clusters computed by a clustering task.
 
         Args:
           cluster_id: Filter results by cluster id.
@@ -320,7 +320,7 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterRetrieveResponse:
         """
-        Fetch a cluster
+        Fetch the results of a clustering task, including the discovered clusters.
 
         Args:
           show_subclusters: Whether or not to include subclusters and their nodes in the response.
@@ -369,7 +369,7 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ClusterListResponse, AsyncDefaultFlatPagination[ClusterListResponse]]:
         """
-        List all clusters
+        Retrieve a paginated list of clustering tasks and their statuses.
 
         Args:
           extra_headers: Send extra headers
@@ -411,7 +411,7 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a cluster
+        Delete a clustering task and its computed results.
 
         Args:
           extra_headers: Send extra headers
@@ -507,7 +507,7 @@ class AsyncClustersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
-        Fetch a cluster visualization
+        Fetch a visualization image of the clusters computed by a clustering task.
 
         Args:
           cluster_id: Filter results by cluster id.

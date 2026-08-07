@@ -185,7 +185,7 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberGetResponse:
         """
-        List Whatsapp phone numbers
+        Retrieve a list of the phone numbers registered for WhatsApp on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -462,7 +462,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberGetResponse:
         """
-        List Whatsapp phone numbers
+        Retrieve a list of the phone numbers registered for WhatsApp on your account.
 
         Args:
           extra_headers: Send extra headers

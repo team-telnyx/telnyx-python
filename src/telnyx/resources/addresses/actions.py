@@ -60,8 +60,9 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionAcceptSuggestionsResponse:
         """
-        Accepts this address suggestion as a new emergency address for Operator Connect
-        and finishes the uploads of the numbers associated with it to Microsoft.
+        Accept the validated address suggestion for this address, replacing the original
+        values, and finish uploading the numbers associated with it to Microsoft for
+        Operator Connect.
 
         Args:
           id: The ID of the address.
@@ -186,8 +187,9 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionAcceptSuggestionsResponse:
         """
-        Accepts this address suggestion as a new emergency address for Operator Connect
-        and finishes the uploads of the numbers associated with it to Microsoft.
+        Accept the validated address suggestion for this address, replacing the original
+        values, and finish uploading the numbers associated with it to Microsoft for
+        Operator Connect.
 
         Args:
           id: The ID of the address.

@@ -57,7 +57,7 @@ class AccessIPAddressResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPAddressResponse:
         """
-        Create new Access IP Address
+        Create a new access IP address entry on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -95,7 +95,7 @@ class AccessIPAddressResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPAddressResponse:
         """
-        Retrieve an access IP address
+        Retrieve the details of a specific access IP address.
 
         Args:
           extra_headers: Send extra headers
@@ -132,7 +132,7 @@ class AccessIPAddressResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[AccessIPAddressResponse]:
         """
-        List all Access IP Addresses
+        Retrieve a paginated list of access IP addresses configured on your account.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[ip_source],
@@ -179,7 +179,7 @@ class AccessIPAddressResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPAddressResponse:
         """
-        Delete access IP address
+        Delete an access IP address entry from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -238,7 +238,7 @@ class AsyncAccessIPAddressResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPAddressResponse:
         """
-        Create new Access IP Address
+        Create a new access IP address entry on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -276,7 +276,7 @@ class AsyncAccessIPAddressResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPAddressResponse:
         """
-        Retrieve an access IP address
+        Retrieve the details of a specific access IP address.
 
         Args:
           extra_headers: Send extra headers
@@ -313,7 +313,7 @@ class AsyncAccessIPAddressResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AccessIPAddressResponse, AsyncDefaultFlatPagination[AccessIPAddressResponse]]:
         """
-        List all Access IP Addresses
+        Retrieve a paginated list of access IP addresses configured on your account.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[ip_source],
@@ -360,7 +360,7 @@ class AsyncAccessIPAddressResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPAddressResponse:
         """
-        Delete access IP address
+        Delete an access IP address entry from your account.
 
         Args:
           extra_headers: Send extra headers

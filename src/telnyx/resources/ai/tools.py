@@ -74,7 +74,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SharedToolResponse:
         """
-        Create Tool
+        Create a new custom AI tool that can be attached to AI assistants.
 
         Args:
           update_dynamic_variables: Configuration for an update_dynamic_variables tool.
@@ -123,7 +123,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SharedToolResponse:
         """
-        Get Tool
+        Retrieve the details of a specific AI tool.
 
         Args:
           extra_headers: Send extra headers
@@ -167,7 +167,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SharedToolResponse:
         """
-        Update Tool
+        Update the configuration of an existing AI tool.
 
         Args:
           update_dynamic_variables: Configuration for an update_dynamic_variables tool.
@@ -221,7 +221,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[SharedToolResponse]:
         """
-        List Tools
+        Retrieve a list of the custom AI tools configured on your account.
 
         Args:
           filter_name: Filter results by filter name.
@@ -273,7 +273,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete Tool
+        Delete a custom AI tool.
 
         Args:
           extra_headers: Send extra headers
@@ -339,7 +339,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SharedToolResponse:
         """
-        Create Tool
+        Create a new custom AI tool that can be attached to AI assistants.
 
         Args:
           update_dynamic_variables: Configuration for an update_dynamic_variables tool.
@@ -388,7 +388,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SharedToolResponse:
         """
-        Get Tool
+        Retrieve the details of a specific AI tool.
 
         Args:
           extra_headers: Send extra headers
@@ -432,7 +432,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SharedToolResponse:
         """
-        Update Tool
+        Update the configuration of an existing AI tool.
 
         Args:
           update_dynamic_variables: Configuration for an update_dynamic_variables tool.
@@ -486,7 +486,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SharedToolResponse, AsyncDefaultFlatPagination[SharedToolResponse]]:
         """
-        List Tools
+        Retrieve a list of the custom AI tools configured on your account.
 
         Args:
           filter_name: Filter results by filter name.
@@ -538,7 +538,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete Tool
+        Delete a custom AI tool.
 
         Args:
           extra_headers: Send extra headers

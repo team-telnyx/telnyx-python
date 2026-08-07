@@ -53,7 +53,7 @@ class TagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagsResponse:
-        """Get All Tags"""
+        """Retrieve all tags that have been applied to your AI assistants."""
         return self._get(
             "/ai/assistants/tags",
             options=make_request_options(
@@ -74,8 +74,9 @@ class TagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagsResponse:
-        """
-        Add Assistant Tag
+        """Add a tag to an AI assistant.
+
+        Tags help you organize and filter your assistants.
 
         Args:
           extra_headers: Send extra headers
@@ -110,7 +111,7 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagsResponse:
         """
-        Remove Assistant Tag
+        Remove a tag from an AI assistant.
 
         Args:
           extra_headers: Send extra headers
@@ -166,7 +167,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagsResponse:
-        """Get All Tags"""
+        """Retrieve all tags that have been applied to your AI assistants."""
         return await self._get(
             "/ai/assistants/tags",
             options=make_request_options(
@@ -187,8 +188,9 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagsResponse:
-        """
-        Add Assistant Tag
+        """Add a tag to an AI assistant.
+
+        Tags help you organize and filter your assistants.
 
         Args:
           extra_headers: Send extra headers
@@ -223,7 +225,7 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagsResponse:
         """
-        Remove Assistant Tag
+        Remove a tag from an AI assistant.
 
         Args:
           extra_headers: Send extra headers

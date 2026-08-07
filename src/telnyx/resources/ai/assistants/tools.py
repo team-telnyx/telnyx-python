@@ -58,7 +58,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Add Assistant Tool
+        Attach an existing tool to an AI assistant.
 
         Args:
           extra_headers: Send extra headers
@@ -94,7 +94,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Remove Assistant Tool
+        Detach a tool from an AI assistant.
 
         Args:
           extra_headers: Send extra headers
@@ -204,7 +204,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Add Assistant Tool
+        Attach an existing tool to an AI assistant.
 
         Args:
           extra_headers: Send extra headers
@@ -240,7 +240,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Remove Assistant Tool
+        Detach a tool from an AI assistant.
 
         Args:
           extra_headers: Send extra headers
