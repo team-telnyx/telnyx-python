@@ -15,6 +15,12 @@ class Voice(BaseModel):
     gender: Optional[str] = None
     """Voice gender."""
 
+    hosted: Optional[bool] = None
+    """
+    Whether this voice runs on Telnyx-hosted infrastructure (`true`) or is provided
+    by a third-party vendor (`false`).
+    """
+
     language: Optional[str] = None
     """Language code."""
 
