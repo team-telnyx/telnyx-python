@@ -33,7 +33,7 @@ class TestOpenAI:
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
             service_tier="service_tier",
-            stream=True,
+            stream=False,
         )
         assert_matches_type(OpenAICreateResponseResponse, openai, path=["response"])
 
@@ -108,7 +108,7 @@ class TestAsyncOpenAI:
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
             service_tier="service_tier",
-            stream=True,
+            stream=False,
         )
         assert_matches_type(OpenAICreateResponseResponse, openai, path=["response"])
 

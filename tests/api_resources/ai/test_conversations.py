@@ -116,7 +116,7 @@ class TestConversations:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         conversation = client.ai.conversations.update(
             conversation_id="conversation_id",
-            metadata={"foo": "string"},
+            metadata={"ai_disabled": "true"},
         )
         assert_matches_type(ConversationUpdateResponse, conversation, path=["response"])
 
@@ -445,7 +445,7 @@ class TestAsyncConversations:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         conversation = await async_client.ai.conversations.update(
             conversation_id="conversation_id",
-            metadata={"foo": "string"},
+            metadata={"ai_disabled": "true"},
         )
         assert_matches_type(ConversationUpdateResponse, conversation, path=["response"])
 
