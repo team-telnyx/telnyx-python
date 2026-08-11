@@ -2578,9 +2578,9 @@ Methods:
 
 Methods:
 
-- <code title="get /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
-- <code title="patch /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging/rcs/agent_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
-- <code title="get /messaging/rcs/agents">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">list</a>(\*\*<a href="src/telnyx/types/messaging/rcs/agent_list_params.py">params</a>) -> <a href="./src/telnyx/types/rcs_agent.py">SyncDefaultFlatPagination[RcsAgent]</a></code>
+- <code title="get /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs/rcs_agent_response.py">RcsAgentResponse</a></code>
+- <code title="patch /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging/rcs/agent_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/rcs_agent_response.py">RcsAgentResponse</a></code>
+- <code title="get /messaging/rcs/agents">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">list</a>(\*\*<a href="src/telnyx/types/messaging/rcs/agent_list_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/rcs_agent.py">SyncDefaultFlatPagination[RcsAgent]</a></code>
 
 # MessagingHostedNumberOrders
 
@@ -3788,12 +3788,14 @@ Methods:
 - <code title="get /queues/{queue_name}/calls">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">list</a>(queue_name, \*\*<a href="src/telnyx/types/queues/call_list_params.py">params</a>) -> <a href="./src/telnyx/types/queues/queue_call.py">SyncDefaultFlatPagination[QueueCall]</a></code>
 - <code title="delete /queues/{queue_name}/calls/{call_control_id}">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">remove</a>(call_control_id, \*, queue_name) -> None</code>
 
-# RcsAgents
+# Rcs
+
+## Agents
 
 Types:
 
 ```python
-from telnyx.types import RcsAgent, RcsAgentResponse
+from telnyx.types.rcs import RcsAgent, RcsAgentResponse
 ```
 
 # RecordingTranscriptions

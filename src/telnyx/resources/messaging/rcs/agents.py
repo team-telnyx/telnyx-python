@@ -18,9 +18,9 @@ from ...._response import (
 )
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.rcs_agent import RcsAgent
 from ....types.messaging.rcs import agent_list_params, agent_update_params
-from ....types.rcs_agent_response import RcsAgentResponse
+from ....types.rcs.rcs_agent import RcsAgent
+from ....types.rcs.rcs_agent_response import RcsAgentResponse
 
 __all__ = ["AgentsResource", "AsyncAgentsResource"]
 
