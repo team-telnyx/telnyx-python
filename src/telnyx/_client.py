@@ -1018,7 +1018,6 @@ class Telnyx(SyncAPIClient):
 
     @cached_property
     def messages(self) -> MessagesResource:
-        """Messages"""
         from .resources.messages import MessagesResource
 
         return MessagesResource(self)
@@ -2506,7 +2505,6 @@ class AsyncTelnyx(AsyncAPIClient):
 
     @cached_property
     def messages(self) -> AsyncMessagesResource:
-        """Messages"""
         from .resources.messages import AsyncMessagesResource
 
         return AsyncMessagesResource(self)
@@ -3914,7 +3912,6 @@ class TelnyxWithRawResponse:
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithRawResponse:
-        """Messages"""
         from .resources.messages import MessagesResourceWithRawResponse
 
         return MessagesResourceWithRawResponse(self._client.messages)
@@ -5197,7 +5194,6 @@ class AsyncTelnyxWithRawResponse:
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
-        """Messages"""
         from .resources.messages import AsyncMessagesResourceWithRawResponse
 
         return AsyncMessagesResourceWithRawResponse(self._client.messages)
@@ -6492,7 +6488,6 @@ class TelnyxWithStreamedResponse:
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithStreamingResponse:
-        """Messages"""
         from .resources.messages import MessagesResourceWithStreamingResponse
 
         return MessagesResourceWithStreamingResponse(self._client.messages)
@@ -7797,7 +7792,6 @@ class AsyncTelnyxWithStreamedResponse:
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
-        """Messages"""
         from .resources.messages import AsyncMessagesResourceWithStreamingResponse
 
         return AsyncMessagesResourceWithStreamingResponse(self._client.messages)

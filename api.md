@@ -2583,6 +2583,7 @@ from telnyx.types import (
     MessageSendNumberPoolResponse,
     MessageSendShortCodeResponse,
     MessageSendWithAlphanumericSenderResponse,
+    MessageWhatsappResponse,
 )
 ```
 
@@ -2598,6 +2599,7 @@ Methods:
 - <code title="post /messages/number_pool">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_number_pool</a>(\*\*<a href="src/telnyx/types/message_send_number_pool_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_number_pool_response.py">MessageSendNumberPoolResponse</a></code>
 - <code title="post /messages/short_code">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_short_code</a>(\*\*<a href="src/telnyx/types/message_send_short_code_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_short_code_response.py">MessageSendShortCodeResponse</a></code>
 - <code title="post /messages/alphanumeric_sender_id">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_with_alphanumeric_sender</a>(\*\*<a href="src/telnyx/types/message_send_with_alphanumeric_sender_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_with_alphanumeric_sender_response.py">MessageSendWithAlphanumericSenderResponse</a></code>
+- <code title="post /messages/whatsapp">client.messages.<a href="./src/telnyx/resources/messages/messages.py">whatsapp</a>(\*\*<a href="src/telnyx/types/message_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/message_whatsapp_response.py">MessageWhatsappResponse</a></code>
 
 ## Rcs
 

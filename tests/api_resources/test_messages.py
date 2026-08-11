@@ -13,6 +13,7 @@ from telnyx.types import (
     MessageSendResponse,
     MessageRetrieveResponse,
     MessageScheduleResponse,
+    MessageWhatsappResponse,
     MessageSendGroupMmsResponse,
     MessageSendLongCodeResponse,
     MessageSendShortCodeResponse,
@@ -536,6 +537,254 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_whatsapp(self, client: Telnyx) -> None:
+        message = client.messages.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={},
+        )
+        assert_matches_type(MessageWhatsappResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_whatsapp_with_all_params(self, client: Telnyx) -> None:
+        message = client.messages.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={
+                "audio": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "biz_opaque_callback_data": "biz_opaque_callback_data",
+                "contacts": [
+                    {
+                        "addresses": [
+                            {
+                                "city": "city",
+                                "country": "country",
+                                "country_code": "country_code",
+                                "state": "state",
+                                "street": "street",
+                                "type": "type",
+                                "zip": "zip",
+                            }
+                        ],
+                        "birthday": "birthday",
+                        "emails": [
+                            {
+                                "email": "email",
+                                "type": "type",
+                            }
+                        ],
+                        "name": "name",
+                        "org": {
+                            "company": "company",
+                            "department": "department",
+                            "title": "title",
+                        },
+                        "phones": [
+                            {
+                                "phone": "phone",
+                                "type": "type",
+                                "wa_id": "wa_id",
+                            }
+                        ],
+                        "urls": [
+                            {
+                                "type": "type",
+                                "url": "url",
+                            }
+                        ],
+                    }
+                ],
+                "document": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "image": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "interactive": {
+                    "action": {
+                        "button": "button",
+                        "buttons": [
+                            {
+                                "reply": {
+                                    "id": "id",
+                                    "title": "title",
+                                },
+                                "type": "reply",
+                            }
+                        ],
+                        "cards": [
+                            {
+                                "action": {
+                                    "catalog_id": "catalog_id",
+                                    "product_retailer_id": "product_retailer_id",
+                                },
+                                "body": {"text": "text"},
+                                "card_index": 0,
+                                "header": {
+                                    "image": {
+                                        "caption": "caption",
+                                        "filename": "filename",
+                                        "link": "http://example.com/media.jpg",
+                                        "voice": True,
+                                    },
+                                    "type": "image",
+                                    "video": {
+                                        "caption": "caption",
+                                        "filename": "filename",
+                                        "link": "http://example.com/media.jpg",
+                                        "voice": True,
+                                    },
+                                },
+                                "type": "cta_url",
+                            }
+                        ],
+                        "catalog_id": "catalog_id",
+                        "mode": "mode",
+                        "name": "name",
+                        "parameters": {
+                            "display_text": "display_text",
+                            "url": "url",
+                        },
+                        "product_retailer_id": "product_retailer_id",
+                        "sections": [
+                            {
+                                "product_items": [{"product_retailer_id": "product_retailer_id"}],
+                                "rows": [
+                                    {
+                                        "id": "id",
+                                        "description": "description",
+                                        "title": "title",
+                                    }
+                                ],
+                                "title": "title",
+                            }
+                        ],
+                    },
+                    "body": {"text": "text"},
+                    "footer": {"text": "text"},
+                    "header": {
+                        "document": {
+                            "caption": "caption",
+                            "filename": "filename",
+                            "link": "http://example.com/media.jpg",
+                            "voice": True,
+                        },
+                        "image": {
+                            "caption": "caption",
+                            "filename": "filename",
+                            "link": "http://example.com/media.jpg",
+                            "voice": True,
+                        },
+                        "sub_text": "sub_text",
+                        "text": "text",
+                        "video": {
+                            "caption": "caption",
+                            "filename": "filename",
+                            "link": "http://example.com/media.jpg",
+                            "voice": True,
+                        },
+                    },
+                    "type": "cta_url",
+                },
+                "location": {
+                    "address": "address",
+                    "latitude": "latitude",
+                    "longitude": "longitude",
+                    "name": "name",
+                },
+                "reaction": {
+                    "emoji": "emoji",
+                    "message_id": "message_id",
+                },
+                "sticker": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "template": {
+                    "components": [
+                        {
+                            "index": 0,
+                            "parameters": [
+                                {
+                                    "text": "text",
+                                    "type": "text",
+                                }
+                            ],
+                            "sub_type": "quick_reply",
+                            "type": "header",
+                        }
+                    ],
+                    "language": {
+                        "code": "en_US",
+                        "policy": "deterministic",
+                    },
+                    "name": "order_confirmation",
+                    "template_id": "019cd44b-3a1c-781b-956e-bd33e9fd2ac6",
+                },
+                "text": {
+                    "body": "Hello from Telnyx!",
+                    "preview_url": True,
+                },
+                "type": "audio",
+                "video": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+            },
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="WHATSAPP",
+            webhook_url="webhook_url",
+        )
+        assert_matches_type(MessageWhatsappResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_whatsapp(self, client: Telnyx) -> None:
+        response = client.messages.with_raw_response.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = response.parse()
+        assert_matches_type(MessageWhatsappResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_whatsapp(self, client: Telnyx) -> None:
+        with client.messages.with_streaming_response.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = response.parse()
+            assert_matches_type(MessageWhatsappResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncMessages:
     parametrize = pytest.mark.parametrize(
@@ -1046,5 +1295,253 @@ class TestAsyncMessages:
 
             message = await response.parse()
             assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        message = await async_client.messages.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={},
+        )
+        assert_matches_type(MessageWhatsappResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_whatsapp_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        message = await async_client.messages.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={
+                "audio": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "biz_opaque_callback_data": "biz_opaque_callback_data",
+                "contacts": [
+                    {
+                        "addresses": [
+                            {
+                                "city": "city",
+                                "country": "country",
+                                "country_code": "country_code",
+                                "state": "state",
+                                "street": "street",
+                                "type": "type",
+                                "zip": "zip",
+                            }
+                        ],
+                        "birthday": "birthday",
+                        "emails": [
+                            {
+                                "email": "email",
+                                "type": "type",
+                            }
+                        ],
+                        "name": "name",
+                        "org": {
+                            "company": "company",
+                            "department": "department",
+                            "title": "title",
+                        },
+                        "phones": [
+                            {
+                                "phone": "phone",
+                                "type": "type",
+                                "wa_id": "wa_id",
+                            }
+                        ],
+                        "urls": [
+                            {
+                                "type": "type",
+                                "url": "url",
+                            }
+                        ],
+                    }
+                ],
+                "document": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "image": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "interactive": {
+                    "action": {
+                        "button": "button",
+                        "buttons": [
+                            {
+                                "reply": {
+                                    "id": "id",
+                                    "title": "title",
+                                },
+                                "type": "reply",
+                            }
+                        ],
+                        "cards": [
+                            {
+                                "action": {
+                                    "catalog_id": "catalog_id",
+                                    "product_retailer_id": "product_retailer_id",
+                                },
+                                "body": {"text": "text"},
+                                "card_index": 0,
+                                "header": {
+                                    "image": {
+                                        "caption": "caption",
+                                        "filename": "filename",
+                                        "link": "http://example.com/media.jpg",
+                                        "voice": True,
+                                    },
+                                    "type": "image",
+                                    "video": {
+                                        "caption": "caption",
+                                        "filename": "filename",
+                                        "link": "http://example.com/media.jpg",
+                                        "voice": True,
+                                    },
+                                },
+                                "type": "cta_url",
+                            }
+                        ],
+                        "catalog_id": "catalog_id",
+                        "mode": "mode",
+                        "name": "name",
+                        "parameters": {
+                            "display_text": "display_text",
+                            "url": "url",
+                        },
+                        "product_retailer_id": "product_retailer_id",
+                        "sections": [
+                            {
+                                "product_items": [{"product_retailer_id": "product_retailer_id"}],
+                                "rows": [
+                                    {
+                                        "id": "id",
+                                        "description": "description",
+                                        "title": "title",
+                                    }
+                                ],
+                                "title": "title",
+                            }
+                        ],
+                    },
+                    "body": {"text": "text"},
+                    "footer": {"text": "text"},
+                    "header": {
+                        "document": {
+                            "caption": "caption",
+                            "filename": "filename",
+                            "link": "http://example.com/media.jpg",
+                            "voice": True,
+                        },
+                        "image": {
+                            "caption": "caption",
+                            "filename": "filename",
+                            "link": "http://example.com/media.jpg",
+                            "voice": True,
+                        },
+                        "sub_text": "sub_text",
+                        "text": "text",
+                        "video": {
+                            "caption": "caption",
+                            "filename": "filename",
+                            "link": "http://example.com/media.jpg",
+                            "voice": True,
+                        },
+                    },
+                    "type": "cta_url",
+                },
+                "location": {
+                    "address": "address",
+                    "latitude": "latitude",
+                    "longitude": "longitude",
+                    "name": "name",
+                },
+                "reaction": {
+                    "emoji": "emoji",
+                    "message_id": "message_id",
+                },
+                "sticker": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+                "template": {
+                    "components": [
+                        {
+                            "index": 0,
+                            "parameters": [
+                                {
+                                    "text": "text",
+                                    "type": "text",
+                                }
+                            ],
+                            "sub_type": "quick_reply",
+                            "type": "header",
+                        }
+                    ],
+                    "language": {
+                        "code": "en_US",
+                        "policy": "deterministic",
+                    },
+                    "name": "order_confirmation",
+                    "template_id": "019cd44b-3a1c-781b-956e-bd33e9fd2ac6",
+                },
+                "text": {
+                    "body": "Hello from Telnyx!",
+                    "preview_url": True,
+                },
+                "type": "audio",
+                "video": {
+                    "caption": "caption",
+                    "filename": "filename",
+                    "link": "http://example.com/media.jpg",
+                    "voice": True,
+                },
+            },
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="WHATSAPP",
+            webhook_url="webhook_url",
+        )
+        assert_matches_type(MessageWhatsappResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.messages.with_raw_response.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = await response.parse()
+        assert_matches_type(MessageWhatsappResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.messages.with_streaming_response.whatsapp(
+            from_="+13125551234",
+            to="+13125551234",
+            whatsapp_message={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = await response.parse()
+            assert_matches_type(MessageWhatsappResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
