@@ -60,7 +60,7 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUploadFileResponse:
         """
-        Upload hosted number document
+        Uploads a supporting document to the specified hosted-messaging order.
 
         Args:
           bill: Must be the last month's bill with proof of ownership of all of the numbers in
@@ -137,7 +137,7 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUploadFileResponse:
         """
-        Upload hosted number document
+        Uploads a supporting document to the specified hosted-messaging order.
 
         Args:
           bill: Must be the last month's bill with proof of ownership of all of the numbers in

@@ -18,9 +18,9 @@ from ...._response import (
 )
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.rcs_agent import RcsAgent
 from ....types.messaging.rcs import agent_list_params, agent_update_params
-from ....types.rcs_agent_response import RcsAgentResponse
+from ....types.rcs.rcs_agent import RcsAgent
+from ....types.rcs.rcs_agent_response import RcsAgentResponse
 
 __all__ = ["AgentsResource", "AsyncAgentsResource"]
 
@@ -59,7 +59,7 @@ class AgentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcsAgentResponse:
         """
-        Retrieve an RCS agent
+        Returns the configuration and current state of the specified RCS agent.
 
         Args:
           extra_headers: Send extra headers
@@ -95,7 +95,7 @@ class AgentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcsAgentResponse:
         """
-        Modify an RCS agent
+        Updates the supplied configuration fields on the specified RCS agent.
 
         Args:
           profile_id: Messaging profile ID associated with the RCS Agent
@@ -143,7 +143,7 @@ class AgentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RcsAgent]:
         """
-        List all RCS agents
+        Returns RCS agents available to the authenticated account.
 
         Args:
           extra_headers: Send extra headers
@@ -208,7 +208,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcsAgentResponse:
         """
-        Retrieve an RCS agent
+        Returns the configuration and current state of the specified RCS agent.
 
         Args:
           extra_headers: Send extra headers
@@ -244,7 +244,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcsAgentResponse:
         """
-        Modify an RCS agent
+        Updates the supplied configuration fields on the specified RCS agent.
 
         Args:
           profile_id: Messaging profile ID associated with the RCS Agent
@@ -292,7 +292,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RcsAgent, AsyncDefaultFlatPagination[RcsAgent]]:
         """
-        List all RCS agents
+        Returns RCS agents available to the authenticated account.
 
         Args:
           extra_headers: Send extra headers

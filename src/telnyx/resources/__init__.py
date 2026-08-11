@@ -24,6 +24,14 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
+from .rcs import (
+    RcsResource,
+    AsyncRcsResource,
+    RcsResourceWithRawResponse,
+    AsyncRcsResourceWithRawResponse,
+    RcsResourceWithStreamingResponse,
+    AsyncRcsResourceWithStreamingResponse,
+)
 from .list import (
     ListResource,
     AsyncListResource,
@@ -2035,6 +2043,12 @@ __all__ = [
     "AsyncQueuesResourceWithRawResponse",
     "QueuesResourceWithStreamingResponse",
     "AsyncQueuesResourceWithStreamingResponse",
+    "RcsResource",
+    "AsyncRcsResource",
+    "RcsResourceWithRawResponse",
+    "AsyncRcsResourceWithRawResponse",
+    "RcsResourceWithStreamingResponse",
+    "AsyncRcsResourceWithStreamingResponse",
     "RecordingTranscriptionsResource",
     "AsyncRecordingTranscriptionsResource",
     "RecordingTranscriptionsResourceWithRawResponse",

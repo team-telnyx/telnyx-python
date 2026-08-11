@@ -75,7 +75,7 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionCreateResponse:
         """
-        Create a Mobile Voice Connection
+        Create a new mobile voice connection.
 
         Args:
           extra_headers: Send extra headers
@@ -120,7 +120,7 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionRetrieveResponse:
         """
-        Retrieve a Mobile Voice Connection
+        Retrieve the details of a specific mobile voice connection.
 
         Args:
           extra_headers: Send extra headers
@@ -162,7 +162,7 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionUpdateResponse:
         """
-        Update a Mobile Voice Connection
+        Update the settings of a specific mobile voice connection.
 
         Args:
           extra_headers: Send extra headers
@@ -212,7 +212,7 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MobileVoiceConnection]:
         """
-        List Mobile Voice Connections
+        Retrieve a paginated list of mobile voice connections on your account.
 
         Args:
           filter_connection_name_contains: Filter by connection name containing the given string
@@ -265,7 +265,7 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionDeleteResponse:
         """
-        Delete a Mobile Voice Connection
+        Delete a mobile voice connection from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -329,7 +329,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionCreateResponse:
         """
-        Create a Mobile Voice Connection
+        Create a new mobile voice connection.
 
         Args:
           extra_headers: Send extra headers
@@ -374,7 +374,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionRetrieveResponse:
         """
-        Retrieve a Mobile Voice Connection
+        Retrieve the details of a specific mobile voice connection.
 
         Args:
           extra_headers: Send extra headers
@@ -416,7 +416,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionUpdateResponse:
         """
-        Update a Mobile Voice Connection
+        Update the settings of a specific mobile voice connection.
 
         Args:
           extra_headers: Send extra headers
@@ -466,7 +466,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MobileVoiceConnection, AsyncDefaultFlatPagination[MobileVoiceConnection]]:
         """
-        List Mobile Voice Connections
+        Retrieve a paginated list of mobile voice connections on your account.
 
         Args:
           filter_connection_name_contains: Filter by connection name containing the given string
@@ -519,7 +519,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionDeleteResponse:
         """
-        Delete a Mobile Voice Connection
+        Delete a mobile voice connection from your account.
 
         Args:
           extra_headers: Send extra headers

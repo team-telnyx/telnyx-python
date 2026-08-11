@@ -38,6 +38,12 @@ class Data(BaseModel):
     Each entry in `service_types` describes one surface and the languages accepted on it.
     """
 
+    hosted: bool
+    """
+    Whether this model runs on Telnyx-hosted infrastructure (`true`) or is provided
+    by a third-party vendor (`false`).
+    """
+
     model: str
     """Provider-scoped model name."""
 

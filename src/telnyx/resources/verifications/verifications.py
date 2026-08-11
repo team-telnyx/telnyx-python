@@ -89,7 +89,8 @@ class VerificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRetrieveResponse:
         """
-        Retrieve verification
+        Returns the verification identified by ID, including its channel, phone number,
+        Verify profile, timeout, and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -126,7 +127,9 @@ class VerificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger Call verification
+        Starts a verification for the specified phone number and delivers its code in a
+        voice call using the selected Verify profile. Returns the pending verification
+        record.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -180,7 +183,9 @@ class VerificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger Flash call verification
+        Starts a verification for the specified phone number and places a brief call
+        with the code embedded in the caller ID. Returns the pending verification
+        record.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -228,7 +233,8 @@ class VerificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger SMS verification
+        Starts a verification for the specified phone number and sends its code by SMS
+        using the selected Verify profile. Returns the pending verification record.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -279,7 +285,9 @@ class VerificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger WhatsApp verification
+        Starts a verification for the specified phone number and sends its code over
+        WhatsApp using the selected Verify profile. Returns the pending verification
+        record.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -360,7 +368,8 @@ class AsyncVerificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRetrieveResponse:
         """
-        Retrieve verification
+        Returns the verification identified by ID, including its channel, phone number,
+        Verify profile, timeout, and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -397,7 +406,9 @@ class AsyncVerificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger Call verification
+        Starts a verification for the specified phone number and delivers its code in a
+        voice call using the selected Verify profile. Returns the pending verification
+        record.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -451,7 +462,9 @@ class AsyncVerificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger Flash call verification
+        Starts a verification for the specified phone number and places a brief call
+        with the code embedded in the caller ID. Returns the pending verification
+        record.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -499,7 +512,8 @@ class AsyncVerificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger SMS verification
+        Starts a verification for the specified phone number and sends its code by SMS
+        using the selected Verify profile. Returns the pending verification record.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -550,7 +564,9 @@ class AsyncVerificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
-        Trigger WhatsApp verification
+        Starts a verification for the specified phone number and sends its code over
+        WhatsApp using the selected Verify profile. Returns the pending verification
+        record.
 
         Args:
           phone_number: +E164 formatted phone number.

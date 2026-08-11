@@ -39,6 +39,13 @@ class CredentialConnectionUpdateParams(TypedDict, total=False):
     connection_name: str
     """A user-assigned name to help manage the connection."""
 
+    conversation_persistence: bool
+    """Whether conversation persistence is enabled for this connection.
+
+    When enabled, calls handled by the connection are transcribed, stored, and
+    indexed. Defaults to false.
+    """
+
     default_on_hold_comfort_noise_enabled: bool
     """When enabled, Telnyx will generate comfort noise when you place the call on
     hold.

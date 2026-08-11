@@ -108,7 +108,7 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PhoneNumberListResponse]:
         """
-        List Whatsapp phone numbers
+        Returns WhatsApp phone numbers linked to the authenticated Telnyx account.
 
         Args:
           extra_headers: Send extra headers
@@ -150,7 +150,7 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Whatsapp phone number
+        Removes the specified phone number from Telnyx WhatsApp management.
 
         Args:
           extra_headers: Send extra headers
@@ -185,7 +185,7 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberGetResponse:
         """
-        List Whatsapp phone numbers
+        Retrieve a list of the phone numbers registered for WhatsApp on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -227,7 +227,7 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Resend verification code
+        Requests a new verification code for the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -311,7 +311,7 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Submit verification code for a phone number
+        Submits the verification code received for the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -385,7 +385,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumberListResponse, AsyncDefaultFlatPagination[PhoneNumberListResponse]]:
         """
-        List Whatsapp phone numbers
+        Returns WhatsApp phone numbers linked to the authenticated Telnyx account.
 
         Args:
           extra_headers: Send extra headers
@@ -427,7 +427,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Whatsapp phone number
+        Removes the specified phone number from Telnyx WhatsApp management.
 
         Args:
           extra_headers: Send extra headers
@@ -462,7 +462,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberGetResponse:
         """
-        List Whatsapp phone numbers
+        Retrieve a list of the phone numbers registered for WhatsApp on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -504,7 +504,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Resend verification code
+        Requests a new verification code for the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -588,7 +588,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Submit verification code for a phone number
+        Submits the verification code received for the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers

@@ -8,11 +8,11 @@ __all__ = ["SipRegistrationStatusRetrieveParams"]
 
 
 class SipRegistrationStatusRetrieveParams(TypedDict, total=False):
-    credential_type: Required[Literal["uac_external_credential", "telephony_credential"]]
+    credential_type: Required[Literal["uac_external_credential", "telephony_credential", "sip_credential_connection"]]
     """The kind of credential to look up.
 
-    `uac_external_credential` is keyed by `connection_id`; `telephony_credential` is
-    keyed by `username`.
+    `uac_external_credential` is keyed by `connection_id`; `telephony_credential`
+    and `sip_credential_connection` are keyed by `username`.
     """
 
     connection_id: str
@@ -22,7 +22,8 @@ class SipRegistrationStatusRetrieveParams(TypedDict, total=False):
     """
 
     username: str
-    """SIP username of the telephony credential to look up.
+    """SIP username to look up.
 
-    Required when `credential_type` is `telephony_credential`.
+    Required when `credential_type` is `telephony_credential` or
+    `sip_credential_connection`.
     """

@@ -76,9 +76,9 @@ class TestInsightGroups:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         insight_group = client.ai.conversations.insight_groups.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="description",
-            name="name",
-            webhook="webhook",
+            description="Description",
+            name="Name",
+            webhook="Webhook",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 
@@ -162,7 +162,7 @@ class TestInsightGroups:
     @parametrize
     def test_method_insight_groups(self, client: Telnyx) -> None:
         insight_group = client.ai.conversations.insight_groups.insight_groups(
-            name="name",
+            name="Name",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 
@@ -170,9 +170,9 @@ class TestInsightGroups:
     @parametrize
     def test_method_insight_groups_with_all_params(self, client: Telnyx) -> None:
         insight_group = client.ai.conversations.insight_groups.insight_groups(
-            name="name",
-            description="description",
-            webhook="webhook",
+            name="Name",
+            description="Description",
+            webhook="",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 
@@ -180,7 +180,7 @@ class TestInsightGroups:
     @parametrize
     def test_raw_response_insight_groups(self, client: Telnyx) -> None:
         response = client.ai.conversations.insight_groups.with_raw_response.insight_groups(
-            name="name",
+            name="Name",
         )
 
         assert response.is_closed is True
@@ -192,7 +192,7 @@ class TestInsightGroups:
     @parametrize
     def test_streaming_response_insight_groups(self, client: Telnyx) -> None:
         with client.ai.conversations.insight_groups.with_streaming_response.insight_groups(
-            name="name",
+            name="Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -300,9 +300,9 @@ class TestAsyncInsightGroups:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight_group = await async_client.ai.conversations.insight_groups.update(
             group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="description",
-            name="name",
-            webhook="webhook",
+            description="Description",
+            name="Name",
+            webhook="Webhook",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 
@@ -386,7 +386,7 @@ class TestAsyncInsightGroups:
     @parametrize
     async def test_method_insight_groups(self, async_client: AsyncTelnyx) -> None:
         insight_group = await async_client.ai.conversations.insight_groups.insight_groups(
-            name="name",
+            name="Name",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 
@@ -394,9 +394,9 @@ class TestAsyncInsightGroups:
     @parametrize
     async def test_method_insight_groups_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight_group = await async_client.ai.conversations.insight_groups.insight_groups(
-            name="name",
-            description="description",
-            webhook="webhook",
+            name="Name",
+            description="Description",
+            webhook="",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 
@@ -404,7 +404,7 @@ class TestAsyncInsightGroups:
     @parametrize
     async def test_raw_response_insight_groups(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insight_groups.with_raw_response.insight_groups(
-            name="name",
+            name="Name",
         )
 
         assert response.is_closed is True
@@ -416,7 +416,7 @@ class TestAsyncInsightGroups:
     @parametrize
     async def test_streaming_response_insight_groups(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insight_groups.with_streaming_response.insight_groups(
-            name="name",
+            name="Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

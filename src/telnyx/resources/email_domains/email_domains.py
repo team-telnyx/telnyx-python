@@ -86,12 +86,13 @@ class EmailDomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
-        """Create an email domain
+        """Registers a domain for email sending and optional inbound delivery.
+
+        The response
+        includes the domain configuration and current verification state.
 
         Args:
-          dmarc_policy: DMARC policy for a sending domain.
-
-        Drives the recommended \\__dmarc.<domain> TXT
+          dmarc_policy: DMARC policy for a sending domain. Drives the recommended \\__dmarc.<domain> TXT
               record. DMARC is advisory and never blocks sending. When omitted or null, the
               domain uses the advisory default (v=DMARC1; p=none;
               rua=mailto:dmarc@telnyx.com).
@@ -171,12 +172,13 @@ class EmailDomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
-        """Update an email domain
+        """
+        Updates mutable settings for an existing email domain, including inbound
+        delivery and tracking configuration. Shared domains are read-only for non-owner
+        accounts.
 
         Args:
-          dmarc_policy: DMARC policy for a sending domain.
-
-        Drives the recommended \\__dmarc.<domain> TXT
+          dmarc_policy: DMARC policy for a sending domain. Drives the recommended \\__dmarc.<domain> TXT
               record. DMARC is advisory and never blocks sending. When omitted or null, the
               domain uses the advisory default (v=DMARC1; p=none;
               rua=mailto:dmarc@telnyx.com).
@@ -297,8 +299,10 @@ class EmailDomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
-        """
-        Delete an email domain
+        """Deletes an email domain configuration.
+
+        Verified domains require `force=true`,
+        and shared domains are read-only for non-owner accounts.
 
         Args:
           force: Required as true when deleting verified domains
@@ -337,7 +341,8 @@ class EmailDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainRetrieveDNSRecordsResponse:
         """
-        List DNS records for an email domain
+        Returns the DNS records Telnyx generated for domain ownership and DKIM
+        verification, plus MX records when inbound delivery is enabled.
 
         Args:
           extra_headers: Send extra headers
@@ -403,7 +408,8 @@ class EmailDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
         """
-        Verify DNS records for an email domain
+        Checks the published DNS records against the records required for the email
+        domain and returns the latest verification results.
 
         Args:
           extra_headers: Send extra headers
@@ -464,12 +470,13 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
-        """Create an email domain
+        """Registers a domain for email sending and optional inbound delivery.
+
+        The response
+        includes the domain configuration and current verification state.
 
         Args:
-          dmarc_policy: DMARC policy for a sending domain.
-
-        Drives the recommended \\__dmarc.<domain> TXT
+          dmarc_policy: DMARC policy for a sending domain. Drives the recommended \\__dmarc.<domain> TXT
               record. DMARC is advisory and never blocks sending. When omitted or null, the
               domain uses the advisory default (v=DMARC1; p=none;
               rua=mailto:dmarc@telnyx.com).
@@ -549,12 +556,13 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
-        """Update an email domain
+        """
+        Updates mutable settings for an existing email domain, including inbound
+        delivery and tracking configuration. Shared domains are read-only for non-owner
+        accounts.
 
         Args:
-          dmarc_policy: DMARC policy for a sending domain.
-
-        Drives the recommended \\__dmarc.<domain> TXT
+          dmarc_policy: DMARC policy for a sending domain. Drives the recommended \\__dmarc.<domain> TXT
               record. DMARC is advisory and never blocks sending. When omitted or null, the
               domain uses the advisory default (v=DMARC1; p=none;
               rua=mailto:dmarc@telnyx.com).
@@ -675,8 +683,10 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
-        """
-        Delete an email domain
+        """Deletes an email domain configuration.
+
+        Verified domains require `force=true`,
+        and shared domains are read-only for non-owner accounts.
 
         Args:
           force: Required as true when deleting verified domains
@@ -715,7 +725,8 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainRetrieveDNSRecordsResponse:
         """
-        List DNS records for an email domain
+        Returns the DNS records Telnyx generated for domain ownership and DKIM
+        verification, plus MX records when inbound delivery is enabled.
 
         Args:
           extra_headers: Send extra headers
@@ -781,7 +792,8 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailDomainResponse:
         """
-        Verify DNS records for an email domain
+        Checks the published DNS records against the records required for the email
+        domain and returns the latest verification results.
 
         Args:
           extra_headers: Send extra headers

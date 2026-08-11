@@ -77,8 +77,8 @@ class TestConversationalComponents:
             phone_number="phone_number",
             commands=[
                 {
-                    "command": "command",
-                    "description": "description",
+                    "command": "string",
+                    "description": "string",
                 }
             ],
             ice_breakers=["string"],
@@ -182,8 +182,8 @@ class TestAsyncConversationalComponents:
             phone_number="phone_number",
             commands=[
                 {
-                    "command": "command",
-                    "description": "description",
+                    "command": "string",
+                    "description": "string",
                 }
             ],
             ice_breakers=["string"],

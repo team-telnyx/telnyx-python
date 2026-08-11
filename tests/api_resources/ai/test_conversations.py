@@ -35,7 +35,7 @@ class TestConversations:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         conversation = client.ai.conversations.create(
             metadata={"foo": "string"},
-            name="name",
+            name="string",
         )
         assert_matches_type(Conversation, conversation, path=["response"])
 
@@ -116,7 +116,7 @@ class TestConversations:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         conversation = client.ai.conversations.update(
             conversation_id="conversation_id",
-            metadata={"foo": "string"},
+            metadata={"ai_disabled": "true"},
         )
         assert_matches_type(ConversationUpdateResponse, conversation, path=["response"])
 
@@ -248,7 +248,7 @@ class TestConversations:
     def test_method_add_message(self, client: Telnyx) -> None:
         conversation = client.ai.conversations.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
+            role="Role",
         )
         assert conversation is None
 
@@ -257,12 +257,12 @@ class TestConversations:
     def test_method_add_message_with_all_params(self, client: Telnyx) -> None:
         conversation = client.ai.conversations.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
-            content="content",
+            role="Role",
+            content="",
             metadata={"foo": "string"},
-            name="name",
-            sent_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            tool_call_id="tool_call_id",
+            name="Name",
+            sent_at=parse_datetime("2024-01-23T18:10:02.574Z"),
+            tool_call_id="Tool Call Id",
             tool_calls=[{"foo": "bar"}],
             tool_choice="string",
         )
@@ -273,7 +273,7 @@ class TestConversations:
     def test_raw_response_add_message(self, client: Telnyx) -> None:
         response = client.ai.conversations.with_raw_response.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
+            role="Role",
         )
 
         assert response.is_closed is True
@@ -286,7 +286,7 @@ class TestConversations:
     def test_streaming_response_add_message(self, client: Telnyx) -> None:
         with client.ai.conversations.with_streaming_response.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
+            role="Role",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -302,7 +302,7 @@ class TestConversations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             client.ai.conversations.with_raw_response.add_message(
                 conversation_id="",
-                role="role",
+                role="Role",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -364,7 +364,7 @@ class TestAsyncConversations:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         conversation = await async_client.ai.conversations.create(
             metadata={"foo": "string"},
-            name="name",
+            name="string",
         )
         assert_matches_type(Conversation, conversation, path=["response"])
 
@@ -445,7 +445,7 @@ class TestAsyncConversations:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         conversation = await async_client.ai.conversations.update(
             conversation_id="conversation_id",
-            metadata={"foo": "string"},
+            metadata={"ai_disabled": "true"},
         )
         assert_matches_type(ConversationUpdateResponse, conversation, path=["response"])
 
@@ -577,7 +577,7 @@ class TestAsyncConversations:
     async def test_method_add_message(self, async_client: AsyncTelnyx) -> None:
         conversation = await async_client.ai.conversations.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
+            role="Role",
         )
         assert conversation is None
 
@@ -586,12 +586,12 @@ class TestAsyncConversations:
     async def test_method_add_message_with_all_params(self, async_client: AsyncTelnyx) -> None:
         conversation = await async_client.ai.conversations.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
-            content="content",
+            role="Role",
+            content="",
             metadata={"foo": "string"},
-            name="name",
-            sent_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            tool_call_id="tool_call_id",
+            name="Name",
+            sent_at=parse_datetime("2024-01-23T18:10:02.574Z"),
+            tool_call_id="Tool Call Id",
             tool_calls=[{"foo": "bar"}],
             tool_choice="string",
         )
@@ -602,7 +602,7 @@ class TestAsyncConversations:
     async def test_raw_response_add_message(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.with_raw_response.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
+            role="Role",
         )
 
         assert response.is_closed is True
@@ -615,7 +615,7 @@ class TestAsyncConversations:
     async def test_streaming_response_add_message(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.with_streaming_response.add_message(
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            role="role",
+            role="Role",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -631,7 +631,7 @@ class TestAsyncConversations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             await async_client.ai.conversations.with_raw_response.add_message(
                 conversation_id="",
-                role="role",
+                role="Role",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

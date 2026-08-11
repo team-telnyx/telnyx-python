@@ -64,7 +64,8 @@ class TemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateCreateResponse:
         """
-        Create a Whatsapp message template
+        Creates a WhatsApp message template for review and subsequent use in template
+        messages.
 
         Args:
           category: Template category: AUTHENTICATION, UTILITY, or MARKETING.
@@ -122,7 +123,8 @@ class TemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[WhatsappTemplateData]:
         """
-        List Whatsapp message templates
+        Returns WhatsApp message templates owned by the authenticated account, including
+        their current review state.
 
         Args:
           filter_category: Filter by category
@@ -203,7 +205,8 @@ class AsyncTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateCreateResponse:
         """
-        Create a Whatsapp message template
+        Creates a WhatsApp message template for review and subsequent use in template
+        messages.
 
         Args:
           category: Template category: AUTHENTICATION, UTILITY, or MARKETING.
@@ -261,7 +264,8 @@ class AsyncTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WhatsappTemplateData, AsyncDefaultFlatPagination[WhatsappTemplateData]]:
         """
-        List Whatsapp message templates
+        Returns WhatsApp message templates owned by the authenticated account, including
+        their current review state.
 
         Args:
           filter_category: Filter by category

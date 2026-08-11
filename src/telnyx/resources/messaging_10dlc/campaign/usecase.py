@@ -55,7 +55,8 @@ class UsecaseResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsecaseGetCostResponse:
         """
-        Get Campaign Cost
+        Returns the upfront and monthly cost associated with the selected 10DLC campaign
+        use case.
 
         Args:
           usecase: Filter results by usecase.
@@ -115,7 +116,8 @@ class AsyncUsecaseResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsecaseGetCostResponse:
         """
-        Get Campaign Cost
+        Returns the upfront and monthly cost associated with the selected 10DLC campaign
+        use case.
 
         Args:
           usecase: Filter results by usecase.

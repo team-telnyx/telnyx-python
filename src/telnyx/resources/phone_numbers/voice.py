@@ -67,7 +67,8 @@ class VoiceResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceRetrieveResponse:
         """
-        Retrieve a phone number with voice settings
+        Returns the specified phone number together with its current voice
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -108,8 +109,10 @@ class VoiceResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceUpdateResponse:
-        """
-        Update a phone number with voice settings
+        """Updates the voice configuration for the specified phone number.
+
+        The response
+        contains the phone number with its updated voice settings.
 
         Args:
           call_forwarding: The call forwarding settings for a phone number.
@@ -181,8 +184,11 @@ class VoiceResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PhoneNumberWithVoiceSettings]:
-        """
-        List phone numbers with voice settings
+        """Returns account phone numbers together with their voice settings.
+
+        Results
+        support pagination, sorting, and filters for number, connection name, customer
+        reference, and voice usage payment method.
 
         Args:
           filter:
@@ -257,7 +263,8 @@ class AsyncVoiceResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceRetrieveResponse:
         """
-        Retrieve a phone number with voice settings
+        Returns the specified phone number together with its current voice
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -298,8 +305,10 @@ class AsyncVoiceResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceUpdateResponse:
-        """
-        Update a phone number with voice settings
+        """Updates the voice configuration for the specified phone number.
+
+        The response
+        contains the phone number with its updated voice settings.
 
         Args:
           call_forwarding: The call forwarding settings for a phone number.
@@ -371,8 +380,11 @@ class AsyncVoiceResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumberWithVoiceSettings, AsyncDefaultFlatPagination[PhoneNumberWithVoiceSettings]]:
-        """
-        List phone numbers with voice settings
+        """Returns account phone numbers together with their voice settings.
+
+        Results
+        support pagination, sorting, and filters for number, connection name, customer
+        reference, and voice usage payment method.
 
         Args:
           filter:

@@ -70,8 +70,8 @@ class TestOAuth:
     @parametrize
     def test_method_grants(self, client: Telnyx) -> None:
         oauth = client.oauth.grants(
-            allowed=True,
-            consent_token="consent_token",
+            allowed=False,
+            consent_token="string",
         )
         assert_matches_type(OAuthGrantsResponse, oauth, path=["response"])
 
@@ -79,8 +79,8 @@ class TestOAuth:
     @parametrize
     def test_raw_response_grants(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.grants(
-            allowed=True,
-            consent_token="consent_token",
+            allowed=False,
+            consent_token="string",
         )
 
         assert response.is_closed is True
@@ -92,8 +92,8 @@ class TestOAuth:
     @parametrize
     def test_streaming_response_grants(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.grants(
-            allowed=True,
-            consent_token="consent_token",
+            allowed=False,
+            consent_token="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,7 +107,7 @@ class TestOAuth:
     @parametrize
     def test_method_introspect(self, client: Telnyx) -> None:
         oauth = client.oauth.introspect(
-            token="token",
+            token="string",
         )
         assert_matches_type(OAuthIntrospectResponse, oauth, path=["response"])
 
@@ -115,7 +115,7 @@ class TestOAuth:
     @parametrize
     def test_raw_response_introspect(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.introspect(
-            token="token",
+            token="string",
         )
 
         assert response.is_closed is True
@@ -127,7 +127,7 @@ class TestOAuth:
     @parametrize
     def test_streaming_response_introspect(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.introspect(
-            token="token",
+            token="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -364,8 +364,8 @@ class TestAsyncOAuth:
     @parametrize
     async def test_method_grants(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.grants(
-            allowed=True,
-            consent_token="consent_token",
+            allowed=False,
+            consent_token="string",
         )
         assert_matches_type(OAuthGrantsResponse, oauth, path=["response"])
 
@@ -373,8 +373,8 @@ class TestAsyncOAuth:
     @parametrize
     async def test_raw_response_grants(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.grants(
-            allowed=True,
-            consent_token="consent_token",
+            allowed=False,
+            consent_token="string",
         )
 
         assert response.is_closed is True
@@ -386,8 +386,8 @@ class TestAsyncOAuth:
     @parametrize
     async def test_streaming_response_grants(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.grants(
-            allowed=True,
-            consent_token="consent_token",
+            allowed=False,
+            consent_token="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -401,7 +401,7 @@ class TestAsyncOAuth:
     @parametrize
     async def test_method_introspect(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.introspect(
-            token="token",
+            token="string",
         )
         assert_matches_type(OAuthIntrospectResponse, oauth, path=["response"])
 
@@ -409,7 +409,7 @@ class TestAsyncOAuth:
     @parametrize
     async def test_raw_response_introspect(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.introspect(
-            token="token",
+            token="string",
         )
 
         assert response.is_closed is True
@@ -421,7 +421,7 @@ class TestAsyncOAuth:
     @parametrize
     async def test_streaming_response_introspect(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.introspect(
-            token="token",
+            token="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

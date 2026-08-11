@@ -251,6 +251,7 @@ class IPConnectionsResource(SyncAPIResource):
         android_push_credential_id: Optional[str] | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
+        conversation_persistence: bool | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
@@ -289,6 +290,10 @@ class IPConnectionsResource(SyncAPIResource):
           android_push_credential_id: The uuid of the push credential for Android
 
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
+
+          conversation_persistence: Whether conversation persistence is enabled for this connection. When enabled,
+              calls handled by the connection are transcribed, stored, and indexed. Defaults
+              to false.
 
           default_on_hold_comfort_noise_enabled: When enabled, Telnyx will generate comfort noise when you place the call on
               hold. If disabled, you will need to generate comfort noise or on hold music to
@@ -359,6 +364,7 @@ class IPConnectionsResource(SyncAPIResource):
                     "android_push_credential_id": android_push_credential_id,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
+                    "conversation_persistence": conversation_persistence,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,
                     "encode_contact_header_enabled": encode_contact_header_enabled,
@@ -692,6 +698,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         android_push_credential_id: Optional[str] | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
+        conversation_persistence: bool | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
@@ -730,6 +737,10 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
           android_push_credential_id: The uuid of the push credential for Android
 
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
+
+          conversation_persistence: Whether conversation persistence is enabled for this connection. When enabled,
+              calls handled by the connection are transcribed, stored, and indexed. Defaults
+              to false.
 
           default_on_hold_comfort_noise_enabled: When enabled, Telnyx will generate comfort noise when you place the call on
               hold. If disabled, you will need to generate comfort noise or on hold music to
@@ -800,6 +811,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     "android_push_credential_id": android_push_credential_id,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
+                    "conversation_persistence": conversation_persistence,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,
                     "encode_contact_header_enabled": encode_contact_header_enabled,

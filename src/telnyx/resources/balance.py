@@ -51,7 +51,10 @@ class BalanceResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BalanceRetrieveResponse:
-        """Get user balance details"""
+        """
+        Retrieve the current balance, available credit, and credit limit for your
+        account.
+        """
         return self._get(
             "/balance",
             options=make_request_options(
@@ -93,7 +96,10 @@ class AsyncBalanceResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BalanceRetrieveResponse:
-        """Get user balance details"""
+        """
+        Retrieve the current balance, available credit, and credit limit for your
+        account.
+        """
         return await self._get(
             "/balance",
             options=make_request_options(

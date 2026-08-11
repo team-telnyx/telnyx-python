@@ -23,7 +23,7 @@ class TestAccessIPAddress:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         access_ip_address = client.access_ip_address.create(
-            ip_address="ip_address",
+            ip_address="Ip Address",
         )
         assert_matches_type(AccessIPAddressResponse, access_ip_address, path=["response"])
 
@@ -31,8 +31,8 @@ class TestAccessIPAddress:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         access_ip_address = client.access_ip_address.create(
-            ip_address="ip_address",
-            description="description",
+            ip_address="Ip Address",
+            description="Description",
         )
         assert_matches_type(AccessIPAddressResponse, access_ip_address, path=["response"])
 
@@ -40,7 +40,7 @@ class TestAccessIPAddress:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.access_ip_address.with_raw_response.create(
-            ip_address="ip_address",
+            ip_address="Ip Address",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestAccessIPAddress:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.access_ip_address.with_streaming_response.create(
-            ip_address="ip_address",
+            ip_address="Ip Address",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -200,7 +200,7 @@ class TestAsyncAccessIPAddress:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         access_ip_address = await async_client.access_ip_address.create(
-            ip_address="ip_address",
+            ip_address="Ip Address",
         )
         assert_matches_type(AccessIPAddressResponse, access_ip_address, path=["response"])
 
@@ -208,8 +208,8 @@ class TestAsyncAccessIPAddress:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         access_ip_address = await async_client.access_ip_address.create(
-            ip_address="ip_address",
-            description="description",
+            ip_address="Ip Address",
+            description="Description",
         )
         assert_matches_type(AccessIPAddressResponse, access_ip_address, path=["response"])
 
@@ -217,7 +217,7 @@ class TestAsyncAccessIPAddress:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.access_ip_address.with_raw_response.create(
-            ip_address="ip_address",
+            ip_address="Ip Address",
         )
 
         assert response.is_closed is True
@@ -229,7 +229,7 @@ class TestAsyncAccessIPAddress:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.access_ip_address.with_streaming_response.create(
-            ip_address="ip_address",
+            ip_address="Ip Address",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

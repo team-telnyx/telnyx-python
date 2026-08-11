@@ -50,7 +50,7 @@ class TestTags:
     def test_method_add(self, client: Telnyx) -> None:
         tag = client.ai.assistants.tags.add(
             assistant_id="assistant_id",
-            tag="tag",
+            tag="Tag",
         )
         assert_matches_type(TagsResponse, tag, path=["response"])
 
@@ -59,7 +59,7 @@ class TestTags:
     def test_raw_response_add(self, client: Telnyx) -> None:
         response = client.ai.assistants.tags.with_raw_response.add(
             assistant_id="assistant_id",
-            tag="tag",
+            tag="Tag",
         )
 
         assert response.is_closed is True
@@ -72,7 +72,7 @@ class TestTags:
     def test_streaming_response_add(self, client: Telnyx) -> None:
         with client.ai.assistants.tags.with_streaming_response.add(
             assistant_id="assistant_id",
-            tag="tag",
+            tag="Tag",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -88,7 +88,7 @@ class TestTags:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             client.ai.assistants.tags.with_raw_response.add(
                 assistant_id="",
-                tag="tag",
+                tag="Tag",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -182,7 +182,7 @@ class TestAsyncTags:
     async def test_method_add(self, async_client: AsyncTelnyx) -> None:
         tag = await async_client.ai.assistants.tags.add(
             assistant_id="assistant_id",
-            tag="tag",
+            tag="Tag",
         )
         assert_matches_type(TagsResponse, tag, path=["response"])
 
@@ -191,7 +191,7 @@ class TestAsyncTags:
     async def test_raw_response_add(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.tags.with_raw_response.add(
             assistant_id="assistant_id",
-            tag="tag",
+            tag="Tag",
         )
 
         assert response.is_closed is True
@@ -204,7 +204,7 @@ class TestAsyncTags:
     async def test_streaming_response_add(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.tags.with_streaming_response.add(
             assistant_id="assistant_id",
-            tag="tag",
+            tag="Tag",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,7 +220,7 @@ class TestAsyncTags:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             await async_client.ai.assistants.tags.with_raw_response.add(
                 assistant_id="",
-                tag="tag",
+                tag="Tag",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

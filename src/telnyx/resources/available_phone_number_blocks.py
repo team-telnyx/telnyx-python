@@ -55,7 +55,9 @@ class AvailablePhoneNumberBlocksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AvailablePhoneNumberBlockListResponse:
         """
-        List available phone number blocks
+        Searches the Telnyx inventory for available contiguous phone-number blocks.
+        Results can be filtered by locality, country, national destination code, and
+        number type.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[locality],
@@ -119,7 +121,9 @@ class AsyncAvailablePhoneNumberBlocksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AvailablePhoneNumberBlockListResponse:
         """
-        List available phone number blocks
+        Searches the Telnyx inventory for available contiguous phone-number blocks.
+        Results can be filtered by locality, country, national destination code, and
+        number type.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[locality],

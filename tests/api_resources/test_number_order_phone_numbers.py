@@ -107,7 +107,7 @@ class TestNumberOrderPhoneNumbers:
     def test_method_update_requirement_group(self, client: Telnyx) -> None:
         number_order_phone_number = client.number_order_phone_numbers.update_requirement_group(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
         )
         assert_matches_type(
             NumberOrderPhoneNumberUpdateRequirementGroupResponse, number_order_phone_number, path=["response"]
@@ -118,7 +118,7 @@ class TestNumberOrderPhoneNumbers:
     def test_raw_response_update_requirement_group(self, client: Telnyx) -> None:
         response = client.number_order_phone_numbers.with_raw_response.update_requirement_group(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
         )
 
         assert response.is_closed is True
@@ -133,7 +133,7 @@ class TestNumberOrderPhoneNumbers:
     def test_streaming_response_update_requirement_group(self, client: Telnyx) -> None:
         with client.number_order_phone_numbers.with_streaming_response.update_requirement_group(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -151,7 +151,7 @@ class TestNumberOrderPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.number_order_phone_numbers.with_raw_response.update_requirement_group(
                 id="",
-                requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -311,7 +311,7 @@ class TestAsyncNumberOrderPhoneNumbers:
     async def test_method_update_requirement_group(self, async_client: AsyncTelnyx) -> None:
         number_order_phone_number = await async_client.number_order_phone_numbers.update_requirement_group(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
         )
         assert_matches_type(
             NumberOrderPhoneNumberUpdateRequirementGroupResponse, number_order_phone_number, path=["response"]
@@ -322,7 +322,7 @@ class TestAsyncNumberOrderPhoneNumbers:
     async def test_raw_response_update_requirement_group(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.number_order_phone_numbers.with_raw_response.update_requirement_group(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
         )
 
         assert response.is_closed is True
@@ -337,7 +337,7 @@ class TestAsyncNumberOrderPhoneNumbers:
     async def test_streaming_response_update_requirement_group(self, async_client: AsyncTelnyx) -> None:
         async with async_client.number_order_phone_numbers.with_streaming_response.update_requirement_group(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -355,7 +355,7 @@ class TestAsyncNumberOrderPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.number_order_phone_numbers.with_raw_response.update_requirement_group(
                 id="",
-                requirement_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                requirement_group_id="a4b201f9-8646-4e54-a7d2-b2e403eeaf8c",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

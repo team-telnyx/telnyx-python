@@ -34,8 +34,8 @@ class TestRuns:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         run = client.ai.missions.runs.create(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            input={"foo": "bar"},
-            metadata={"foo": "bar"},
+            input={"objective": "bar"},
+            metadata={"requested_by": "bar"},
         )
         assert_matches_type(MissionRunResponse, run, path=["response"])
 
@@ -143,8 +143,8 @@ class TestRuns:
             error="error",
             metadata={"foo": "bar"},
             result_payload={"foo": "bar"},
-            result_summary="result_summary",
-            status="pending",
+            result_summary="Processed 24 customer records successfully.",
+            status="succeeded",
         )
         assert_matches_type(MissionRunResponse, run, path=["response"])
 
@@ -457,8 +457,8 @@ class TestAsyncRuns:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         run = await async_client.ai.missions.runs.create(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            input={"foo": "bar"},
-            metadata={"foo": "bar"},
+            input={"objective": "bar"},
+            metadata={"requested_by": "bar"},
         )
         assert_matches_type(MissionRunResponse, run, path=["response"])
 
@@ -566,8 +566,8 @@ class TestAsyncRuns:
             error="error",
             metadata={"foo": "bar"},
             result_payload={"foo": "bar"},
-            result_summary="result_summary",
-            status="pending",
+            result_summary="Processed 24 customer records successfully.",
+            status="succeeded",
         )
         assert_matches_type(MissionRunResponse, run, path=["response"])
 

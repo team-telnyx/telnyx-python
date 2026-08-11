@@ -226,7 +226,9 @@ class SubNumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrderUpdateRequirementGroupResponse:
         """
-        Update requirement group for a sub number order
+        Associates an existing requirement group with the specified sub number order.
+        The response contains the updated sub number order requirement-group
+        relationship.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate
@@ -449,7 +451,9 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrderUpdateRequirementGroupResponse:
         """
-        Update requirement group for a sub number order
+        Associates an existing requirement group with the specified sub number order.
+        The response contains the updated sub number order requirement-group
+        relationship.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate

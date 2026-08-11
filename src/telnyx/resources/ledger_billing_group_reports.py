@@ -57,7 +57,8 @@ class LedgerBillingGroupReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerBillingGroupReportCreateResponse:
         """
-        Create a ledger billing group report
+        Create a ledger billing group report, which aggregates ledger activity by
+        billing group.
 
         Args:
           month: Month of the ledger billing group report
@@ -99,7 +100,8 @@ class LedgerBillingGroupReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerBillingGroupReportRetrieveResponse:
         """
-        Get a ledger billing group report
+        Retrieve the details and status of a previously created ledger billing group
+        report.
 
         Args:
           extra_headers: Send extra headers
@@ -156,7 +158,8 @@ class AsyncLedgerBillingGroupReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerBillingGroupReportCreateResponse:
         """
-        Create a ledger billing group report
+        Create a ledger billing group report, which aggregates ledger activity by
+        billing group.
 
         Args:
           month: Month of the ledger billing group report
@@ -198,7 +201,8 @@ class AsyncLedgerBillingGroupReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerBillingGroupReportRetrieveResponse:
         """
-        Get a ledger billing group report
+        Retrieve the details and status of a previously created ledger billing group
+        report.
 
         Args:
           extra_headers: Send extra headers

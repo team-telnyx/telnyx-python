@@ -107,7 +107,7 @@ class RcsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcListBulkCapabilitiesResponse:
         """
-        Check RCS capabilities (batch)
+        Returns RCS capability information for multiple recipients in one request.
 
         Args:
           agent_id: RCS Agent ID
@@ -150,7 +150,8 @@ class RcsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcRetrieveCapabilitiesResponse:
         """
-        Check RCS capabilities
+        Returns the RCS features supported by the specified recipient for the selected
+        agent.
 
         Args:
           extra_headers: Send extra headers
@@ -252,7 +253,7 @@ class AsyncRcsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcListBulkCapabilitiesResponse:
         """
-        Check RCS capabilities (batch)
+        Returns RCS capability information for multiple recipients in one request.
 
         Args:
           agent_id: RCS Agent ID
@@ -295,7 +296,8 @@ class AsyncRcsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcRetrieveCapabilitiesResponse:
         """
-        Check RCS capabilities
+        Returns the RCS features supported by the specified recipient for the selected
+        agent.
 
         Args:
           extra_headers: Send extra headers

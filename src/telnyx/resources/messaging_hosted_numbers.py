@@ -215,7 +215,7 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberDeleteResponse:
         """
-        Delete a messaging hosted number
+        Removes the specified hosted number from Telnyx messaging management.
 
         Args:
           extra_headers: Send extra headers
@@ -425,7 +425,7 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberDeleteResponse:
         """
-        Delete a messaging hosted number
+        Removes the specified hosted number from Telnyx messaging management.
 
         Args:
           extra_headers: Send extra headers

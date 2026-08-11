@@ -58,7 +58,9 @@ class RoomRecordingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingRetrieveResponse:
         """
-        View a room recording.
+        Returns the recording identified by `room_recording_id`, including its room,
+        session, participant, status, media details, lifecycle timestamps, and download
+        URL.
 
         Args:
           extra_headers: Send extra headers
@@ -92,8 +94,10 @@ class RoomRecordingsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RoomRecording]:
-        """
-        View a list of room recordings.
+        """Returns a paginated list of room recordings.
+
+        Filter recordings by room, session,
+        participant, recording type, status, duration, or start and end dates.
 
         Args:
           filter:
@@ -180,7 +184,9 @@ class RoomRecordingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingDeleteBulkResponse:
         """
-        Delete several room recordings in a bulk.
+        Deletes the room recordings that match the supplied filters and returns the
+        number of recordings affected. Filters support room, session, participant,
+        recording type, status, duration, and start or end dates.
 
         Args:
           filter:
@@ -253,7 +259,9 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingRetrieveResponse:
         """
-        View a room recording.
+        Returns the recording identified by `room_recording_id`, including its room,
+        session, participant, status, media details, lifecycle timestamps, and download
+        URL.
 
         Args:
           extra_headers: Send extra headers
@@ -287,8 +295,10 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RoomRecording, AsyncDefaultFlatPagination[RoomRecording]]:
-        """
-        View a list of room recordings.
+        """Returns a paginated list of room recordings.
+
+        Filter recordings by room, session,
+        participant, recording type, status, duration, or start and end dates.
 
         Args:
           filter:
@@ -375,7 +385,9 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingDeleteBulkResponse:
         """
-        Delete several room recordings in a bulk.
+        Deletes the room recordings that match the supplied filters and returns the
+        number of recordings affected. Filters support room, session, participant,
+        recording type, status, duration, and start or end dates.
 
         Args:
           filter:

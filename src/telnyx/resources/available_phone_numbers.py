@@ -54,8 +54,12 @@ class AvailablePhoneNumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AvailablePhoneNumberListResponse:
-        """
-        List available phone numbers
+        """Searches the Telnyx inventory for available phone numbers.
+
+        Filters support
+        number patterns, location, number type, features, reservability, and other
+        inventory constraints; the response includes matching numbers and search
+        metadata.
 
         Args:
           filter:
@@ -121,8 +125,12 @@ class AsyncAvailablePhoneNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AvailablePhoneNumberListResponse:
-        """
-        List available phone numbers
+        """Searches the Telnyx inventory for available phone numbers.
+
+        Filters support
+        number patterns, location, number type, features, reservability, and other
+        inventory constraints; the response includes matching numbers and search
+        metadata.
 
         Args:
           filter:

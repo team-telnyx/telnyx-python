@@ -79,8 +79,8 @@ class TestAI:
     @parametrize
     def test_method_summarize(self, client: Telnyx) -> None:
         ai = client.ai.summarize(
-            bucket="bucket",
-            filename="filename",
+            bucket="string",
+            filename="string",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
@@ -88,9 +88,9 @@ class TestAI:
     @parametrize
     def test_method_summarize_with_all_params(self, client: Telnyx) -> None:
         ai = client.ai.summarize(
-            bucket="bucket",
-            filename="filename",
-            system_prompt="system_prompt",
+            bucket="string",
+            filename="string",
+            system_prompt="string",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
@@ -98,8 +98,8 @@ class TestAI:
     @parametrize
     def test_raw_response_summarize(self, client: Telnyx) -> None:
         response = client.ai.with_raw_response.summarize(
-            bucket="bucket",
-            filename="filename",
+            bucket="string",
+            filename="string",
         )
 
         assert response.is_closed is True
@@ -111,8 +111,8 @@ class TestAI:
     @parametrize
     def test_streaming_response_summarize(self, client: Telnyx) -> None:
         with client.ai.with_streaming_response.summarize(
-            bucket="bucket",
-            filename="filename",
+            bucket="string",
+            filename="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -186,8 +186,8 @@ class TestAsyncAI:
     @parametrize
     async def test_method_summarize(self, async_client: AsyncTelnyx) -> None:
         ai = await async_client.ai.summarize(
-            bucket="bucket",
-            filename="filename",
+            bucket="string",
+            filename="string",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
@@ -195,9 +195,9 @@ class TestAsyncAI:
     @parametrize
     async def test_method_summarize_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ai = await async_client.ai.summarize(
-            bucket="bucket",
-            filename="filename",
-            system_prompt="system_prompt",
+            bucket="string",
+            filename="string",
+            system_prompt="string",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
@@ -205,8 +205,8 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_summarize(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.with_raw_response.summarize(
-            bucket="bucket",
-            filename="filename",
+            bucket="string",
+            filename="string",
         )
 
         assert response.is_closed is True
@@ -218,8 +218,8 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_summarize(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.with_streaming_response.summarize(
-            bucket="bucket",
-            filename="filename",
+            bucket="string",
+            filename="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

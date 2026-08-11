@@ -281,7 +281,7 @@ class TestExternalConnections:
         external_connection = client.external_connections.update_location(
             location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
         assert_matches_type(ExternalConnectionUpdateLocationResponse, external_connection, path=["response"])
 
@@ -291,7 +291,7 @@ class TestExternalConnections:
         response = client.external_connections.with_raw_response.update_location(
             location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
 
         assert response.is_closed is True
@@ -305,7 +305,7 @@ class TestExternalConnections:
         with client.external_connections.with_streaming_response.update_location(
             location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -322,14 +322,14 @@ class TestExternalConnections:
             client.external_connections.with_raw_response.update_location(
                 location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 id="",
-                static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             client.external_connections.with_raw_response.update_location(
                 location_id="",
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
             )
 
 
@@ -594,7 +594,7 @@ class TestAsyncExternalConnections:
         external_connection = await async_client.external_connections.update_location(
             location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
         assert_matches_type(ExternalConnectionUpdateLocationResponse, external_connection, path=["response"])
 
@@ -604,7 +604,7 @@ class TestAsyncExternalConnections:
         response = await async_client.external_connections.with_raw_response.update_location(
             location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
 
         assert response.is_closed is True
@@ -618,7 +618,7 @@ class TestAsyncExternalConnections:
         async with async_client.external_connections.with_streaming_response.update_location(
             location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -635,12 +635,12 @@ class TestAsyncExternalConnections:
             await async_client.external_connections.with_raw_response.update_location(
                 location_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 id="",
-                static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             await async_client.external_connections.with_raw_response.update_location(
                 location_id="",
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                static_emergency_address_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                static_emergency_address_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
             )

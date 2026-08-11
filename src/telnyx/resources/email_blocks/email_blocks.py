@@ -137,8 +137,10 @@ class EmailBlocksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailBlockResponse:
-        """
-        Retrieve a suppression
+        """Returns the account-owned suppression identified by ID.
+
+        Cross-account lookups
+        and malformed IDs return `404` without exposing another account’s data.
 
         Args:
           extra_headers: Send extra headers
@@ -513,8 +515,10 @@ class AsyncEmailBlocksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailBlockResponse:
-        """
-        Retrieve a suppression
+        """Returns the account-owned suppression identified by ID.
+
+        Cross-account lookups
+        and malformed IDs return `404` without exposing another account’s data.
 
         Args:
           extra_headers: Send extra headers

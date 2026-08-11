@@ -79,7 +79,8 @@ class EmailUnsubscribeGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UnsubscribeGroupResponse:
         """
-        Create an unsubscribe group
+        Creates an account-owned unsubscribe group for associating email categories with
+        separate recipient suppression lists.
 
         Args:
           extra_headers: Send extra headers
@@ -117,7 +118,7 @@ class EmailUnsubscribeGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UnsubscribeGroupResponse:
         """
-        Retrieve an unsubscribe group
+        Returns the account-owned unsubscribe group identified by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -323,7 +324,8 @@ class AsyncEmailUnsubscribeGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UnsubscribeGroupResponse:
         """
-        Create an unsubscribe group
+        Creates an account-owned unsubscribe group for associating email categories with
+        separate recipient suppression lists.
 
         Args:
           extra_headers: Send extra headers
@@ -361,7 +363,7 @@ class AsyncEmailUnsubscribeGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UnsubscribeGroupResponse:
         """
-        Retrieve an unsubscribe group
+        Returns the account-owned unsubscribe group identified by ID.
 
         Args:
           extra_headers: Send extra headers

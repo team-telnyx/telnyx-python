@@ -55,7 +55,7 @@ class GlobalIPLatencyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPLatencyRetrieveResponse:
         """
-        Global IP Latency Metrics
+        Retrieve latency metrics measured for your Global IPs.
 
         Args:
           filter:
@@ -119,7 +119,7 @@ class AsyncGlobalIPLatencyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPLatencyRetrieveResponse:
         """
-        Global IP Latency Metrics
+        Retrieve latency metrics measured for your Global IPs.
 
         Args:
           filter:

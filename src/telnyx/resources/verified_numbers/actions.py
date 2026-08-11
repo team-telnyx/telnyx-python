@@ -56,7 +56,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberDataWrapper:
         """
-        Submit verification code
+        Submit the verification code received via the selected verification method to
+        verify a phone number.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -119,7 +120,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberDataWrapper:
         """
-        Submit verification code
+        Submit the verification code received via the selected verification method to
+        verify a phone number.
 
         Args:
           phone_number: +E164 formatted phone number.

@@ -60,7 +60,8 @@ class BillingGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupCreateResponse:
         """
-        Create a billing group
+        Create a new billing group, which can be used to organize resources for billing
+        purposes.
 
         Args:
           name: A name for the billing group
@@ -94,7 +95,7 @@ class BillingGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupRetrieveResponse:
         """
-        Get a billing group
+        Retrieve the details of a specific billing group.
 
         Args:
           extra_headers: Send extra headers
@@ -128,7 +129,7 @@ class BillingGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupUpdateResponse:
         """
-        Update a billing group
+        Update the properties of an existing billing group.
 
         Args:
           name: A name for the billing group
@@ -165,7 +166,7 @@ class BillingGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[BillingGroup]:
         """
-        List all billing groups
+        Retrieve a paginated list of billing groups on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -207,7 +208,7 @@ class BillingGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupDeleteResponse:
         """
-        Delete a billing group
+        Delete a billing group from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -263,7 +264,8 @@ class AsyncBillingGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupCreateResponse:
         """
-        Create a billing group
+        Create a new billing group, which can be used to organize resources for billing
+        purposes.
 
         Args:
           name: A name for the billing group
@@ -297,7 +299,7 @@ class AsyncBillingGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupRetrieveResponse:
         """
-        Get a billing group
+        Retrieve the details of a specific billing group.
 
         Args:
           extra_headers: Send extra headers
@@ -331,7 +333,7 @@ class AsyncBillingGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupUpdateResponse:
         """
-        Update a billing group
+        Update the properties of an existing billing group.
 
         Args:
           name: A name for the billing group
@@ -368,7 +370,7 @@ class AsyncBillingGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BillingGroup, AsyncDefaultFlatPagination[BillingGroup]]:
         """
-        List all billing groups
+        Retrieve a paginated list of billing groups on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -410,7 +412,7 @@ class AsyncBillingGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingGroupDeleteResponse:
         """
-        Delete a billing group
+        Delete a billing group from your account.
 
         Args:
           extra_headers: Send extra headers

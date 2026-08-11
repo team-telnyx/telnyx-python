@@ -240,7 +240,7 @@ class TestPhoneNumbers:
     def test_method_verify(self, client: Telnyx) -> None:
         phone_number = client.whatsapp.phone_numbers.verify(
             phone_number="phone_number",
-            code="code",
+            code="string",
         )
         assert phone_number is None
 
@@ -249,7 +249,7 @@ class TestPhoneNumbers:
     def test_raw_response_verify(self, client: Telnyx) -> None:
         response = client.whatsapp.phone_numbers.with_raw_response.verify(
             phone_number="phone_number",
-            code="code",
+            code="string",
         )
 
         assert response.is_closed is True
@@ -262,7 +262,7 @@ class TestPhoneNumbers:
     def test_streaming_response_verify(self, client: Telnyx) -> None:
         with client.whatsapp.phone_numbers.with_streaming_response.verify(
             phone_number="phone_number",
-            code="code",
+            code="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -278,7 +278,7 @@ class TestPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
             client.whatsapp.phone_numbers.with_raw_response.verify(
                 phone_number="",
-                code="code",
+                code="string",
             )
 
 
@@ -505,7 +505,7 @@ class TestAsyncPhoneNumbers:
     async def test_method_verify(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.whatsapp.phone_numbers.verify(
             phone_number="phone_number",
-            code="code",
+            code="string",
         )
         assert phone_number is None
 
@@ -514,7 +514,7 @@ class TestAsyncPhoneNumbers:
     async def test_raw_response_verify(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.whatsapp.phone_numbers.with_raw_response.verify(
             phone_number="phone_number",
-            code="code",
+            code="string",
         )
 
         assert response.is_closed is True
@@ -527,7 +527,7 @@ class TestAsyncPhoneNumbers:
     async def test_streaming_response_verify(self, async_client: AsyncTelnyx) -> None:
         async with async_client.whatsapp.phone_numbers.with_streaming_response.verify(
             phone_number="phone_number",
-            code="code",
+            code="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -543,5 +543,5 @@ class TestAsyncPhoneNumbers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
             await async_client.whatsapp.phone_numbers.with_raw_response.verify(
                 phone_number="",
-                code="code",
+                code="string",
             )

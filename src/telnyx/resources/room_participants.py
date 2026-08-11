@@ -57,7 +57,8 @@ class RoomParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomParticipantRetrieveResponse:
         """
-        View a room participant.
+        Returns the participant identified by `room_participant_id`, including its
+        session, context, and join, update, and leave timestamps.
 
         Args:
           extra_headers: Send extra headers
@@ -93,8 +94,10 @@ class RoomParticipantsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RoomParticipant]:
-        """
-        View a list of room participants.
+        """Returns a paginated list of room participants across sessions.
+
+        Filter
+        participants by session, join, update, or leave date and by participant context.
 
         Args:
           filter:
@@ -168,7 +171,8 @@ class AsyncRoomParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomParticipantRetrieveResponse:
         """
-        View a room participant.
+        Returns the participant identified by `room_participant_id`, including its
+        session, context, and join, update, and leave timestamps.
 
         Args:
           extra_headers: Send extra headers
@@ -204,8 +208,10 @@ class AsyncRoomParticipantsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RoomParticipant, AsyncDefaultFlatPagination[RoomParticipant]]:
-        """
-        View a list of room participants.
+        """Returns a paginated list of room participants across sessions.
+
+        Filter
+        participants by session, join, update, or leave date and by participant context.
 
         Args:
           filter:

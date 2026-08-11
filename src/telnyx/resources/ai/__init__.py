@@ -72,6 +72,14 @@ from .embeddings import (
     EmbeddingsResourceWithStreamingResponse,
     AsyncEmbeddingsResourceWithStreamingResponse,
 )
+from .collections import (
+    CollectionsResource,
+    AsyncCollectionsResource,
+    CollectionsResourceWithRawResponse,
+    AsyncCollectionsResourceWithRawResponse,
+    CollectionsResourceWithStreamingResponse,
+    AsyncCollectionsResourceWithStreamingResponse,
+)
 from .fine_tuning import (
     FineTuningResource,
     AsyncFineTuningResource,
@@ -124,6 +132,12 @@ __all__ = [
     "AsyncClustersResourceWithRawResponse",
     "ClustersResourceWithStreamingResponse",
     "AsyncClustersResourceWithStreamingResponse",
+    "CollectionsResource",
+    "AsyncCollectionsResource",
+    "CollectionsResourceWithRawResponse",
+    "AsyncCollectionsResourceWithRawResponse",
+    "CollectionsResourceWithStreamingResponse",
+    "AsyncCollectionsResourceWithStreamingResponse",
     "ConversationsResource",
     "AsyncConversationsResource",
     "ConversationsResourceWithRawResponse",

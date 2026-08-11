@@ -64,8 +64,9 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionChangeBundleStatusResponse:
         """
-        Change the bundle status for a phone number (set to being in a bundle or remove
-        from a bundle)
+        Adds the specified phone number to a bundle or removes it from a bundle
+        according to the requested status change. The response contains the phone number
+        with its updated bundle state.
 
         Args:
           bundle_id: The new bundle_id setting for the number. If you are assigning the number to a
@@ -108,8 +109,11 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnableEmergencyResponse:
-        """
-        Enable emergency for a phone number
+        """Associates emergency-service settings with the specified phone number.
+
+        The
+        operation returns the updated phone-number configuration when completed
+        immediately or an accepted state when processing continues asynchronously.
 
         Args:
           emergency_address_id: Identifies the address to be used with emergency services.
@@ -214,8 +218,9 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionChangeBundleStatusResponse:
         """
-        Change the bundle status for a phone number (set to being in a bundle or remove
-        from a bundle)
+        Adds the specified phone number to a bundle or removes it from a bundle
+        according to the requested status change. The response contains the phone number
+        with its updated bundle state.
 
         Args:
           bundle_id: The new bundle_id setting for the number. If you are assigning the number to a
@@ -258,8 +263,11 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnableEmergencyResponse:
-        """
-        Enable emergency for a phone number
+        """Associates emergency-service settings with the specified phone number.
+
+        The
+        operation returns the updated phone-number configuration when completed
+        immediately or an accepted state when processing continues asynchronously.
 
         Args:
           emergency_address_id: Identifies the address to be used with emergency services.

@@ -59,7 +59,9 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyVerificationCodeResponse:
         """
-        Verify verification code by ID
+        Checks the supplied code, or the supplied status for a custom-code verification,
+        against the verification identified by ID. The response indicates whether the
+        verification was accepted or rejected.
 
         Args:
           code: This is the code the user submits for verification.
@@ -129,7 +131,9 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyVerificationCodeResponse:
         """
-        Verify verification code by ID
+        Checks the supplied code, or the supplied status for a custom-code verification,
+        against the verification identified by ID. The response indicates whether the
+        verification was accepted or rejected.
 
         Args:
           code: This is the code the user submits for verification.

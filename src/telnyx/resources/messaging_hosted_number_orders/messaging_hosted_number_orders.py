@@ -91,7 +91,8 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCreateResponse:
         """
-        Create a messaging hosted number order
+        Creates an order to enable Telnyx messaging on phone numbers whose voice service
+        remains with another carrier.
 
         Args:
           messaging_profile_id: Automatically associate the number with this messaging profile ID when the order
@@ -134,7 +135,8 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderRetrieveResponse:
         """
-        Retrieve a messaging hosted number order
+        Returns the current state, phone numbers, and required actions for the specified
+        hosted-messaging order.
 
         Args:
           extra_headers: Send extra headers
@@ -167,8 +169,10 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MessagingHostedNumberOrder]:
-        """
-        List messaging hosted number orders
+        """Returns hosted-messaging orders for the authenticated account.
+
+        Apply the
+        documented filters and pagination parameters to narrow the result set.
 
         Args:
           extra_headers: Send extra headers
@@ -243,7 +247,8 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCheckEligibilityResponse:
         """
-        Check hosted messaging eligibility
+        Checks whether the supplied phone numbers are eligible for hosted messaging
+        before an order is created.
 
         Args:
           phone_numbers: List of phone numbers to check eligibility
@@ -393,7 +398,8 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCreateResponse:
         """
-        Create a messaging hosted number order
+        Creates an order to enable Telnyx messaging on phone numbers whose voice service
+        remains with another carrier.
 
         Args:
           messaging_profile_id: Automatically associate the number with this messaging profile ID when the order
@@ -436,7 +442,8 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderRetrieveResponse:
         """
-        Retrieve a messaging hosted number order
+        Returns the current state, phone numbers, and required actions for the specified
+        hosted-messaging order.
 
         Args:
           extra_headers: Send extra headers
@@ -469,8 +476,10 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MessagingHostedNumberOrder, AsyncDefaultFlatPagination[MessagingHostedNumberOrder]]:
-        """
-        List messaging hosted number orders
+        """Returns hosted-messaging orders for the authenticated account.
+
+        Apply the
+        documented filters and pagination parameters to narrow the result set.
 
         Args:
           extra_headers: Send extra headers
@@ -545,7 +554,8 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCheckEligibilityResponse:
         """
-        Check hosted messaging eligibility
+        Checks whether the supplied phone numbers are eligible for hosted messaging
+        before an order is created.
 
         Args:
           phone_numbers: List of phone numbers to check eligibility

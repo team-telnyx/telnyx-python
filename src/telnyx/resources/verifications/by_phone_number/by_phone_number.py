@@ -67,7 +67,8 @@ class ByPhoneNumberResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByPhoneNumberListResponse:
         """
-        List verifications by phone number
+        Returns a paginated list of verifications associated with the specified phone
+        number.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -130,7 +131,8 @@ class AsyncByPhoneNumberResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByPhoneNumberListResponse:
         """
-        List verifications by phone number
+        Returns a paginated list of verifications associated with the specified phone
+        number.
 
         Args:
           phone_number: +E164 formatted phone number.

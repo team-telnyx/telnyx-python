@@ -55,7 +55,7 @@ class GlobalIPUsageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPUsageRetrieveResponse:
         """
-        Global IP Usage Metrics
+        Retrieve usage metrics for your Global IPs.
 
         Args:
           filter:
@@ -117,7 +117,7 @@ class AsyncGlobalIPUsageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPUsageRetrieveResponse:
         """
-        Global IP Usage Metrics
+        Retrieve usage metrics for your Global IPs.
 
         Args:
           filter:

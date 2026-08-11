@@ -217,7 +217,7 @@ class FaxesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxRetrieveResponse:
         """
-        View a fax
+        Retrieve the details of a single fax.
 
         Args:
           extra_headers: Send extra headers
@@ -252,7 +252,7 @@ class FaxesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[Fax]:
         """
-        View a list of faxes
+        Retrieve a paginated list of faxes sent or received on your account.
 
         Args:
           filter:
@@ -300,7 +300,7 @@ class FaxesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a fax
+        Delete a fax resource from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -503,7 +503,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxRetrieveResponse:
         """
-        View a fax
+        Retrieve the details of a single fax.
 
         Args:
           extra_headers: Send extra headers
@@ -538,7 +538,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Fax, AsyncDefaultFlatPagination[Fax]]:
         """
-        View a list of faxes
+        Retrieve a paginated list of faxes sent or received on your account.
 
         Args:
           filter:
@@ -586,7 +586,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a fax
+        Delete a fax resource from your account.
 
         Args:
           extra_headers: Send extra headers

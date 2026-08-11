@@ -59,7 +59,8 @@ class WhatsappMessageTemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WhatsappMessageTemplateRetrieveResponse:
         """
-        Get a Whatsapp message template by ID
+        Returns the content, components, language, and current review state of the
+        specified WhatsApp message template.
 
         Args:
           extra_headers: Send extra headers
@@ -94,7 +95,7 @@ class WhatsappMessageTemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WhatsappMessageTemplateUpdateResponse:
         """
-        Update a Whatsapp message template
+        Updates the editable fields of the specified WhatsApp message template.
 
         Args:
           components: Updated template components. Same structure as the create request.
@@ -136,7 +137,7 @@ class WhatsappMessageTemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Whatsapp message template
+        Deletes the specified WhatsApp message template.
 
         Args:
           extra_headers: Send extra headers
@@ -193,7 +194,8 @@ class AsyncWhatsappMessageTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WhatsappMessageTemplateRetrieveResponse:
         """
-        Get a Whatsapp message template by ID
+        Returns the content, components, language, and current review state of the
+        specified WhatsApp message template.
 
         Args:
           extra_headers: Send extra headers
@@ -228,7 +230,7 @@ class AsyncWhatsappMessageTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WhatsappMessageTemplateUpdateResponse:
         """
-        Update a Whatsapp message template
+        Updates the editable fields of the specified WhatsApp message template.
 
         Args:
           components: Updated template components. Same structure as the create request.
@@ -270,7 +272,7 @@ class AsyncWhatsappMessageTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Whatsapp message template
+        Deletes the specified WhatsApp message template.
 
         Args:
           extra_headers: Send extra headers

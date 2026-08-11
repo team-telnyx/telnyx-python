@@ -35,14 +35,14 @@ class TestMobileVoiceConnections:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.create(
             active=True,
-            connection_name="connection_name",
+            connection_name="Telnyx Mobile Voice IMS",
             inbound={"channel_limit": 0},
             outbound={
                 "channel_limit": 0,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "string",
             },
             tags=["string"],
-            webhook_api_version="1",
+            webhook_api_version="2",
             webhook_event_failover_url="webhook_event_failover_url",
             webhook_event_url="webhook_event_url",
             webhook_timeout_secs=0,
@@ -126,12 +126,12 @@ class TestMobileVoiceConnections:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.update(
             id="id",
-            active=True,
-            connection_name="connection_name",
+            active=False,
+            connection_name="string",
             inbound={"channel_limit": 0},
             outbound={
                 "channel_limit": 0,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "string",
             },
             tags=["string"],
             webhook_api_version="1",
@@ -281,14 +281,14 @@ class TestAsyncMobileVoiceConnections:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.create(
             active=True,
-            connection_name="connection_name",
+            connection_name="Telnyx Mobile Voice IMS",
             inbound={"channel_limit": 0},
             outbound={
                 "channel_limit": 0,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "string",
             },
             tags=["string"],
-            webhook_api_version="1",
+            webhook_api_version="2",
             webhook_event_failover_url="webhook_event_failover_url",
             webhook_event_url="webhook_event_url",
             webhook_timeout_secs=0,
@@ -372,12 +372,12 @@ class TestAsyncMobileVoiceConnections:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.update(
             id="id",
-            active=True,
-            connection_name="connection_name",
+            active=False,
+            connection_name="string",
             inbound={"channel_limit": 0},
             outbound={
                 "channel_limit": 0,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "string",
             },
             tags=["string"],
             webhook_api_version="1",

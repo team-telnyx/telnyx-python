@@ -23,7 +23,7 @@ class TestSuppressions:
     def test_method_create(self, client: Telnyx) -> None:
         suppression = client.email_unsubscribe_groups.suppressions.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            to="to",
+            to="user@example.com",
         )
         assert_matches_type(EmailBlockResponse, suppression, path=["response"])
 
@@ -32,7 +32,7 @@ class TestSuppressions:
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.email_unsubscribe_groups.suppressions.with_raw_response.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            to="to",
+            to="user@example.com",
         )
 
         assert response.is_closed is True
@@ -45,7 +45,7 @@ class TestSuppressions:
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.email_unsubscribe_groups.suppressions.with_streaming_response.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            to="to",
+            to="user@example.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +61,7 @@ class TestSuppressions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.email_unsubscribe_groups.suppressions.with_raw_response.create(
                 id="",
-                to="to",
+                to="user@example.com",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -179,7 +179,7 @@ class TestAsyncSuppressions:
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         suppression = await async_client.email_unsubscribe_groups.suppressions.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            to="to",
+            to="user@example.com",
         )
         assert_matches_type(EmailBlockResponse, suppression, path=["response"])
 
@@ -188,7 +188,7 @@ class TestAsyncSuppressions:
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.email_unsubscribe_groups.suppressions.with_raw_response.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            to="to",
+            to="user@example.com",
         )
 
         assert response.is_closed is True
@@ -201,7 +201,7 @@ class TestAsyncSuppressions:
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.email_unsubscribe_groups.suppressions.with_streaming_response.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            to="to",
+            to="user@example.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -217,7 +217,7 @@ class TestAsyncSuppressions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.email_unsubscribe_groups.suppressions.with_raw_response.create(
                 id="",
-                to="to",
+                to="user@example.com",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

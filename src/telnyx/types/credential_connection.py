@@ -41,6 +41,13 @@ class CredentialConnection(BaseModel):
 
     connection_name: Optional[str] = None
 
+    conversation_persistence: Optional[bool] = None
+    """Whether conversation persistence is enabled for this connection.
+
+    When enabled, calls handled by the connection are transcribed, stored, and
+    indexed. Defaults to false.
+    """
+
     created_at: Optional[str] = None
     """ISO-8601 formatted date indicating when the resource was created."""
 

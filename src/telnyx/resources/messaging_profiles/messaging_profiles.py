@@ -119,7 +119,8 @@ class MessagingProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileCreateResponse:
         """
-        Create a messaging profile
+        Creates a messaging profile that controls outbound sender selection, webhook
+        delivery, and inbound message handling for associated numbers and short codes.
 
         Args:
           name: A user friendly name for the messaging profile.
@@ -227,7 +228,8 @@ class MessagingProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileRetrieveResponse:
         """
-        Retrieve a messaging profile
+        Returns the complete configuration of the specified messaging profile, including
+        webhook and sender-selection settings.
 
         Args:
           extra_headers: Send extra headers
@@ -278,8 +280,10 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileUpdateResponse:
-        """
-        Update a messaging profile
+        """Updates the supplied settings on the specified messaging profile.
+
+        Settings
+        omitted from the request remain unchanged.
 
         Args:
           ai_assistant_id: The ID of the AI assistant associated with this messaging profile.
@@ -393,8 +397,10 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MessagingProfile]:
-        """
-        List messaging profiles
+        """Returns messaging profiles owned by the authenticated account.
+
+        Apply the
+        documented filters and pagination parameters to narrow the result set.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
@@ -445,7 +451,8 @@ class MessagingProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileDeleteResponse:
         """
-        Delete a messaging profile
+        Deletes the specified messaging profile and returns the profile's final
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -532,7 +539,8 @@ class MessagingProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]:
         """
-        List phone numbers associated with a messaging profile
+        Returns the phone numbers currently associated with the specified messaging
+        profile.
 
         Args:
           extra_headers: Send extra headers
@@ -582,7 +590,8 @@ class MessagingProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[ShortCode]:
         """
-        List short codes associated with a messaging profile
+        Returns the short codes currently associated with the specified messaging
+        profile.
 
         Args:
           extra_headers: Send extra headers
@@ -721,7 +730,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileCreateResponse:
         """
-        Create a messaging profile
+        Creates a messaging profile that controls outbound sender selection, webhook
+        delivery, and inbound message handling for associated numbers and short codes.
 
         Args:
           name: A user friendly name for the messaging profile.
@@ -829,7 +839,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileRetrieveResponse:
         """
-        Retrieve a messaging profile
+        Returns the complete configuration of the specified messaging profile, including
+        webhook and sender-selection settings.
 
         Args:
           extra_headers: Send extra headers
@@ -880,8 +891,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileUpdateResponse:
-        """
-        Update a messaging profile
+        """Updates the supplied settings on the specified messaging profile.
+
+        Settings
+        omitted from the request remain unchanged.
 
         Args:
           ai_assistant_id: The ID of the AI assistant associated with this messaging profile.
@@ -995,8 +1008,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MessagingProfile, AsyncDefaultFlatPagination[MessagingProfile]]:
-        """
-        List messaging profiles
+        """Returns messaging profiles owned by the authenticated account.
+
+        Apply the
+        documented filters and pagination parameters to narrow the result set.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
@@ -1047,7 +1062,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileDeleteResponse:
         """
-        Delete a messaging profile
+        Deletes the specified messaging profile and returns the profile's final
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -1134,7 +1150,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumberWithMessagingSettings, AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]]:
         """
-        List phone numbers associated with a messaging profile
+        Returns the phone numbers currently associated with the specified messaging
+        profile.
 
         Args:
           extra_headers: Send extra headers
@@ -1184,7 +1201,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ShortCode, AsyncDefaultFlatPagination[ShortCode]]:
         """
-        List short codes associated with a messaging profile
+        Returns the short codes currently associated with the specified messaging
+        profile.
 
         Args:
           extra_headers: Send extra headers

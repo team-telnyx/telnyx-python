@@ -21,7 +21,7 @@ class TestNumbersFeatures:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         numbers_feature = client.numbers_features.create(
-            phone_numbers=["string"],
+            phone_numbers=["+19705555098"],
         )
         assert_matches_type(NumbersFeatureCreateResponse, numbers_feature, path=["response"])
 
@@ -29,7 +29,7 @@ class TestNumbersFeatures:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.numbers_features.with_raw_response.create(
-            phone_numbers=["string"],
+            phone_numbers=["+19705555098"],
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestNumbersFeatures:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.numbers_features.with_streaming_response.create(
-            phone_numbers=["string"],
+            phone_numbers=["+19705555098"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +61,7 @@ class TestAsyncNumbersFeatures:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         numbers_feature = await async_client.numbers_features.create(
-            phone_numbers=["string"],
+            phone_numbers=["+19705555098"],
         )
         assert_matches_type(NumbersFeatureCreateResponse, numbers_feature, path=["response"])
 
@@ -69,7 +69,7 @@ class TestAsyncNumbersFeatures:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.numbers_features.with_raw_response.create(
-            phone_numbers=["string"],
+            phone_numbers=["+19705555098"],
         )
 
         assert response.is_closed is True
@@ -81,7 +81,7 @@ class TestAsyncNumbersFeatures:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.numbers_features.with_streaming_response.create(
-            phone_numbers=["string"],
+            phone_numbers=["+19705555098"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

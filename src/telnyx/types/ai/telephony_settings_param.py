@@ -106,6 +106,13 @@ class TelephonySettingsParam(TypedDict, total=False):
     This will be created automatically on assistant creation.
     """
 
+    disable_dtmf: bool
+    """Disable inbound DTMF for the entire call.
+
+    Must be set to true if a 'pay' tool is configured anywhere on the assistant — on
+    the main tool array or on any workflow node — enforced at write time.
+    """
+
     noise_suppression: Literal["krisp", "deepfilternet", "disabled"]
     """The noise suppression engine to use.
 

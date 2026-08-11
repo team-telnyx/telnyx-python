@@ -241,8 +241,8 @@ class TestVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
             },
         )
@@ -255,8 +255,8 @@ class TestVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
                 "label": "label",
                 "model_id": "Qwen3TTS",
@@ -272,8 +272,8 @@ class TestVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
             },
         )
@@ -290,8 +290,8 @@ class TestVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
             },
         ) as response:
@@ -577,8 +577,8 @@ class TestAsyncVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
             },
         )
@@ -591,8 +591,8 @@ class TestAsyncVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
                 "label": "label",
                 "model_id": "Qwen3TTS",
@@ -608,8 +608,8 @@ class TestAsyncVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
             },
         )
@@ -626,8 +626,8 @@ class TestAsyncVoiceClones:
             voice_clone_upload_request={
                 "audio_file": b"Example data",
                 "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
+                "language": "en",
+                "name": "My cloned voice",
                 "provider": "telnyx",
             },
         ) as response:

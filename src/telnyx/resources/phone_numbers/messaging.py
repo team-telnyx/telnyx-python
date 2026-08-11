@@ -60,7 +60,8 @@ class MessagingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
-        Retrieve a phone number with messaging settings
+        Returns the messaging product and messaging-profile assignment for the specified
+        phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -96,7 +97,8 @@ class MessagingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingUpdateResponse:
         """
-        Update the messaging profile and/or messaging product of a phone number
+        Updates the messaging product, messaging profile, or both for the specified
+        phone number.
 
         Args:
           messaging_product:
@@ -159,7 +161,8 @@ class MessagingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]:
         """
-        List phone numbers with messaging settings
+        Returns phone numbers with their current messaging product and messaging-profile
+        assignments.
 
         Args:
           filter_messaging_profile_id: Filter by messaging profile ID.
@@ -239,7 +242,8 @@ class AsyncMessagingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
-        Retrieve a phone number with messaging settings
+        Returns the messaging product and messaging-profile assignment for the specified
+        phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -275,7 +279,8 @@ class AsyncMessagingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingUpdateResponse:
         """
-        Update the messaging profile and/or messaging product of a phone number
+        Updates the messaging product, messaging profile, or both for the specified
+        phone number.
 
         Args:
           messaging_product:
@@ -338,7 +343,8 @@ class AsyncMessagingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumberWithMessagingSettings, AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]]:
         """
-        List phone numbers with messaging settings
+        Returns phone numbers with their current messaging product and messaging-profile
+        assignments.
 
         Args:
           filter_messaging_profile_id: Filter by messaging profile ID.

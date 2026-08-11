@@ -26,7 +26,7 @@ class TestMissions:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         mission = client.ai.missions.create(
-            name="name",
+            name="Name",
         )
         assert_matches_type(MissionResponse, mission, path=["response"])
 
@@ -34,12 +34,12 @@ class TestMissions:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         mission = client.ai.missions.create(
-            name="name",
-            description="description",
+            name="Name",
+            description="Description",
             execution_mode="external",
-            instructions="instructions",
+            instructions="Instructions",
             metadata={"foo": "bar"},
-            model="model",
+            model="Model",
         )
         assert_matches_type(MissionResponse, mission, path=["response"])
 
@@ -47,7 +47,7 @@ class TestMissions:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.missions.with_raw_response.create(
-            name="name",
+            name="Name",
         )
 
         assert response.is_closed is True
@@ -59,7 +59,7 @@ class TestMissions:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.missions.with_streaming_response.create(
-            name="name",
+            name="Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -283,12 +283,12 @@ class TestMissions:
     def test_method_update_mission_with_all_params(self, client: Telnyx) -> None:
         mission = client.ai.missions.update_mission(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="description",
+            description="Description",
             execution_mode="external",
-            instructions="instructions",
+            instructions="Instructions",
             metadata={"foo": "bar"},
-            model="model",
-            name="name",
+            model="Model",
+            name="Name",
         )
         assert_matches_type(MissionResponse, mission, path=["response"])
 
@@ -336,7 +336,7 @@ class TestAsyncMissions:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         mission = await async_client.ai.missions.create(
-            name="name",
+            name="Name",
         )
         assert_matches_type(MissionResponse, mission, path=["response"])
 
@@ -344,12 +344,12 @@ class TestAsyncMissions:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mission = await async_client.ai.missions.create(
-            name="name",
-            description="description",
+            name="Name",
+            description="Description",
             execution_mode="external",
-            instructions="instructions",
+            instructions="Instructions",
             metadata={"foo": "bar"},
-            model="model",
+            model="Model",
         )
         assert_matches_type(MissionResponse, mission, path=["response"])
 
@@ -357,7 +357,7 @@ class TestAsyncMissions:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.missions.with_raw_response.create(
-            name="name",
+            name="Name",
         )
 
         assert response.is_closed is True
@@ -369,7 +369,7 @@ class TestAsyncMissions:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.missions.with_streaming_response.create(
-            name="name",
+            name="Name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -593,12 +593,12 @@ class TestAsyncMissions:
     async def test_method_update_mission_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mission = await async_client.ai.missions.update_mission(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="description",
+            description="Description",
             execution_mode="external",
-            instructions="instructions",
+            instructions="Instructions",
             metadata={"foo": "bar"},
-            model="model",
-            name="name",
+            model="Model",
+            name="Name",
         )
         assert_matches_type(MissionResponse, mission, path=["response"])
 

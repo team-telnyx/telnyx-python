@@ -83,16 +83,16 @@ class TestCampaign:
         campaign = client.messaging_10dlc.campaign.update(
             campaign_id="campaignId",
             auto_renewal=True,
-            help_message="helpMessage",
-            message_flow="messageFlow",
-            reseller_id="resellerId",
-            sample1="sample1",
-            sample2="sample2",
-            sample3="sample3",
-            sample4="sample4",
-            sample5="sample5",
-            webhook_failover_url="webhookFailoverURL",
-            webhook_url="webhookURL",
+            help_message="Helpmessage",
+            message_flow="Messageflow",
+            reseller_id="RESELLER",
+            sample1="Sample1",
+            sample2="Sample2",
+            sample3="Sample3",
+            sample4="Sample4",
+            sample5="Sample5",
+            webhook_failover_url="WebhookURL",
+            webhook_url="WebhookURL",
         )
         assert_matches_type(TelnyxCampaignCsp, campaign, path=["response"])
 
@@ -493,16 +493,16 @@ class TestAsyncCampaign:
         campaign = await async_client.messaging_10dlc.campaign.update(
             campaign_id="campaignId",
             auto_renewal=True,
-            help_message="helpMessage",
-            message_flow="messageFlow",
-            reseller_id="resellerId",
-            sample1="sample1",
-            sample2="sample2",
-            sample3="sample3",
-            sample4="sample4",
-            sample5="sample5",
-            webhook_failover_url="webhookFailoverURL",
-            webhook_url="webhookURL",
+            help_message="Helpmessage",
+            message_flow="Messageflow",
+            reseller_id="RESELLER",
+            sample1="Sample1",
+            sample2="Sample2",
+            sample3="Sample3",
+            sample4="Sample4",
+            sample5="Sample5",
+            webhook_failover_url="WebhookURL",
+            webhook_url="WebhookURL",
         )
         assert_matches_type(TelnyxCampaignCsp, campaign, path=["response"])
 
