@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
+from ...types import (
     DtmfType,
     EncryptedMedia,
     TransportProtocol,
@@ -18,40 +18,53 @@ from ..types import (
     fqdn_connection_create_params,
     fqdn_connection_update_params,
 )
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.dtmf_type import DtmfType
-from ..types.encrypted_media import EncryptedMedia
-from ..types.fqdn_connection import FqdnConnection
-from ..types.inbound_fqdn_param import InboundFqdnParam
-from ..types.transport_protocol import TransportProtocol
-from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.outbound_fqdn_param import OutboundFqdnParam
-from ..types.webhook_api_version import WebhookAPIVersion
-from ..types.connection_noise_suppression import ConnectionNoiseSuppression
-from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
-from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
-from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
-from ..types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
-from ..types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
-from ..types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
-from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.dtmf_type import DtmfType
+from .fqdn_authentication import (
+    FqdnAuthenticationResource,
+    AsyncFqdnAuthenticationResource,
+    FqdnAuthenticationResourceWithRawResponse,
+    AsyncFqdnAuthenticationResourceWithRawResponse,
+    FqdnAuthenticationResourceWithStreamingResponse,
+    AsyncFqdnAuthenticationResourceWithStreamingResponse,
+)
+from ...types.encrypted_media import EncryptedMedia
+from ...types.fqdn_connection import FqdnConnection
+from ...types.inbound_fqdn_param import InboundFqdnParam
+from ...types.transport_protocol import TransportProtocol
+from ...types.anchorsite_override import AnchorsiteOverride
+from ...types.outbound_fqdn_param import OutboundFqdnParam
+from ...types.webhook_api_version import WebhookAPIVersion
+from ...types.connection_noise_suppression import ConnectionNoiseSuppression
+from ...types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+from ...types.fqdn_connection_create_response import FqdnConnectionCreateResponse
+from ...types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
+from ...types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
+from ...types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
+from ...types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
+from ...types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["FqdnConnectionsResource", "AsyncFqdnConnectionsResource"]
 
 
 class FqdnConnectionsResource(SyncAPIResource):
     """FQDN connection operations"""
+
+    @cached_property
+    def fqdn_authentication(self) -> FqdnAuthenticationResource:
+        """FQDN connection operations"""
+        return FqdnAuthenticationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> FqdnConnectionsResourceWithRawResponse:
@@ -508,6 +521,11 @@ class FqdnConnectionsResource(SyncAPIResource):
 
 class AsyncFqdnConnectionsResource(AsyncAPIResource):
     """FQDN connection operations"""
+
+    @cached_property
+    def fqdn_authentication(self) -> AsyncFqdnAuthenticationResource:
+        """FQDN connection operations"""
+        return AsyncFqdnAuthenticationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncFqdnConnectionsResourceWithRawResponse:
@@ -982,6 +1000,11 @@ class FqdnConnectionsResourceWithRawResponse:
             fqdn_connections.delete,
         )
 
+    @cached_property
+    def fqdn_authentication(self) -> FqdnAuthenticationResourceWithRawResponse:
+        """FQDN connection operations"""
+        return FqdnAuthenticationResourceWithRawResponse(self._fqdn_connections.fqdn_authentication)
+
 
 class AsyncFqdnConnectionsResourceWithRawResponse:
     def __init__(self, fqdn_connections: AsyncFqdnConnectionsResource) -> None:
@@ -1002,6 +1025,11 @@ class AsyncFqdnConnectionsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             fqdn_connections.delete,
         )
+
+    @cached_property
+    def fqdn_authentication(self) -> AsyncFqdnAuthenticationResourceWithRawResponse:
+        """FQDN connection operations"""
+        return AsyncFqdnAuthenticationResourceWithRawResponse(self._fqdn_connections.fqdn_authentication)
 
 
 class FqdnConnectionsResourceWithStreamingResponse:
@@ -1024,6 +1052,11 @@ class FqdnConnectionsResourceWithStreamingResponse:
             fqdn_connections.delete,
         )
 
+    @cached_property
+    def fqdn_authentication(self) -> FqdnAuthenticationResourceWithStreamingResponse:
+        """FQDN connection operations"""
+        return FqdnAuthenticationResourceWithStreamingResponse(self._fqdn_connections.fqdn_authentication)
+
 
 class AsyncFqdnConnectionsResourceWithStreamingResponse:
     def __init__(self, fqdn_connections: AsyncFqdnConnectionsResource) -> None:
@@ -1044,3 +1077,8 @@ class AsyncFqdnConnectionsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             fqdn_connections.delete,
         )
+
+    @cached_property
+    def fqdn_authentication(self) -> AsyncFqdnAuthenticationResourceWithStreamingResponse:
+        """FQDN connection operations"""
+        return AsyncFqdnAuthenticationResourceWithStreamingResponse(self._fqdn_connections.fqdn_authentication)

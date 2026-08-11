@@ -283,7 +283,6 @@ if TYPE_CHECKING:
     from .resources.access_ip_ranges import AccessIPRangesResource, AsyncAccessIPRangesResource
     from .resources.country_coverage import CountryCoverageResource, AsyncCountryCoverageResource
     from .resources.fax_applications import FaxApplicationsResource, AsyncFaxApplicationsResource
-    from .resources.fqdn_connections import FqdnConnectionsResource, AsyncFqdnConnectionsResource
     from .resources.inbound_channels import InboundChannelsResource, AsyncInboundChannelsResource
     from .resources.network_coverage import NetworkCoverageResource, AsyncNetworkCoverageResource
     from .resources.numbers_features import NumbersFeaturesResource, AsyncNumbersFeaturesResource
@@ -437,6 +436,7 @@ if TYPE_CHECKING:
         VirtualCrossConnectsCoverageResource,
         AsyncVirtualCrossConnectsCoverageResource,
     )
+    from .resources.fqdn_connections.fqdn_connections import FqdnConnectionsResource, AsyncFqdnConnectionsResource
     from .resources.managed_accounts.managed_accounts import ManagedAccountsResource, AsyncManagedAccountsResource
     from .resources.operator_connect.operator_connect import OperatorConnectResource, AsyncOperatorConnectResource
     from .resources.session_analysis.session_analysis import SessionAnalysisResource, AsyncSessionAnalysisResource

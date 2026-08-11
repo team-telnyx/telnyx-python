@@ -2188,11 +2188,28 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="post /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">create</a>(\*\*<a href="src/telnyx/types/fqdn_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_create_response.py">FqdnConnectionCreateResponse</a></code>
-- <code title="get /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_retrieve_response.py">FqdnConnectionRetrieveResponse</a></code>
-- <code title="patch /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/fqdn_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_update_response.py">FqdnConnectionUpdateResponse</a></code>
-- <code title="get /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">list</a>(\*\*<a href="src/telnyx/types/fqdn_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection.py">SyncDefaultFlatPagination[FqdnConnection]</a></code>
-- <code title="delete /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_delete_response.py">FqdnConnectionDeleteResponse</a></code>
+- <code title="post /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">create</a>(\*\*<a href="src/telnyx/types/fqdn_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_create_response.py">FqdnConnectionCreateResponse</a></code>
+- <code title="get /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_retrieve_response.py">FqdnConnectionRetrieveResponse</a></code>
+- <code title="patch /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/fqdn_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_update_response.py">FqdnConnectionUpdateResponse</a></code>
+- <code title="get /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">list</a>(\*\*<a href="src/telnyx/types/fqdn_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection.py">SyncDefaultFlatPagination[FqdnConnection]</a></code>
+- <code title="delete /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_delete_response.py">FqdnConnectionDeleteResponse</a></code>
+
+## FqdnAuthentication
+
+Types:
+
+```python
+from telnyx.types.fqdn_connections import (
+    FqdnAuthentication,
+    FqdnAuthenticationListResponse,
+    FqdnAuthenticationPatchAllResponse,
+)
+```
+
+Methods:
+
+- <code title="get /fqdn_connections/{fqdn_connection_id}/fqdn_authentication">client.fqdn_connections.fqdn_authentication.<a href="./src/telnyx/resources/fqdn_connections/fqdn_authentication.py">list</a>(fqdn_connection_id) -> <a href="./src/telnyx/types/fqdn_connections/fqdn_authentication_list_response.py">FqdnAuthenticationListResponse</a></code>
+- <code title="patch /fqdn_connections/{fqdn_connection_id}/fqdn_authentication">client.fqdn_connections.fqdn_authentication.<a href="./src/telnyx/resources/fqdn_connections/fqdn_authentication.py">patch_all</a>(fqdn_connection_id, \*\*<a href="src/telnyx/types/fqdn_connections/fqdn_authentication_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connections/fqdn_authentication_patch_all_response.py">FqdnAuthenticationPatchAllResponse</a></code>
 
 # Fqdns
 
