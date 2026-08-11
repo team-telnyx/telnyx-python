@@ -40,6 +40,7 @@ if TYPE_CHECKING:
         ai,
         dir,
         ips,
+        rcs,
         list,
         seti,
         x402,
@@ -225,6 +226,7 @@ if TYPE_CHECKING:
     from .resources.oauth import OAuthResource, AsyncOAuthResource
     from .resources.balance import BalanceResource, AsyncBalanceResource
     from .resources.dir.dir import DirResource, AsyncDirResource
+    from .resources.rcs.rcs import RcsResource, AsyncRcsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.comments import CommentsResource, AsyncCommentsResource
     from .resources.invoices import InvoicesResource, AsyncInvoicesResource
@@ -1276,6 +1278,12 @@ class Telnyx(SyncAPIClient):
         from .resources.queues import QueuesResource
 
         return QueuesResource(self)
+
+    @cached_property
+    def rcs(self) -> RcsResource:
+        from .resources.rcs import RcsResource
+
+        return RcsResource(self)
 
     @cached_property
     def recording_transcriptions(self) -> RecordingTranscriptionsResource:
@@ -2760,6 +2768,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncQueuesResource(self)
 
     @cached_property
+    def rcs(self) -> AsyncRcsResource:
+        from .resources.rcs import AsyncRcsResource
+
+        return AsyncRcsResource(self)
+
+    @cached_property
     def recording_transcriptions(self) -> AsyncRecordingTranscriptionsResource:
         """Call Recordings operations."""
         from .resources.recording_transcriptions import AsyncRecordingTranscriptionsResource
@@ -4174,6 +4188,12 @@ class TelnyxWithRawResponse:
         return QueuesResourceWithRawResponse(self._client.queues)
 
     @cached_property
+    def rcs(self) -> rcs.RcsResourceWithRawResponse:
+        from .resources.rcs import RcsResourceWithRawResponse
+
+        return RcsResourceWithRawResponse(self._client.rcs)
+
+    @cached_property
     def recording_transcriptions(self) -> recording_transcriptions.RecordingTranscriptionsResourceWithRawResponse:
         """Call Recordings operations."""
         from .resources.recording_transcriptions import RecordingTranscriptionsResourceWithRawResponse
@@ -5453,6 +5473,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.queues import AsyncQueuesResourceWithRawResponse
 
         return AsyncQueuesResourceWithRawResponse(self._client.queues)
+
+    @cached_property
+    def rcs(self) -> rcs.AsyncRcsResourceWithRawResponse:
+        from .resources.rcs import AsyncRcsResourceWithRawResponse
+
+        return AsyncRcsResourceWithRawResponse(self._client.rcs)
 
     @cached_property
     def recording_transcriptions(self) -> recording_transcriptions.AsyncRecordingTranscriptionsResourceWithRawResponse:
@@ -6742,6 +6768,12 @@ class TelnyxWithStreamedResponse:
         from .resources.queues import QueuesResourceWithStreamingResponse
 
         return QueuesResourceWithStreamingResponse(self._client.queues)
+
+    @cached_property
+    def rcs(self) -> rcs.RcsResourceWithStreamingResponse:
+        from .resources.rcs import RcsResourceWithStreamingResponse
+
+        return RcsResourceWithStreamingResponse(self._client.rcs)
 
     @cached_property
     def recording_transcriptions(self) -> recording_transcriptions.RecordingTranscriptionsResourceWithStreamingResponse:
@@ -8061,6 +8093,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.queues import AsyncQueuesResourceWithStreamingResponse
 
         return AsyncQueuesResourceWithStreamingResponse(self._client.queues)
+
+    @cached_property
+    def rcs(self) -> rcs.AsyncRcsResourceWithStreamingResponse:
+        from .resources.rcs import AsyncRcsResourceWithStreamingResponse
+
+        return AsyncRcsResourceWithStreamingResponse(self._client.rcs)
 
     @cached_property
     def recording_transcriptions(
