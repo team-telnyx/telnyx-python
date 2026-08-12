@@ -4410,7 +4410,9 @@ from telnyx.types.sim_cards import (
     ActionBulkEnableVoiceResponse,
     ActionBulkSetPublicIPsResponse,
     ActionDisableResponse,
+    ActionDisableVoiceResponse,
     ActionEnableResponse,
+    ActionEnableVoiceResponse,
     ActionRemovePublicIPResponse,
     ActionSetPublicIPResponse,
     ActionSetStandbyResponse,
@@ -4426,7 +4428,9 @@ Methods:
 - <code title="post /sim_cards/actions/bulk_enable_voice">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_enable_voice</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_enable_voice_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_enable_voice_response.py">ActionBulkEnableVoiceResponse</a></code>
 - <code title="post /sim_cards/actions/bulk_set_public_ips">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_set_public_ips</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_set_public_ips_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_set_public_ips_response.py">ActionBulkSetPublicIPsResponse</a></code>
 - <code title="post /sim_cards/{id}/actions/disable">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">disable</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_disable_response.py">ActionDisableResponse</a></code>
+- <code title="post /sim_cards/{id}/actions/disable_voice">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">disable_voice</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_disable_voice_response.py">ActionDisableVoiceResponse</a></code>
 - <code title="post /sim_cards/{id}/actions/enable">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">enable</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_enable_response.py">ActionEnableResponse</a></code>
+- <code title="post /sim_cards/{id}/actions/enable_voice">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">enable_voice</a>(id, \*\*<a href="src/telnyx/types/sim_cards/action_enable_voice_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_enable_voice_response.py">ActionEnableVoiceResponse</a></code>
 - <code title="post /sim_cards/{id}/actions/remove_public_ip">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">remove_public_ip</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_remove_public_ip_response.py">ActionRemovePublicIPResponse</a></code>
 - <code title="post /sim_cards/{id}/actions/set_public_ip">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">set_public_ip</a>(id, \*\*<a href="src/telnyx/types/sim_cards/action_set_public_ip_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_set_public_ip_response.py">ActionSetPublicIPResponse</a></code>
 - <code title="post /sim_cards/{id}/actions/set_standby">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">set_standby</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_set_standby_response.py">ActionSetStandbyResponse</a></code>

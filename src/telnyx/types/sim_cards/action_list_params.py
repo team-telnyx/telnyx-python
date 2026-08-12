@@ -29,7 +29,14 @@ class Filter(TypedDict, total=False):
     """
 
     action_type: Literal[
-        "enable", "enable_standby_sim_card", "disable", "set_standby", "remove_public_ip", "set_public_ip"
+        "enable",
+        "enable_standby_sim_card",
+        "disable",
+        "set_standby",
+        "remove_public_ip",
+        "set_public_ip",
+        "enable_voice",
+        "disable_voice",
     ]
     """Filter by action type."""
 

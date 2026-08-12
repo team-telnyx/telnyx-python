@@ -18,6 +18,7 @@ from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.sim_cards import (
     action_list_params,
+    action_enable_voice_params,
     action_set_public_ip_params,
     action_bulk_enable_voice_params,
     action_bulk_disable_voice_params,
@@ -29,6 +30,8 @@ from ...types.sim_cards.action_disable_response import ActionDisableResponse
 from ...types.sim_cards.action_retrieve_response import ActionRetrieveResponse
 from ...types.sim_cards.wireless_sim_card_action import WirelessSimCardAction
 from ...types.sim_cards.action_set_standby_response import ActionSetStandbyResponse
+from ...types.sim_cards.action_enable_voice_response import ActionEnableVoiceResponse
+from ...types.sim_cards.action_disable_voice_response import ActionDisableVoiceResponse
 from ...types.sim_cards.action_set_public_ip_response import ActionSetPublicIPResponse
 from ...types.sim_cards.action_remove_public_ip_response import ActionRemovePublicIPResponse
 from ...types.sim_cards.action_bulk_enable_voice_response import ActionBulkEnableVoiceResponse
@@ -191,6 +194,7 @@ class ActionsResource(SyncAPIResource):
         self,
         *,
         sim_card_group_id: str,
+        connection_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,6 +215,11 @@ class ActionsResource(SyncAPIResource):
         API.
 
         Args:
+          connection_id: The identifier of the Mobile Voice Connection to associate with the SIM cards.
+              The connection must be owned by the same user and of type
+              <code>mobile_voice</code>. If omitted, voice is enabled without a connection
+              association.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -222,7 +231,11 @@ class ActionsResource(SyncAPIResource):
         return self._post(
             "/sim_cards/actions/bulk_enable_voice",
             body=maybe_transform(
-                {"sim_card_group_id": sim_card_group_id}, action_bulk_enable_voice_params.ActionBulkEnableVoiceParams
+                {
+                    "sim_card_group_id": sim_card_group_id,
+                    "connection_id": connection_id,
+                },
+                action_bulk_enable_voice_params.ActionBulkEnableVoiceParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -306,6 +319,45 @@ class ActionsResource(SyncAPIResource):
             cast_to=ActionDisableResponse,
         )
 
+    def disable_voice(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionDisableVoiceResponse:
+        """This API disables voice calling on a SIM card.
+
+        The SIM card will no longer be
+        able to make or receive calls.<br/> The API will trigger an asynchronous
+        operation called a SIM Card Action. The status of the SIM Card Action can be
+        followed through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            path_template("/sim_cards/{id}/actions/disable_voice", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionDisableVoiceResponse,
+        )
+
     def enable(
         self,
         id: str,
@@ -343,6 +395,54 @@ class ActionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionEnableResponse,
+        )
+
+    def enable_voice(
+        self,
+        id: str,
+        *,
+        connection_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionEnableVoiceResponse:
+        """This API enables voice calling on a SIM card.
+
+        When a <code>connection_id</code>
+        is provided, the SIM is associated with the specified Mobile Voice Connection.
+        The connection must be owned by the same user and of type
+        <code>mobile_voice</code>.<br/> The API will trigger an asynchronous operation
+        called a SIM Card Action. The status of the SIM Card Action can be followed
+        through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        Args:
+          connection_id: The identifier of the Mobile Voice Connection to associate with this SIM card.
+              The connection must be owned by the same user and of type
+              <code>mobile_voice</code>. If omitted, voice is enabled without a connection
+              association.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            path_template("/sim_cards/{id}/actions/enable_voice", id=id),
+            body=maybe_transform({"connection_id": connection_id}, action_enable_voice_params.ActionEnableVoiceParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionEnableVoiceResponse,
         )
 
     def remove_public_ip(
@@ -660,6 +760,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         *,
         sim_card_group_id: str,
+        connection_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -680,6 +781,11 @@ class AsyncActionsResource(AsyncAPIResource):
         API.
 
         Args:
+          connection_id: The identifier of the Mobile Voice Connection to associate with the SIM cards.
+              The connection must be owned by the same user and of type
+              <code>mobile_voice</code>. If omitted, voice is enabled without a connection
+              association.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -691,7 +797,11 @@ class AsyncActionsResource(AsyncAPIResource):
         return await self._post(
             "/sim_cards/actions/bulk_enable_voice",
             body=await async_maybe_transform(
-                {"sim_card_group_id": sim_card_group_id}, action_bulk_enable_voice_params.ActionBulkEnableVoiceParams
+                {
+                    "sim_card_group_id": sim_card_group_id,
+                    "connection_id": connection_id,
+                },
+                action_bulk_enable_voice_params.ActionBulkEnableVoiceParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -775,6 +885,45 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionDisableResponse,
         )
 
+    async def disable_voice(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionDisableVoiceResponse:
+        """This API disables voice calling on a SIM card.
+
+        The SIM card will no longer be
+        able to make or receive calls.<br/> The API will trigger an asynchronous
+        operation called a SIM Card Action. The status of the SIM Card Action can be
+        followed through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            path_template("/sim_cards/{id}/actions/disable_voice", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionDisableVoiceResponse,
+        )
+
     async def enable(
         self,
         id: str,
@@ -812,6 +961,56 @@ class AsyncActionsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionEnableResponse,
+        )
+
+    async def enable_voice(
+        self,
+        id: str,
+        *,
+        connection_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionEnableVoiceResponse:
+        """This API enables voice calling on a SIM card.
+
+        When a <code>connection_id</code>
+        is provided, the SIM is associated with the specified Mobile Voice Connection.
+        The connection must be owned by the same user and of type
+        <code>mobile_voice</code>.<br/> The API will trigger an asynchronous operation
+        called a SIM Card Action. The status of the SIM Card Action can be followed
+        through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        Args:
+          connection_id: The identifier of the Mobile Voice Connection to associate with this SIM card.
+              The connection must be owned by the same user and of type
+              <code>mobile_voice</code>. If omitted, voice is enabled without a connection
+              association.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            path_template("/sim_cards/{id}/actions/enable_voice", id=id),
+            body=await async_maybe_transform(
+                {"connection_id": connection_id}, action_enable_voice_params.ActionEnableVoiceParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionEnableVoiceResponse,
         )
 
     async def remove_public_ip(
@@ -999,8 +1198,14 @@ class ActionsResourceWithRawResponse:
         self.disable = to_raw_response_wrapper(
             actions.disable,
         )
+        self.disable_voice = to_raw_response_wrapper(
+            actions.disable_voice,
+        )
         self.enable = to_raw_response_wrapper(
             actions.enable,
+        )
+        self.enable_voice = to_raw_response_wrapper(
+            actions.enable_voice,
         )
         self.remove_public_ip = to_raw_response_wrapper(
             actions.remove_public_ip,
@@ -1038,8 +1243,14 @@ class AsyncActionsResourceWithRawResponse:
         self.disable = async_to_raw_response_wrapper(
             actions.disable,
         )
+        self.disable_voice = async_to_raw_response_wrapper(
+            actions.disable_voice,
+        )
         self.enable = async_to_raw_response_wrapper(
             actions.enable,
+        )
+        self.enable_voice = async_to_raw_response_wrapper(
+            actions.enable_voice,
         )
         self.remove_public_ip = async_to_raw_response_wrapper(
             actions.remove_public_ip,
@@ -1077,8 +1288,14 @@ class ActionsResourceWithStreamingResponse:
         self.disable = to_streamed_response_wrapper(
             actions.disable,
         )
+        self.disable_voice = to_streamed_response_wrapper(
+            actions.disable_voice,
+        )
         self.enable = to_streamed_response_wrapper(
             actions.enable,
+        )
+        self.enable_voice = to_streamed_response_wrapper(
+            actions.enable_voice,
         )
         self.remove_public_ip = to_streamed_response_wrapper(
             actions.remove_public_ip,
@@ -1116,8 +1333,14 @@ class AsyncActionsResourceWithStreamingResponse:
         self.disable = async_to_streamed_response_wrapper(
             actions.disable,
         )
+        self.disable_voice = async_to_streamed_response_wrapper(
+            actions.disable_voice,
+        )
         self.enable = async_to_streamed_response_wrapper(
             actions.enable,
+        )
+        self.enable_voice = async_to_streamed_response_wrapper(
+            actions.enable_voice,
         )
         self.remove_public_ip = async_to_streamed_response_wrapper(
             actions.remove_public_ip,
