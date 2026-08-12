@@ -75,7 +75,9 @@ class SessionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionRetrieveResponse:
         """
-        View a room session.
+        Returns the room session identified by `room_session_id`, including its room,
+        active status, and lifecycle timestamps. Use `include_participants` to include
+        its participant records.
 
         Args:
           include_participants: To decide if room participants should be included in the response.
@@ -118,8 +120,11 @@ class SessionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RoomSession]:
-        """
-        View a list of room sessions.
+        """Returns a paginated list of room sessions across the account.
+
+        Filter sessions by
+        room, creation, update, or end date and active status, and use
+        `include_participants` to include participant records.
 
         Args:
           filter:
@@ -176,8 +181,11 @@ class SessionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RoomSession]:
-        """
-        View a list of room sessions.
+        """Returns a paginated list of sessions for the specified room.
+
+        Filter sessions by
+        creation, update, or end date and active status, and use `include_participants`
+        to include participant records.
 
         Args:
           filter:
@@ -235,8 +243,10 @@ class SessionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RoomParticipant]:
-        """
-        View a list of room participants.
+        """Returns a paginated list of participants for the specified room session.
+
+        Filter
+        participants by join, update, or leave date and by participant context.
 
         Args:
           filter:
@@ -316,7 +326,9 @@ class AsyncSessionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionRetrieveResponse:
         """
-        View a room session.
+        Returns the room session identified by `room_session_id`, including its room,
+        active status, and lifecycle timestamps. Use `include_participants` to include
+        its participant records.
 
         Args:
           include_participants: To decide if room participants should be included in the response.
@@ -359,8 +371,11 @@ class AsyncSessionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RoomSession, AsyncDefaultFlatPagination[RoomSession]]:
-        """
-        View a list of room sessions.
+        """Returns a paginated list of room sessions across the account.
+
+        Filter sessions by
+        room, creation, update, or end date and active status, and use
+        `include_participants` to include participant records.
 
         Args:
           filter:
@@ -417,8 +432,11 @@ class AsyncSessionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RoomSession, AsyncDefaultFlatPagination[RoomSession]]:
-        """
-        View a list of room sessions.
+        """Returns a paginated list of sessions for the specified room.
+
+        Filter sessions by
+        creation, update, or end date and active status, and use `include_participants`
+        to include participant records.
 
         Args:
           filter:
@@ -476,8 +494,10 @@ class AsyncSessionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RoomParticipant, AsyncDefaultFlatPagination[RoomParticipant]]:
-        """
-        View a list of room participants.
+        """Returns a paginated list of participants for the specified room session.
+
+        Filter
+        participants by join, update, or leave date and by participant context.
 
         Args:
           filter:

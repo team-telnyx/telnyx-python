@@ -95,8 +95,11 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionKickResponse:
-        """
-        Kick participants from a room session.
+        """Removes the selected participants from the specified room session.
+
+        Apply the
+        action to a list of participant IDs or to `all`, with optional participant IDs
+        excluded from the action.
 
         Args:
           exclude: List of participant id to exclude from the action.
@@ -142,8 +145,11 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionMuteResponse:
-        """
-        Mute participants in room session.
+        """Mutes the selected participants in the specified room session.
+
+        Apply the action
+        to a list of participant IDs or to `all`, with optional participant IDs excluded
+        from the action.
 
         Args:
           exclude: List of participant id to exclude from the action.
@@ -189,8 +195,11 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUnmuteResponse:
-        """
-        Unmute participants in room session.
+        """Unmutes the selected participants in the specified room session.
+
+        Apply the
+        action to a list of participant IDs or to `all`, with optional participant IDs
+        excluded from the action.
 
         Args:
           exclude: List of participant id to exclude from the action.
@@ -292,8 +301,11 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionKickResponse:
-        """
-        Kick participants from a room session.
+        """Removes the selected participants from the specified room session.
+
+        Apply the
+        action to a list of participant IDs or to `all`, with optional participant IDs
+        excluded from the action.
 
         Args:
           exclude: List of participant id to exclude from the action.
@@ -339,8 +351,11 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionMuteResponse:
-        """
-        Mute participants in room session.
+        """Mutes the selected participants in the specified room session.
+
+        Apply the action
+        to a list of participant IDs or to `all`, with optional participant IDs excluded
+        from the action.
 
         Args:
           exclude: List of participant id to exclude from the action.
@@ -386,8 +401,11 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUnmuteResponse:
-        """
-        Unmute participants in room session.
+        """Unmutes the selected participants in the specified room session.
+
+        Apply the
+        action to a list of participant IDs or to `all`, with optional participant IDs
+        excluded from the action.
 
         Args:
           exclude: List of participant id to exclude from the action.

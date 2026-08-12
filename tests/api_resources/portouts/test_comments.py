@@ -30,7 +30,7 @@ class TestComments:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         comment = client.portouts.comments.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body="string",
         )
         assert_matches_type(CommentCreateResponse, comment, path=["response"])
 
@@ -129,7 +129,7 @@ class TestAsyncComments:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         comment = await async_client.portouts.comments.create(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body="string",
         )
         assert_matches_type(CommentCreateResponse, comment, path=["response"])
 

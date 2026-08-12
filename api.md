@@ -387,6 +387,7 @@ from telnyx.types import (
     DeliveryUpdateWebhookEvent,
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
+    NumberOrderStatusUpdateWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     TranscriptionWebhookEvent,
     CallAIGatherEndedWebhookEvent,
@@ -447,6 +448,7 @@ from telnyx.types import (
     DeliveryUpdateWebhookEvent,
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
+    NumberOrderStatusUpdateWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     TranscriptionWebhookEvent,
     UnsafeUnwrapWebhookEvent,
@@ -856,6 +858,65 @@ Methods:
 - <code title="delete /ai/clusters/{task_id}">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">delete</a>(task_id) -> None</code>
 - <code title="post /ai/clusters">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">compute</a>(\*\*<a href="src/telnyx/types/ai/cluster_compute_params.py">params</a>) -> <a href="./src/telnyx/types/ai/cluster_compute_response.py">ClusterComputeResponse</a></code>
 - <code title="get /ai/clusters/{task_id}/graph">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">fetch_graph</a>(task_id, \*\*<a href="src/telnyx/types/ai/cluster_fetch_graph_params.py">params</a>) -> BinaryAPIResponse</code>
+
+## Collections
+
+Types:
+
+```python
+from telnyx.types.ai import Collection, CollectionEnvelope, CollectionRetrieveDocumentsResponse
+```
+
+Methods:
+
+- <code title="post /ai/collections">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">create</a>(\*\*<a href="src/telnyx/types/ai/collection_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection_envelope.py">CollectionEnvelope</a></code>
+- <code title="get /ai/collections/slug/{slug}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve</a>(slug) -> <a href="./src/telnyx/types/ai/collection_envelope.py">CollectionEnvelope</a></code>
+- <code title="patch /ai/collections/{uuid}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">update</a>(uuid, \*\*<a href="src/telnyx/types/ai/collection_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection_envelope.py">CollectionEnvelope</a></code>
+- <code title="get /ai/collections">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">list</a>(\*\*<a href="src/telnyx/types/ai/collection_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection.py">SyncDefaultFlatPagination[Collection]</a></code>
+- <code title="delete /ai/collections/{uuid}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">delete</a>(uuid) -> None</code>
+- <code title="get /ai/collections/{uuid}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve_by_id</a>(uuid) -> <a href="./src/telnyx/types/ai/collection_envelope.py">CollectionEnvelope</a></code>
+- <code title="get /ai/collections/{slug}/documents">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve_documents</a>(slug, \*\*<a href="src/telnyx/types/ai/collection_retrieve_documents_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection_retrieve_documents_response.py">CollectionRetrieveDocumentsResponse</a></code>
+
+### Settings
+
+Types:
+
+```python
+from telnyx.types.ai.collections import (
+    RetrievalSettings,
+    RetrievalSettingsWrapper,
+    SettingsEnvelope,
+    SettingsRequest,
+)
+```
+
+Methods:
+
+- <code title="put /ai/collections/{uuid}/settings">client.ai.collections.settings.<a href="./src/telnyx/resources/ai/collections/settings.py">create</a>(uuid, \*\*<a href="src/telnyx/types/ai/collections/setting_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collections/settings_envelope.py">SettingsEnvelope</a></code>
+- <code title="get /ai/collections/{uuid}/settings">client.ai.collections.settings.<a href="./src/telnyx/resources/ai/collections/settings.py">list</a>(uuid) -> <a href="./src/telnyx/types/ai/collections/settings_envelope.py">SettingsEnvelope</a></code>
+- <code title="patch /ai/collections/{uuid}/settings">client.ai.collections.settings.<a href="./src/telnyx/resources/ai/collections/settings.py">patch_all</a>(uuid, \*\*<a href="src/telnyx/types/ai/collections/setting_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collections/settings_envelope.py">SettingsEnvelope</a></code>
+
+### Sources
+
+Types:
+
+```python
+from telnyx.types.ai.collections import (
+    Source,
+    SourceRequest,
+    SourceType,
+    SourceCreateResponse,
+    SourceListResponse,
+    SourceReplaceResponse,
+)
+```
+
+Methods:
+
+- <code title="post /ai/collections/{uuid}/sources">client.ai.collections.sources.<a href="./src/telnyx/resources/ai/collections/sources.py">create</a>(uuid, \*\*<a href="src/telnyx/types/ai/collections/source_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collections/source_create_response.py">SourceCreateResponse</a></code>
+- <code title="get /ai/collections/{uuid}/sources">client.ai.collections.sources.<a href="./src/telnyx/resources/ai/collections/sources.py">list</a>(uuid) -> <a href="./src/telnyx/types/ai/collections/source_list_response.py">SourceListResponse</a></code>
+- <code title="delete /ai/collections/{uuid}/sources/{sourceId}">client.ai.collections.sources.<a href="./src/telnyx/resources/ai/collections/sources.py">delete</a>(source_id, \*, uuid) -> None</code>
+- <code title="put /ai/collections/{uuid}/sources">client.ai.collections.sources.<a href="./src/telnyx/resources/ai/collections/sources.py">replace</a>(uuid, \*\*<a href="src/telnyx/types/ai/collections/source_replace_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collections/source_replace_response.py">SourceReplaceResponse</a></code>
 
 ## Conversations
 
@@ -2127,11 +2188,28 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="post /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">create</a>(\*\*<a href="src/telnyx/types/fqdn_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_create_response.py">FqdnConnectionCreateResponse</a></code>
-- <code title="get /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_retrieve_response.py">FqdnConnectionRetrieveResponse</a></code>
-- <code title="patch /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/fqdn_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_update_response.py">FqdnConnectionUpdateResponse</a></code>
-- <code title="get /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">list</a>(\*\*<a href="src/telnyx/types/fqdn_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection.py">SyncDefaultFlatPagination[FqdnConnection]</a></code>
-- <code title="delete /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_delete_response.py">FqdnConnectionDeleteResponse</a></code>
+- <code title="post /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">create</a>(\*\*<a href="src/telnyx/types/fqdn_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_create_response.py">FqdnConnectionCreateResponse</a></code>
+- <code title="get /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_retrieve_response.py">FqdnConnectionRetrieveResponse</a></code>
+- <code title="patch /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/fqdn_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection_update_response.py">FqdnConnectionUpdateResponse</a></code>
+- <code title="get /fqdn_connections">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">list</a>(\*\*<a href="src/telnyx/types/fqdn_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connection.py">SyncDefaultFlatPagination[FqdnConnection]</a></code>
+- <code title="delete /fqdn_connections/{id}">client.fqdn_connections.<a href="./src/telnyx/resources/fqdn_connections/fqdn_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/fqdn_connection_delete_response.py">FqdnConnectionDeleteResponse</a></code>
+
+## FqdnAuthentication
+
+Types:
+
+```python
+from telnyx.types.fqdn_connections import (
+    FqdnAuthentication,
+    FqdnAuthenticationListResponse,
+    FqdnAuthenticationPatchAllResponse,
+)
+```
+
+Methods:
+
+- <code title="get /fqdn_connections/{fqdn_connection_id}/fqdn_authentication">client.fqdn_connections.fqdn_authentication.<a href="./src/telnyx/resources/fqdn_connections/fqdn_authentication.py">list</a>(fqdn_connection_id) -> <a href="./src/telnyx/types/fqdn_connections/fqdn_authentication_list_response.py">FqdnAuthenticationListResponse</a></code>
+- <code title="patch /fqdn_connections/{fqdn_connection_id}/fqdn_authentication">client.fqdn_connections.fqdn_authentication.<a href="./src/telnyx/resources/fqdn_connections/fqdn_authentication.py">patch_all</a>(fqdn_connection_id, \*\*<a href="src/telnyx/types/fqdn_connections/fqdn_authentication_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/fqdn_connections/fqdn_authentication_patch_all_response.py">FqdnAuthenticationPatchAllResponse</a></code>
 
 # Fqdns
 
@@ -2522,6 +2600,7 @@ from telnyx.types import (
     MessageSendNumberPoolResponse,
     MessageSendShortCodeResponse,
     MessageSendWithAlphanumericSenderResponse,
+    MessageWhatsappResponse,
 )
 ```
 
@@ -2537,6 +2616,7 @@ Methods:
 - <code title="post /messages/number_pool">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_number_pool</a>(\*\*<a href="src/telnyx/types/message_send_number_pool_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_number_pool_response.py">MessageSendNumberPoolResponse</a></code>
 - <code title="post /messages/short_code">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_short_code</a>(\*\*<a href="src/telnyx/types/message_send_short_code_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_short_code_response.py">MessageSendShortCodeResponse</a></code>
 - <code title="post /messages/alphanumeric_sender_id">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_with_alphanumeric_sender</a>(\*\*<a href="src/telnyx/types/message_send_with_alphanumeric_sender_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_with_alphanumeric_sender_response.py">MessageSendWithAlphanumericSenderResponse</a></code>
+- <code title="post /messages/whatsapp">client.messages.<a href="./src/telnyx/resources/messages/messages.py">whatsapp</a>(\*\*<a href="src/telnyx/types/message_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/message_whatsapp_response.py">MessageWhatsappResponse</a></code>
 
 ## Rcs
 
@@ -2576,9 +2656,9 @@ Methods:
 
 Methods:
 
-- <code title="get /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
-- <code title="patch /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging/rcs/agent_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
-- <code title="get /messaging/rcs/agents">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">list</a>(\*\*<a href="src/telnyx/types/messaging/rcs/agent_list_params.py">params</a>) -> <a href="./src/telnyx/types/rcs_agent.py">SyncDefaultFlatPagination[RcsAgent]</a></code>
+- <code title="get /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs/rcs_agent_response.py">RcsAgentResponse</a></code>
+- <code title="patch /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging/rcs/agent_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/rcs_agent_response.py">RcsAgentResponse</a></code>
+- <code title="get /messaging/rcs/agents">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">list</a>(\*\*<a href="src/telnyx/types/messaging/rcs/agent_list_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/rcs_agent.py">SyncDefaultFlatPagination[RcsAgent]</a></code>
 
 # MessagingHostedNumberOrders
 
@@ -3786,13 +3866,81 @@ Methods:
 - <code title="get /queues/{queue_name}/calls">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">list</a>(queue_name, \*\*<a href="src/telnyx/types/queues/call_list_params.py">params</a>) -> <a href="./src/telnyx/types/queues/queue_call.py">SyncDefaultFlatPagination[QueueCall]</a></code>
 - <code title="delete /queues/{queue_name}/calls/{call_control_id}">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">remove</a>(call_control_id, \*, queue_name) -> None</code>
 
-# RcsAgents
+# Rcs
+
+## Agents
 
 Types:
 
 ```python
-from telnyx.types import RcsAgent, RcsAgentResponse
+from telnyx.types.rcs import (
+    AgentCampaignConfiguration,
+    AgentConfiguration,
+    AgentConsentConfiguration,
+    AgentEmailContact,
+    AgentInteraction,
+    AgentPhoneContact,
+    AgentResponse,
+    AgentSubmissionStatus,
+    AgentTestingConfiguration,
+    AgentUseCase,
+    AgentWebsiteContact,
+    CapabilitiesResponse,
+    CarrierApprovalResponse,
+    RcsAgent,
+    RcsAgentResponse,
+    AgentListResponse,
+    AgentRetrieveCarrierApprovalsResponse,
+)
 ```
+
+Methods:
+
+- <code title="post /rcs/agents">client.rcs.agents.<a href="./src/telnyx/resources/rcs/agents/agents.py">create</a>(\*\*<a href="src/telnyx/types/rcs/agent_create_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/agent_response.py">AgentResponse</a></code>
+- <code title="get /rcs/agents/{id}">client.rcs.agents.<a href="./src/telnyx/resources/rcs/agents/agents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs/agent_response.py">AgentResponse</a></code>
+- <code title="patch /rcs/agents/{id}">client.rcs.agents.<a href="./src/telnyx/resources/rcs/agents/agents.py">update</a>(id, \*\*<a href="src/telnyx/types/rcs/agent_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/agent_response.py">AgentResponse</a></code>
+- <code title="get /rcs/agents">client.rcs.agents.<a href="./src/telnyx/resources/rcs/agents/agents.py">list</a>(\*\*<a href="src/telnyx/types/rcs/agent_list_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/agent_list_response.py">AgentListResponse</a></code>
+- <code title="post /rcs/agents/{id}/launch">client.rcs.agents.<a href="./src/telnyx/resources/rcs/agents/agents.py">launch</a>(id, \*\*<a href="src/telnyx/types/rcs/agent_launch_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/agent_response.py">AgentResponse</a></code>
+- <code title="get /rcs/agents/{id}/carrier_approvals">client.rcs.agents.<a href="./src/telnyx/resources/rcs/agents/agents.py">retrieve_carrier_approvals</a>(id) -> <a href="./src/telnyx/types/rcs/agent_retrieve_carrier_approvals_response.py">AgentRetrieveCarrierApprovalsResponse</a></code>
+- <code title="post /rcs/agents/{id}/submit">client.rcs.agents.<a href="./src/telnyx/resources/rcs/agents/agents.py">submit</a>(id) -> <a href="./src/telnyx/types/rcs/agent_response.py">AgentResponse</a></code>
+
+### TestDevices
+
+Types:
+
+```python
+from telnyx.types.rcs.agents import TestDeviceResponse, TestDeviceListResponse
+```
+
+Methods:
+
+- <code title="post /rcs/agents/{id}/test_devices">client.rcs.agents.test_devices.<a href="./src/telnyx/resources/rcs/agents/test_devices.py">create</a>(id, \*\*<a href="src/telnyx/types/rcs/agents/test_device_create_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/agents/test_device_response.py">TestDeviceResponse</a></code>
+- <code title="get /rcs/agents/{id}/test_devices">client.rcs.agents.test_devices.<a href="./src/telnyx/resources/rcs/agents/test_devices.py">list</a>(id) -> <a href="./src/telnyx/types/rcs/agents/test_device_list_response.py">TestDeviceListResponse</a></code>
+- <code title="delete /rcs/agents/{id}/test_devices/{test_device_id}">client.rcs.agents.test_devices.<a href="./src/telnyx/resources/rcs/agents/test_devices.py">delete</a>(test_device_id, \*, id) -> None</code>
+
+## Brands
+
+Types:
+
+```python
+from telnyx.types.rcs import (
+    BrandContact,
+    BrandLegalEntityType,
+    BrandOrganizationType,
+    BrandResponse,
+    EinBrandIdentifier,
+    StockSymbolBrandIdentifier,
+    BrandListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /rcs/brands">client.rcs.brands.<a href="./src/telnyx/resources/rcs/brands.py">create</a>(\*\*<a href="src/telnyx/types/rcs/brand_create_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/brand_response.py">BrandResponse</a></code>
+- <code title="get /rcs/brands/{id}">client.rcs.brands.<a href="./src/telnyx/resources/rcs/brands.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs/brand_response.py">BrandResponse</a></code>
+- <code title="patch /rcs/brands/{id}">client.rcs.brands.<a href="./src/telnyx/resources/rcs/brands.py">update</a>(id, \*\*<a href="src/telnyx/types/rcs/brand_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs/brand_response.py">BrandResponse</a></code>
+- <code title="get /rcs/brands">client.rcs.brands.<a href="./src/telnyx/resources/rcs/brands.py">list</a>() -> <a href="./src/telnyx/types/rcs/brand_list_response.py">BrandListResponse</a></code>
+- <code title="post /rcs/brands/{id}/submit">client.rcs.brands.<a href="./src/telnyx/resources/rcs/brands.py">submit</a>(id) -> <a href="./src/telnyx/types/rcs/brand_response.py">BrandResponse</a></code>
 
 # RecordingTranscriptions
 

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
+from ...types import (
     DtmfType,
     EncryptedMedia,
     TransportProtocol,
@@ -18,40 +18,53 @@ from ..types import (
     fqdn_connection_create_params,
     fqdn_connection_update_params,
 )
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.dtmf_type import DtmfType
-from ..types.encrypted_media import EncryptedMedia
-from ..types.fqdn_connection import FqdnConnection
-from ..types.inbound_fqdn_param import InboundFqdnParam
-from ..types.transport_protocol import TransportProtocol
-from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.outbound_fqdn_param import OutboundFqdnParam
-from ..types.webhook_api_version import WebhookAPIVersion
-from ..types.connection_noise_suppression import ConnectionNoiseSuppression
-from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
-from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
-from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
-from ..types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
-from ..types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
-from ..types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
-from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.dtmf_type import DtmfType
+from .fqdn_authentication import (
+    FqdnAuthenticationResource,
+    AsyncFqdnAuthenticationResource,
+    FqdnAuthenticationResourceWithRawResponse,
+    AsyncFqdnAuthenticationResourceWithRawResponse,
+    FqdnAuthenticationResourceWithStreamingResponse,
+    AsyncFqdnAuthenticationResourceWithStreamingResponse,
+)
+from ...types.encrypted_media import EncryptedMedia
+from ...types.fqdn_connection import FqdnConnection
+from ...types.inbound_fqdn_param import InboundFqdnParam
+from ...types.transport_protocol import TransportProtocol
+from ...types.anchorsite_override import AnchorsiteOverride
+from ...types.outbound_fqdn_param import OutboundFqdnParam
+from ...types.webhook_api_version import WebhookAPIVersion
+from ...types.connection_noise_suppression import ConnectionNoiseSuppression
+from ...types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+from ...types.fqdn_connection_create_response import FqdnConnectionCreateResponse
+from ...types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
+from ...types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
+from ...types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
+from ...types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
+from ...types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["FqdnConnectionsResource", "AsyncFqdnConnectionsResource"]
 
 
 class FqdnConnectionsResource(SyncAPIResource):
     """FQDN connection operations"""
+
+    @cached_property
+    def fqdn_authentication(self) -> FqdnAuthenticationResource:
+        """FQDN connection operations"""
+        return FqdnAuthenticationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> FqdnConnectionsResourceWithRawResponse:
@@ -262,6 +275,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         android_push_credential_id: Optional[str] | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
+        conversation_persistence: bool | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
@@ -302,6 +316,10 @@ class FqdnConnectionsResource(SyncAPIResource):
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
           connection_name: A user-assigned name to help manage the connection.
+
+          conversation_persistence: Whether conversation persistence is enabled for this connection. When enabled,
+              calls handled by the connection are transcribed, stored, and indexed. Defaults
+              to false.
 
           default_on_hold_comfort_noise_enabled: When enabled, Telnyx will generate comfort noise when you place the call on
               hold. If disabled, you will need to generate comfort noise or on hold music to
@@ -372,6 +390,7 @@ class FqdnConnectionsResource(SyncAPIResource):
                     "android_push_credential_id": android_push_credential_id,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
+                    "conversation_persistence": conversation_persistence,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,
                     "encode_contact_header_enabled": encode_contact_header_enabled,
@@ -502,6 +521,11 @@ class FqdnConnectionsResource(SyncAPIResource):
 
 class AsyncFqdnConnectionsResource(AsyncAPIResource):
     """FQDN connection operations"""
+
+    @cached_property
+    def fqdn_authentication(self) -> AsyncFqdnAuthenticationResource:
+        """FQDN connection operations"""
+        return AsyncFqdnAuthenticationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncFqdnConnectionsResourceWithRawResponse:
@@ -712,6 +736,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         android_push_credential_id: Optional[str] | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
+        conversation_persistence: bool | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
@@ -752,6 +777,10 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
           connection_name: A user-assigned name to help manage the connection.
+
+          conversation_persistence: Whether conversation persistence is enabled for this connection. When enabled,
+              calls handled by the connection are transcribed, stored, and indexed. Defaults
+              to false.
 
           default_on_hold_comfort_noise_enabled: When enabled, Telnyx will generate comfort noise when you place the call on
               hold. If disabled, you will need to generate comfort noise or on hold music to
@@ -822,6 +851,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                     "android_push_credential_id": android_push_credential_id,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
+                    "conversation_persistence": conversation_persistence,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,
                     "encode_contact_header_enabled": encode_contact_header_enabled,
@@ -970,6 +1000,11 @@ class FqdnConnectionsResourceWithRawResponse:
             fqdn_connections.delete,
         )
 
+    @cached_property
+    def fqdn_authentication(self) -> FqdnAuthenticationResourceWithRawResponse:
+        """FQDN connection operations"""
+        return FqdnAuthenticationResourceWithRawResponse(self._fqdn_connections.fqdn_authentication)
+
 
 class AsyncFqdnConnectionsResourceWithRawResponse:
     def __init__(self, fqdn_connections: AsyncFqdnConnectionsResource) -> None:
@@ -990,6 +1025,11 @@ class AsyncFqdnConnectionsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             fqdn_connections.delete,
         )
+
+    @cached_property
+    def fqdn_authentication(self) -> AsyncFqdnAuthenticationResourceWithRawResponse:
+        """FQDN connection operations"""
+        return AsyncFqdnAuthenticationResourceWithRawResponse(self._fqdn_connections.fqdn_authentication)
 
 
 class FqdnConnectionsResourceWithStreamingResponse:
@@ -1012,6 +1052,11 @@ class FqdnConnectionsResourceWithStreamingResponse:
             fqdn_connections.delete,
         )
 
+    @cached_property
+    def fqdn_authentication(self) -> FqdnAuthenticationResourceWithStreamingResponse:
+        """FQDN connection operations"""
+        return FqdnAuthenticationResourceWithStreamingResponse(self._fqdn_connections.fqdn_authentication)
+
 
 class AsyncFqdnConnectionsResourceWithStreamingResponse:
     def __init__(self, fqdn_connections: AsyncFqdnConnectionsResource) -> None:
@@ -1032,3 +1077,8 @@ class AsyncFqdnConnectionsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             fqdn_connections.delete,
         )
+
+    @cached_property
+    def fqdn_authentication(self) -> AsyncFqdnAuthenticationResourceWithStreamingResponse:
+        """FQDN connection operations"""
+        return AsyncFqdnAuthenticationResourceWithStreamingResponse(self._fqdn_connections.fqdn_authentication)

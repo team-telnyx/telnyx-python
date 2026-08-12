@@ -115,8 +115,10 @@ class RcsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcSendResponse:
-        """
-        Send an RCS message
+        """Queues an outbound RCS message through the selected RCS agent.
+
+        Check recipient
+        capabilities before sending features that require RCS support.
 
         Args:
           agent_id: RCS Agent ID
@@ -249,8 +251,10 @@ class AsyncRcsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RcSendResponse:
-        """
-        Send an RCS message
+        """Queues an outbound RCS message through the selected RCS agent.
+
+        Check recipient
+        capabilities before sending features that require RCS support.
 
         Args:
           agent_id: RCS Agent ID

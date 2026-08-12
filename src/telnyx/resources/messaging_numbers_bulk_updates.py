@@ -58,7 +58,8 @@ class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingNumbersBulkUpdateCreateResponse:
         """
-        Bulk update phone number profiles
+        Starts a bulk update of messaging-profile assignments for the supplied phone
+        numbers. The response identifies the order used to monitor processing.
 
         Args:
           messaging_profile_id:
@@ -109,7 +110,8 @@ class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingNumbersBulkUpdateRetrieveResponse:
         """
-        Retrieve bulk update status
+        Returns processing status and results for a bulk messaging-settings update
+        order.
 
         Args:
           extra_headers: Send extra headers
@@ -167,7 +169,8 @@ class AsyncMessagingNumbersBulkUpdatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingNumbersBulkUpdateCreateResponse:
         """
-        Bulk update phone number profiles
+        Starts a bulk update of messaging-profile assignments for the supplied phone
+        numbers. The response identifies the order used to monitor processing.
 
         Args:
           messaging_profile_id:
@@ -218,7 +221,8 @@ class AsyncMessagingNumbersBulkUpdatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingNumbersBulkUpdateRetrieveResponse:
         """
-        Retrieve bulk update status
+        Returns processing status and results for a bulk messaging-settings update
+        order.
 
         Args:
           extra_headers: Send extra headers

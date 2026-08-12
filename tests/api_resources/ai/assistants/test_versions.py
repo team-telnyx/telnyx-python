@@ -332,6 +332,7 @@ class TestVersions:
             tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "disable_dtmf": True,
                 "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
@@ -967,6 +968,7 @@ class TestAsyncVersions:
             tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "disable_dtmf": True,
                 "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,

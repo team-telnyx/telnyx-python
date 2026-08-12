@@ -57,7 +57,8 @@ class MessagingURLDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MessagingURLDomainListResponse]:
         """
-        List messaging URL domains
+        Returns the URL domains available to the authenticated account for message URL
+        shortening.
 
         Args:
           extra_headers: Send extra headers
@@ -123,7 +124,8 @@ class AsyncMessagingURLDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MessagingURLDomainListResponse, AsyncDefaultFlatPagination[MessagingURLDomainListResponse]]:
         """
-        List messaging URL domains
+        Returns the URL domains available to the authenticated account for message URL
+        shortening.
 
         Args:
           extra_headers: Send extra headers

@@ -30,7 +30,7 @@ class TestImport:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         import_ = client.email_blocks.import_.create(
             file=b"Example data",
-            block_ttl_days=1,
+            block_ttl_days=30,
         )
         assert_matches_type(EmailBlockImportResponse, import_, path=["response"])
 
@@ -121,7 +121,7 @@ class TestAsyncImport:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         import_ = await async_client.email_blocks.import_.create(
             file=b"Example data",
-            block_ttl_days=1,
+            block_ttl_days=30,
         )
         assert_matches_type(EmailBlockImportResponse, import_, path=["response"])
 

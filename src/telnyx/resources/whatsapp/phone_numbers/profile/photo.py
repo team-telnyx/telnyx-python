@@ -59,7 +59,8 @@ class PhotoResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhotoRetrieveResponse:
         """
-        Get Whatsapp profile photo
+        Returns the current business-profile photo for the specified WhatsApp phone
+        number.
 
         Args:
           extra_headers: Send extra headers
@@ -92,7 +93,7 @@ class PhotoResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete Whatsapp profile photo
+        Removes the business-profile photo from the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -127,7 +128,8 @@ class PhotoResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhotoUploadResponse:
         """
-        Upload Whatsapp profile photo
+        Uploads and assigns a business-profile photo to the specified WhatsApp phone
+        number.
 
         Args:
           file: Image file (JPEG recommended, max 10 MB)
@@ -193,7 +195,8 @@ class AsyncPhotoResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhotoRetrieveResponse:
         """
-        Get Whatsapp profile photo
+        Returns the current business-profile photo for the specified WhatsApp phone
+        number.
 
         Args:
           extra_headers: Send extra headers
@@ -226,7 +229,7 @@ class AsyncPhotoResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete Whatsapp profile photo
+        Removes the business-profile photo from the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -261,7 +264,8 @@ class AsyncPhotoResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhotoUploadResponse:
         """
-        Upload Whatsapp profile photo
+        Uploads and assigns a business-profile photo to the specified WhatsApp phone
+        number.
 
         Args:
           file: Image file (JPEG recommended, max 10 MB)

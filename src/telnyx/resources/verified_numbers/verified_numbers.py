@@ -124,7 +124,7 @@ class VerifiedNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberDataWrapper:
         """
-        Retrieve a verified number
+        Retrieve the details of a verified number on your account.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -202,7 +202,7 @@ class VerifiedNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberDataWrapper:
         """
-        Delete a verified number
+        Remove a verified number from your account.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -316,7 +316,7 @@ class AsyncVerifiedNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberDataWrapper:
         """
-        Retrieve a verified number
+        Retrieve the details of a verified number on your account.
 
         Args:
           phone_number: +E164 formatted phone number.
@@ -394,7 +394,7 @@ class AsyncVerifiedNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberDataWrapper:
         """
-        Delete a verified number
+        Remove a verified number from your account.
 
         Args:
           phone_number: +E164 formatted phone number.

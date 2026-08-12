@@ -33,6 +33,7 @@ from .pay_tool_params_param import PayToolParamsParam as PayToolParamsParam
 from .widget_settings_param import WidgetSettingsParam as WidgetSettingsParam
 from .background_task_status import BackgroundTaskStatus as BackgroundTaskStatus
 from .cluster_compute_params import ClusterComputeParams as ClusterComputeParams
+from .collection_list_params import CollectionListParams as CollectionListParams
 from .external_llm_req_param import ExternalLlmReqParam as ExternalLlmReqParam
 from .insight_settings_param import InsightSettingsParam as InsightSettingsParam
 from .mcp_server_list_params import McpServerListParams as McpServerListParams
@@ -44,6 +45,8 @@ from .cluster_retrieve_params import ClusterRetrieveParams as ClusterRetrievePar
 from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
 from .observability_req_param import ObservabilityReqParam as ObservabilityReqParam
 from .assistant_imports_params import AssistantImportsParams as AssistantImportsParams
+from .collection_create_params import CollectionCreateParams as CollectionCreateParams
+from .collection_update_params import CollectionUpdateParams as CollectionUpdateParams
 from .conversation_list_params import ConversationListParams as ConversationListParams
 from .hangup_tool_params_param import HangupToolParamsParam as HangupToolParamsParam
 from .mcp_server_create_params import McpServerCreateParams as McpServerCreateParams
@@ -70,6 +73,7 @@ from .conversation_add_message_params import ConversationAddMessageParams as Con
 from .openai_create_response_response import OpenAICreateResponseResponse as OpenAICreateResponseResponse
 from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams as EmbeddingSimilaritySearchParams
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
+from .collection_retrieve_documents_params import CollectionRetrieveDocumentsParams as CollectionRetrieveDocumentsParams
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam as PostConversationSettingsReqParam
 from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam as TranscriptionEndpointingPlanParam
 from .update_dynamic_variables_tool_params_param import (
@@ -85,6 +89,7 @@ from .inference_embedding_interruption_settings_param import (
 if TYPE_CHECKING:
     from .flow_edge import FlowEdge as FlowEdge
     from .bucket_ids import BucketIDs as BucketIDs
+    from .collection import Collection as Collection
     from .mcp_server import McpServer as McpServer
     from .hangup_tool import HangupTool as HangupTool
     from .integration import Integration as Integration
@@ -108,6 +113,7 @@ if TYPE_CHECKING:
     from .hangup_tool_params import HangupToolParams as HangupToolParams
     from .messaging_settings import MessagingSettings as MessagingSettings
     from .telephony_settings import TelephonySettings as TelephonySettings
+    from .collection_envelope import CollectionEnvelope as CollectionEnvelope
     from .inference_embedding import InferenceEmbedding as InferenceEmbedding
     from .start_speaking_plan import StartSpeakingPlan as StartSpeakingPlan
     from .assistant_mcp_server import AssistantMcpServer as AssistantMcpServer
@@ -137,6 +143,9 @@ if TYPE_CHECKING:
     )
     from .update_dynamic_variables_tool_params import (
         UpdateDynamicVariablesToolParams as UpdateDynamicVariablesToolParams,
+    )
+    from .collection_retrieve_documents_response import (
+        CollectionRetrieveDocumentsResponse as CollectionRetrieveDocumentsResponse,
     )
     from .inference_embedding_webhook_tool_params import (
         InferenceEmbeddingWebhookToolParams as InferenceEmbeddingWebhookToolParams,
@@ -294,6 +303,18 @@ def __getattr__(name: str) -> Any:
         from .cluster_compute_response import ClusterComputeResponse
 
         return ClusterComputeResponse
+    if name == "Collection":
+        from .collection import Collection
+
+        return Collection
+    if name == "CollectionEnvelope":
+        from .collection_envelope import CollectionEnvelope
+
+        return CollectionEnvelope
+    if name == "CollectionRetrieveDocumentsResponse":
+        from .collection_retrieve_documents_response import CollectionRetrieveDocumentsResponse
+
+        return CollectionRetrieveDocumentsResponse
     if name == "Conversation":
         from .conversation import Conversation
 

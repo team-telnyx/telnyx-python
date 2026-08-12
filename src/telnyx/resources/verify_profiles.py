@@ -166,7 +166,8 @@ class VerifyProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
-        Update Verify profile
+        Updates the specified Verify profile's name, webhook destinations, language,
+        daily spend limits, or channel-specific settings. Returns the updated profile.
 
         Args:
           daily_spend_limit: The maximum daily spend allowed on this verify profile, in USD.
@@ -264,7 +265,7 @@ class VerifyProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
-        Delete Verify profile
+        Deletes the specified Verify profile and returns the deleted profile record.
 
         Args:
           extra_headers: Send extra headers
@@ -515,7 +516,8 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
-        Update Verify profile
+        Updates the specified Verify profile's name, webhook destinations, language,
+        daily spend limits, or channel-specific settings. Returns the updated profile.
 
         Args:
           daily_spend_limit: The maximum daily spend allowed on this verify profile, in USD.
@@ -613,7 +615,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
-        Delete Verify profile
+        Deletes the specified Verify profile and returns the deleted profile record.
 
         Args:
           extra_headers: Send extra headers

@@ -56,7 +56,7 @@ class CallingSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingSettingRetrieveResponse:
         """
-        Get calling settings for a phone number
+        Returns the WhatsApp calling configuration for the specified phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -90,7 +90,7 @@ class CallingSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingSettingUpdateResponse:
         """
-        Enable or disable Whatsapp calling for a phone number
+        Enables or disables WhatsApp calling for the specified phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -147,7 +147,7 @@ class AsyncCallingSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingSettingRetrieveResponse:
         """
-        Get calling settings for a phone number
+        Returns the WhatsApp calling configuration for the specified phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -181,7 +181,7 @@ class AsyncCallingSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingSettingUpdateResponse:
         """
-        Enable or disable Whatsapp calling for a phone number
+        Enables or disables WhatsApp calling for the specified phone number.
 
         Args:
           extra_headers: Send extra headers

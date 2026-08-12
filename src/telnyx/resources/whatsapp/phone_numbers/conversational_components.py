@@ -60,7 +60,8 @@ class ConversationalComponentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationalComponentListResponse:
         """
-        Get phone number conversational components
+        Returns the conversational components configured for the specified WhatsApp
+        phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -97,7 +98,8 @@ class ConversationalComponentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationalComponentPatchAllResponse:
         """
-        Update phone number conversational components
+        Updates the conversational components configured for the specified WhatsApp
+        phone number.
 
         Args:
           commands: List of commands
@@ -166,7 +168,8 @@ class AsyncConversationalComponentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationalComponentListResponse:
         """
-        Get phone number conversational components
+        Returns the conversational components configured for the specified WhatsApp
+        phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -203,7 +206,8 @@ class AsyncConversationalComponentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationalComponentPatchAllResponse:
         """
-        Update phone number conversational components
+        Updates the conversational components configured for the specified WhatsApp
+        phone number.
 
         Args:
           commands: List of commands

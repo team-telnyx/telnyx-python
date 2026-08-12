@@ -73,7 +73,7 @@ class MobilePhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobilePhoneNumberRetrieveResponse:
         """
-        Retrieve a Mobile Phone Number
+        Retrieve the details of a specific mobile phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -117,7 +117,7 @@ class MobilePhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobilePhoneNumberUpdateResponse:
         """
-        Update a Mobile Phone Number
+        Update the settings of a specific mobile phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -167,7 +167,7 @@ class MobilePhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MobilePhoneNumber]:
         """
-        List Mobile Phone Numbers
+        Retrieve a paginated list of mobile phone numbers on your account.
 
         Args:
           page_number: The page number to load
@@ -240,7 +240,7 @@ class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobilePhoneNumberRetrieveResponse:
         """
-        Retrieve a Mobile Phone Number
+        Retrieve the details of a specific mobile phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -284,7 +284,7 @@ class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobilePhoneNumberUpdateResponse:
         """
-        Update a Mobile Phone Number
+        Update the settings of a specific mobile phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -334,7 +334,7 @@ class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MobilePhoneNumber, AsyncDefaultFlatPagination[MobilePhoneNumber]]:
         """
-        List Mobile Phone Numbers
+        Retrieve a paginated list of mobile phone numbers on your account.
 
         Args:
           page_number: The page number to load

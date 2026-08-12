@@ -56,7 +56,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingRetrieveResponse:
         """
-        Get WABA settings
+        Returns account-level settings for the specified WhatsApp Business Account.
 
         Args:
           extra_headers: Send extra headers
@@ -95,7 +95,8 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Update WABA settings
+        Updates the supplied account-level settings for the specified WhatsApp Business
+        Account.
 
         Args:
           timezone: IANA timezone identifier
@@ -170,7 +171,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingRetrieveResponse:
         """
-        Get WABA settings
+        Returns account-level settings for the specified WhatsApp Business Account.
 
         Args:
           extra_headers: Send extra headers
@@ -209,7 +210,8 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Update WABA settings
+        Updates the supplied account-level settings for the specified WhatsApp Business
+        Account.
 
         Args:
           timezone: IANA timezone identifier

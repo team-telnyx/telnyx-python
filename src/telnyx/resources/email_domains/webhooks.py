@@ -110,7 +110,8 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailWebhookResponse:
         """
-        Retrieve a webhook
+        Returns the webhook subscription identified by ID within the specified email
+        domain.
 
         Args:
           extra_headers: Send extra headers
@@ -195,7 +196,8 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[EmailWebhook]:
         """
-        List webhooks for an email domain
+        Returns a paginated list of webhook subscriptions scoped to the email domain.
+        Results can be sorted by creation time.
 
         Args:
           page_number: Page number to return (offset pagination)
@@ -247,7 +249,8 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailWebhookResponse:
         """
-        Delete a webhook
+        Deletes the webhook subscription identified by ID within the specified email
+        domain and returns the deleted subscription.
 
         Args:
           extra_headers: Send extra headers
@@ -354,7 +357,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailWebhookResponse:
         """
-        Retrieve a webhook
+        Returns the webhook subscription identified by ID within the specified email
+        domain.
 
         Args:
           extra_headers: Send extra headers
@@ -439,7 +443,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EmailWebhook, AsyncDefaultFlatPagination[EmailWebhook]]:
         """
-        List webhooks for an email domain
+        Returns a paginated list of webhook subscriptions scoped to the email domain.
+        Results can be sorted by creation time.
 
         Args:
           page_number: Page number to return (offset pagination)
@@ -491,7 +496,8 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailWebhookResponse:
         """
-        Delete a webhook
+        Deletes the webhook subscription identified by ID within the specified email
+        domain and returns the deleted subscription.
 
         Args:
           extra_headers: Send extra headers

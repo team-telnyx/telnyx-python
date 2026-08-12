@@ -307,8 +307,8 @@ class TestMessagingHostedNumberOrders:
             id="id",
             verification_codes=[
                 {
-                    "code": "code",
-                    "phone_number": "phone_number",
+                    "code": "string",
+                    "phone_number": "string",
                 }
             ],
         )
@@ -323,8 +323,8 @@ class TestMessagingHostedNumberOrders:
             id="id",
             verification_codes=[
                 {
-                    "code": "code",
-                    "phone_number": "phone_number",
+                    "code": "string",
+                    "phone_number": "string",
                 }
             ],
         )
@@ -343,8 +343,8 @@ class TestMessagingHostedNumberOrders:
             id="id",
             verification_codes=[
                 {
-                    "code": "code",
-                    "phone_number": "phone_number",
+                    "code": "string",
+                    "phone_number": "string",
                 }
             ],
         ) as response:
@@ -366,8 +366,8 @@ class TestMessagingHostedNumberOrders:
                 id="",
                 verification_codes=[
                     {
-                        "code": "code",
-                        "phone_number": "phone_number",
+                        "code": "string",
+                        "phone_number": "string",
                     }
                 ],
             )
@@ -659,8 +659,8 @@ class TestAsyncMessagingHostedNumberOrders:
             id="id",
             verification_codes=[
                 {
-                    "code": "code",
-                    "phone_number": "phone_number",
+                    "code": "string",
+                    "phone_number": "string",
                 }
             ],
         )
@@ -675,8 +675,8 @@ class TestAsyncMessagingHostedNumberOrders:
             id="id",
             verification_codes=[
                 {
-                    "code": "code",
-                    "phone_number": "phone_number",
+                    "code": "string",
+                    "phone_number": "string",
                 }
             ],
         )
@@ -695,8 +695,8 @@ class TestAsyncMessagingHostedNumberOrders:
             id="id",
             verification_codes=[
                 {
-                    "code": "code",
-                    "phone_number": "phone_number",
+                    "code": "string",
+                    "phone_number": "string",
                 }
             ],
         ) as response:
@@ -718,8 +718,8 @@ class TestAsyncMessagingHostedNumberOrders:
                 id="",
                 verification_codes=[
                     {
-                        "code": "code",
-                        "phone_number": "phone_number",
+                        "code": "string",
+                        "phone_number": "string",
                     }
                 ],
             )

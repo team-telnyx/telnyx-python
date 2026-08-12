@@ -69,7 +69,8 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobRetrieveResponse:
         """
-        Retrieve a phone numbers job
+        Returns the status and details of the phone-number background job identified by
+        `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -104,8 +105,10 @@ class JobsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PhoneNumbersJob]:
-        """
-        Lists the phone numbers jobs
+        """Returns background jobs that operate on phone numbers.
+
+        Results can be filtered
+        by job type and sorted by creation time, and include pagination metadata.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type]
@@ -360,7 +363,8 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobRetrieveResponse:
         """
-        Retrieve a phone numbers job
+        Returns the status and details of the phone-number background job identified by
+        `id`.
 
         Args:
           extra_headers: Send extra headers
@@ -395,8 +399,10 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumbersJob, AsyncDefaultFlatPagination[PhoneNumbersJob]]:
-        """
-        Lists the phone numbers jobs
+        """Returns background jobs that operate on phone numbers.
+
+        Results can be filtered
+        by job type and sorted by creation time, and include pagination metadata.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type]

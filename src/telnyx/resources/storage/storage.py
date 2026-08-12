@@ -118,7 +118,7 @@ class StorageResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StorageListMigrationSourceCoverageResponse:
-        """List Migration Source coverage"""
+        """List the external storage providers and regions supported as migration sources."""
         return self._get(
             "/storage/migration_source_coverage",
             options=make_request_options(
@@ -187,7 +187,7 @@ class AsyncStorageResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StorageListMigrationSourceCoverageResponse:
-        """List Migration Source coverage"""
+        """List the external storage providers and regions supported as migration sources."""
         return await self._get(
             "/storage/migration_source_coverage",
             options=make_request_options(

@@ -2522,8 +2522,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartNoiseSuppressionResponse:
-        """
-        Noise Suppression Start (BETA)
+        """Start noise suppression on an active call to reduce background noise.
+
+        This
+        feature is currently in beta.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -3536,8 +3538,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopNoiseSuppressionResponse:
-        """
-        Noise Suppression Stop (BETA)
+        """Stop noise suppression previously started on an active call.
+
+        This feature is
+        currently in beta.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -6610,8 +6614,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartNoiseSuppressionResponse:
-        """
-        Noise Suppression Start (BETA)
+        """Start noise suppression on an active call to reduce background noise.
+
+        This
+        feature is currently in beta.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -7624,8 +7630,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopNoiseSuppressionResponse:
-        """
-        Noise Suppression Stop (BETA)
+        """Stop noise suppression previously started on an active call.
+
+        This feature is
+        currently in beta.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid

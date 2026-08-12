@@ -57,7 +57,7 @@ class AccessIPRangesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPRange:
         """
-        Create new Access IP Range
+        Create a new access IP range on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -97,7 +97,7 @@ class AccessIPRangesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[AccessIPRange]:
         """
-        List all Access IP Ranges
+        Retrieve a paginated list of access IP ranges configured on your account.
 
         Args:
           filter:
@@ -146,7 +146,7 @@ class AccessIPRangesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPRange:
         """
-        Delete access IP ranges
+        Delete an access IP range from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -203,7 +203,7 @@ class AsyncAccessIPRangesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPRange:
         """
-        Create new Access IP Range
+        Create a new access IP range on your account.
 
         Args:
           extra_headers: Send extra headers
@@ -243,7 +243,7 @@ class AsyncAccessIPRangesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AccessIPRange, AsyncDefaultFlatPagination[AccessIPRange]]:
         """
-        List all Access IP Ranges
+        Retrieve a paginated list of access IP ranges configured on your account.
 
         Args:
           filter:
@@ -292,7 +292,7 @@ class AsyncAccessIPRangesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AccessIPRange:
         """
-        Delete access IP ranges
+        Delete an access IP range from your account.
 
         Args:
           extra_headers: Send extra headers

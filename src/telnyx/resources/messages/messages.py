@@ -19,6 +19,7 @@ from .rcs import (
 from ...types import (
     message_send_params,
     message_schedule_params,
+    message_whatsapp_params,
     message_send_group_mms_params,
     message_send_long_code_params,
     message_send_short_code_params,
@@ -39,6 +40,8 @@ from ..._base_client import make_request_options
 from ...types.message_send_response import MessageSendResponse
 from ...types.message_retrieve_response import MessageRetrieveResponse
 from ...types.message_schedule_response import MessageScheduleResponse
+from ...types.message_whatsapp_response import MessageWhatsappResponse
+from ...types.whatsapp_message_content_param import WhatsappMessageContentParam
 from ...types.message_send_group_mms_response import MessageSendGroupMmsResponse
 from ...types.message_send_long_code_response import MessageSendLongCodeResponse
 from ...types.message_send_short_code_response import MessageSendShortCodeResponse
@@ -51,8 +54,6 @@ __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
 
 class MessagesResource(SyncAPIResource):
-    """Messages"""
-
     @cached_property
     def rcs(self) -> RcsResource:
         """Send RCS messages"""
@@ -413,8 +414,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendGroupMmsResponse:
-        """
-        Send a group MMS message
+        """Queues an MMS addressed to multiple recipients as a group conversation.
+
+        Delivery
+        events are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -486,8 +489,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendLongCodeResponse:
-        """
-        Send a long code message
+        """Queues an outbound SMS or MMS using a long-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -577,8 +582,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendNumberPoolResponse:
-        """
-        Send a message using number pool
+        """Queues an outbound message using a number pool.
+
+        Telnyx selects an eligible
+        sender from the pool according to its messaging profile configuration.
 
         Args:
           messaging_profile_id: Unique identifier for a messaging profile.
@@ -668,8 +675,10 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendShortCodeResponse:
-        """
-        Send a short code message
+        """Queues an outbound SMS or MMS using a short-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -802,10 +811,69 @@ class MessagesResource(SyncAPIResource):
             cast_to=MessageSendWithAlphanumericSenderResponse,
         )
 
+    def whatsapp(
+        self,
+        *,
+        from_: str,
+        to: str,
+        whatsapp_message: WhatsappMessageContentParam,
+        messaging_profile_id: str | Omit = omit,
+        type: Literal["WHATSAPP"] | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageWhatsappResponse:
+        """Sends a WhatsApp message using a Telnyx WhatsApp-enabled number.
+
+        The message
+        body, interactive elements, media, location, and reaction content are specified
+        in the `whatsapp_message` field. Delivery progress and final disposition are
+        reported asynchronously through messaging webhooks.
+
+        Args:
+          from_: Phone number in +E.164 format associated with Whatsapp account
+
+          to: Phone number in +E.164 format
+
+          messaging_profile_id: Messaging profile ID - required if the 'from' number is not SMS-enabled
+
+          type: Message type - must be set to "WHATSAPP"
+
+          webhook_url: The URL where webhooks related to this message will be sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/messages/whatsapp",
+            body=maybe_transform(
+                {
+                    "from_": from_,
+                    "to": to,
+                    "whatsapp_message": whatsapp_message,
+                    "messaging_profile_id": messaging_profile_id,
+                    "type": type,
+                    "webhook_url": webhook_url,
+                },
+                message_whatsapp_params.MessageWhatsappParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageWhatsappResponse,
+        )
+
 
 class AsyncMessagesResource(AsyncAPIResource):
-    """Messages"""
-
     @cached_property
     def rcs(self) -> AsyncRcsResource:
         """Send RCS messages"""
@@ -1166,8 +1234,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendGroupMmsResponse:
-        """
-        Send a group MMS message
+        """Queues an MMS addressed to multiple recipients as a group conversation.
+
+        Delivery
+        events are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -1239,8 +1309,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendLongCodeResponse:
-        """
-        Send a long code message
+        """Queues an outbound SMS or MMS using a long-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -1330,8 +1402,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendNumberPoolResponse:
-        """
-        Send a message using number pool
+        """Queues an outbound message using a number pool.
+
+        Telnyx selects an eligible
+        sender from the pool according to its messaging profile configuration.
 
         Args:
           messaging_profile_id: Unique identifier for a messaging profile.
@@ -1421,8 +1495,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendShortCodeResponse:
-        """
-        Send a short code message
+        """Queues an outbound SMS or MMS using a short-code sender.
+
+        Delivery progress and
+        final disposition are reported asynchronously through messaging webhooks.
 
         Args:
           from_: Phone number, in +E.164 format, used to send the message.
@@ -1555,6 +1631,67 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=MessageSendWithAlphanumericSenderResponse,
         )
 
+    async def whatsapp(
+        self,
+        *,
+        from_: str,
+        to: str,
+        whatsapp_message: WhatsappMessageContentParam,
+        messaging_profile_id: str | Omit = omit,
+        type: Literal["WHATSAPP"] | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageWhatsappResponse:
+        """Sends a WhatsApp message using a Telnyx WhatsApp-enabled number.
+
+        The message
+        body, interactive elements, media, location, and reaction content are specified
+        in the `whatsapp_message` field. Delivery progress and final disposition are
+        reported asynchronously through messaging webhooks.
+
+        Args:
+          from_: Phone number in +E.164 format associated with Whatsapp account
+
+          to: Phone number in +E.164 format
+
+          messaging_profile_id: Messaging profile ID - required if the 'from' number is not SMS-enabled
+
+          type: Message type - must be set to "WHATSAPP"
+
+          webhook_url: The URL where webhooks related to this message will be sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/messages/whatsapp",
+            body=await async_maybe_transform(
+                {
+                    "from_": from_,
+                    "to": to,
+                    "whatsapp_message": whatsapp_message,
+                    "messaging_profile_id": messaging_profile_id,
+                    "type": type,
+                    "webhook_url": webhook_url,
+                },
+                message_whatsapp_params.MessageWhatsappParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageWhatsappResponse,
+        )
+
 
 class MessagesResourceWithRawResponse:
     def __init__(self, messages: MessagesResource) -> None:
@@ -1589,6 +1726,9 @@ class MessagesResourceWithRawResponse:
         )
         self.send_with_alphanumeric_sender = to_raw_response_wrapper(
             messages.send_with_alphanumeric_sender,
+        )
+        self.whatsapp = to_raw_response_wrapper(
+            messages.whatsapp,
         )
 
     @cached_property
@@ -1631,6 +1771,9 @@ class AsyncMessagesResourceWithRawResponse:
         self.send_with_alphanumeric_sender = async_to_raw_response_wrapper(
             messages.send_with_alphanumeric_sender,
         )
+        self.whatsapp = async_to_raw_response_wrapper(
+            messages.whatsapp,
+        )
 
     @cached_property
     def rcs(self) -> AsyncRcsResourceWithRawResponse:
@@ -1672,6 +1815,9 @@ class MessagesResourceWithStreamingResponse:
         self.send_with_alphanumeric_sender = to_streamed_response_wrapper(
             messages.send_with_alphanumeric_sender,
         )
+        self.whatsapp = to_streamed_response_wrapper(
+            messages.whatsapp,
+        )
 
     @cached_property
     def rcs(self) -> RcsResourceWithStreamingResponse:
@@ -1712,6 +1858,9 @@ class AsyncMessagesResourceWithStreamingResponse:
         )
         self.send_with_alphanumeric_sender = async_to_streamed_response_wrapper(
             messages.send_with_alphanumeric_sender,
+        )
+        self.whatsapp = async_to_streamed_response_wrapper(
+            messages.whatsapp,
         )
 
     @cached_property

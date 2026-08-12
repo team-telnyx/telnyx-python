@@ -17,7 +17,6 @@ from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
 from .call_unhold_webhook_event import CallUnholdWebhookEvent
 from .call_bridged_webhook_event import CallBridgedWebhookEvent
-from .number_order_status_update import NumberOrderStatusUpdate
 from .call_answered_webhook_event import CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent
 from .transcription_webhook_event import TranscriptionWebhookEvent
@@ -56,6 +55,7 @@ from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhoo
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
 from .hosted_number_order_event_webhook_event import HostedNumberOrderEventWebhookEvent
 from .conference_recording_saved_webhook_event import ConferenceRecordingSavedWebhookEvent
+from .number_order_status_update_webhook_event import NumberOrderStatusUpdateWebhookEvent
 from .call_machine_greeting_ended_webhook_event import CallMachineGreetingEndedWebhookEvent
 from .conference_participant_left_webhook_event import ConferenceParticipantLeftWebhookEvent
 from .conference_playback_started_webhook_event import ConferencePlaybackStartedWebhookEvent
@@ -142,7 +142,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     FaxSendingStarted,
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
-    NumberOrderStatusUpdate,
+    NumberOrderStatusUpdateWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     TranscriptionWebhookEvent,
 ]

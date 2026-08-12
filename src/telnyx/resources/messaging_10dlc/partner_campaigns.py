@@ -268,7 +268,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignRetrieveSharingStatusResponse:
         """
-        Get Sharing Status
+        Returns the partner-sharing state for the specified campaign.
 
         Args:
           campaign_id: ID of the campaign in question
@@ -530,7 +530,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignRetrieveSharingStatusResponse:
         """
-        Get Sharing Status
+        Returns the partner-sharing state for the specified campaign.
 
         Args:
           campaign_id: ID of the campaign in question

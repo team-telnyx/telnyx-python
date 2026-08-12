@@ -72,14 +72,14 @@ class TestProfile:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         profile = client.whatsapp.phone_numbers.profile.update(
             phone_number="phone_number",
-            about="about",
-            address="address",
-            category="category",
-            description="description",
-            display_name="display_name",
-            email="email",
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            website="website",
+            about="string",
+            address="string",
+            category="string",
+            description="string",
+            display_name="string",
+            email="string",
+            profile_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            website="string",
         )
         assert_matches_type(ProfileUpdateResponse, profile, path=["response"])
 
@@ -178,14 +178,14 @@ class TestAsyncProfile:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         profile = await async_client.whatsapp.phone_numbers.profile.update(
             phone_number="phone_number",
-            about="about",
-            address="address",
-            category="category",
-            description="description",
-            display_name="display_name",
-            email="email",
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            website="website",
+            about="string",
+            address="string",
+            category="string",
+            description="string",
+            display_name="string",
+            email="string",
+            profile_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            website="string",
         )
         assert_matches_type(ProfileUpdateResponse, profile, path=["response"])
 

@@ -58,7 +58,7 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PhoneNumberListResponse]:
         """
-        List phone numbers for a WABA
+        Returns phone numbers registered under the specified WhatsApp Business Account.
 
         Args:
           extra_headers: Send extra headers
@@ -106,7 +106,8 @@ class PhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Initialize Whatsapp phone number verification
+        Starts verification of a phone number for the specified WhatsApp Business
+        Account using the requested verification method.
 
         Args:
           extra_headers: Send extra headers
@@ -172,7 +173,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumberListResponse, AsyncDefaultFlatPagination[PhoneNumberListResponse]]:
         """
-        List phone numbers for a WABA
+        Returns phone numbers registered under the specified WhatsApp Business Account.
 
         Args:
           extra_headers: Send extra headers
@@ -220,7 +221,8 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Initialize Whatsapp phone number verification
+        Starts verification of a phone number for the specified WhatsApp Business
+        Account using the requested verification method.
 
         Args:
           extra_headers: Send extra headers

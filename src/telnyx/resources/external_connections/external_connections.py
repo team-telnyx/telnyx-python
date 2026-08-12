@@ -391,7 +391,8 @@ class ExternalConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionUpdateLocationResponse:
         """
-        Update a location's static emergency address
+        Update the static emergency address assigned to a specific location of an
+        external connection.
 
         Args:
           static_emergency_address_id: A new static emergency address ID to update the location with
@@ -737,7 +738,8 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionUpdateLocationResponse:
         """
-        Update a location's static emergency address
+        Update the static emergency address assigned to a specific location of an
+        external connection.
 
         Args:
           static_emergency_address_id: A new static emergency address ID to update the location with

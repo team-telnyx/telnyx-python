@@ -75,7 +75,7 @@ class TestTelnyxAgents:
         telnyx_agent = client.ai.missions.runs.telnyx_agents.link(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            telnyx_agent_id="telnyx_agent_id",
+            telnyx_agent_id="Telnyx Agent Id",
         )
         assert_matches_type(TelnyxAgentLinkResponse, telnyx_agent, path=["response"])
 
@@ -85,7 +85,7 @@ class TestTelnyxAgents:
         response = client.ai.missions.runs.telnyx_agents.with_raw_response.link(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            telnyx_agent_id="telnyx_agent_id",
+            telnyx_agent_id="Telnyx Agent Id",
         )
 
         assert response.is_closed is True
@@ -99,7 +99,7 @@ class TestTelnyxAgents:
         with client.ai.missions.runs.telnyx_agents.with_streaming_response.link(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            telnyx_agent_id="telnyx_agent_id",
+            telnyx_agent_id="Telnyx Agent Id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -116,14 +116,14 @@ class TestTelnyxAgents:
             client.ai.missions.runs.telnyx_agents.with_raw_response.link(
                 run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 mission_id="",
-                telnyx_agent_id="telnyx_agent_id",
+                telnyx_agent_id="Telnyx Agent Id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `run_id` but received ''"):
             client.ai.missions.runs.telnyx_agents.with_raw_response.link(
                 run_id="",
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                telnyx_agent_id="telnyx_agent_id",
+                telnyx_agent_id="Telnyx Agent Id",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -254,7 +254,7 @@ class TestAsyncTelnyxAgents:
         telnyx_agent = await async_client.ai.missions.runs.telnyx_agents.link(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            telnyx_agent_id="telnyx_agent_id",
+            telnyx_agent_id="Telnyx Agent Id",
         )
         assert_matches_type(TelnyxAgentLinkResponse, telnyx_agent, path=["response"])
 
@@ -264,7 +264,7 @@ class TestAsyncTelnyxAgents:
         response = await async_client.ai.missions.runs.telnyx_agents.with_raw_response.link(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            telnyx_agent_id="telnyx_agent_id",
+            telnyx_agent_id="Telnyx Agent Id",
         )
 
         assert response.is_closed is True
@@ -278,7 +278,7 @@ class TestAsyncTelnyxAgents:
         async with async_client.ai.missions.runs.telnyx_agents.with_streaming_response.link(
             run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            telnyx_agent_id="telnyx_agent_id",
+            telnyx_agent_id="Telnyx Agent Id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -295,14 +295,14 @@ class TestAsyncTelnyxAgents:
             await async_client.ai.missions.runs.telnyx_agents.with_raw_response.link(
                 run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 mission_id="",
-                telnyx_agent_id="telnyx_agent_id",
+                telnyx_agent_id="Telnyx Agent Id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `run_id` but received ''"):
             await async_client.ai.missions.runs.telnyx_agents.with_raw_response.link(
                 run_id="",
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                telnyx_agent_id="telnyx_agent_id",
+                telnyx_agent_id="Telnyx Agent Id",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

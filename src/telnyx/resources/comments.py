@@ -61,8 +61,10 @@ class CommentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentCreateResponse:
-        """
-        Create a comment
+        """Creates a comment associated with a supported number-order record.
+
+        The response
+        contains the created comment.
 
         Args:
           extra_headers: Send extra headers
@@ -101,7 +103,8 @@ class CommentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentRetrieveResponse:
         """
-        Retrieve a comment
+        Returns the comment identified by `id`, including its associated record and
+        comment metadata.
 
         Args:
           extra_headers: Send extra headers
@@ -133,8 +136,10 @@ class CommentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentListResponse:
-        """
-        Retrieve all comments
+        """Returns comments associated with number-order records.
+
+        Results can be filtered
+        by record type and record ID and include pagination metadata.
 
         Args:
           filter:
@@ -172,8 +177,10 @@ class CommentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentMarkAsReadResponse:
-        """
-        Mark a comment as read
+        """Marks the specified comment as read.
+
+        The response contains the updated read
+        state for the comment.
 
         Args:
           extra_headers: Send extra headers
@@ -230,8 +237,10 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentCreateResponse:
-        """
-        Create a comment
+        """Creates a comment associated with a supported number-order record.
+
+        The response
+        contains the created comment.
 
         Args:
           extra_headers: Send extra headers
@@ -270,7 +279,8 @@ class AsyncCommentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentRetrieveResponse:
         """
-        Retrieve a comment
+        Returns the comment identified by `id`, including its associated record and
+        comment metadata.
 
         Args:
           extra_headers: Send extra headers
@@ -302,8 +312,10 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentListResponse:
-        """
-        Retrieve all comments
+        """Returns comments associated with number-order records.
+
+        Results can be filtered
+        by record type and record ID and include pagination metadata.
 
         Args:
           filter:
@@ -341,8 +353,10 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentMarkAsReadResponse:
-        """
-        Mark a comment as read
+        """Marks the specified comment as read.
+
+        The response contains the updated read
+        state for the comment.
 
         Args:
           extra_headers: Send extra headers

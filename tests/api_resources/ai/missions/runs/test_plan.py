@@ -29,9 +29,9 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -45,9 +45,9 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -65,9 +65,9 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         ) as response:
@@ -88,9 +88,9 @@ class TestPlan:
                 mission_id="",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )
@@ -101,9 +101,9 @@ class TestPlan:
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )
@@ -168,9 +168,9 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -184,9 +184,9 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -204,9 +204,9 @@ class TestPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         ) as response:
@@ -227,9 +227,9 @@ class TestPlan:
                 mission_id="",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )
@@ -240,9 +240,9 @@ class TestPlan:
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )
@@ -401,9 +401,9 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -417,9 +417,9 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -437,9 +437,9 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         ) as response:
@@ -460,9 +460,9 @@ class TestAsyncPlan:
                 mission_id="",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )
@@ -473,9 +473,9 @@ class TestAsyncPlan:
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )
@@ -540,9 +540,9 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -556,9 +556,9 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         )
@@ -576,9 +576,9 @@ class TestAsyncPlan:
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             steps=[
                 {
-                    "description": "description",
+                    "description": "Description",
                     "sequence": 0,
-                    "step_id": "step_id",
+                    "step_id": "Step Id",
                 }
             ],
         ) as response:
@@ -599,9 +599,9 @@ class TestAsyncPlan:
                 mission_id="",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )
@@ -612,9 +612,9 @@ class TestAsyncPlan:
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 steps=[
                     {
-                        "description": "description",
+                        "description": "Description",
                         "sequence": 0,
-                        "step_id": "step_id",
+                        "step_id": "Step Id",
                     }
                 ],
             )

@@ -23,7 +23,7 @@ class TestAccessIPRanges:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.create(
-            cidr_block="cidr_block",
+            cidr_block="Cidr Block",
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
@@ -31,8 +31,8 @@ class TestAccessIPRanges:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.create(
-            cidr_block="cidr_block",
-            description="description",
+            cidr_block="Cidr Block",
+            description="Description",
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
@@ -40,7 +40,7 @@ class TestAccessIPRanges:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.access_ip_ranges.with_raw_response.create(
-            cidr_block="cidr_block",
+            cidr_block="Cidr Block",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestAccessIPRanges:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.access_ip_ranges.with_streaming_response.create(
-            cidr_block="cidr_block",
+            cidr_block="Cidr Block",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -155,7 +155,7 @@ class TestAsyncAccessIPRanges:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.create(
-            cidr_block="cidr_block",
+            cidr_block="Cidr Block",
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
@@ -163,8 +163,8 @@ class TestAsyncAccessIPRanges:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.create(
-            cidr_block="cidr_block",
-            description="description",
+            cidr_block="Cidr Block",
+            description="Description",
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
@@ -172,7 +172,7 @@ class TestAsyncAccessIPRanges:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.access_ip_ranges.with_raw_response.create(
-            cidr_block="cidr_block",
+            cidr_block="Cidr Block",
         )
 
         assert response.is_closed is True
@@ -184,7 +184,7 @@ class TestAsyncAccessIPRanges:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.access_ip_ranges.with_streaming_response.create(
-            cidr_block="cidr_block",
+            cidr_block="Cidr Block",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

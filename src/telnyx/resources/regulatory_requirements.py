@@ -55,7 +55,9 @@ class RegulatoryRequirementsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegulatoryRequirementRetrieveResponse:
         """
-        Retrieve regulatory requirements
+        Returns regulatory requirements for number ordering, porting, or other supported
+        actions. Results can be filtered by phone number, requirement group, country,
+        number type, and action.
 
         Args:
           filter:
@@ -120,7 +122,9 @@ class AsyncRegulatoryRequirementsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegulatoryRequirementRetrieveResponse:
         """
-        Retrieve regulatory requirements
+        Returns regulatory requirements for number ordering, porting, or other supported
+        actions. Results can be filtered by phone number, requirement group, country,
+        number type, and action.
 
         Args:
           filter:

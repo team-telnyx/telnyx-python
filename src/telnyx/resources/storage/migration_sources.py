@@ -111,7 +111,7 @@ class MigrationSourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationSourceRetrieveResponse:
         """
-        Get a Migration Source
+        Retrieve the details of a specific migration source.
 
         Args:
           extra_headers: Send extra headers
@@ -142,7 +142,12 @@ class MigrationSourcesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationSourceListResponse:
-        """List all Migration Sources"""
+        """List the migration sources configured on your account.
+
+        A migration source is an
+        external storage bucket from which data can be migrated into Telnyx Cloud
+        Storage.
+        """
         return self._get(
             "/storage/migration_sources",
             options=make_request_options(
@@ -163,7 +168,7 @@ class MigrationSourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationSourceDeleteResponse:
         """
-        Delete a Migration Source
+        Delete a migration source configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -270,7 +275,7 @@ class AsyncMigrationSourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationSourceRetrieveResponse:
         """
-        Get a Migration Source
+        Retrieve the details of a specific migration source.
 
         Args:
           extra_headers: Send extra headers
@@ -301,7 +306,12 @@ class AsyncMigrationSourcesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationSourceListResponse:
-        """List all Migration Sources"""
+        """List the migration sources configured on your account.
+
+        A migration source is an
+        external storage bucket from which data can be migrated into Telnyx Cloud
+        Storage.
+        """
         return await self._get(
             "/storage/migration_sources",
             options=make_request_options(
@@ -322,7 +332,7 @@ class AsyncMigrationSourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationSourceDeleteResponse:
         """
-        Delete a Migration Source
+        Delete a migration source configuration.
 
         Args:
           extra_headers: Send extra headers

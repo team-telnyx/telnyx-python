@@ -55,7 +55,7 @@ class GlobalIPAssignmentsUsageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentsUsageRetrieveResponse:
         """
-        Global IP Assignment Usage Metrics
+        Retrieve usage metrics for your Global IP assignments.
 
         Args:
           filter:
@@ -120,7 +120,7 @@ class AsyncGlobalIPAssignmentsUsageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentsUsageRetrieveResponse:
         """
-        Global IP Assignment Usage Metrics
+        Retrieve usage metrics for your Global IP assignments.
 
         Args:
           filter:

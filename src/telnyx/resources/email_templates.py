@@ -123,7 +123,8 @@ class EmailTemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
         """
-        Get an email template
+        Returns the account-owned template identified by ID, including its Liquid
+        subject and bodies, declared variables, and timestamps.
 
         Args:
           extra_headers: Send extra headers
@@ -256,8 +257,10 @@ class EmailTemplatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete an email template
+        """Deletes the account-owned template.
+
+        The operation returns `204` with no body and
+        prevents future sends or renders from using the deleted template ID.
 
         Args:
           extra_headers: Send extra headers
@@ -470,7 +473,8 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
         """
-        Get an email template
+        Returns the account-owned template identified by ID, including its Liquid
+        subject and bodies, declared variables, and timestamps.
 
         Args:
           extra_headers: Send extra headers
@@ -603,8 +607,10 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete an email template
+        """Deletes the account-owned template.
+
+        The operation returns `204` with no body and
+        prevents future sends or renders from using the deleted template ID.
 
         Args:
           extra_headers: Send extra headers

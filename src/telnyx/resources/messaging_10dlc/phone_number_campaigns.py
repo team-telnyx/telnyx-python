@@ -62,8 +62,10 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
-        """
-        Create New Phone Number Campaign
+        """Assigns a phone number to a 10DLC campaign.
+
+        The assignment controls which
+        registered campaign is used for traffic from that number.
 
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.
@@ -140,7 +142,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
-        Update Phone Number Campaign
+        Replaces the 10DLC campaign assignment for the specified phone number.
 
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.
@@ -192,7 +194,8 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPerPagePaginationV2[PhoneNumberCampaign]:
         """
-        List phone number campaigns
+        Returns phone-number-to-campaign assignments for the authenticated account.
+        Apply the documented filters and pagination parameters to narrow the result set.
 
         Args:
           filter:
@@ -305,8 +308,10 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
-        """
-        Create New Phone Number Campaign
+        """Assigns a phone number to a 10DLC campaign.
+
+        The assignment controls which
+        registered campaign is used for traffic from that number.
 
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.
@@ -383,7 +388,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
-        Update Phone Number Campaign
+        Replaces the 10DLC campaign assignment for the specified phone number.
 
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.
@@ -435,7 +440,8 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumberCampaign, AsyncPerPagePaginationV2[PhoneNumberCampaign]]:
         """
-        List phone number campaigns
+        Returns phone-number-to-campaign assignments for the authenticated account.
+        Apply the documented filters and pagination parameters to narrow the result set.
 
         Args:
           filter:

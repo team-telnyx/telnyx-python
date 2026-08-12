@@ -68,7 +68,7 @@ class PaymentResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaymentCreateStoredPaymentTransactionResponse:
         """
-        Create a stored payment transaction
+        Create a transaction that charges a stored payment method on the account.
 
         Args:
           amount: Amount in dollars and cents, e.g. "120.00"
@@ -133,7 +133,7 @@ class AsyncPaymentResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaymentCreateStoredPaymentTransactionResponse:
         """
-        Create a stored payment transaction
+        Create a transaction that charges a stored payment method on the account.
 
         Args:
           amount: Amount in dollars and cents, e.g. "120.00"

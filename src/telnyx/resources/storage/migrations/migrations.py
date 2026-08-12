@@ -125,7 +125,7 @@ class MigrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationRetrieveResponse:
         """
-        Get a Migration
+        Retrieve the details and status of a specific storage migration.
 
         Args:
           extra_headers: Send extra headers
@@ -156,7 +156,7 @@ class MigrationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationListResponse:
-        """List all Migrations"""
+        """Retrieve a list of the storage migrations on your account."""
         return self._get(
             "/storage/migrations",
             options=make_request_options(
@@ -260,7 +260,7 @@ class AsyncMigrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationRetrieveResponse:
         """
-        Get a Migration
+        Retrieve the details and status of a specific storage migration.
 
         Args:
           extra_headers: Send extra headers
@@ -291,7 +291,7 @@ class AsyncMigrationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationListResponse:
-        """List all Migrations"""
+        """Retrieve a list of the storage migrations on your account."""
         return await self._get(
             "/storage/migrations",
             options=make_request_options(

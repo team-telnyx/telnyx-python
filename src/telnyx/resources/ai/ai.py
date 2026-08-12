@@ -92,6 +92,14 @@ from .embeddings.embeddings import (
     EmbeddingsResourceWithStreamingResponse,
     AsyncEmbeddingsResourceWithStreamingResponse,
 )
+from .collections.collections import (
+    CollectionsResource,
+    AsyncCollectionsResource,
+    CollectionsResourceWithRawResponse,
+    AsyncCollectionsResourceWithRawResponse,
+    CollectionsResourceWithStreamingResponse,
+    AsyncCollectionsResourceWithStreamingResponse,
+)
 from .fine_tuning.fine_tuning import (
     FineTuningResource,
     AsyncFineTuningResource,
@@ -136,6 +144,13 @@ class AIResource(SyncAPIResource):
     def clusters(self) -> ClustersResource:
         """Identify common themes and patterns in your embedded documents"""
         return ClustersResource(self._client)
+
+    @cached_property
+    def collections(self) -> CollectionsResource:
+        """
+        Create and manage logical collections of your Telnyx data, tune retrieval settings, manage sources, and run collection-scoped semantic search.
+        """
+        return CollectionsResource(self._client)
 
     @cached_property
     def conversations(self) -> ConversationsResource:
@@ -263,13 +278,11 @@ class AIResource(SyncAPIResource):
 
         **Examples:**
 
-        ```
-        GET /v2/ai/conversation_histories?q=billing+issue&page[size]=10
-        GET /v2/ai/conversation_histories?q=setup+guide&region=USA&min_score=0.5
-        GET /v2/ai/conversation_histories?q=refund&filter[record_created_at][gte]=2026-01-01T00:00:00Z
-        GET /v2/ai/conversation_histories?q=outage&filter[region][in]=USA,DEU
-        GET /v2/ai/conversation_histories?q=hold+time&filter[language]=en
-        ```
+        - `GET /v2/ai/conversation_histories?q=billing+issue&page[size]=10`
+        - `GET /v2/ai/conversation_histories?q=setup+guide&region=USA&min_score=0.5`
+        - `GET /v2/ai/conversation_histories?q=refund&filter[record_created_at][gte]=2026-01-01T00:00:00Z`
+        - `GET /v2/ai/conversation_histories?q=outage&filter[region][in]=USA,DEU`
+        - `GET /v2/ai/conversation_histories?q=hold+time&filter[language]=en`
 
         Args:
           q: Natural language search query. The text is embedded into a 1024-dimensional
@@ -419,6 +432,13 @@ class AsyncAIResource(AsyncAPIResource):
         return AsyncClustersResource(self._client)
 
     @cached_property
+    def collections(self) -> AsyncCollectionsResource:
+        """
+        Create and manage logical collections of your Telnyx data, tune retrieval settings, manage sources, and run collection-scoped semantic search.
+        """
+        return AsyncCollectionsResource(self._client)
+
+    @cached_property
     def conversations(self) -> AsyncConversationsResource:
         """Manage historical AI assistant conversations"""
         return AsyncConversationsResource(self._client)
@@ -544,13 +564,11 @@ class AsyncAIResource(AsyncAPIResource):
 
         **Examples:**
 
-        ```
-        GET /v2/ai/conversation_histories?q=billing+issue&page[size]=10
-        GET /v2/ai/conversation_histories?q=setup+guide&region=USA&min_score=0.5
-        GET /v2/ai/conversation_histories?q=refund&filter[record_created_at][gte]=2026-01-01T00:00:00Z
-        GET /v2/ai/conversation_histories?q=outage&filter[region][in]=USA,DEU
-        GET /v2/ai/conversation_histories?q=hold+time&filter[language]=en
-        ```
+        - `GET /v2/ai/conversation_histories?q=billing+issue&page[size]=10`
+        - `GET /v2/ai/conversation_histories?q=setup+guide&region=USA&min_score=0.5`
+        - `GET /v2/ai/conversation_histories?q=refund&filter[record_created_at][gte]=2026-01-01T00:00:00Z`
+        - `GET /v2/ai/conversation_histories?q=outage&filter[region][in]=USA,DEU`
+        - `GET /v2/ai/conversation_histories?q=hold+time&filter[language]=en`
 
         Args:
           q: Natural language search query. The text is embedded into a 1024-dimensional
@@ -710,6 +728,13 @@ class AIResourceWithRawResponse:
         return ClustersResourceWithRawResponse(self._ai.clusters)
 
     @cached_property
+    def collections(self) -> CollectionsResourceWithRawResponse:
+        """
+        Create and manage logical collections of your Telnyx data, tune retrieval settings, manage sources, and run collection-scoped semantic search.
+        """
+        return CollectionsResourceWithRawResponse(self._ai.collections)
+
+    @cached_property
     def conversations(self) -> ConversationsResourceWithRawResponse:
         """Manage historical AI assistant conversations"""
         return ConversationsResourceWithRawResponse(self._ai.conversations)
@@ -773,6 +798,13 @@ class AsyncAIResourceWithRawResponse:
     def clusters(self) -> AsyncClustersResourceWithRawResponse:
         """Identify common themes and patterns in your embedded documents"""
         return AsyncClustersResourceWithRawResponse(self._ai.clusters)
+
+    @cached_property
+    def collections(self) -> AsyncCollectionsResourceWithRawResponse:
+        """
+        Create and manage logical collections of your Telnyx data, tune retrieval settings, manage sources, and run collection-scoped semantic search.
+        """
+        return AsyncCollectionsResourceWithRawResponse(self._ai.collections)
 
     @cached_property
     def conversations(self) -> AsyncConversationsResourceWithRawResponse:
@@ -840,6 +872,13 @@ class AIResourceWithStreamingResponse:
         return ClustersResourceWithStreamingResponse(self._ai.clusters)
 
     @cached_property
+    def collections(self) -> CollectionsResourceWithStreamingResponse:
+        """
+        Create and manage logical collections of your Telnyx data, tune retrieval settings, manage sources, and run collection-scoped semantic search.
+        """
+        return CollectionsResourceWithStreamingResponse(self._ai.collections)
+
+    @cached_property
     def conversations(self) -> ConversationsResourceWithStreamingResponse:
         """Manage historical AI assistant conversations"""
         return ConversationsResourceWithStreamingResponse(self._ai.conversations)
@@ -903,6 +942,13 @@ class AsyncAIResourceWithStreamingResponse:
     def clusters(self) -> AsyncClustersResourceWithStreamingResponse:
         """Identify common themes and patterns in your embedded documents"""
         return AsyncClustersResourceWithStreamingResponse(self._ai.clusters)
+
+    @cached_property
+    def collections(self) -> AsyncCollectionsResourceWithStreamingResponse:
+        """
+        Create and manage logical collections of your Telnyx data, tune retrieval settings, manage sources, and run collection-scoped semantic search.
+        """
+        return AsyncCollectionsResourceWithStreamingResponse(self._ai.collections)
 
     @cached_property
     def conversations(self) -> AsyncConversationsResourceWithStreamingResponse:

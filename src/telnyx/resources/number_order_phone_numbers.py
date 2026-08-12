@@ -147,7 +147,8 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberUpdateRequirementGroupResponse:
         """
-        Update requirement group for a phone number order
+        Associates an existing requirement group with a phone number in a number order.
+        The response contains the updated number-order phone-number details.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate
@@ -330,7 +331,8 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberUpdateRequirementGroupResponse:
         """
-        Update requirement group for a phone number order
+        Associates an existing requirement group with a phone number in a number order.
+        The response contains the updated number-order phone-number details.
 
         Args:
           requirement_group_id: The ID of the requirement group to associate

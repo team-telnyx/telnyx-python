@@ -21,8 +21,8 @@ class TestJobs:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         job = client.ai.fine_tuning.jobs.create(
-            model="model",
-            training_file="training_file",
+            model="string",
+            training_file="string",
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
@@ -30,10 +30,10 @@ class TestJobs:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         job = client.ai.fine_tuning.jobs.create(
-            model="model",
-            training_file="training_file",
-            hyperparameters={"n_epochs": 1},
-            suffix="suffix",
+            model="string",
+            training_file="string",
+            hyperparameters={"n_epochs": 3},
+            suffix="string",
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
@@ -41,8 +41,8 @@ class TestJobs:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.fine_tuning.jobs.with_raw_response.create(
-            model="model",
-            training_file="training_file",
+            model="string",
+            training_file="string",
         )
 
         assert response.is_closed is True
@@ -54,8 +54,8 @@ class TestJobs:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.fine_tuning.jobs.with_streaming_response.create(
-            model="model",
-            training_file="training_file",
+            model="string",
+            training_file="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -187,8 +187,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.ai.fine_tuning.jobs.create(
-            model="model",
-            training_file="training_file",
+            model="string",
+            training_file="string",
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
@@ -196,10 +196,10 @@ class TestAsyncJobs:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.ai.fine_tuning.jobs.create(
-            model="model",
-            training_file="training_file",
-            hyperparameters={"n_epochs": 1},
-            suffix="suffix",
+            model="string",
+            training_file="string",
+            hyperparameters={"n_epochs": 3},
+            suffix="string",
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
@@ -207,8 +207,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.fine_tuning.jobs.with_raw_response.create(
-            model="model",
-            training_file="training_file",
+            model="string",
+            training_file="string",
         )
 
         assert response.is_closed is True
@@ -220,8 +220,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.fine_tuning.jobs.with_streaming_response.create(
-            model="model",
-            training_file="training_file",
+            model="string",
+            training_file="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

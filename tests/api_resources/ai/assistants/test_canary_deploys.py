@@ -35,15 +35,15 @@ class TestCanaryDeploys:
                     "serve": {
                         "rollout": [
                             {
-                                "version_id": "version_id",
+                                "version_id": "Version Id",
                                 "weight": 0,
                             }
                         ],
-                        "version_id": "version_id",
+                        "version_id": "Version Id",
                     },
                     "match": [
                         {
-                            "attribute": "attribute",
+                            "attribute": "Attribute",
                             "operator": "in",
                             "values": ["string"],
                         }
@@ -147,15 +147,15 @@ class TestCanaryDeploys:
                     "serve": {
                         "rollout": [
                             {
-                                "version_id": "version_id",
+                                "version_id": "Version Id",
                                 "weight": 0,
                             }
                         ],
-                        "version_id": "version_id",
+                        "version_id": "Version Id",
                     },
                     "match": [
                         {
-                            "attribute": "attribute",
+                            "attribute": "Attribute",
                             "operator": "in",
                             "values": ["string"],
                         }
@@ -265,15 +265,15 @@ class TestAsyncCanaryDeploys:
                     "serve": {
                         "rollout": [
                             {
-                                "version_id": "version_id",
+                                "version_id": "Version Id",
                                 "weight": 0,
                             }
                         ],
-                        "version_id": "version_id",
+                        "version_id": "Version Id",
                     },
                     "match": [
                         {
-                            "attribute": "attribute",
+                            "attribute": "Attribute",
                             "operator": "in",
                             "values": ["string"],
                         }
@@ -377,15 +377,15 @@ class TestAsyncCanaryDeploys:
                     "serve": {
                         "rollout": [
                             {
-                                "version_id": "version_id",
+                                "version_id": "Version Id",
                                 "weight": 0,
                             }
                         ],
-                        "version_id": "version_id",
+                        "version_id": "Version Id",
                     },
                     "match": [
                         {
-                            "attribute": "attribute",
+                            "attribute": "Attribute",
                             "operator": "in",
                             "values": ["string"],
                         }

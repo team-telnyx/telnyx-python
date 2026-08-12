@@ -69,7 +69,7 @@ class ProfileResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProfileRetrieveResponse:
         """
-        Get phone number business profile
+        Returns the business profile displayed for the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -110,7 +110,8 @@ class ProfileResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProfileUpdateResponse:
         """
-        Update phone number business profile
+        Updates the supplied business-profile fields for the specified WhatsApp phone
+        number.
 
         Args:
           profile_id: Messaging profile ID for inbound messages
@@ -186,7 +187,7 @@ class AsyncProfileResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProfileRetrieveResponse:
         """
-        Get phone number business profile
+        Returns the business profile displayed for the specified WhatsApp phone number.
 
         Args:
           extra_headers: Send extra headers
@@ -227,7 +228,8 @@ class AsyncProfileResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProfileUpdateResponse:
         """
-        Update phone number business profile
+        Updates the supplied business-profile fields for the specified WhatsApp phone
+        number.
 
         Args:
           profile_id: Messaging profile ID for inbound messages
