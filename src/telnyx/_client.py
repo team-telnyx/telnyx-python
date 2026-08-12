@@ -76,6 +76,7 @@ if TYPE_CHECKING:
         global_ips,
         recordings,
         reputation,
+        web_search,
         well_known,
         call_events,
         conferences,
@@ -326,6 +327,7 @@ if TYPE_CHECKING:
     from .resources.recordings.recordings import RecordingsResource, AsyncRecordingsResource
     from .resources.reputation.reputation import ReputationResource, AsyncReputationResource
     from .resources.telephony_credentials import TelephonyCredentialsResource, AsyncTelephonyCredentialsResource
+    from .resources.web_search.web_search import WebSearchResource, AsyncWebSearchResource
     from .resources.dialogflow_connections import DialogflowConnectionsResource, AsyncDialogflowConnectionsResource
     from .resources.sim_card_order_preview import SimCardOrderPreviewResource, AsyncSimCardOrderPreviewResource
     from .resources.virtual_cross_connects import VirtualCrossConnectsResource, AsyncVirtualCrossConnectsResource
@@ -1833,6 +1835,12 @@ class Telnyx(SyncAPIClient):
         return PricingResource(self)
 
     @cached_property
+    def web_search(self) -> WebSearchResource:
+        from .resources.web_search import WebSearchResource
+
+        return WebSearchResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3320,6 +3328,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncPricingResource(self)
 
     @cached_property
+    def web_search(self) -> AsyncWebSearchResource:
+        from .resources.web_search import AsyncWebSearchResource
+
+        return AsyncWebSearchResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4742,6 +4756,12 @@ class TelnyxWithRawResponse:
 
         return PricingResourceWithRawResponse(self._client.pricing)
 
+    @cached_property
+    def web_search(self) -> web_search.WebSearchResourceWithRawResponse:
+        from .resources.web_search import WebSearchResourceWithRawResponse
+
+        return WebSearchResourceWithRawResponse(self._client.web_search)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6035,6 +6055,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.pricing import AsyncPricingResourceWithRawResponse
 
         return AsyncPricingResourceWithRawResponse(self._client.pricing)
+
+    @cached_property
+    def web_search(self) -> web_search.AsyncWebSearchResourceWithRawResponse:
+        from .resources.web_search import AsyncWebSearchResourceWithRawResponse
+
+        return AsyncWebSearchResourceWithRawResponse(self._client.web_search)
 
 
 class TelnyxWithStreamedResponse:
@@ -7331,6 +7357,12 @@ class TelnyxWithStreamedResponse:
         from .resources.pricing import PricingResourceWithStreamingResponse
 
         return PricingResourceWithStreamingResponse(self._client.pricing)
+
+    @cached_property
+    def web_search(self) -> web_search.WebSearchResourceWithStreamingResponse:
+        from .resources.web_search import WebSearchResourceWithStreamingResponse
+
+        return WebSearchResourceWithStreamingResponse(self._client.web_search)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -8677,6 +8709,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.pricing import AsyncPricingResourceWithStreamingResponse
 
         return AsyncPricingResourceWithStreamingResponse(self._client.pricing)
+
+    @cached_property
+    def web_search(self) -> web_search.AsyncWebSearchResourceWithStreamingResponse:
+        from .resources.web_search import AsyncWebSearchResourceWithStreamingResponse
+
+        return AsyncWebSearchResourceWithStreamingResponse(self._client.web_search)
 
 
 Client = Telnyx

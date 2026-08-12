@@ -6622,3 +6622,33 @@ Methods:
 
 - <code title="get /pricing/products/{slug}">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">retrieve</a>(slug, \*\*<a href="src/telnyx/types/pricing/product_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_retrieve_response.py">ProductRetrieveResponse</a></code>
 - <code title="get /pricing/products">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">list</a>(\*\*<a href="src/telnyx/types/pricing/product_list_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_list_response.py">SyncDefaultFlatPagination[ProductListResponse]</a></code>
+
+# WebSearch
+
+Types:
+
+```python
+from telnyx.types import WebSearchResult, WebSearchCreateResponse, WebSearchContentsResponse
+```
+
+Methods:
+
+- <code title="post /web_search">client.web_search.<a href="./src/telnyx/resources/web_search/web_search.py">create</a>(\*\*<a href="src/telnyx/types/web_search_create_params.py">params</a>) -> <a href="./src/telnyx/types/web_search_create_response.py">WebSearchCreateResponse</a></code>
+- <code title="post /web_search/contents">client.web_search.<a href="./src/telnyx/resources/web_search/web_search.py">contents</a>(\*\*<a href="src/telnyx/types/web_search_contents_params.py">params</a>) -> <a href="./src/telnyx/types/web_search_contents_response.py">WebSearchContentsResponse</a></code>
+
+## Research
+
+Types:
+
+```python
+from telnyx.types.web_search import (
+    ResearchCitation,
+    ResearchCreateResponse,
+    ResearchRetrieveResponse,
+)
+```
+
+Methods:
+
+- <code title="post /web_search/research">client.web_search.research.<a href="./src/telnyx/resources/web_search/research.py">create</a>(\*\*<a href="src/telnyx/types/web_search/research_create_params.py">params</a>) -> <a href="./src/telnyx/types/web_search/research_create_response.py">ResearchCreateResponse</a></code>
+- <code title="get /web_search/research/{task_id}">client.web_search.research.<a href="./src/telnyx/resources/web_search/research.py">retrieve</a>(task_id) -> <a href="./src/telnyx/types/web_search/research_retrieve_response.py">ResearchRetrieveResponse</a></code>

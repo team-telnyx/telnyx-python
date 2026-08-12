@@ -313,6 +313,14 @@ from .reputation import (
     ReputationResourceWithStreamingResponse,
     AsyncReputationResourceWithStreamingResponse,
 )
+from .web_search import (
+    WebSearchResource,
+    AsyncWebSearchResource,
+    WebSearchResourceWithRawResponse,
+    AsyncWebSearchResourceWithRawResponse,
+    WebSearchResourceWithStreamingResponse,
+    AsyncWebSearchResourceWithStreamingResponse,
+)
 from .well_known import (
     WellKnownResource,
     AsyncWellKnownResource,
@@ -2511,4 +2519,10 @@ __all__ = [
     "AsyncPricingResourceWithRawResponse",
     "PricingResourceWithStreamingResponse",
     "AsyncPricingResourceWithStreamingResponse",
+    "WebSearchResource",
+    "AsyncWebSearchResource",
+    "WebSearchResourceWithRawResponse",
+    "AsyncWebSearchResourceWithRawResponse",
+    "WebSearchResourceWithStreamingResponse",
+    "AsyncWebSearchResourceWithStreamingResponse",
 ]

@@ -186,6 +186,7 @@ from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
 from .unsubscribe_group import UnsubscribeGroup as UnsubscribeGroup
 from .voice_design_data import VoiceDesignData as VoiceDesignData
+from .web_search_result import WebSearchResult as WebSearchResult
 from .whatsapp_location import WhatsappLocation as WhatsappLocation
 from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -435,6 +436,7 @@ from .sub_number_orders_report import SubNumberOrdersReport as SubNumberOrdersRe
 from .usage_report_list_params import UsageReportListParams as UsageReportListParams
 from .user_address_list_params import UserAddressListParams as UserAddressListParams
 from .voice_design_list_params import VoiceDesignListParams as VoiceDesignListParams
+from .web_search_create_params import WebSearchCreateParams as WebSearchCreateParams
 from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
 from .wireguard_interface_read import WireguardInterfaceRead as WireguardInterfaceRead
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
@@ -521,6 +523,8 @@ from .user_address_create_params import UserAddressCreateParams as UserAddressCr
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
 from .voice_design_create_params import VoiceDesignCreateParams as VoiceDesignCreateParams
 from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRenameParams
+from .web_search_contents_params import WebSearchContentsParams as WebSearchContentsParams
+from .web_search_create_response import WebSearchCreateResponse as WebSearchCreateResponse
 from .whatsapp_interactive_param import WhatsappInteractiveParam as WhatsappInteractiveParam
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
@@ -611,6 +615,7 @@ from .verify_profile_create_params import VerifyProfileCreateParams as VerifyPro
 from .verify_profile_update_params import VerifyProfileUpdateParams as VerifyProfileUpdateParams
 from .voice_design_rename_response import VoiceDesignRenameResponse as VoiceDesignRenameResponse
 from .voice_design_retrieve_params import VoiceDesignRetrieveParams as VoiceDesignRetrieveParams
+from .web_search_contents_response import WebSearchContentsResponse as WebSearchContentsResponse
 from .webhook_delivery_list_params import WebhookDeliveryListParams as WebhookDeliveryListParams
 from .websocket_connection_options import WebSocketConnectionOptions as WebSocketConnectionOptions
 from .wireguard_peer_create_params import WireguardPeerCreateParams as WireguardPeerCreateParams
