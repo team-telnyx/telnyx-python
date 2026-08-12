@@ -50,6 +50,7 @@ class VoicemailResource(SyncAPIResource):
         phone_number_id: str,
         *,
         enabled: bool | Omit = omit,
+        greeting: voicemail_create_params.Greeting | Omit = omit,
         pin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -58,11 +59,21 @@ class VoicemailResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoicemailCreateResponse:
-        """
-        Create voicemail settings for a phone number
+        """Create voicemail settings for a phone number.
+
+        You can also configure a custom
+        greeting by setting the `greeting` object: use `mode` `custom_greeting` together
+        with a `media_name` that points to an audio file uploaded through the Media
+        Storage API, or `mode` `default` to use the standard system greeting.
 
         Args:
           enabled: Whether voicemail is enabled.
+
+          greeting: Controls the greeting a caller hears before leaving a voicemail. Set `mode` to
+              `default` to play the standard system greeting, or to `custom_greeting` to play
+              your own audio. When `mode` is `custom_greeting`, `media_name` is required and
+              must reference an audio file already uploaded to your account through the Media
+              Storage API.
 
           pin: The pin used for voicemail
 
@@ -81,6 +92,7 @@ class VoicemailResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "enabled": enabled,
+                    "greeting": greeting,
                     "pin": pin,
                 },
                 voicemail_create_params.VoicemailCreateParams,
@@ -129,6 +141,7 @@ class VoicemailResource(SyncAPIResource):
         phone_number_id: str,
         *,
         enabled: bool | Omit = omit,
+        greeting: voicemail_update_params.Greeting | Omit = omit,
         pin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -137,11 +150,21 @@ class VoicemailResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoicemailUpdateResponse:
-        """
-        Update voicemail settings for a phone number
+        """Update voicemail settings for a phone number.
+
+        You can also configure a custom
+        greeting by setting the `greeting` object: use `mode` `custom_greeting` together
+        with a `media_name` that points to an audio file uploaded through the Media
+        Storage API, or `mode` `default` to use the standard system greeting.
 
         Args:
           enabled: Whether voicemail is enabled.
+
+          greeting: Controls the greeting a caller hears before leaving a voicemail. Set `mode` to
+              `default` to play the standard system greeting, or to `custom_greeting` to play
+              your own audio. When `mode` is `custom_greeting`, `media_name` is required and
+              must reference an audio file already uploaded to your account through the Media
+              Storage API.
 
           pin: The pin used for voicemail
 
@@ -160,6 +183,7 @@ class VoicemailResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "enabled": enabled,
+                    "greeting": greeting,
                     "pin": pin,
                 },
                 voicemail_update_params.VoicemailUpdateParams,
@@ -198,6 +222,7 @@ class AsyncVoicemailResource(AsyncAPIResource):
         phone_number_id: str,
         *,
         enabled: bool | Omit = omit,
+        greeting: voicemail_create_params.Greeting | Omit = omit,
         pin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -206,11 +231,21 @@ class AsyncVoicemailResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoicemailCreateResponse:
-        """
-        Create voicemail settings for a phone number
+        """Create voicemail settings for a phone number.
+
+        You can also configure a custom
+        greeting by setting the `greeting` object: use `mode` `custom_greeting` together
+        with a `media_name` that points to an audio file uploaded through the Media
+        Storage API, or `mode` `default` to use the standard system greeting.
 
         Args:
           enabled: Whether voicemail is enabled.
+
+          greeting: Controls the greeting a caller hears before leaving a voicemail. Set `mode` to
+              `default` to play the standard system greeting, or to `custom_greeting` to play
+              your own audio. When `mode` is `custom_greeting`, `media_name` is required and
+              must reference an audio file already uploaded to your account through the Media
+              Storage API.
 
           pin: The pin used for voicemail
 
@@ -229,6 +264,7 @@ class AsyncVoicemailResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
+                    "greeting": greeting,
                     "pin": pin,
                 },
                 voicemail_create_params.VoicemailCreateParams,
@@ -277,6 +313,7 @@ class AsyncVoicemailResource(AsyncAPIResource):
         phone_number_id: str,
         *,
         enabled: bool | Omit = omit,
+        greeting: voicemail_update_params.Greeting | Omit = omit,
         pin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -285,11 +322,21 @@ class AsyncVoicemailResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoicemailUpdateResponse:
-        """
-        Update voicemail settings for a phone number
+        """Update voicemail settings for a phone number.
+
+        You can also configure a custom
+        greeting by setting the `greeting` object: use `mode` `custom_greeting` together
+        with a `media_name` that points to an audio file uploaded through the Media
+        Storage API, or `mode` `default` to use the standard system greeting.
 
         Args:
           enabled: Whether voicemail is enabled.
+
+          greeting: Controls the greeting a caller hears before leaving a voicemail. Set `mode` to
+              `default` to play the standard system greeting, or to `custom_greeting` to play
+              your own audio. When `mode` is `custom_greeting`, `media_name` is required and
+              must reference an audio file already uploaded to your account through the Media
+              Storage API.
 
           pin: The pin used for voicemail
 
@@ -308,6 +355,7 @@ class AsyncVoicemailResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
+                    "greeting": greeting,
                     "pin": pin,
                 },
                 voicemail_update_params.VoicemailUpdateParams,

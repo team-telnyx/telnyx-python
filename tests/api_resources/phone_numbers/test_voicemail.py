@@ -35,6 +35,10 @@ class TestVoicemail:
         voicemail = client.phone_numbers.voicemail.create(
             phone_number_id="123455678900",
             enabled=True,
+            greeting={
+                "media_name": "my_voicemail_greeting",
+                "mode": "custom_greeting",
+            },
             pin="1234",
         )
         assert_matches_type(VoicemailCreateResponse, voicemail, path=["response"])
@@ -129,6 +133,10 @@ class TestVoicemail:
         voicemail = client.phone_numbers.voicemail.update(
             phone_number_id="123455678900",
             enabled=True,
+            greeting={
+                "media_name": "my_voicemail_greeting",
+                "mode": "custom_greeting",
+            },
             pin="1234",
         )
         assert_matches_type(VoicemailUpdateResponse, voicemail, path=["response"])
@@ -187,6 +195,10 @@ class TestAsyncVoicemail:
         voicemail = await async_client.phone_numbers.voicemail.create(
             phone_number_id="123455678900",
             enabled=True,
+            greeting={
+                "media_name": "my_voicemail_greeting",
+                "mode": "custom_greeting",
+            },
             pin="1234",
         )
         assert_matches_type(VoicemailCreateResponse, voicemail, path=["response"])
@@ -281,6 +293,10 @@ class TestAsyncVoicemail:
         voicemail = await async_client.phone_numbers.voicemail.update(
             phone_number_id="123455678900",
             enabled=True,
+            greeting={
+                "media_name": "my_voicemail_greeting",
+                "mode": "custom_greeting",
+            },
             pin="1234",
         )
         assert_matches_type(VoicemailUpdateResponse, voicemail, path=["response"])
