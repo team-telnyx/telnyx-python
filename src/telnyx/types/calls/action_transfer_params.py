@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from ..sip_header_param import SipHeaderParam
 from ..custom_sip_header_param import CustomSipHeaderParam
@@ -269,12 +270,12 @@ class ActionTransferParams(TypedDict, total=False):
     webhook_url_method: Literal["POST", "GET"]
     """HTTP request type used for `webhook_url`."""
 
-    webhook_urls: Dict[str, str]
-    """A map of event types to webhook URLs.
+    webhook_urls: Dict[str, SequenceNotStr[str]]
+    """A map of event types to arrays of webhook URLs.
 
-    When an event of the specified type occurs, the webhook URL associated with that
-    event type will be called instead of `webhook_url`. Events not mapped here will
-    use the default `webhook_url`.
+    When an event of the specified type occurs, the webhook URLs associated with
+    that event type will be called instead of `webhook_url`. Events not mapped here
+    will use the default `webhook_url`.
     """
 
     webhook_urls_method: Literal["POST", "GET"]

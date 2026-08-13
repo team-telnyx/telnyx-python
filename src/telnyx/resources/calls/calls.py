@@ -145,7 +145,7 @@ class CallsResource(SyncAPIResource):
         webhook_retries_policies: Dict[str, call_dial_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
-        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls: Dict[str, SequenceNotStr[str]] | Omit = omit,
         webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -415,10 +415,10 @@ class CallsResource(SyncAPIResource):
 
           webhook_url_method: HTTP request type used for `webhook_url`.
 
-          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
-              occurs, the webhook URL associated with that event type will be called instead
-              of the default webhook URL. Events not mapped here will use the default webhook
-              URL.
+          webhook_urls: A map of event types to arrays of webhook URLs. When an event of the specified
+              type occurs, the webhook URLs associated with that event type will be called
+              instead of the default webhook URL. Events not mapped here will use the default
+              webhook URL.
 
           webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
@@ -634,7 +634,7 @@ class AsyncCallsResource(AsyncAPIResource):
         webhook_retries_policies: Dict[str, call_dial_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
-        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls: Dict[str, SequenceNotStr[str]] | Omit = omit,
         webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -904,10 +904,10 @@ class AsyncCallsResource(AsyncAPIResource):
 
           webhook_url_method: HTTP request type used for `webhook_url`.
 
-          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
-              occurs, the webhook URL associated with that event type will be called instead
-              of the default webhook URL. Events not mapped here will use the default webhook
-              URL.
+          webhook_urls: A map of event types to arrays of webhook URLs. When an event of the specified
+              type occurs, the webhook URLs associated with that event type will be called
+              instead of the default webhook URL. Events not mapped here will use the default
+              webhook URL.
 
           webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 

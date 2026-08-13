@@ -14,7 +14,7 @@ from ...types import (
     StreamBidirectionalTargetLegs,
     StreamBidirectionalSamplingRate,
 )
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -252,7 +252,7 @@ class ActionsResource(SyncAPIResource):
         webhook_retries_policies: Dict[str, action_answer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
-        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls: Dict[str, SequenceNotStr[str]] | Omit = omit,
         webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -369,9 +369,10 @@ class ActionsResource(SyncAPIResource):
 
           webhook_url_method: HTTP request type used for `webhook_url`.
 
-          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
-              occurs, the webhook URL associated with that event type will be called instead
-              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+          webhook_urls: A map of event types to arrays of webhook URLs. When an event of the specified
+              type occurs, the webhook URLs associated with that event type will be called
+              instead of `webhook_url`. Events not mapped here will use the default
+              `webhook_url`.
 
           webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
@@ -3934,7 +3935,7 @@ class ActionsResource(SyncAPIResource):
         webhook_retries_policies: Dict[str, action_transfer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
-        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls: Dict[str, SequenceNotStr[str]] | Omit = omit,
         webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4118,9 +4119,10 @@ class ActionsResource(SyncAPIResource):
 
           webhook_url_method: HTTP request type used for `webhook_url`.
 
-          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
-              occurs, the webhook URL associated with that event type will be called instead
-              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+          webhook_urls: A map of event types to arrays of webhook URLs. When an event of the specified
+              type occurs, the webhook URLs associated with that event type will be called
+              instead of `webhook_url`. Events not mapped here will use the default
+              `webhook_url`.
 
           webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
@@ -4344,7 +4346,7 @@ class AsyncActionsResource(AsyncAPIResource):
         webhook_retries_policies: Dict[str, action_answer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
-        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls: Dict[str, SequenceNotStr[str]] | Omit = omit,
         webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4461,9 +4463,10 @@ class AsyncActionsResource(AsyncAPIResource):
 
           webhook_url_method: HTTP request type used for `webhook_url`.
 
-          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
-              occurs, the webhook URL associated with that event type will be called instead
-              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+          webhook_urls: A map of event types to arrays of webhook URLs. When an event of the specified
+              type occurs, the webhook URLs associated with that event type will be called
+              instead of `webhook_url`. Events not mapped here will use the default
+              `webhook_url`.
 
           webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
@@ -8028,7 +8031,7 @@ class AsyncActionsResource(AsyncAPIResource):
         webhook_retries_policies: Dict[str, action_transfer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
-        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls: Dict[str, SequenceNotStr[str]] | Omit = omit,
         webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -8212,9 +8215,10 @@ class AsyncActionsResource(AsyncAPIResource):
 
           webhook_url_method: HTTP request type used for `webhook_url`.
 
-          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
-              occurs, the webhook URL associated with that event type will be called instead
-              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+          webhook_urls: A map of event types to arrays of webhook URLs. When an event of the specified
+              type occurs, the webhook URLs associated with that event type will be called
+              instead of `webhook_url`. Events not mapped here will use the default
+              `webhook_url`.
 
           webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
