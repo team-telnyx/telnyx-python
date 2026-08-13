@@ -4568,7 +4568,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.storage import KvNamespace, KvNamespaceResponseWrapper
+from telnyx.types.storage import EdgeComputePaginationMeta, KvNamespace, KvNamespaceResponseWrapper
 ```
 
 Methods:
@@ -4619,6 +4619,33 @@ Methods:
 Methods:
 
 - <code title="post /storage/cloudfs/{id}/actions/rotate-meta-token">client.storage.cloudfs.actions.<a href="./src/telnyx/resources/storage/cloudfs/actions.py">rotate_meta_token</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_response_wrapper.py">CloudfsFilesystemResponseWrapper</a></code>
+
+## Sqldbs
+
+Types:
+
+```python
+from telnyx.types.storage import SqlDatabase, SqlDatabaseResponseWrapper
+```
+
+Methods:
+
+- <code title="post /storage/sqldbs">client.storage.sqldbs.<a href="./src/telnyx/resources/storage/sqldbs/sqldbs.py">create</a>(\*\*<a href="src/telnyx/types/storage/sqldb_create_params.py">params</a>) -> <a href="./src/telnyx/types/storage/sql_database_response_wrapper.py">SqlDatabaseResponseWrapper</a></code>
+- <code title="get /storage/sqldbs/{id}">client.storage.sqldbs.<a href="./src/telnyx/resources/storage/sqldbs/sqldbs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/storage/sql_database_response_wrapper.py">SqlDatabaseResponseWrapper</a></code>
+- <code title="get /storage/sqldbs">client.storage.sqldbs.<a href="./src/telnyx/resources/storage/sqldbs/sqldbs.py">list</a>(\*\*<a href="src/telnyx/types/storage/sqldb_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/sql_database.py">SyncDefaultFlatPagination[SqlDatabase]</a></code>
+- <code title="delete /storage/sqldbs/{id}">client.storage.sqldbs.<a href="./src/telnyx/resources/storage/sqldbs/sqldbs.py">delete</a>(id, \*\*<a href="src/telnyx/types/storage/sqldb_delete_params.py">params</a>) -> None</code>
+
+### Actions
+
+Types:
+
+```python
+from telnyx.types.storage.sqldbs import ActionQueryResponse
+```
+
+Methods:
+
+- <code title="post /storage/sqldbs/{id}/actions/query">client.storage.sqldbs.actions.<a href="./src/telnyx/resources/storage/sqldbs/actions.py">query</a>(id, \*\*<a href="src/telnyx/types/storage/sqldbs/action_query_params.py">params</a>) -> <a href="./src/telnyx/types/storage/sqldbs/action_query_response.py">ActionQueryResponse</a></code>
 
 # SubNumberOrders
 
