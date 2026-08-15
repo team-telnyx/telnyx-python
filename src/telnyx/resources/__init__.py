@@ -745,6 +745,14 @@ from .managed_accounts import (
     ManagedAccountsResourceWithStreamingResponse,
     AsyncManagedAccountsResourceWithStreamingResponse,
 )
+from .meeting_sessions import (
+    MeetingSessionsResource,
+    AsyncMeetingSessionsResource,
+    MeetingSessionsResourceWithRawResponse,
+    AsyncMeetingSessionsResourceWithRawResponse,
+    MeetingSessionsResourceWithStreamingResponse,
+    AsyncMeetingSessionsResourceWithStreamingResponse,
+)
 from .network_coverage import (
     NetworkCoverageResource,
     AsyncNetworkCoverageResource,
@@ -2525,4 +2533,10 @@ __all__ = [
     "AsyncWebSearchResourceWithRawResponse",
     "WebSearchResourceWithStreamingResponse",
     "AsyncWebSearchResourceWithStreamingResponse",
+    "MeetingSessionsResource",
+    "AsyncMeetingSessionsResource",
+    "MeetingSessionsResourceWithRawResponse",
+    "AsyncMeetingSessionsResourceWithRawResponse",
+    "MeetingSessionsResourceWithStreamingResponse",
+    "AsyncMeetingSessionsResourceWithStreamingResponse",
 ]

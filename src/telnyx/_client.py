@@ -130,6 +130,7 @@ if TYPE_CHECKING:
         fqdn_connections,
         inbound_channels,
         managed_accounts,
+        meeting_sessions,
         network_coverage,
         numbers_features,
         operator_connect,
@@ -440,6 +441,7 @@ if TYPE_CHECKING:
     )
     from .resources.fqdn_connections.fqdn_connections import FqdnConnectionsResource, AsyncFqdnConnectionsResource
     from .resources.managed_accounts.managed_accounts import ManagedAccountsResource, AsyncManagedAccountsResource
+    from .resources.meeting_sessions.meeting_sessions import MeetingSessionsResource, AsyncMeetingSessionsResource
     from .resources.operator_connect.operator_connect import OperatorConnectResource, AsyncOperatorConnectResource
     from .resources.session_analysis.session_analysis import SessionAnalysisResource, AsyncSessionAnalysisResource
     from .resources.sim_card_data_usage_notifications import (
@@ -1839,6 +1841,12 @@ class Telnyx(SyncAPIClient):
         from .resources.web_search import WebSearchResource
 
         return WebSearchResource(self)
+
+    @cached_property
+    def meeting_sessions(self) -> MeetingSessionsResource:
+        from .resources.meeting_sessions import MeetingSessionsResource
+
+        return MeetingSessionsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3334,6 +3342,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncWebSearchResource(self)
 
     @cached_property
+    def meeting_sessions(self) -> AsyncMeetingSessionsResource:
+        from .resources.meeting_sessions import AsyncMeetingSessionsResource
+
+        return AsyncMeetingSessionsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4762,6 +4776,12 @@ class TelnyxWithRawResponse:
 
         return WebSearchResourceWithRawResponse(self._client.web_search)
 
+    @cached_property
+    def meeting_sessions(self) -> meeting_sessions.MeetingSessionsResourceWithRawResponse:
+        from .resources.meeting_sessions import MeetingSessionsResourceWithRawResponse
+
+        return MeetingSessionsResourceWithRawResponse(self._client.meeting_sessions)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6061,6 +6081,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.web_search import AsyncWebSearchResourceWithRawResponse
 
         return AsyncWebSearchResourceWithRawResponse(self._client.web_search)
+
+    @cached_property
+    def meeting_sessions(self) -> meeting_sessions.AsyncMeetingSessionsResourceWithRawResponse:
+        from .resources.meeting_sessions import AsyncMeetingSessionsResourceWithRawResponse
+
+        return AsyncMeetingSessionsResourceWithRawResponse(self._client.meeting_sessions)
 
 
 class TelnyxWithStreamedResponse:
@@ -7363,6 +7389,12 @@ class TelnyxWithStreamedResponse:
         from .resources.web_search import WebSearchResourceWithStreamingResponse
 
         return WebSearchResourceWithStreamingResponse(self._client.web_search)
+
+    @cached_property
+    def meeting_sessions(self) -> meeting_sessions.MeetingSessionsResourceWithStreamingResponse:
+        from .resources.meeting_sessions import MeetingSessionsResourceWithStreamingResponse
+
+        return MeetingSessionsResourceWithStreamingResponse(self._client.meeting_sessions)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -8715,6 +8747,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.web_search import AsyncWebSearchResourceWithStreamingResponse
 
         return AsyncWebSearchResourceWithStreamingResponse(self._client.web_search)
+
+    @cached_property
+    def meeting_sessions(self) -> meeting_sessions.AsyncMeetingSessionsResourceWithStreamingResponse:
+        from .resources.meeting_sessions import AsyncMeetingSessionsResourceWithStreamingResponse
+
+        return AsyncMeetingSessionsResourceWithStreamingResponse(self._client.meeting_sessions)
 
 
 Client = Telnyx

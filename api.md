@@ -332,6 +332,8 @@ from telnyx.types import (
     CallAIGatherEndedWebhookEvent,
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
+    ArtifactCompletedWebhookEvent,
+    ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
@@ -388,11 +390,16 @@ from telnyx.types import (
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdateWebhookEvent,
+    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
+    SessionStatusChangedWebhookEvent,
+    TranscriptCompletedWebhookEvent,
     TranscriptionWebhookEvent,
     CallAIGatherEndedWebhookEvent,
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
+    ArtifactCompletedWebhookEvent,
+    ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
@@ -449,7 +456,10 @@ from telnyx.types import (
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdateWebhookEvent,
+    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
+    SessionStatusChangedWebhookEvent,
+    TranscriptCompletedWebhookEvent,
     TranscriptionWebhookEvent,
     UnsafeUnwrapWebhookEvent,
     UnwrapWebhookEvent,
@@ -6683,3 +6693,63 @@ Methods:
 
 - <code title="post /web_search/research">client.web_search.research.<a href="./src/telnyx/resources/web_search/research.py">create</a>(\*\*<a href="src/telnyx/types/web_search/research_create_params.py">params</a>) -> <a href="./src/telnyx/types/web_search/research_create_response.py">ResearchCreateResponse</a></code>
 - <code title="get /web_search/research/{task_id}">client.web_search.research.<a href="./src/telnyx/resources/web_search/research.py">retrieve</a>(task_id) -> <a href="./src/telnyx/types/web_search/research_retrieve_response.py">ResearchRetrieveResponse</a></code>
+
+# MeetingSessions
+
+Types:
+
+```python
+from telnyx.types import (
+    MeetingSession,
+    MeetingSessionResponse,
+    MeetingSessionListResponse,
+    MeetingSessionDeleteRecordingMediaResponse,
+    MeetingSessionRetrieveEventsResponse,
+    MeetingSessionRetrieveRecordingsResponse,
+    MeetingSessionRetrieveTranscriptResponse,
+)
+```
+
+Methods:
+
+- <code title="post /meeting_sessions">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">create</a>(\*\*<a href="src/telnyx/types/meeting_session_create_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_response.py">MeetingSessionResponse</a></code>
+- <code title="get /meeting_sessions/{id}">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve</a>(id) -> <a href="./src/telnyx/types/meeting_session_response.py">MeetingSessionResponse</a></code>
+- <code title="patch /meeting_sessions/{id}">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">update</a>(id, \*\*<a href="src/telnyx/types/meeting_session_update_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_response.py">MeetingSessionResponse</a></code>
+- <code title="get /meeting_sessions">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">list</a>(\*\*<a href="src/telnyx/types/meeting_session_list_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_list_response.py">MeetingSessionListResponse</a></code>
+- <code title="delete /meeting_sessions/{id}">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">delete</a>(id) -> <a href="./src/telnyx/types/meeting_session_response.py">MeetingSessionResponse</a></code>
+- <code title="delete /meeting_sessions/{id}/recording_media">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">delete_recording_media</a>(id) -> <a href="./src/telnyx/types/meeting_session_delete_recording_media_response.py">MeetingSessionDeleteRecordingMediaResponse</a></code>
+- <code title="get /meeting_sessions/{id}/events">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_events</a>(id, \*\*<a href="src/telnyx/types/meeting_session_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_retrieve_events_response.py">MeetingSessionRetrieveEventsResponse</a></code>
+- <code title="get /meeting_sessions/{id}/recordings">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_recordings</a>(id) -> <a href="./src/telnyx/types/meeting_session_retrieve_recordings_response.py">MeetingSessionRetrieveRecordingsResponse</a></code>
+- <code title="get /meeting_sessions/{id}/transcript">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_transcript</a>(id, \*\*<a href="src/telnyx/types/meeting_session_retrieve_transcript_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_retrieve_transcript_response.py">MeetingSessionRetrieveTranscriptResponse</a></code>
+
+## Actions
+
+Types:
+
+```python
+from telnyx.types.meeting_sessions import ActionAcceptedResponse
+```
+
+Methods:
+
+- <code title="post /meeting_sessions/{id}/actions/send_chat">client.meeting_sessions.actions.<a href="./src/telnyx/resources/meeting_sessions/actions.py">send_chat</a>(id, \*\*<a href="src/telnyx/types/meeting_sessions/action_send_chat_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_sessions/action_accepted_response.py">ActionAcceptedResponse</a></code>
+- <code title="post /meeting_sessions/{id}/actions/speak">client.meeting_sessions.actions.<a href="./src/telnyx/resources/meeting_sessions/actions.py">speak</a>(id, \*\*<a href="src/telnyx/types/meeting_sessions/action_speak_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_sessions/action_accepted_response.py">ActionAcceptedResponse</a></code>
+- <code title="post /meeting_sessions/{id}/actions/stop_speaking">client.meeting_sessions.actions.<a href="./src/telnyx/resources/meeting_sessions/actions.py">stop_speaking</a>(id) -> <a href="./src/telnyx/types/meeting_sessions/action_accepted_response.py">ActionAcceptedResponse</a></code>
+
+## Artifacts
+
+Types:
+
+```python
+from telnyx.types.meeting_sessions import (
+    MeetingSessionArtifact,
+    MeetingSessionArtifactResponse,
+    ArtifactListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /meeting_sessions/{id}/artifacts">client.meeting_sessions.artifacts.<a href="./src/telnyx/resources/meeting_sessions/artifacts.py">create</a>(id, \*\*<a href="src/telnyx/types/meeting_sessions/artifact_create_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_sessions/meeting_session_artifact_response.py">MeetingSessionArtifactResponse</a></code>
+- <code title="get /meeting_sessions/{id}/artifacts/{artifact_id}">client.meeting_sessions.artifacts.<a href="./src/telnyx/resources/meeting_sessions/artifacts.py">retrieve</a>(artifact_id, \*, id) -> <a href="./src/telnyx/types/meeting_sessions/meeting_session_artifact_response.py">MeetingSessionArtifactResponse</a></code>
+- <code title="get /meeting_sessions/{id}/artifacts">client.meeting_sessions.artifacts.<a href="./src/telnyx/resources/meeting_sessions/artifacts.py">list</a>(id) -> <a href="./src/telnyx/types/meeting_sessions/artifact_list_response.py">ArtifactListResponse</a></code>
