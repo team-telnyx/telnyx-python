@@ -21,6 +21,7 @@ from .call_answered_webhook_event import CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent
 from .transcription_webhook_event import TranscriptionWebhookEvent
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent
+from .artifact_failed_webhook_event import ArtifactFailedWebhookEvent
 from .call_left_queue_webhook_event import CallLeftQueueWebhookEvent
 from .delivery_update_webhook_event import DeliveryUpdateWebhookEvent
 from .inbound_message_webhook_event import InboundMessageWebhookEvent
@@ -30,6 +31,7 @@ from .call_fork_started_webhook_event import CallForkStartedWebhookEvent
 from .call_fork_stopped_webhook_event import CallForkStoppedWebhookEvent
 from .call_gather_ended_webhook_event import CallGatherEndedWebhookEvent
 from .call_refer_failed_webhook_event import CallReferFailedWebhookEvent
+from .artifact_completed_webhook_event import ArtifactCompletedWebhookEvent
 from .call_dtmf_received_webhook_event import CallDtmfReceivedWebhookEvent
 from .call_refer_started_webhook_event import CallReferStartedWebhookEvent
 from .call_siprec_failed_webhook_event import CallSiprecFailedWebhookEvent
@@ -38,11 +40,13 @@ from .conference_created_webhook_event import ConferenceCreatedWebhookEvent
 from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
+from .recording_available_webhook_event import RecordingAvailableWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent
 from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
 from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent
 from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent
 from .call_refer_completed_webhook_event import CallReferCompletedWebhookEvent
+from .transcript_completed_webhook_event import TranscriptCompletedWebhookEvent
 from .call_payment_progress_webhook_event import CallPaymentProgressWebhookEvent
 from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent
 from .call_streaming_failed_webhook_event import CallStreamingFailedWebhookEvent
@@ -50,6 +54,7 @@ from .call_payment_completed_webhook_event import CallPaymentCompletedWebhookEve
 from .call_streaming_started_webhook_event import CallStreamingStartedWebhookEvent
 from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEvent
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent
+from .session_status_changed_webhook_event import SessionStatusChangedWebhookEvent
 from .call_conversation_ended_webhook_event import CallConversationEndedWebhookEvent
 from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhookEvent
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
@@ -80,6 +85,8 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CallAIGatherEndedWebhookEvent,
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
+    ArtifactCompletedWebhookEvent,
+    ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
@@ -143,6 +150,9 @@ UnwrapWebhookEvent: TypeAlias = Union[
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdateWebhookEvent,
+    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
+    SessionStatusChangedWebhookEvent,
+    TranscriptCompletedWebhookEvent,
     TranscriptionWebhookEvent,
 ]

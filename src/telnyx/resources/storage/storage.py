@@ -21,6 +21,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .sqldbs.sqldbs import (
+    SqldbsResource,
+    AsyncSqldbsResource,
+    SqldbsResourceWithRawResponse,
+    AsyncSqldbsResourceWithRawResponse,
+    SqldbsResourceWithStreamingResponse,
+    AsyncSqldbsResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
 from .buckets.buckets import (
     BucketsResource,
@@ -90,6 +98,11 @@ class StorageResource(SyncAPIResource):
         return CloudfsResource(self._client)
 
     @cached_property
+    def sqldbs(self) -> SqldbsResource:
+        """Manage SQL databases and run SQL against them"""
+        return SqldbsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> StorageResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -157,6 +170,11 @@ class AsyncStorageResource(AsyncAPIResource):
         Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
         """
         return AsyncCloudfsResource(self._client)
+
+    @cached_property
+    def sqldbs(self) -> AsyncSqldbsResource:
+        """Manage SQL databases and run SQL against them"""
+        return AsyncSqldbsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncStorageResourceWithRawResponse:
@@ -232,6 +250,11 @@ class StorageResourceWithRawResponse:
         """
         return CloudfsResourceWithRawResponse(self._storage.cloudfs)
 
+    @cached_property
+    def sqldbs(self) -> SqldbsResourceWithRawResponse:
+        """Manage SQL databases and run SQL against them"""
+        return SqldbsResourceWithRawResponse(self._storage.sqldbs)
+
 
 class AsyncStorageResourceWithRawResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
@@ -267,6 +290,11 @@ class AsyncStorageResourceWithRawResponse:
         Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
         """
         return AsyncCloudfsResourceWithRawResponse(self._storage.cloudfs)
+
+    @cached_property
+    def sqldbs(self) -> AsyncSqldbsResourceWithRawResponse:
+        """Manage SQL databases and run SQL against them"""
+        return AsyncSqldbsResourceWithRawResponse(self._storage.sqldbs)
 
 
 class StorageResourceWithStreamingResponse:
@@ -304,6 +332,11 @@ class StorageResourceWithStreamingResponse:
         """
         return CloudfsResourceWithStreamingResponse(self._storage.cloudfs)
 
+    @cached_property
+    def sqldbs(self) -> SqldbsResourceWithStreamingResponse:
+        """Manage SQL databases and run SQL against them"""
+        return SqldbsResourceWithStreamingResponse(self._storage.sqldbs)
+
 
 class AsyncStorageResourceWithStreamingResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
@@ -339,3 +372,8 @@ class AsyncStorageResourceWithStreamingResponse:
         Manage CloudFS filesystems — JuiceFS-compatible filesystems backed by Telnyx Cloud Storage
         """
         return AsyncCloudfsResourceWithStreamingResponse(self._storage.cloudfs)
+
+    @cached_property
+    def sqldbs(self) -> AsyncSqldbsResourceWithStreamingResponse:
+        """Manage SQL databases and run SQL against them"""
+        return AsyncSqldbsResourceWithStreamingResponse(self._storage.sqldbs)

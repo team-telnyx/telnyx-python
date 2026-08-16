@@ -32,7 +32,9 @@ class WirelessSimCardAction(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
-    action_type: Optional[Literal["enable", "enable_standby_sim_card", "disable", "set_standby"]] = None
+    action_type: Optional[
+        Literal["enable", "enable_standby_sim_card", "disable", "set_standby", "enable_voice", "disable_voice"]
+    ] = None
     """The operation type. It can be one of the following: <br/>
 
     <ul>
@@ -40,6 +42,8 @@ class WirelessSimCardAction(BaseModel):
      <li><code>enable_standby_sim_card</code> - move a SIM card previously on the <code>standby</code> status to the <code>enabled</code> status after it consumes data.</li>
      <li><code>disable</code> - move the SIM card to the <code>disabled</code> status</li>
      <li><code>set_standby</code> - move the SIM card to the <code>standby</code> status</li>
+     <li><code>enable_voice</code> - enable voice calling on the SIM card</li>
+     <li><code>disable_voice</code> - disable voice calling on the SIM card</li>
      </ul>
     """
 

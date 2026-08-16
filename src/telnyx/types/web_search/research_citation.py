@@ -1,0 +1,20 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Optional
+
+from ..._models import BaseModel
+
+__all__ = ["ResearchCitation"]
+
+
+class ResearchCitation(BaseModel):
+    title: str
+    """Title of the source page."""
+
+    url: str
+    """Source URL."""
+
+    snippet: Optional[str] = None
+    """Relevant excerpt from the source (if available)."""

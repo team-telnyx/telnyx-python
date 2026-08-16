@@ -16,7 +16,9 @@ from telnyx.types.sim_cards import (
     WirelessSimCardAction,
     ActionRetrieveResponse,
     ActionSetStandbyResponse,
+    ActionEnableVoiceResponse,
     ActionSetPublicIPResponse,
+    ActionDisableVoiceResponse,
     ActionRemovePublicIPResponse,
     ActionBulkEnableVoiceResponse,
     ActionBulkDisableVoiceResponse,
@@ -159,6 +161,15 @@ class TestActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_bulk_enable_voice_with_all_params(self, client: Telnyx) -> None:
+        action = client.sim_cards.actions.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+            connection_id="123456789",
+        )
+        assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_bulk_enable_voice(self, client: Telnyx) -> None:
         response = client.sim_cards.actions.with_raw_response.bulk_enable_voice(
             sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
@@ -261,6 +272,48 @@ class TestActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_disable_voice(self, client: Telnyx) -> None:
+        action = client.sim_cards.actions.disable_voice(
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+        assert_matches_type(ActionDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_disable_voice(self, client: Telnyx) -> None:
+        response = client.sim_cards.actions.with_raw_response.disable_voice(
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = response.parse()
+        assert_matches_type(ActionDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_disable_voice(self, client: Telnyx) -> None:
+        with client.sim_cards.actions.with_streaming_response.disable_voice(
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = response.parse()
+            assert_matches_type(ActionDisableVoiceResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_disable_voice(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.sim_cards.actions.with_raw_response.disable_voice(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_enable(self, client: Telnyx) -> None:
         action = client.sim_cards.actions.enable(
             "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
@@ -299,6 +352,57 @@ class TestActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.sim_cards.actions.with_raw_response.enable(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_enable_voice(self, client: Telnyx) -> None:
+        action = client.sim_cards.actions.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+        assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_enable_voice_with_all_params(self, client: Telnyx) -> None:
+        action = client.sim_cards.actions.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            connection_id="123456789",
+        )
+        assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_enable_voice(self, client: Telnyx) -> None:
+        response = client.sim_cards.actions.with_raw_response.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = response.parse()
+        assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_enable_voice(self, client: Telnyx) -> None:
+        with client.sim_cards.actions.with_streaming_response.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = response.parse()
+            assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_enable_voice(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.sim_cards.actions.with_raw_response.enable_voice(
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -607,6 +711,15 @@ class TestAsyncActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_bulk_enable_voice_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.sim_cards.actions.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+            connection_id="123456789",
+        )
+        assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_bulk_enable_voice(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.actions.with_raw_response.bulk_enable_voice(
             sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
@@ -709,6 +822,48 @@ class TestAsyncActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_disable_voice(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.sim_cards.actions.disable_voice(
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+        assert_matches_type(ActionDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_disable_voice(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.sim_cards.actions.with_raw_response.disable_voice(
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = await response.parse()
+        assert_matches_type(ActionDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_disable_voice(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.sim_cards.actions.with_streaming_response.disable_voice(
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = await response.parse()
+            assert_matches_type(ActionDisableVoiceResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_disable_voice(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.sim_cards.actions.with_raw_response.disable_voice(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_method_enable(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.sim_cards.actions.enable(
             "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
@@ -747,6 +902,57 @@ class TestAsyncActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.sim_cards.actions.with_raw_response.enable(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_enable_voice(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.sim_cards.actions.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+        assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_enable_voice_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.sim_cards.actions.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            connection_id="123456789",
+        )
+        assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_enable_voice(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.sim_cards.actions.with_raw_response.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = await response.parse()
+        assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_enable_voice(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.sim_cards.actions.with_streaming_response.enable_voice(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = await response.parse()
+            assert_matches_type(ActionEnableVoiceResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_enable_voice(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.sim_cards.actions.with_raw_response.enable_voice(
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
