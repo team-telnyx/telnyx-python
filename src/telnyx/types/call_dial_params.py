@@ -416,12 +416,12 @@ class CallDialParams(TypedDict, total=False):
     webhook_url_method: Literal["POST", "GET"]
     """HTTP request type used for `webhook_url`."""
 
-    webhook_urls: Dict[str, str]
-    """A map of event types to webhook URLs.
+    webhook_urls: Dict[str, SequenceNotStr[str]]
+    """A map of event types to arrays of webhook URLs.
 
-    When an event of the specified type occurs, the webhook URL associated with that
-    event type will be called instead of the default webhook URL. Events not mapped
-    here will use the default webhook URL.
+    When an event of the specified type occurs, the webhook URLs associated with
+    that event type will be called instead of the default webhook URL. Events not
+    mapped here will use the default webhook URL.
     """
 
     webhook_urls_method: Literal["POST", "GET"]

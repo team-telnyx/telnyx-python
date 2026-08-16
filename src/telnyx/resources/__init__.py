@@ -313,6 +313,14 @@ from .reputation import (
     ReputationResourceWithStreamingResponse,
     AsyncReputationResourceWithStreamingResponse,
 )
+from .web_search import (
+    WebSearchResource,
+    AsyncWebSearchResource,
+    WebSearchResourceWithRawResponse,
+    AsyncWebSearchResourceWithRawResponse,
+    WebSearchResourceWithStreamingResponse,
+    AsyncWebSearchResourceWithStreamingResponse,
+)
 from .well_known import (
     WellKnownResource,
     AsyncWellKnownResource,
@@ -736,6 +744,14 @@ from .managed_accounts import (
     AsyncManagedAccountsResourceWithRawResponse,
     ManagedAccountsResourceWithStreamingResponse,
     AsyncManagedAccountsResourceWithStreamingResponse,
+)
+from .meeting_sessions import (
+    MeetingSessionsResource,
+    AsyncMeetingSessionsResource,
+    MeetingSessionsResourceWithRawResponse,
+    AsyncMeetingSessionsResourceWithRawResponse,
+    MeetingSessionsResourceWithStreamingResponse,
+    AsyncMeetingSessionsResourceWithStreamingResponse,
 )
 from .network_coverage import (
     NetworkCoverageResource,
@@ -2511,4 +2527,16 @@ __all__ = [
     "AsyncPricingResourceWithRawResponse",
     "PricingResourceWithStreamingResponse",
     "AsyncPricingResourceWithStreamingResponse",
+    "WebSearchResource",
+    "AsyncWebSearchResource",
+    "WebSearchResourceWithRawResponse",
+    "AsyncWebSearchResourceWithRawResponse",
+    "WebSearchResourceWithStreamingResponse",
+    "AsyncWebSearchResourceWithStreamingResponse",
+    "MeetingSessionsResource",
+    "AsyncMeetingSessionsResource",
+    "MeetingSessionsResourceWithRawResponse",
+    "AsyncMeetingSessionsResourceWithRawResponse",
+    "MeetingSessionsResourceWithStreamingResponse",
+    "AsyncMeetingSessionsResourceWithStreamingResponse",
 ]

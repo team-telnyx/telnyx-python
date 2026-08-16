@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 from .action_list_params import ActionListParams as ActionListParams
+from .action_enable_voice_params import ActionEnableVoiceParams as ActionEnableVoiceParams
 from .action_set_public_ip_params import ActionSetPublicIPParams as ActionSetPublicIPParams
 from .action_bulk_enable_voice_params import ActionBulkEnableVoiceParams as ActionBulkEnableVoiceParams
 from .action_bulk_disable_voice_params import ActionBulkDisableVoiceParams as ActionBulkDisableVoiceParams
@@ -20,6 +21,8 @@ if TYPE_CHECKING:
     from .action_retrieve_response import ActionRetrieveResponse as ActionRetrieveResponse
     from .wireless_sim_card_action import WirelessSimCardAction as WirelessSimCardAction
     from .action_set_standby_response import ActionSetStandbyResponse as ActionSetStandbyResponse
+    from .action_enable_voice_response import ActionEnableVoiceResponse as ActionEnableVoiceResponse
+    from .action_disable_voice_response import ActionDisableVoiceResponse as ActionDisableVoiceResponse
     from .action_set_public_ip_response import ActionSetPublicIPResponse as ActionSetPublicIPResponse
     from .action_remove_public_ip_response import ActionRemovePublicIPResponse as ActionRemovePublicIPResponse
     from .action_bulk_enable_voice_response import ActionBulkEnableVoiceResponse as ActionBulkEnableVoiceResponse
@@ -59,10 +62,18 @@ def __getattr__(name: str) -> Any:
         from .action_disable_response import ActionDisableResponse
 
         return ActionDisableResponse
+    if name == "ActionDisableVoiceResponse":
+        from .action_disable_voice_response import ActionDisableVoiceResponse
+
+        return ActionDisableVoiceResponse
     if name == "ActionEnableResponse":
         from .action_enable_response import ActionEnableResponse
 
         return ActionEnableResponse
+    if name == "ActionEnableVoiceResponse":
+        from .action_enable_voice_response import ActionEnableVoiceResponse
+
+        return ActionEnableVoiceResponse
     if name == "ActionRemovePublicIPResponse":
         from .action_remove_public_ip_response import ActionRemovePublicIPResponse
 

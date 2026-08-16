@@ -137,6 +137,7 @@ from .fqdn_connection import FqdnConnection as FqdnConnection
 from .group_list_meta import GroupListMeta as GroupListMeta
 from .inbound_message import InboundMessage as InboundMessage
 from .managed_account import ManagedAccount as ManagedAccount
+from .meeting_session import MeetingSession as MeetingSession
 from .models_response import ModelsResponse as ModelsResponse
 from .pagination_meta import PaginationMeta as PaginationMeta
 from .portout_details import PortoutDetails as PortoutDetails
@@ -186,6 +187,7 @@ from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
 from .unsubscribe_group import UnsubscribeGroup as UnsubscribeGroup
 from .voice_design_data import VoiceDesignData as VoiceDesignData
+from .web_search_result import WebSearchResult as WebSearchResult
 from .whatsapp_location import WhatsappLocation as WhatsappLocation
 from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -418,6 +420,7 @@ from .email_domain_list_params import EmailDomainListParams as EmailDomainListPa
 from .email_thread_list_params import EmailThreadListParams as EmailThreadListParams
 from .enterprise_create_params import EnterpriseCreateParams as EnterpriseCreateParams
 from .enterprise_update_params import EnterpriseUpdateParams as EnterpriseUpdateParams
+from .meeting_session_response import MeetingSessionResponse as MeetingSessionResponse
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .oauth_client_list_params import OAuthClientListParams as OAuthClientListParams
 from .ota_update_list_response import OtaUpdateListResponse as OtaUpdateListResponse
@@ -435,6 +438,7 @@ from .sub_number_orders_report import SubNumberOrdersReport as SubNumberOrdersRe
 from .usage_report_list_params import UsageReportListParams as UsageReportListParams
 from .user_address_list_params import UserAddressListParams as UserAddressListParams
 from .voice_design_list_params import VoiceDesignListParams as VoiceDesignListParams
+from .web_search_create_params import WebSearchCreateParams as WebSearchCreateParams
 from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
 from .wireguard_interface_read import WireguardInterfaceRead as WireguardInterfaceRead
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
@@ -521,6 +525,8 @@ from .user_address_create_params import UserAddressCreateParams as UserAddressCr
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
 from .voice_design_create_params import VoiceDesignCreateParams as VoiceDesignCreateParams
 from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRenameParams
+from .web_search_contents_params import WebSearchContentsParams as WebSearchContentsParams
+from .web_search_create_response import WebSearchCreateResponse as WebSearchCreateResponse
 from .whatsapp_interactive_param import WhatsappInteractiveParam as WhatsappInteractiveParam
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
@@ -544,6 +550,7 @@ from .ip_connection_create_params import IPConnectionCreateParams as IPConnectio
 from .ip_connection_update_params import IPConnectionUpdateParams as IPConnectionUpdateParams
 from .ledger_billing_group_report import LedgerBillingGroupReport as LedgerBillingGroupReport
 from .managed_account_list_params import ManagedAccountListParams as ManagedAccountListParams
+from .meeting_session_list_params import MeetingSessionListParams as MeetingSessionListParams
 from .netapps_location_17904fcfbc import NetappsLocation17904fcfbc as NetappsLocation17904fcfbc
 from .oauth_grant_delete_response import OAuthGrantDeleteResponse as OAuthGrantDeleteResponse
 from .oauth_oauth_pagination_meta import OAuthOAuthPaginationMeta as OAuthOAuthPaginationMeta
@@ -611,12 +618,14 @@ from .verify_profile_create_params import VerifyProfileCreateParams as VerifyPro
 from .verify_profile_update_params import VerifyProfileUpdateParams as VerifyProfileUpdateParams
 from .voice_design_rename_response import VoiceDesignRenameResponse as VoiceDesignRenameResponse
 from .voice_design_retrieve_params import VoiceDesignRetrieveParams as VoiceDesignRetrieveParams
+from .web_search_contents_response import WebSearchContentsResponse as WebSearchContentsResponse
 from .webhook_delivery_list_params import WebhookDeliveryListParams as WebhookDeliveryListParams
 from .websocket_connection_options import WebSocketConnectionOptions as WebSocketConnectionOptions
 from .wireguard_peer_create_params import WireguardPeerCreateParams as WireguardPeerCreateParams
 from .wireguard_peer_update_params import WireguardPeerUpdateParams as WireguardPeerUpdateParams
 from .access_ip_address_list_params import AccessIPAddressListParams as AccessIPAddressListParams
 from .access_ip_range_create_params import AccessIPRangeCreateParams as AccessIPRangeCreateParams
+from .artifact_failed_webhook_event import ArtifactFailedWebhookEvent as ArtifactFailedWebhookEvent
 from .billing_group_create_response import BillingGroupCreateResponse as BillingGroupCreateResponse
 from .billing_group_delete_response import BillingGroupDeleteResponse as BillingGroupDeleteResponse
 from .billing_group_update_response import BillingGroupUpdateResponse as BillingGroupUpdateResponse
@@ -642,6 +651,9 @@ from .ip_connection_update_response import IPConnectionUpdateResponse as IPConne
 from .managed_account_create_params import ManagedAccountCreateParams as ManagedAccountCreateParams
 from .managed_account_list_response import ManagedAccountListResponse as ManagedAccountListResponse
 from .managed_account_update_params import ManagedAccountUpdateParams as ManagedAccountUpdateParams
+from .meeting_session_create_params import MeetingSessionCreateParams as MeetingSessionCreateParams
+from .meeting_session_list_response import MeetingSessionListResponse as MeetingSessionListResponse
+from .meeting_session_update_params import MeetingSessionUpdateParams as MeetingSessionUpdateParams
 from .message_send_group_mms_params import MessageSendGroupMmsParams as MessageSendGroupMmsParams
 from .message_send_long_code_params import MessageSendLongCodeParams as MessageSendLongCodeParams
 from .messaging_profile_list_params import MessagingProfileListParams as MessagingProfileListParams
@@ -767,6 +779,7 @@ from .verification_trigger_sms_params import VerificationTriggerSMSParams as Ver
 from .verified_number_create_response import VerifiedNumberCreateResponse as VerifiedNumberCreateResponse
 from .voice_sdk_call_report_log_entry import VoiceSDKCallReportLogEntry as VoiceSDKCallReportLogEntry
 from .wireguard_interface_list_params import WireguardInterfaceListParams as WireguardInterfaceListParams
+from .artifact_completed_webhook_event import ArtifactCompletedWebhookEvent as ArtifactCompletedWebhookEvent
 from .bulk_sim_card_action_list_params import BulkSimCardActionListParams as BulkSimCardActionListParams
 from .call_control_application_inbound import CallControlApplicationInbound as CallControlApplicationInbound
 from .call_dtmf_received_webhook_event import CallDtmfReceivedWebhookEvent as CallDtmfReceivedWebhookEvent
@@ -838,6 +851,7 @@ from .number_reputation_pagination_meta import NumberReputationPaginationMeta as
 from .porting_list_uk_carriers_response import PortingListUkCarriersResponse as PortingListUkCarriersResponse
 from .porting_order_activation_settings import PortingOrderActivationSettings as PortingOrderActivationSettings
 from .porting_order_user_feedback_param import PortingOrderUserFeedbackParam as PortingOrderUserFeedbackParam
+from .recording_available_webhook_event import RecordingAvailableWebhookEvent as RecordingAvailableWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent as ReplacedLinkClickWebhookEvent
 from .room_recording_delete_bulk_params import RoomRecordingDeleteBulkParams as RoomRecordingDeleteBulkParams
 from .texml_application_create_response import TexmlApplicationCreateResponse as TexmlApplicationCreateResponse
@@ -883,6 +897,7 @@ from .sub_number_order_retrieve_response import SubNumberOrderRetrieveResponse a
 from .telephony_credential_create_params import TelephonyCredentialCreateParams as TelephonyCredentialCreateParams
 from .telephony_credential_update_params import TelephonyCredentialUpdateParams as TelephonyCredentialUpdateParams
 from .traffic_policy_profile_list_params import TrafficPolicyProfileListParams as TrafficPolicyProfileListParams
+from .transcript_completed_webhook_event import TranscriptCompletedWebhookEvent as TranscriptCompletedWebhookEvent
 from .webhook_delivery_retrieve_response import WebhookDeliveryRetrieveResponse as WebhookDeliveryRetrieveResponse
 from .wireless_blocklist_create_response import WirelessBlocklistCreateResponse as WirelessBlocklistCreateResponse
 from .wireless_blocklist_delete_response import WirelessBlocklistDeleteResponse as WirelessBlocklistDeleteResponse
@@ -962,6 +977,7 @@ from .number_reservation_retrieve_response import NumberReservationRetrieveRespo
 from .outbound_voice_profile_create_params import OutboundVoiceProfileCreateParams as OutboundVoiceProfileCreateParams
 from .outbound_voice_profile_update_params import OutboundVoiceProfileUpdateParams as OutboundVoiceProfileUpdateParams
 from .private_wireless_gateway_list_params import PrivateWirelessGatewayListParams as PrivateWirelessGatewayListParams
+from .session_status_changed_webhook_event import SessionStatusChangedWebhookEvent as SessionStatusChangedWebhookEvent
 from .sim_card_get_device_details_response import SimCardGetDeviceDetailsResponse as SimCardGetDeviceDetailsResponse
 from .speech_to_text_list_providers_params import SpeechToTextListProvidersParams as SpeechToTextListProvidersParams
 from .telephony_credential_create_response import TelephonyCredentialCreateResponse as TelephonyCredentialCreateResponse
@@ -1113,6 +1129,9 @@ from .global_ip_health_check_create_response import (
 )
 from .global_ip_health_check_delete_response import (
     GlobalIPHealthCheckDeleteResponse as GlobalIPHealthCheckDeleteResponse,
+)
+from .meeting_session_retrieve_events_params import (
+    MeetingSessionRetrieveEventsParams as MeetingSessionRetrieveEventsParams,
 )
 from .messaging_profile_metric_list_response import (
     MessagingProfileMetricListResponse as MessagingProfileMetricListResponse,
@@ -1291,6 +1310,9 @@ from .dynamic_emergency_endpoint_create_params import (
 from .global_ip_health_check_retrieve_response import (
     GlobalIPHealthCheckRetrieveResponse as GlobalIPHealthCheckRetrieveResponse,
 )
+from .meeting_session_retrieve_events_response import (
+    MeetingSessionRetrieveEventsResponse as MeetingSessionRetrieveEventsResponse,
+)
 from .message_retrieve_group_messages_response import (
     MessageRetrieveGroupMessagesResponse as MessageRetrieveGroupMessagesResponse,
 )
@@ -1411,6 +1433,9 @@ from .email_domain_retrieve_dns_records_response import (
 from .external_connection_update_location_params import (
     ExternalConnectionUpdateLocationParams as ExternalConnectionUpdateLocationParams,
 )
+from .meeting_session_retrieve_transcript_params import (
+    MeetingSessionRetrieveTranscriptParams as MeetingSessionRetrieveTranscriptParams,
+)
 from .notification_event_condition_list_response import (
     NotificationEventConditionListResponse as NotificationEventConditionListResponse,
 )
@@ -1504,6 +1529,12 @@ from .dynamic_emergency_endpoint_retrieve_response import (
 from .external_connection_update_location_response import (
     ExternalConnectionUpdateLocationResponse as ExternalConnectionUpdateLocationResponse,
 )
+from .meeting_session_retrieve_recordings_response import (
+    MeetingSessionRetrieveRecordingsResponse as MeetingSessionRetrieveRecordingsResponse,
+)
+from .meeting_session_retrieve_transcript_response import (
+    MeetingSessionRetrieveTranscriptResponse as MeetingSessionRetrieveTranscriptResponse,
+)
 from .message_send_with_alphanumeric_sender_params import (
     MessageSendWithAlphanumericSenderParams as MessageSendWithAlphanumericSenderParams,
 )
@@ -1560,6 +1591,9 @@ from .sim_card_data_usage_notification_create_params import (
 )
 from .sim_card_data_usage_notification_update_params import (
     SimCardDataUsageNotificationUpdateParams as SimCardDataUsageNotificationUpdateParams,
+)
+from .meeting_session_delete_recording_media_response import (
+    MeetingSessionDeleteRecordingMediaResponse as MeetingSessionDeleteRecordingMediaResponse,
 )
 from .messaging_hosted_number_order_retrieve_response import (
     MessagingHostedNumberOrderRetrieveResponse as MessagingHostedNumberOrderRetrieveResponse,
