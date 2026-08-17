@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.175.0](https://github.com/team-telnyx/telnyx-python/compare/v4.174.0...v4.175.0) (2026-08-17)
+
+
+### Features
+
+* promote from staging 4c382da ([22d2b81](https://github.com/team-telnyx/telnyx-python/commit/22d2b8162067313218a88ed4c1ea79cf47f790c2))
+
+
+### Bug Fixes
+
+* **ci:** ignore closed release PR events ([#418](https://github.com/team-telnyx/telnyx-python/issues/418)) ([c87316e](https://github.com/team-telnyx/telnyx-python/commit/c87316e8725a66a36d61f16f27b8d9ec30c762d6))
+
 ## [4.174.0](https://github.com/team-telnyx/telnyx-python/compare/v4.173.0...v4.174.0) (2026-08-16)
 
 
