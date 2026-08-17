@@ -397,7 +397,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MessagingProfile]:
-        """Returns messaging profiles owned by the authenticated account.
+        """Lists messaging profiles owned by the authenticated account.
 
         Apply the
         documented filters and pagination parameters to narrow the result set.
@@ -1008,7 +1008,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MessagingProfile, AsyncDefaultFlatPagination[MessagingProfile]]:
-        """Returns messaging profiles owned by the authenticated account.
+        """Lists messaging profiles owned by the authenticated account.
 
         Apply the
         documented filters and pagination parameters to narrow the result set.
