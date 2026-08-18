@@ -27,3 +27,25 @@ jobs:
       - name: Publish to PyPI
         run: |
           bash ./bin/publish-pypi
+
+  verify-availability:
+    name: verify PyPI availability
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.release.tag_name || github.sha }}
+          persist-credentials: false
+      - name: Verify exact PyPI version and distributions
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          VERSION="${RELEASE_TAG#v}"
+          if [ -z "$VERSION" ]; then
+            VERSION=$(python3 -c 'import pathlib,re; text=pathlib.Path("pyproject.toml").read_text(); match=re.search(r"(?m)^version = \"([^\"]+)\"$", text); assert match; print(match.group(1))')
+          fi
+          python3 .github/scripts/verify_pypi_release.py --version "$VERSION"
