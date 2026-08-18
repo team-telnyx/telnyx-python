@@ -156,6 +156,16 @@ class ParticipantParticipantsParams(TypedDict, total=False):
     answering machine.
     """
 
+    machine_detection_beep_profile: Annotated[
+        Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
+    ]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile. Only used when MachineDetection is enabled.
+    """
+
     machine_detection_silence_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionSilenceTimeout")]
     """If initial silence duration is greater than this value, consider it a machine.
 

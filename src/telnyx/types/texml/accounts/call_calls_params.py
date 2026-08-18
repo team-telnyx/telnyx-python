@@ -109,6 +109,16 @@ class WithURL(TypedDict, total=False):
     ]
     """Enables Answering Machine Detection."""
 
+    machine_detection_beep_profile: Annotated[
+        Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
+    ]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile. Only used when MachineDetection is enabled.
+    """
+
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
     """
     Silence duration threshold after a call screening prompt before ending prompt
@@ -359,6 +369,16 @@ class WithTeXml(TypedDict, total=False):
     ]
     """Enables Answering Machine Detection."""
 
+    machine_detection_beep_profile: Annotated[
+        Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
+    ]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile. Only used when MachineDetection is enabled.
+    """
+
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
     """
     Silence duration threshold after a call screening prompt before ending prompt
@@ -601,6 +621,16 @@ class ApplicationDefault(TypedDict, total=False):
         Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
     ]
     """Enables Answering Machine Detection."""
+
+    machine_detection_beep_profile: Annotated[
+        Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
+    ]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile. Only used when MachineDetection is enabled.
+    """
 
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
     """

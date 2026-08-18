@@ -245,6 +245,7 @@ class CallsResource(SyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -332,6 +333,11 @@ class CallsResource(SyncAPIResource):
               formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -443,6 +449,7 @@ class CallsResource(SyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -531,6 +538,11 @@ class CallsResource(SyncAPIResource):
               formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -641,6 +653,7 @@ class CallsResource(SyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -727,6 +740,11 @@ class CallsResource(SyncAPIResource):
               formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -840,6 +858,7 @@ class CallsResource(SyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -898,6 +917,7 @@ class CallsResource(SyncAPIResource):
                     "fallback_url": fallback_url,
                     "from_": from_,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_profile": machine_detection_beep_profile,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -1370,6 +1390,7 @@ class AsyncCallsResource(AsyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -1457,6 +1478,11 @@ class AsyncCallsResource(AsyncAPIResource):
               formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -1568,6 +1594,7 @@ class AsyncCallsResource(AsyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -1656,6 +1683,11 @@ class AsyncCallsResource(AsyncAPIResource):
               formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -1766,6 +1798,7 @@ class AsyncCallsResource(AsyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -1852,6 +1885,11 @@ class AsyncCallsResource(AsyncAPIResource):
               formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -1965,6 +2003,7 @@ class AsyncCallsResource(AsyncAPIResource):
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -2023,6 +2062,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "fallback_url": fallback_url,
                     "from_": from_,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_profile": machine_detection_beep_profile,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
