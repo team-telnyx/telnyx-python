@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pyright: basic
 from __future__ import annotations
 
 import unittest
@@ -7,8 +8,8 @@ from pathlib import Path
 
 MODULE_PATH = Path(__file__).with_name("classify_production_ci.py")
 spec = importlib.util.spec_from_file_location("classify_production_ci", MODULE_PATH)
-module = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
+module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 

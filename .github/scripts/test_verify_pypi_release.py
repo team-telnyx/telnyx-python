@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pyright: basic
 import unittest
 
 from verify_pypi_release import AvailabilityError, validate_release

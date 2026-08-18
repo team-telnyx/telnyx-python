@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # ruff: noqa: T201
+# pyright: basic
 """Fail-closed lightweight provenance/tree gate for production `next`.
 
 This runs from repository-owned workflow code. It binds the exact hosted `next`
@@ -95,7 +96,8 @@ def require_policy_parity(
 def api_tree(payload: Mapping[str, object]) -> Dict[str, TreeEntry]:
     _require(payload.get("truncated") is False, "staging tree response was truncated")
     entries = payload.get("tree")
-    _require(isinstance(entries, list), "invalid staging tree payload")
+    if not isinstance(entries, list):
+        raise GateError("invalid staging tree payload")
     result: Dict[str, TreeEntry] = {}
     for raw in entries:
         _require(isinstance(raw, Mapping), "invalid staging tree entry")

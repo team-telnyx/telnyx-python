@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pyright: basic
 import unittest
 
 from release_pr_auto_merge import GateError

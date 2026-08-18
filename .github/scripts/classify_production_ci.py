@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # ruff: noqa: T201
+# pyright: basic
 """Classify production SDK CI events without weakening release validation.
 
 Unknown or unverifiable default-branch pushes always run the full suite. The only

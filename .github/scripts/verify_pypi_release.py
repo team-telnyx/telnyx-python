@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # ruff: noqa: T201
+# pyright: basic
 """Verify an exact Telnyx Python release is available from PyPI."""
 from __future__ import annotations
 
@@ -68,7 +69,10 @@ def verify_download_metadata(files: Mapping[str, Mapping[str, object]]) -> None:
             if response.status != 200:
                 raise AvailabilityError("%s distribution is not downloadable" % kind)
             length = response.headers.get("Content-Length")
-            if length is not None and int(length) != int(data["size"]):
+            expected_size = data.get("size")
+            if not isinstance(expected_size, int):
+                raise AvailabilityError("%s distribution size metadata is invalid" % kind)
+            if length is not None and int(length) != expected_size:
                 raise AvailabilityError("%s distribution size differs from PyPI metadata" % kind)
 
 
