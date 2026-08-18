@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static safety contracts for the DOT-2061 Python rollout."""
-from pathlib import Path
 import unittest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
