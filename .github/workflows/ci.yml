@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 10
     name: lint
     runs-on: ${{ github.repository == 'stainless-sdks/telnyx-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
+    if: ((github.event_name == 'push' || github.event.pull_request.head.repo.fork || startsWith(github.head_ref, 'release-please--')) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata'))
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
@@ -34,8 +34,13 @@ jobs:
       - name: Run lints
         run: ./scripts/lint
 
+      - name: Validate release gate policy
+        run: |
+          python3 .github/scripts/test_release_pr_auto_merge.py -v
+          python3 .github/scripts/test_release_pr_ci_gate.py -v
+
   build:
-    if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
+    if: ((github.event_name == 'push' || github.event.pull_request.head.repo.fork || startsWith(github.head_ref, 'release-please--')) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata'))
     timeout-minutes: 10
     name: build
     permissions:
@@ -79,7 +84,7 @@ jobs:
     timeout-minutes: 10
     name: test
     runs-on: ${{ github.repository == 'stainless-sdks/telnyx-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork || startsWith(github.head_ref, 'release-please--')
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 

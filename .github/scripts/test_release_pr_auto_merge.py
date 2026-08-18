@@ -294,6 +294,12 @@ class ReleasePRAutoMergeGateTests(unittest.TestCase):
         client.snapshot["required_contexts"].append("new-policy")
         self.assert_blocked(client, "timed out")
 
+    def test_release_provenance_context_does_not_wait_on_itself(self):
+        client = FixtureClient()
+        client.snapshot["required_contexts"].append("release-provenance")
+        result = self.gate(client).run(415, HEAD, True)
+        self.assertEqual(result["status"], "ready")
+
     def test_pending_check_can_become_successful_before_timeout(self):
         pending = FixtureClient.good_snapshot()
         next(c for c in pending["checks"] if c["name"] == "build").update(
