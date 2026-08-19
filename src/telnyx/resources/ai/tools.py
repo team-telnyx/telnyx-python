@@ -273,7 +273,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a custom AI tool.
+        Permanently deletes the specified custom AI tool from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -538,7 +538,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a custom AI tool.
+        Permanently deletes the specified custom AI tool from your account.
 
         Args:
           extra_headers: Send extra headers

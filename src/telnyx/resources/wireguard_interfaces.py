@@ -93,7 +93,7 @@ class WireguardInterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardInterfaceRetrieveResponse:
         """
-        Retrieve a WireGuard Interfaces.
+        Returns the details of a single WireGuard interface by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -128,7 +128,8 @@ class WireguardInterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[WireguardInterfaceRead]:
         """
-        List all WireGuard Interfaces.
+        Returns a paginated list of the WireGuard interfaces on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
@@ -173,7 +174,7 @@ class WireguardInterfacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardInterfaceDeleteResponse:
         """
-        Delete a WireGuard Interface.
+        Deletes the specified WireGuard interface from its network.
 
         Args:
           extra_headers: Send extra headers
@@ -263,7 +264,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardInterfaceRetrieveResponse:
         """
-        Retrieve a WireGuard Interfaces.
+        Returns the details of a single WireGuard interface by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -298,7 +299,8 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WireguardInterfaceRead, AsyncDefaultFlatPagination[WireguardInterfaceRead]]:
         """
-        List all WireGuard Interfaces.
+        Returns a paginated list of the WireGuard interfaces on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
@@ -343,7 +345,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardInterfaceDeleteResponse:
         """
-        Delete a WireGuard Interface.
+        Deletes the specified WireGuard interface from its network.
 
         Args:
           extra_headers: Send extra headers

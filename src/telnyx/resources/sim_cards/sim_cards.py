@@ -141,7 +141,7 @@ class SimCardsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardUpdateResponse:
         """
-        Updates SIM card data
+        Updates the specified SIM card's attributes and returns the updated SIM card.
 
         Args:
           authorized_imeis: List of IMEIs authorized to use a given SIM card.
@@ -538,7 +538,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardUpdateResponse:
         """
-        Updates SIM card data
+        Updates the specified SIM card's attributes and returns the updated SIM card.
 
         Args:
           authorized_imeis: List of IMEIs authorized to use a given SIM card.

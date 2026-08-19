@@ -90,7 +90,10 @@ class PortingResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingListUkCarriersResponse:
-        """List available carriers in the UK."""
+        """
+        Returns the list of UK carriers available for porting, for use when preparing
+        porting orders for UK numbers.
+        """
         return self._get(
             "/porting/uk_carriers",
             options=make_request_options(
@@ -147,7 +150,10 @@ class AsyncPortingResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingListUkCarriersResponse:
-        """List available carriers in the UK."""
+        """
+        Returns the list of UK carriers available for porting, for use when preparing
+        porting orders for UK numbers.
+        """
         return await self._get(
             "/porting/uk_carriers",
             options=make_request_options(

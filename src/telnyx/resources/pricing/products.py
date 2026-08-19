@@ -70,6 +70,9 @@ class ProductsResource(SyncAPIResource):
         (pricing_type: rate_deck) where rates are determined dynamically.
 
         Args:
+          filter_country_iso: Two-letter ISO 3166-1 alpha-2 country code (uppercase, e.g. US) to filter
+              pricing to a single country.
+
           page_number: Page number (1-based).
 
           page_size: Number of items per page (max 100).
@@ -199,6 +202,9 @@ class AsyncProductsResource(AsyncAPIResource):
         (pricing_type: rate_deck) where rates are determined dynamically.
 
         Args:
+          filter_country_iso: Two-letter ISO 3166-1 alpha-2 country code (uppercase, e.g. US) to filter
+              pricing to a single country.
+
           page_number: Page number (1-based).
 
           page_size: Number of items per page (max 100).

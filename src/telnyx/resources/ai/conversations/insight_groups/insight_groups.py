@@ -74,7 +74,8 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Get insight group by ID
+        Returns the details of a single insight template group, including the insight
+        templates assigned to it.
 
         Args:
           group_id: The ID of the insight group
@@ -112,7 +113,7 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Update an insight template group
+        Updates the specified insight template group and returns the updated group.
 
         Args:
           group_id: The ID of the insight group
@@ -155,7 +156,7 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete insight group by ID
+        Permanently deletes the specified insight template group by its ID.
 
         Args:
           group_id: The ID of the insight group
@@ -193,7 +194,8 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Create a new insight group
+        Creates a new insight template group for organizing related insight templates,
+        and returns the created group.
 
         Args:
           extra_headers: Send extra headers
@@ -232,8 +234,11 @@ class InsightGroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[InsightTemplateGroup]:
-        """
-        Get all insight groups
+        """Returns a paginated list of your insight template groups.
+
+        Groups organize
+        related insight templates that are applied together when analyzing
+        conversations.
 
         Args:
           extra_headers: Send extra headers
@@ -303,7 +308,8 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Get insight group by ID
+        Returns the details of a single insight template group, including the insight
+        templates assigned to it.
 
         Args:
           group_id: The ID of the insight group
@@ -341,7 +347,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Update an insight template group
+        Updates the specified insight template group and returns the updated group.
 
         Args:
           group_id: The ID of the insight group
@@ -384,7 +390,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete insight group by ID
+        Permanently deletes the specified insight template group by its ID.
 
         Args:
           group_id: The ID of the insight group
@@ -422,7 +428,8 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Create a new insight group
+        Creates a new insight template group for organizing related insight templates,
+        and returns the created group.
 
         Args:
           extra_headers: Send extra headers
@@ -461,8 +468,11 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InsightTemplateGroup, AsyncDefaultFlatPagination[InsightTemplateGroup]]:
-        """
-        Get all insight groups
+        """Returns a paginated list of your insight template groups.
+
+        Groups organize
+        related insight templates that are applied together when analyzing
+        conversations.
 
         Args:
           extra_headers: Send extra headers

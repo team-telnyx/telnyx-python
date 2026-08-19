@@ -54,7 +54,7 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Assign an insight to a group
+        Assigns the specified insight template to the specified insight template group.
 
         Args:
           group_id: The ID of the insight group
@@ -98,8 +98,10 @@ class InsightsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Remove an insight from a group
+        """Removes the specified insight template from the specified group.
+
+        The insight
+        template itself is not deleted.
 
         Args:
           group_id: The ID of the insight group
@@ -167,7 +169,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Assign an insight to a group
+        Assigns the specified insight template to the specified insight template group.
 
         Args:
           group_id: The ID of the insight group
@@ -211,8 +213,10 @@ class AsyncInsightsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Remove an insight from a group
+        """Removes the specified insight template from the specified group.
+
+        The insight
+        template itself is not deleted.
 
         Args:
           group_id: The ID of the insight group

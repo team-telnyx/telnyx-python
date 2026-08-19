@@ -230,7 +230,8 @@ class BrandResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandRetrieveResponse:
         """
-        Retrieve a brand by `brandId`.
+        Returns the details of a 10DLC brand by its brandId, including the count of
+        campaigns associated with the brand.
 
         Args:
           extra_headers: Send extra headers
@@ -1031,7 +1032,8 @@ class AsyncBrandResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandRetrieveResponse:
         """
-        Retrieve a brand by `brandId`.
+        Returns the details of a 10DLC brand by its brandId, including the count of
+        campaigns associated with the brand.
 
         Args:
           extra_headers: Send extra headers

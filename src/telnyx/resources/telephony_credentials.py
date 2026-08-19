@@ -64,8 +64,10 @@ class TelephonyCredentialsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelephonyCredentialCreateResponse:
-        """
-        Create a credential.
+        """Creates a new on-demand telephony credential for the specified connection.
+
+        The
+        credential can then be used to generate access tokens for SIP or WebRTC clients.
 
         Args:
           connection_id: Identifies the Credential Connection this credential is associated with.
@@ -148,7 +150,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelephonyCredentialUpdateResponse:
         """
-        Update an existing credential.
+        Updates the specified telephony credential and returns the updated credential.
 
         Args:
           connection_id: Identifies the Credential Connection this credential is associated with.
@@ -198,7 +200,8 @@ class TelephonyCredentialsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[TelephonyCredential]:
         """
-        List all On-demand Credentials.
+        Returns a paginated list of the on-demand telephony credentials on your account,
+        with support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[tag],
@@ -244,7 +247,8 @@ class TelephonyCredentialsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelephonyCredentialDeleteResponse:
         """
-        Delete an existing credential.
+        Permanently deletes the specified telephony credential, revoking any access it
+        provided.
 
         Args:
           extra_headers: Send extra headers
@@ -334,8 +338,10 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelephonyCredentialCreateResponse:
-        """
-        Create a credential.
+        """Creates a new on-demand telephony credential for the specified connection.
+
+        The
+        credential can then be used to generate access tokens for SIP or WebRTC clients.
 
         Args:
           connection_id: Identifies the Credential Connection this credential is associated with.
@@ -418,7 +424,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelephonyCredentialUpdateResponse:
         """
-        Update an existing credential.
+        Updates the specified telephony credential and returns the updated credential.
 
         Args:
           connection_id: Identifies the Credential Connection this credential is associated with.
@@ -468,7 +474,8 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TelephonyCredential, AsyncDefaultFlatPagination[TelephonyCredential]]:
         """
-        List all On-demand Credentials.
+        Returns a paginated list of the on-demand telephony credentials on your account,
+        with support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[tag],
@@ -514,7 +521,8 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelephonyCredentialDeleteResponse:
         """
-        Delete an existing credential.
+        Permanently deletes the specified telephony credential, revoking any access it
+        provided.
 
         Args:
           extra_headers: Send extra headers

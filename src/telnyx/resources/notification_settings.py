@@ -64,7 +64,8 @@ class NotificationSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingCreateResponse:
         """
-        Add a notification setting.
+        Adds a notification setting that enables delivery of a notification event type
+        to a notification profile.
 
         Args:
           notification_channel_id: A UUID reference to the associated Notification Channel.
@@ -110,7 +111,7 @@ class NotificationSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingRetrieveResponse:
         """
-        Get a notification setting.
+        Returns the details of a single notification setting by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -145,7 +146,8 @@ class NotificationSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[NotificationSetting]:
         """
-        List notification settings.
+        Returns a paginated list of your notification settings, which map notification
+        event types to profiles and channels.
 
         Args:
           filter:
@@ -194,7 +196,8 @@ class NotificationSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingDeleteResponse:
         """
-        Delete a notification setting.
+        Deletes the specified notification setting, disabling that notification
+        delivery.
 
         Args:
           extra_headers: Send extra headers
@@ -253,7 +256,8 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingCreateResponse:
         """
-        Add a notification setting.
+        Adds a notification setting that enables delivery of a notification event type
+        to a notification profile.
 
         Args:
           notification_channel_id: A UUID reference to the associated Notification Channel.
@@ -299,7 +303,7 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingRetrieveResponse:
         """
-        Get a notification setting.
+        Returns the details of a single notification setting by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -334,7 +338,8 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NotificationSetting, AsyncDefaultFlatPagination[NotificationSetting]]:
         """
-        List notification settings.
+        Returns a paginated list of your notification settings, which map notification
+        event types to profiles and channels.
 
         Args:
           filter:
@@ -383,7 +388,8 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingDeleteResponse:
         """
-        Delete a notification setting.
+        Deletes the specified notification setting, disabling that notification
+        delivery.
 
         Args:
           extra_headers: Send extra headers

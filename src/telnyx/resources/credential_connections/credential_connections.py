@@ -116,8 +116,10 @@ class CredentialConnectionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CredentialConnectionCreateResponse:
-        """
-        Creates a credential connection.
+        """Creates a new credential-based SIP connection.
+
+        Credential connections
+        authenticate with a username and password rather than by IP address.
 
         Args:
           connection_name: A user-assigned name to help manage the connection.
@@ -600,8 +602,10 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CredentialConnectionCreateResponse:
-        """
-        Creates a credential connection.
+        """Creates a new credential-based SIP connection.
+
+        Credential connections
+        authenticate with a username and password rather than by IP address.
 
         Args:
           connection_name: A user-assigned name to help manage the connection.

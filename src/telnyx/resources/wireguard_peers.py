@@ -94,7 +94,7 @@ class WireguardPeersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerRetrieveResponse:
         """
-        Retrieve the WireGuard peer.
+        Returns the details of a single WireGuard peer by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -128,7 +128,7 @@ class WireguardPeersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerUpdateResponse:
         """
-        Update the WireGuard peer.
+        Updates the specified WireGuard peer and returns the updated peer.
 
         Args:
           public_key: The WireGuard `PublicKey`.<br /><br />If you do not provide a Public Key, a new
@@ -167,7 +167,7 @@ class WireguardPeersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[WireguardPeer]:
         """
-        List all WireGuard peers.
+        Returns a paginated list of your WireGuard peers, with support for filtering.
 
         Args:
           filter:
@@ -214,7 +214,7 @@ class WireguardPeersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerDeleteResponse:
         """
-        Delete the WireGuard peer.
+        Deletes the specified WireGuard peer from its interface.
 
         Args:
           extra_headers: Send extra headers
@@ -338,7 +338,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerRetrieveResponse:
         """
-        Retrieve the WireGuard peer.
+        Returns the details of a single WireGuard peer by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -372,7 +372,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerUpdateResponse:
         """
-        Update the WireGuard peer.
+        Updates the specified WireGuard peer and returns the updated peer.
 
         Args:
           public_key: The WireGuard `PublicKey`.<br /><br />If you do not provide a Public Key, a new
@@ -413,7 +413,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WireguardPeer, AsyncDefaultFlatPagination[WireguardPeer]]:
         """
-        List all WireGuard peers.
+        Returns a paginated list of your WireGuard peers, with support for filtering.
 
         Args:
           filter:
@@ -460,7 +460,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerDeleteResponse:
         """
-        Delete the WireGuard peer.
+        Deletes the specified WireGuard peer from its interface.
 
         Args:
           extra_headers: Send extra headers

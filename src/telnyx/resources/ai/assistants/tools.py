@@ -94,7 +94,8 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Detach a tool from an AI assistant.
+        Detaches the specified tool from the AI assistant so the assistant can no longer
+        invoke it.
 
         Args:
           extra_headers: Send extra headers
@@ -132,7 +133,9 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolTestResponse:
         """
-        Test a webhook tool for an assistant
+        Executes a test invocation of the specified webhook tool for the assistant and
+        returns the outcome, so you can verify the webhook's behavior before relying on
+        it in conversations.
 
         Args:
           arguments: Key-value arguments to use for the webhook test
@@ -240,7 +243,8 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Detach a tool from an AI assistant.
+        Detaches the specified tool from the AI assistant so the assistant can no longer
+        invoke it.
 
         Args:
           extra_headers: Send extra headers
@@ -278,7 +282,9 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ToolTestResponse:
         """
-        Test a webhook tool for an assistant
+        Executes a test invocation of the specified webhook tool for the assistant and
+        returns the outcome, so you can verify the webhook's behavior before relying on
+        it in conversations.
 
         Args:
           arguments: Key-value arguments to use for the webhook test

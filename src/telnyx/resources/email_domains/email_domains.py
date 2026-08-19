@@ -241,6 +241,15 @@ class EmailDomainsResource(SyncAPIResource):
 
           filter_profile_id: Filter by profile UUID
 
+          filter_status: Filter domains by verification status: pending, verifying, verified, failed,
+              degraded, or suspended.
+
+          filter_type: Filter domains by type: custom, shared, or shared_inbound.
+
+          filter_usable_for_inbound: Filter domains by whether they can currently receive inbound email.
+
+          filter_usable_for_sending: Filter domains by whether they can currently be used to send email.
+
           page_after: Cursor for records after the provided value (cursor pagination)
 
           page_before: Cursor for records before the provided value (cursor pagination)
@@ -624,6 +633,15 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
           filter_domain: Partial match on domain name (case-insensitive)
 
           filter_profile_id: Filter by profile UUID
+
+          filter_status: Filter domains by verification status: pending, verifying, verified, failed,
+              degraded, or suspended.
+
+          filter_type: Filter domains by type: custom, shared, or shared_inbound.
+
+          filter_usable_for_inbound: Filter domains by whether they can currently receive inbound email.
+
+          filter_usable_for_sending: Filter domains by whether they can currently be used to send email.
 
           page_after: Cursor for records after the provided value (cursor pagination)
 

@@ -59,7 +59,9 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayCreateResponse:
         """
-        Create a new Public Internet Gateway.
+        Requests creation of a public internet gateway on the specified network, giving
+        the network internet egress. Creation is asynchronous, so the request is
+        accepted and completes in the background.
 
         Args:
           extra_headers: Send extra headers
@@ -91,7 +93,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayRetrieveResponse:
         """
-        Retrieve a Public Internet Gateway.
+        Returns the details of a single public internet gateway by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -126,7 +128,8 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PublicInternetGatewayRead]:
         """
-        List all Public Internet Gateways.
+        Returns a paginated list of the public internet gateways on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
@@ -171,7 +174,8 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayDeleteResponse:
         """
-        Delete a Public Internet Gateway.
+        Deletes the specified public internet gateway, removing internet egress through
+        it.
 
         Args:
           extra_headers: Send extra headers
@@ -227,7 +231,9 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayCreateResponse:
         """
-        Create a new Public Internet Gateway.
+        Requests creation of a public internet gateway on the specified network, giving
+        the network internet egress. Creation is asynchronous, so the request is
+        accepted and completes in the background.
 
         Args:
           extra_headers: Send extra headers
@@ -261,7 +267,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayRetrieveResponse:
         """
-        Retrieve a Public Internet Gateway.
+        Returns the details of a single public internet gateway by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -296,7 +302,8 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PublicInternetGatewayRead, AsyncDefaultFlatPagination[PublicInternetGatewayRead]]:
         """
-        List all Public Internet Gateways.
+        Returns a paginated list of the public internet gateways on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
@@ -341,7 +348,8 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayDeleteResponse:
         """
-        Delete a Public Internet Gateway.
+        Deletes the specified public internet gateway, removing internet egress through
+        it.
 
         Args:
           extra_headers: Send extra headers

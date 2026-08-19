@@ -217,7 +217,7 @@ class FaxesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxRetrieveResponse:
         """
-        Retrieve the details of a single fax.
+        Returns the details of a single fax, including its current status.
 
         Args:
           extra_headers: Send extra headers
@@ -503,7 +503,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxRetrieveResponse:
         """
-        Retrieve the details of a single fax.
+        Returns the details of a single fax, including its current status.
 
         Args:
           extra_headers: Send extra headers

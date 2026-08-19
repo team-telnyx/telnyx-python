@@ -62,7 +62,8 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
-        Create a new insight
+        Creates a new insight template defining an analysis to run over conversations,
+        and returns the created template.
 
         Args:
           json_schema: If specified, the output will follow the JSON schema.
@@ -104,7 +105,8 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
-        Get insight by ID
+        Returns the details of a single insight template by its ID, including its
+        configuration.
 
         Args:
           insight_id: The ID of the insight
@@ -143,7 +145,7 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
-        Update an insight template
+        Updates the specified insight template and returns the updated template.
 
         Args:
           insight_id: The ID of the insight
@@ -187,8 +189,10 @@ class InsightsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[InsightTemplate]:
-        """
-        Get all insights
+        """Returns a paginated list of your insight templates.
+
+        Insight templates define
+        analyses that run over AI conversations to extract structured findings.
 
         Args:
           extra_headers: Send extra headers
@@ -230,7 +234,7 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete insight by ID
+        Permanently deletes the specified insight template by its ID.
 
         Args:
           insight_id: The ID of the insight
@@ -292,7 +296,8 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
-        Create a new insight
+        Creates a new insight template defining an analysis to run over conversations,
+        and returns the created template.
 
         Args:
           json_schema: If specified, the output will follow the JSON schema.
@@ -334,7 +339,8 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
-        Get insight by ID
+        Returns the details of a single insight template by its ID, including its
+        configuration.
 
         Args:
           insight_id: The ID of the insight
@@ -373,7 +379,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
-        Update an insight template
+        Updates the specified insight template and returns the updated template.
 
         Args:
           insight_id: The ID of the insight
@@ -417,8 +423,10 @@ class AsyncInsightsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InsightTemplate, AsyncDefaultFlatPagination[InsightTemplate]]:
-        """
-        Get all insights
+        """Returns a paginated list of your insight templates.
+
+        Insight templates define
+        analyses that run over AI conversations to extract structured findings.
 
         Args:
           extra_headers: Send extra headers
@@ -460,7 +468,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete insight by ID
+        Permanently deletes the specified insight template by its ID.
 
         Args:
           insight_id: The ID of the insight

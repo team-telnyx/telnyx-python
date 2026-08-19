@@ -14,7 +14,7 @@ from ..types import (
     oauth_introspect_params,
     oauth_retrieve_authorize_params,
 )
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -101,7 +101,8 @@ class OAuthResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthGrantsResponse:
         """
-        Create an OAuth authorization grant
+        Creates an OAuth authorization grant and returns the grant response for
+        completing the authorization flow.
 
         Args:
           allowed: Whether the grant is allowed
@@ -252,7 +253,7 @@ class OAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> str:
         """
         OAuth 2.0 authorization endpoint for the authorization code flow
 
@@ -279,7 +280,7 @@ class OAuthResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "text/html", **(extra_headers or {})}
         return self._get(
             "/oauth/authorize",
             options=make_request_options(
@@ -300,7 +301,7 @@ class OAuthResource(SyncAPIResource):
                     oauth_retrieve_authorize_params.OAuthRetrieveAuthorizeParams,
                 ),
             ),
-            cast_to=NoneType,
+            cast_to=str,
         )
 
     def retrieve_jwks(
@@ -457,7 +458,8 @@ class AsyncOAuthResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthGrantsResponse:
         """
-        Create an OAuth authorization grant
+        Creates an OAuth authorization grant and returns the grant response for
+        completing the authorization flow.
 
         Args:
           allowed: Whether the grant is allowed
@@ -608,7 +610,7 @@ class AsyncOAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> str:
         """
         OAuth 2.0 authorization endpoint for the authorization code flow
 
@@ -635,7 +637,7 @@ class AsyncOAuthResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {"Accept": "text/html", **(extra_headers or {})}
         return await self._get(
             "/oauth/authorize",
             options=make_request_options(
@@ -656,7 +658,7 @@ class AsyncOAuthResource(AsyncAPIResource):
                     oauth_retrieve_authorize_params.OAuthRetrieveAuthorizeParams,
                 ),
             ),
-            cast_to=NoneType,
+            cast_to=str,
         )
 
     async def retrieve_jwks(

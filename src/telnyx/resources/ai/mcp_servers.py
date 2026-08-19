@@ -61,7 +61,8 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Create a new MCP server.
+        Creates a new MCP server configuration on your account and returns the created
+        server.
 
         Args:
           extra_headers: Send extra headers
@@ -142,7 +143,7 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Update an existing MCP server.
+        Updates the specified MCP server's configuration and returns the updated server.
 
         Args:
           extra_headers: Send extra headers
@@ -190,7 +191,8 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPaginationTopLevelArray[McpServer]:
         """
-        Retrieve a list of MCP servers.
+        Returns a paginated list of the MCP servers configured on your account, with
+        optional filtering by type or URL.
 
         Args:
           page_number: Page number to retrieve (1-based).
@@ -242,7 +244,7 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a specific MCP server.
+        Permanently deletes the specified MCP server configuration from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -301,7 +303,8 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Create a new MCP server.
+        Creates a new MCP server configuration on your account and returns the created
+        server.
 
         Args:
           extra_headers: Send extra headers
@@ -382,7 +385,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Update an existing MCP server.
+        Updates the specified MCP server's configuration and returns the updated server.
 
         Args:
           extra_headers: Send extra headers
@@ -430,7 +433,8 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[McpServer, AsyncDefaultFlatPaginationTopLevelArray[McpServer]]:
         """
-        Retrieve a list of MCP servers.
+        Returns a paginated list of the MCP servers configured on your account, with
+        optional filtering by type or URL.
 
         Args:
           page_number: Page number to retrieve (1-based).
@@ -482,7 +486,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a specific MCP server.
+        Permanently deletes the specified MCP server configuration from your account.
 
         Args:
           extra_headers: Send extra headers

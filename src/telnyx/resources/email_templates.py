@@ -162,7 +162,8 @@ class EmailTemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
         """
-        Updates one or more template fields.
+        Updates one or more fields of the specified email template and returns the
+        updated template.
 
         Args:
           html_body: Liquid template HTML body.
@@ -512,7 +513,8 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
         """
-        Updates one or more template fields.
+        Updates one or more fields of the specified email template and returns the
+        updated template.
 
         Args:
           html_body: Liquid template HTML body.

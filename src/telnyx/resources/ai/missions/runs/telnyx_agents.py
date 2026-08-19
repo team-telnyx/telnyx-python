@@ -54,8 +54,10 @@ class TelnyxAgentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxAgentListResponse:
-        """
-        List all Telnyx agents linked to a run
+        """Returns the Telnyx agents currently linked to the specified run.
+
+        Linked agents
+        participate in executing the run's plan.
 
         Args:
           extra_headers: Send extra headers
@@ -136,7 +138,8 @@ class TelnyxAgentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Unlink a Telnyx agent from a run
+        Unlinks the specified Telnyx agent from the run so it no longer participates in
+        execution. The run itself and its history are unaffected.
 
         Args:
           extra_headers: Send extra headers
@@ -200,8 +203,10 @@ class AsyncTelnyxAgentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxAgentListResponse:
-        """
-        List all Telnyx agents linked to a run
+        """Returns the Telnyx agents currently linked to the specified run.
+
+        Linked agents
+        participate in executing the run's plan.
 
         Args:
           extra_headers: Send extra headers
@@ -284,7 +289,8 @@ class AsyncTelnyxAgentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Unlink a Telnyx agent from a run
+        Unlinks the specified Telnyx agent from the run so it no longer participates in
+        execution. The run itself and its history are unaffected.
 
         Args:
           extra_headers: Send extra headers

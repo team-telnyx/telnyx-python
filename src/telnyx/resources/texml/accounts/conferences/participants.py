@@ -64,7 +64,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Gets conference participant resource
+        Returns a single conference participant resource by call SID or participant
+        label.
 
         Args:
           extra_headers: Send extra headers
@@ -121,7 +122,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Updates a conference participant
+        Updates the specified conference participant, for example muting or holding
+        them, and returns the updated participant.
 
         Args:
           announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
@@ -213,7 +215,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a conference participant
+        Removes the specified participant from the conference, ending their leg of the
+        call.
 
         Args:
           extra_headers: Send extra headers
@@ -308,7 +311,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantParticipantsResponse:
         """
-        Dials a new conference participant
+        Dials a new participant into the specified conference and returns the created
+        participant resource.
 
         Args:
           amd_status_callback: The URL the result of answering machine detection will be sent to.
@@ -545,7 +549,7 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantRetrieveParticipantsResponse:
         """
-        Lists conference participants
+        Returns the list of participants currently in the specified conference.
 
         Args:
           extra_headers: Send extra headers
@@ -609,7 +613,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Gets conference participant resource
+        Returns a single conference participant resource by call SID or participant
+        label.
 
         Args:
           extra_headers: Send extra headers
@@ -666,7 +671,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Updates a conference participant
+        Updates the specified conference participant, for example muting or holding
+        them, and returns the updated participant.
 
         Args:
           announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
@@ -758,7 +764,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a conference participant
+        Removes the specified participant from the conference, ending their leg of the
+        call.
 
         Args:
           extra_headers: Send extra headers
@@ -853,7 +860,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantParticipantsResponse:
         """
-        Dials a new conference participant
+        Dials a new participant into the specified conference and returns the created
+        participant resource.
 
         Args:
           amd_status_callback: The URL the result of answering machine detection will be sent to.
@@ -1090,7 +1098,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantRetrieveParticipantsResponse:
         """
-        Lists conference participants
+        Returns the list of participants currently in the specified conference.
 
         Args:
           extra_headers: Send extra headers

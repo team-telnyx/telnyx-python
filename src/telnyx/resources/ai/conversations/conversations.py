@@ -122,7 +122,8 @@ class ConversationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Conversation:
         """
-        Create a new AI Conversation.
+        Creates a new AI conversation, the container for messages exchanged with an
+        assistant, and returns the created conversation.
 
         Args:
           metadata: Metadata associated with the conversation. Set `ai_disabled` to `true` to create
@@ -503,7 +504,8 @@ class AsyncConversationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Conversation:
         """
-        Create a new AI Conversation.
+        Creates a new AI conversation, the container for messages exchanged with an
+        assistant, and returns the created conversation.
 
         Args:
           metadata: Metadata associated with the conversation. Set `ai_disabled` to `true` to create

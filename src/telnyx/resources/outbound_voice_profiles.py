@@ -87,7 +87,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileCreateResponse:
         """
-        Create an outbound voice profile.
+        Creates a new outbound voice profile defining calling permissions, destinations,
+        and limits for outbound calls, and returns the created profile.
 
         Args:
           name: A user-supplied name to help with organization.
@@ -448,7 +449,8 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileCreateResponse:
         """
-        Create an outbound voice profile.
+        Creates a new outbound voice profile defining calling permissions, destinations,
+        and limits for outbound calls, and returns the created profile.
 
         Args:
           name: A user-supplied name to help with organization.

@@ -647,7 +647,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnqueueResponse:
         """
-        Put the call in a queue.
+        Places the call into a queue, where it waits until it is removed or bridged to
+        another leg. Queue behavior is configured through the request body.
 
         Args:
           queue_name: The name of the queue the call should be put in. If a queue with a given name
@@ -1409,8 +1410,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveQueueResponse:
-        """
-        Removes the call from a queue.
+        """Removes the call from the queue it is currently waiting in.
+
+        The call remains
+        active and can be directed with further call commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -3344,8 +3347,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopAIAssistantResponse:
-        """
-        Stop an AI assistant on the call.
+        """Stops the AI assistant currently engaged on the call.
+
+        The call remains active
+        and can continue with other call control commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -3825,8 +3830,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopTranscriptionResponse:
-        """
-        Stop real-time transcription.
+        """Stops real-time transcription on the call.
+
+        Transcription webhooks cease once the
+        command takes effect; the call itself is unaffected.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -4211,8 +4218,11 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateClientStateResponse:
-        """
-        Updates client state
+        """Updates the client state associated with the call.
+
+        Client state is an opaque
+        value echoed back in subsequent webhooks for the call, letting you correlate
+        events with your application's state.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -4751,7 +4761,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnqueueResponse:
         """
-        Put the call in a queue.
+        Places the call into a queue, where it waits until it is removed or bridged to
+        another leg. Queue behavior is configured through the request body.
 
         Args:
           queue_name: The name of the queue the call should be put in. If a queue with a given name
@@ -5513,8 +5524,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveQueueResponse:
-        """
-        Removes the call from a queue.
+        """Removes the call from the queue it is currently waiting in.
+
+        The call remains
+        active and can be directed with further call commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -7448,8 +7461,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopAIAssistantResponse:
-        """
-        Stop an AI assistant on the call.
+        """Stops the AI assistant currently engaged on the call.
+
+        The call remains active
+        and can continue with other call control commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -7929,8 +7944,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopTranscriptionResponse:
-        """
-        Stop real-time transcription.
+        """Stops real-time transcription on the call.
+
+        Transcription webhooks cease once the
+        command takes effect; the call itself is unaffected.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -8317,8 +8334,11 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateClientStateResponse:
-        """
-        Updates client state
+        """Updates the client state associated with the call.
+
+        Client state is an opaque
+        value echoed back in subsequent webhooks for the call, letting you correlate
+        events with your application's state.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid

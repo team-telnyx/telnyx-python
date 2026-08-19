@@ -56,7 +56,7 @@ class OAuthGrantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthGrantRetrieveResponse:
         """
-        Retrieve a single OAuth grant by ID
+        Returns the details of a single OAuth grant on your account by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -136,7 +136,8 @@ class OAuthGrantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthGrantDeleteResponse:
         """
-        Revoke an OAuth grant
+        Revokes the specified OAuth grant, withdrawing the access previously granted to
+        the client.
 
         Args:
           extra_headers: Send extra headers
@@ -190,7 +191,7 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthGrantRetrieveResponse:
         """
-        Retrieve a single OAuth grant by ID
+        Returns the details of a single OAuth grant on your account by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -270,7 +271,8 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthGrantDeleteResponse:
         """
-        Revoke an OAuth grant
+        Revokes the specified OAuth grant, withdrawing the access previously granted to
+        the client.
 
         Args:
           extra_headers: Send extra headers

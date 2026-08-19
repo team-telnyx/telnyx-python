@@ -63,7 +63,8 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberExtensionCreateResponse:
         """
-        Creates a new phone number extension.
+        Creates a phone number extension on the porting order, mapping extension ranges
+        to one of the order's phone numbers.
 
         Args:
           activation_ranges: Specifies the activation ranges for this porting phone number extension. The
@@ -172,7 +173,7 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberExtensionDeleteResponse:
         """
-        Deletes a phone number extension.
+        Deletes the specified phone number extension from the porting order.
 
         Args:
           extra_headers: Send extra headers
@@ -237,7 +238,8 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberExtensionCreateResponse:
         """
-        Creates a new phone number extension.
+        Creates a phone number extension on the porting order, mapping extension ranges
+        to one of the order's phone numbers.
 
         Args:
           activation_ranges: Specifies the activation ranges for this porting phone number extension. The
@@ -346,7 +348,7 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberExtensionDeleteResponse:
         """
-        Deletes a phone number extension.
+        Deletes the specified phone number extension from the porting order.
 
         Args:
           extra_headers: Send extra headers

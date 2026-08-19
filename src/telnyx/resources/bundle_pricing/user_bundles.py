@@ -108,7 +108,7 @@ class UserBundlesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleRetrieveResponse:
         """
-        Retrieves a user bundle by its ID.
+        Returns the details of a single user bundle on your account by its ID.
 
         Args:
           user_bundle_id: User bundle's ID, this is used to identify the user bundle in the API.
@@ -149,7 +149,8 @@ class UserBundlesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[UserBundle]:
         """
-        Get a paginated list of user bundles.
+        Returns a paginated list of the bundles active on your account, with support for
+        filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Supports filtering by
@@ -200,7 +201,8 @@ class UserBundlesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleDeactivateResponse:
         """
-        Deactivates a user bundle by its ID.
+        Deactivates the specified user bundle on your account and returns the
+        deactivated bundle.
 
         Args:
           user_bundle_id: User bundle's ID, this is used to identify the user bundle in the API.
@@ -388,7 +390,7 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleRetrieveResponse:
         """
-        Retrieves a user bundle by its ID.
+        Returns the details of a single user bundle on your account by its ID.
 
         Args:
           user_bundle_id: User bundle's ID, this is used to identify the user bundle in the API.
@@ -429,7 +431,8 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[UserBundle, AsyncDefaultFlatPagination[UserBundle]]:
         """
-        Get a paginated list of user bundles.
+        Returns a paginated list of the bundles active on your account, with support for
+        filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Supports filtering by
@@ -480,7 +483,8 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleDeactivateResponse:
         """
-        Deactivates a user bundle by its ID.
+        Deactivates the specified user bundle on your account and returns the
+        deactivated bundle.
 
         Args:
           user_bundle_id: User bundle's ID, this is used to identify the user bundle in the API.

@@ -12,6 +12,10 @@ __all__ = ["ProductRetrieveParams"]
 
 class ProductRetrieveParams(TypedDict, total=False):
     filter_country_iso: Annotated[Optional[str], PropertyInfo(alias="filter[country_iso]")]
+    """Two-letter ISO 3166-1 alpha-2 country code (uppercase, e.g.
+
+    US) to filter pricing to a single country.
+    """
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
     """Page number (1-based)."""

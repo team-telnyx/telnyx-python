@@ -104,7 +104,7 @@ class MediaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaUpdateResponse:
         """
-        Updates a stored media file.
+        Updates the specified stored media file and returns the updated resource.
 
         Args:
           media_url: The URL where the media to be stored in Telnyx network is currently hosted. The
@@ -158,7 +158,8 @@ class MediaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaListResponse:
         """
-        Returns a list of stored media files.
+        Returns a list of the media files stored on your account, with support for
+        filtering.
 
         Args:
           filter:
@@ -197,7 +198,7 @@ class MediaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a stored media file.
+        Permanently deletes the specified media file from storage.
 
         Args:
           extra_headers: Send extra headers
@@ -231,7 +232,7 @@ class MediaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
-        Downloads a stored media file.
+        Downloads the raw content of the specified stored media file.
 
         Args:
           extra_headers: Send extra headers
@@ -380,7 +381,7 @@ class AsyncMediaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaUpdateResponse:
         """
-        Updates a stored media file.
+        Updates the specified stored media file and returns the updated resource.
 
         Args:
           media_url: The URL where the media to be stored in Telnyx network is currently hosted. The
@@ -434,7 +435,8 @@ class AsyncMediaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaListResponse:
         """
-        Returns a list of stored media files.
+        Returns a list of the media files stored on your account, with support for
+        filtering.
 
         Args:
           filter:
@@ -473,7 +475,7 @@ class AsyncMediaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a stored media file.
+        Permanently deletes the specified media file from storage.
 
         Args:
           extra_headers: Send extra headers
@@ -507,7 +509,7 @@ class AsyncMediaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
-        Downloads a stored media file.
+        Downloads the raw content of the specified stored media file.
 
         Args:
           extra_headers: Send extra headers

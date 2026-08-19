@@ -62,7 +62,8 @@ class PhoneNumberBlocksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockCreateResponse:
         """
-        Creates a new phone number block.
+        Creates a phone number block on the porting order, representing a contiguous
+        range of phone numbers to be ported together.
 
         Args:
           activation_ranges: Specifies the activation ranges for this porting phone number block. The
@@ -164,7 +165,7 @@ class PhoneNumberBlocksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockDeleteResponse:
         """
-        Deletes a phone number block.
+        Deletes the specified phone number block from the porting order.
 
         Args:
           extra_headers: Send extra headers
@@ -226,7 +227,8 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockCreateResponse:
         """
-        Creates a new phone number block.
+        Creates a phone number block on the porting order, representing a contiguous
+        range of phone numbers to be ported together.
 
         Args:
           activation_ranges: Specifies the activation ranges for this porting phone number block. The
@@ -328,7 +330,7 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockDeleteResponse:
         """
-        Deletes a phone number block.
+        Deletes the specified phone number block from the porting order.
 
         Args:
           extra_headers: Send extra headers

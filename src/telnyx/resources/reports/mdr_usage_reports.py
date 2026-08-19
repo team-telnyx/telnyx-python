@@ -191,7 +191,7 @@ class MdrUsageReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportDeleteResponse:
         """
-        Delete messaging usage report by id
+        Permanently deletes the specified messaging usage report by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -427,7 +427,7 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportDeleteResponse:
         """
-        Delete messaging usage report by id
+        Permanently deletes the specified messaging usage report by its identifier.
 
         Args:
           extra_headers: Send extra headers

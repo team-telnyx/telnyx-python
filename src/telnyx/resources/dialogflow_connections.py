@@ -157,7 +157,8 @@ class DialogflowConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DialogflowConnectionResponse:
         """
-        Updates a stored Dialogflow Connection.
+        Updates the stored Dialogflow connection for the specified connection and
+        returns the updated configuration.
 
         Args:
           service_account: The JSON map to connect your Dialoglow account.
@@ -211,7 +212,7 @@ class DialogflowConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a stored Dialogflow Connection.
+        Deletes the stored Dialogflow connection for the specified connection.
 
         Args:
           extra_headers: Send extra headers
@@ -367,7 +368,8 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DialogflowConnectionResponse:
         """
-        Updates a stored Dialogflow Connection.
+        Updates the stored Dialogflow connection for the specified connection and
+        returns the updated configuration.
 
         Args:
           service_account: The JSON map to connect your Dialoglow account.
@@ -421,7 +423,7 @@ class AsyncDialogflowConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a stored Dialogflow Connection.
+        Deletes the stored Dialogflow connection for the specified connection.
 
         Args:
           extra_headers: Send extra headers

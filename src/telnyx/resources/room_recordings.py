@@ -147,8 +147,10 @@ class RoomRecordingsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Synchronously delete a Room Recording.
+        """Synchronously deletes the specified video room recording.
+
+        The recording's media
+        is removed permanently.
 
         Args:
           extra_headers: Send extra headers
@@ -348,8 +350,10 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Synchronously delete a Room Recording.
+        """Synchronously deletes the specified video room recording.
+
+        The recording's media
+        is removed permanently.
 
         Args:
           extra_headers: Send extra headers

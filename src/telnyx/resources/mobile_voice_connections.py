@@ -75,7 +75,8 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionCreateResponse:
         """
-        Create a new mobile voice connection.
+        Creates a new mobile voice connection with the provided configuration and
+        returns the created connection.
 
         Args:
           extra_headers: Send extra headers
@@ -329,7 +330,8 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobileVoiceConnectionCreateResponse:
         """
-        Create a new mobile voice connection.
+        Creates a new mobile voice connection with the provided configuration and
+        returns the created connection.
 
         Args:
           extra_headers: Send extra headers

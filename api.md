@@ -211,6 +211,7 @@ from telnyx.types import (
     OAuthGrantsResponse,
     OAuthIntrospectResponse,
     OAuthRegisterResponse,
+    OAuthRetrieveAuthorizeResponse,
     OAuthRetrieveJwksResponse,
     OAuthTokenResponse,
 )
@@ -222,7 +223,7 @@ Methods:
 - <code title="post /oauth/grants">client.oauth.<a href="./src/telnyx/resources/oauth.py">grants</a>(\*\*<a href="src/telnyx/types/oauth_grants_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_grants_response.py">OAuthGrantsResponse</a></code>
 - <code title="post /oauth/introspect">client.oauth.<a href="./src/telnyx/resources/oauth.py">introspect</a>(\*\*<a href="src/telnyx/types/oauth_introspect_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_introspect_response.py">OAuthIntrospectResponse</a></code>
 - <code title="post /oauth/register">client.oauth.<a href="./src/telnyx/resources/oauth.py">register</a>(\*\*<a href="src/telnyx/types/oauth_register_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_register_response.py">OAuthRegisterResponse</a></code>
-- <code title="get /oauth/authorize">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve_authorize</a>(\*\*<a href="src/telnyx/types/oauth_retrieve_authorize_params.py">params</a>) -> None</code>
+- <code title="get /oauth/authorize">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve_authorize</a>(\*\*<a href="src/telnyx/types/oauth_retrieve_authorize_params.py">params</a>) -> str</code>
 - <code title="get /oauth/jwks">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve_jwks</a>() -> <a href="./src/telnyx/types/oauth_retrieve_jwks_response.py">OAuthRetrieveJwksResponse</a></code>
 - <code title="post /oauth/token">client.oauth.<a href="./src/telnyx/resources/oauth.py">token</a>(\*\*<a href="src/telnyx/types/oauth_token_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_token_response.py">OAuthTokenResponse</a></code>
 

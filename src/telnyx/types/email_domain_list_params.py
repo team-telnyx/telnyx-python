@@ -19,12 +19,19 @@ class EmailDomainListParams(TypedDict, total=False):
     """Filter by profile UUID"""
 
     filter_status: Annotated[EmailDomainStatus, PropertyInfo(alias="filter[status]")]
+    """
+    Filter domains by verification status: pending, verifying, verified, failed,
+    degraded, or suspended.
+    """
 
     filter_type: Annotated[EmailDomainType, PropertyInfo(alias="filter[type]")]
+    """Filter domains by type: custom, shared, or shared_inbound."""
 
     filter_usable_for_inbound: Annotated[bool, PropertyInfo(alias="filter[usable_for_inbound]")]
+    """Filter domains by whether they can currently receive inbound email."""
 
     filter_usable_for_sending: Annotated[bool, PropertyInfo(alias="filter[usable_for_sending]")]
+    """Filter domains by whether they can currently be used to send email."""
 
     page_after: Annotated[str, PropertyInfo(alias="page[after]")]
     """Cursor for records after the provided value (cursor pagination)"""

@@ -151,7 +151,8 @@ class ScheduledEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
-        Retrieve a scheduled event by event ID
+        Returns the details of a single scheduled event configured for the specified
+        assistant.
 
         Args:
           extra_headers: Send extra headers
@@ -406,7 +407,8 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
-        Retrieve a scheduled event by event ID
+        Returns the details of a single scheduled event configured for the specified
+        assistant.
 
         Args:
           extra_headers: Send extra headers

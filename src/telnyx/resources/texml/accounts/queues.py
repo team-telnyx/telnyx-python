@@ -58,7 +58,8 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueResource:
         """
-        Creates a new queue resource.
+        Creates a new queue resource for the account with the provided settings and
+        returns it.
 
         Args:
           friendly_name: A human readable name for the queue.
@@ -103,7 +104,7 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueResource:
         """
-        Returns a queue resource.
+        Returns a single queue resource for the account by its QueueSid.
 
         Args:
           extra_headers: Send extra headers
@@ -142,7 +143,7 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueResource:
         """
-        Updates a queue resource.
+        Updates the specified queue resource's settings and returns the updated queue.
 
         Args:
           max_size: The maximum size of the queue.
@@ -187,7 +188,8 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultPaginationForQueues[QueueResource]:
         """
-        Lists queue resources.
+        Returns a paginated list of queue resources for the account, with support for
+        filtering by creation or update dates.
 
         Args:
           date_created: Filters conferences by the creation date. Expected format is YYYY-MM-DD. Also
@@ -248,7 +250,7 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a queue resource.
+        Permanently deletes the specified queue resource from the account.
 
         Args:
           extra_headers: Send extra headers
@@ -311,7 +313,8 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueResource:
         """
-        Creates a new queue resource.
+        Creates a new queue resource for the account with the provided settings and
+        returns it.
 
         Args:
           friendly_name: A human readable name for the queue.
@@ -356,7 +359,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueResource:
         """
-        Returns a queue resource.
+        Returns a single queue resource for the account by its QueueSid.
 
         Args:
           extra_headers: Send extra headers
@@ -395,7 +398,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueResource:
         """
-        Updates a queue resource.
+        Updates the specified queue resource's settings and returns the updated queue.
 
         Args:
           max_size: The maximum size of the queue.
@@ -440,7 +443,8 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[QueueResource, AsyncDefaultPaginationForQueues[QueueResource]]:
         """
-        Lists queue resources.
+        Returns a paginated list of queue resources for the account, with support for
+        filtering by creation or update dates.
 
         Args:
           date_created: Filters conferences by the creation date. Expected format is YYYY-MM-DD. Also
@@ -501,7 +505,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a queue resource.
+        Permanently deletes the specified queue resource from the account.
 
         Args:
           extra_headers: Send extra headers

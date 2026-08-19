@@ -94,7 +94,9 @@ class AddressesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddressCreateResponse:
         """
-        Creates an address.
+        Creates a new address on your account from the provided details, for use with
+        services that require a physical address such as emergency calling and
+        regulatory compliance.
 
         Args:
           business_name: The business name associated with the address. An address must have either a
@@ -225,7 +227,8 @@ class AddressesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[Address]:
         """
-        Returns a list of your addresses.
+        Returns a paginated list of the addresses on your account, with support for
+        filtering and sorting.
 
         Args:
           filter:
@@ -290,7 +293,7 @@ class AddressesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddressDeleteResponse:
         """
-        Deletes an existing address.
+        Permanently deletes the specified address from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -371,7 +374,9 @@ class AsyncAddressesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddressCreateResponse:
         """
-        Creates an address.
+        Creates a new address on your account from the provided details, for use with
+        services that require a physical address such as emergency calling and
+        regulatory compliance.
 
         Args:
           business_name: The business name associated with the address. An address must have either a
@@ -502,7 +507,8 @@ class AsyncAddressesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Address, AsyncDefaultFlatPagination[Address]]:
         """
-        Returns a list of your addresses.
+        Returns a paginated list of the addresses on your account, with support for
+        filtering and sorting.
 
         Args:
           filter:
@@ -567,7 +573,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddressDeleteResponse:
         """
-        Deletes an existing address.
+        Permanently deletes the specified address from your account.
 
         Args:
           extra_headers: Send extra headers

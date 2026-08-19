@@ -102,7 +102,8 @@ class IPConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPConnectionCreateResponse:
         """
-        Creates an IP connection.
+        Creates a new IP-based SIP connection, which authenticates traffic by source IP
+        address.
 
         Args:
           active: Defaults to true
@@ -407,7 +408,8 @@ class IPConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[IPConnection]:
         """
-        Returns a list of your IP connections.
+        Returns a paginated list of your IP-based SIP connections, with support for
+        filtering and sorting.
 
         Args:
           filter:
@@ -471,7 +473,7 @@ class IPConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPConnectionDeleteResponse:
         """
-        Deletes an existing IP connection.
+        Permanently deletes the specified IP connection from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -549,7 +551,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPConnectionCreateResponse:
         """
-        Creates an IP connection.
+        Creates a new IP-based SIP connection, which authenticates traffic by source IP
+        address.
 
         Args:
           active: Defaults to true
@@ -854,7 +857,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IPConnection, AsyncDefaultFlatPagination[IPConnection]]:
         """
-        Returns a list of your IP connections.
+        Returns a paginated list of your IP-based SIP connections, with support for
+        filtering and sorting.
 
         Args:
           filter:
@@ -918,7 +922,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPConnectionDeleteResponse:
         """
-        Deletes an existing IP connection.
+        Permanently deletes the specified IP connection from your account.
 
         Args:
           extra_headers: Send extra headers

@@ -68,7 +68,8 @@ class NotificationChannelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelCreateResponse:
         """
-        Create a notification channel.
+        Creates a new notification channel defining where notifications are delivered,
+        and returns the created channel.
 
         Args:
           channel_destination: The destination associated with the channel type.
@@ -113,7 +114,7 @@ class NotificationChannelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelRetrieveResponse:
         """
-        Get a notification channel.
+        Returns the details of a single notification channel by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -149,7 +150,7 @@ class NotificationChannelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelUpdateResponse:
         """
-        Update a notification channel.
+        Updates the specified notification channel and returns the updated channel.
 
         Args:
           channel_destination: The destination associated with the channel type.
@@ -202,7 +203,8 @@ class NotificationChannelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[NotificationChannel]:
         """
-        List notification channels.
+        Returns a paginated list of your notification channels, the destinations that
+        receive notifications.
 
         Args:
           filter:
@@ -251,7 +253,8 @@ class NotificationChannelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelDeleteResponse:
         """
-        Delete a notification channel.
+        Deletes the specified notification channel so notifications are no longer
+        delivered to it.
 
         Args:
           extra_headers: Send extra headers
@@ -309,7 +312,8 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelCreateResponse:
         """
-        Create a notification channel.
+        Creates a new notification channel defining where notifications are delivered,
+        and returns the created channel.
 
         Args:
           channel_destination: The destination associated with the channel type.
@@ -354,7 +358,7 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelRetrieveResponse:
         """
-        Get a notification channel.
+        Returns the details of a single notification channel by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -390,7 +394,7 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelUpdateResponse:
         """
-        Update a notification channel.
+        Updates the specified notification channel and returns the updated channel.
 
         Args:
           channel_destination: The destination associated with the channel type.
@@ -443,7 +447,8 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NotificationChannel, AsyncDefaultFlatPagination[NotificationChannel]]:
         """
-        List notification channels.
+        Returns a paginated list of your notification channels, the destinations that
+        receive notifications.
 
         Args:
           filter:
@@ -492,7 +497,8 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationChannelDeleteResponse:
         """
-        Delete a notification channel.
+        Deletes the specified notification channel so notifications are no longer
+        delivered to it.
 
         Args:
           extra_headers: Send extra headers

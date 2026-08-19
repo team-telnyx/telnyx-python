@@ -119,8 +119,10 @@ class FqdnConnectionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionCreateResponse:
-        """
-        Creates a FQDN connection.
+        """Creates a new FQDN-based SIP connection.
+
+        FQDN connections authenticate by your
+        registered domain names rather than static IP addresses.
 
         Args:
           connection_name: A user-assigned name to help manage the connection.
@@ -497,7 +499,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionDeleteResponse:
         """
-        Deletes an FQDN connection.
+        Permanently deletes the specified FQDN connection from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -580,8 +582,10 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionCreateResponse:
-        """
-        Creates a FQDN connection.
+        """Creates a new FQDN-based SIP connection.
+
+        FQDN connections authenticate by your
+        registered domain names rather than static IP addresses.
 
         Args:
           connection_name: A user-assigned name to help manage the connection.
@@ -958,7 +962,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionDeleteResponse:
         """
-        Deletes an FQDN connection.
+        Permanently deletes the specified FQDN connection from your account.
 
         Args:
           extra_headers: Send extra headers

@@ -56,7 +56,8 @@ class SimCardOrderPreviewResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardOrderPreviewPreviewResponse:
         """
-        Preview SIM card order purchases.
+        Previews a SIM card order purchase, returning estimated costs and details before
+        you place the order. The preview is processed asynchronously.
 
         Args:
           address_id: Uniquely identifies the address for the order.
@@ -123,7 +124,8 @@ class AsyncSimCardOrderPreviewResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardOrderPreviewPreviewResponse:
         """
-        Preview SIM card order purchases.
+        Previews a SIM card order purchase, returning estimated costs and details before
+        you place the order. The preview is processed asynchronously.
 
         Args:
           address_id: Uniquely identifies the address for the order.

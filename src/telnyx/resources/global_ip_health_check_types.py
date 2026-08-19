@@ -51,7 +51,10 @@ class GlobalIPHealthCheckTypesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckTypeListResponse:
-        """List all Global IP Health check types."""
+        """
+        Returns the health check types available for Global IPs, for use when creating
+        Global IP health checks.
+        """
         return self._get(
             "/global_ip_health_check_types",
             options=make_request_options(
@@ -93,7 +96,10 @@ class AsyncGlobalIPHealthCheckTypesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckTypeListResponse:
-        """List all Global IP Health check types."""
+        """
+        Returns the health check types available for Global IPs, for use when creating
+        Global IP health checks.
+        """
         return await self._get(
             "/global_ip_health_check_types",
             options=make_request_options(

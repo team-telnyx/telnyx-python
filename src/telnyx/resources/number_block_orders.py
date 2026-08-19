@@ -60,7 +60,8 @@ class NumberBlockOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderCreateResponse:
         """
-        Creates a phone number block order.
+        Creates an order for a block of consecutive phone numbers and returns the
+        created order. Track fulfillment through the order's status.
 
         Args:
           range: The phone number range included in the block.
@@ -219,7 +220,8 @@ class AsyncNumberBlockOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderCreateResponse:
         """
-        Creates a phone number block order.
+        Creates an order for a block of consecutive phone numbers and returns the
+        created order. Track fulfillment through the order's status.
 
         Args:
           range: The phone number range included in the block.

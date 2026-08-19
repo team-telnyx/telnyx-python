@@ -62,7 +62,8 @@ class ActivationJobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActivationJobRetrieveResponse:
         """
-        Returns a porting activation job.
+        Returns the details of a single activation job for the porting order, including
+        its current status.
 
         Args:
           extra_headers: Send extra headers
@@ -212,7 +213,8 @@ class AsyncActivationJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActivationJobRetrieveResponse:
         """
-        Returns a porting activation job.
+        Returns the details of a single activation job for the porting order, including
+        its current status.
 
         Args:
           extra_headers: Send extra headers

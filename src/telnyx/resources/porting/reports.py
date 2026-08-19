@@ -104,7 +104,8 @@ class ReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportRetrieveResponse:
         """
-        Retrieve a specific report generated.
+        Returns the details of a previously requested porting report, including its
+        status and parameters.
 
         Args:
           extra_headers: Send extra headers
@@ -252,7 +253,8 @@ class AsyncReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportRetrieveResponse:
         """
-        Retrieve a specific report generated.
+        Returns the details of a previously requested porting report, including its
+        status and parameters.
 
         Args:
           extra_headers: Send extra headers

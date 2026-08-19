@@ -110,7 +110,8 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordRetrieveResponse:
         """
-        Get a specific customer service record.
+        Returns the details of a single customer service record (CSR) request, including
+        its status and any retrieved record data.
 
         Args:
           extra_headers: Send extra headers
@@ -151,7 +152,8 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[CustomerServiceRecord]:
         """
-        List customer service records.
+        Returns a paginated list of your customer service record (CSR) requests, with
+        support for filtering and sorting.
 
         Args:
           filter:
@@ -307,7 +309,8 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordRetrieveResponse:
         """
-        Get a specific customer service record.
+        Returns the details of a single customer service record (CSR) request, including
+        its status and any retrieved record data.
 
         Args:
           extra_headers: Send extra headers
@@ -348,7 +351,8 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomerServiceRecord, AsyncDefaultFlatPagination[CustomerServiceRecord]]:
         """
-        List customer service records.
+        Returns a paginated list of your customer service record (CSR) requests, with
+        support for filtering and sorting.
 
         Args:
           filter:

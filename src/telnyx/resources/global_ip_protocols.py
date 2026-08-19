@@ -51,7 +51,10 @@ class GlobalIPProtocolsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPProtocolListResponse:
-        """List all Global IP Protocols"""
+        """
+        Returns the network protocols supported for Global IP traffic, for use when
+        configuring Global IP resources.
+        """
         return self._get(
             "/global_ip_protocols",
             options=make_request_options(
@@ -93,7 +96,10 @@ class AsyncGlobalIPProtocolsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPProtocolListResponse:
-        """List all Global IP Protocols"""
+        """
+        Returns the network protocols supported for Global IP traffic, for use when
+        configuring Global IP resources.
+        """
         return await self._get(
             "/global_ip_protocols",
             options=make_request_options(

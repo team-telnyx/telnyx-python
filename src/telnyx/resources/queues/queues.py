@@ -72,12 +72,12 @@ class QueuesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueCreateResponse:
-        """Create a new call queue.
+        """
+        Creates a new call queue with the provided configuration and returns the created
+        queue.
 
         Args:
-          queue_name: The name of the queue.
-
-        Must be between 1 and 255 characters.
+          queue_name: The name of the queue. Must be between 1 and 255 characters.
 
           max_size: The maximum number of calls allowed in the queue.
 
@@ -116,7 +116,8 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueRetrieveResponse:
         """
-        Retrieve an existing call queue
+        Returns the details of an existing call queue, including its current
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -233,7 +234,7 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an existing call queue.
+        Permanently deletes the specified call queue from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -295,12 +296,12 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueCreateResponse:
-        """Create a new call queue.
+        """
+        Creates a new call queue with the provided configuration and returns the created
+        queue.
 
         Args:
-          queue_name: The name of the queue.
-
-        Must be between 1 and 255 characters.
+          queue_name: The name of the queue. Must be between 1 and 255 characters.
 
           max_size: The maximum number of calls allowed in the queue.
 
@@ -339,7 +340,8 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueRetrieveResponse:
         """
-        Retrieve an existing call queue
+        Returns the details of an existing call queue, including its current
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -456,7 +458,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an existing call queue.
+        Permanently deletes the specified call queue from your account.
 
         Args:
           extra_headers: Send extra headers

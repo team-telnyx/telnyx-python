@@ -63,7 +63,9 @@ class GlobalIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPCreateResponse:
         """
-        Create a Global IP.
+        Requests creation of a new Global IP, a static IP address announced from the
+        Telnyx network. Provisioning is asynchronous, so the request is accepted and the
+        Global IP becomes available once provisioning completes.
 
         Args:
           description: A user specified description for the address.
@@ -108,7 +110,8 @@ class GlobalIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPRetrieveResponse:
         """
-        Retrieve a Global IP.
+        Returns the details of a single Global IP, including its address and current
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -142,7 +145,8 @@ class GlobalIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[GlobalIP]:
         """
-        List all Global IPs.
+        Returns a paginated list of the Global IPs on your account, including each IP's
+        address and configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -184,7 +188,7 @@ class GlobalIPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPDeleteResponse:
         """
-        Delete a Global IP.
+        Deletes the specified Global IP and releases its address back to Telnyx.
 
         Args:
           extra_headers: Send extra headers
@@ -242,7 +246,9 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPCreateResponse:
         """
-        Create a Global IP.
+        Requests creation of a new Global IP, a static IP address announced from the
+        Telnyx network. Provisioning is asynchronous, so the request is accepted and the
+        Global IP becomes available once provisioning completes.
 
         Args:
           description: A user specified description for the address.
@@ -287,7 +293,8 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPRetrieveResponse:
         """
-        Retrieve a Global IP.
+        Returns the details of a single Global IP, including its address and current
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -321,7 +328,8 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GlobalIP, AsyncDefaultFlatPagination[GlobalIP]]:
         """
-        List all Global IPs.
+        Returns a paginated list of the Global IPs on your account, including each IP's
+        address and configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -363,7 +371,7 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPDeleteResponse:
         """
-        Delete a Global IP.
+        Deletes the specified Global IP and releases its address back to Telnyx.
 
         Args:
           extra_headers: Send extra headers

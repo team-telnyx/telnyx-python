@@ -74,7 +74,8 @@ class UsersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserRetrieveResponse:
         """
-        Returns a user in your organization.
+        Returns the details of a user in your organization, optionally including the
+        groups the user belongs to.
 
         Args:
           include_groups: When set to true, includes the groups array for each user in the response. The
@@ -243,7 +244,8 @@ class AsyncUsersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserRetrieveResponse:
         """
-        Returns a user in your organization.
+        Returns the details of a user in your organization, optionally including the
+        groups the user belongs to.
 
         Args:
           include_groups: When set to true, includes the groups array for each user in the response. The
