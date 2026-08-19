@@ -383,6 +383,18 @@ class TestVersions:
                                 "value": "value",
                             }
                         ],
+                        "messages": [
+                            {
+                                "content": "Let me look that up for you.",
+                                "type": "request_start",
+                                "timing_ms": 100,
+                            },
+                            {
+                                "content": "Still working on that.",
+                                "timing_ms": 5000,
+                                "type": "request_response_delayed",
+                            },
+                        ],
                         "method": "GET",
                         "path_parameters": {
                             "properties": {"id": "bar"},
@@ -1018,6 +1030,18 @@ class TestAsyncVersions:
                                 "name": "name",
                                 "value": "value",
                             }
+                        ],
+                        "messages": [
+                            {
+                                "content": "Let me look that up for you.",
+                                "type": "request_start",
+                                "timing_ms": 100,
+                            },
+                            {
+                                "content": "Still working on that.",
+                                "timing_ms": 5000,
+                                "type": "request_response_delayed",
+                            },
                         ],
                         "method": "GET",
                         "path_parameters": {
