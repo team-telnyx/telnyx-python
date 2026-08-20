@@ -9,6 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncCloudfsCursorPagination, AsyncCloudfsCursorPagination
 from telnyx.types.storage import (
     CloudfListResponse,
     CloudfsFilesystemResponseWrapper,
@@ -158,7 +159,7 @@ class TestCloudfs:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         cloudf = client.storage.cloudfs.list()
-        assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+        assert_matches_type(SyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -172,7 +173,7 @@ class TestCloudfs:
             page_limit=1,
             sort="created_at",
         )
-        assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+        assert_matches_type(SyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -182,7 +183,7 @@ class TestCloudfs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudf = response.parse()
-        assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+        assert_matches_type(SyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -192,7 +193,7 @@ class TestCloudfs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudf = response.parse()
-            assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+            assert_matches_type(SyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -381,7 +382,7 @@ class TestAsyncCloudfs:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         cloudf = await async_client.storage.cloudfs.list()
-        assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+        assert_matches_type(AsyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -395,7 +396,7 @@ class TestAsyncCloudfs:
             page_limit=1,
             sort="created_at",
         )
-        assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+        assert_matches_type(AsyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -405,7 +406,7 @@ class TestAsyncCloudfs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudf = await response.parse()
-        assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+        assert_matches_type(AsyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -415,7 +416,7 @@ class TestAsyncCloudfs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudf = await response.parse()
-            assert_matches_type(CloudfListResponse, cloudf, path=["response"])
+            assert_matches_type(AsyncCloudfsCursorPagination[CloudfListResponse], cloudf, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

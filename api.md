@@ -595,7 +595,7 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="get /ai/conversation_histories">client.ai.<a href="./src/telnyx/resources/ai/ai.py">retrieve_conversation_histories</a>(\*\*<a href="src/telnyx/types/ai_retrieve_conversation_histories_params.py">params</a>) -> <a href="./src/telnyx/types/ai_retrieve_conversation_histories_response.py">AIRetrieveConversationHistoriesResponse</a></code>
+- <code title="get /ai/conversation_histories">client.ai.<a href="./src/telnyx/resources/ai/ai.py">retrieve_conversation_histories</a>(\*\*<a href="src/telnyx/types/ai_retrieve_conversation_histories_params.py">params</a>) -> <a href="./src/telnyx/types/ai_retrieve_conversation_histories_response.py">SyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse]</a></code>
 - <code title="post /ai/summarize">client.ai.<a href="./src/telnyx/resources/ai/ai.py">summarize</a>(\*\*<a href="src/telnyx/types/ai_summarize_params.py">params</a>) -> <a href="./src/telnyx/types/ai_summarize_response.py">AISummarizeResponse</a></code>
 
 ## Assistants
@@ -893,7 +893,7 @@ Methods:
 - <code title="get /ai/collections">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">list</a>(\*\*<a href="src/telnyx/types/ai/collection_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection.py">SyncDefaultFlatPagination[Collection]</a></code>
 - <code title="delete /ai/collections/{uuid}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">delete</a>(uuid) -> None</code>
 - <code title="get /ai/collections/{uuid}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve_by_id</a>(uuid) -> <a href="./src/telnyx/types/ai/collection_envelope.py">CollectionEnvelope</a></code>
-- <code title="get /ai/collections/{slug}/documents">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve_documents</a>(slug, \*\*<a href="src/telnyx/types/ai/collection_retrieve_documents_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection_retrieve_documents_response.py">CollectionRetrieveDocumentsResponse</a></code>
+- <code title="get /ai/collections/{slug}/documents">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve_documents</a>(slug, \*\*<a href="src/telnyx/types/ai/collection_retrieve_documents_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection_retrieve_documents_response.py">SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse]</a></code>
 
 ### Settings
 
@@ -4636,7 +4636,7 @@ Methods:
 - <code title="post /storage/cloudfs">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">create</a>(\*\*<a href="src/telnyx/types/storage/cloudf_create_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_response_wrapper.py">CloudfsFilesystemResponseWrapper</a></code>
 - <code title="get /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
 - <code title="patch /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">update</a>(id, \*\*<a href="src/telnyx/types/storage/cloudf_update_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
-- <code title="get /storage/cloudfs">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">list</a>(\*\*<a href="src/telnyx/types/storage/cloudf_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudf_list_response.py">CloudfListResponse</a></code>
+- <code title="get /storage/cloudfs">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">list</a>(\*\*<a href="src/telnyx/types/storage/cloudf_list_params.py">params</a>) -> <a href="./src/telnyx/types/storage/cloudf_list_response.py">SyncCloudfsCursorPagination[CloudfListResponse]</a></code>
 - <code title="delete /storage/cloudfs/{id}">client.storage.cloudfs.<a href="./src/telnyx/resources/storage/cloudfs/cloudfs.py">delete</a>(id) -> <a href="./src/telnyx/types/storage/cloudfs_filesystem_detail_response_wrapper.py">CloudfsFilesystemDetailResponseWrapper</a></code>
 
 ### Actions
@@ -6297,7 +6297,7 @@ Methods:
 - <code title="get /email_blocks/{id}">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_block_response.py">EmailBlockResponse</a></code>
 - <code title="get /email_blocks">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">list</a>(\*\*<a href="src/telnyx/types/email_block_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_block.py">SyncDefaultFlatPagination[EmailBlock]</a></code>
 - <code title="delete /email_blocks/{id}">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">delete</a>(id) -> <a href="./src/telnyx/types/email_block_response.py">EmailBlockResponse</a></code>
-- <code title="get /email_blocks/{id}/events">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve_events</a>(id, \*\*<a href="src/telnyx/types/email_block_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/email_block_retrieve_events_response.py">EmailBlockRetrieveEventsResponse</a></code>
+- <code title="get /email_blocks/{id}/events">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve_events</a>(id, \*\*<a href="src/telnyx/types/email_block_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/email_block_retrieve_events_response.py">SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse]</a></code>
 - <code title="get /email_blocks/export">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve_export</a>(\*\*<a href="src/telnyx/types/email_block_retrieve_export_params.py">params</a>) -> str</code>
 
 ## Import
@@ -6379,7 +6379,7 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="get /email_events">client.email_events.<a href="./src/telnyx/resources/email_events.py">list</a>(\*\*<a href="src/telnyx/types/email_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_list_response.py">EmailEventListResponse</a></code>
+- <code title="get /email_events">client.email_events.<a href="./src/telnyx/resources/email_events.py">list</a>(\*\*<a href="src/telnyx/types/email_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_list_response.py">SyncEmailCursorPagination[EmailEventListResponse]</a></code>
 - <code title="get /email_events/stats">client.email_events.<a href="./src/telnyx/resources/email_events.py">retrieve_stats</a>(\*\*<a href="src/telnyx/types/email_event_retrieve_stats_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_retrieve_stats_response.py">EmailEventRetrieveStatsResponse</a></code>
 
 # EmailInboxes
@@ -6387,14 +6387,14 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import EmailInbox, EmailInboxResponse, EmailInboxListResponse
+from telnyx.types import EmailInbox, EmailInboxResponse
 ```
 
 Methods:
 
 - <code title="post /email_inboxes">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">create</a>(\*\*<a href="src/telnyx/types/email_inbox_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inbox_response.py">EmailInboxResponse</a></code>
 - <code title="get /email_inboxes/{id}">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_inbox_response.py">EmailInboxResponse</a></code>
-- <code title="get /email_inboxes">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">list</a>(\*\*<a href="src/telnyx/types/email_inbox_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inbox_list_response.py">EmailInboxListResponse</a></code>
+- <code title="get /email_inboxes">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">list</a>(\*\*<a href="src/telnyx/types/email_inbox_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inbox.py">SyncEmailCursorPagination[EmailInbox]</a></code>
 - <code title="delete /email_inboxes/{id}">client.email_inboxes.<a href="./src/telnyx/resources/email_inboxes/email_inboxes.py">delete</a>(id) -> None</code>
 
 ## Drafts
@@ -6409,7 +6409,6 @@ from telnyx.types.email_inboxes import (
     EmailDraftResponse,
     EmailMessage,
     EmailMessageResponse,
-    DraftListResponse,
 )
 ```
 
@@ -6418,7 +6417,7 @@ Methods:
 - <code title="post /email_inboxes/{inbox_id}/drafts">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">create</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
 - <code title="get /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">retrieve</a>(draft_id, \*, inbox_id) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
 - <code title="put /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">update</a>(draft_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
-- <code title="get /email_inboxes/{inbox_id}/drafts">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/draft_list_response.py">DraftListResponse</a></code>
+- <code title="get /email_inboxes/{inbox_id}/drafts">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft.py">SyncEmailBracketCursorPagination[EmailDraft]</a></code>
 - <code title="delete /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">delete</a>(draft_id, \*, inbox_id) -> None</code>
 - <code title="patch /email_inboxes/{inbox_id}/drafts/{draft_id}">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">patch</a>(draft_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/draft_patch_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
 - <code title="post /email_inboxes/{inbox_id}/drafts/{draft_id}/send">client.email_inboxes.drafts.<a href="./src/telnyx/resources/email_inboxes/drafts.py">send</a>(draft_id, \*, inbox_id) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
@@ -6450,13 +6449,13 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.email_inboxes import MessageUpdateResponse, MessageListResponse
+from telnyx.types.email_inboxes import MessageUpdateResponse
 ```
 
 Methods:
 
 - <code title="patch /email_inboxes/{inbox_id}/messages/{message_id}">client.email_inboxes.messages.<a href="./src/telnyx/resources/email_inboxes/messages/messages.py">update</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/message_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/message_update_response.py">MessageUpdateResponse</a></code>
-- <code title="get /email_inboxes/{inbox_id}/messages">client.email_inboxes.messages.<a href="./src/telnyx/resources/email_inboxes/messages/messages.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/message_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/message_list_response.py">MessageListResponse</a></code>
+- <code title="get /email_inboxes/{inbox_id}/messages">client.email_inboxes.messages.<a href="./src/telnyx/resources/email_inboxes/messages/messages.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/message_list_params.py">params</a>) -> <a href="./src/telnyx/types/inbound_message.py">SyncEmailBracketCursorPagination[InboundMessage]</a></code>
 - <code title="post /email_inboxes/{inbox_id}/messages/{message_id}/drafts">client.email_inboxes.messages.<a href="./src/telnyx/resources/email_inboxes/messages/messages.py">drafts</a>(message_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/message_drafts_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_draft_response.py">EmailDraftResponse</a></code>
 
 ### Actions
@@ -6513,7 +6512,7 @@ from telnyx.types.email_inboxes import (
 Methods:
 
 - <code title="get /email_inboxes/{inbox_id}/threads/{thread_id}">client.email_inboxes.threads.<a href="./src/telnyx/resources/email_inboxes/threads/threads.py">retrieve</a>(thread_id, \*, inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/thread_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/thread_retrieve_response.py">ThreadRetrieveResponse</a></code>
-- <code title="get /email_inboxes/{inbox_id}/threads">client.email_inboxes.threads.<a href="./src/telnyx/resources/email_inboxes/threads/threads.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/thread_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/inbound_thread_list_response.py">InboundThreadListResponse</a></code>
+- <code title="get /email_inboxes/{inbox_id}/threads">client.email_inboxes.threads.<a href="./src/telnyx/resources/email_inboxes/threads/threads.py">list</a>(inbox_id, \*\*<a href="src/telnyx/types/email_inboxes/thread_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/inbound_thread.py">SyncEmailBracketCursorPagination[InboundThread]</a></code>
 
 ### Labels
 
@@ -6540,9 +6539,7 @@ from telnyx.types import (
     SuppressedRecipient,
     TrackingSettings,
     EmailMessageRetrieveResponse,
-    EmailMessageListResponse,
     EmailMessageBatchResponse,
-    EmailMessageRetrieveEventsResponse,
 )
 ```
 
@@ -6550,29 +6547,25 @@ Methods:
 
 - <code title="post /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">create</a>(\*\*<a href="src/telnyx/types/email_message_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
 - <code title="get /email_messages/{id}">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_message_retrieve_response.py">EmailMessageRetrieveResponse</a></code>
-- <code title="get /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">list</a>(\*\*<a href="src/telnyx/types/email_message_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_list_response.py">EmailMessageListResponse</a></code>
+- <code title="get /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">list</a>(\*\*<a href="src/telnyx/types/email_message_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message.py">SyncEmailCursorPagination[EmailMessage]</a></code>
 - <code title="delete /email_messages/{id}">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete</a>(id) -> None</code>
 - <code title="post /email_messages/batch">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">batch</a>(\*\*<a href="src/telnyx/types/email_message_batch_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_batch_response.py">EmailMessageBatchResponse</a></code>
 - <code title="delete /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete_all</a>(\*\*<a href="src/telnyx/types/email_message_delete_all_params.py">params</a>) -> None</code>
 - <code title="delete /email_messages/{email_id}/schedule">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete_schedule</a>(email_id) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
-- <code title="get /email_messages/{email_id}/events">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve_events</a>(email_id, \*\*<a href="src/telnyx/types/email_message_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_retrieve_events_response.py">EmailMessageRetrieveEventsResponse</a></code>
+- <code title="get /email_messages/{email_id}/events">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve_events</a>(email_id, \*\*<a href="src/telnyx/types/email_message_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/message_event.py">SyncEmailCursorPagination[MessageEvent]</a></code>
 
 ## Recipients
 
 Types:
 
 ```python
-from telnyx.types.email_messages import (
-    EmailRecipient,
-    RecipientRetrieveResponse,
-    RecipientListResponse,
-)
+from telnyx.types.email_messages import EmailRecipient, RecipientRetrieveResponse
 ```
 
 Methods:
 
 - <code title="get /email_messages/{email_id}/recipients/{recipient_id}">client.email_messages.recipients.<a href="./src/telnyx/resources/email_messages/recipients.py">retrieve</a>(recipient_id, \*, email_id) -> <a href="./src/telnyx/types/email_messages/recipient_retrieve_response.py">RecipientRetrieveResponse</a></code>
-- <code title="get /email_messages/{email_id}/recipients">client.email_messages.recipients.<a href="./src/telnyx/resources/email_messages/recipients.py">list</a>(email_id, \*\*<a href="src/telnyx/types/email_messages/recipient_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_messages/recipient_list_response.py">RecipientListResponse</a></code>
+- <code title="get /email_messages/{email_id}/recipients">client.email_messages.recipients.<a href="./src/telnyx/resources/email_messages/recipients.py">list</a>(email_id, \*\*<a href="src/telnyx/types/email_messages/recipient_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_messages/email_recipient.py">SyncEmailCursorPagination[EmailRecipient]</a></code>
 
 # EmailTemplates
 
@@ -6583,7 +6576,6 @@ from telnyx.types import (
     EmailTemplate,
     EmailTemplateResponse,
     UpdateEmailTemplateRequest,
-    EmailTemplateListResponse,
     EmailTemplateRenderResponse,
 )
 ```
@@ -6593,7 +6585,7 @@ Methods:
 - <code title="post /email_templates">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">create</a>(\*\*<a href="src/telnyx/types/email_template_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
 - <code title="get /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
 - <code title="patch /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">update</a>(id, \*\*<a href="src/telnyx/types/email_template_update_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
-- <code title="get /email_templates">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">list</a>(\*\*<a href="src/telnyx/types/email_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_list_response.py">EmailTemplateListResponse</a></code>
+- <code title="get /email_templates">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">list</a>(\*\*<a href="src/telnyx/types/email_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_template.py">SyncEmailCursorPagination[EmailTemplate]</a></code>
 - <code title="delete /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">delete</a>(id) -> None</code>
 - <code title="post /email_templates/{id}/render">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">render</a>(id, \*\*<a href="src/telnyx/types/email_template_render_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_render_response.py">EmailTemplateRenderResponse</a></code>
 - <code title="put /email_templates/{id}">client.email_templates.<a href="./src/telnyx/resources/email_templates.py">replace</a>(id, \*\*<a href="src/telnyx/types/email_template_replace_params.py">params</a>) -> <a href="./src/telnyx/types/email_template_response.py">EmailTemplateResponse</a></code>
@@ -6609,7 +6601,7 @@ from telnyx.types import EmailThreadRetrieveResponse
 Methods:
 
 - <code title="get /email_threads/{thread_id}">client.email_threads.<a href="./src/telnyx/resources/email_threads.py">retrieve</a>(thread_id, \*\*<a href="src/telnyx/types/email_thread_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/email_thread_retrieve_response.py">EmailThreadRetrieveResponse</a></code>
-- <code title="get /email_threads">client.email_threads.<a href="./src/telnyx/resources/email_threads.py">list</a>(\*\*<a href="src/telnyx/types/email_thread_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/inbound_thread_list_response.py">InboundThreadListResponse</a></code>
+- <code title="get /email_threads">client.email_threads.<a href="./src/telnyx/resources/email_threads.py">list</a>(\*\*<a href="src/telnyx/types/email_thread_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/inbound_thread.py">SyncEmailBracketCursorPagination[InboundThread]</a></code>
 
 # EmailUnsubscribeGroups
 
@@ -6681,7 +6673,7 @@ from telnyx.types.pricing import (
 
 Methods:
 
-- <code title="get /pricing/products/{slug}">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">retrieve</a>(slug, \*\*<a href="src/telnyx/types/pricing/product_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_retrieve_response.py">ProductRetrieveResponse</a></code>
+- <code title="get /pricing/products/{slug}">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">retrieve</a>(slug, \*\*<a href="src/telnyx/types/pricing/product_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_retrieve_response.py">SyncDefaultFlatPagination[ProductRetrieveResponse]</a></code>
 - <code title="get /pricing/products">client.pricing.products.<a href="./src/telnyx/resources/pricing/products.py">list</a>(\*\*<a href="src/telnyx/types/pricing/product_list_params.py">params</a>) -> <a href="./src/telnyx/types/pricing/product_list_response.py">SyncDefaultFlatPagination[ProductListResponse]</a></code>
 
 # WebSearch

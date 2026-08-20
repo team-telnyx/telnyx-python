@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
 from telnyx.types.email_inboxes import (
-    DraftListResponse,
+    EmailDraft,
     EmailDraftResponse,
     EmailMessageResponse,
 )
@@ -227,7 +228,7 @@ class TestDrafts:
         draft = client.email_inboxes.drafts.list(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(DraftListResponse, draft, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -238,7 +239,7 @@ class TestDrafts:
             page_after="page[after]",
             page_size=1,
         )
-        assert_matches_type(DraftListResponse, draft, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -250,7 +251,7 @@ class TestDrafts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         draft = response.parse()
-        assert_matches_type(DraftListResponse, draft, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -262,7 +263,7 @@ class TestDrafts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             draft = response.parse()
-            assert_matches_type(DraftListResponse, draft, path=["response"])
+            assert_matches_type(SyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -667,7 +668,7 @@ class TestAsyncDrafts:
         draft = await async_client.email_inboxes.drafts.list(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(DraftListResponse, draft, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -678,7 +679,7 @@ class TestAsyncDrafts:
             page_after="page[after]",
             page_size=1,
         )
-        assert_matches_type(DraftListResponse, draft, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -690,7 +691,7 @@ class TestAsyncDrafts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         draft = await response.parse()
-        assert_matches_type(DraftListResponse, draft, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -702,7 +703,7 @@ class TestAsyncDrafts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             draft = await response.parse()
-            assert_matches_type(DraftListResponse, draft, path=["response"])
+            assert_matches_type(AsyncEmailBracketCursorPagination[EmailDraft], draft, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

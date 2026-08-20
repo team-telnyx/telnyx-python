@@ -34,6 +34,16 @@ __all__ = [
     "CursorFlatPaginationMeta",
     "SyncCursorFlatPagination",
     "AsyncCursorFlatPagination",
+    "EmailCursorPaginationMeta",
+    "SyncEmailCursorPagination",
+    "AsyncEmailCursorPagination",
+    "EmailBracketCursorPaginationMeta",
+    "SyncEmailBracketCursorPagination",
+    "AsyncEmailBracketCursorPagination",
+    "CloudfsCursorPaginationMeta",
+    "CloudfsCursorPaginationCursors",
+    "SyncCloudfsCursorPagination",
+    "AsyncCloudfsCursorPagination",
 ]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
@@ -531,3 +541,159 @@ class AsyncCursorFlatPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"cursor": cursor})
+
+
+class EmailCursorPaginationMeta(BaseModel):
+    page_cursor: Optional[str] = None
+
+
+class SyncEmailCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[EmailCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        page_cursor = None
+        if self.meta is not None:
+            if self.meta.page_cursor is not None:
+                page_cursor = self.meta.page_cursor
+        if not page_cursor:
+            return None
+
+        return PageInfo(params={"page_cursor": page_cursor})
+
+
+class AsyncEmailCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[EmailCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        page_cursor = None
+        if self.meta is not None:
+            if self.meta.page_cursor is not None:
+                page_cursor = self.meta.page_cursor
+        if not page_cursor:
+            return None
+
+        return PageInfo(params={"page_cursor": page_cursor})
+
+
+class EmailBracketCursorPaginationMeta(BaseModel):
+    page_cursor: Optional[str] = None
+
+
+class SyncEmailBracketCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[EmailBracketCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        page_cursor = None
+        if self.meta is not None:
+            if self.meta.page_cursor is not None:
+                page_cursor = self.meta.page_cursor
+        if not page_cursor:
+            return None
+
+        return PageInfo(params={"page[after]": page_cursor})
+
+
+class AsyncEmailBracketCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[EmailBracketCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        page_cursor = None
+        if self.meta is not None:
+            if self.meta.page_cursor is not None:
+                page_cursor = self.meta.page_cursor
+        if not page_cursor:
+            return None
+
+        return PageInfo(params={"page[after]": page_cursor})
+
+
+class CloudfsCursorPaginationCursors(BaseModel):
+    after: Optional[str] = None
+
+
+class CloudfsCursorPaginationMeta(BaseModel):
+    cursors: Optional[CloudfsCursorPaginationCursors] = None
+
+
+class SyncCloudfsCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[CloudfsCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        after = None
+        if self.meta is not None:
+            if self.meta.cursors is not None:
+                if self.meta.cursors.after is not None:
+                    after = self.meta.cursors.after
+        if not after:
+            return None
+
+        return PageInfo(params={"page[after]": after})
+
+
+class AsyncCloudfsCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[CloudfsCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        after = None
+        if self.meta is not None:
+            if self.meta.cursors is not None:
+                if self.meta.cursors.after is not None:
+                    after = self.meta.cursors.after
+        if not after:
+            return None
+
+        return PageInfo(params={"page[after]": after})

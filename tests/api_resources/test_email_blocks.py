@@ -202,7 +202,7 @@ class TestEmailBlocks:
         email_block = client.email_blocks.retrieve_events(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -212,7 +212,7 @@ class TestEmailBlocks:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -224,7 +224,7 @@ class TestEmailBlocks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_block = response.parse()
-        assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -236,7 +236,9 @@ class TestEmailBlocks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_block = response.parse()
-            assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -475,7 +477,9 @@ class TestAsyncEmailBlocks:
         email_block = await async_client.email_blocks.retrieve_events(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -485,7 +489,9 @@ class TestAsyncEmailBlocks:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -497,7 +503,9 @@ class TestAsyncEmailBlocks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_block = await response.parse()
-        assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -509,7 +517,9 @@ class TestAsyncEmailBlocks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_block = await response.parse()
-            assert_matches_type(EmailBlockRetrieveEventsResponse, email_block, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse], email_block, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

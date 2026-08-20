@@ -10,7 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import EmailThreadRetrieveResponse
-from telnyx.types.email_inboxes import InboundThreadListResponse
+from telnyx.pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
+from telnyx.types.email_inboxes import InboundThread
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -79,7 +80,7 @@ class TestEmailThreads:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         email_thread = client.email_threads.list()
-        assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -90,7 +91,7 @@ class TestEmailThreads:
             page_after="page[after]",
             page_size=1,
         )
-        assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -100,7 +101,7 @@ class TestEmailThreads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_thread = response.parse()
-        assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -110,7 +111,7 @@ class TestEmailThreads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_thread = response.parse()
-            assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+            assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -181,7 +182,7 @@ class TestAsyncEmailThreads:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         email_thread = await async_client.email_threads.list()
-        assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -192,7 +193,7 @@ class TestAsyncEmailThreads:
             page_after="page[after]",
             page_size=1,
         )
-        assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -202,7 +203,7 @@ class TestAsyncEmailThreads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_thread = await response.parse()
-        assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -212,6 +213,6 @@ class TestAsyncEmailThreads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_thread = await response.parse()
-            assert_matches_type(InboundThreadListResponse, email_thread, path=["response"])
+            assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], email_thread, path=["response"])
 
         assert cast(Any, response.is_closed) is True

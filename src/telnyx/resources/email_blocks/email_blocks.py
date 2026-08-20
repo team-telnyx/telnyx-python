@@ -298,7 +298,7 @@ class EmailBlocksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailBlockRetrieveEventsResponse:
+    ) -> SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse]:
         """
         Offset pagination only (`page[number]` default 1, `page[size]` default **50**,
         max 100). No `sort`, no `filter`, no cursor — ordering is fixed
@@ -320,8 +320,9 @@ class EmailBlocksResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/email_blocks/{id}/events", id=id),
+            page=SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -335,7 +336,7 @@ class EmailBlocksResource(SyncAPIResource):
                     email_block_retrieve_events_params.EmailBlockRetrieveEventsParams,
                 ),
             ),
-            cast_to=EmailBlockRetrieveEventsResponse,
+            model=EmailBlockRetrieveEventsResponse,
         )
 
     def retrieve_export(
@@ -664,7 +665,7 @@ class AsyncEmailBlocksResource(AsyncAPIResource):
             cast_to=EmailBlockResponse,
         )
 
-    async def retrieve_events(
+    def retrieve_events(
         self,
         id: str,
         *,
@@ -676,7 +677,7 @@ class AsyncEmailBlocksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailBlockRetrieveEventsResponse:
+    ) -> AsyncPaginator[EmailBlockRetrieveEventsResponse, AsyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse]]:
         """
         Offset pagination only (`page[number]` default 1, `page[size]` default **50**,
         max 100). No `sort`, no `filter`, no cursor — ordering is fixed
@@ -698,14 +699,15 @@ class AsyncEmailBlocksResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/email_blocks/{id}/events", id=id),
+            page=AsyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -713,7 +715,7 @@ class AsyncEmailBlocksResource(AsyncAPIResource):
                     email_block_retrieve_events_params.EmailBlockRetrieveEventsParams,
                 ),
             ),
-            cast_to=EmailBlockRetrieveEventsResponse,
+            model=EmailBlockRetrieveEventsResponse,
         )
 
     async def retrieve_export(

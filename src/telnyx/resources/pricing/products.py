@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -60,7 +60,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductRetrieveResponse:
+    ) -> SyncDefaultFlatPagination[ProductRetrieveResponse]:
         """Returns pricing entries for a single product.
 
         Most products return standard rate
@@ -87,8 +87,9 @@ class ProductsResource(SyncAPIResource):
         """
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/pricing/products/{slug}", slug=slug),
+            page=SyncDefaultFlatPagination[ProductRetrieveResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,7 +104,7 @@ class ProductsResource(SyncAPIResource):
                     product_retrieve_params.ProductRetrieveParams,
                 ),
             ),
-            cast_to=ProductRetrieveResponse,
+            model=ProductRetrieveResponse,
         )
 
     def list(
@@ -179,7 +180,7 @@ class AsyncProductsResource(AsyncAPIResource):
         """
         return AsyncProductsResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    def retrieve(
         self,
         slug: str,
         *,
@@ -192,7 +193,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductRetrieveResponse:
+    ) -> AsyncPaginator[ProductRetrieveResponse, AsyncDefaultFlatPagination[ProductRetrieveResponse]]:
         """Returns pricing entries for a single product.
 
         Most products return standard rate
@@ -219,14 +220,15 @@ class AsyncProductsResource(AsyncAPIResource):
         """
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/pricing/products/{slug}", slug=slug),
+            page=AsyncDefaultFlatPagination[ProductRetrieveResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_country_iso": filter_country_iso,
                         "page_number": page_number,
@@ -235,7 +237,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     product_retrieve_params.ProductRetrieveParams,
                 ),
             ),
-            cast_to=ProductRetrieveResponse,
+            model=ProductRetrieveResponse,
         )
 
     def list(

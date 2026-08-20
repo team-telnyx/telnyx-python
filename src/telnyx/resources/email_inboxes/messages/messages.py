@@ -34,11 +34,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_inboxes import message_list_params, message_drafts_params, message_update_params
+from ....types.inbound_message import InboundMessage
 from ....types.email_address_input_param import EmailAddressInputParam
 from ....types.email_inboxes.email_draft_response import EmailDraftResponse
-from ....types.email_inboxes.message_list_response import MessageListResponse
 from ....types.email_inboxes.message_update_response import MessageUpdateResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -143,7 +144,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageListResponse:
+    ) -> SyncEmailBracketCursorPagination[InboundMessage]:
         """Lists inbound messages newest first.
 
         All access is scoped to the authenticated
@@ -184,8 +185,9 @@ class MessagesResource(SyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/messages", inbox_id=inbox_id),
+            page=SyncEmailBracketCursorPagination[InboundMessage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +209,7 @@ class MessagesResource(SyncAPIResource):
                     message_list_params.MessageListParams,
                 ),
             ),
-            cast_to=MessageListResponse,
+            model=InboundMessage,
         )
 
     def drafts(
@@ -378,7 +380,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=MessageUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         inbox_id: str,
         *,
@@ -398,7 +400,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageListResponse:
+    ) -> AsyncPaginator[InboundMessage, AsyncEmailBracketCursorPagination[InboundMessage]]:
         """Lists inbound messages newest first.
 
         All access is scoped to the authenticated
@@ -439,14 +441,15 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/messages", inbox_id=inbox_id),
+            page=AsyncEmailBracketCursorPagination[InboundMessage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_from": filter_from,
                         "filter_label": filter_label,
@@ -462,7 +465,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     message_list_params.MessageListParams,
                 ),
             ),
-            cast_to=MessageListResponse,
+            model=InboundMessage,
         )
 
     async def drafts(

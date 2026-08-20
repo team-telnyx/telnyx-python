@@ -32,15 +32,16 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.message_event import MessageEvent
 from ...types.tracking_settings_param import TrackingSettingsParam
 from ...types.attachment_request_param import AttachmentRequestParam
 from ...types.email_address_input_param import EmailAddressInputParam
-from ...types.email_message_list_response import EmailMessageListResponse
+from ...types.email_inboxes.email_message import EmailMessage
 from ...types.email_message_batch_response import EmailMessageBatchResponse
 from ...types.email_message_retrieve_response import EmailMessageRetrieveResponse
 from ...types.email_inboxes.email_message_response import EmailMessageResponse
-from ...types.email_message_retrieve_events_response import EmailMessageRetrieveEventsResponse
 
 __all__ = ["EmailMessagesResource", "AsyncEmailMessagesResource"]
 
@@ -291,7 +292,7 @@ class EmailMessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailMessageListResponse:
+    ) -> SyncEmailCursorPagination[EmailMessage]:
         """Lists messages sorted newest first by `created_at desc, id desc`.
 
         No filters
@@ -312,8 +313,9 @@ class EmailMessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/email_messages",
+            page=SyncEmailCursorPagination[EmailMessage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -327,7 +329,7 @@ class EmailMessagesResource(SyncAPIResource):
                     email_message_list_params.EmailMessageListParams,
                 ),
             ),
-            cast_to=EmailMessageListResponse,
+            model=EmailMessage,
         )
 
     def delete(
@@ -502,7 +504,7 @@ class EmailMessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailMessageRetrieveEventsResponse:
+    ) -> SyncEmailCursorPagination[MessageEvent]:
         """
         Lists events for a single message sorted oldest first by
         `occurred_at asc, id asc`. The legacy `/v2/emails/{id}/events` GET route is a
@@ -524,8 +526,9 @@ class EmailMessagesResource(SyncAPIResource):
         """
         if not email_id:
             raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/email_messages/{email_id}/events", email_id=email_id),
+            page=SyncEmailCursorPagination[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -539,7 +542,7 @@ class EmailMessagesResource(SyncAPIResource):
                     email_message_retrieve_events_params.EmailMessageRetrieveEventsParams,
                 ),
             ),
-            cast_to=EmailMessageRetrieveEventsResponse,
+            model=MessageEvent,
         )
 
 
@@ -778,7 +781,7 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
             cast_to=EmailMessageRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_cursor: str | Omit = omit,
@@ -789,7 +792,7 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailMessageListResponse:
+    ) -> AsyncPaginator[EmailMessage, AsyncEmailCursorPagination[EmailMessage]]:
         """Lists messages sorted newest first by `created_at desc, id desc`.
 
         No filters
@@ -810,14 +813,15 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/email_messages",
+            page=AsyncEmailCursorPagination[EmailMessage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_cursor": page_cursor,
                         "page_size": page_size,
@@ -825,7 +829,7 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
                     email_message_list_params.EmailMessageListParams,
                 ),
             ),
-            cast_to=EmailMessageListResponse,
+            model=EmailMessage,
         )
 
     async def delete(
@@ -988,7 +992,7 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
             cast_to=EmailMessageResponse,
         )
 
-    async def retrieve_events(
+    def retrieve_events(
         self,
         email_id: str,
         *,
@@ -1000,7 +1004,7 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailMessageRetrieveEventsResponse:
+    ) -> AsyncPaginator[MessageEvent, AsyncEmailCursorPagination[MessageEvent]]:
         """
         Lists events for a single message sorted oldest first by
         `occurred_at asc, id asc`. The legacy `/v2/emails/{id}/events` GET route is a
@@ -1022,14 +1026,15 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
         """
         if not email_id:
             raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/email_messages/{email_id}/events", email_id=email_id),
+            page=AsyncEmailCursorPagination[MessageEvent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_cursor": page_cursor,
                         "page_size": page_size,
@@ -1037,7 +1042,7 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
                     email_message_retrieve_events_params.EmailMessageRetrieveEventsParams,
                 ),
             ),
-            cast_to=EmailMessageRetrieveEventsResponse,
+            model=MessageEvent,
         )
 
 
