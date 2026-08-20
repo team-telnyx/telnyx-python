@@ -2,15 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypeAlias
 
-from ..._utils import PropertyInfo
 from ..._models import BaseModel
-from .flow_edge import FlowEdge
 from .external_llm import ExternalLlm
-from .node_position import NodePosition
 from .observability import Observability
 from .assistant_tool import AssistantTool
 from .voice_settings import VoiceSettings
@@ -20,6 +16,7 @@ from .widget_settings import WidgetSettings
 from .enabled_features import EnabledFeatures
 from .insight_settings import InsightSettings
 from .privacy_settings import PrivacySettings
+from .conversation_flow import ConversationFlow
 from .messaging_settings import MessagingSettings
 from .telephony_settings import TelephonySettings
 from .assistant_mcp_server import AssistantMcpServer
@@ -28,184 +25,7 @@ from .transcription_settings import TranscriptionSettings
 from .post_conversation_settings import PostConversationSettings
 from .inference_embedding_interruption_settings import InferenceEmbeddingInterruptionSettings
 
-__all__ = [
-    "InferenceEmbedding",
-    "ConversationFlow",
-    "ConversationFlowNode",
-    "ConversationFlowNodeFlowNode",
-    "ConversationFlowNodeToolNode",
-    "ConversationFlowNodeSpeakNode",
-]
-
-
-class ConversationFlowNodeFlowNode(BaseModel):
-    """One step in a conversation flow, as returned by the API."""
-
-    id: str
-    """Caller-supplied unique identifier for this node within the flow."""
-
-    instructions: str
-    """Prompt that drives the LLM while this node is active. Required."""
-
-    external_llm: Optional[ExternalLlm] = None
-    """Override for `Assistant.external_llm` while this node is active.
-
-    Use this to route a node's turns to a different external LLM (different `model`,
-    `base_url`, credentials). Part of the LLM bundle — see `model` for cascade
-    semantics. Mutually exclusive with `model` on the node (a single LLM identity
-    per node).
-    """
-
-    instructions_mode: Optional[Literal["replace", "append"]] = None
-    """How `instructions` combine with the assistant-level instructions.
-
-    `replace` (default): the node's instructions are used alone. `append`: the
-    node's instructions are concatenated after the assistant's instructions.
-    """
-
-    llm_api_key_ref: Optional[str] = None
-    """Override for `Assistant.llm_api_key_ref` while this node is active.
-
-    Part of the LLM bundle — see `model` for cascade semantics.
-    """
-
-    model: Optional[str] = None
-    """Override for `Assistant.model` while this node is active.
-
-    Part of the LLM bundle (`model` + `llm_api_key_ref` + `external_llm`): when any
-    of the three is set on the node, all three are taken from the node and the
-    assistant-level LLM identity is not consulted. When none of the three is set,
-    the assistant's bundle cascades unchanged.
-    """
-
-    name: Optional[str] = None
-    """Optional human-readable label, displayed in authoring UIs."""
-
-    position: Optional[NodePosition] = None
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across
-    reloads.
-    """
-
-    shared_tool_ids: Optional[List[str]] = None
-    """IDs of shared (org-level) tools available at this node.
-
-    Knowledge bases are attached the same way — via a shared retrieval tool. Tools
-    not listed here are not callable while this node is active.
-    """
-
-    tools: Optional[List[List[AssistantTool]]] = None
-    """Full tool definitions for this node, resolved from `shared_tool_ids`
-    server-side.
-
-    Populated on responses so clients can render the flow without a follow-up fetch
-    per shared tool. Ignored on input — set `shared_tool_ids` to configure a node's
-    tools.
-    """
-
-    tools_mode: Optional[Literal["replace", "append"]] = None
-    """How `shared_tool_ids` combine with the assistant-level tool set.
-
-    `replace` (default): only the node's tools are callable. `append`: the node's
-    tools are added to the assistant's tools. Ignored when `shared_tool_ids` is
-    null.
-    """
-
-    transcription: Optional[TranscriptionSettings] = None
-    """Per-node transcription override (response form)."""
-
-    type: Optional[Literal["prompt"]] = None
-    """Node kind discriminator. `prompt` is an LLM-driven step."""
-
-    voice_settings: Optional[VoiceSettings] = None
-    """Per-node voice override (response form)."""
-
-
-class ConversationFlowNodeToolNode(BaseModel):
-    """A standalone tool step in a conversation flow, as returned by the API."""
-
-    id: str
-    """Caller-supplied unique identifier for this node within the flow."""
-
-    shared_tool_id: str
-    """ID of the single shared (org-level) tool this node executes.
-
-    When the flow reaches this node the tool runs as a deliberate step (no LLM
-    turn); its outgoing `tool_result` edges then route on the outcome. Arguments are
-    filled from the conversation's dynamic variables by name — a dynamic variable
-    whose name matches one of the tool's parameters supplies that argument.
-    Cross-validated against the org's shared tools on write.
-    """
-
-    name: Optional[str] = None
-    """Optional human-readable label, displayed in authoring UIs."""
-
-    position: Optional[NodePosition] = None
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across
-    reloads.
-    """
-
-    tool: Optional[List[AssistantTool]] = None
-    """Full tool definition resolved from `shared_tool_id` server-side.
-
-    Populated on responses so clients can render the node without a follow-up fetch.
-    Ignored on input — set `shared_tool_id`.
-    """
-
-    type: Optional[Literal["tool"]] = None
-    """Node kind discriminator. Always `tool` for a tool node."""
-
-
-class ConversationFlowNodeSpeakNode(BaseModel):
-    """A standalone scripted-message step in a flow, as returned by the API."""
-
-    id: str
-    """Caller-supplied unique identifier for this node within the flow."""
-
-    message: str
-    """Message delivered to the user verbatim when the flow reaches this node.
-
-    No LLM turn — the text is spoken/sent exactly as written. `{{variable}}`
-    placeholders are interpolated from the conversation's dynamic variables; an
-    unresolved placeholder renders as an empty string. After delivering, the flow
-    routes via the node's outgoing `llm` / `expression` edges (commonly a single
-    unconditional edge).
-    """
-
-    name: Optional[str] = None
-    """Optional human-readable label, displayed in authoring UIs."""
-
-    position: Optional[NodePosition] = None
-    """Optional canvas coordinates used by authoring UIs to lay out the graph.
-
-    Ignored by the runtime; round-trips so frontends can persist graph layout across
-    reloads.
-    """
-
-    type: Optional[Literal["speak"]] = None
-    """Node kind discriminator. Always `speak` for a speak node."""
-
-
-ConversationFlowNode: TypeAlias = Annotated[
-    Union[ConversationFlowNodeFlowNode, ConversationFlowNodeToolNode, ConversationFlowNodeSpeakNode],
-    PropertyInfo(discriminator="type"),
-]
-
-
-class ConversationFlow(BaseModel):
-    """Conversation flow as returned by the API."""
-
-    nodes: List[ConversationFlowNode]
-    """All nodes in the flow."""
-
-    start_node_id: str
-    """ID of the node where the conversation begins."""
-
-    edges: Optional[List[FlowEdge]] = None
-    """Directed transitions between nodes."""
+__all__ = ["InferenceEmbedding"]
 
 
 class InferenceEmbedding(BaseModel):

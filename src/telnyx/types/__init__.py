@@ -201,6 +201,7 @@ from .email_dmarc_policy import EmailDmarcPolicy as EmailDmarcPolicy
 from .fqdn_create_params import FqdnCreateParams as FqdnCreateParams
 from .fqdn_update_params import FqdnUpdateParams as FqdnUpdateParams
 from .inbound_fqdn_param import InboundFqdnParam as InboundFqdnParam
+from .inbound_sip_header import InboundSipHeader as InboundSipHeader
 from .infringement_claim import InfringementClaim as InfringementClaim
 from .integration_secret import IntegrationSecret as IntegrationSecret
 from .ip_create_response import IPCreateResponse as IPCreateResponse
@@ -842,6 +843,7 @@ from .managed_account_retrieve_response import ManagedAccountRetrieveResponse as
 from .message_cancel_scheduled_response import MessageCancelScheduledResponse as MessageCancelScheduledResponse
 from .message_send_number_pool_response import MessageSendNumberPoolResponse as MessageSendNumberPoolResponse
 from .messaging_10dlc_get_enum_response import Messaging10dlcGetEnumResponse as Messaging10dlcGetEnumResponse
+from .messaging_inbound_message_payload import MessagingInboundMessagePayload as MessagingInboundMessagePayload
 from .messaging_profile_create_response import MessagingProfileCreateResponse as MessagingProfileCreateResponse
 from .messaging_profile_delete_response import MessagingProfileDeleteResponse as MessagingProfileDeleteResponse
 from .messaging_profile_update_response import MessagingProfileUpdateResponse as MessagingProfileUpdateResponse

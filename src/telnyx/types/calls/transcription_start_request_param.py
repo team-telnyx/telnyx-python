@@ -12,6 +12,7 @@ from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
 from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
 from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
+from .transcription_engine_humain_config_param import TranscriptionEngineHumainConfigParam
 from .transcription_engine_soniox_config_param import TranscriptionEngineSonioxConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
 from .transcription_engine_parakeet_config_param import TranscriptionEngineParakeetConfigParam
@@ -21,24 +22,8 @@ from .transcription_engine_speechmatics_config_param import TranscriptionEngineS
 __all__ = [
     "TranscriptionStartRequestParam",
     "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineHumainConfig",
     "TranscriptionEngineConfigTranscriptionEngineReson8Config",
 ]
-
-
-class TranscriptionEngineConfigTranscriptionEngineHumainConfig(TypedDict, total=False):
-    language: Literal["ar", "en", "codeswitch", "auto"]
-    """The language of the audio to be transcribed.
-
-    `codeswitch` enables Arabic/English code-switching. `auto` resolves server-side
-    to code-switching.
-    """
-
-    transcription_engine: Literal["Humain"]
-    """Engine identifier for Humain transcription service"""
-
-    transcription_model: Literal["humain/realtime"]
-    """The model to use for transcription."""
 
 
 class TranscriptionEngineConfigTranscriptionEngineReson8Config(TypedDict, total=False):
@@ -65,7 +50,7 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineSpeechmaticsConfigParam,
     TranscriptionEngineSonioxConfigParam,
     TranscriptionEngineParakeetConfigParam,
-    TranscriptionEngineConfigTranscriptionEngineHumainConfig,
+    TranscriptionEngineHumainConfigParam,
     TranscriptionEngineConfigTranscriptionEngineReson8Config,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,

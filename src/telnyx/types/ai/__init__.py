@@ -17,13 +17,16 @@ from .tool_create_params import ToolCreateParams as ToolCreateParams
 from .tool_update_params import ToolUpdateParams as ToolUpdateParams
 from .webhook_tool_param import WebhookToolParam as WebhookToolParam
 from .cluster_list_params import ClusterListParams as ClusterListParams
+from .flow_node_req_param import FlowNodeReqParam as FlowNodeReqParam
 from .mission_list_params import MissionListParams as MissionListParams
 from .node_position_param import NodePositionParam as NodePositionParam
+from .tool_node_req_param import ToolNodeReqParam as ToolNodeReqParam
 from .transfer_tool_param import TransferToolParam as TransferToolParam
 from .assistant_tool_param import AssistantToolParam as AssistantToolParam
 from .embedding_url_params import EmbeddingURLParams as EmbeddingURLParams
 from .observability_status import ObservabilityStatus as ObservabilityStatus
 from .retrieval_tool_param import RetrievalToolParam as RetrievalToolParam
+from .speak_node_req_param import SpeakNodeReqParam as SpeakNodeReqParam
 from .voice_settings_param import VoiceSettingsParam as VoiceSettingsParam
 from .assistant_chat_params import AssistantChatParams as AssistantChatParams
 from .authentication_method import AuthenticationMethod as AuthenticationMethod
@@ -88,9 +91,12 @@ from .inference_embedding_interruption_settings_param import (
 
 if TYPE_CHECKING:
     from .flow_edge import FlowEdge as FlowEdge
+    from .flow_node import FlowNode as FlowNode
+    from .tool_node import ToolNode as ToolNode
     from .bucket_ids import BucketIDs as BucketIDs
     from .collection import Collection as Collection
     from .mcp_server import McpServer as McpServer
+    from .speak_node import SpeakNode as SpeakNode
     from .hangup_tool import HangupTool as HangupTool
     from .integration import Integration as Integration
     from .conversation import Conversation as Conversation
@@ -108,6 +114,7 @@ if TYPE_CHECKING:
     from .insight_settings import InsightSettings as InsightSettings
     from .mission_response import MissionResponse as MissionResponse
     from .privacy_settings import PrivacySettings as PrivacySettings
+    from .conversation_flow import ConversationFlow as ConversationFlow
     from .recursive_cluster import RecursiveCluster as RecursiveCluster
     from .embedding_response import EmbeddingResponse as EmbeddingResponse
     from .hangup_tool_params import HangupToolParams as HangupToolParams
@@ -175,6 +182,10 @@ def __getattr__(name: str) -> Any:
         from .audio_visualizer_config import AudioVisualizerConfig
 
         return AudioVisualizerConfig
+    if name == "ConversationFlow":
+        from .conversation_flow import ConversationFlow
+
+        return ConversationFlow
     if name == "ExternalLlm":
         from .external_llm import ExternalLlm
 
@@ -187,6 +198,10 @@ def __getattr__(name: str) -> Any:
         from .flow_edge import FlowEdge
 
         return FlowEdge
+    if name == "FlowNode":
+        from .flow_node import FlowNode
+
+        return FlowNode
     if name == "HangupTool":
         from .hangup_tool import HangupTool
 
@@ -239,6 +254,10 @@ def __getattr__(name: str) -> Any:
         from .retrieval_tool import RetrievalTool
 
         return RetrievalTool
+    if name == "SpeakNode":
+        from .speak_node import SpeakNode
+
+        return SpeakNode
     if name == "StartSpeakingPlan":
         from .start_speaking_plan import StartSpeakingPlan
 
@@ -247,6 +266,10 @@ def __getattr__(name: str) -> Any:
         from .telephony_settings import TelephonySettings
 
         return TelephonySettings
+    if name == "ToolNode":
+        from .tool_node import ToolNode
+
+        return ToolNode
     if name == "TranscriptionEndpointingPlan":
         from .transcription_endpointing_plan import TranscriptionEndpointingPlan
 

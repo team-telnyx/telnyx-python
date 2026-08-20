@@ -83,6 +83,9 @@ from .transcription_engine_azure_config_param import (
 from .transcription_engine_google_config_param import (
     TranscriptionEngineGoogleConfigParam as TranscriptionEngineGoogleConfigParam,
 )
+from .transcription_engine_humain_config_param import (
+    TranscriptionEngineHumainConfigParam as TranscriptionEngineHumainConfigParam,
+)
 from .transcription_engine_soniox_config_param import (
     TranscriptionEngineSonioxConfigParam as TranscriptionEngineSonioxConfigParam,
 )
