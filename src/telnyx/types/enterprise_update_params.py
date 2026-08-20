@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-from .billing_address_param import BillingAddressParam
 from .billing_contact_param import BillingContactParam
 from .physical_address_param import PhysicalAddressParam
 from .organization_contact_param import OrganizationContactParam
@@ -14,7 +13,7 @@ __all__ = ["EnterpriseUpdateParams"]
 
 
 class EnterpriseUpdateParams(TypedDict, total=False):
-    billing_address: BillingAddressParam
+    billing_address: PhysicalAddressParam
 
     billing_contact: BillingContactParam
 

@@ -12,7 +12,7 @@ __all__ = ["DraftCreateParams"]
 
 
 class DraftCreateParams(TypedDict, total=False):
-    attachments: Iterable[object]
+    attachments: Iterable[Dict[str, object]]
 
     bcc: SequenceNotStr[EmailAddressInputParam]
 
@@ -31,7 +31,7 @@ class DraftCreateParams(TypedDict, total=False):
 
     labels: SequenceNotStr[str]
 
-    metadata: object
+    metadata: Dict[str, object]
 
     reply_to: str
 

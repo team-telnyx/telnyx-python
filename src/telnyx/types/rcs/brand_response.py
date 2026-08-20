@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .brand_address import BrandAddress
 from .brand_contact import BrandContact
@@ -14,7 +15,9 @@ from .stock_symbol_brand_identifier import StockSymbolBrandIdentifier
 
 __all__ = ["BrandResponse", "Identifiers"]
 
-Identifiers: TypeAlias = Union[EinBrandIdentifier, StockSymbolBrandIdentifier]
+Identifiers: TypeAlias = Annotated[
+    Union[EinBrandIdentifier, StockSymbolBrandIdentifier], PropertyInfo(discriminator="identifier_type")
+]
 
 
 class BrandResponse(BaseModel):

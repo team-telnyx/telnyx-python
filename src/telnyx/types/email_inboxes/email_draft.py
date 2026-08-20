@@ -29,7 +29,7 @@ class EmailDraft(BaseModel):
     A sent draft is retained for audit and becomes immutable.
     """
 
-    attachments: Optional[List[object]] = None
+    attachments: Optional[List[Dict[str, object]]] = None
 
     bcc: Optional[List[EmailAddress]] = None
 
@@ -50,7 +50,7 @@ class EmailDraft(BaseModel):
     labels: Optional[List[str]] = None
     """Mutable mailbox-state labels. Not propagated to Email Detail Records."""
 
-    metadata: Optional[object] = None
+    metadata: Optional[Dict[str, object]] = None
     """Arbitrary customer-defined metadata."""
 
     reply_to: Optional[str] = None

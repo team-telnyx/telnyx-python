@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
 __all__ = ["ActionAcceptedResponse", "Data"]
 
 
 class Data(BaseModel):
-    accepted: Literal[True]
+    accepted: bool
 
 
 class ActionAcceptedResponse(BaseModel):

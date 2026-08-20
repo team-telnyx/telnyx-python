@@ -5913,7 +5913,6 @@ Types:
 
 ```python
 from telnyx.types import (
-    BillingAddress,
     BillingContact,
     EnterprisePublic,
     EnterprisePublicWrapped,
