@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
+from ...._utils import PropertyInfo
 from .telnyx_conversation_channel import TelnyxConversationChannel
 
 __all__ = ["TestCreateParams", "Rubric"]
@@ -59,6 +60,8 @@ class TestCreateParams(TypedDict, total=False):
 
     Useful for organizing tests by feature, team, or release cycle.
     """
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
 
 
 class Rubric(TypedDict, total=False):

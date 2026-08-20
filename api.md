@@ -36,7 +36,6 @@ from telnyx.types import (
     RegionInformation,
     ReputationData,
     ResembleVoiceSettings,
-    RimeVoiceSettings,
     RoomParticipant,
     ShortCode,
     SimCardStatus,
@@ -4664,6 +4663,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumbersSubNumberOrder,
     SubNumberOrder,
     SubNumberOrderRegulatoryRequirement,
     SubNumberOrderRetrieveResponse,

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict, Union
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["InsightCreateParams"]
 
@@ -17,3 +19,5 @@ class InsightCreateParams(TypedDict, total=False):
     """If specified, the output will follow the JSON schema."""
 
     webhook: str
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

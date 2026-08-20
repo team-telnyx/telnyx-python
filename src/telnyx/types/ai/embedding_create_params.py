@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["EmbeddingCreateParams"]
 
@@ -19,3 +21,5 @@ class EmbeddingCreateParams(TypedDict, total=False):
 
     loader: Literal["default", "intercom"]
     """Supported types of custom document loaders for embeddings."""
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

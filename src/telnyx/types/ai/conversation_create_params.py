@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["ConversationCreateParams"]
 
@@ -17,3 +19,5 @@ class ConversationCreateParams(TypedDict, total=False):
     """
 
     name: str
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

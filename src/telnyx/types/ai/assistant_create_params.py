@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import Dict, List, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
 from .enabled_features import EnabledFeatures
 from .assistant_tool_param import AssistantToolParam
 from .voice_settings_param import VoiceSettingsParam
@@ -175,3 +176,5 @@ class AssistantCreateParams(TypedDict, total=False):
 
     widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

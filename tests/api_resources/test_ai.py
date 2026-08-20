@@ -91,6 +91,7 @@ class TestAI:
             bucket="string",
             filename="string",
             system_prompt="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
@@ -198,6 +199,7 @@ class TestAsyncAI:
             bucket="string",
             filename="string",
             system_prompt="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 

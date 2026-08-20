@@ -15,7 +15,6 @@ __all__ = [
     "Humain",
     "Minimax",
     "Resemble",
-    "Rime",
     "Telnyx",
     "Xai",
 ]
@@ -55,20 +54,16 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     audio in JSON.
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
     """TTS provider. Required unless `voice` is provided."""
 
     resemble: Resemble
     """Resemble AI provider-specific parameters."""
 
-    rime: Rime
-    """Rime provider-specific parameters."""
-
     telnyx: Telnyx
     """Telnyx provider-specific parameters.
 
-    Use `voice_speed` and `temperature` for `Natural` and `NaturalHD` models. For
-    the `Ultra` model, use `voice_speed`, `volume`, and `emotion`. `Bayan` and
+    For the `Ultra` model, use `voice_speed`, `volume`, and `emotion`. `Bayan` and
     `Sukhan` don't use `temperature`, `volume`, or `emotion`, and don't support
     `voice_speed`. `Sukhan`'s `response_format` is restricted to `mp3` or `pcm` (no
     `wav`).
@@ -83,11 +78,11 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     voice: str
     """
     Voice identifier in the format `provider.model_id.voice_id` or
-    `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-    `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`, `Telnyx.Sukhan.urdu-professor`,
-    `azure.en-US-AvaMultilingualNeural`, `aws.Polly.Generative.Lucia`. When
-    provided, `provider`, `model_id`, and `voice_id` are extracted automatically and
-    take precedence over individual parameters.
+    `provider.voice_id`. Examples: `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+    `Telnyx.Sukhan.urdu-professor`, `azure.en-US-AvaMultilingualNeural`,
+    `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
+    `voice_id` are extracted automatically and take precedence over individual
+    parameters.
     """
 
     voice_settings: Dict[str, object]
@@ -208,23 +203,10 @@ class Resemble(TypedDict, total=False):
     """Audio sample rate."""
 
 
-class Rime(TypedDict, total=False):
-    """Rime provider-specific parameters."""
-
-    response_format: str
-    """Audio output format."""
-
-    sampling_rate: int
-    """Audio sampling rate in Hz."""
-
-    voice_speed: float
-    """Voice speed multiplier."""
-
-
 class Telnyx(TypedDict, total=False):
     """Telnyx provider-specific parameters.
 
-    Use `voice_speed` and `temperature` for `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`, `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`, or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is restricted to `mp3` or `pcm` (no `wav`).
+    For the `Ultra` model, use `voice_speed`, `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`, or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is restricted to `mp3` or `pcm` (no `wav`).
     """
 
     emotion: Literal["neutral", "happy", "sad", "angry", "fearful", "disgusted", "surprised"]
@@ -238,9 +220,6 @@ class Telnyx(TypedDict, total=False):
 
     sampling_rate: int
     """Audio sampling rate in Hz."""
-
-    temperature: float
-    """Sampling temperature. Applies to `Natural` and `NaturalHD` models only."""
 
     voice_speed: float
     """Voice speed multiplier.

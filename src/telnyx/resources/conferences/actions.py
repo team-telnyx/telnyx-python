@@ -1053,14 +1053,6 @@ class ActionsResource(SyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed. To use your own Rime account,
-                provide your Rime API key as an integration secret in
-                `"voice_settings": {"type": "rime", "api_key_ref": "<secret_identifier>"}`.
-                See
-                [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-                for details.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
@@ -2270,14 +2262,6 @@ class AsyncActionsResource(AsyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed. To use your own Rime account,
-                provide your Rime API key as an integration secret in
-                `"voice_settings": {"type": "rime", "api_key_ref": "<secret_identifier>"}`.
-                See
-                [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-                for details.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.

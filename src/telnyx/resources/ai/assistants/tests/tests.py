@@ -15,7 +15,7 @@ from .runs import (
     AsyncRunsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -85,6 +85,7 @@ class TestsResource(SyncAPIResource):
         max_duration_seconds: int | Omit = omit,
         telnyx_conversation_channel: TelnyxConversationChannel | Omit = omit,
         test_suite: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,6 +131,7 @@ class TestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/assistants/tests",
             body=maybe_transform(
@@ -388,6 +390,7 @@ class AsyncTestsResource(AsyncAPIResource):
         max_duration_seconds: int | Omit = omit,
         telnyx_conversation_channel: TelnyxConversationChannel | Omit = omit,
         test_suite: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,6 +436,7 @@ class AsyncTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/assistants/tests",
             body=await async_maybe_transform(

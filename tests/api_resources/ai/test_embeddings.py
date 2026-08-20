@@ -39,6 +39,7 @@ class TestEmbeddings:
             document_chunk_size=1024,
             embedding_model="thenlper/gte-large",
             loader="default",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(EmbeddingResponse, embedding, path=["response"])
 
@@ -204,6 +205,16 @@ class TestEmbeddings:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_url_with_all_params(self, client: Telnyx) -> None:
+        embedding = client.ai.embeddings.url(
+            bucket_name="Bucket Name",
+            url="URL",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
+        )
+        assert_matches_type(EmbeddingResponse, embedding, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_url(self, client: Telnyx) -> None:
         response = client.ai.embeddings.with_raw_response.url(
             bucket_name="Bucket Name",
@@ -253,6 +264,7 @@ class TestAsyncEmbeddings:
             document_chunk_size=1024,
             embedding_model="thenlper/gte-large",
             loader="default",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(EmbeddingResponse, embedding, path=["response"])
 
@@ -413,6 +425,16 @@ class TestAsyncEmbeddings:
         embedding = await async_client.ai.embeddings.url(
             bucket_name="Bucket Name",
             url="URL",
+        )
+        assert_matches_type(EmbeddingResponse, embedding, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_url_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        embedding = await async_client.ai.embeddings.url(
+            bucket_name="Bucket Name",
+            url="URL",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(EmbeddingResponse, embedding, path=["response"])
 

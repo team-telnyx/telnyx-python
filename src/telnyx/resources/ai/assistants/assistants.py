@@ -32,7 +32,7 @@ from .versions import (
     AsyncVersionsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ....types.ai import (
     assistant_chat_params,
@@ -196,6 +196,7 @@ class AssistantsResource(SyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,6 +296,7 @@ class AssistantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/assistants",
             body=maybe_transform(
@@ -699,6 +701,7 @@ class AssistantsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -720,6 +723,7 @@ class AssistantsResource(SyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             path_template("/ai/assistants/{assistant_id}/clone", assistant_id=assistant_id),
             options=make_request_options(
@@ -767,6 +771,7 @@ class AssistantsResource(SyncAPIResource):
         api_key_ref: str,
         provider: Literal["elevenlabs", "vapi", "retell"],
         import_ids: SequenceNotStr[str] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -798,6 +803,7 @@ class AssistantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/assistants/import",
             body=maybe_transform(
@@ -823,6 +829,7 @@ class AssistantsResource(SyncAPIResource):
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         should_create_conversation: bool | Omit = omit,
         text: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -855,6 +862,7 @@ class AssistantsResource(SyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             path_template("/ai/assistants/{assistant_id}/chat/sms", assistant_id=assistant_id),
             body=maybe_transform(
@@ -962,6 +970,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1061,6 +1070,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/assistants",
             body=await async_maybe_transform(
@@ -1465,6 +1475,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1486,6 +1497,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             path_template("/ai/assistants/{assistant_id}/clone", assistant_id=assistant_id),
             options=make_request_options(
@@ -1533,6 +1545,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         api_key_ref: str,
         provider: Literal["elevenlabs", "vapi", "retell"],
         import_ids: SequenceNotStr[str] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1564,6 +1577,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/assistants/import",
             body=await async_maybe_transform(
@@ -1589,6 +1603,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         should_create_conversation: bool | Omit = omit,
         text: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1621,6 +1636,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             path_template("/ai/assistants/{assistant_id}/chat/sms", assistant_id=assistant_id),
             body=await async_maybe_transform(

@@ -11,7 +11,6 @@ from .conversation_relay_interruptible import ConversationRelayInterruptible
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..conversation_relay_language_param import ConversationRelayLanguageParam
-from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.inworld_voice_settings import InworldVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
@@ -241,7 +240,6 @@ VoiceSettings: TypeAlias = Union[
     AwsVoiceSettingsParam,
     MinimaxVoiceSettings,
     AzureVoiceSettings,
-    RimeVoiceSettings,
     ResembleVoiceSettings,
     InworldVoiceSettings,
     XaiVoiceSettings,

@@ -84,10 +84,8 @@ class TextToSpeechResource(SyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"] | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -111,11 +109,11 @@ class TextToSpeechResource(SyncAPIResource):
         header.
 
         The `voice` parameter provides a convenient shorthand to specify provider,
-        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy` or
-        `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
-        with provider-specific parameters.
+        model, and voice in a single string (e.g. `Telnyx.Ultra.<voice_id>`).
+        Alternatively, specify `provider` explicitly along with provider-specific
+        parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -146,19 +144,18 @@ class TextToSpeechResource(SyncAPIResource):
 
           resemble: Resemble AI provider-specific parameters.
 
-          rime: Rime provider-specific parameters.
-
-          telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
-              `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
-              `volume`, and `emotion`.
+          telnyx: Telnyx provider-specific parameters. For the `Ultra` model, use `voice_speed`,
+              `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`,
+              or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is
+              restricted to `mp3` or `pcm` (no `wav`).
 
           text: The text to convert to speech.
 
           text_type: Text type. Use `ssml` for SSML-formatted input (supported by AWS and Azure).
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
+              `provider.voice_id`. Examples: `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+              `Telnyx.Sukhan.urdu-professor`, `azure.en-US-AvaMultilingualNeural`,
               `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
               `voice_id` are extracted automatically and take precedence over individual
               parameters.
@@ -190,7 +187,6 @@ class TextToSpeechResource(SyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -217,10 +213,8 @@ class TextToSpeechResource(SyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"] | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -244,11 +238,11 @@ class TextToSpeechResource(SyncAPIResource):
         header.
 
         The `voice` parameter provides a convenient shorthand to specify provider,
-        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy` or
-        `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
-        with provider-specific parameters.
+        model, and voice in a single string (e.g. `Telnyx.Ultra.<voice_id>`).
+        Alternatively, specify `provider` explicitly along with provider-specific
+        parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -279,19 +273,18 @@ class TextToSpeechResource(SyncAPIResource):
 
           resemble: Resemble AI provider-specific parameters.
 
-          rime: Rime provider-specific parameters.
-
-          telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
-              `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
-              `volume`, and `emotion`.
+          telnyx: Telnyx provider-specific parameters. For the `Ultra` model, use `voice_speed`,
+              `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`,
+              or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is
+              restricted to `mp3` or `pcm` (no `wav`).
 
           text: The text to convert to speech.
 
           text_type: Text type. Use `ssml` for SSML-formatted input (supported by AWS and Azure).
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
+              `provider.voice_id`. Examples: `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+              `Telnyx.Sukhan.urdu-professor`, `azure.en-US-AvaMultilingualNeural`,
               `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
               `voice_id` are extracted automatically and take precedence over individual
               parameters.
@@ -323,7 +316,6 @@ class TextToSpeechResource(SyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -343,8 +335,7 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -397,9 +388,7 @@ class TextToSpeechResource(SyncAPIResource):
         audio_format: Literal["pcm", "wav", "mp3"] | Omit = omit,
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
-        provider: Literal[
-            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai", "humain"
-        ]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain"]
         | Omit = omit,
         socket_id: str | Omit = omit,
         voice: str | Omit = omit,
@@ -417,8 +406,8 @@ class TextToSpeechResource(SyncAPIResource):
         `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`, `xai`, `humain`.
+        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `resemble`,
+        `elevenlabs`, `xai`, `humain`.
 
         **Connection flow:**
 
@@ -437,14 +426,13 @@ class TextToSpeechResource(SyncAPIResource):
         POST `/text-to-speech/speech` endpoint instead.
 
         Args:
-          audio_format: Audio output format override. Supported for Telnyx models. `pcm` and `wav` are
-              available for `Natural`/`NaturalHD` models. The `Ultra` model outputs PCM at
-              24kHz s16le or MP3 at 128kbps 24kHz.
+          audio_format: Audio output format override. Supported for Telnyx models. The `Ultra` model
+              outputs PCM at 24kHz s16le or MP3 at 128kbps 24kHz.
 
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
-          model_id: Model identifier for the chosen provider. Examples: `Natural`, `NaturalHD`,
-              `Ultra` (Telnyx); `Polly.Generative` (AWS).
+          model_id: Model identifier for the chosen provider. Examples: `Ultra`, `KokoroTTS`
+              (Telnyx); `Polly.Generative` (AWS).
 
           provider: TTS provider. Defaults to `telnyx` if not specified. Ignored when `voice` is
               provided.
@@ -453,8 +441,8 @@ class TextToSpeechResource(SyncAPIResource):
               generated server-side.
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id` (e.g. `telnyx.NaturalHD.Telnyx_Alloy`,
-              `Telnyx.Ultra.<voice_id>`, or `azure.en-US-AvaMultilingualNeural`). When
+              `provider.voice_id` (e.g. `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+              `Telnyx.Sukhan.urdu-professor`, or `azure.en-US-AvaMultilingualNeural`). When
               provided, the `provider`, `model_id`, and `voice_id` are extracted
               automatically. Takes precedence over individual `provider`/`model_id`/`voice_id`
               parameters.
@@ -550,10 +538,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"] | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -577,11 +563,11 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         header.
 
         The `voice` parameter provides a convenient shorthand to specify provider,
-        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy` or
-        `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
-        with provider-specific parameters.
+        model, and voice in a single string (e.g. `Telnyx.Ultra.<voice_id>`).
+        Alternatively, specify `provider` explicitly along with provider-specific
+        parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -612,19 +598,18 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           resemble: Resemble AI provider-specific parameters.
 
-          rime: Rime provider-specific parameters.
-
-          telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
-              `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
-              `volume`, and `emotion`.
+          telnyx: Telnyx provider-specific parameters. For the `Ultra` model, use `voice_speed`,
+              `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`,
+              or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is
+              restricted to `mp3` or `pcm` (no `wav`).
 
           text: The text to convert to speech.
 
           text_type: Text type. Use `ssml` for SSML-formatted input (supported by AWS and Azure).
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
+              `provider.voice_id`. Examples: `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+              `Telnyx.Sukhan.urdu-professor`, `azure.en-US-AvaMultilingualNeural`,
               `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
               `voice_id` are extracted automatically and take precedence over individual
               parameters.
@@ -656,7 +641,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -683,10 +667,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"] | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -710,11 +692,11 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         header.
 
         The `voice` parameter provides a convenient shorthand to specify provider,
-        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy` or
-        `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
-        with provider-specific parameters.
+        model, and voice in a single string (e.g. `Telnyx.Ultra.<voice_id>`).
+        Alternatively, specify `provider` explicitly along with provider-specific
+        parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -745,19 +727,18 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           resemble: Resemble AI provider-specific parameters.
 
-          rime: Rime provider-specific parameters.
-
-          telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
-              `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
-              `volume`, and `emotion`.
+          telnyx: Telnyx provider-specific parameters. For the `Ultra` model, use `voice_speed`,
+              `volume`, and `emotion`. `Bayan` and `Sukhan` don't use `temperature`, `volume`,
+              or `emotion`, and don't support `voice_speed`. `Sukhan`'s `response_format` is
+              restricted to `mp3` or `pcm` (no `wav`).
 
           text: The text to convert to speech.
 
           text_type: Text type. Use `ssml` for SSML-formatted input (supported by AWS and Azure).
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
+              `provider.voice_id`. Examples: `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+              `Telnyx.Sukhan.urdu-professor`, `azure.en-US-AvaMultilingualNeural`,
               `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
               `voice_id` are extracted automatically and take precedence over individual
               parameters.
@@ -789,7 +770,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -809,8 +789,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -863,9 +842,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         audio_format: Literal["pcm", "wav", "mp3"] | Omit = omit,
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
-        provider: Literal[
-            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai", "humain"
-        ]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain"]
         | Omit = omit,
         socket_id: str | Omit = omit,
         voice: str | Omit = omit,
@@ -883,8 +860,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`, `xai`, `humain`.
+        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `resemble`,
+        `elevenlabs`, `xai`, `humain`.
 
         **Connection flow:**
 
@@ -903,14 +880,13 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         POST `/text-to-speech/speech` endpoint instead.
 
         Args:
-          audio_format: Audio output format override. Supported for Telnyx models. `pcm` and `wav` are
-              available for `Natural`/`NaturalHD` models. The `Ultra` model outputs PCM at
-              24kHz s16le or MP3 at 128kbps 24kHz.
+          audio_format: Audio output format override. Supported for Telnyx models. The `Ultra` model
+              outputs PCM at 24kHz s16le or MP3 at 128kbps 24kHz.
 
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
-          model_id: Model identifier for the chosen provider. Examples: `Natural`, `NaturalHD`,
-              `Ultra` (Telnyx); `Polly.Generative` (AWS).
+          model_id: Model identifier for the chosen provider. Examples: `Ultra`, `KokoroTTS`
+              (Telnyx); `Polly.Generative` (AWS).
 
           provider: TTS provider. Defaults to `telnyx` if not specified. Ignored when `voice` is
               provided.
@@ -919,8 +895,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
               generated server-side.
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id` (e.g. `telnyx.NaturalHD.Telnyx_Alloy`,
-              `Telnyx.Ultra.<voice_id>`, or `azure.en-US-AvaMultilingualNeural`). When
+              `provider.voice_id` (e.g. `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+              `Telnyx.Sukhan.urdu-professor`, or `azure.en-US-AvaMultilingualNeural`). When
               provided, the `provider`, `model_id`, and `voice_id` are extracted
               automatically. Takes precedence over individual `provider`/`model_id`/`voice_id`
               parameters.

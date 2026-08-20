@@ -24,7 +24,7 @@ from .messages import (
     AsyncMessagesResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ....types.ai import (
     conversation_list_params,
@@ -114,6 +114,7 @@ class ConversationsResource(SyncAPIResource):
         *,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,6 +138,7 @@ class ConversationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/conversations",
             body=maybe_transform(
@@ -366,6 +368,7 @@ class ConversationsResource(SyncAPIResource):
         tool_call_id: str | Omit = omit,
         tool_calls: Iterable[Dict[str, object]] | Omit = omit,
         tool_choice: Union[str, Dict[str, object]] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,6 +395,7 @@ class ConversationsResource(SyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             path_template("/ai/conversations/{conversation_id}/message", conversation_id=conversation_id),
             body=maybe_transform(
@@ -496,6 +500,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         *,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -519,6 +524,7 @@ class AsyncConversationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/conversations",
             body=await async_maybe_transform(
@@ -750,6 +756,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         tool_call_id: str | Omit = omit,
         tool_calls: Iterable[Dict[str, object]] | Omit = omit,
         tool_choice: Union[str, Dict[str, object]] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -776,6 +783,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             path_template("/ai/conversations/{conversation_id}/message", conversation_id=conversation_id),
             body=await async_maybe_transform(

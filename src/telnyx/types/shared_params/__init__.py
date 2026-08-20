@@ -2,7 +2,6 @@
 
 from .sim_card_status import SimCardStatus as SimCardStatus
 from .xai_voice_settings import XaiVoiceSettings as XaiVoiceSettings
-from .rime_voice_settings import RimeVoiceSettings as RimeVoiceSettings
 from .azure_voice_settings import AzureVoiceSettings as AzureVoiceSettings
 from .book_appointment_tool import BookAppointmentTool as BookAppointmentTool
 from .inworld_voice_settings import InworldVoiceSettings as InworldVoiceSettings

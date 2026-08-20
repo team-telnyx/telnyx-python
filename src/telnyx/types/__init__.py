@@ -28,7 +28,6 @@ from .shared import (
     RoomParticipant as RoomParticipant,
     XaiVoiceSettings as XaiVoiceSettings,
     RegionInformation as RegionInformation,
-    RimeVoiceSettings as RimeVoiceSettings,
     AzureVoiceSettings as AzureVoiceSettings,
     PortingOrderStatus as PortingOrderStatus,
     BookAppointmentTool as BookAppointmentTool,
@@ -163,7 +162,6 @@ from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .stt_service_type import SttServiceType as SttServiceType
-from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
 from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .webhook_delivery import WebhookDelivery as WebhookDelivery
@@ -422,6 +420,7 @@ from .enterprise_create_params import EnterpriseCreateParams as EnterpriseCreate
 from .enterprise_update_params import EnterpriseUpdateParams as EnterpriseUpdateParams
 from .meeting_session_response import MeetingSessionResponse as MeetingSessionResponse
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
+from .numbers_sub_number_order import NumbersSubNumberOrder as NumbersSubNumberOrder
 from .oauth_client_list_params import OAuthClientListParams as OAuthClientListParams
 from .ota_update_list_response import OtaUpdateListResponse as OtaUpdateListResponse
 from .outbound_message_payload import OutboundMessagePayload as OutboundMessagePayload
