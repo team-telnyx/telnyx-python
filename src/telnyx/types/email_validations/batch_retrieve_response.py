@@ -7,31 +7,14 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..email_validation_check import EmailValidationCheck
+from ..email_validation_checks import EmailValidationChecks
 from .email_validation_batch_status import EmailValidationBatchStatus
 
-__all__ = ["BatchRetrieveResponse", "Data", "DataResults", "DataResultsChecks", "DataResultsChecksTypo"]
-
-
-class DataResultsChecksTypo(EmailValidationCheck):
-    suggestion: Optional[str] = None
-    """Suggested correction for common typos. Omitted when nil."""
-
-
-class DataResultsChecks(BaseModel):
-    disposable: EmailValidationCheck
-
-    mx: EmailValidationCheck
-
-    role_based: EmailValidationCheck
-
-    syntax: EmailValidationCheck
-
-    typo: DataResultsChecksTypo
+__all__ = ["BatchRetrieveResponse", "Data", "DataResults"]
 
 
 class DataResults(BaseModel):
-    checks: DataResultsChecks
+    checks: EmailValidationChecks
 
     email: str
 

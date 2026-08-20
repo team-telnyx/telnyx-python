@@ -1575,6 +1575,7 @@ from telnyx.types.calls import (
     TranscriptionEngineGoogleConfig,
     TranscriptionEngineHumainConfig,
     TranscriptionEngineParakeetConfig,
+    TranscriptionEngineReson8Config,
     TranscriptionEngineSonioxConfig,
     TranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineTelnyxConfig,
@@ -1883,6 +1884,7 @@ from telnyx.types import (
     CustomStorageConfiguration,
     GcsConfigurationData,
     S3ConfigurationData,
+    S3GenericConfigurationData,
 )
 ```
 
@@ -3944,6 +3946,7 @@ Types:
 
 ```python
 from telnyx.types.rcs import (
+    BrandAddress,
     BrandContact,
     BrandLegalEntityType,
     BrandOrganizationType,
@@ -4619,6 +4622,8 @@ Types:
 
 ```python
 from telnyx.types.storage import (
+    CloudfsFilesystem,
+    CloudfsFilesystemDetail,
     CloudfsFilesystemDetailResponseWrapper,
     CloudfsFilesystemResponseWrapper,
     CloudfsFilesystemStatus,
@@ -5782,6 +5787,7 @@ Types:
 
 ```python
 from telnyx.types.whatsapp.phone_numbers import (
+    WhatsappConversationalComponent,
     ConversationalComponentListResponse,
     ConversationalComponentPatchAllResponse,
 )
@@ -5986,6 +5992,8 @@ Types:
 
 ```python
 from telnyx.types.enterprises.reputation import (
+    RemediationPerNumberResults,
+    RemediationRequest,
     RemediationRequestWrapped,
     RemediationStatus,
     RemediationListResponse,
@@ -6248,7 +6256,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.dir import EmailVerificationStatusWrapped
+from telnyx.types.dir import EmailVerificationStatus, EmailVerificationStatusWrapped
 ```
 
 Methods:
@@ -6298,7 +6306,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.email_blocks import EmailBlockImportResponse
+from telnyx.types.email_blocks import EmailBlockImport, EmailBlockImportResponse
 ```
 
 Methods:
@@ -6422,6 +6430,7 @@ Types:
 
 ```python
 from telnyx.types.email_inboxes import (
+    InboxFilters,
     MutateInboxFiltersRequest,
     FilterListResponse,
     FilterAddResponse,
@@ -6529,6 +6538,7 @@ from telnyx.types import (
     AttachmentRequest,
     EmailAddressInput,
     MessageEvent,
+    SuppressedRecipient,
     TrackingSettings,
     EmailMessageRetrieveResponse,
     EmailMessageListResponse,
@@ -6631,7 +6641,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import EmailValidationCheck, EmailValidationCreateResponse
+from telnyx.types import EmailValidationCheck, EmailValidationChecks, EmailValidationCreateResponse
 ```
 
 Methods:

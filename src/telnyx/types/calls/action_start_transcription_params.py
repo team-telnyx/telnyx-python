@@ -13,17 +13,14 @@ from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigP
 from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
 from .transcription_engine_humain_config_param import TranscriptionEngineHumainConfigParam
+from .transcription_engine_reson8_config_param import TranscriptionEngineReson8ConfigParam
 from .transcription_engine_soniox_config_param import TranscriptionEngineSonioxConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
 from .transcription_engine_parakeet_config_param import TranscriptionEngineParakeetConfigParam
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = [
-    "ActionStartTranscriptionParams",
-    "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineReson8Config",
-]
+__all__ = ["ActionStartTranscriptionParams", "TranscriptionEngineConfig"]
 
 
 class ActionStartTranscriptionParams(TypedDict, total=False):
@@ -71,21 +68,6 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
     """
 
 
-class TranscriptionEngineConfigTranscriptionEngineReson8Config(TypedDict, total=False):
-    language: Literal["auto", "nl", "en", "fr", "fy", "de", "it", "pl", "pt", "es", "sv"]
-    """The language of the audio to be transcribed.
-
-    `auto` (the default, also applied when `language` is omitted) enables automatic
-    language detection.
-    """
-
-    transcription_engine: Literal["Reson8"]
-    """Engine identifier for Reson8 transcription service"""
-
-    transcription_model: Literal["reson8/turns"]
-    """The model to use for transcription."""
-
-
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
@@ -96,7 +78,7 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineSonioxConfigParam,
     TranscriptionEngineParakeetConfigParam,
     TranscriptionEngineHumainConfigParam,
-    TranscriptionEngineConfigTranscriptionEngineReson8Config,
+    TranscriptionEngineReson8ConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,

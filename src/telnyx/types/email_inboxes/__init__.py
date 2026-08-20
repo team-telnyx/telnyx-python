@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from .email_draft import EmailDraft as EmailDraft
     from .email_address import EmailAddress as EmailAddress
     from .email_message import EmailMessage as EmailMessage
+    from .inbox_filters import InboxFilters as InboxFilters
     from .inbound_thread import InboundThread as InboundThread
     from .thread_message import ThreadMessage as ThreadMessage
     from .draft_list_response import DraftListResponse as DraftListResponse
@@ -65,6 +66,10 @@ def __getattr__(name: str) -> Any:
         from .draft_list_response import DraftListResponse
 
         return DraftListResponse
+    if name == "InboxFilters":
+        from .inbox_filters import InboxFilters
+
+        return InboxFilters
     if name == "FilterListResponse":
         from .filter_list_response import FilterListResponse
 

@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .rejection_reason import RejectionReason as RejectionReason
     from .phone_number_batch import PhoneNumberBatch as PhoneNumberBatch
     from .comment_create_response import CommentCreateResponse as CommentCreateResponse
+    from .email_verification_status import EmailVerificationStatus as EmailVerificationStatus
     from .phone_number_add_response import PhoneNumberAddResponse as PhoneNumberAddResponse
     from .reference_update_response import ReferenceUpdateResponse as ReferenceUpdateResponse
     from .phone_number_remove_response import PhoneNumberRemoveResponse as PhoneNumberRemoveResponse
@@ -84,6 +85,10 @@ def __getattr__(name: str) -> Any:
         from .reference_update_response import ReferenceUpdateResponse
 
         return ReferenceUpdateResponse
+    if name == "EmailVerificationStatus":
+        from .email_verification_status import EmailVerificationStatus
+
+        return EmailVerificationStatus
     if name == "EmailVerificationStatusWrapped":
         from .email_verification_status_wrapped import EmailVerificationStatusWrapped
 

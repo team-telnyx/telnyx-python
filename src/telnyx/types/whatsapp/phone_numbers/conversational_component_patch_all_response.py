@@ -2,31 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 
 from ...._models import BaseModel
+from .whatsapp_conversational_component import WhatsappConversationalComponent
 
-__all__ = ["ConversationalComponentPatchAllResponse", "Data", "DataCommand"]
-
-
-class DataCommand(BaseModel):
-    command: Optional[str] = None
-
-    description: Optional[str] = None
-
-
-class Data(BaseModel):
-    commands: Optional[List[DataCommand]] = None
-    """List of commands"""
-
-    ice_breakers: Optional[List[str]] = None
-    """List of ice breakers"""
-
-    phone_number: Optional[str] = None
-    """Phone number in E164 format"""
-
-    record_type: Optional[str] = None
+__all__ = ["ConversationalComponentPatchAllResponse"]
 
 
 class ConversationalComponentPatchAllResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[WhatsappConversationalComponent] = None

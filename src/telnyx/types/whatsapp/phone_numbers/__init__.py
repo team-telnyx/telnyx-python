@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .whatsapp_calling_settings_data import WhatsappCallingSettingsData as WhatsappCallingSettingsData
     from .calling_setting_update_response import CallingSettingUpdateResponse as CallingSettingUpdateResponse
     from .calling_setting_retrieve_response import CallingSettingRetrieveResponse as CallingSettingRetrieveResponse
+    from .whatsapp_conversational_component import WhatsappConversationalComponent as WhatsappConversationalComponent
     from .conversational_component_list_response import (
         ConversationalComponentListResponse as ConversationalComponentListResponse,
     )
@@ -50,6 +51,10 @@ def __getattr__(name: str) -> Any:
         from .profile_update_response import ProfileUpdateResponse
 
         return ProfileUpdateResponse
+    if name == "WhatsappConversationalComponent":
+        from .whatsapp_conversational_component import WhatsappConversationalComponent
+
+        return WhatsappConversationalComponent
     if name == "ConversationalComponentListResponse":
         from .conversational_component_list_response import ConversationalComponentListResponse
 

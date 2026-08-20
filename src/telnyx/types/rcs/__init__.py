@@ -10,6 +10,7 @@ from .agent_create_params import AgentCreateParams as AgentCreateParams
 from .agent_launch_params import AgentLaunchParams as AgentLaunchParams
 from .agent_list_response import AgentListResponse as AgentListResponse
 from .agent_update_params import AgentUpdateParams as AgentUpdateParams
+from .brand_address_param import BrandAddressParam as BrandAddressParam
 from .brand_contact_param import BrandContactParam as BrandContactParam
 from .brand_create_params import BrandCreateParams as BrandCreateParams
 from .brand_list_response import BrandListResponse as BrandListResponse
@@ -33,6 +34,7 @@ from .agent_retrieve_carrier_approvals_response import (
 
 if TYPE_CHECKING:
     from .rcs_agent import RcsAgent as RcsAgent
+    from .brand_address import BrandAddress as BrandAddress
     from .brand_contact import BrandContact as BrandContact
     from .agent_response import AgentResponse as AgentResponse
     from .brand_response import BrandResponse as BrandResponse
@@ -104,6 +106,10 @@ def __getattr__(name: str) -> Any:
         from .rcs_agent_response import RcsAgentResponse
 
         return RcsAgentResponse
+    if name == "BrandAddress":
+        from .brand_address import BrandAddress
+
+        return BrandAddress
     if name == "BrandContact":
         from .brand_contact import BrandContact
 

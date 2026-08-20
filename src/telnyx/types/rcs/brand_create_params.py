@@ -5,17 +5,18 @@ from __future__ import annotations
 from typing import Dict, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .brand_address_param import BrandAddressParam
 from .brand_contact_param import BrandContactParam
 from .brand_legal_entity_type import BrandLegalEntityType
 from .brand_organization_type import BrandOrganizationType
 from .ein_brand_identifier_param import EinBrandIdentifierParam
 from .stock_symbol_brand_identifier_param import StockSymbolBrandIdentifierParam
 
-__all__ = ["BrandCreateParams", "Addresses", "Contacts", "ContactsBrand", "Identifiers", "Identifier"]
+__all__ = ["BrandCreateParams", "Contacts", "ContactsBrand", "Identifiers", "Identifier"]
 
 
 class BrandCreateParams(TypedDict, total=False):
-    addresses: Required[Dict[str, Addresses]]
+    addresses: Required[Dict[str, BrandAddressParam]]
 
     contacts: Required[Contacts]
     """Named business contacts. Use the `brand` key for the required BRAND contact."""
@@ -42,21 +43,6 @@ class BrandCreateParams(TypedDict, total=False):
 
     Agents inherit this value when they do not provide their own profile.
     """
-
-
-class Addresses(TypedDict, total=False):
-    administrative_area: Required[str]
-
-    city: Required[str]
-
-    country_code: Required[str]
-    """The two-letter ISO 3166-1 country code."""
-
-    line_1: Required[str]
-
-    postal_code: Required[str]
-
-    line_2: Optional[str]
 
 
 class ContactsBrand(BrandContactParam, total=False):
