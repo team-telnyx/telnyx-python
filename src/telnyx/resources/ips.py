@@ -62,7 +62,8 @@ class IPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPCreateResponse:
         """
-        Create a new IP object.
+        Creates a new IP record for use with IP-based connections, associating an IP
+        address with the specified connection.
 
         Args:
           ip_address: IP adddress represented by this resource.
@@ -143,7 +144,7 @@ class IPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPUpdateResponse:
         """
-        Update the details of a specific IP.
+        Updates the details of the specified IP record and returns the updated IP.
 
         Args:
           ip_address: IP adddress represented by this resource.
@@ -239,7 +240,7 @@ class IPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPDeleteResponse:
         """
-        Delete an IP.
+        Permanently deletes the specified IP record from its connection.
 
         Args:
           extra_headers: Send extra headers
@@ -297,7 +298,8 @@ class AsyncIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPCreateResponse:
         """
-        Create a new IP object.
+        Creates a new IP record for use with IP-based connections, associating an IP
+        address with the specified connection.
 
         Args:
           ip_address: IP adddress represented by this resource.
@@ -378,7 +380,7 @@ class AsyncIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPUpdateResponse:
         """
-        Update the details of a specific IP.
+        Updates the details of the specified IP record and returns the updated IP.
 
         Args:
           ip_address: IP adddress represented by this resource.
@@ -474,7 +476,7 @@ class AsyncIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPDeleteResponse:
         """
-        Delete an IP.
+        Permanently deletes the specified IP record from its connection.
 
         Args:
           extra_headers: Send extra headers

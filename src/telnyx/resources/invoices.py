@@ -99,7 +99,7 @@ class InvoicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[InvoiceListResponse]:
         """
-        Retrieve a paginated list of invoices.
+        Returns a paginated list of your invoices, with support for sorting.
 
         Args:
           sort: Specifies the sort order for results.
@@ -207,7 +207,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InvoiceListResponse, AsyncDefaultFlatPagination[InvoiceListResponse]]:
         """
-        Retrieve a paginated list of invoices.
+        Returns a paginated list of your invoices, with support for sorting.
 
         Args:
           sort: Specifies the sort order for results.

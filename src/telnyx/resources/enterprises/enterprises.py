@@ -41,7 +41,6 @@ from .reputation.reputation import (
     AsyncReputationResourceWithStreamingResponse,
 )
 from ...types.enterprise_public import EnterprisePublic
-from ...types.billing_address_param import BillingAddressParam
 from ...types.billing_contact_param import BillingContactParam
 from ...types.physical_address_param import PhysicalAddressParam
 from ...types.enterprise_public_wrapped import EnterprisePublicWrapped
@@ -87,7 +86,7 @@ class EnterprisesResource(SyncAPIResource):
     def create(
         self,
         *,
-        billing_address: BillingAddressParam,
+        billing_address: PhysicalAddressParam,
         billing_contact: BillingContactParam,
         country_code: str,
         doing_business_as: str,
@@ -299,7 +298,7 @@ class EnterprisesResource(SyncAPIResource):
         self,
         enterprise_id: str,
         *,
-        billing_address: BillingAddressParam | Omit = omit,
+        billing_address: PhysicalAddressParam | Omit = omit,
         billing_contact: BillingContactParam | Omit = omit,
         corporate_registration_number: Optional[str] | Omit = omit,
         customer_reference: str | Omit = omit,
@@ -611,7 +610,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        billing_address: BillingAddressParam,
+        billing_address: PhysicalAddressParam,
         billing_contact: BillingContactParam,
         country_code: str,
         doing_business_as: str,
@@ -823,7 +822,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         self,
         enterprise_id: str,
         *,
-        billing_address: BillingAddressParam | Omit = omit,
+        billing_address: PhysicalAddressParam | Omit = omit,
         billing_contact: BillingContactParam | Omit = omit,
         corporate_registration_number: Optional[str] | Omit = omit,
         customer_reference: str | Omit = omit,

@@ -58,7 +58,11 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentCreateResponse:
-        """Create a Global IP assignment."""
+        """
+        Assigns a Global IP to a WireGuard peer so traffic destined for the IP is
+        delivered over that peer's tunnel. Assignment is asynchronous, so the request is
+        accepted and completes in the background.
+        """
         return self._post(
             "/global_ip_assignments",
             options=make_request_options(
@@ -79,7 +83,8 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentRetrieveResponse:
         """
-        Retrieve a Global IP assignment.
+        Returns the details of a single Global IP assignment, including the Global IP
+        and WireGuard peer it links.
 
         Args:
           extra_headers: Send extra headers
@@ -113,7 +118,8 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentUpdateResponse:
         """
-        Update a Global IP assignment.
+        Updates the specified Global IP assignment with the provided fields and returns
+        the updated assignment.
 
         Args:
           extra_headers: Send extra headers
@@ -154,7 +160,8 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[GlobalIPAssignment]:
         """
-        List all Global IP assignments.
+        Returns a paginated list of your Global IP assignments, the links between Global
+        IPs and the WireGuard peers that receive their traffic.
 
         Args:
           extra_headers: Send extra headers
@@ -196,7 +203,8 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentDeleteResponse:
         """
-        Delete a Global IP assignment.
+        Deletes the specified Global IP assignment, detaching the Global IP from its
+        WireGuard peer.
 
         Args:
           extra_headers: Send extra headers
@@ -250,7 +258,11 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentCreateResponse:
-        """Create a Global IP assignment."""
+        """
+        Assigns a Global IP to a WireGuard peer so traffic destined for the IP is
+        delivered over that peer's tunnel. Assignment is asynchronous, so the request is
+        accepted and completes in the background.
+        """
         return await self._post(
             "/global_ip_assignments",
             options=make_request_options(
@@ -271,7 +283,8 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentRetrieveResponse:
         """
-        Retrieve a Global IP assignment.
+        Returns the details of a single Global IP assignment, including the Global IP
+        and WireGuard peer it links.
 
         Args:
           extra_headers: Send extra headers
@@ -305,7 +318,8 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentUpdateResponse:
         """
-        Update a Global IP assignment.
+        Updates the specified Global IP assignment with the provided fields and returns
+        the updated assignment.
 
         Args:
           extra_headers: Send extra headers
@@ -346,7 +360,8 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GlobalIPAssignment, AsyncDefaultFlatPagination[GlobalIPAssignment]]:
         """
-        List all Global IP assignments.
+        Returns a paginated list of your Global IP assignments, the links between Global
+        IPs and the WireGuard peers that receive their traffic.
 
         Args:
           extra_headers: Send extra headers
@@ -388,7 +403,8 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentDeleteResponse:
         """
-        Delete a Global IP assignment.
+        Deletes the specified Global IP assignment, detaching the Global IP from its
+        WireGuard peer.
 
         Args:
           extra_headers: Send extra headers

@@ -546,7 +546,7 @@ class UacConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UacConnectionDeleteResponse:
         """
-        Deletes an existing UAC connection.
+        Permanently deletes the specified UAC connection from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -1058,7 +1058,7 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UacConnectionDeleteResponse:
         """
-        Deletes an existing UAC connection.
+        Permanently deletes the specified UAC connection from your account.
 
         Args:
           extra_headers: Send extra headers

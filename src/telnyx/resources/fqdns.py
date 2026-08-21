@@ -65,7 +65,7 @@ class FqdnsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnCreateResponse:
         """
-        Create a new FQDN object.
+        Creates a new FQDN record and attaches it to the specified connection.
 
         Args:
           connection_id: ID of the FQDN connection to which this IP should be attached.
@@ -153,7 +153,7 @@ class FqdnsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnUpdateResponse:
         """
-        Update the details of a specific FQDN.
+        Updates the details of the specified FQDN record and returns the updated FQDN.
 
         Args:
           connection_id: ID of the FQDN connection to which this IP should be attached.
@@ -255,7 +255,7 @@ class FqdnsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnDeleteResponse:
         """
-        Delete an FQDN.
+        Permanently deletes the specified FQDN record from its connection.
 
         Args:
           extra_headers: Send extra headers
@@ -314,7 +314,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnCreateResponse:
         """
-        Create a new FQDN object.
+        Creates a new FQDN record and attaches it to the specified connection.
 
         Args:
           connection_id: ID of the FQDN connection to which this IP should be attached.
@@ -402,7 +402,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnUpdateResponse:
         """
-        Update the details of a specific FQDN.
+        Updates the details of the specified FQDN record and returns the updated FQDN.
 
         Args:
           connection_id: ID of the FQDN connection to which this IP should be attached.
@@ -504,7 +504,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnDeleteResponse:
         """
-        Delete an FQDN.
+        Permanently deletes the specified FQDN record from its connection.
 
         Args:
           extra_headers: Send extra headers

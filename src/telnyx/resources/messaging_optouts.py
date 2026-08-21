@@ -60,7 +60,8 @@ class MessagingOptoutsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MessagingOptoutListResponse]:
         """
-        Retrieve a list of opt-out blocks.
+        Returns a paginated list of opt-out blocks created when message recipients opt
+        out. Supports filtering and optional redaction of recipient numbers.
 
         Args:
           created_at:
@@ -142,7 +143,8 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MessagingOptoutListResponse, AsyncDefaultFlatPagination[MessagingOptoutListResponse]]:
         """
-        Retrieve a list of opt-out blocks.
+        Returns a paginated list of opt-out blocks created when message recipients opt
+        out. Supports filtering and optional redaction of recipient numbers.
 
         Args:
           created_at:

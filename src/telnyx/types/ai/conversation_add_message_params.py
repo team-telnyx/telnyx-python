@@ -28,3 +28,5 @@ class ConversationAddMessageParams(TypedDict, total=False):
     tool_calls: Iterable[Dict[str, object]]
 
     tool_choice: Union[str, Dict[str, object]]
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

@@ -76,7 +76,8 @@ class UserAddressesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressCreateResponse:
         """
-        Creates a user address.
+        Creates a new user address from the provided details and returns the created
+        address.
 
         Args:
           business_name: The business name associated with the user address.
@@ -205,7 +206,8 @@ class UserAddressesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[UserAddressesUserAddress]:
         """
-        Returns a list of your user addresses.
+        Returns a paginated list of your user addresses, with support for filtering and
+        sorting.
 
         Args:
           filter:
@@ -308,7 +310,8 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressCreateResponse:
         """
-        Creates a user address.
+        Creates a new user address from the provided details and returns the created
+        address.
 
         Args:
           business_name: The business name associated with the user address.
@@ -437,7 +440,8 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[UserAddressesUserAddress, AsyncDefaultFlatPagination[UserAddressesUserAddress]]:
         """
-        Returns a list of your user addresses.
+        Returns a paginated list of your user addresses, with support for filtering and
+        sorting.
 
         Args:
           filter:

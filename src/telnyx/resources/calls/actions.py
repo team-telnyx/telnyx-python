@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Dict, List, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -647,7 +647,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnqueueResponse:
         """
-        Put the call in a queue.
+        Places the call into a queue, where it waits until it is removed or bridged to
+        another leg. Queue behavior is configured through the request body.
 
         Args:
           queue_name: The name of the queue the call should be put in. If a queue with a given name
@@ -1177,9 +1178,6 @@ class ActionsResource(SyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
@@ -1404,8 +1402,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveQueueResponse:
-        """
-        Removes the call from a queue.
+        """Removes the call from the queue it is currently waiting in.
+
+        The call remains
+        active and can be directed with further call commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -1517,6 +1517,10 @@ class ActionsResource(SyncAPIResource):
         service_level: str | Omit = omit,
         timeout_millis: int | Omit = omit,
         transaction_type: Literal["charge", "tokenize"] | Omit = omit,
+        valid_card_types: List[
+            Literal["visa", "mastercard", "amex", "maestro", "discover", "optima", "jcb", "diners-club", "enroute"]
+        ]
+        | Omit = omit,
         voice: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1584,6 +1588,11 @@ class ActionsResource(SyncAPIResource):
           transaction_type: Transaction to perform. If omitted, Pay infers `tokenize` when `amount` is
               absent or zero and `charge` when `amount` is positive.
 
+          valid_card_types: Restricts accepted card numbers to the listed card types. When the caller enters
+              a card number that does not match one of the listed types, Pay treats the input
+              as invalid and re-prompts for the card number. Cannot be used together with
+              `payment_token`.
+
           voice: Voice used for payment prompts. Accepts `male`, `female`, or a provider voice in
               `<Provider>.<Model>.<VoiceId>` format, for example `AWS.Polly.Joanna` or
               `Telnyx.KokoroTTS.af`.
@@ -1619,6 +1628,7 @@ class ActionsResource(SyncAPIResource):
                     "service_level": service_level,
                     "timeout_millis": timeout_millis,
                     "transaction_type": transaction_type,
+                    "valid_card_types": valid_card_types,
                     "voice": voice,
                 },
                 action_pay_params.ActionPayParams,
@@ -2045,9 +2055,6 @@ class ActionsResource(SyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
@@ -3334,8 +3341,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopAIAssistantResponse:
-        """
-        Stop an AI assistant on the call.
+        """Stops the AI assistant currently engaged on the call.
+
+        The call remains active
+        and can continue with other call control commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -3815,8 +3824,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopTranscriptionResponse:
-        """
-        Stop real-time transcription.
+        """Stops real-time transcription on the call.
+
+        Transcription webhooks cease once the
+        command takes effect; the call itself is unaffected.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -4201,8 +4212,11 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateClientStateResponse:
-        """
-        Updates client state
+        """Updates the client state associated with the call.
+
+        Client state is an opaque
+        value echoed back in subsequent webhooks for the call, letting you correlate
+        events with your application's state.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -4741,7 +4755,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnqueueResponse:
         """
-        Put the call in a queue.
+        Places the call into a queue, where it waits until it is removed or bridged to
+        another leg. Queue behavior is configured through the request body.
 
         Args:
           queue_name: The name of the queue the call should be put in. If a queue with a given name
@@ -5271,9 +5286,6 @@ class AsyncActionsResource(AsyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
@@ -5498,8 +5510,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveQueueResponse:
-        """
-        Removes the call from a queue.
+        """Removes the call from the queue it is currently waiting in.
+
+        The call remains
+        active and can be directed with further call commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -5611,6 +5625,10 @@ class AsyncActionsResource(AsyncAPIResource):
         service_level: str | Omit = omit,
         timeout_millis: int | Omit = omit,
         transaction_type: Literal["charge", "tokenize"] | Omit = omit,
+        valid_card_types: List[
+            Literal["visa", "mastercard", "amex", "maestro", "discover", "optima", "jcb", "diners-club", "enroute"]
+        ]
+        | Omit = omit,
         voice: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5678,6 +5696,11 @@ class AsyncActionsResource(AsyncAPIResource):
           transaction_type: Transaction to perform. If omitted, Pay infers `tokenize` when `amount` is
               absent or zero and `charge` when `amount` is positive.
 
+          valid_card_types: Restricts accepted card numbers to the listed card types. When the caller enters
+              a card number that does not match one of the listed types, Pay treats the input
+              as invalid and re-prompts for the card number. Cannot be used together with
+              `payment_token`.
+
           voice: Voice used for payment prompts. Accepts `male`, `female`, or a provider voice in
               `<Provider>.<Model>.<VoiceId>` format, for example `AWS.Polly.Joanna` or
               `Telnyx.KokoroTTS.af`.
@@ -5713,6 +5736,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "service_level": service_level,
                     "timeout_millis": timeout_millis,
                     "transaction_type": transaction_type,
+                    "valid_card_types": valid_card_types,
                     "voice": voice,
                 },
                 action_pay_params.ActionPayParams,
@@ -6139,9 +6163,6 @@ class AsyncActionsResource(AsyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
@@ -7428,8 +7449,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopAIAssistantResponse:
-        """
-        Stop an AI assistant on the call.
+        """Stops the AI assistant currently engaged on the call.
+
+        The call remains active
+        and can continue with other call control commands.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -7909,8 +7932,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopTranscriptionResponse:
-        """
-        Stop real-time transcription.
+        """Stops real-time transcription on the call.
+
+        Transcription webhooks cease once the
+        command takes effect; the call itself is unaffected.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -8297,8 +8322,11 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateClientStateResponse:
-        """
-        Updates client state
+        """Updates the client state associated with the call.
+
+        Client state is an opaque
+        value echoed back in subsequent webhooks for the call, letting you correlate
+        events with your application's state.
 
         Args:
           client_state: Use this field to add state to every subsequent webhook. It must be a valid

@@ -69,7 +69,8 @@ class AuthenticationProvidersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderCreateResponse:
         """
-        Creates an authentication provider.
+        Creates a new authentication provider for single sign-on, configured from the
+        provided identity provider details, and returns the created resource.
 
         Args:
           name: The name associated with the authentication provider.
@@ -344,7 +345,8 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderCreateResponse:
         """
-        Creates an authentication provider.
+        Creates a new authentication provider for single sign-on, configured from the
+        provided identity provider details, and returns the created resource.
 
         Args:
           name: The name associated with the authentication provider.

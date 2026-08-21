@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 
@@ -12,6 +12,9 @@ __all__ = [
     "Webhook",
     "WebhookBodyParameters",
     "WebhookHeader",
+    "WebhookMessage",
+    "WebhookMessageWebhookToolRequestStartMessage",
+    "WebhookMessageWebhookToolRequestResponseDelayedMessage",
     "WebhookPathParameters",
     "WebhookQueryParameters",
     "WebhookStoreFieldsAsVariable",
@@ -45,6 +48,36 @@ class WebhookHeader(TypedDict, total=False):
     [Telnyx signature headers](https://developers.telnyx.com/docs/voice/programmable-voice/voice-api-webhooks)
     will be automatically added to the request.
     """
+
+
+class WebhookMessageWebhookToolRequestStartMessage(TypedDict, total=False):
+    content: Required[str]
+    """The text the assistant speaks."""
+
+    type: Required[Literal["request_start"]]
+    """Speak the filler message immediately when the webhook request begins."""
+
+    timing_ms: int
+    """An optional delay value. This value is ignored for `request_start` messages."""
+
+
+class WebhookMessageWebhookToolRequestResponseDelayedMessage(TypedDict, total=False):
+    content: Required[str]
+    """The text the assistant speaks."""
+
+    timing_ms: Required[int]
+    """The delay in milliseconds from the start of the webhook request."""
+
+    type: Required[Literal["request_response_delayed"]]
+    """
+    Speak the filler message after the configured delay if the webhook response is
+    still pending.
+    """
+
+
+WebhookMessage: TypeAlias = Union[
+    WebhookMessageWebhookToolRequestStartMessage, WebhookMessageWebhookToolRequestResponseDelayedMessage
+]
 
 
 class WebhookPathParameters(TypedDict, total=False):
@@ -130,6 +163,15 @@ class Webhook(_WebhookReservedKeywords, total=False):
 
     headers: Iterable[WebhookHeader]
     """The headers to be sent to the external tool."""
+
+    messages: Iterable[WebhookMessage]
+    """Filler messages spoken while a synchronous webhook request is in progress.
+
+    `request_start` messages are spoken immediately when the request begins.
+    `request_response_delayed` messages are spoken after `timing_ms` has elapsed
+    only if the webhook response is still pending. Filler messages are not used for
+    asynchronous webhooks.
+    """
 
     method: Literal["GET", "POST", "PUT", "DELETE", "PATCH"]
     """The HTTP method to be used when calling the external tool."""

@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["AIRetrieveConversationHistoriesResponse", "Data", "Meta"]
+__all__ = ["AIRetrieveConversationHistoriesResponse"]
 
 
-class Data(BaseModel):
+class AIRetrieveConversationHistoriesResponse(BaseModel):
     """A single search result representing one chunk of a conversation history record.
 
     Records are split into chunks of up to 480 tokens with 64-token overlap at ingestion time.
@@ -61,32 +61,3 @@ class Data(BaseModel):
 
     Filterable via filter[field]=value query parameters.
     """
-
-
-class Meta(BaseModel):
-    """Pagination metadata following the standard Telnyx V2 API format."""
-
-    page_number: int
-    """Current page number (1-based), matching the requested page[number]."""
-
-    page_size: int
-    """Number of results per page, matching the requested page[size]."""
-
-    total_pages: int
-    """Total number of pages."""
-
-    total_results: int
-    """Total number of matching results across all queried regions."""
-
-
-class AIRetrieveConversationHistoriesResponse(BaseModel):
-    """Search response following the standard Telnyx V2 API format."""
-
-    data: List[Data]
-    """
-    Ranked list of matching text chunks, sorted by cosine similarity score
-    descending.
-    """
-
-    meta: Meta
-    """Pagination metadata following the standard Telnyx V2 API format."""

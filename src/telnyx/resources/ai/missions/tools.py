@@ -51,7 +51,8 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Create a new tool for a mission
+        Adds a new tool to the specified mission, defining an action agents can invoke
+        during runs of this mission.
 
         Args:
           extra_headers: Send extra headers
@@ -85,7 +86,8 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a tool from a mission
+        Removes the specified tool from the mission so agents can no longer invoke it in
+        subsequent runs.
 
         Args:
           extra_headers: Send extra headers
@@ -122,7 +124,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get a specific tool by ID
+        Returns the definition of a single tool configured on the specified mission.
 
         Args:
           extra_headers: Send extra headers
@@ -156,8 +158,10 @@ class ToolsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        List all tools for a mission
+        """Returns the tools configured on the specified mission.
+
+        Tools define the actions
+        agents may invoke while executing the mission's runs.
 
         Args:
           extra_headers: Send extra headers
@@ -191,7 +195,7 @@ class ToolsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update a tool definition
+        Replaces the definition of the specified tool on this mission.
 
         Args:
           extra_headers: Send extra headers
@@ -247,7 +251,8 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Create a new tool for a mission
+        Adds a new tool to the specified mission, defining an action agents can invoke
+        during runs of this mission.
 
         Args:
           extra_headers: Send extra headers
@@ -281,7 +286,8 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a tool from a mission
+        Removes the specified tool from the mission so agents can no longer invoke it in
+        subsequent runs.
 
         Args:
           extra_headers: Send extra headers
@@ -318,7 +324,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get a specific tool by ID
+        Returns the definition of a single tool configured on the specified mission.
 
         Args:
           extra_headers: Send extra headers
@@ -352,8 +358,10 @@ class AsyncToolsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        List all tools for a mission
+        """Returns the tools configured on the specified mission.
+
+        Tools define the actions
+        agents may invoke while executing the mission's runs.
 
         Args:
           extra_headers: Send extra headers
@@ -387,7 +395,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update a tool definition
+        Replaces the definition of the specified tool on this mission.
 
         Args:
           extra_headers: Send extra headers

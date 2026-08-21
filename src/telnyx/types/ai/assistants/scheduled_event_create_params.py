@@ -56,3 +56,5 @@ class ScheduledEventCreateParams(TypedDict, total=False):
 
     text: str
     """Required for sms scheduled events. The text to be sent to the end user."""
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

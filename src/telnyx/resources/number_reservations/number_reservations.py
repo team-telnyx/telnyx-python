@@ -115,7 +115,8 @@ class NumberReservationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberReservationRetrieveResponse:
         """
-        Gets a single phone number reservation.
+        Returns the details of a single phone number reservation, including its status
+        and the reserved numbers.
 
         Args:
           extra_headers: Send extra headers
@@ -268,7 +269,8 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberReservationRetrieveResponse:
         """
-        Gets a single phone number reservation.
+        Returns the details of a single phone number reservation, including its status
+        and the reserved numbers.
 
         Args:
           extra_headers: Send extra headers

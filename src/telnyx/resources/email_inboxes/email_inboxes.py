@@ -31,7 +31,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from .threads.threads import (
     ThreadsResource,
     AsyncThreadsResource,
@@ -48,8 +49,8 @@ from .messages.messages import (
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
+from ...types.email_inbox import EmailInbox
 from ...types.email_inbox_response import EmailInboxResponse
-from ...types.email_inbox_list_response import EmailInboxListResponse
 
 __all__ = ["EmailInboxesResource", "AsyncEmailInboxesResource"]
 
@@ -199,7 +200,7 @@ class EmailInboxesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailInboxListResponse:
+    ) -> SyncEmailCursorPagination[EmailInbox]:
         """
         Lists the account's non-deleted inboxes newest first using stable cursor
         pagination.
@@ -217,8 +218,9 @@ class EmailInboxesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/email_inboxes",
+            page=SyncEmailCursorPagination[EmailInbox],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -232,7 +234,7 @@ class EmailInboxesResource(SyncAPIResource):
                     email_inbox_list_params.EmailInboxListParams,
                 ),
             ),
-            cast_to=EmailInboxListResponse,
+            model=EmailInbox,
         )
 
     def delete(
@@ -406,7 +408,7 @@ class AsyncEmailInboxesResource(AsyncAPIResource):
             cast_to=EmailInboxResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_cursor: str | Omit = omit,
@@ -417,7 +419,7 @@ class AsyncEmailInboxesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailInboxListResponse:
+    ) -> AsyncPaginator[EmailInbox, AsyncEmailCursorPagination[EmailInbox]]:
         """
         Lists the account's non-deleted inboxes newest first using stable cursor
         pagination.
@@ -435,14 +437,15 @@ class AsyncEmailInboxesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/email_inboxes",
+            page=AsyncEmailCursorPagination[EmailInbox],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_cursor": page_cursor,
                         "page_size": page_size,
@@ -450,7 +453,7 @@ class AsyncEmailInboxesResource(AsyncAPIResource):
                     email_inbox_list_params.EmailInboxListParams,
                 ),
             ),
-            cast_to=EmailInboxListResponse,
+            model=EmailInbox,
         )
 
     async def delete(

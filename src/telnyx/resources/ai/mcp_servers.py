@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import mcp_server_list_params, mcp_server_create_params, mcp_server_update_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,6 +53,7 @@ class McpServersResource(SyncAPIResource):
         url: str,
         allowed_tools: Optional[SequenceNotStr[str]] | Omit = omit,
         api_key_ref: Optional[str] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,7 +62,8 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Create a new MCP server.
+        Creates a new MCP server configuration on your account and returns the created
+        server.
 
         Args:
           extra_headers: Send extra headers
@@ -72,6 +74,7 @@ class McpServersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/mcp_servers",
             body=maybe_transform(
@@ -142,7 +145,7 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Update an existing MCP server.
+        Updates the specified MCP server's configuration and returns the updated server.
 
         Args:
           extra_headers: Send extra headers
@@ -190,7 +193,8 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPaginationTopLevelArray[McpServer]:
         """
-        Retrieve a list of MCP servers.
+        Returns a paginated list of the MCP servers configured on your account, with
+        optional filtering by type or URL.
 
         Args:
           page_number: Page number to retrieve (1-based).
@@ -242,7 +246,7 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a specific MCP server.
+        Permanently deletes the specified MCP server configuration from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -293,6 +297,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
         url: str,
         allowed_tools: Optional[SequenceNotStr[str]] | Omit = omit,
         api_key_ref: Optional[str] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -301,7 +306,8 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Create a new MCP server.
+        Creates a new MCP server configuration on your account and returns the created
+        server.
 
         Args:
           extra_headers: Send extra headers
@@ -312,6 +318,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/mcp_servers",
             body=await async_maybe_transform(
@@ -382,7 +389,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpServer:
         """
-        Update an existing MCP server.
+        Updates the specified MCP server's configuration and returns the updated server.
 
         Args:
           extra_headers: Send extra headers
@@ -430,7 +437,8 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[McpServer, AsyncDefaultFlatPaginationTopLevelArray[McpServer]]:
         """
-        Retrieve a list of MCP servers.
+        Returns a paginated list of the MCP servers configured on your account, with
+        optional filtering by type or URL.
 
         Args:
           page_number: Page number to retrieve (1-based).
@@ -482,7 +490,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a specific MCP server.
+        Permanently deletes the specified MCP server configuration from your account.
 
         Args:
           extra_headers: Send extra headers

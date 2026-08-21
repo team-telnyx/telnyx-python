@@ -124,7 +124,8 @@ class VerifyProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
-        Gets a single Verify profile.
+        Returns the details of a single Verify profile by its ID, including its
+        verification channel configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -474,7 +475,8 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
-        Gets a single Verify profile.
+        Returns the details of a single Verify profile by its ID, including its
+        verification channel configuration.
 
         Args:
           extra_headers: Send extra headers

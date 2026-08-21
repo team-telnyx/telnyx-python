@@ -6,12 +6,11 @@ from typing import List, Union, Optional
 
 from ..._models import BaseModel
 from .pricing_tier import PricingTier
-from .pricing_pagination_meta import PricingPaginationMeta
 
-__all__ = ["ProductRetrieveResponse", "Data"]
+__all__ = ["ProductRetrieveResponse"]
 
 
-class Data(BaseModel):
+class ProductRetrieveResponse(BaseModel):
     """A single pricing entry.
 
     Standard products include rate, unit, currency, type, country_iso, direction, and tiers. Inference products include model, input_rate, output_rate, cached_input_rate, and their respective tier arrays. Rate-deck products include pricing_type and note fields with null rate and empty tiers.
@@ -77,9 +76,3 @@ class Data(BaseModel):
 
     unit: Optional[str] = None
     """Unit of measurement (e.g., part, message, GB, per_1k_tokens)."""
-
-
-class ProductRetrieveResponse(BaseModel):
-    data: List[Data]
-
-    meta: PricingPaginationMeta

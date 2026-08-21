@@ -187,7 +187,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectRetrieveResponse:
         """
-        Retrieve a Virtual Cross Connect.
+        Returns the details of a single virtual cross connect by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -296,7 +296,8 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[VirtualCrossConnectCombined]:
         """
-        List all Virtual Cross Connects.
+        Returns a paginated list of the virtual cross connects on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
@@ -341,7 +342,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectDeleteResponse:
         """
-        Delete a Virtual Cross Connect.
+        Deletes the specified virtual cross connect from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -518,7 +519,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectRetrieveResponse:
         """
-        Retrieve a Virtual Cross Connect.
+        Returns the details of a single virtual cross connect by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -627,7 +628,8 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[VirtualCrossConnectCombined, AsyncDefaultFlatPagination[VirtualCrossConnectCombined]]:
         """
-        List all Virtual Cross Connects.
+        Returns a paginated list of the virtual cross connects on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
@@ -672,7 +674,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectDeleteResponse:
         """
-        Delete a Virtual Cross Connect.
+        Deletes the specified virtual cross connect from your account.
 
         Args:
           extra_headers: Send extra headers

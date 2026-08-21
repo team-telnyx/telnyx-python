@@ -7,10 +7,15 @@ from typing import TYPE_CHECKING, Any
 from .import_create_params import ImportCreateParams as ImportCreateParams
 
 if TYPE_CHECKING:
+    from .email_block_import import EmailBlockImport as EmailBlockImport
     from .email_block_import_response import EmailBlockImportResponse as EmailBlockImportResponse
 
 
 def __getattr__(name: str) -> Any:
+    if name == "EmailBlockImport":
+        from .email_block_import import EmailBlockImport
+
+        return EmailBlockImport
     if name == "EmailBlockImportResponse":
         from .email_block_import_response import EmailBlockImportResponse
 

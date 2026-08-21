@@ -115,7 +115,8 @@ class MessagingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
-        Fetch single MDR usage report by id.
+        Returns a single MDR (Message Detail Record) usage report by its identifier,
+        including its parameters and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -304,7 +305,8 @@ class AsyncMessagingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
-        Fetch single MDR usage report by id.
+        Returns a single MDR (Message Detail Record) usage report by its identifier,
+        including its parameters and current status.
 
         Args:
           extra_headers: Send extra headers

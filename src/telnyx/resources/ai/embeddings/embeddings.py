@@ -15,7 +15,7 @@ from .buckets import (
     AsyncBucketsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ....types.ai import (
     embedding_url_params,
@@ -74,6 +74,7 @@ class EmbeddingsResource(SyncAPIResource):
         document_chunk_size: int | Omit = omit,
         embedding_model: Literal["thenlper/gte-large", "intfloat/multilingual-e5-large"] | Omit = omit,
         loader: Literal["default", "intercom"] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,6 +127,7 @@ class EmbeddingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/embeddings",
             body=maybe_transform(
@@ -282,6 +284,7 @@ class EmbeddingsResource(SyncAPIResource):
         *,
         bucket_name: str,
         url: str,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -311,6 +314,7 @@ class EmbeddingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/embeddings/url",
             body=maybe_transform(
@@ -362,6 +366,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         document_chunk_size: int | Omit = omit,
         embedding_model: Literal["thenlper/gte-large", "intfloat/multilingual-e5-large"] | Omit = omit,
         loader: Literal["default", "intercom"] | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,6 +419,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/embeddings",
             body=await async_maybe_transform(
@@ -570,6 +576,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         *,
         bucket_name: str,
         url: str,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -599,6 +606,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/embeddings/url",
             body=await async_maybe_transform(

@@ -5,15 +5,18 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 from .agent_use_case import AgentUseCase as AgentUseCase
+from .brand_identifier import BrandIdentifier as BrandIdentifier
 from .agent_list_params import AgentListParams as AgentListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams
 from .agent_launch_params import AgentLaunchParams as AgentLaunchParams
 from .agent_list_response import AgentListResponse as AgentListResponse
 from .agent_update_params import AgentUpdateParams as AgentUpdateParams
+from .brand_address_param import BrandAddressParam as BrandAddressParam
 from .brand_contact_param import BrandContactParam as BrandContactParam
 from .brand_create_params import BrandCreateParams as BrandCreateParams
 from .brand_list_response import BrandListResponse as BrandListResponse
 from .brand_update_params import BrandUpdateParams as BrandUpdateParams
+from .brand_identifier_param import BrandIdentifierParam as BrandIdentifierParam
 from .agent_interaction_param import AgentInteractionParam as AgentInteractionParam
 from .agent_submission_status import AgentSubmissionStatus as AgentSubmissionStatus
 from .brand_legal_entity_type import BrandLegalEntityType as BrandLegalEntityType
@@ -33,6 +36,7 @@ from .agent_retrieve_carrier_approvals_response import (
 
 if TYPE_CHECKING:
     from .rcs_agent import RcsAgent as RcsAgent
+    from .brand_address import BrandAddress as BrandAddress
     from .brand_contact import BrandContact as BrandContact
     from .agent_response import AgentResponse as AgentResponse
     from .brand_response import BrandResponse as BrandResponse
@@ -104,6 +108,10 @@ def __getattr__(name: str) -> Any:
         from .rcs_agent_response import RcsAgentResponse
 
         return RcsAgentResponse
+    if name == "BrandAddress":
+        from .brand_address import BrandAddress
+
+        return BrandAddress
     if name == "BrandContact":
         from .brand_contact import BrandContact
 

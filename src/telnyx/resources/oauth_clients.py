@@ -68,7 +68,8 @@ class OAuthClientsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthClientCreateResponse:
         """
-        Create a new OAuth client
+        Creates a new OAuth client on your account for authenticating third-party
+        integrations, and returns the created client.
 
         Args:
           allowed_grant_types: List of allowed OAuth grant types
@@ -131,7 +132,7 @@ class OAuthClientsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthClientRetrieveResponse:
         """
-        Retrieve a single OAuth client by ID
+        Returns the details of a single OAuth client on your account by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -172,7 +173,8 @@ class OAuthClientsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthClientUpdateResponse:
         """
-        Update an existing OAuth client
+        Updates the specified OAuth client's configuration and returns the updated
+        client.
 
         Args:
           allowed_grant_types: List of allowed OAuth grant types
@@ -306,7 +308,7 @@ class OAuthClientsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an OAuth client
+        Permanently deletes the specified OAuth client from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -369,7 +371,8 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthClientCreateResponse:
         """
-        Create a new OAuth client
+        Creates a new OAuth client on your account for authenticating third-party
+        integrations, and returns the created client.
 
         Args:
           allowed_grant_types: List of allowed OAuth grant types
@@ -432,7 +435,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthClientRetrieveResponse:
         """
-        Retrieve a single OAuth client by ID
+        Returns the details of a single OAuth client on your account by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -473,7 +476,8 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OAuthClientUpdateResponse:
         """
-        Update an existing OAuth client
+        Updates the specified OAuth client's configuration and returns the updated
+        client.
 
         Args:
           allowed_grant_types: List of allowed OAuth grant types
@@ -607,7 +611,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an OAuth client
+        Permanently deletes the specified OAuth client from your account.
 
         Args:
           extra_headers: Send extra headers

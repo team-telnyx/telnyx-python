@@ -66,7 +66,7 @@ class SubNumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrderRetrieveResponse:
         """
-        Get an existing sub number order.
+        Returns the details of an existing sub number order, with support for filtering.
 
         Args:
           filter:
@@ -112,7 +112,8 @@ class SubNumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrderUpdateResponse:
         """
-        Updates a sub number order.
+        Updates the requirements of an existing sub number order and returns the updated
+        order.
 
         Args:
           extra_headers: Send extra headers
@@ -156,7 +157,7 @@ class SubNumberOrdersResource(SyncAPIResource):
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],
               filter[order_request_id], filter[country_code], filter[phone_number_type],
-              filter[phone_numbers_count]
+              filter[phone_numbers_count], filter[include_phone_numbers]
 
           extra_headers: Send extra headers
 
@@ -289,7 +290,7 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrderRetrieveResponse:
         """
-        Get an existing sub number order.
+        Returns the details of an existing sub number order, with support for filtering.
 
         Args:
           filter:
@@ -335,7 +336,8 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrderUpdateResponse:
         """
-        Updates a sub number order.
+        Updates the requirements of an existing sub number order and returns the updated
+        order.
 
         Args:
           extra_headers: Send extra headers
@@ -379,7 +381,7 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],
               filter[order_request_id], filter[country_code], filter[phone_number_type],
-              filter[phone_numbers_count]
+              filter[phone_numbers_count], filter[include_phone_numbers]
 
           extra_headers: Send extra headers
 

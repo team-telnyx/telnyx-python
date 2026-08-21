@@ -164,7 +164,7 @@ class TrafficPolicyProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrafficPolicyProfileUpdateResponse:
         """
-        Updates a traffic policy profile.
+        Updates the specified traffic policy profile and returns the updated profile.
 
         Args:
           domains: Array of domain names.
@@ -278,7 +278,7 @@ class TrafficPolicyProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrafficPolicyProfileDeleteResponse:
         """
-        Deletes the traffic policy profile.
+        Permanently deletes the specified traffic policy profile from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -484,7 +484,7 @@ class AsyncTrafficPolicyProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrafficPolicyProfileUpdateResponse:
         """
-        Updates a traffic policy profile.
+        Updates the specified traffic policy profile and returns the updated profile.
 
         Args:
           domains: Array of domain names.
@@ -598,7 +598,7 @@ class AsyncTrafficPolicyProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrafficPolicyProfileDeleteResponse:
         """
-        Deletes the traffic policy profile.
+        Permanently deletes the specified traffic policy profile from your account.
 
         Args:
           extra_headers: Send extra headers

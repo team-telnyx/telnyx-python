@@ -11,9 +11,8 @@ class TextToSpeechRetrieveSpeechParams(TypedDict, total=False):
     audio_format: Literal["pcm", "wav", "mp3"]
     """Audio output format override.
 
-    Supported for Telnyx models. `pcm` and `wav` are available for
-    `Natural`/`NaturalHD` models. The `Ultra` model outputs PCM at 24kHz s16le or
-    MP3 at 128kbps 24kHz.
+    Supported for Telnyx models. The `Ultra` model outputs PCM at 24kHz s16le or MP3
+    at 128kbps 24kHz.
     """
 
     disable_cache: bool
@@ -22,10 +21,10 @@ class TextToSpeechRetrieveSpeechParams(TypedDict, total=False):
     model_id: str
     """Model identifier for the chosen provider.
 
-    Examples: `Natural`, `NaturalHD`, `Ultra` (Telnyx); `Polly.Generative` (AWS).
+    Examples: `Ultra`, `KokoroTTS` (Telnyx); `Polly.Generative` (AWS).
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai", "humain"]
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain"]
     """TTS provider.
 
     Defaults to `telnyx` if not specified. Ignored when `voice` is provided.
@@ -40,11 +39,11 @@ class TextToSpeechRetrieveSpeechParams(TypedDict, total=False):
     voice: str
     """
     Voice identifier in the format `provider.model_id.voice_id` or
-    `provider.voice_id` (e.g. `telnyx.NaturalHD.Telnyx_Alloy`,
-    `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`, `Telnyx.Sukhan.urdu-professor`,
-    or `azure.en-US-AvaMultilingualNeural`). When provided, the `provider`,
-    `model_id`, and `voice_id` are extracted automatically. Takes precedence over
-    individual `provider`/`model_id`/`voice_id` parameters.
+    `provider.voice_id` (e.g. `Telnyx.Ultra.<voice_id>`, `Telnyx.Bayan.Ahmed`,
+    `Telnyx.Sukhan.urdu-professor`, or `azure.en-US-AvaMultilingualNeural`). When
+    provided, the `provider`, `model_id`, and `voice_id` are extracted
+    automatically. Takes precedence over individual `provider`/`model_id`/`voice_id`
+    parameters.
     """
 
     voice_id: str

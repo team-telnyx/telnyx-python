@@ -356,7 +356,7 @@ class CollectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionRetrieveDocumentsResponse:
+    ) -> SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse]:
         """
         Runs search over the documents in a collection, ranked by relevance to `query`.
         The collection's `retrieval_type` setting selects the strategy: `vector`
@@ -422,8 +422,9 @@ class CollectionsResource(SyncAPIResource):
         """
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/ai/collections/{slug}/documents", slug=slug),
+            page=SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -442,7 +443,7 @@ class CollectionsResource(SyncAPIResource):
                     collection_retrieve_documents_params.CollectionRetrieveDocumentsParams,
                 ),
             ),
-            cast_to=CollectionRetrieveDocumentsResponse,
+            model=CollectionRetrieveDocumentsResponse,
         )
 
 
@@ -735,7 +736,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
             cast_to=CollectionEnvelope,
         )
 
-    async def retrieve_documents(
+    def retrieve_documents(
         self,
         slug: str,
         *,
@@ -752,7 +753,9 @@ class AsyncCollectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionRetrieveDocumentsResponse:
+    ) -> AsyncPaginator[
+        CollectionRetrieveDocumentsResponse, AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse]
+    ]:
         """
         Runs search over the documents in a collection, ranked by relevance to `query`.
         The collection's `retrieval_type` setting selects the strategy: `vector`
@@ -818,14 +821,15 @@ class AsyncCollectionsResource(AsyncAPIResource):
         """
         if not slug:
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/ai/collections/{slug}/documents", slug=slug),
+            page=AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page_number": page_number,
@@ -838,7 +842,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
                     collection_retrieve_documents_params.CollectionRetrieveDocumentsParams,
                 ),
             ),
-            cast_to=CollectionRetrieveDocumentsResponse,
+            model=CollectionRetrieveDocumentsResponse,
         )
 
 

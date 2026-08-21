@@ -80,7 +80,8 @@ class NetworksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkCreateResponse:
         """
-        Create a new Network.
+        Creates a new private network, the container that links your WireGuard
+        interfaces, gateways, and cross connects.
 
         Args:
           extra_headers: Send extra headers
@@ -112,7 +113,7 @@ class NetworksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkRetrieveResponse:
         """
-        Retrieve a Network.
+        Returns the details of a single network by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -146,7 +147,7 @@ class NetworksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkUpdateResponse:
         """
-        Update a Network.
+        Updates the specified network's attributes and returns the updated network.
 
         Args:
           extra_headers: Send extra headers
@@ -182,7 +183,8 @@ class NetworksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[Network]:
         """
-        List all Networks.
+        Returns a paginated list of the private networks on your account, with support
+        for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
@@ -227,7 +229,7 @@ class NetworksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkDeleteResponse:
         """
-        Delete a Network.
+        Permanently deletes the specified network from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -263,7 +265,8 @@ class NetworksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[NetworkListInterfacesResponse]:
         """
-        List all Interfaces for a Network.
+        Returns a paginated list of the interfaces attached to the specified network,
+        with support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name],
@@ -339,7 +342,8 @@ class AsyncNetworksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkCreateResponse:
         """
-        Create a new Network.
+        Creates a new private network, the container that links your WireGuard
+        interfaces, gateways, and cross connects.
 
         Args:
           extra_headers: Send extra headers
@@ -371,7 +375,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkRetrieveResponse:
         """
-        Retrieve a Network.
+        Returns the details of a single network by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -405,7 +409,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkUpdateResponse:
         """
-        Update a Network.
+        Updates the specified network's attributes and returns the updated network.
 
         Args:
           extra_headers: Send extra headers
@@ -441,7 +445,8 @@ class AsyncNetworksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Network, AsyncDefaultFlatPagination[Network]]:
         """
-        List all Networks.
+        Returns a paginated list of the private networks on your account, with support
+        for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
@@ -486,7 +491,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkDeleteResponse:
         """
-        Delete a Network.
+        Permanently deletes the specified network from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -522,7 +527,8 @@ class AsyncNetworksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NetworkListInterfacesResponse, AsyncDefaultFlatPagination[NetworkListInterfacesResponse]]:
         """
-        List all Interfaces for a Network.
+        Returns a paginated list of the interfaces attached to the specified network,
+        with support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name],

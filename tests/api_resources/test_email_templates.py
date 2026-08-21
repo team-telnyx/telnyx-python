@@ -10,10 +10,11 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
+    EmailTemplate,
     EmailTemplateResponse,
-    EmailTemplateListResponse,
     EmailTemplateRenderResponse,
 )
+from telnyx.pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -169,7 +170,7 @@ class TestEmailTemplates:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         email_template = client.email_templates.list()
-        assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -178,7 +179,7 @@ class TestEmailTemplates:
             page_cursor="page_cursor",
             page_size=1,
         )
-        assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -188,7 +189,7 @@ class TestEmailTemplates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_template = response.parse()
-        assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -198,7 +199,7 @@ class TestEmailTemplates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_template = response.parse()
-            assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+            assert_matches_type(SyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -504,7 +505,7 @@ class TestAsyncEmailTemplates:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         email_template = await async_client.email_templates.list()
-        assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -513,7 +514,7 @@ class TestAsyncEmailTemplates:
             page_cursor="page_cursor",
             page_size=1,
         )
-        assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -523,7 +524,7 @@ class TestAsyncEmailTemplates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_template = await response.parse()
-        assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -533,7 +534,7 @@ class TestAsyncEmailTemplates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_template = await response.parse()
-            assert_matches_type(EmailTemplateListResponse, email_template, path=["response"])
+            assert_matches_type(AsyncEmailCursorPagination[EmailTemplate], email_template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

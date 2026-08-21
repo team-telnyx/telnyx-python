@@ -142,6 +142,7 @@ class TestSubNumberOrders:
         sub_number_order = client.sub_number_orders.list(
             filter={
                 "country_code": "US",
+                "include_phone_numbers": True,
                 "order_request_id": "12ade33a-21c0-473b-b055-b3c836e1c293",
                 "phone_number_type": "local",
                 "phone_numbers_count": 1,
@@ -385,6 +386,7 @@ class TestAsyncSubNumberOrders:
         sub_number_order = await async_client.sub_number_orders.list(
             filter={
                 "country_code": "US",
+                "include_phone_numbers": True,
                 "order_request_id": "12ade33a-21c0-473b-b055-b3c836e1c293",
                 "phone_number_type": "local",
                 "phone_numbers_count": 1,

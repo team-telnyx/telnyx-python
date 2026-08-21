@@ -12,49 +12,15 @@ from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
 from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
 from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
+from .transcription_engine_humain_config_param import TranscriptionEngineHumainConfigParam
+from .transcription_engine_reson8_config_param import TranscriptionEngineReson8ConfigParam
 from .transcription_engine_soniox_config_param import TranscriptionEngineSonioxConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
 from .transcription_engine_parakeet_config_param import TranscriptionEngineParakeetConfigParam
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = [
-    "TranscriptionStartRequestParam",
-    "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineHumainConfig",
-    "TranscriptionEngineConfigTranscriptionEngineReson8Config",
-]
-
-
-class TranscriptionEngineConfigTranscriptionEngineHumainConfig(TypedDict, total=False):
-    language: Literal["ar", "en", "codeswitch", "auto"]
-    """The language of the audio to be transcribed.
-
-    `codeswitch` enables Arabic/English code-switching. `auto` resolves server-side
-    to code-switching.
-    """
-
-    transcription_engine: Literal["Humain"]
-    """Engine identifier for Humain transcription service"""
-
-    transcription_model: Literal["humain/realtime"]
-    """The model to use for transcription."""
-
-
-class TranscriptionEngineConfigTranscriptionEngineReson8Config(TypedDict, total=False):
-    language: Literal["auto", "nl", "en", "fr", "fy", "de", "it", "pl", "pt", "es", "sv"]
-    """The language of the audio to be transcribed.
-
-    `auto` (the default, also applied when `language` is omitted) enables automatic
-    language detection.
-    """
-
-    transcription_engine: Literal["Reson8"]
-    """Engine identifier for Reson8 transcription service"""
-
-    transcription_model: Literal["reson8/turns"]
-    """The model to use for transcription."""
-
+__all__ = ["TranscriptionStartRequestParam", "TranscriptionEngineConfig"]
 
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
@@ -65,8 +31,8 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineSpeechmaticsConfigParam,
     TranscriptionEngineSonioxConfigParam,
     TranscriptionEngineParakeetConfigParam,
-    TranscriptionEngineConfigTranscriptionEngineHumainConfig,
-    TranscriptionEngineConfigTranscriptionEngineReson8Config,
+    TranscriptionEngineHumainConfigParam,
+    TranscriptionEngineReson8ConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,

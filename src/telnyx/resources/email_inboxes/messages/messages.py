@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Dict, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -34,11 +34,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_inboxes import message_list_params, message_drafts_params, message_update_params
+from ....types.inbound_message import InboundMessage
 from ....types.email_address_input_param import EmailAddressInputParam
 from ....types.email_inboxes.email_draft_response import EmailDraftResponse
-from ....types.email_inboxes.message_list_response import MessageListResponse
 from ....types.email_inboxes.message_update_response import MessageUpdateResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -83,7 +84,7 @@ class MessagesResource(SyncAPIResource):
         message_id: str,
         *,
         inbox_id: str,
-        read_at: Union[Optional[Literal[True]], Union[str, datetime]],
+        read_at: Union[Literal[True], Union[str, datetime]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,9 +100,6 @@ class MessagesResource(SyncAPIResource):
         unread. Repeating the same update is idempotent.
 
         Args:
-          read_at: Set to `true` for server time, an ISO 8601 timestamp for an explicit read time,
-              or `null` to mark unread.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -143,7 +141,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageListResponse:
+    ) -> SyncEmailBracketCursorPagination[InboundMessage]:
         """Lists inbound messages newest first.
 
         All access is scoped to the authenticated
@@ -184,8 +182,9 @@ class MessagesResource(SyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/messages", inbox_id=inbox_id),
+            page=SyncEmailBracketCursorPagination[InboundMessage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +206,7 @@ class MessagesResource(SyncAPIResource):
                     message_list_params.MessageListParams,
                 ),
             ),
-            cast_to=MessageListResponse,
+            model=InboundMessage,
         )
 
     def drafts(
@@ -215,7 +214,7 @@ class MessagesResource(SyncAPIResource):
         message_id: str,
         *,
         inbox_id: str,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -224,7 +223,7 @@ class MessagesResource(SyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -338,7 +337,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         message_id: str,
         *,
         inbox_id: str,
-        read_at: Union[Optional[Literal[True]], Union[str, datetime]],
+        read_at: Union[Literal[True], Union[str, datetime]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -354,9 +353,6 @@ class AsyncMessagesResource(AsyncAPIResource):
         unread. Repeating the same update is idempotent.
 
         Args:
-          read_at: Set to `true` for server time, an ISO 8601 timestamp for an explicit read time,
-              or `null` to mark unread.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -378,7 +374,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=MessageUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         inbox_id: str,
         *,
@@ -398,7 +394,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageListResponse:
+    ) -> AsyncPaginator[InboundMessage, AsyncEmailBracketCursorPagination[InboundMessage]]:
         """Lists inbound messages newest first.
 
         All access is scoped to the authenticated
@@ -439,14 +435,15 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/messages", inbox_id=inbox_id),
+            page=AsyncEmailBracketCursorPagination[InboundMessage],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_from": filter_from,
                         "filter_label": filter_label,
@@ -462,7 +459,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     message_list_params.MessageListParams,
                 ),
             ),
-            cast_to=MessageListResponse,
+            model=InboundMessage,
         )
 
     async def drafts(
@@ -470,7 +467,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         message_id: str,
         *,
         inbox_id: str,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -479,7 +476,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,

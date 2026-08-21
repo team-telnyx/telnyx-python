@@ -189,7 +189,7 @@ class TestOAuth:
             redirect_uri="https://example.com",
             response_type="code",
         )
-        assert oauth is None
+        assert_matches_type(str, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -203,7 +203,7 @@ class TestOAuth:
             scope="scope",
             state="state",
         )
-        assert oauth is None
+        assert_matches_type(str, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -217,7 +217,7 @@ class TestOAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth = response.parse()
-        assert oauth is None
+        assert_matches_type(str, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -231,7 +231,7 @@ class TestOAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth = response.parse()
-            assert oauth is None
+            assert_matches_type(str, oauth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -483,7 +483,7 @@ class TestAsyncOAuth:
             redirect_uri="https://example.com",
             response_type="code",
         )
-        assert oauth is None
+        assert_matches_type(str, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -497,7 +497,7 @@ class TestAsyncOAuth:
             scope="scope",
             state="state",
         )
-        assert oauth is None
+        assert_matches_type(str, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -511,7 +511,7 @@ class TestAsyncOAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth = await response.parse()
-        assert oauth is None
+        assert_matches_type(str, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -525,7 +525,7 @@ class TestAsyncOAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth = await response.parse()
-            assert oauth is None
+            assert_matches_type(str, oauth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

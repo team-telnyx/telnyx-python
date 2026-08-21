@@ -143,8 +143,10 @@ class WirelessBlocklistsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WirelessBlocklistUpdateResponse:
-        """
-        Update a Wireless Blocklist.
+        """Updates the specified wireless blocklist.
+
+        The update is processed
+        asynchronously, so the request is accepted and completes in the background.
 
         Args:
           name: The name of the Wireless Blocklist.
@@ -247,7 +249,7 @@ class WirelessBlocklistsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WirelessBlocklistDeleteResponse:
         """
-        Deletes the Wireless Blocklist.
+        Permanently deletes the specified wireless blocklist from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -384,8 +386,10 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WirelessBlocklistUpdateResponse:
-        """
-        Update a Wireless Blocklist.
+        """Updates the specified wireless blocklist.
+
+        The update is processed
+        asynchronously, so the request is accepted and completes in the background.
 
         Args:
           name: The name of the Wireless Blocklist.
@@ -488,7 +492,7 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WirelessBlocklistDeleteResponse:
         """
-        Deletes the Wireless Blocklist.
+        Permanently deletes the specified wireless blocklist from your account.
 
         Args:
           extra_headers: Send extra headers

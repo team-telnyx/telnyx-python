@@ -79,6 +79,7 @@ class TexmlResource(SyncAPIResource):
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -170,6 +171,11 @@ class TexmlResource(SyncAPIResource):
               https://developers.telnyx.com/docs/voice/programmable-voice/answering-machine-detection
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -272,6 +278,7 @@ class TexmlResource(SyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_profile": machine_detection_beep_profile,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -401,6 +408,7 @@ class AsyncTexmlResource(AsyncAPIResource):
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -492,6 +500,11 @@ class AsyncTexmlResource(AsyncAPIResource):
               https://developers.telnyx.com/docs/voice/programmable-voice/answering-machine-detection
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
               detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
@@ -594,6 +607,7 @@ class AsyncTexmlResource(AsyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_profile": machine_detection_beep_profile,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,

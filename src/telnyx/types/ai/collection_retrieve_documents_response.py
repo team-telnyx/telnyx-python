@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["CollectionRetrieveDocumentsResponse", "Data", "Meta"]
+__all__ = ["CollectionRetrieveDocumentsResponse"]
 
 
-class Data(BaseModel):
+class CollectionRetrieveDocumentsResponse(BaseModel):
     id: Optional[str] = None
 
     chunk_index: Optional[int] = None
@@ -44,27 +44,3 @@ class Data(BaseModel):
     text: Optional[str] = None
 
     user_id: Optional[str] = None
-
-
-class Meta(BaseModel):
-    collection_slug: Optional[str] = None
-
-    page_number: Optional[int] = None
-
-    page_size: Optional[int] = None
-
-    retrieval_type: Optional[str] = None
-
-    searched_sources: Optional[List[str]] = None
-
-    top_k: Optional[int] = None
-
-    total_pages: Optional[int] = None
-
-    total_results: Optional[int] = None
-
-
-class CollectionRetrieveDocumentsResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[Meta] = None

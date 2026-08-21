@@ -65,7 +65,8 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Integration:
         """
-        Retrieve integration details
+        Returns the details of a single available integration, including its
+        configuration details.
 
         Args:
           extra_headers: Send extra headers
@@ -96,7 +97,10 @@ class IntegrationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationListResponse:
-        """List all available integrations."""
+        """
+        Returns the list of third-party integrations available to connect to your AI
+        assistants and workflows.
+        """
         return self._get(
             "/ai/integrations",
             options=make_request_options(
@@ -142,7 +146,8 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Integration:
         """
-        Retrieve integration details
+        Returns the details of a single available integration, including its
+        configuration details.
 
         Args:
           extra_headers: Send extra headers
@@ -173,7 +178,10 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationListResponse:
-        """List all available integrations."""
+        """
+        Returns the list of third-party integrations available to connect to your AI
+        assistants and workflows.
+        """
         return await self._get(
             "/ai/integrations",
             options=make_request_options(

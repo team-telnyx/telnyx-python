@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -43,6 +43,8 @@ class MessageListResponse(BaseModel):
     field to use to determine the time the end user experienced the message is
     `sent_at`.
     """
+
+    metadata: Optional[Dict[str, Union[str, int, bool, List[Union[str, int, bool]]]]] = None
 
     sent_at: Optional[datetime] = None
     """The datetime the message was sent to the end user."""

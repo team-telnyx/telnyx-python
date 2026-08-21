@@ -1106,6 +1106,7 @@ class TestActions:
             service_level="service_level",
             timeout_millis=5000,
             transaction_type="charge",
+            valid_card_types=["visa", "mastercard"],
             voice="female",
         )
         assert_matches_type(ActionPayResponse, action, path=["response"])
@@ -2835,6 +2836,7 @@ class TestActions:
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
+                "beep_detection_profile": "freq_only",
                 "between_words_silence_millis": 1000,
                 "greeting_duration_millis": 1000,
                 "greeting_silence_duration_millis": 2000,
@@ -4043,6 +4045,7 @@ class TestAsyncActions:
             service_level="service_level",
             timeout_millis=5000,
             transaction_type="charge",
+            valid_card_types=["visa", "mastercard"],
             voice="female",
         )
         assert_matches_type(ActionPayResponse, action, path=["response"])
@@ -5772,6 +5775,7 @@ class TestAsyncActions:
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
+                "beep_detection_profile": "freq_only",
                 "between_words_silence_millis": 1000,
                 "greeting_duration_millis": 1000,
                 "greeting_silence_duration_millis": 2000,

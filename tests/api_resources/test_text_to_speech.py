@@ -73,16 +73,10 @@ class TestTextToSpeech:
                 "precision": "string",
                 "sample_rate": "string",
             },
-            rime={
-                "response_format": "string",
-                "sampling_rate": 0,
-                "voice_speed": 0,
-            },
             telnyx={
                 "emotion": "neutral",
                 "response_format": "mp3",
                 "sampling_rate": 24000,
-                "temperature": 0.5,
                 "voice_speed": 1,
                 "volume": 1,
             },
@@ -259,16 +253,10 @@ class TestAsyncTextToSpeech:
                 "precision": "string",
                 "sample_rate": "string",
             },
-            rime={
-                "response_format": "string",
-                "sampling_rate": 0,
-                "voice_speed": 0,
-            },
             telnyx={
                 "emotion": "neutral",
                 "response_format": "mp3",
                 "sampling_rate": 24000,
-                "temperature": 0.5,
                 "voice_speed": 1,
                 "volume": 1,
             },

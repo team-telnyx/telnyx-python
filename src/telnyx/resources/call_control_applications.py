@@ -93,7 +93,8 @@ class CallControlApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationCreateResponse:
         """
-        Create a call control application.
+        Creates a call control application, which defines the webhook endpoints and
+        settings used to control calls on associated connections.
 
         Args:
           application_name: A user-assigned name to help manage the application.
@@ -392,7 +393,8 @@ class CallControlApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationDeleteResponse:
         """
-        Deletes a call control application.
+        Permanently deletes the specified call control application and its webhook
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -472,7 +474,8 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationCreateResponse:
         """
-        Create a call control application.
+        Creates a call control application, which defines the webhook endpoints and
+        settings used to control calls on associated connections.
 
         Args:
           application_name: A user-assigned name to help manage the application.
@@ -771,7 +774,8 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationDeleteResponse:
         """
-        Deletes a call control application.
+        Permanently deletes the specified call control application and its webhook
+        configuration.
 
         Args:
           extra_headers: Send extra headers

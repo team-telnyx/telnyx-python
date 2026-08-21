@@ -674,8 +674,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordPauseResponse:
-        """
-        Pause conference recording.
+        """Pauses the active recording of the specified conference.
+
+        Resume it later with
+        the record_resume action.
 
         Args:
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
@@ -727,7 +729,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordResumeResponse:
         """
-        Resume conference recording.
+        Resumes a previously paused recording of the specified conference, continuing
+        capture from the point it was paused.
 
         Args:
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
@@ -1050,9 +1053,6 @@ class ActionsResource(SyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
@@ -1883,8 +1883,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordPauseResponse:
-        """
-        Pause conference recording.
+        """Pauses the active recording of the specified conference.
+
+        Resume it later with
+        the record_resume action.
 
         Args:
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
@@ -1936,7 +1938,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordResumeResponse:
         """
-        Resume conference recording.
+        Resumes a previously paused recording of the specified conference, continuing
+        capture from the point it was paused.
 
         Args:
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
@@ -2259,9 +2262,6 @@ class AsyncActionsResource(AsyncAPIResource):
                 `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
                 `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
                 to configure speed, volume, pitch, and language_boost.
-              - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-                Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
-                `voice_settings` to configure voice_speed.
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.

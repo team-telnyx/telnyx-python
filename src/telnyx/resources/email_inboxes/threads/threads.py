@@ -22,10 +22,11 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_inboxes import thread_list_params, thread_retrieve_params
+from ....types.email_inboxes.inbound_thread import InboundThread
 from ....types.email_inboxes.thread_retrieve_response import ThreadRetrieveResponse
-from ....types.email_inboxes.inbound_thread_list_response import InboundThreadListResponse
 
 __all__ = ["ThreadsResource", "AsyncThreadsResource"]
 
@@ -127,7 +128,7 @@ class ThreadsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InboundThreadListResponse:
+    ) -> SyncEmailBracketCursorPagination[InboundThread]:
         """
         Lists thread summaries newest first using stable cursor pagination.
 
@@ -149,8 +150,9 @@ class ThreadsResource(SyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/threads", inbox_id=inbox_id),
+            page=SyncEmailBracketCursorPagination[InboundThread],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -165,7 +167,7 @@ class ThreadsResource(SyncAPIResource):
                     thread_list_params.ThreadListParams,
                 ),
             ),
-            cast_to=InboundThreadListResponse,
+            model=InboundThread,
         )
 
 
@@ -253,7 +255,7 @@ class AsyncThreadsResource(AsyncAPIResource):
             cast_to=ThreadRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         inbox_id: str,
         *,
@@ -266,7 +268,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InboundThreadListResponse:
+    ) -> AsyncPaginator[InboundThread, AsyncEmailBracketCursorPagination[InboundThread]]:
         """
         Lists thread summaries newest first using stable cursor pagination.
 
@@ -288,14 +290,15 @@ class AsyncThreadsResource(AsyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/threads", inbox_id=inbox_id),
+            page=AsyncEmailBracketCursorPagination[InboundThread],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_label": filter_label,
                         "page_after": page_after,
@@ -304,7 +307,7 @@ class AsyncThreadsResource(AsyncAPIResource):
                     thread_list_params.ThreadListParams,
                 ),
             ),
-            cast_to=InboundThreadListResponse,
+            model=InboundThread,
         )
 
 

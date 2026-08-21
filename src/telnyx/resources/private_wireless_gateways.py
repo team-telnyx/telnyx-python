@@ -209,7 +209,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayDeleteResponse:
         """
-        Deletes the Private Wireless Gateway.
+        Permanently deletes the specified Private Wireless Gateway from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -415,7 +415,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayDeleteResponse:
         """
-        Deletes the Private Wireless Gateway.
+        Permanently deletes the specified Private Wireless Gateway from your account.
 
         Args:
           extra_headers: Send extra headers

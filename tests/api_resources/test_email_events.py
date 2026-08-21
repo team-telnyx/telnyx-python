@@ -14,6 +14,7 @@ from telnyx.types import (
     EmailEventRetrieveStatsResponse,
 )
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +26,7 @@ class TestEmailEvents:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         email_event = client.email_events.list()
-        assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -38,7 +39,7 @@ class TestEmailEvents:
             page_size=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -48,7 +49,7 @@ class TestEmailEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_event = response.parse()
-        assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -58,7 +59,7 @@ class TestEmailEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_event = response.parse()
-            assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+            assert_matches_type(SyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -109,7 +110,7 @@ class TestAsyncEmailEvents:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         email_event = await async_client.email_events.list()
-        assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -122,7 +123,7 @@ class TestAsyncEmailEvents:
             page_size=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -132,7 +133,7 @@ class TestAsyncEmailEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_event = await response.parse()
-        assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -142,7 +143,7 @@ class TestAsyncEmailEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_event = await response.parse()
-            assert_matches_type(EmailEventListResponse, email_event, path=["response"])
+            assert_matches_type(AsyncEmailCursorPagination[EmailEventListResponse], email_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

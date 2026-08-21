@@ -59,7 +59,8 @@ class RequirementTypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementTypeRetrieveResponse:
         """
-        Retrieve a requirement type by id
+        Returns the details of a single requirement type by its identifier, describing a
+        kind of documentation needed for regulatory purposes.
 
         Args:
           extra_headers: Send extra headers
@@ -163,7 +164,8 @@ class AsyncRequirementTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementTypeRetrieveResponse:
         """
-        Retrieve a requirement type by id
+        Returns the details of a single requirement type by its identifier, describing a
+        kind of documentation needed for regulatory purposes.
 
         Args:
           extra_headers: Send extra headers

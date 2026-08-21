@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -16,9 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.email_messages import recipient_list_params
-from ...types.email_messages.recipient_list_response import RecipientListResponse
+from ...types.email_messages.email_recipient import EmailRecipient
 from ...types.email_messages.recipient_retrieve_response import RecipientRetrieveResponse
 
 __all__ = ["RecipientsResource", "AsyncRecipientsResource"]
@@ -106,7 +107,7 @@ class RecipientsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecipientListResponse:
+    ) -> SyncEmailCursorPagination[EmailRecipient]:
         """
         Lists per-recipient delivery states for a single message with cursor pagination.
         Each recipient has an independent status, billable flag, and lifecycle
@@ -133,8 +134,9 @@ class RecipientsResource(SyncAPIResource):
         """
         if not email_id:
             raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/email_messages/{email_id}/recipients", email_id=email_id),
+            page=SyncEmailCursorPagination[EmailRecipient],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -150,7 +152,7 @@ class RecipientsResource(SyncAPIResource):
                     recipient_list_params.RecipientListParams,
                 ),
             ),
-            cast_to=RecipientListResponse,
+            model=EmailRecipient,
         )
 
 
@@ -219,7 +221,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
             cast_to=RecipientRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         email_id: str,
         *,
@@ -236,7 +238,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RecipientListResponse:
+    ) -> AsyncPaginator[EmailRecipient, AsyncEmailCursorPagination[EmailRecipient]]:
         """
         Lists per-recipient delivery states for a single message with cursor pagination.
         Each recipient has an independent status, billable flag, and lifecycle
@@ -263,14 +265,15 @@ class AsyncRecipientsResource(AsyncAPIResource):
         """
         if not email_id:
             raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/email_messages/{email_id}/recipients", email_id=email_id),
+            page=AsyncEmailCursorPagination[EmailRecipient],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "kind": kind,
                         "page_cursor": page_cursor,
@@ -280,7 +283,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
                     recipient_list_params.RecipientListParams,
                 ),
             ),
-            cast_to=RecipientListResponse,
+            model=EmailRecipient,
         )
 
 

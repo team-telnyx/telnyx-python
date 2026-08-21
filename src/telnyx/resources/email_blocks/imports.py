@@ -21,30 +21,30 @@ from ..._base_client import make_request_options
 from ...types.email_blocks import import_create_params
 from ...types.email_blocks.email_block_import_response import EmailBlockImportResponse
 
-__all__ = ["ImportResource", "AsyncImportResource"]
+__all__ = ["ImportsResource", "AsyncImportsResource"]
 
 
-class ImportResource(SyncAPIResource):
+class ImportsResource(SyncAPIResource):
     """Async CSV import of competitor suppression lists."""
 
     @cached_property
-    def with_raw_response(self) -> ImportResourceWithRawResponse:
+    def with_raw_response(self) -> ImportsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return ImportResourceWithRawResponse(self)
+        return ImportsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ImportResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ImportsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return ImportResourceWithStreamingResponse(self)
+        return ImportsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -146,27 +146,27 @@ class ImportResource(SyncAPIResource):
         )
 
 
-class AsyncImportResource(AsyncAPIResource):
+class AsyncImportsResource(AsyncAPIResource):
     """Async CSV import of competitor suppression lists."""
 
     @cached_property
-    def with_raw_response(self) -> AsyncImportResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncImportsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncImportResourceWithRawResponse(self)
+        return AsyncImportsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncImportResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncImportsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return AsyncImportResourceWithStreamingResponse(self)
+        return AsyncImportsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -268,49 +268,49 @@ class AsyncImportResource(AsyncAPIResource):
         )
 
 
-class ImportResourceWithRawResponse:
-    def __init__(self, import_: ImportResource) -> None:
-        self._import_ = import_
+class ImportsResourceWithRawResponse:
+    def __init__(self, imports: ImportsResource) -> None:
+        self._imports = imports
 
         self.create = to_raw_response_wrapper(
-            import_.create,
+            imports.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            import_.retrieve,
+            imports.retrieve,
         )
 
 
-class AsyncImportResourceWithRawResponse:
-    def __init__(self, import_: AsyncImportResource) -> None:
-        self._import_ = import_
+class AsyncImportsResourceWithRawResponse:
+    def __init__(self, imports: AsyncImportsResource) -> None:
+        self._imports = imports
 
         self.create = async_to_raw_response_wrapper(
-            import_.create,
+            imports.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            import_.retrieve,
+            imports.retrieve,
         )
 
 
-class ImportResourceWithStreamingResponse:
-    def __init__(self, import_: ImportResource) -> None:
-        self._import_ = import_
+class ImportsResourceWithStreamingResponse:
+    def __init__(self, imports: ImportsResource) -> None:
+        self._imports = imports
 
         self.create = to_streamed_response_wrapper(
-            import_.create,
+            imports.create,
         )
         self.retrieve = to_streamed_response_wrapper(
-            import_.retrieve,
+            imports.retrieve,
         )
 
 
-class AsyncImportResourceWithStreamingResponse:
-    def __init__(self, import_: AsyncImportResource) -> None:
-        self._import_ = import_
+class AsyncImportsResourceWithStreamingResponse:
+    def __init__(self, imports: AsyncImportsResource) -> None:
+        self._imports = imports
 
         self.create = async_to_streamed_response_wrapper(
-            import_.create,
+            imports.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
-            import_.retrieve,
+            imports.retrieve,
         )

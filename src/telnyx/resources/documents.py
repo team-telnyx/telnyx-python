@@ -73,7 +73,8 @@ class DocumentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRetrieveResponse:
         """
-        Retrieve a document.
+        Returns the details of a single document on your account, including its
+        metadata.
 
         Args:
           extra_headers: Send extra headers
@@ -108,7 +109,7 @@ class DocumentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUpdateResponse:
         """
-        Update a document.
+        Updates the specified document's attributes and returns the updated document.
 
         Args:
           customer_reference: Optional reference string for customer tracking.
@@ -242,7 +243,7 @@ class DocumentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
-        Download a document.
+        Downloads the raw file content of the specified document as originally uploaded.
 
         Args:
           extra_headers: Send extra headers
@@ -399,7 +400,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRetrieveResponse:
         """
-        Retrieve a document.
+        Returns the details of a single document on your account, including its
+        metadata.
 
         Args:
           extra_headers: Send extra headers
@@ -434,7 +436,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUpdateResponse:
         """
-        Update a document.
+        Updates the specified document's attributes and returns the updated document.
 
         Args:
           customer_reference: Optional reference string for customer tracking.
@@ -568,7 +570,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
-        Download a document.
+        Downloads the raw file content of the specified document as originally uploaded.
 
         Args:
           extra_headers: Send extra headers

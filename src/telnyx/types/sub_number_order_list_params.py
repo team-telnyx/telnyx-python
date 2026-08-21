@@ -12,18 +12,25 @@ class SubNumberOrderListParams(TypedDict, total=False):
     """Consolidated filter parameter (deepObject style).
 
     Originally: filter[status], filter[order_request_id], filter[country_code],
-    filter[phone_number_type], filter[phone_numbers_count]
+    filter[phone_number_type], filter[phone_numbers_count],
+    filter[include_phone_numbers]
     """
 
 
 class Filter(TypedDict, total=False):
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[status], filter[order_request_id], filter[country_code], filter[phone_number_type], filter[phone_numbers_count]
+    Originally: filter[status], filter[order_request_id], filter[country_code], filter[phone_number_type], filter[phone_numbers_count], filter[include_phone_numbers]
     """
 
     country_code: str
     """ISO alpha-2 country code."""
+
+    include_phone_numbers: bool
+    """
+    Include the first 50 phone number objects in the results, including their
+    per-number regulatory requirement statuses
+    """
 
     order_request_id: str
     """ID of the number order the sub number order belongs to"""

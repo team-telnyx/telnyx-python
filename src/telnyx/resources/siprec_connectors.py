@@ -193,7 +193,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a stored SIPREC connector.
+        Deletes the stored SIPREC connector with the specified connector name.
 
         Args:
           extra_headers: Send extra headers
@@ -388,7 +388,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a stored SIPREC connector.
+        Deletes the stored SIPREC connector with the specified connector name.
 
         Args:
           extra_headers: Send extra headers

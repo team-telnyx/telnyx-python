@@ -95,7 +95,7 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionCancelResponse:
         """
-        Cancel a porting order
+        Requests cancellation of the porting order and returns the updated order.
 
         Args:
           extra_headers: Send extra headers
@@ -127,8 +127,10 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionConfirmResponse:
-        """
-        Confirm and submit your porting order.
+        """Confirms the porting order and submits it for processing.
+
+        Make sure all required
+        information and documents are attached before confirming.
 
         Args:
           extra_headers: Send extra headers
@@ -267,7 +269,7 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionCancelResponse:
         """
-        Cancel a porting order
+        Requests cancellation of the porting order and returns the updated order.
 
         Args:
           extra_headers: Send extra headers
@@ -299,8 +301,10 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionConfirmResponse:
-        """
-        Confirm and submit your porting order.
+        """Confirms the porting order and submits it for processing.
+
+        Make sure all required
+        information and documents are attached before confirming.
 
         Args:
           extra_headers: Send extra headers

@@ -85,7 +85,8 @@ class KnowledgeBasesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a knowledge base from a mission
+        Detaches the specified knowledge base from the mission so its content is no
+        longer available to agents in subsequent runs.
 
         Args:
           extra_headers: Send extra headers
@@ -126,7 +127,8 @@ class KnowledgeBasesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get a specific knowledge base by ID
+        Returns the details of a single knowledge base attached to the specified
+        mission.
 
         Args:
           extra_headers: Send extra headers
@@ -164,8 +166,10 @@ class KnowledgeBasesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        List all knowledge bases for a mission
+        """Returns the knowledge bases attached to the specified mission.
+
+        Knowledge bases
+        provide reference content agents can draw on during runs.
 
         Args:
           extra_headers: Send extra headers
@@ -199,7 +203,7 @@ class KnowledgeBasesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update a knowledge base definition
+        Replaces the definition of the specified knowledge base on this mission.
 
         Args:
           extra_headers: Send extra headers
@@ -293,7 +297,8 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a knowledge base from a mission
+        Detaches the specified knowledge base from the mission so its content is no
+        longer available to agents in subsequent runs.
 
         Args:
           extra_headers: Send extra headers
@@ -334,7 +339,8 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get a specific knowledge base by ID
+        Returns the details of a single knowledge base attached to the specified
+        mission.
 
         Args:
           extra_headers: Send extra headers
@@ -372,8 +378,10 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        List all knowledge bases for a mission
+        """Returns the knowledge bases attached to the specified mission.
+
+        Knowledge bases
+        provide reference content agents can draw on during runs.
 
         Args:
           extra_headers: Send extra headers
@@ -407,7 +415,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update a knowledge base definition
+        Replaces the definition of the specified knowledge base on this mission.
 
         Args:
           extra_headers: Send extra headers

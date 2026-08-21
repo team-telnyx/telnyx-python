@@ -14,6 +14,7 @@ from telnyx.types import (
     AIRetrieveConversationHistoriesResponse,
 )
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +28,7 @@ class TestAI:
         ai = client.ai.retrieve_conversation_histories(
             q="customer called about billing issue",
         )
-        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -47,7 +48,7 @@ class TestAI:
             page_size=10,
             region="USA",
         )
-        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -59,7 +60,7 @@ class TestAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = response.parse()
-        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -71,7 +72,9 @@ class TestAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ai = response.parse()
-            assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,6 +94,7 @@ class TestAI:
             bucket="string",
             filename="string",
             system_prompt="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
@@ -134,7 +138,7 @@ class TestAsyncAI:
         ai = await async_client.ai.retrieve_conversation_histories(
             q="customer called about billing issue",
         )
-        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -154,7 +158,7 @@ class TestAsyncAI:
             page_size=10,
             region="USA",
         )
-        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -166,7 +170,7 @@ class TestAsyncAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = await response.parse()
-        assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -178,7 +182,9 @@ class TestAsyncAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ai = await response.parse()
-            assert_matches_type(AIRetrieveConversationHistoriesResponse, ai, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse], ai, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,6 +204,7 @@ class TestAsyncAI:
             bucket="string",
             filename="string",
             system_prompt="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 

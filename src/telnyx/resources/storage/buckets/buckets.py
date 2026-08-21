@@ -74,7 +74,7 @@ class BucketsResource(SyncAPIResource):
         object_name: str,
         *,
         bucket_name: str,
-        ttl: int | Omit = omit,
+        body: bucket_create_presigned_url_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,8 +91,6 @@ class BucketsResource(SyncAPIResource):
         Refer to: https://developers.telnyx.com/docs/cloud-storage/presigned-urls
 
         Args:
-          ttl: The time to live of the token in seconds
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -111,7 +109,7 @@ class BucketsResource(SyncAPIResource):
                 bucket_name=bucket_name,
                 object_name=object_name,
             ),
-            body=maybe_transform({"ttl": ttl}, bucket_create_presigned_url_params.BucketCreatePresignedURLParams),
+            body=maybe_transform(body, bucket_create_presigned_url_params.BucketCreatePresignedURLParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -156,7 +154,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         object_name: str,
         *,
         bucket_name: str,
-        ttl: int | Omit = omit,
+        body: bucket_create_presigned_url_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,8 +171,6 @@ class AsyncBucketsResource(AsyncAPIResource):
         Refer to: https://developers.telnyx.com/docs/cloud-storage/presigned-urls
 
         Args:
-          ttl: The time to live of the token in seconds
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,9 +189,7 @@ class AsyncBucketsResource(AsyncAPIResource):
                 bucket_name=bucket_name,
                 object_name=object_name,
             ),
-            body=await async_maybe_transform(
-                {"ttl": ttl}, bucket_create_presigned_url_params.BucketCreatePresignedURLParams
-            ),
+            body=await async_maybe_transform(body, bucket_create_presigned_url_params.BucketCreatePresignedURLParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

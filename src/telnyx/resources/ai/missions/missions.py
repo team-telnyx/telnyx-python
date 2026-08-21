@@ -118,7 +118,8 @@ class MissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionResponse:
         """
-        Create a new mission definition
+        Creates a new mission definition from the provided configuration and returns the
+        created mission. Execute the mission by starting runs against it.
 
         Args:
           extra_headers: Send extra headers
@@ -194,7 +195,9 @@ class MissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MissionData]:
         """
-        List all missions for the organization
+        Returns a paginated list of all mission definitions in your organization.
+        Missions describe a goal and the tools, knowledge bases, and MCP servers agents
+        may use to accomplish it.
 
         Args:
           page_number: Page number (1-based)
@@ -240,7 +243,8 @@ class MissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Clone an existing mission
+        Creates a copy of the specified mission as a new mission definition, so you can
+        iterate on its configuration without modifying the original.
 
         Args:
           extra_headers: Send extra headers
@@ -273,7 +277,8 @@ class MissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a mission
+        Permanently deletes the specified mission definition and returns no content on
+        success.
 
         Args:
           extra_headers: Send extra headers
@@ -309,7 +314,9 @@ class MissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[EventData]:
         """
-        List recent events across all missions
+        Returns a paginated list of recent events across every mission in your
+        organization, optionally filtered by event type. Useful for building activity
+        feeds or monitoring dashboards.
 
         Args:
           page_number: Page number (1-based)
@@ -364,7 +371,8 @@ class MissionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionResponse:
         """
-        Update a mission definition
+        Replaces the specified mission's definition with the provided configuration and
+        returns the updated mission.
 
         Args:
           extra_headers: Send extra headers
@@ -450,7 +458,8 @@ class AsyncMissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionResponse:
         """
-        Create a new mission definition
+        Creates a new mission definition from the provided configuration and returns the
+        created mission. Execute the mission by starting runs against it.
 
         Args:
           extra_headers: Send extra headers
@@ -526,7 +535,9 @@ class AsyncMissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MissionData, AsyncDefaultFlatPagination[MissionData]]:
         """
-        List all missions for the organization
+        Returns a paginated list of all mission definitions in your organization.
+        Missions describe a goal and the tools, knowledge bases, and MCP servers agents
+        may use to accomplish it.
 
         Args:
           page_number: Page number (1-based)
@@ -572,7 +583,8 @@ class AsyncMissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Clone an existing mission
+        Creates a copy of the specified mission as a new mission definition, so you can
+        iterate on its configuration without modifying the original.
 
         Args:
           extra_headers: Send extra headers
@@ -605,7 +617,8 @@ class AsyncMissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a mission
+        Permanently deletes the specified mission definition and returns no content on
+        success.
 
         Args:
           extra_headers: Send extra headers
@@ -641,7 +654,9 @@ class AsyncMissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EventData, AsyncDefaultFlatPagination[EventData]]:
         """
-        List recent events across all missions
+        Returns a paginated list of recent events across every mission in your
+        organization, optionally filtered by event type. Useful for building activity
+        feeds or monitoring dashboards.
 
         Args:
           page_number: Page number (1-based)
@@ -696,7 +711,8 @@ class AsyncMissionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionResponse:
         """
-        Update a mission definition
+        Replaces the specified mission's definition with the provided configuration and
+        returns the updated mission.
 
         Args:
           extra_headers: Send extra headers

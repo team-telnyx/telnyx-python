@@ -10,16 +10,9 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 from .custom_sip_header import CustomSipHeader
+from .inbound_sip_header import InboundSipHeader
 
-__all__ = ["CallAnswered", "Payload", "PayloadSipHeader"]
-
-
-class PayloadSipHeader(BaseModel):
-    name: Literal["User-to-User", "Diversion"]
-    """The name of the header received from the SIP INVITE."""
-
-    value: str
-    """The value of the header."""
+__all__ = ["CallAnswered", "Payload"]
 
 
 class Payload(BaseModel):
@@ -48,7 +41,7 @@ class Payload(BaseModel):
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """Number or SIP URI placing the call."""
 
-    sip_headers: Optional[List[PayloadSipHeader]] = None
+    sip_headers: Optional[List[InboundSipHeader]] = None
     """User-to-User and Diversion headers from sip invite."""
 
     start_time: Optional[datetime] = None

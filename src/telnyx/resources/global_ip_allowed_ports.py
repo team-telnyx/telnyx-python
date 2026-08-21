@@ -51,7 +51,10 @@ class GlobalIPAllowedPortsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAllowedPortListResponse:
-        """List all Global IP Allowed Ports"""
+        """
+        Returns the ports allowed for Global IP traffic, for use when configuring Global
+        IP resources.
+        """
         return self._get(
             "/global_ip_allowed_ports",
             options=make_request_options(
@@ -93,7 +96,10 @@ class AsyncGlobalIPAllowedPortsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAllowedPortListResponse:
-        """List all Global IP Allowed Ports"""
+        """
+        Returns the ports allowed for Global IP traffic, for use when configuring Global
+        IP resources.
+        """
         return await self._get(
             "/global_ip_allowed_ports",
             options=make_request_options(

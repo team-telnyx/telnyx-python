@@ -186,7 +186,8 @@ class ManagedAccountsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountUpdateResponse:
         """
-        Update a single managed account.
+        Updates the specified managed account's attributes and returns the updated
+        account.
 
         Args:
           managed_account_allow_custom_pricing: Boolean value that indicates if the managed account is able to have custom
@@ -498,7 +499,8 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountUpdateResponse:
         """
-        Update a single managed account.
+        Updates the specified managed account's attributes and returns the updated
+        account.
 
         Args:
           managed_account_allow_custom_pricing: Boolean value that indicates if the managed account is able to have custom

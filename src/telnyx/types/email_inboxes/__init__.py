@@ -23,15 +23,14 @@ if TYPE_CHECKING:
     from .email_draft import EmailDraft as EmailDraft
     from .email_address import EmailAddress as EmailAddress
     from .email_message import EmailMessage as EmailMessage
+    from .inbox_filters import InboxFilters as InboxFilters
     from .inbound_thread import InboundThread as InboundThread
     from .thread_message import ThreadMessage as ThreadMessage
-    from .draft_list_response import DraftListResponse as DraftListResponse
     from .filter_add_response import FilterAddResponse as FilterAddResponse
     from .email_draft_response import EmailDraftResponse as EmailDraftResponse
     from .filter_list_response import FilterListResponse as FilterListResponse
     from .email_pagination_meta import EmailPaginationMeta as EmailPaginationMeta
     from .inbound_email_address import InboundEmailAddress as InboundEmailAddress
-    from .message_list_response import MessageListResponse as MessageListResponse
     from .email_message_response import EmailMessageResponse as EmailMessageResponse
     from .filter_replace_response import FilterReplaceResponse as FilterReplaceResponse
     from .message_update_response import MessageUpdateResponse as MessageUpdateResponse
@@ -61,10 +60,10 @@ def __getattr__(name: str) -> Any:
         from .email_message_response import EmailMessageResponse
 
         return EmailMessageResponse
-    if name == "DraftListResponse":
-        from .draft_list_response import DraftListResponse
+    if name == "InboxFilters":
+        from .inbox_filters import InboxFilters
 
-        return DraftListResponse
+        return InboxFilters
     if name == "FilterListResponse":
         from .filter_list_response import FilterListResponse
 
@@ -85,10 +84,6 @@ def __getattr__(name: str) -> Any:
         from .message_update_response import MessageUpdateResponse
 
         return MessageUpdateResponse
-    if name == "MessageListResponse":
-        from .message_list_response import MessageListResponse
-
-        return MessageListResponse
     if name == "EmailPaginationMeta":
         from .email_pagination_meta import EmailPaginationMeta
 

@@ -65,7 +65,9 @@ class SourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SourceCreateResponse:
         """
-        Attaches a new source to a collection.
+        Attaches a new content source to the specified collection and returns the
+        created source. The source's content is ingested and embedded so it becomes
+        searchable within the collection.
 
         Args:
           source_type: The type of Telnyx data attached as a source. `bucket` requires an additional
@@ -246,7 +248,9 @@ class AsyncSourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SourceCreateResponse:
         """
-        Attaches a new source to a collection.
+        Attaches a new content source to the specified collection and returns the
+        created source. The source's content is ingested and embedded so it becomes
+        searchable within the collection.
 
         Args:
           source_type: The type of Telnyx data attached as a source. `bucket` requires an additional

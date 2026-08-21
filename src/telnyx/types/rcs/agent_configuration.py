@@ -12,10 +12,16 @@ from .agent_website_contact import AgentWebsiteContact
 from .agent_testing_configuration import AgentTestingConfiguration
 from .agent_campaign_configuration import AgentCampaignConfiguration
 
-__all__ = ["AgentConfiguration", "Basics", "BasicsUnionMember0", "BasicsUnionMember1", "BasicsUnionMember2"]
+__all__ = [
+    "AgentConfiguration",
+    "Basics",
+    "BasicsAgentPhoneContactRequirement",
+    "BasicsAgentWebhookContactRequirement",
+    "BasicsAgentProfileContactRequirement",
+]
 
 
-class BasicsUnionMember0(BaseModel):
+class BasicsAgentPhoneContactRequirement(BaseModel):
     phone_number: AgentPhoneContact
 
     brand_color: Optional[str] = None
@@ -35,7 +41,7 @@ class BasicsUnionMember0(BaseModel):
     website: Optional[AgentWebsiteContact] = None
 
 
-class BasicsUnionMember1(BaseModel):
+class BasicsAgentWebhookContactRequirement(BaseModel):
     website: AgentWebsiteContact
 
     brand_color: Optional[str] = None
@@ -55,7 +61,7 @@ class BasicsUnionMember1(BaseModel):
     terms_and_conditions_url: Optional[str] = None
 
 
-class BasicsUnionMember2(BaseModel):
+class BasicsAgentProfileContactRequirement(BaseModel):
     email: AgentEmailContact
 
     brand_color: Optional[str] = None
@@ -75,7 +81,9 @@ class BasicsUnionMember2(BaseModel):
     website: Optional[AgentWebsiteContact] = None
 
 
-Basics: TypeAlias = Union[BasicsUnionMember0, BasicsUnionMember1, BasicsUnionMember2]
+Basics: TypeAlias = Union[
+    BasicsAgentPhoneContactRequirement, BasicsAgentWebhookContactRequirement, BasicsAgentProfileContactRequirement
+]
 
 
 class AgentConfiguration(BaseModel):

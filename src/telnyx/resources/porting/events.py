@@ -59,7 +59,7 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventRetrieveResponse:
         """
-        Show a specific porting event.
+        Returns the details of a single porting event, including its type and payload.
 
         Args:
           extra_headers: Send extra headers
@@ -94,7 +94,9 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PortingEvent]:
         """
-        Returns a list of all porting events.
+        Returns a paginated list of porting-related events on your account, such as
+        status changes on porting orders. Supports filtering and is useful for auditing
+        or reconciling webhook deliveries.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type],
@@ -140,7 +142,8 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Republish a specific porting event.
+        Republishes the specified porting event, triggering re-delivery of the
+        corresponding webhook to your account.
 
         Args:
           extra_headers: Send extra headers
@@ -197,7 +200,7 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventRetrieveResponse:
         """
-        Show a specific porting event.
+        Returns the details of a single porting event, including its type and payload.
 
         Args:
           extra_headers: Send extra headers
@@ -232,7 +235,9 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PortingEvent, AsyncDefaultFlatPagination[PortingEvent]]:
         """
-        Returns a list of all porting events.
+        Returns a paginated list of porting-related events on your account, such as
+        status changes on porting orders. Supports filtering and is useful for auditing
+        or reconciling webhook deliveries.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type],
@@ -278,7 +283,8 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Republish a specific porting event.
+        Republishes the specified porting event, triggering re-delivery of the
+        corresponding webhook to your account.
 
         Args:
           extra_headers: Send extra headers

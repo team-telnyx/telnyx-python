@@ -6,7 +6,6 @@ from typing import Optional
 from datetime import datetime
 
 from .._models import BaseModel
-from .billing_address import BillingAddress
 from .billing_contact import BillingContact
 from .physical_address import PhysicalAddress
 from .organization_contact import OrganizationContact
@@ -17,7 +16,7 @@ __all__ = ["EnterprisePublic"]
 class EnterprisePublic(BaseModel):
     id: Optional[str] = None
 
-    billing_address: Optional[BillingAddress] = None
+    billing_address: Optional[PhysicalAddress] = None
 
     billing_contact: Optional[BillingContact] = None
 

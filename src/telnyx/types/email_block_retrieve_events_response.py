@@ -2,17 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .offset_meta import OffsetMeta
 
-__all__ = ["EmailBlockRetrieveEventsResponse", "Data"]
+__all__ = ["EmailBlockRetrieveEventsResponse"]
 
 
-class Data(BaseModel):
+class EmailBlockRetrieveEventsResponse(BaseModel):
     id: str
 
     actor: str
@@ -33,9 +32,3 @@ class Data(BaseModel):
 
     meta: Optional[Dict[str, object]] = None
     """`null` when the schema field is nil (the context usually sets it to `{}`)."""
-
-
-class EmailBlockRetrieveEventsResponse(BaseModel):
-    data: List[Data]
-
-    meta: OffsetMeta

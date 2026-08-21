@@ -9,16 +9,29 @@ from ...._utils import PropertyInfo
 
 __all__ = [
     "CallCallsParams",
-    "WithURL",
-    "WithURLCustomHeader",
-    "WithTeXml",
-    "WithTeXmlCustomHeader",
-    "ApplicationDefault",
-    "ApplicationDefaultCustomHeader",
+    "Body",
+    "BodyWithURL",
+    "BodyWithURLCustomHeader",
+    "BodyWithTeXml",
+    "BodyWithTeXmlCustomHeader",
+    "BodyApplicationDefault",
+    "BodyApplicationDefaultCustomHeader",
 ]
 
 
-class WithURL(TypedDict, total=False):
+class CallCallsParams(TypedDict, total=False):
+    body: Required[Body]
+
+
+class BodyWithURLCustomHeader(TypedDict, total=False):
+    name: Required[str]
+    """The name of the custom header"""
+
+    value: Required[str]
+    """The value of the custom header"""
+
+
+class BodyWithURL(TypedDict, total=False):
     url: Required[Annotated[str, PropertyInfo(alias="Url")]]
     """The URL from which Telnyx will retrieve the TeXML call instructions."""
 
@@ -59,7 +72,7 @@ class WithURL(TypedDict, total=False):
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
 
-    custom_headers: Annotated[Iterable[WithURLCustomHeader], PropertyInfo(alias="CustomHeaders")]
+    custom_headers: Annotated[Iterable[BodyWithURLCustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
@@ -108,6 +121,16 @@ class WithURL(TypedDict, total=False):
         Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
     ]
     """Enables Answering Machine Detection."""
+
+    machine_detection_beep_profile: Annotated[
+        Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
+    ]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile. Only used when MachineDetection is enabled.
+    """
 
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
     """
@@ -230,7 +253,7 @@ class WithURL(TypedDict, total=False):
     14400 seconds.
     """
 
-    timeout_seconds: Annotated[int, PropertyInfo(alias="Timeout")]
+    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
     """
     The number of seconds to wait for the called party to answer the call before the
     call is canceled. The minimum value is 5 and the maximum value is 120. Default
@@ -256,7 +279,7 @@ class WithURL(TypedDict, total=False):
     """
 
 
-class WithURLCustomHeader(TypedDict, total=False):
+class BodyWithTeXmlCustomHeader(TypedDict, total=False):
     name: Required[str]
     """The name of the custom header"""
 
@@ -264,7 +287,7 @@ class WithURLCustomHeader(TypedDict, total=False):
     """The value of the custom header"""
 
 
-class WithTeXml(TypedDict, total=False):
+class BodyWithTeXml(TypedDict, total=False):
     texml: Required[Annotated[str, PropertyInfo(alias="Texml")]]
     """TeXML to be used as instructions for the call.
 
@@ -309,7 +332,7 @@ class WithTeXml(TypedDict, total=False):
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
 
-    custom_headers: Annotated[Iterable[WithTeXmlCustomHeader], PropertyInfo(alias="CustomHeaders")]
+    custom_headers: Annotated[Iterable[BodyWithTeXmlCustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
@@ -358,6 +381,16 @@ class WithTeXml(TypedDict, total=False):
         Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
     ]
     """Enables Answering Machine Detection."""
+
+    machine_detection_beep_profile: Annotated[
+        Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
+    ]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile. Only used when MachineDetection is enabled.
+    """
 
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
     """
@@ -478,7 +511,7 @@ class WithTeXml(TypedDict, total=False):
     14400 seconds.
     """
 
-    timeout_seconds: Annotated[int, PropertyInfo(alias="Timeout")]
+    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
     """
     The number of seconds to wait for the called party to answer the call before the
     call is canceled. The minimum value is 5 and the maximum value is 120. Default
@@ -506,7 +539,7 @@ class WithTeXml(TypedDict, total=False):
     """
 
 
-class WithTeXmlCustomHeader(TypedDict, total=False):
+class BodyApplicationDefaultCustomHeader(TypedDict, total=False):
     name: Required[str]
     """The name of the custom header"""
 
@@ -514,7 +547,7 @@ class WithTeXmlCustomHeader(TypedDict, total=False):
     """The value of the custom header"""
 
 
-class ApplicationDefault(TypedDict, total=False):
+class BodyApplicationDefault(TypedDict, total=False):
     application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
     """The ID of the TeXML Application."""
 
@@ -552,7 +585,7 @@ class ApplicationDefault(TypedDict, total=False):
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
 
-    custom_headers: Annotated[Iterable[ApplicationDefaultCustomHeader], PropertyInfo(alias="CustomHeaders")]
+    custom_headers: Annotated[Iterable[BodyApplicationDefaultCustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
@@ -601,6 +634,16 @@ class ApplicationDefault(TypedDict, total=False):
         Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
     ]
     """Enables Answering Machine Detection."""
+
+    machine_detection_beep_profile: Annotated[
+        Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
+    ]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile. Only used when MachineDetection is enabled.
+    """
 
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
     """
@@ -723,7 +766,7 @@ class ApplicationDefault(TypedDict, total=False):
     14400 seconds.
     """
 
-    timeout_seconds: Annotated[int, PropertyInfo(alias="Timeout")]
+    timeout: Annotated[int, PropertyInfo(alias="Timeout")]
     """
     The number of seconds to wait for the called party to answer the call before the
     call is canceled. The minimum value is 5 and the maximum value is 120. Default
@@ -751,12 +794,4 @@ class ApplicationDefault(TypedDict, total=False):
     """
 
 
-class ApplicationDefaultCustomHeader(TypedDict, total=False):
-    name: Required[str]
-    """The name of the custom header"""
-
-    value: Required[str]
-    """The value of the custom header"""
-
-
-CallCallsParams: TypeAlias = Union[WithURL, WithTeXml, ApplicationDefault]
+Body: TypeAlias = Union[BodyWithURL, BodyWithTeXml, BodyApplicationDefault]

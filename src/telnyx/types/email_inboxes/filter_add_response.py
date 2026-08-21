@@ -2,21 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal
-
 from ..._models import BaseModel
+from .inbox_filters import InboxFilters
 
-__all__ = ["FilterAddResponse", "Data"]
-
-
-class Data(BaseModel):
-    allowlist: List[str]
-
-    blocklist: List[str]
-
-    record_type: Literal["email_inbox_filters"]
+__all__ = ["FilterAddResponse"]
 
 
 class FilterAddResponse(BaseModel):
-    data: Data
+    data: InboxFilters

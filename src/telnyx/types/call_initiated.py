@@ -10,16 +10,9 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 from .custom_sip_header import CustomSipHeader
+from .inbound_sip_header import InboundSipHeader
 
-__all__ = ["CallInitiated", "Payload", "PayloadSipHeader"]
-
-
-class PayloadSipHeader(BaseModel):
-    name: Literal["User-to-User", "Diversion"]
-    """The name of the header received from the SIP INVITE."""
-
-    value: str
-    """The value of the header."""
+__all__ = ["CallInitiated", "Payload"]
 
 
 class Payload(BaseModel):
@@ -69,7 +62,7 @@ class Payload(BaseModel):
     shaken_stir_validated: Optional[bool] = None
     """Whether attestation was successfully validated or not."""
 
-    sip_headers: Optional[List[PayloadSipHeader]] = None
+    sip_headers: Optional[List[InboundSipHeader]] = None
     """User-to-User and Diversion headers from sip invite."""
 
     start_time: Optional[datetime] = None

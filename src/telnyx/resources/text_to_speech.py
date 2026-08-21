@@ -84,10 +84,9 @@ class TextToSpeechResource(SyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -115,7 +114,7 @@ class TextToSpeechResource(SyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -145,9 +144,6 @@ class TextToSpeechResource(SyncAPIResource):
           provider: TTS provider. Required unless `voice` is provided.
 
           resemble: Resemble AI provider-specific parameters.
-
-          rime: Rime provider-specific parameters.
-
           telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
               `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
               `volume`, and `emotion`.
@@ -190,7 +186,6 @@ class TextToSpeechResource(SyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -217,10 +212,9 @@ class TextToSpeechResource(SyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -248,7 +242,7 @@ class TextToSpeechResource(SyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -278,9 +272,6 @@ class TextToSpeechResource(SyncAPIResource):
           provider: TTS provider. Required unless `voice` is provided.
 
           resemble: Resemble AI provider-specific parameters.
-
-          rime: Rime provider-specific parameters.
-
           telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
               `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
               `volume`, and `emotion`.
@@ -323,7 +314,6 @@ class TextToSpeechResource(SyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -343,7 +333,7 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -398,7 +388,7 @@ class TextToSpeechResource(SyncAPIResource):
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
         provider: Literal[
-            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai", "humain"
+            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain"
         ]
         | Omit = omit,
         socket_id: str | Omit = omit,
@@ -417,7 +407,7 @@ class TextToSpeechResource(SyncAPIResource):
         `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`,
         `resemble`, `elevenlabs`, `xai`, `humain`.
 
         **Connection flow:**
@@ -550,10 +540,9 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -581,7 +570,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -611,9 +600,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           provider: TTS provider. Required unless `voice` is provided.
 
           resemble: Resemble AI provider-specific parameters.
-
-          rime: Rime provider-specific parameters.
-
           telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
               `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
               `volume`, and `emotion`.
@@ -656,7 +642,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -683,10 +668,9 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
-        rime: text_to_speech_generate_speech_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_speech_params.Telnyx | Omit = omit,
         text: str | Omit = omit,
         text_type: Literal["text", "ssml"] | Omit = omit,
@@ -714,7 +698,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -744,9 +728,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           provider: TTS provider. Required unless `voice` is provided.
 
           resemble: Resemble AI provider-specific parameters.
-
-          rime: Rime provider-specific parameters.
-
           telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
               `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
               `volume`, and `emotion`.
@@ -789,7 +770,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "output_type": output_type,
                     "provider": provider,
                     "resemble": resemble,
-                    "rime": rime,
                     "telnyx": telnyx,
                     "text": text,
                     "text_type": text_type,
@@ -809,7 +789,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai", "humain"]
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -864,7 +844,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
         provider: Literal[
-            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble", "xai", "humain"
+            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain"
         ]
         | Omit = omit,
         socket_id: str | Omit = omit,
@@ -883,7 +863,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
+        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`,
         `resemble`, `elevenlabs`, `xai`, `humain`.
 
         **Connection flow:**
