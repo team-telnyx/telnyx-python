@@ -6,11 +6,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["BucketCreatePresignedURLParams"]
+__all__ = ["BucketCreatePresignedURLParams", "Body"]
 
 
 class BucketCreatePresignedURLParams(TypedDict, total=False):
     bucket_name: Required[Annotated[str, PropertyInfo(alias="bucketName")]]
 
+    body: Body
+
+
+class Body(TypedDict, total=False):
     ttl: int
     """The time to live of the token in seconds"""

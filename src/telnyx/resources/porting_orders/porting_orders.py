@@ -217,7 +217,9 @@ class PortingOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderCreateResponse:
         """
-        Creates a new porting order object.
+        Creates a new porting order to bring phone numbers from another carrier to
+        Telnyx. Complete the order's requirements and then confirm it to submit the
+        port.
 
         Args:
           phone_numbers: The list of +E.164 formatted phone numbers
@@ -388,8 +390,10 @@ class PortingOrdersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PortingOrder]:
-        """
-        Returns a list of your porting order.
+        """Returns a paginated list of your porting orders.
+
+        Supports filtering and sorting,
+        and can optionally include the phone numbers attached to each order.
 
         Args:
           filter:
@@ -538,7 +542,8 @@ class PortingOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
-        Download a porting order loa template
+        Downloads the Letter of Authorization (LOA) template document for this porting
+        order, optionally rendered with a specific LOA configuration.
 
         Args:
           loa_configuration_id: The identifier of the LOA configuration to use for the template. If not
@@ -737,7 +742,9 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderCreateResponse:
         """
-        Creates a new porting order object.
+        Creates a new porting order to bring phone numbers from another carrier to
+        Telnyx. Complete the order's requirements and then confirm it to submit the
+        port.
 
         Args:
           phone_numbers: The list of +E.164 formatted phone numbers
@@ -908,8 +915,10 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PortingOrder, AsyncDefaultFlatPagination[PortingOrder]]:
-        """
-        Returns a list of your porting order.
+        """Returns a paginated list of your porting orders.
+
+        Supports filtering and sorting,
+        and can optionally include the phone numbers attached to each order.
 
         Args:
           filter:
@@ -1058,7 +1067,8 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
-        Download a porting order loa template
+        Downloads the Letter of Authorization (LOA) template document for this porting
+        order, optionally rendered with a specific LOA configuration.
 
         Args:
           loa_configuration_id: The identifier of the LOA configuration to use for the template. If not

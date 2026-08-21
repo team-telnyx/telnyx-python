@@ -19,6 +19,7 @@ from ..._response import (
 from ...types.rcs import BrandLegalEntityType, BrandOrganizationType, brand_create_params, brand_update_params
 from ..._base_client import make_request_options
 from ...types.rcs.brand_response import BrandResponse
+from ...types.rcs.brand_address_param import BrandAddressParam
 from ...types.rcs.brand_list_response import BrandListResponse
 from ...types.rcs.brand_legal_entity_type import BrandLegalEntityType
 from ...types.rcs.brand_organization_type import BrandOrganizationType
@@ -51,7 +52,7 @@ class BrandsResource(SyncAPIResource):
     def create(
         self,
         *,
-        addresses: Dict[str, brand_create_params.Addresses],
+        addresses: Dict[str, BrandAddressParam],
         contacts: brand_create_params.Contacts,
         display_name: str,
         identifiers: brand_create_params.Identifiers,
@@ -148,7 +149,7 @@ class BrandsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        addresses: Dict[str, brand_update_params.Addresses] | Omit = omit,
+        addresses: Dict[str, BrandAddressParam] | Omit = omit,
         contacts: brand_update_params.Contacts | Omit = omit,
         display_name: str | Omit = omit,
         identifiers: brand_update_params.Identifiers | Omit = omit,
@@ -287,7 +288,7 @@ class AsyncBrandsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        addresses: Dict[str, brand_create_params.Addresses],
+        addresses: Dict[str, BrandAddressParam],
         contacts: brand_create_params.Contacts,
         display_name: str,
         identifiers: brand_create_params.Identifiers,
@@ -384,7 +385,7 @@ class AsyncBrandsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        addresses: Dict[str, brand_update_params.Addresses] | Omit = omit,
+        addresses: Dict[str, BrandAddressParam] | Omit = omit,
         contacts: brand_update_params.Contacts | Omit = omit,
         display_name: str | Omit = omit,
         identifiers: brand_update_params.Identifiers | Omit = omit,

@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
 from .cloudfs_filesystem_status import CloudfsFilesystemStatus
 
-__all__ = ["CloudfListResponse", "Data", "Meta", "MetaCursors"]
+__all__ = ["CloudfListResponse"]
 
 
-class Data(BaseModel):
+class CloudfListResponse(BaseModel):
     """A CloudFS filesystem as returned in list results.
 
     Connection details (`meta_url`, `meta_token`) are omitted — retrieve the filesystem by ID for its redacted `meta_url`.
@@ -49,36 +49,3 @@ class Data(BaseModel):
     """
 
     updated_at: Optional[datetime] = None
-
-
-class MetaCursors(BaseModel):
-    """Opaque cursors for the adjacent pages. Empty when there are no adjacent pages."""
-
-    after: Optional[str] = None
-    """Cursor for the next page; pass it as `page[after]`. Omitted on the last page."""
-
-    before: Optional[str] = None
-    """Cursor for the previous page; pass it as `page[before]`.
-
-    Omitted on the first page.
-    """
-
-
-class Meta(BaseModel):
-    cursors: Optional[MetaCursors] = None
-    """Opaque cursors for the adjacent pages. Empty when there are no adjacent pages."""
-
-    next: Optional[str] = None
-    """Relative URL (path and query) of the next page.
-
-    Omitted when there are no further results.
-    """
-
-    previous: Optional[str] = None
-    """Relative URL (path and query) of the previous page. Omitted on the first page."""
-
-
-class CloudfListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[Meta] = None

@@ -49,6 +49,7 @@ class TestScheduledEvents:
             max_retries_client_errors=0,
             retry_interval_secs=60,
             text="text",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
@@ -292,6 +293,7 @@ class TestAsyncScheduledEvents:
             max_retries_client_errors=0,
             retry_interval_secs=60,
             text="text",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 

@@ -173,6 +173,7 @@ class TestInsightGroups:
             name="Name",
             description="Description",
             webhook="",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 
@@ -397,6 +398,7 @@ class TestAsyncInsightGroups:
             name="Name",
             description="Description",
             webhook="",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InsightTemplateGroupDetail, insight_group, path=["response"])
 

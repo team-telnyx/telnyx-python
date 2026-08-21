@@ -74,7 +74,7 @@ class ConferencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceResource:
         """
-        Returns a conference resource.
+        Returns a single conference resource for the account by its ConferenceSid.
 
         Args:
           extra_headers: Send extra headers
@@ -117,7 +117,8 @@ class ConferencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceResource:
         """
-        Updates a conference resource.
+        Updates the specified conference resource, for example to modify its status, and
+        returns the updated conference.
 
         Args:
           announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
@@ -180,7 +181,8 @@ class ConferencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveConferencesResponse:
         """
-        Lists conference resources.
+        Returns a paginated list of conference resources for the account, with support
+        for filtering by friendly name, status, and creation or update dates.
 
         Args:
           date_created: Filters conferences by the creation date. Expected format is YYYY-MM-DD. Also
@@ -246,7 +248,7 @@ class ConferencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveRecordingsResponse:
         """
-        Lists conference recordings
+        Returns the list of recordings made for the specified conference.
 
         Args:
           extra_headers: Send extra headers
@@ -354,7 +356,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceResource:
         """
-        Returns a conference resource.
+        Returns a single conference resource for the account by its ConferenceSid.
 
         Args:
           extra_headers: Send extra headers
@@ -397,7 +399,8 @@ class AsyncConferencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceResource:
         """
-        Updates a conference resource.
+        Updates the specified conference resource, for example to modify its status, and
+        returns the updated conference.
 
         Args:
           announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
@@ -460,7 +463,8 @@ class AsyncConferencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveConferencesResponse:
         """
-        Lists conference resources.
+        Returns a paginated list of conference resources for the account, with support
+        for filtering by friendly name, status, and creation or update dates.
 
         Args:
           date_created: Filters conferences by the creation date. Expected format is YYYY-MM-DD. Also
@@ -526,7 +530,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveRecordingsResponse:
         """
-        Lists conference recordings
+        Returns the list of recordings made for the specified conference.
 
         Args:
           extra_headers: Send extra headers

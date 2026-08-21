@@ -322,6 +322,18 @@ class TestAssistants:
                                 "value": "value",
                             }
                         ],
+                        "messages": [
+                            {
+                                "content": "Let me look that up for you.",
+                                "type": "request_start",
+                                "timing_ms": 100,
+                            },
+                            {
+                                "content": "Still working on that.",
+                                "timing_ms": 5000,
+                                "type": "request_response_delayed",
+                            },
+                        ],
                         "method": "GET",
                         "path_parameters": {
                             "properties": {"id": "bar"},
@@ -396,6 +408,7 @@ class TestAssistants:
                 "theme": "light",
                 "view_history_url": "view_history_url",
             },
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
@@ -781,6 +794,18 @@ class TestAssistants:
                                 "value": "value",
                             }
                         ],
+                        "messages": [
+                            {
+                                "content": "Let me look that up for you.",
+                                "type": "request_start",
+                                "timing_ms": 100,
+                            },
+                            {
+                                "content": "Still working on that.",
+                                "timing_ms": 5000,
+                                "type": "request_response_delayed",
+                            },
+                        ],
                         "method": "GET",
                         "path_parameters": {
                             "properties": {"id": "bar"},
@@ -1029,7 +1054,16 @@ class TestAssistants:
     @parametrize
     def test_method_clone(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.clone(
-            "assistant_id",
+            assistant_id="assistant_id",
+        )
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_clone_with_all_params(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.clone(
+            assistant_id="assistant_id",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
@@ -1037,7 +1071,7 @@ class TestAssistants:
     @parametrize
     def test_raw_response_clone(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.clone(
-            "assistant_id",
+            assistant_id="assistant_id",
         )
 
         assert response.is_closed is True
@@ -1049,7 +1083,7 @@ class TestAssistants:
     @parametrize
     def test_streaming_response_clone(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.clone(
-            "assistant_id",
+            assistant_id="assistant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1064,7 +1098,7 @@ class TestAssistants:
     def test_path_params_clone(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             client.ai.assistants.with_raw_response.clone(
-                "",
+                assistant_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -1125,6 +1159,7 @@ class TestAssistants:
             api_key_ref="string",
             provider="elevenlabs",
             import_ids=["string"],
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
@@ -1176,6 +1211,7 @@ class TestAssistants:
             conversation_metadata={"foo": "string"},
             should_create_conversation=False,
             text="Text",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -1524,6 +1560,18 @@ class TestAsyncAssistants:
                                 "value": "value",
                             }
                         ],
+                        "messages": [
+                            {
+                                "content": "Let me look that up for you.",
+                                "type": "request_start",
+                                "timing_ms": 100,
+                            },
+                            {
+                                "content": "Still working on that.",
+                                "timing_ms": 5000,
+                                "type": "request_response_delayed",
+                            },
+                        ],
                         "method": "GET",
                         "path_parameters": {
                             "properties": {"id": "bar"},
@@ -1598,6 +1646,7 @@ class TestAsyncAssistants:
                 "theme": "light",
                 "view_history_url": "view_history_url",
             },
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
@@ -1983,6 +2032,18 @@ class TestAsyncAssistants:
                                 "value": "value",
                             }
                         ],
+                        "messages": [
+                            {
+                                "content": "Let me look that up for you.",
+                                "type": "request_start",
+                                "timing_ms": 100,
+                            },
+                            {
+                                "content": "Still working on that.",
+                                "timing_ms": 5000,
+                                "type": "request_response_delayed",
+                            },
+                        ],
                         "method": "GET",
                         "path_parameters": {
                             "properties": {"id": "bar"},
@@ -2231,7 +2292,16 @@ class TestAsyncAssistants:
     @parametrize
     async def test_method_clone(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.clone(
-            "assistant_id",
+            assistant_id="assistant_id",
+        )
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_clone_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.clone(
+            assistant_id="assistant_id",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
@@ -2239,7 +2309,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_raw_response_clone(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.clone(
-            "assistant_id",
+            assistant_id="assistant_id",
         )
 
         assert response.is_closed is True
@@ -2251,7 +2321,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_streaming_response_clone(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.clone(
-            "assistant_id",
+            assistant_id="assistant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2266,7 +2336,7 @@ class TestAsyncAssistants:
     async def test_path_params_clone(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             await async_client.ai.assistants.with_raw_response.clone(
-                "",
+                assistant_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -2327,6 +2397,7 @@ class TestAsyncAssistants:
             api_key_ref="string",
             provider="elevenlabs",
             import_ids=["string"],
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
@@ -2378,6 +2449,7 @@ class TestAsyncAssistants:
             conversation_metadata={"foo": "string"},
             should_create_conversation=False,
             text="Text",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 

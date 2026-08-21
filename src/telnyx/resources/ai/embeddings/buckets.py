@@ -87,7 +87,10 @@ class BucketsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BucketListResponse:
-        """Get all embedding buckets for a user."""
+        """
+        Returns the list of storage buckets that have been embedded for your account,
+        for use with similarity search.
+        """
         return self._get(
             "/ai/embeddings/buckets",
             options=make_request_options(
@@ -198,7 +201,10 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BucketListResponse:
-        """Get all embedding buckets for a user."""
+        """
+        Returns the list of storage buckets that have been embedded for your account,
+        for use with similarity search.
+        """
         return await self._get(
             "/ai/embeddings/buckets",
             options=make_request_options(

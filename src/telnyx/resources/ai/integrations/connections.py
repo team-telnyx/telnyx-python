@@ -53,7 +53,7 @@ class ConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectionRetrieveResponse:
         """
-        Get user setup integrations
+        Returns the details of a single integration connection by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -84,7 +84,10 @@ class ConnectionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectionListResponse:
-        """List user setup integrations"""
+        """
+        Returns the list of integration connections you have set up, linking your
+        account to third-party services.
+        """
         return self._get(
             "/ai/integrations/connections",
             options=make_request_options(
@@ -160,7 +163,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectionRetrieveResponse:
         """
-        Get user setup integrations
+        Returns the details of a single integration connection by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -191,7 +194,10 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectionListResponse:
-        """List user setup integrations"""
+        """
+        Returns the list of integration connections you have set up, linking your
+        account to third-party services.
+        """
         return await self._get(
             "/ai/integrations/connections",
             options=make_request_options(

@@ -27,7 +27,7 @@ class TestProducts:
         product = client.pricing.products.retrieve(
             slug="slug",
         )
-        assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -38,7 +38,7 @@ class TestProducts:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -50,7 +50,7 @@ class TestProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = response.parse()
-        assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -62,7 +62,7 @@ class TestProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = response.parse()
-            assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +123,7 @@ class TestAsyncProducts:
         product = await async_client.pricing.products.retrieve(
             slug="slug",
         )
-        assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -134,7 +134,7 @@ class TestAsyncProducts:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -146,7 +146,7 @@ class TestAsyncProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = await response.parse()
-        assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -158,7 +158,7 @@ class TestAsyncProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = await response.parse()
-            assert_matches_type(ProductRetrieveResponse, product, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[ProductRetrieveResponse], product, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

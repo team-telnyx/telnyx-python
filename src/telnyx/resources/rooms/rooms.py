@@ -89,7 +89,8 @@ class RoomsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCreateResponse:
         """
-        Synchronously create a Room.
+        Synchronously creates a new video room with the provided configuration and
+        returns the created room.
 
         Args:
           enable_recording: Enable or disable recording for that room.
@@ -194,7 +195,8 @@ class RoomsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomUpdateResponse:
         """
-        Synchronously update a Room.
+        Synchronously updates the specified video room's configuration and returns the
+        updated room.
 
         Args:
           enable_recording: Enable or disable recording for that room.
@@ -384,7 +386,8 @@ class AsyncRoomsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCreateResponse:
         """
-        Synchronously create a Room.
+        Synchronously creates a new video room with the provided configuration and
+        returns the created room.
 
         Args:
           enable_recording: Enable or disable recording for that room.
@@ -491,7 +494,8 @@ class AsyncRoomsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomUpdateResponse:
         """
-        Synchronously update a Room.
+        Synchronously updates the specified video room's configuration and returns the
+        updated room.
 
         Args:
           enable_recording: Enable or disable recording for that room.

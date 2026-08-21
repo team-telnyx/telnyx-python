@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import path_template, maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -105,6 +105,7 @@ class RunsResource(SyncAPIResource):
         suite_name: str,
         *,
         destination_version_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,6 +131,7 @@ class RunsResource(SyncAPIResource):
         """
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             path_template("/ai/assistants/tests/test-suites/{suite_name}/runs", suite_name=suite_name),
             body=maybe_transform(
@@ -224,6 +226,7 @@ class AsyncRunsResource(AsyncAPIResource):
         suite_name: str,
         *,
         destination_version_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -249,6 +252,7 @@ class AsyncRunsResource(AsyncAPIResource):
         """
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             path_template("/ai/assistants/tests/test-suites/{suite_name}/runs", suite_name=suite_name),
             body=await async_maybe_transform(

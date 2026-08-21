@@ -2,38 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing import Dict, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .brand_address import BrandAddress
 from .brand_contact import BrandContact
-from .ein_brand_identifier import EinBrandIdentifier
+from .brand_identifier import BrandIdentifier
 from .capabilities_response import CapabilitiesResponse
-from .stock_symbol_brand_identifier import StockSymbolBrandIdentifier
 
-__all__ = ["BrandResponse", "Addresses", "Identifiers"]
-
-
-class Addresses(BaseModel):
-    administrative_area: str
-
-    city: str
-
-    country_code: str
-    """The two-letter ISO 3166-1 country code."""
-
-    line_1: str
-
-    postal_code: str
-
-    line_2: Optional[str] = None
-
-
-Identifiers: TypeAlias = Union[EinBrandIdentifier, StockSymbolBrandIdentifier]
+__all__ = ["BrandResponse"]
 
 
 class BrandResponse(BaseModel):
-    addresses: Dict[str, Addresses]
+    addresses: Dict[str, BrandAddress]
 
     brand_id: str
 
@@ -43,7 +25,7 @@ class BrandResponse(BaseModel):
 
     display_name: str
 
-    identifiers: Dict[str, Identifiers]
+    identifiers: Dict[str, BrandIdentifier]
 
     legal_entity_type: str
 

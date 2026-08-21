@@ -64,7 +64,9 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[EventData]:
         """
-        List events for a run (paginated)
+        Returns a paginated list of events logged for the specified run, filterable by
+        event type, plan step, and agent, so you can reconstruct exactly what happened
+        during execution.
 
         Args:
           agent_id: Filter results by agent id.
@@ -125,7 +127,8 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventResponse:
         """
-        Get details of a specific event
+        Returns the details of a single event logged for the specified run, including
+        its type and payload.
 
         Args:
           extra_headers: Send extra headers
@@ -173,8 +176,10 @@ class EventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventResponse:
-        """
-        Log an event for a run
+        """Logs a new event against the specified run and returns the created event.
+
+        Events
+        form the run's audit trail and can reference a plan step or agent.
 
         Args:
           idempotency_key: Prevents duplicate events on retry
@@ -249,7 +254,9 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EventData, AsyncDefaultFlatPagination[EventData]]:
         """
-        List events for a run (paginated)
+        Returns a paginated list of events logged for the specified run, filterable by
+        event type, plan step, and agent, so you can reconstruct exactly what happened
+        during execution.
 
         Args:
           agent_id: Filter results by agent id.
@@ -310,7 +317,8 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventResponse:
         """
-        Get details of a specific event
+        Returns the details of a single event logged for the specified run, including
+        its type and payload.
 
         Args:
           extra_headers: Send extra headers
@@ -358,8 +366,10 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventResponse:
-        """
-        Log an event for a run
+        """Logs a new event against the specified run and returns the created event.
+
+        Events
+        form the run's audit trail and can reference a plan step or agent.
 
         Args:
           idempotency_key: Prevents duplicate events on retry

@@ -24,7 +24,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncCloudfsCursorPagination, AsyncCloudfsCursorPagination
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.storage import cloudf_list_params, cloudf_create_params, cloudf_update_params
 from ....types.storage.cloudf_list_response import CloudfListResponse
 from ....types.storage.cloudfs_filesystem_response_wrapper import CloudfsFilesystemResponseWrapper
@@ -215,7 +216,7 @@ class CloudfsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudfListResponse:
+    ) -> SyncCloudfsCursorPagination[CloudfListResponse]:
         """Lists the CloudFS filesystems for the authenticated user's organization.
 
         Results
@@ -249,8 +250,9 @@ class CloudfsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/storage/cloudfs",
+            page=SyncCloudfsCursorPagination[CloudfListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -269,7 +271,7 @@ class CloudfsResource(SyncAPIResource):
                     cloudf_list_params.CloudfListParams,
                 ),
             ),
-            cast_to=CloudfListResponse,
+            model=CloudfListResponse,
         )
 
     def delete(
@@ -477,7 +479,7 @@ class AsyncCloudfsResource(AsyncAPIResource):
             cast_to=CloudfsFilesystemDetailResponseWrapper,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_name: str | Omit = omit,
@@ -493,7 +495,7 @@ class AsyncCloudfsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudfListResponse:
+    ) -> AsyncPaginator[CloudfListResponse, AsyncCloudfsCursorPagination[CloudfListResponse]]:
         """Lists the CloudFS filesystems for the authenticated user's organization.
 
         Results
@@ -527,14 +529,15 @@ class AsyncCloudfsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/storage/cloudfs",
+            page=AsyncCloudfsCursorPagination[CloudfListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_name": filter_name,
                         "filter_region": filter_region,
@@ -547,7 +550,7 @@ class AsyncCloudfsResource(AsyncAPIResource):
                     cloudf_list_params.CloudfListParams,
                 ),
             ),
-            cast_to=CloudfListResponse,
+            model=CloudfListResponse,
         )
 
     async def delete(

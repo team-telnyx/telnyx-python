@@ -84,7 +84,8 @@ class TexmlApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationCreateResponse:
         """
-        Creates a TeXML Application.
+        Creates a TeXML application, which defines the voice URLs and settings used to
+        serve TeXML instructions for calls, and returns the created application.
 
         Args:
           friendly_name: A user-assigned name to help manage the application.
@@ -368,7 +369,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationDeleteResponse:
         """
-        Deletes a TeXML Application.
+        Permanently deletes the specified TeXML application from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -438,7 +439,8 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationCreateResponse:
         """
-        Creates a TeXML Application.
+        Creates a TeXML application, which defines the voice URLs and settings used to
+        serve TeXML instructions for calls, and returns the created application.
 
         Args:
           friendly_name: A user-assigned name to help manage the application.
@@ -722,7 +724,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationDeleteResponse:
         """
-        Deletes a TeXML Application.
+        Permanently deletes the specified TeXML application from your account.
 
         Args:
           extra_headers: Send extra headers

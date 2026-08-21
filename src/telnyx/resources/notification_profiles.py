@@ -64,7 +64,8 @@ class NotificationProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileCreateResponse:
         """
-        Create a notification profile.
+        Creates a new notification profile, a named grouping used to organize
+        notification settings, and returns it.
 
         Args:
           name: A human readable name.
@@ -98,7 +99,7 @@ class NotificationProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileRetrieveResponse:
         """
-        Get a notification profile.
+        Returns the details of a single notification profile by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -132,7 +133,7 @@ class NotificationProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileUpdateResponse:
         """
-        Update a notification profile.
+        Updates the specified notification profile and returns the updated profile.
 
         Args:
           name: A human readable name.
@@ -215,7 +216,7 @@ class NotificationProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileDeleteResponse:
         """
-        Delete a notification profile.
+        Deletes the specified notification profile from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -271,7 +272,8 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileCreateResponse:
         """
-        Create a notification profile.
+        Creates a new notification profile, a named grouping used to organize
+        notification settings, and returns it.
 
         Args:
           name: A human readable name.
@@ -307,7 +309,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileRetrieveResponse:
         """
-        Get a notification profile.
+        Returns the details of a single notification profile by its identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -341,7 +343,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileUpdateResponse:
         """
-        Update a notification profile.
+        Updates the specified notification profile and returns the updated profile.
 
         Args:
           name: A human readable name.
@@ -426,7 +428,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationProfileDeleteResponse:
         """
-        Delete a notification profile.
+        Deletes the specified notification profile from your account.
 
         Args:
           extra_headers: Send extra headers

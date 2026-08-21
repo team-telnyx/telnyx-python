@@ -2,20 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import Dict, Optional
+from typing_extensions import Literal, Required, TypedDict
 
+from .brand_address_param import BrandAddressParam
 from .brand_contact_param import BrandContactParam
+from .brand_identifier_param import BrandIdentifierParam
 from .brand_legal_entity_type import BrandLegalEntityType
 from .brand_organization_type import BrandOrganizationType
 from .ein_brand_identifier_param import EinBrandIdentifierParam
 from .stock_symbol_brand_identifier_param import StockSymbolBrandIdentifierParam
 
-__all__ = ["BrandCreateParams", "Addresses", "Contacts", "ContactsBrand", "Identifiers", "Identifier"]
+__all__ = ["BrandCreateParams", "Contacts", "ContactsBrand", "Identifiers"]
 
 
 class BrandCreateParams(TypedDict, total=False):
-    addresses: Required[Dict[str, Addresses]]
+    addresses: Required[Dict[str, BrandAddressParam]]
 
     contacts: Required[Contacts]
     """Named business contacts. Use the `brand` key for the required BRAND contact."""
@@ -44,21 +46,6 @@ class BrandCreateParams(TypedDict, total=False):
     """
 
 
-class Addresses(TypedDict, total=False):
-    administrative_area: Required[str]
-
-    city: Required[str]
-
-    country_code: Required[str]
-    """The two-letter ISO 3166-1 country code."""
-
-    line_1: Required[str]
-
-    postal_code: Required[str]
-
-    line_2: Optional[str]
-
-
 class ContactsBrand(BrandContactParam, total=False):
     contact_type: Literal["BRAND"]  # type: ignore
 
@@ -69,10 +56,7 @@ class Contacts(TypedDict, total=False, extra_items=BrandContactParam):  # type: 
     brand: Required[ContactsBrand]
 
 
-Identifier: TypeAlias = Union[EinBrandIdentifierParam, StockSymbolBrandIdentifierParam]
-
-
-class Identifiers(TypedDict, total=False, extra_items=Identifier):  # type: ignore[call-arg]
+class Identifiers(TypedDict, total=False, extra_items=BrandIdentifierParam):  # type: ignore[call-arg]
     """Named business identifiers.
 
     Use the `ein` key for the required EIN and `stock_symbol` for a public-profit brand's stock symbol.

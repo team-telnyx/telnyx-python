@@ -58,7 +58,8 @@ class DefaultGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DefaultGatewayCreateResponse:
         """
-        Create Default Gateway.
+        Creates a default gateway on the specified network, directing the network's
+        outbound traffic through the chosen gateway.
 
         Args:
           wireguard_peer_id: Wireguard peer ID.
@@ -96,7 +97,7 @@ class DefaultGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DefaultGatewayRetrieveResponse:
         """
-        Get Default Gateway status.
+        Returns the status of the default gateway configured on the specified network.
 
         Args:
           extra_headers: Send extra headers
@@ -129,7 +130,7 @@ class DefaultGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DefaultGatewayDeleteResponse:
         """
-        Delete Default Gateway.
+        Removes the default gateway from the specified network.
 
         Args:
           extra_headers: Send extra headers
@@ -186,7 +187,8 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DefaultGatewayCreateResponse:
         """
-        Create Default Gateway.
+        Creates a default gateway on the specified network, directing the network's
+        outbound traffic through the chosen gateway.
 
         Args:
           wireguard_peer_id: Wireguard peer ID.
@@ -224,7 +226,7 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DefaultGatewayRetrieveResponse:
         """
-        Get Default Gateway status.
+        Returns the status of the default gateway configured on the specified network.
 
         Args:
           extra_headers: Send extra headers
@@ -257,7 +259,7 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DefaultGatewayDeleteResponse:
         """
-        Delete Default Gateway.
+        Removes the default gateway from the specified network.
 
         Args:
           extra_headers: Send extra headers

@@ -66,7 +66,9 @@ class PlanResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanStepsCreatedResponse:
         """
-        Create the initial plan for a run
+        Creates the initial plan for the specified run from the provided steps and
+        returns the created plan steps. Progress is subsequently reported by updating
+        individual steps.
 
         Args:
           extra_headers: Send extra headers
@@ -103,7 +105,9 @@ class PlanResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanRetrieveResponse:
         """
-        Get the plan (all steps) for a run
+        Returns the plan for the specified run, including all plan steps and their
+        statuses, so you can see how the mission was decomposed and how far execution
+        has progressed.
 
         Args:
           extra_headers: Send extra headers
@@ -178,7 +182,8 @@ class PlanResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanStepResponse:
         """
-        Get details of a specific plan step
+        Returns the details of a single plan step within a run's plan, including its
+        status.
 
         Args:
           extra_headers: Send extra headers
@@ -223,8 +228,10 @@ class PlanResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanStepResponse:
-        """
-        Update the status of a plan step
+        """Updates the status of a single plan step and returns the updated step.
+
+        Typically
+        called by the executing agent as it works through the plan.
 
         Args:
           extra_headers: Send extra headers
@@ -296,7 +303,9 @@ class AsyncPlanResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanStepsCreatedResponse:
         """
-        Create the initial plan for a run
+        Creates the initial plan for the specified run from the provided steps and
+        returns the created plan steps. Progress is subsequently reported by updating
+        individual steps.
 
         Args:
           extra_headers: Send extra headers
@@ -333,7 +342,9 @@ class AsyncPlanResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanRetrieveResponse:
         """
-        Get the plan (all steps) for a run
+        Returns the plan for the specified run, including all plan steps and their
+        statuses, so you can see how the mission was decomposed and how far execution
+        has progressed.
 
         Args:
           extra_headers: Send extra headers
@@ -408,7 +419,8 @@ class AsyncPlanResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanStepResponse:
         """
-        Get details of a specific plan step
+        Returns the details of a single plan step within a run's plan, including its
+        status.
 
         Args:
           extra_headers: Send extra headers
@@ -453,8 +465,10 @@ class AsyncPlanResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlanStepResponse:
-        """
-        Update the status of a plan step
+        """Updates the status of a single plan step and returns the updated step.
+
+        Typically
+        called by the executing agent as it works through the plan.
 
         Args:
           extra_headers: Send extra headers

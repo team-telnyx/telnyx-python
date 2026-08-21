@@ -59,7 +59,8 @@ class SimCardOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardOrderCreateResponse:
         """
-        Creates a new order for SIM cards.
+        Creates a new order for physical SIM cards, including quantity and shipping
+        details, and returns the created order.
 
         Args:
           address_id: Uniquely identifies the address for the order.
@@ -101,7 +102,7 @@ class SimCardOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardOrderRetrieveResponse:
         """
-        Get a single SIM card order by its ID.
+        Returns the details of a single SIM card order by its ID, including its status.
 
         Args:
           extra_headers: Send extra headers
@@ -210,7 +211,8 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardOrderCreateResponse:
         """
-        Creates a new order for SIM cards.
+        Creates a new order for physical SIM cards, including quantity and shipping
+        details, and returns the created order.
 
         Args:
           address_id: Uniquely identifies the address for the order.
@@ -252,7 +254,7 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardOrderRetrieveResponse:
         """
-        Get a single SIM card order by its ID.
+        Returns the details of a single SIM card order by its ID, including its status.
 
         Args:
           extra_headers: Send extra headers

@@ -57,7 +57,8 @@ class CommentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentCreateResponse:
         """
-        Creates a comment on a portout request.
+        Creates a comment on the specified port-out request and returns the created
+        comment.
 
         Args:
           body: Comment to post on this portout request
@@ -150,7 +151,8 @@ class AsyncCommentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentCreateResponse:
         """
-        Creates a comment on a portout request.
+        Creates a comment on the specified port-out request and returns the created
+        comment.
 
         Args:
           body: Comment to post on this portout request

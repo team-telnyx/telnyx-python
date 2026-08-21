@@ -64,8 +64,10 @@ class NumberLookupResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberLookupCreateResponse:
-        """
-        Submit a new telco data usage report
+        """Submits a new telco data (number lookup) usage report request.
+
+        The report is
+        generated asynchronously; retrieve it by its identifier once ready.
 
         Args:
           aggregation_type: Type of aggregation for the report
@@ -252,8 +254,10 @@ class AsyncNumberLookupResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberLookupCreateResponse:
-        """
-        Submit a new telco data usage report
+        """Submits a new telco data (number lookup) usage report request.
+
+        The report is
+        generated asynchronously; retrieve it by its identifier once ready.
 
         Args:
           aggregation_type: Type of aggregation for the report

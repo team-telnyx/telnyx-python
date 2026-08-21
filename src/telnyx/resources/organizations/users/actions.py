@@ -54,7 +54,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemoveResponse:
         """
-        Deletes a user in your organization.
+        Removes the specified user from your organization and returns the result of the
+        removal.
 
         Args:
           extra_headers: Send extra headers
@@ -110,7 +111,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemoveResponse:
         """
-        Deletes a user in your organization.
+        Removes the specified user from your organization and returns the result of the
+        removal.
 
         Args:
           extra_headers: Send extra headers

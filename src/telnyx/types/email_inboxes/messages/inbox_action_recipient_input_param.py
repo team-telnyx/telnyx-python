@@ -8,13 +8,15 @@ from typing_extensions import Required, TypeAlias, TypedDict
 from ...._types import SequenceNotStr
 from .inbox_action_email_address_input_param import InboxActionEmailAddressInputParam
 
-__all__ = ["InboxActionRecipientInputParam", "UnionMember1"]
+__all__ = ["InboxActionRecipientInputParam", "InboxRecipientAddress"]
 
 
-class UnionMember1(TypedDict, total=False):
+class InboxRecipientAddress(TypedDict, total=False):
     email: Required[str]
 
     name: str
 
 
-InboxActionRecipientInputParam: TypeAlias = Union[str, UnionMember1, SequenceNotStr[InboxActionEmailAddressInputParam]]
+InboxActionRecipientInputParam: TypeAlias = Union[
+    str, InboxRecipientAddress, SequenceNotStr[InboxActionEmailAddressInputParam]
+]

@@ -21,9 +21,11 @@ if TYPE_CHECKING:
     from .kv_namespace import KvNamespace as KvNamespace
     from .sql_database import SqlDatabase as SqlDatabase
     from .migration_params import MigrationParams as MigrationParams
+    from .cloudfs_filesystem import CloudfsFilesystem as CloudfsFilesystem
     from .cloudf_list_response import CloudfListResponse as CloudfListResponse
     from .migration_list_response import MigrationListResponse as MigrationListResponse
     from .migration_source_params import MigrationSourceParams as MigrationSourceParams
+    from .cloudfs_filesystem_detail import CloudfsFilesystemDetail as CloudfsFilesystemDetail
     from .migration_create_response import MigrationCreateResponse as MigrationCreateResponse
     from .migration_retrieve_response import MigrationRetrieveResponse as MigrationRetrieveResponse
     from .edge_compute_pagination_meta import EdgeComputePaginationMeta as EdgeComputePaginationMeta
@@ -97,6 +99,14 @@ def __getattr__(name: str) -> Any:
         from .kv_namespace_response_wrapper import KvNamespaceResponseWrapper
 
         return KvNamespaceResponseWrapper
+    if name == "CloudfsFilesystem":
+        from .cloudfs_filesystem import CloudfsFilesystem
+
+        return CloudfsFilesystem
+    if name == "CloudfsFilesystemDetail":
+        from .cloudfs_filesystem_detail import CloudfsFilesystemDetail
+
+        return CloudfsFilesystemDetail
     if name == "CloudfsFilesystemDetailResponseWrapper":
         from .cloudfs_filesystem_detail_response_wrapper import CloudfsFilesystemDetailResponseWrapper
 

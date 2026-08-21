@@ -66,7 +66,8 @@ class NumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderCreateResponse:
         """
-        Creates a phone number order.
+        Creates an order to purchase the specified phone numbers and returns the created
+        order. Track fulfillment through the order's status.
 
         Args:
           billing_group_id: Identifies the billing group associated with the phone number.
@@ -115,7 +116,8 @@ class NumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderRetrieveResponse:
         """
-        Get an existing phone number order.
+        Returns the details of an existing phone number order, including its status and
+        the numbers included.
 
         Args:
           extra_headers: Send extra headers
@@ -150,7 +152,8 @@ class NumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderUpdateResponse:
         """
-        Updates a phone number order.
+        Updates an existing phone number order, for example to satisfy regulatory
+        requirements attached to the order, and returns the updated order.
 
         Args:
           customer_reference: A customer reference string for customer look ups.
@@ -194,7 +197,8 @@ class NumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[NumberOrderListResponse]:
         """
-        Get a paginated list of number orders.
+        Returns a paginated list of your phone number orders, with support for
+        filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],
@@ -268,7 +272,8 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderCreateResponse:
         """
-        Creates a phone number order.
+        Creates an order to purchase the specified phone numbers and returns the created
+        order. Track fulfillment through the order's status.
 
         Args:
           billing_group_id: Identifies the billing group associated with the phone number.
@@ -317,7 +322,8 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderRetrieveResponse:
         """
-        Get an existing phone number order.
+        Returns the details of an existing phone number order, including its status and
+        the numbers included.
 
         Args:
           extra_headers: Send extra headers
@@ -352,7 +358,8 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderUpdateResponse:
         """
-        Updates a phone number order.
+        Updates an existing phone number order, for example to satisfy regulatory
+        requirements attached to the order, and returns the updated order.
 
         Args:
           customer_reference: A customer reference string for customer look ups.
@@ -396,7 +403,8 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NumberOrderListResponse, AsyncDefaultFlatPagination[NumberOrderListResponse]]:
         """
-        Get a paginated list of number orders.
+        Returns a paginated list of your phone number orders, with support for
+        filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],

@@ -61,7 +61,9 @@ class RequirementsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementRetrieveResponse:
         """
-        Retrieve a document requirement record
+        Returns a single document requirement record by its identifier, describing the
+        documentation needed for number-related actions. A specific requirement version
+        can be requested.
 
         Args:
           version: Filter by requirement version number. When omitted, returns the currently-active
@@ -197,7 +199,9 @@ class AsyncRequirementsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementRetrieveResponse:
         """
-        Retrieve a document requirement record
+        Returns a single document requirement record by its identifier, describing the
+        documentation needed for number-related actions. A specific requirement version
+        can be requested.
 
         Args:
           version: Filter by requirement version number. When omitted, returns the currently-active

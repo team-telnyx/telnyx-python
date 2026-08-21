@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
-from .sub_number_order import SubNumberOrder
+from .numbers_sub_number_order import NumbersSubNumberOrder
 
 __all__ = ["SubNumberOrderCancelResponse"]
 
 
 class SubNumberOrderCancelResponse(BaseModel):
-    data: Optional[SubNumberOrder] = None
+    data: Optional[NumbersSubNumberOrder] = None

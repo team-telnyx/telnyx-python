@@ -105,7 +105,8 @@ class RecordingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[RecordingResponseData]:
         """
-        Returns a list of your call recordings.
+        Returns a paginated list of your call recordings, with support for filtering to
+        locate specific recordings.
 
         Args:
           filter: Filter recordings by various attributes.
@@ -150,7 +151,8 @@ class RecordingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingResponse:
         """
-        Permanently deletes a call recording.
+        Permanently deletes the specified call recording and returns the deleted
+        recording resource. The media is removed and can no longer be downloaded.
 
         Args:
           extra_headers: Send extra headers
@@ -246,7 +248,8 @@ class AsyncRecordingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RecordingResponseData, AsyncDefaultFlatPagination[RecordingResponseData]]:
         """
-        Returns a list of your call recordings.
+        Returns a paginated list of your call recordings, with support for filtering to
+        locate specific recordings.
 
         Args:
           filter: Filter recordings by various attributes.
@@ -291,7 +294,8 @@ class AsyncRecordingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingResponse:
         """
-        Permanently deletes a call recording.
+        Permanently deletes the specified call recording and returns the deleted
+        recording resource. The media is removed and can no longer be downloaded.
 
         Args:
           extra_headers: Send extra headers

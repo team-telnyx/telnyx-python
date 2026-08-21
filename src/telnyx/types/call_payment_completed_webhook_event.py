@@ -59,7 +59,9 @@ class DataPayload(BaseModel):
     payment_card_postal_code: Optional[str] = None
     """Billing postal code collected from the caller."""
 
-    payment_card_type: Optional[Literal["visa", "mastercard", "amex", "discover", "diners-club", "jcb"]] = None
+    payment_card_type: Optional[
+        Literal["visa", "mastercard", "amex", "optima", "discover", "diners-club", "jcb", "maestro", "enroute"]
+    ] = None
     """Detected card type. Present only for the recognized card brands listed below."""
 
     payment_confirmation_code: Optional[str] = None

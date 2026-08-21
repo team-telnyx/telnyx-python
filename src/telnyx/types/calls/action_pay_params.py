@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, List
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -72,6 +72,16 @@ class ActionPayParams(TypedDict, total=False):
 
     If omitted, Pay infers `tokenize` when `amount` is absent or zero and `charge`
     when `amount` is positive.
+    """
+
+    valid_card_types: List[
+        Literal["visa", "mastercard", "amex", "maestro", "discover", "optima", "jcb", "diners-club", "enroute"]
+    ]
+    """Restricts accepted card numbers to the listed card types.
+
+    When the caller enters a card number that does not match one of the listed
+    types, Pay treats the input as invalid and re-prompts for the card number.
+    Cannot be used together with `payment_token`.
     """
 
     voice: str

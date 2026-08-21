@@ -59,7 +59,7 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventRetrieveResponse:
         """
-        Show a specific port-out event.
+        Returns the details of a single port-out event, including its type and payload.
 
         Args:
           extra_headers: Send extra headers
@@ -94,7 +94,8 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PortoutEvent]:
         """
-        Returns a list of all port-out events.
+        Returns a paginated list of port-out events on your account, such as status
+        changes on port-out requests, with support for filtering.
 
         Args:
           filter:
@@ -141,7 +142,8 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Republish a specific port-out event.
+        Republishes the specified port-out event, triggering re-delivery of the
+        corresponding webhook to your account.
 
         Args:
           extra_headers: Send extra headers
@@ -198,7 +200,7 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventRetrieveResponse:
         """
-        Show a specific port-out event.
+        Returns the details of a single port-out event, including its type and payload.
 
         Args:
           extra_headers: Send extra headers
@@ -233,7 +235,8 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PortoutEvent, AsyncDefaultFlatPagination[PortoutEvent]]:
         """
-        Returns a list of all port-out events.
+        Returns a paginated list of port-out events on your account, such as status
+        changes on port-out requests, with support for filtering.
 
         Args:
           filter:
@@ -280,7 +283,8 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Republish a specific port-out event.
+        Republishes the specified port-out event, triggering re-delivery of the
+        corresponding webhook to your account.
 
         Args:
           extra_headers: Send extra headers

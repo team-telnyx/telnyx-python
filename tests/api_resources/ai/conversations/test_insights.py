@@ -38,6 +38,7 @@ class TestInsights:
             name="Name",
             json_schema="string",
             webhook="",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
@@ -267,6 +268,7 @@ class TestAsyncInsights:
             name="Name",
             json_schema="string",
             webhook="",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 

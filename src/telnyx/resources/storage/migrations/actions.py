@@ -54,7 +54,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopResponse:
         """
-        Stop an in-progress storage migration.
+        Stops the specified in-progress storage migration and returns the updated
+        migration.
 
         Args:
           extra_headers: Send extra headers
@@ -110,7 +111,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopResponse:
         """
-        Stop an in-progress storage migration.
+        Stops the specified in-progress storage migration and returns the updated
+        migration.
 
         Args:
           extra_headers: Send extra headers

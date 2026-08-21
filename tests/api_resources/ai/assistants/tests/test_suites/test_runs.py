@@ -87,6 +87,7 @@ class TestRuns:
         run = client.ai.assistants.tests.test_suites.runs.trigger(
             suite_name="suite_name",
             destination_version_id="123e4567-e89b-12d3-a456-426614174000",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(RunTriggerResponse, run, path=["response"])
 
@@ -198,6 +199,7 @@ class TestAsyncRuns:
         run = await async_client.ai.assistants.tests.test_suites.runs.trigger(
             suite_name="suite_name",
             destination_version_id="123e4567-e89b-12d3-a456-426614174000",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(RunTriggerResponse, run, path=["response"])
 

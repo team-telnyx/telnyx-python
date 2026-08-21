@@ -77,8 +77,10 @@ class SimCardGroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupCreateResponse:
-        """
-        Creates a new SIM card group object
+        """Creates a new SIM card group and returns it.
+
+        Groups let you apply shared
+        settings to a set of SIM cards.
 
         Args:
           name: A user friendly name for the SIM card group.
@@ -164,7 +166,7 @@ class SimCardGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupUpdateResponse:
         """
-        Updates a SIM card group
+        Updates the specified SIM card group's attributes and returns the updated group.
 
         Args:
           data_limit: Upper limit on the amount of data the SIM cards, within the group, can use.
@@ -267,7 +269,7 @@ class SimCardGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupDeleteResponse:
         """
-        Permanently deletes a SIM card group
+        Permanently deletes the specified SIM card group from your account.
 
         Args:
           extra_headers: Send extra headers
@@ -327,8 +329,10 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupCreateResponse:
-        """
-        Creates a new SIM card group object
+        """Creates a new SIM card group and returns it.
+
+        Groups let you apply shared
+        settings to a set of SIM cards.
 
         Args:
           name: A user friendly name for the SIM card group.
@@ -414,7 +418,7 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupUpdateResponse:
         """
-        Updates a SIM card group
+        Updates the specified SIM card group's attributes and returns the updated group.
 
         Args:
           data_limit: Upper limit on the amount of data the SIM cards, within the group, can use.
@@ -517,7 +521,7 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupDeleteResponse:
         """
-        Permanently deletes a SIM card group
+        Permanently deletes the specified SIM card group from your account.
 
         Args:
           extra_headers: Send extra headers

@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .import_ import (
-    ImportResource,
-    AsyncImportResource,
-    ImportResourceWithRawResponse,
-    AsyncImportResourceWithRawResponse,
-    ImportResourceWithStreamingResponse,
-    AsyncImportResourceWithStreamingResponse,
+from .imports import (
+    ImportsResource,
+    AsyncImportsResource,
+    ImportsResourceWithRawResponse,
+    AsyncImportsResourceWithRawResponse,
+    ImportsResourceWithStreamingResponse,
+    AsyncImportsResourceWithStreamingResponse,
 )
 from .email_blocks import (
     EmailBlocksResource,
@@ -18,12 +18,12 @@ from .email_blocks import (
 )
 
 __all__ = [
-    "ImportResource",
-    "AsyncImportResource",
-    "ImportResourceWithRawResponse",
-    "AsyncImportResourceWithRawResponse",
-    "ImportResourceWithStreamingResponse",
-    "AsyncImportResourceWithStreamingResponse",
+    "ImportsResource",
+    "AsyncImportsResource",
+    "ImportsResourceWithRawResponse",
+    "AsyncImportsResourceWithRawResponse",
+    "ImportsResourceWithStreamingResponse",
+    "AsyncImportsResourceWithStreamingResponse",
     "EmailBlocksResource",
     "AsyncEmailBlocksResource",
     "EmailBlocksResourceWithRawResponse",

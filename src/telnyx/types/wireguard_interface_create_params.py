@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing_extensions import Required, TypedDict
 
 from .wireguard_interface_param import WireguardInterfaceParam
-from .network_interface_region_param import NetworkInterfaceRegionParam
 
 __all__ = ["WireguardInterfaceCreateParams", "Body"]
 
@@ -14,5 +13,6 @@ class WireguardInterfaceCreateParams(TypedDict, total=False):
     body: Required[Body]
 
 
-class Body(WireguardInterfaceParam, NetworkInterfaceRegionParam, total=False):
-    pass
+class Body(WireguardInterfaceParam, total=False):
+    region_code: Required[str]
+    """The region the interface should be deployed to."""

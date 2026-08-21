@@ -23,9 +23,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.email_template import EmailTemplate
 from ..types.email_template_response import EmailTemplateResponse
-from ..types.email_template_list_response import EmailTemplateListResponse
 from ..types.email_template_render_response import EmailTemplateRenderResponse
 
 __all__ = ["EmailTemplatesResource", "AsyncEmailTemplatesResource"]
@@ -162,7 +163,8 @@ class EmailTemplatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
         """
-        Updates one or more template fields.
+        Updates one or more fields of the specified email template and returns the
+        updated template.
 
         Args:
           html_body: Liquid template HTML body.
@@ -210,7 +212,7 @@ class EmailTemplatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailTemplateListResponse:
+    ) -> SyncEmailCursorPagination[EmailTemplate]:
         """
         Lists templates sorted newest first by `created_at desc, id desc`.
 
@@ -228,8 +230,9 @@ class EmailTemplatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/email_templates",
+            page=SyncEmailCursorPagination[EmailTemplate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -243,7 +246,7 @@ class EmailTemplatesResource(SyncAPIResource):
                     email_template_list_params.EmailTemplateListParams,
                 ),
             ),
-            cast_to=EmailTemplateListResponse,
+            model=EmailTemplate,
         )
 
     def delete(
@@ -512,7 +515,8 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailTemplateResponse:
         """
-        Updates one or more template fields.
+        Updates one or more fields of the specified email template and returns the
+        updated template.
 
         Args:
           html_body: Liquid template HTML body.
@@ -549,7 +553,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
             cast_to=EmailTemplateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_cursor: str | Omit = omit,
@@ -560,7 +564,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailTemplateListResponse:
+    ) -> AsyncPaginator[EmailTemplate, AsyncEmailCursorPagination[EmailTemplate]]:
         """
         Lists templates sorted newest first by `created_at desc, id desc`.
 
@@ -578,14 +582,15 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/email_templates",
+            page=AsyncEmailCursorPagination[EmailTemplate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_cursor": page_cursor,
                         "page_size": page_size,
@@ -593,7 +598,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
                     email_template_list_params.EmailTemplateListParams,
                 ),
             ),
-            cast_to=EmailTemplateListResponse,
+            model=EmailTemplate,
         )
 
     async def delete(

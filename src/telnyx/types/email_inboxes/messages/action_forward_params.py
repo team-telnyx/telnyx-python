@@ -9,7 +9,7 @@ from ...._types import SequenceNotStr
 from .inbox_action_recipient_input_param import InboxActionRecipientInputParam
 from .inbox_action_email_address_input_param import InboxActionEmailAddressInputParam
 
-__all__ = ["ActionForwardParams", "To", "ToUnionMember1"]
+__all__ = ["ActionForwardParams", "To", "ToInboxRecipientAddress"]
 
 
 class ActionForwardParams(TypedDict, total=False):
@@ -49,10 +49,10 @@ class ActionForwardParams(TypedDict, total=False):
     """
 
 
-class ToUnionMember1(TypedDict, total=False):
+class ToInboxRecipientAddress(TypedDict, total=False):
     email: Required[str]
 
     name: str
 
 
-To: TypeAlias = Union[str, ToUnionMember1, SequenceNotStr[InboxActionEmailAddressInputParam]]
+To: TypeAlias = Union[str, ToInboxRecipientAddress, SequenceNotStr[InboxActionEmailAddressInputParam]]

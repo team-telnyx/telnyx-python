@@ -57,7 +57,8 @@ class MobilePushCredentialsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
-        Creates a new mobile push credential
+        Creates a new mobile push credential for delivering push notifications to iOS or
+        Android apps, and returns the created credential.
 
         Args:
           extra_headers: Send extra headers
@@ -127,7 +128,8 @@ class MobilePushCredentialsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PushCredential]:
         """
-        List mobile push credentials
+        Returns a paginated list of the mobile push credentials on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type],
@@ -230,7 +232,8 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
-        Creates a new mobile push credential
+        Creates a new mobile push credential for delivering push notifications to iOS or
+        Android apps, and returns the created credential.
 
         Args:
           extra_headers: Send extra headers
@@ -300,7 +303,8 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PushCredential, AsyncDefaultFlatPagination[PushCredential]]:
         """
-        List mobile push credentials
+        Returns a paginated list of the mobile push credentials on your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type],

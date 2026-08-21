@@ -299,7 +299,9 @@ class TestCollections:
         collection = client.ai.collections.retrieve_documents(
             slug="support-transcripts",
         )
-        assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -314,7 +316,9 @@ class TestCollections:
             sources="voice,message",
             top_k=10,
         )
-        assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -326,7 +330,9 @@ class TestCollections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         collection = response.parse()
-        assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -338,7 +344,9 @@ class TestCollections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             collection = response.parse()
-            assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -633,7 +641,9 @@ class TestAsyncCollections:
         collection = await async_client.ai.collections.retrieve_documents(
             slug="support-transcripts",
         )
-        assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -648,7 +658,9 @@ class TestAsyncCollections:
             sources="voice,message",
             top_k=10,
         )
-        assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -660,7 +672,9 @@ class TestAsyncCollections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         collection = await response.parse()
-        assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -672,7 +686,9 @@ class TestAsyncCollections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             collection = await response.parse()
-            assert_matches_type(CollectionRetrieveDocumentsResponse, collection, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse], collection, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

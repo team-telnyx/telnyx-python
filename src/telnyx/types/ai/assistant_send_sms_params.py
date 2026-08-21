@@ -20,3 +20,5 @@ class AssistantSendSMSParams(TypedDict, total=False):
     should_create_conversation: bool
 
     text: str
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

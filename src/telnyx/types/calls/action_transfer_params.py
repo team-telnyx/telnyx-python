@@ -293,6 +293,14 @@ class AnsweringMachineDetectionConfig(TypedDict, total=False):
     considered human.
     """
 
+    beep_detection_profile: Literal["both", "freq_only"]
+    """Selects which detectors must validate a beep.
+
+    `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
+    the frequency detector alone, for beeps whose volume is too unsteady for the
+    default profile.
+    """
+
     between_words_silence_millis: int
     """Maximum threshold for silence between words."""
 

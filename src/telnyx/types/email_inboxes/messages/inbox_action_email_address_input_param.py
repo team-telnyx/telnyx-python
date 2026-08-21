@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["InboxActionEmailAddressInputParam", "UnionMember1"]
+__all__ = ["InboxActionEmailAddressInputParam", "InboxRecipientAddress"]
 
 
-class UnionMember1(TypedDict, total=False):
+class InboxRecipientAddress(TypedDict, total=False):
     email: Required[str]
 
     name: str
 
 
-InboxActionEmailAddressInputParam: TypeAlias = Union[str, UnionMember1]
+InboxActionEmailAddressInputParam: TypeAlias = Union[str, InboxRecipientAddress]

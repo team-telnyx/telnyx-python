@@ -26,7 +26,7 @@ from .tools import (
 )
 from ...types import ai_summarize_params, ai_retrieve_conversation_histories_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .clusters import (
     ClustersResource,
     AsyncClustersResource,
@@ -51,6 +51,7 @@ from .mcp_servers import (
     McpServersResourceWithStreamingResponse,
     AsyncMcpServersResourceWithStreamingResponse,
 )
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .openai.openai import (
     OpenAIResource,
     AsyncOpenAIResource,
@@ -59,7 +60,7 @@ from .openai.openai import (
     OpenAIResourceWithStreamingResponse,
     AsyncOpenAIResourceWithStreamingResponse,
 )
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
 from .missions.missions import (
     MissionsResource,
     AsyncMissionsResource,
@@ -232,7 +233,7 @@ class AIResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AIRetrieveConversationHistoriesResponse:
+    ) -> SyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse]:
         """
         Performs semantic vector search across conversation history records.
 
@@ -329,8 +330,9 @@ class AIResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/ai/conversation_histories",
+            page=SyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -355,7 +357,7 @@ class AIResource(SyncAPIResource):
                     ai_retrieve_conversation_histories_params.AIRetrieveConversationHistoriesParams,
                 ),
             ),
-            cast_to=AIRetrieveConversationHistoriesResponse,
+            model=AIRetrieveConversationHistoriesResponse,
         )
 
     def summarize(
@@ -364,6 +366,7 @@ class AIResource(SyncAPIResource):
         bucket: str,
         filename: str,
         system_prompt: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -399,6 +402,7 @@ class AIResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/summarize",
             body=maybe_transform(
@@ -496,7 +500,7 @@ class AsyncAIResource(AsyncAPIResource):
         """
         return AsyncAIResourceWithStreamingResponse(self)
 
-    async def retrieve_conversation_histories(
+    def retrieve_conversation_histories(
         self,
         *,
         q: str,
@@ -518,7 +522,9 @@ class AsyncAIResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AIRetrieveConversationHistoriesResponse:
+    ) -> AsyncPaginator[
+        AIRetrieveConversationHistoriesResponse, AsyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse]
+    ]:
         """
         Performs semantic vector search across conversation history records.
 
@@ -615,14 +621,15 @@ class AsyncAIResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/ai/conversation_histories",
+            page=AsyncDefaultFlatPagination[AIRetrieveConversationHistoriesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "q": q,
                         "filter_ingested_at_gte": filter_ingested_at_gte,
@@ -641,7 +648,7 @@ class AsyncAIResource(AsyncAPIResource):
                     ai_retrieve_conversation_histories_params.AIRetrieveConversationHistoriesParams,
                 ),
             ),
-            cast_to=AIRetrieveConversationHistoriesResponse,
+            model=AIRetrieveConversationHistoriesResponse,
         )
 
     async def summarize(
@@ -650,6 +657,7 @@ class AsyncAIResource(AsyncAPIResource):
         bucket: str,
         filename: str,
         system_prompt: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -685,6 +693,7 @@ class AsyncAIResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/summarize",
             body=await async_maybe_transform(

@@ -61,7 +61,8 @@ class DynamicEmergencyEndpointsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyEndpointCreateResponse:
         """
-        Creates a dynamic emergency endpoints.
+        Creates a dynamic emergency endpoint, associating a callback number and location
+        with a device for emergency calling.
 
         Args:
           dynamic_emergency_address_id: An id of a currently active dynamic emergency location.
@@ -241,7 +242,8 @@ class AsyncDynamicEmergencyEndpointsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyEndpointCreateResponse:
         """
-        Creates a dynamic emergency endpoints.
+        Creates a dynamic emergency endpoint, associating a callback number and location
+        with a device for emergency calling.
 
         Args:
           dynamic_emergency_address_id: An id of a currently active dynamic emergency location.

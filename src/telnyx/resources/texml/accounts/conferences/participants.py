@@ -64,7 +64,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Gets conference participant resource
+        Returns a single conference participant resource by call SID or participant
+        label.
 
         Args:
           extra_headers: Send extra headers
@@ -121,7 +122,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Updates a conference participant
+        Updates the specified conference participant, for example muting or holding
+        them, and returns the updated participant.
 
         Args:
           announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
@@ -213,7 +215,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a conference participant
+        Removes the specified participant from the conference, ending their leg of the
+        call.
 
         Args:
           extra_headers: Send extra headers
@@ -275,6 +278,7 @@ class ParticipantsResource(SyncAPIResource):
         from_: str | Omit = omit,
         label: str | Omit = omit,
         machine_detection: Literal["Enable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
         machine_detection_speech_threshold: int | Omit = omit,
@@ -307,7 +311,8 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantParticipantsResponse:
         """
-        Dials a new conference participant
+        Dials a new participant into the specified conference and returns the created
+        participant resource.
 
         Args:
           amd_status_callback: The URL the result of answering machine detection will be sent to.
@@ -385,6 +390,11 @@ class ParticipantsResource(SyncAPIResource):
               `Enable` if you would like to ne notified as soon as the called party is
               identified. Use `DetectMessageEnd`, if you would like to leave a message on an
               answering machine.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
               Ignored when `premium` detection is used.
@@ -492,6 +502,7 @@ class ParticipantsResource(SyncAPIResource):
                     "from_": from_,
                     "label": label,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_profile": machine_detection_beep_profile,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
                     "machine_detection_speech_threshold": machine_detection_speech_threshold,
@@ -538,7 +549,7 @@ class ParticipantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantRetrieveParticipantsResponse:
         """
-        Lists conference participants
+        Returns the list of participants currently in the specified conference.
 
         Args:
           extra_headers: Send extra headers
@@ -602,7 +613,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Gets conference participant resource
+        Returns a single conference participant resource by call SID or participant
+        label.
 
         Args:
           extra_headers: Send extra headers
@@ -659,7 +671,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantResource:
         """
-        Updates a conference participant
+        Updates the specified conference participant, for example muting or holding
+        them, and returns the updated participant.
 
         Args:
           announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
@@ -751,7 +764,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Deletes a conference participant
+        Removes the specified participant from the conference, ending their leg of the
+        call.
 
         Args:
           extra_headers: Send extra headers
@@ -813,6 +827,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         from_: str | Omit = omit,
         label: str | Omit = omit,
         machine_detection: Literal["Enable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
         machine_detection_speech_threshold: int | Omit = omit,
@@ -845,7 +860,8 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantParticipantsResponse:
         """
-        Dials a new conference participant
+        Dials a new participant into the specified conference and returns the created
+        participant resource.
 
         Args:
           amd_status_callback: The URL the result of answering machine detection will be sent to.
@@ -923,6 +939,11 @@ class AsyncParticipantsResource(AsyncAPIResource):
               `Enable` if you would like to ne notified as soon as the called party is
               identified. Use `DetectMessageEnd`, if you would like to leave a message on an
               answering machine.
+
+          machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
+              frequency detectors to agree. `freq_only` uses the frequency detector alone, for
+              beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
 
           machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
               Ignored when `premium` detection is used.
@@ -1030,6 +1051,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
                     "from_": from_,
                     "label": label,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_profile": machine_detection_beep_profile,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
                     "machine_detection_speech_threshold": machine_detection_speech_threshold,
@@ -1076,7 +1098,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ParticipantRetrieveParticipantsResponse:
         """
-        Lists conference participants
+        Returns the list of participants currently in the specified conference.
 
         Args:
           extra_headers: Send extra headers

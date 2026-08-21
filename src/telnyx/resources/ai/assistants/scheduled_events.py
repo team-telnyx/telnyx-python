@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -68,6 +68,7 @@ class ScheduledEventsResource(SyncAPIResource):
         max_retries_client_errors: int | Omit = omit,
         retry_interval_secs: int | Omit = omit,
         text: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,6 +111,7 @@ class ScheduledEventsResource(SyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return cast(
             ScheduledEventResponse,
             self._post(
@@ -151,7 +153,8 @@ class ScheduledEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
-        Retrieve a scheduled event by event ID
+        Returns the details of a single scheduled event configured for the specified
+        assistant.
 
         Args:
           extra_headers: Send extra headers
@@ -323,6 +326,7 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         max_retries_client_errors: int | Omit = omit,
         retry_interval_secs: int | Omit = omit,
         text: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -365,6 +369,7 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return cast(
             ScheduledEventResponse,
             await self._post(
@@ -406,7 +411,8 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
-        Retrieve a scheduled event by event ID
+        Returns the details of a single scheduled event configured for the specified
+        assistant.
 
         Args:
           extra_headers: Send extra headers

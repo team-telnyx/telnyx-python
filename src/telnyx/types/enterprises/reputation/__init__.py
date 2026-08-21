@@ -16,11 +16,13 @@ from .remediation_list_params import RemediationListParams as RemediationListPar
 from .remediation_create_params import RemediationCreateParams as RemediationCreateParams
 
 if TYPE_CHECKING:
+    from .remediation_request import RemediationRequest as RemediationRequest
     from .number_refresh_response import NumberRefreshResponse as NumberRefreshResponse
     from .reputation_phone_number import ReputationPhoneNumber as ReputationPhoneNumber
     from .remediation_list_response import RemediationListResponse as RemediationListResponse
     from .remediation_request_wrapped import RemediationRequestWrapped as RemediationRequestWrapped
     from .reputation_phone_number_list import ReputationPhoneNumberList as ReputationPhoneNumberList
+    from .remediation_per_number_results import RemediationPerNumberResults as RemediationPerNumberResults
     from .reputation_phone_number_with_reputation import (
         ReputationPhoneNumberWithReputation as ReputationPhoneNumberWithReputation,
     )
@@ -43,6 +45,14 @@ def __getattr__(name: str) -> Any:
         from .number_refresh_response import NumberRefreshResponse
 
         return NumberRefreshResponse
+    if name == "RemediationPerNumberResults":
+        from .remediation_per_number_results import RemediationPerNumberResults
+
+        return RemediationPerNumberResults
+    if name == "RemediationRequest":
+        from .remediation_request import RemediationRequest
+
+        return RemediationRequest
     if name == "RemediationRequestWrapped":
         from .remediation_request_wrapped import RemediationRequestWrapped
 

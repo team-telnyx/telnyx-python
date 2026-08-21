@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["EmbeddingURLParams"]
 
@@ -13,3 +15,5 @@ class EmbeddingURLParams(TypedDict, total=False):
 
     url: Required[str]
     """The URL of the webpage to embed"""
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

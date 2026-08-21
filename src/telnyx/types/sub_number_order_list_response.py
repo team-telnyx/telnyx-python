@@ -6,12 +6,12 @@ from typing import List, Optional
 
 from .._models import BaseModel
 from .pagination_meta import PaginationMeta
-from .sub_number_order import SubNumberOrder
+from .numbers_sub_number_order import NumbersSubNumberOrder
 
 __all__ = ["SubNumberOrderListResponse"]
 
 
 class SubNumberOrderListResponse(BaseModel):
-    data: Optional[List[SubNumberOrder]] = None
+    data: Optional[List[NumbersSubNumberOrder]] = None
 
     meta: Optional[PaginationMeta] = None

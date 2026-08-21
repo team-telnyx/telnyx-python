@@ -53,7 +53,10 @@ class CountryCoverageResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryCoverageRetrieveResponse:
-        """Get country coverage"""
+        """
+        Returns Telnyx service coverage information for every country, including which
+        number types and features are available in each.
+        """
         return self._get(
             "/country_coverage",
             options=make_request_options(
@@ -74,7 +77,8 @@ class CountryCoverageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryCoverageRetrieveCountryResponse:
         """
-        Get coverage for a specific country
+        Returns Telnyx service coverage information for the specified country, including
+        available number types and features.
 
         Args:
           extra_headers: Send extra headers
@@ -128,7 +132,10 @@ class AsyncCountryCoverageResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryCoverageRetrieveResponse:
-        """Get country coverage"""
+        """
+        Returns Telnyx service coverage information for every country, including which
+        number types and features are available in each.
+        """
         return await self._get(
             "/country_coverage",
             options=make_request_options(
@@ -149,7 +156,8 @@ class AsyncCountryCoverageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryCoverageRetrieveCountryResponse:
         """
-        Get coverage for a specific country
+        Returns Telnyx service coverage information for the specified country, including
+        available number types and features.
 
         Args:
           extra_headers: Send extra headers

@@ -50,6 +50,7 @@ class TestCanaryDeploys:
                     ],
                 }
             ],
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(CanaryDeployResponse, canary_deploy, path=["response"])
 
@@ -280,6 +281,7 @@ class TestAsyncCanaryDeploys:
                     ],
                 }
             ],
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(CanaryDeployResponse, canary_deploy, path=["response"])
 

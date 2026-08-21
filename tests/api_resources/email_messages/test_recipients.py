@@ -9,7 +9,8 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.email_messages import RecipientListResponse, RecipientRetrieveResponse
+from telnyx.pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
+from telnyx.types.email_messages import EmailRecipient, RecipientRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -75,7 +76,7 @@ class TestRecipients:
         recipient = client.email_messages.recipients.list(
             email_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(RecipientListResponse, recipient, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -87,7 +88,7 @@ class TestRecipients:
             page_size=1,
             status="queued",
         )
-        assert_matches_type(RecipientListResponse, recipient, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -99,7 +100,7 @@ class TestRecipients:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recipient = response.parse()
-        assert_matches_type(RecipientListResponse, recipient, path=["response"])
+        assert_matches_type(SyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -111,7 +112,7 @@ class TestRecipients:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recipient = response.parse()
-            assert_matches_type(RecipientListResponse, recipient, path=["response"])
+            assert_matches_type(SyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +188,7 @@ class TestAsyncRecipients:
         recipient = await async_client.email_messages.recipients.list(
             email_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(RecipientListResponse, recipient, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -199,7 +200,7 @@ class TestAsyncRecipients:
             page_size=1,
             status="queued",
         )
-        assert_matches_type(RecipientListResponse, recipient, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -211,7 +212,7 @@ class TestAsyncRecipients:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recipient = await response.parse()
-        assert_matches_type(RecipientListResponse, recipient, path=["response"])
+        assert_matches_type(AsyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -223,7 +224,7 @@ class TestAsyncRecipients:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recipient = await response.parse()
-            assert_matches_type(RecipientListResponse, recipient, path=["response"])
+            assert_matches_type(AsyncEmailCursorPagination[EmailRecipient], recipient, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

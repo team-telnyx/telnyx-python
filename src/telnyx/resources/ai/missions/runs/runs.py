@@ -102,7 +102,8 @@ class RunsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
         """
-        Start a new run for a mission
+        Starts a new run of the specified mission and returns the created run object.
+        Track its progress through the run detail, plan, and events endpoints.
 
         Args:
           extra_headers: Send extra headers
@@ -142,8 +143,10 @@ class RunsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
-        """
-        Get details of a specific run
+        """Returns the full details of a single run, including its current status.
+
+        Use this
+        to poll an in-flight run or inspect the outcome of a completed one.
 
         Args:
           extra_headers: Send extra headers
@@ -184,7 +187,9 @@ class RunsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
         """
-        Update run status and/or result
+        Updates a run's status and/or result and returns the updated run object.
+        Typically used by executing agents to report progress or record the final
+        outcome.
 
         Args:
           extra_headers: Send extra headers
@@ -232,7 +237,8 @@ class RunsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MissionRunData]:
         """
-        List all runs for a specific mission
+        Returns a paginated list of runs for the specified mission, optionally filtered
+        by run status, so you can track the mission's execution history over time.
 
         Args:
           page_number: Page number (1-based)
@@ -283,8 +289,10 @@ class RunsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
-        """
-        Cancel a running or paused run
+        """Cancels a running or paused run and returns the updated run object.
+
+        A cancelled
+        run stops executing; start a new run to execute the mission again.
 
         Args:
           extra_headers: Send extra headers
@@ -321,7 +329,9 @@ class RunsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[MissionRunData]:
         """
-        List recent runs across all missions
+        Returns a paginated list of recent runs across every mission in your
+        organization, optionally filtered by run status. Useful for monitoring overall
+        mission activity without querying each mission individually.
 
         Args:
           page_number: Page number (1-based)
@@ -370,8 +380,10 @@ class RunsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
-        """
-        Pause a running run
+        """Pauses a currently running run and returns the updated run object.
+
+        Execution
+        halts until the run is resumed.
 
         Args:
           extra_headers: Send extra headers
@@ -407,7 +419,8 @@ class RunsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
         """
-        Resume a paused run
+        Resumes a previously paused run and returns the updated run object, letting
+        execution continue from where it was paused.
 
         Args:
           extra_headers: Send extra headers
@@ -477,7 +490,8 @@ class AsyncRunsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
         """
-        Start a new run for a mission
+        Starts a new run of the specified mission and returns the created run object.
+        Track its progress through the run detail, plan, and events endpoints.
 
         Args:
           extra_headers: Send extra headers
@@ -517,8 +531,10 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
-        """
-        Get details of a specific run
+        """Returns the full details of a single run, including its current status.
+
+        Use this
+        to poll an in-flight run or inspect the outcome of a completed one.
 
         Args:
           extra_headers: Send extra headers
@@ -559,7 +575,9 @@ class AsyncRunsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
         """
-        Update run status and/or result
+        Updates a run's status and/or result and returns the updated run object.
+        Typically used by executing agents to report progress or record the final
+        outcome.
 
         Args:
           extra_headers: Send extra headers
@@ -607,7 +625,8 @@ class AsyncRunsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MissionRunData, AsyncDefaultFlatPagination[MissionRunData]]:
         """
-        List all runs for a specific mission
+        Returns a paginated list of runs for the specified mission, optionally filtered
+        by run status, so you can track the mission's execution history over time.
 
         Args:
           page_number: Page number (1-based)
@@ -658,8 +677,10 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
-        """
-        Cancel a running or paused run
+        """Cancels a running or paused run and returns the updated run object.
+
+        A cancelled
+        run stops executing; start a new run to execute the mission again.
 
         Args:
           extra_headers: Send extra headers
@@ -696,7 +717,9 @@ class AsyncRunsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MissionRunData, AsyncDefaultFlatPagination[MissionRunData]]:
         """
-        List recent runs across all missions
+        Returns a paginated list of recent runs across every mission in your
+        organization, optionally filtered by run status. Useful for monitoring overall
+        mission activity without querying each mission individually.
 
         Args:
           page_number: Page number (1-based)
@@ -745,8 +768,10 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
-        """
-        Pause a running run
+        """Pauses a currently running run and returns the updated run object.
+
+        Execution
+        halts until the run is resumed.
 
         Args:
           extra_headers: Send extra headers
@@ -782,7 +807,8 @@ class AsyncRunsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MissionRunResponse:
         """
-        Resume a paused run
+        Resumes a previously paused run and returns the updated run object, letting
+        execution continue from where it was paused.
 
         Args:
           extra_headers: Send extra headers

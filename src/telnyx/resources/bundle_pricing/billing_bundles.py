@@ -56,7 +56,8 @@ class BillingBundlesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingBundleRetrieveResponse:
         """
-        Get a single bundle by ID.
+        Returns the details of a single billing bundle by its ID, so you can inspect its
+        contents before purchasing a user bundle.
 
         Args:
           bundle_id: Billing bundle's ID, this is used to identify the billing bundle in the API.
@@ -97,7 +98,8 @@ class BillingBundlesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[BillingBundleSummary]:
         """
-        Get all allowed bundles.
+        Returns a paginated list of the billing bundles available to your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Supports filtering by
@@ -169,7 +171,8 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingBundleRetrieveResponse:
         """
-        Get a single bundle by ID.
+        Returns the details of a single billing bundle by its ID, so you can inspect its
+        contents before purchasing a user bundle.
 
         Args:
           bundle_id: Billing bundle's ID, this is used to identify the billing bundle in the API.
@@ -210,7 +213,8 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BillingBundleSummary, AsyncDefaultFlatPagination[BillingBundleSummary]]:
         """
-        Get all allowed bundles.
+        Returns a paginated list of the billing bundles available to your account, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Supports filtering by

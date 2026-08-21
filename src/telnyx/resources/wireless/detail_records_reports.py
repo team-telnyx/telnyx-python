@@ -102,7 +102,8 @@ class DetailRecordsReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportRetrieveResponse:
         """
-        Returns one specific WDR report
+        Returns a single Wireless Detail Record (WDR) report by its identifier,
+        including its parameters and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -181,7 +182,7 @@ class DetailRecordsReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportDeleteResponse:
         """
-        Deletes one specific WDR report.
+        Permanently deletes the specified Wireless Detail Record (WDR) report.
 
         Args:
           extra_headers: Send extra headers
@@ -281,7 +282,8 @@ class AsyncDetailRecordsReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportRetrieveResponse:
         """
-        Returns one specific WDR report
+        Returns a single Wireless Detail Record (WDR) report by its identifier,
+        including its parameters and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -360,7 +362,7 @@ class AsyncDetailRecordsReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportDeleteResponse:
         """
-        Deletes one specific WDR report.
+        Permanently deletes the specified Wireless Detail Record (WDR) report.
 
         Args:
           extra_headers: Send extra headers

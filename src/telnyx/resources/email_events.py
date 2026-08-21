@@ -18,7 +18,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.email_event_list_response import EmailEventListResponse
 from ..types.email_event_retrieve_stats_response import EmailEventRetrieveStatsResponse
 
@@ -62,7 +63,7 @@ class EmailEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailEventListResponse:
+    ) -> SyncEmailCursorPagination[EmailEventListResponse]:
         """
         Lists account-level email events sorted oldest first by
         `occurred_at asc, id asc`.
@@ -93,8 +94,9 @@ class EmailEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/email_events",
+            page=SyncEmailCursorPagination[EmailEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -112,7 +114,7 @@ class EmailEventsResource(SyncAPIResource):
                     email_event_list_params.EmailEventListParams,
                 ),
             ),
-            cast_to=EmailEventListResponse,
+            model=EmailEventListResponse,
         )
 
     def retrieve_stats(
@@ -187,7 +189,7 @@ class AsyncEmailEventsResource(AsyncAPIResource):
         """
         return AsyncEmailEventsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         email_id: str | Omit = omit,
@@ -202,7 +204,7 @@ class AsyncEmailEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailEventListResponse:
+    ) -> AsyncPaginator[EmailEventListResponse, AsyncEmailCursorPagination[EmailEventListResponse]]:
         """
         Lists account-level email events sorted oldest first by
         `occurred_at asc, id asc`.
@@ -233,14 +235,15 @@ class AsyncEmailEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/email_events",
+            page=AsyncEmailCursorPagination[EmailEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "email_id": email_id,
                         "event_type": event_type,
@@ -252,7 +255,7 @@ class AsyncEmailEventsResource(AsyncAPIResource):
                     email_event_list_params.EmailEventListParams,
                 ),
             ),
-            cast_to=EmailEventListResponse,
+            model=EmailEventListResponse,
         )
 
     async def retrieve_stats(

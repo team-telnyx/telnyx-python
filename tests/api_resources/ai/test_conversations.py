@@ -36,6 +36,7 @@ class TestConversations:
         conversation = client.ai.conversations.create(
             metadata={"foo": "string"},
             name="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(Conversation, conversation, path=["response"])
 
@@ -265,6 +266,7 @@ class TestConversations:
             tool_call_id="Tool Call Id",
             tool_calls=[{"foo": "bar"}],
             tool_choice="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert conversation is None
 
@@ -365,6 +367,7 @@ class TestAsyncConversations:
         conversation = await async_client.ai.conversations.create(
             metadata={"foo": "string"},
             name="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(Conversation, conversation, path=["response"])
 
@@ -594,6 +597,7 @@ class TestAsyncConversations:
             tool_call_id="Tool Call Id",
             tool_calls=[{"foo": "bar"}],
             tool_choice="string",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert conversation is None
 

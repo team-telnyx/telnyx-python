@@ -17,10 +17,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.email_inboxes import draft_list_params, draft_patch_params, draft_create_params, draft_update_params
 from ...types.email_address_input_param import EmailAddressInputParam
-from ...types.email_inboxes.draft_list_response import DraftListResponse
+from ...types.email_inboxes.email_draft import EmailDraft
 from ...types.email_inboxes.email_draft_response import EmailDraftResponse
 from ...types.email_inboxes.email_message_response import EmailMessageResponse
 
@@ -55,7 +56,7 @@ class DraftsResource(SyncAPIResource):
         self,
         inbox_id: str,
         *,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -64,7 +65,7 @@ class DraftsResource(SyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -174,7 +175,7 @@ class DraftsResource(SyncAPIResource):
         draft_id: str,
         *,
         inbox_id: str,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -183,7 +184,7 @@ class DraftsResource(SyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -266,7 +267,7 @@ class DraftsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DraftListResponse:
+    ) -> SyncEmailBracketCursorPagination[EmailDraft]:
         """Lists drafts newest first using stable cursor pagination.
 
         All access is scoped
@@ -289,8 +290,9 @@ class DraftsResource(SyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/drafts", inbox_id=inbox_id),
+            page=SyncEmailBracketCursorPagination[EmailDraft],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -305,7 +307,7 @@ class DraftsResource(SyncAPIResource):
                     draft_list_params.DraftListParams,
                 ),
             ),
-            cast_to=DraftListResponse,
+            model=EmailDraft,
         )
 
     def delete(
@@ -352,7 +354,7 @@ class DraftsResource(SyncAPIResource):
         draft_id: str,
         *,
         inbox_id: str,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -361,7 +363,7 @@ class DraftsResource(SyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -498,7 +500,7 @@ class AsyncDraftsResource(AsyncAPIResource):
         self,
         inbox_id: str,
         *,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -507,7 +509,7 @@ class AsyncDraftsResource(AsyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -617,7 +619,7 @@ class AsyncDraftsResource(AsyncAPIResource):
         draft_id: str,
         *,
         inbox_id: str,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -626,7 +628,7 @@ class AsyncDraftsResource(AsyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -696,7 +698,7 @@ class AsyncDraftsResource(AsyncAPIResource):
             cast_to=EmailDraftResponse,
         )
 
-    async def list(
+    def list(
         self,
         inbox_id: str,
         *,
@@ -709,7 +711,7 @@ class AsyncDraftsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DraftListResponse:
+    ) -> AsyncPaginator[EmailDraft, AsyncEmailBracketCursorPagination[EmailDraft]]:
         """Lists drafts newest first using stable cursor pagination.
 
         All access is scoped
@@ -732,14 +734,15 @@ class AsyncDraftsResource(AsyncAPIResource):
         """
         if not inbox_id:
             raise ValueError(f"Expected a non-empty value for `inbox_id` but received {inbox_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/email_inboxes/{inbox_id}/drafts", inbox_id=inbox_id),
+            page=AsyncEmailBracketCursorPagination[EmailDraft],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_status": filter_status,
                         "page_after": page_after,
@@ -748,7 +751,7 @@ class AsyncDraftsResource(AsyncAPIResource):
                     draft_list_params.DraftListParams,
                 ),
             ),
-            cast_to=DraftListResponse,
+            model=EmailDraft,
         )
 
     async def delete(
@@ -795,7 +798,7 @@ class AsyncDraftsResource(AsyncAPIResource):
         draft_id: str,
         *,
         inbox_id: str,
-        attachments: Iterable[object] | Omit = omit,
+        attachments: Iterable[Dict[str, object]] | Omit = omit,
         bcc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         cc: SequenceNotStr[EmailAddressInputParam] | Omit = omit,
         from_email: str | Omit = omit,
@@ -804,7 +807,7 @@ class AsyncDraftsResource(AsyncAPIResource):
         html: str | Omit = omit,
         html_body: str | Omit = omit,
         labels: SequenceNotStr[str] | Omit = omit,
-        metadata: object | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
         reply_to: str | Omit = omit,
         subject: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,

@@ -92,7 +92,8 @@ class ReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportListMdrsResponse:
         """
-        Fetch all Mdr records
+        Returns message detail records (MDRs) matching the provided criteria, such as
+        date range, direction, status, and message type.
 
         Args:
           id: Filter results by identifier.
@@ -170,7 +171,8 @@ class ReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[ReportListWdrsResponse]:
         """
-        Fetch all Wdr records
+        Returns wireless detail records (WDRs) matching the provided criteria, such as
+        date range, SIM card, IMSI, or phone number, with pagination and sorting.
 
         Args:
           id: Filter results by identifier.
@@ -285,7 +287,8 @@ class AsyncReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportListMdrsResponse:
         """
-        Fetch all Mdr records
+        Returns message detail records (MDRs) matching the provided criteria, such as
+        date range, direction, status, and message type.
 
         Args:
           id: Filter results by identifier.
@@ -363,7 +366,8 @@ class AsyncReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReportListWdrsResponse, AsyncDefaultFlatPagination[ReportListWdrsResponse]]:
         """
-        Fetch all Wdr records
+        Returns wireless detail records (WDRs) matching the provided criteria, such as
+        date range, SIM card, IMSI, or phone number, with pagination and sorting.
 
         Args:
           id: Filter results by identifier.

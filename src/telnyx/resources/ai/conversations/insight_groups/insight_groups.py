@@ -13,7 +13,7 @@ from .insights import (
     AsyncInsightsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -74,7 +74,8 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Get insight group by ID
+        Returns the details of a single insight template group, including the insight
+        templates assigned to it.
 
         Args:
           group_id: The ID of the insight group
@@ -112,7 +113,7 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Update an insight template group
+        Updates the specified insight template group and returns the updated group.
 
         Args:
           group_id: The ID of the insight group
@@ -155,7 +156,7 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete insight group by ID
+        Permanently deletes the specified insight template group by its ID.
 
         Args:
           group_id: The ID of the insight group
@@ -185,6 +186,7 @@ class InsightGroupsResource(SyncAPIResource):
         name: str,
         description: str | Omit = omit,
         webhook: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,7 +195,8 @@ class InsightGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Create a new insight group
+        Creates a new insight template group for organizing related insight templates,
+        and returns the created group.
 
         Args:
           extra_headers: Send extra headers
@@ -204,6 +207,7 @@ class InsightGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             "/ai/conversations/insight-groups",
             body=maybe_transform(
@@ -232,8 +236,11 @@ class InsightGroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[InsightTemplateGroup]:
-        """
-        Get all insight groups
+        """Returns a paginated list of your insight template groups.
+
+        Groups organize
+        related insight templates that are applied together when analyzing
+        conversations.
 
         Args:
           extra_headers: Send extra headers
@@ -303,7 +310,8 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Get insight group by ID
+        Returns the details of a single insight template group, including the insight
+        templates assigned to it.
 
         Args:
           group_id: The ID of the insight group
@@ -341,7 +349,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Update an insight template group
+        Updates the specified insight template group and returns the updated group.
 
         Args:
           group_id: The ID of the insight group
@@ -384,7 +392,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete insight group by ID
+        Permanently deletes the specified insight template group by its ID.
 
         Args:
           group_id: The ID of the insight group
@@ -414,6 +422,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         name: str,
         description: str | Omit = omit,
         webhook: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -422,7 +431,8 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
-        Create a new insight group
+        Creates a new insight template group for organizing related insight templates,
+        and returns the created group.
 
         Args:
           extra_headers: Send extra headers
@@ -433,6 +443,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             "/ai/conversations/insight-groups",
             body=await async_maybe_transform(
@@ -461,8 +472,11 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InsightTemplateGroup, AsyncDefaultFlatPagination[InsightTemplateGroup]]:
-        """
-        Get all insight groups
+        """Returns a paginated list of your insight template groups.
+
+        Groups organize
+        related insight templates that are applied together when analyzing
+        conversations.
 
         Args:
           extra_headers: Send extra headers

@@ -51,7 +51,8 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Create a new MCP server for a mission
+        Adds an MCP server to the specified mission, making the server's tools available
+        to agents during runs of this mission.
 
         Args:
           extra_headers: Send extra headers
@@ -85,7 +86,8 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an MCP server from a mission
+        Removes the specified MCP server from the mission, revoking agent access to its
+        tools in subsequent runs.
 
         Args:
           extra_headers: Send extra headers
@@ -126,7 +128,8 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get a specific MCP server by ID
+        Returns the configuration of a single MCP server attached to the specified
+        mission.
 
         Args:
           extra_headers: Send extra headers
@@ -164,8 +167,10 @@ class McpServersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        List all MCP servers for a mission
+        """Returns the MCP servers configured on the specified mission.
+
+        MCP servers expose
+        external tools and data sources agents can use during runs.
 
         Args:
           extra_headers: Send extra headers
@@ -199,7 +204,7 @@ class McpServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update an MCP server definition
+        Replaces the configuration of the specified MCP server on this mission.
 
         Args:
           extra_headers: Send extra headers
@@ -259,7 +264,8 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Create a new MCP server for a mission
+        Adds an MCP server to the specified mission, making the server's tools available
+        to agents during runs of this mission.
 
         Args:
           extra_headers: Send extra headers
@@ -293,7 +299,8 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete an MCP server from a mission
+        Removes the specified MCP server from the mission, revoking agent access to its
+        tools in subsequent runs.
 
         Args:
           extra_headers: Send extra headers
@@ -334,7 +341,8 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Get a specific MCP server by ID
+        Returns the configuration of a single MCP server attached to the specified
+        mission.
 
         Args:
           extra_headers: Send extra headers
@@ -372,8 +380,10 @@ class AsyncMcpServersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        List all MCP servers for a mission
+        """Returns the MCP servers configured on the specified mission.
+
+        MCP servers expose
+        external tools and data sources agents can use during runs.
 
         Args:
           extra_headers: Send extra headers
@@ -407,7 +417,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update an MCP server definition
+        Replaces the configuration of the specified MCP server on this mission.
 
         Args:
           extra_headers: Send extra headers

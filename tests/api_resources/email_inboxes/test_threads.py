@@ -9,10 +9,8 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.email_inboxes import (
-    ThreadRetrieveResponse,
-    InboundThreadListResponse,
-)
+from telnyx.pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
+from telnyx.types.email_inboxes import InboundThread, ThreadRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -89,7 +87,7 @@ class TestThreads:
         thread = client.email_inboxes.threads.list(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -100,7 +98,7 @@ class TestThreads:
             page_after="page[after]",
             page_size=1,
         )
-        assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -112,7 +110,7 @@ class TestThreads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         thread = response.parse()
-        assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+        assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -124,7 +122,7 @@ class TestThreads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             thread = response.parse()
-            assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+            assert_matches_type(SyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -211,7 +209,7 @@ class TestAsyncThreads:
         thread = await async_client.email_inboxes.threads.list(
             inbox_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -222,7 +220,7 @@ class TestAsyncThreads:
             page_after="page[after]",
             page_size=1,
         )
-        assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -234,7 +232,7 @@ class TestAsyncThreads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         thread = await response.parse()
-        assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+        assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -246,7 +244,7 @@ class TestAsyncThreads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             thread = await response.parse()
-            assert_matches_type(InboundThreadListResponse, thread, path=["response"])
+            assert_matches_type(AsyncEmailBracketCursorPagination[InboundThread], thread, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

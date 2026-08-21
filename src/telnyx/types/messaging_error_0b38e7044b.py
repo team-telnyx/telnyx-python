@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 
 from .._models import BaseModel
 
@@ -24,6 +24,6 @@ class MessagingError0b38e7044b(BaseModel):
 
     detail: Optional[str] = None
 
-    meta: Optional[object] = None
+    meta: Optional[Dict[str, object]] = None
 
     source: Optional[Source] = None

@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
+from ..._utils import PropertyInfo
 from .pay_tool_params_param import PayToolParamsParam
 from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
 
@@ -34,3 +35,5 @@ class ToolCreateParams(TypedDict, total=False):
     """Configuration for an update_dynamic_variables tool."""
 
     webhook: Dict[str, object]
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

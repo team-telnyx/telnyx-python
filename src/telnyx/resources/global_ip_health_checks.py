@@ -63,7 +63,9 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckCreateResponse:
         """
-        Create a Global IP health check.
+        Creates a health check for a Global IP to monitor the health of its assignments.
+        Creation is asynchronous, so the request is accepted and the health check
+        becomes active once provisioning completes.
 
         Args:
           global_ip_id: Global IP ID.
@@ -108,7 +110,8 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckRetrieveResponse:
         """
-        Retrieve a Global IP health check.
+        Returns the details of a single Global IP health check, including its type and
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -142,7 +145,8 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[GlobalIPHealthCheck]:
         """
-        List all Global IP health checks.
+        Returns a paginated list of the Global IP health checks configured on your
+        account.
 
         Args:
           extra_headers: Send extra headers
@@ -184,7 +188,8 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckDeleteResponse:
         """
-        Delete a Global IP health check.
+        Deletes the specified Global IP health check so it no longer monitors the Global
+        IP's assignments.
 
         Args:
           extra_headers: Send extra headers
@@ -242,7 +247,9 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckCreateResponse:
         """
-        Create a Global IP health check.
+        Creates a health check for a Global IP to monitor the health of its assignments.
+        Creation is asynchronous, so the request is accepted and the health check
+        becomes active once provisioning completes.
 
         Args:
           global_ip_id: Global IP ID.
@@ -287,7 +294,8 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckRetrieveResponse:
         """
-        Retrieve a Global IP health check.
+        Returns the details of a single Global IP health check, including its type and
+        configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -321,7 +329,8 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GlobalIPHealthCheck, AsyncDefaultFlatPagination[GlobalIPHealthCheck]]:
         """
-        List all Global IP health checks.
+        Returns a paginated list of the Global IP health checks configured on your
+        account.
 
         Args:
           extra_headers: Send extra headers
@@ -363,7 +372,8 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckDeleteResponse:
         """
-        Delete a Global IP health check.
+        Deletes the specified Global IP health check so it no longer monitors the Global
+        IP's assignments.
 
         Args:
           extra_headers: Send extra headers

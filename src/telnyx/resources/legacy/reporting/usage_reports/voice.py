@@ -126,7 +126,8 @@ class VoiceResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceRetrieveResponse:
         """
-        Fetch single cdr usage report by id.
+        Returns a single CDR (Call Detail Record) usage report by its identifier,
+        including its parameters and current status.
 
         Args:
           extra_headers: Send extra headers
@@ -326,7 +327,8 @@ class AsyncVoiceResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceRetrieveResponse:
         """
-        Fetch single cdr usage report by id.
+        Returns a single CDR (Call Detail Record) usage report by its identifier,
+        including its parameters and current status.
 
         Args:
           extra_headers: Send extra headers

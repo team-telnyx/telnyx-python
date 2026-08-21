@@ -194,7 +194,7 @@ class ConferencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveResponse:
         """
-        Retrieve an existing conference
+        Returns the details of an existing conference, including its current status.
 
         Args:
           region: Region where the conference data is located
@@ -297,7 +297,8 @@ class ConferencesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[ConferenceListParticipantsResponse]:
         """
-        Lists conference participants
+        Returns a paginated list of participants in the specified conference, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[muted],
@@ -580,7 +581,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveResponse:
         """
-        Retrieve an existing conference
+        Returns the details of an existing conference, including its current status.
 
         Args:
           region: Region where the conference data is located
@@ -687,7 +688,8 @@ class AsyncConferencesResource(AsyncAPIResource):
         ConferenceListParticipantsResponse, AsyncDefaultFlatPagination[ConferenceListParticipantsResponse]
     ]:
         """
-        Lists conference participants
+        Returns a paginated list of participants in the specified conference, with
+        support for filtering.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[muted],

@@ -15,9 +15,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncEmailBracketCursorPagination, AsyncEmailBracketCursorPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.email_inboxes.inbound_thread import InboundThread
 from ..types.email_thread_retrieve_response import EmailThreadRetrieveResponse
-from ..types.email_inboxes.inbound_thread_list_response import InboundThreadListResponse
 
 __all__ = ["EmailThreadsResource", "AsyncEmailThreadsResource"]
 
@@ -116,7 +117,7 @@ class EmailThreadsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InboundThreadListResponse:
+    ) -> SyncEmailBracketCursorPagination[InboundThread]:
         """
         Lists thread summaries for the whole account, newest first, using stable cursor
         pagination. An agent operating many inboxes gets every conversation in one call
@@ -147,8 +148,9 @@ class EmailThreadsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/email_threads",
+            page=SyncEmailBracketCursorPagination[InboundThread],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -164,7 +166,7 @@ class EmailThreadsResource(SyncAPIResource):
                     email_thread_list_params.EmailThreadListParams,
                 ),
             ),
-            cast_to=InboundThreadListResponse,
+            model=InboundThread,
         )
 
 
@@ -249,7 +251,7 @@ class AsyncEmailThreadsResource(AsyncAPIResource):
             cast_to=EmailThreadRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_inbox_id: SequenceNotStr[str] | Omit = omit,
@@ -262,7 +264,7 @@ class AsyncEmailThreadsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InboundThreadListResponse:
+    ) -> AsyncPaginator[InboundThread, AsyncEmailBracketCursorPagination[InboundThread]]:
         """
         Lists thread summaries for the whole account, newest first, using stable cursor
         pagination. An agent operating many inboxes gets every conversation in one call
@@ -293,14 +295,15 @@ class AsyncEmailThreadsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/email_threads",
+            page=AsyncEmailBracketCursorPagination[InboundThread],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_inbox_id": filter_inbox_id,
                         "filter_label": filter_label,
@@ -310,7 +313,7 @@ class AsyncEmailThreadsResource(AsyncAPIResource):
                     email_thread_list_params.EmailThreadListParams,
                 ),
             ),
-            cast_to=InboundThreadListResponse,
+            model=InboundThread,
         )
 
 
