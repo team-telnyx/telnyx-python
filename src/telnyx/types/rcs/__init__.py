@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 from .agent_use_case import AgentUseCase as AgentUseCase
+from .brand_identifier import BrandIdentifier as BrandIdentifier
 from .agent_list_params import AgentListParams as AgentListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams
 from .agent_launch_params import AgentLaunchParams as AgentLaunchParams
@@ -15,6 +16,7 @@ from .brand_contact_param import BrandContactParam as BrandContactParam
 from .brand_create_params import BrandCreateParams as BrandCreateParams
 from .brand_list_response import BrandListResponse as BrandListResponse
 from .brand_update_params import BrandUpdateParams as BrandUpdateParams
+from .brand_identifier_param import BrandIdentifierParam as BrandIdentifierParam
 from .agent_interaction_param import AgentInteractionParam as AgentInteractionParam
 from .agent_submission_status import AgentSubmissionStatus as AgentSubmissionStatus
 from .brand_legal_entity_type import BrandLegalEntityType as BrandLegalEntityType

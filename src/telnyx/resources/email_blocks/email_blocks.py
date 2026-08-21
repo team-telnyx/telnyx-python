@@ -14,13 +14,13 @@ from ...types import (
     email_block_retrieve_events_params,
     email_block_retrieve_export_params,
 )
-from .import_ import (
-    ImportResource,
-    AsyncImportResource,
-    ImportResourceWithRawResponse,
-    AsyncImportResourceWithRawResponse,
-    ImportResourceWithStreamingResponse,
-    AsyncImportResourceWithStreamingResponse,
+from .imports import (
+    ImportsResource,
+    AsyncImportsResource,
+    ImportsResourceWithRawResponse,
+    AsyncImportsResourceWithRawResponse,
+    ImportsResourceWithStreamingResponse,
+    AsyncImportsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
@@ -45,9 +45,9 @@ class EmailBlocksResource(SyncAPIResource):
     """Recipient suppression records (`/v2/email_blocks`)."""
 
     @cached_property
-    def import_(self) -> ImportResource:
+    def imports(self) -> ImportsResource:
         """Async CSV import of competitor suppression lists."""
-        return ImportResource(self._client)
+        return ImportsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EmailBlocksResourceWithRawResponse:
@@ -424,9 +424,9 @@ class AsyncEmailBlocksResource(AsyncAPIResource):
     """Recipient suppression records (`/v2/email_blocks`)."""
 
     @cached_property
-    def import_(self) -> AsyncImportResource:
+    def imports(self) -> AsyncImportsResource:
         """Async CSV import of competitor suppression lists."""
-        return AsyncImportResource(self._client)
+        return AsyncImportsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEmailBlocksResourceWithRawResponse:
@@ -823,9 +823,9 @@ class EmailBlocksResourceWithRawResponse:
         )
 
     @cached_property
-    def import_(self) -> ImportResourceWithRawResponse:
+    def imports(self) -> ImportsResourceWithRawResponse:
         """Async CSV import of competitor suppression lists."""
-        return ImportResourceWithRawResponse(self._email_blocks.import_)
+        return ImportsResourceWithRawResponse(self._email_blocks.imports)
 
 
 class AsyncEmailBlocksResourceWithRawResponse:
@@ -852,9 +852,9 @@ class AsyncEmailBlocksResourceWithRawResponse:
         )
 
     @cached_property
-    def import_(self) -> AsyncImportResourceWithRawResponse:
+    def imports(self) -> AsyncImportsResourceWithRawResponse:
         """Async CSV import of competitor suppression lists."""
-        return AsyncImportResourceWithRawResponse(self._email_blocks.import_)
+        return AsyncImportsResourceWithRawResponse(self._email_blocks.imports)
 
 
 class EmailBlocksResourceWithStreamingResponse:
@@ -881,9 +881,9 @@ class EmailBlocksResourceWithStreamingResponse:
         )
 
     @cached_property
-    def import_(self) -> ImportResourceWithStreamingResponse:
+    def imports(self) -> ImportsResourceWithStreamingResponse:
         """Async CSV import of competitor suppression lists."""
-        return ImportResourceWithStreamingResponse(self._email_blocks.import_)
+        return ImportsResourceWithStreamingResponse(self._email_blocks.imports)
 
 
 class AsyncEmailBlocksResourceWithStreamingResponse:
@@ -910,6 +910,6 @@ class AsyncEmailBlocksResourceWithStreamingResponse:
         )
 
     @cached_property
-    def import_(self) -> AsyncImportResourceWithStreamingResponse:
+    def imports(self) -> AsyncImportsResourceWithStreamingResponse:
         """Async CSV import of competitor suppression lists."""
-        return AsyncImportResourceWithStreamingResponse(self._email_blocks.import_)
+        return AsyncImportsResourceWithStreamingResponse(self._email_blocks.imports)

@@ -14,13 +14,13 @@ from telnyx.types.email_blocks import EmailBlockImportResponse
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestImport:
+class TestImports:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
-        import_ = client.email_blocks.import_.create(
+        import_ = client.email_blocks.imports.create(
             file=b"Example data",
         )
         assert_matches_type(EmailBlockImportResponse, import_, path=["response"])
@@ -28,7 +28,7 @@ class TestImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
-        import_ = client.email_blocks.import_.create(
+        import_ = client.email_blocks.imports.create(
             file=b"Example data",
             block_ttl_days=30,
         )
@@ -37,7 +37,7 @@ class TestImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
-        response = client.email_blocks.import_.with_raw_response.create(
+        response = client.email_blocks.imports.with_raw_response.create(
             file=b"Example data",
         )
 
@@ -49,7 +49,7 @@ class TestImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
-        with client.email_blocks.import_.with_streaming_response.create(
+        with client.email_blocks.imports.with_streaming_response.create(
             file=b"Example data",
         ) as response:
             assert not response.is_closed
@@ -63,7 +63,7 @@ class TestImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
-        import_ = client.email_blocks.import_.retrieve(
+        import_ = client.email_blocks.imports.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(EmailBlockImportResponse, import_, path=["response"])
@@ -71,7 +71,7 @@ class TestImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
-        response = client.email_blocks.import_.with_raw_response.retrieve(
+        response = client.email_blocks.imports.with_raw_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -83,7 +83,7 @@ class TestImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
-        with client.email_blocks.import_.with_streaming_response.retrieve(
+        with client.email_blocks.imports.with_streaming_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
@@ -98,12 +98,12 @@ class TestImport:
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.email_blocks.import_.with_raw_response.retrieve(
+            client.email_blocks.imports.with_raw_response.retrieve(
                 "",
             )
 
 
-class TestAsyncImport:
+class TestAsyncImports:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
@@ -111,7 +111,7 @@ class TestAsyncImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
-        import_ = await async_client.email_blocks.import_.create(
+        import_ = await async_client.email_blocks.imports.create(
             file=b"Example data",
         )
         assert_matches_type(EmailBlockImportResponse, import_, path=["response"])
@@ -119,7 +119,7 @@ class TestAsyncImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        import_ = await async_client.email_blocks.import_.create(
+        import_ = await async_client.email_blocks.imports.create(
             file=b"Example data",
             block_ttl_days=30,
         )
@@ -128,7 +128,7 @@ class TestAsyncImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.email_blocks.import_.with_raw_response.create(
+        response = await async_client.email_blocks.imports.with_raw_response.create(
             file=b"Example data",
         )
 
@@ -140,7 +140,7 @@ class TestAsyncImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.email_blocks.import_.with_streaming_response.create(
+        async with async_client.email_blocks.imports.with_streaming_response.create(
             file=b"Example data",
         ) as response:
             assert not response.is_closed
@@ -154,7 +154,7 @@ class TestAsyncImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
-        import_ = await async_client.email_blocks.import_.retrieve(
+        import_ = await async_client.email_blocks.imports.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(EmailBlockImportResponse, import_, path=["response"])
@@ -162,7 +162,7 @@ class TestAsyncImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.email_blocks.import_.with_raw_response.retrieve(
+        response = await async_client.email_blocks.imports.with_raw_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -174,7 +174,7 @@ class TestAsyncImport:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.email_blocks.import_.with_streaming_response.retrieve(
+        async with async_client.email_blocks.imports.with_streaming_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
@@ -189,6 +189,6 @@ class TestAsyncImport:
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.email_blocks.import_.with_raw_response.retrieve(
+            await async_client.email_blocks.imports.with_raw_response.retrieve(
                 "",
             )

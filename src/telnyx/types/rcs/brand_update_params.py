@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import Dict
+from typing_extensions import Literal, Required, TypedDict
 
 from .brand_address_param import BrandAddressParam
 from .brand_contact_param import BrandContactParam
+from .brand_identifier_param import BrandIdentifierParam
 from .brand_legal_entity_type import BrandLegalEntityType
 from .brand_organization_type import BrandOrganizationType
 from .ein_brand_identifier_param import EinBrandIdentifierParam
 from .stock_symbol_brand_identifier_param import StockSymbolBrandIdentifierParam
 
-__all__ = ["BrandUpdateParams", "Contacts", "ContactsBrand", "Identifiers", "Identifier"]
+__all__ = ["BrandUpdateParams", "Contacts", "ContactsBrand", "Identifiers"]
 
 
 class BrandUpdateParams(TypedDict, total=False):
@@ -51,10 +52,7 @@ class Contacts(TypedDict, total=False, extra_items=BrandContactParam):  # type: 
     brand: Required[ContactsBrand]
 
 
-Identifier: TypeAlias = Union[EinBrandIdentifierParam, StockSymbolBrandIdentifierParam]
-
-
-class Identifiers(TypedDict, total=False, extra_items=Identifier):  # type: ignore[call-arg]
+class Identifiers(TypedDict, total=False, extra_items=BrandIdentifierParam):  # type: ignore[call-arg]
     """Named business identifiers.
 
     Use the `ein` key for the required EIN and `stock_symbol` for a public-profit brand's stock symbol.

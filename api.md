@@ -3948,6 +3948,7 @@ Types:
 from telnyx.types.rcs import (
     BrandAddress,
     BrandContact,
+    BrandIdentifier,
     BrandLegalEntityType,
     BrandOrganizationType,
     BrandResponse,
@@ -6300,7 +6301,7 @@ Methods:
 - <code title="get /email_blocks/{id}/events">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve_events</a>(id, \*\*<a href="src/telnyx/types/email_block_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/email_block_retrieve_events_response.py">SyncDefaultFlatPagination[EmailBlockRetrieveEventsResponse]</a></code>
 - <code title="get /email_blocks/export">client.email_blocks.<a href="./src/telnyx/resources/email_blocks/email_blocks.py">retrieve_export</a>(\*\*<a href="src/telnyx/types/email_block_retrieve_export_params.py">params</a>) -> str</code>
 
-## Import
+## Imports
 
 Types:
 
@@ -6310,8 +6311,8 @@ from telnyx.types.email_blocks import EmailBlockImport, EmailBlockImportResponse
 
 Methods:
 
-- <code title="post /email_blocks/import">client.email*blocks.import*.<a href="./src/telnyx/resources/email_blocks/import_.py">create</a>(\*\*<a href="src/telnyx/types/email_blocks/import_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_blocks/email_block_import_response.py">EmailBlockImportResponse</a></code>
-- <code title="get /email_blocks/import/{id}">client.email*blocks.import*.<a href="./src/telnyx/resources/email_blocks/import_.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_blocks/email_block_import_response.py">EmailBlockImportResponse</a></code>
+- <code title="post /email_blocks/import">client.email_blocks.imports.<a href="./src/telnyx/resources/email_blocks/imports.py">create</a>(\*\*<a href="src/telnyx/types/email_blocks/import_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_blocks/email_block_import_response.py">EmailBlockImportResponse</a></code>
+- <code title="get /email_blocks/import/{id}">client.email_blocks.imports.<a href="./src/telnyx/resources/email_blocks/imports.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_blocks/email_block_import_response.py">EmailBlockImportResponse</a></code>
 
 # EmailDomains
 
