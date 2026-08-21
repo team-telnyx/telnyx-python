@@ -1106,6 +1106,7 @@ class TestActions:
             service_level="service_level",
             timeout_millis=5000,
             transaction_type="charge",
+            valid_card_types=["visa", "mastercard"],
             voice="female",
         )
         assert_matches_type(ActionPayResponse, action, path=["response"])
@@ -4044,6 +4045,7 @@ class TestAsyncActions:
             service_level="service_level",
             timeout_millis=5000,
             transaction_type="charge",
+            valid_card_types=["visa", "mastercard"],
             voice="female",
         )
         assert_matches_type(ActionPayResponse, action, path=["response"])

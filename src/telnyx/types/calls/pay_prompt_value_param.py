@@ -17,16 +17,13 @@ class PayPromptList(TypedDict, total=False):
     attempt: str
     """Space-separated 1-based attempt numbers for which this prompt applies."""
 
-    card_type: Literal["visa", "mastercard", "amex", "discover", "diners-club", "jcb"]
-    """Lowercase, case-sensitive detected card type for which this prompt applies.
-
-    Only the listed brands are currently detected; accepted UnionPay and Maestro
-    test cards do not produce a card-type qualifier.
-    """
+    card_type: Literal["visa", "mastercard", "amex", "optima", "discover", "diners-club", "jcb", "maestro", "enroute"]
+    """Lowercase, case-sensitive detected card type for which this prompt applies."""
 
     error_type: Literal[
         "timeout",
         "invalid-card-number",
+        "invalid-card-type",
         "invalid-date",
         "invalid-security-code",
         "invalid-postal-code",
