@@ -4090,9 +4090,9 @@ Types:
 ```python
 from telnyx.types import (
     SttServiceType,
-    SpeechToTextListProvidersResponse,
     TranscribeClientEvent,
     TranscribeServerEvent,
+    SpeechToTextListProvidersResponse,
 )
 ```
 
@@ -4951,10 +4951,10 @@ Types:
 
 ```python
 from telnyx.types import (
-    TextToSpeechGenerateSpeechResponse,
-    TextToSpeechListVoicesResponse,
     StreamClientEvent,
     StreamServerEvent,
+    TextToSpeechGenerateSpeechResponse,
+    TextToSpeechListVoicesResponse,
 )
 ```
 
