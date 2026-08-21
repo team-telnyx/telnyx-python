@@ -11,10 +11,16 @@ from .agent_website_contact_param import AgentWebsiteContactParam
 from .agent_testing_configuration_param import AgentTestingConfigurationParam
 from .agent_campaign_configuration_param import AgentCampaignConfigurationParam
 
-__all__ = ["AgentConfigurationParam", "Basics", "BasicsUnionMember0", "BasicsUnionMember1", "BasicsUnionMember2"]
+__all__ = [
+    "AgentConfigurationParam",
+    "Basics",
+    "BasicsAgentPhoneContactRequirement",
+    "BasicsAgentWebhookContactRequirement",
+    "BasicsAgentProfileContactRequirement",
+]
 
 
-class BasicsUnionMember0(TypedDict, total=False):
+class BasicsAgentPhoneContactRequirement(TypedDict, total=False):
     phone_number: Required[AgentPhoneContactParam]
 
     brand_color: str
@@ -34,7 +40,7 @@ class BasicsUnionMember0(TypedDict, total=False):
     website: Optional[AgentWebsiteContactParam]
 
 
-class BasicsUnionMember1(TypedDict, total=False):
+class BasicsAgentWebhookContactRequirement(TypedDict, total=False):
     website: Required[AgentWebsiteContactParam]
 
     brand_color: str
@@ -54,7 +60,7 @@ class BasicsUnionMember1(TypedDict, total=False):
     terms_and_conditions_url: str
 
 
-class BasicsUnionMember2(TypedDict, total=False):
+class BasicsAgentProfileContactRequirement(TypedDict, total=False):
     email: Required[AgentEmailContactParam]
 
     brand_color: str
@@ -74,7 +80,9 @@ class BasicsUnionMember2(TypedDict, total=False):
     website: Optional[AgentWebsiteContactParam]
 
 
-Basics: TypeAlias = Union[BasicsUnionMember0, BasicsUnionMember1, BasicsUnionMember2]
+Basics: TypeAlias = Union[
+    BasicsAgentPhoneContactRequirement, BasicsAgentWebhookContactRequirement, BasicsAgentProfileContactRequirement
+]
 
 
 class AgentConfigurationParam(TypedDict, total=False):

@@ -34,9 +34,6 @@ class DocServiceDocument(DocServiceRecord):
     filename: Optional[str] = None
     """The filename of the document."""
 
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
-
     sha256: Optional[str] = None
     """The document's SHA256 hash provided for optional verification purposes."""
 

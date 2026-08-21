@@ -11,7 +11,7 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 from .voice_sdk_call_report_log_entry import VoiceSDKCallReportLogEntry
 
-__all__ = ["VoiceSDKCallReport", "Logs", "LogsEntries", "Stats", "StatsUnionMember1"]
+__all__ = ["VoiceSDKCallReport", "Logs", "LogsEntries", "Stats", "StatsVoiceSDKCallReportStatsObject"]
 
 
 class LogsEntries(BaseModel):
@@ -38,7 +38,7 @@ class LogsEntries(BaseModel):
 Logs: TypeAlias = Union[List[VoiceSDKCallReportLogEntry], LogsEntries]
 
 
-class StatsUnionMember1(BaseModel):
+class StatsVoiceSDKCallReportStatsObject(BaseModel):
     """Raw stats object emitted by the Voice SDK."""
 
     audio: Optional[Dict[str, object]] = None
@@ -78,7 +78,7 @@ class StatsUnionMember1(BaseModel):
         __pydantic_extra__: Dict[str, object]
 
 
-Stats: TypeAlias = Union[List[Dict[str, object]], StatsUnionMember1]
+Stats: TypeAlias = Union[List[Dict[str, object]], StatsVoiceSDKCallReportStatsObject]
 
 
 class VoiceSDKCallReport(BaseModel):

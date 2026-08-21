@@ -33,14 +33,6 @@ class TestWireguardInterfaces:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: Telnyx) -> None:
-        wireguard_interface = client.wireguard_interfaces.create(
-            body={"region_code": "ashburn-va"},
-        )
-        assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.wireguard_interfaces.with_raw_response.create(
             body={"region_code": "ashburn-va"},
@@ -198,14 +190,6 @@ class TestAsyncWireguardInterfaces:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
-        wireguard_interface = await async_client.wireguard_interfaces.create(
-            body={"region_code": "ashburn-va"},
-        )
-        assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.create(
             body={"region_code": "ashburn-va"},
         )
