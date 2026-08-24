@@ -78,6 +78,7 @@ class OpenAIResource(SyncAPIResource):
         input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
         model: str | Omit = omit,
+        reasoning: openai_create_response_params.Reasoning | Omit = omit,
         service_tier: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -155,6 +156,7 @@ class OpenAIResource(SyncAPIResource):
                     "input": input,
                     "instructions": instructions,
                     "model": model,
+                    "reasoning": reasoning,
                     "service_tier": service_tier,
                     "stream": stream,
                 },
@@ -240,6 +242,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
         input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
         model: str | Omit = omit,
+        reasoning: openai_create_response_params.Reasoning | Omit = omit,
         service_tier: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -317,6 +320,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
                     "input": input,
                     "instructions": instructions,
                     "model": model,
+                    "reasoning": reasoning,
                     "service_tier": service_tier,
                     "stream": stream,
                 },
