@@ -70,7 +70,19 @@ class SpeechToTextResource(SyncAPIResource):
         self,
         *,
         provider: Literal[
-            "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "azure", "openai", "google", "telnyx"
+            "deepgram",
+            "speechmatics",
+            "assemblyai",
+            "xai",
+            "soniox",
+            "parakeet",
+            "humain",
+            "reson8",
+            "cohere",
+            "azure",
+            "openai",
+            "google",
+            "telnyx",
         ]
         | Omit = omit,
         service_type: SttServiceType | Omit = omit,
@@ -144,8 +156,20 @@ class SpeechToTextResource(SyncAPIResource):
     def retrieve_transcription(
         self,
         *,
-        input_format: Literal["mp3", "wav"],
-        transcription_engine: Literal["Azure", "Deepgram", "Google", "Telnyx", "xAI", "Speechmatics", "Soniox"],
+        input_format: Literal["mp3", "wav", "linear16", "linear32"],
+        transcription_engine: Literal[
+            "Azure",
+            "Deepgram",
+            "Google",
+            "Telnyx",
+            "xAI",
+            "Speechmatics",
+            "Soniox",
+            "Parakeet",
+            "Humain",
+            "Reson8",
+            "Cohere",
+        ],
         endpointing: int | Omit = omit,
         interim_results: bool | Omit = omit,
         keyterm: str | Omit = omit,
@@ -168,9 +192,14 @@ class SpeechToTextResource(SyncAPIResource):
             "xai/grok-stt",
             "speechmatics/standard",
             "soniox/stt-rt-v4",
+            "nvidia/parakeet-v3",
+            "humain/realtime",
+            "reson8/turns",
+            "cohere/ar-stt",
         ]
         | Omit = omit,
         redact: str | Omit = omit,
+        sample_rate: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,13 +213,14 @@ class SpeechToTextResource(SyncAPIResource):
         `Authorization: Bearer <API_KEY>` header.
 
         Supported engines: `Azure`, `Deepgram`, `Google`, `Telnyx`, `xAI`,
-        `Speechmatics`, `Soniox`.
+        `Speechmatics`, `Soniox`, `Parakeet`, `Humain`, `Reson8`, `Cohere`.
 
         **Connection flow:**
 
         1. Open WebSocket with query parameters specifying engine, input format, and
            language.
-        2. Send binary audio frames (mp3/wav format).
+        2. Send binary audio frames (mp3, wav, linear16, or linear32 format, per
+           `input_format`).
         3. Receive JSON transcript frames with `transcript`, `is_final`, and
            `confidence` fields.
         4. Close connection when done.
@@ -214,12 +244,18 @@ class SpeechToTextResource(SyncAPIResource):
           keywords: Comma-separated list of keywords to boost in the transcription. The engine will
               prioritize recognition of these words.
 
-          language: The language spoken in the audio stream.
+          language: The language spoken in the audio stream. For `cohere/ar-stt`, this must be `ar`
+              or `en` — unlike other engines, Cohere does not auto-detect the language, and
+              rejects unsupported values including `auto`; omitting it defaults to `ar`.
 
           model: The specific model to use within the selected transcription engine.
 
           redact: Enable redaction of sensitive information (e.g., PCI data, SSN) from
               transcription results. Supported values depend on the transcription engine.
+
+          sample_rate: Audio sample rate in Hz. Required when `input_format` is a raw encoding
+              (`linear16`, `linear32`) — those formats carry no header metadata. Ignored for
+              container formats (`mp3`, `wav`), which self-describe their rate.
 
           extra_headers: Send extra headers
 
@@ -250,6 +286,7 @@ class SpeechToTextResource(SyncAPIResource):
                         "language": language,
                         "model": model,
                         "redact": redact,
+                        "sample_rate": sample_rate,
                     },
                     speech_to_text_retrieve_transcription_params.SpeechToTextRetrieveTranscriptionParams,
                 ),
@@ -305,7 +342,19 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
         self,
         *,
         provider: Literal[
-            "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "azure", "openai", "google", "telnyx"
+            "deepgram",
+            "speechmatics",
+            "assemblyai",
+            "xai",
+            "soniox",
+            "parakeet",
+            "humain",
+            "reson8",
+            "cohere",
+            "azure",
+            "openai",
+            "google",
+            "telnyx",
         ]
         | Omit = omit,
         service_type: SttServiceType | Omit = omit,
@@ -379,8 +428,20 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
     async def retrieve_transcription(
         self,
         *,
-        input_format: Literal["mp3", "wav"],
-        transcription_engine: Literal["Azure", "Deepgram", "Google", "Telnyx", "xAI", "Speechmatics", "Soniox"],
+        input_format: Literal["mp3", "wav", "linear16", "linear32"],
+        transcription_engine: Literal[
+            "Azure",
+            "Deepgram",
+            "Google",
+            "Telnyx",
+            "xAI",
+            "Speechmatics",
+            "Soniox",
+            "Parakeet",
+            "Humain",
+            "Reson8",
+            "Cohere",
+        ],
         endpointing: int | Omit = omit,
         interim_results: bool | Omit = omit,
         keyterm: str | Omit = omit,
@@ -403,9 +464,14 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
             "xai/grok-stt",
             "speechmatics/standard",
             "soniox/stt-rt-v4",
+            "nvidia/parakeet-v3",
+            "humain/realtime",
+            "reson8/turns",
+            "cohere/ar-stt",
         ]
         | Omit = omit,
         redact: str | Omit = omit,
+        sample_rate: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,13 +485,14 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
         `Authorization: Bearer <API_KEY>` header.
 
         Supported engines: `Azure`, `Deepgram`, `Google`, `Telnyx`, `xAI`,
-        `Speechmatics`, `Soniox`.
+        `Speechmatics`, `Soniox`, `Parakeet`, `Humain`, `Reson8`, `Cohere`.
 
         **Connection flow:**
 
         1. Open WebSocket with query parameters specifying engine, input format, and
            language.
-        2. Send binary audio frames (mp3/wav format).
+        2. Send binary audio frames (mp3, wav, linear16, or linear32 format, per
+           `input_format`).
         3. Receive JSON transcript frames with `transcript`, `is_final`, and
            `confidence` fields.
         4. Close connection when done.
@@ -449,12 +516,18 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
           keywords: Comma-separated list of keywords to boost in the transcription. The engine will
               prioritize recognition of these words.
 
-          language: The language spoken in the audio stream.
+          language: The language spoken in the audio stream. For `cohere/ar-stt`, this must be `ar`
+              or `en` — unlike other engines, Cohere does not auto-detect the language, and
+              rejects unsupported values including `auto`; omitting it defaults to `ar`.
 
           model: The specific model to use within the selected transcription engine.
 
           redact: Enable redaction of sensitive information (e.g., PCI data, SSN) from
               transcription results. Supported values depend on the transcription engine.
+
+          sample_rate: Audio sample rate in Hz. Required when `input_format` is a raw encoding
+              (`linear16`, `linear32`) — those formats carry no header metadata. Ignored for
+              container formats (`mp3`, `wav`), which self-describe their rate.
 
           extra_headers: Send extra headers
 
@@ -485,6 +558,7 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
                         "language": language,
                         "model": model,
                         "redact": redact,
+                        "sample_rate": sample_rate,
                     },
                     speech_to_text_retrieve_transcription_params.SpeechToTextRetrieveTranscriptionParams,
                 ),
@@ -638,8 +712,8 @@ class AsyncSpeechToTextResourceConnection:
         return message
 
     async def send(self, event: TranscribeClientEvent | TranscribeClientEvent) -> None:
-        data = (
-            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+        data: str = (
+            cast(str, event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True))  # type: ignore
             if isinstance(event, BaseModel)
             else json.dumps(await async_maybe_transform(event, TranscribeClientEvent))
         )
@@ -893,8 +967,8 @@ class AsyncSpeechToTextResourceConnectionManager:
         This can be called before entering the context manager. Queued messages
         are automatically sent once the WebSocket connection opens.
         """
-        data = (
-            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+        data: str = (
+            cast(str, event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True))  # type: ignore
             if isinstance(event, BaseModel)
             else json.dumps(event)
         )
@@ -1091,8 +1165,8 @@ class SpeechToTextResourceConnection:
         return message
 
     def send(self, event: TranscribeClientEvent | TranscribeClientEvent) -> None:
-        data = (
-            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+        data: str = (
+            cast(str, event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True))  # type: ignore
             if isinstance(event, BaseModel)
             else json.dumps(maybe_transform(event, TranscribeClientEvent))
         )
@@ -1334,8 +1408,8 @@ class SpeechToTextResourceConnectionManager:
         This can be called before entering the context manager. Queued messages
         are automatically sent once the WebSocket connection opens.
         """
-        data = (
-            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+        data: str = (
+            cast(str, event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True))  # type: ignore
             if isinstance(event, BaseModel)
             else json.dumps(event)
         )

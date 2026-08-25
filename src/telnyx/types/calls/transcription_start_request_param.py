@@ -20,7 +20,27 @@ from .transcription_engine_parakeet_config_param import TranscriptionEngineParak
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = ["TranscriptionStartRequestParam", "TranscriptionEngineConfig"]
+__all__ = [
+    "TranscriptionStartRequestParam",
+    "TranscriptionEngineConfig",
+    "TranscriptionEngineConfigTranscriptionEngineCohereConfig",
+]
+
+
+class TranscriptionEngineConfigTranscriptionEngineCohereConfig(TypedDict, total=False):
+    language: Literal["ar", "en"]
+    """The language of the audio to be transcribed.
+
+    Unlike other self-hosted models, Cohere does not auto-detect the language;
+    `auto` is not supported.
+    """
+
+    transcription_engine: Literal["Cohere"]
+    """Engine identifier for Cohere transcription service"""
+
+    transcription_model: Literal["cohere/ar-stt"]
+    """The model to use for transcription."""
+
 
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
@@ -33,6 +53,7 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineParakeetConfigParam,
     TranscriptionEngineHumainConfigParam,
     TranscriptionEngineReson8ConfigParam,
+    TranscriptionEngineConfigTranscriptionEngineCohereConfig,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
@@ -66,6 +87,7 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
         "Parakeet",
         "Humain",
         "Reson8",
+        "Cohere",
         "A",
         "B",
     ]

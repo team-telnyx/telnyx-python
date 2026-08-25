@@ -21,7 +21,10 @@ class TranscriptFrame(BaseModel):
     """Frame type identifier."""
 
     confidence: Optional[float] = None
-    """Confidence score of the transcription, ranging from 0 to 1."""
+    """Confidence score of the transcription, ranging from 0 to 1.
+
+    `cohere/ar-stt` frames return `null` here rather than omitting the field.
+    """
 
     is_final: Optional[bool] = None
     """Whether this is a final transcription result.

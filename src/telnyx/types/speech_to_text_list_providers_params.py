@@ -19,6 +19,7 @@ class SpeechToTextListProvidersParams(TypedDict, total=False):
         "parakeet",
         "humain",
         "reson8",
+        "cohere",
         "azure",
         "openai",
         "google",

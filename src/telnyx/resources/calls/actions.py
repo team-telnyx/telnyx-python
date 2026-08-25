@@ -3266,6 +3266,7 @@ class ActionsResource(SyncAPIResource):
             "Parakeet",
             "Humain",
             "Reson8",
+            "Cohere",
             "A",
             "B",
         ]
@@ -7376,6 +7377,7 @@ class AsyncActionsResource(AsyncAPIResource):
             "Parakeet",
             "Humain",
             "Reson8",
+            "Cohere",
             "A",
             "B",
         ]
