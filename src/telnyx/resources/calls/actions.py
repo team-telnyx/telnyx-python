@@ -2186,8 +2186,10 @@ class ActionsResource(SyncAPIResource):
 
           participants: A list of participants to add to the conversation when it starts.
 
-          send_message_history_updates: When `true`, a webhook is sent each time the conversation message history is
-              updated.
+          send_message_history_updates: When `true`, a `call.ai_gather.message_history_updated` webhook carrying the
+              full message history is sent each time the conversation message history is
+              updated. The assistant's own `telephony_settings.send_message_history_updates`
+              overrides this value when it is set.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
@@ -6294,8 +6296,10 @@ class AsyncActionsResource(AsyncAPIResource):
 
           participants: A list of participants to add to the conversation when it starts.
 
-          send_message_history_updates: When `true`, a webhook is sent each time the conversation message history is
-              updated.
+          send_message_history_updates: When `true`, a `call.ai_gather.message_history_updated` webhook carrying the
+              full message history is sent each time the conversation message history is
+              updated. The assistant's own `telephony_settings.send_message_history_updates`
+              overrides this value when it is set.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
