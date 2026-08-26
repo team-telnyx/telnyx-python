@@ -1584,6 +1584,7 @@ from telnyx.types.calls import (
     TranscriptionEngineAssemblyaiConfig,
     TranscriptionEngineAzureConfig,
     TranscriptionEngineBConfig,
+    TranscriptionEngineCohereConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
     TranscriptionEngineHumainConfig,
