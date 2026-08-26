@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import Literal, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from ...._utils import PropertyInfo
 
 __all__ = ["CollectionRetrieveDocumentsParams"]
 
@@ -35,9 +35,13 @@ class CollectionRetrieveDocumentsParams(TypedDict, total=False):
     """
 
     retrieval_type: Literal["vector", "hybrid", "keyword"]
-    """Override the collection's configured retrieval strategy for this request.
+    """Reserved; not yet functional.
 
-    Echoed back in `meta.retrieval_type`.
+    A value supplied here is accepted but ignored — it does not override the
+    collection's configured strategy, and it is not echoed back. Searches run
+    `vector` retrieval, and `meta.retrieval_type` reports the mode that actually
+    ran. To change retrieval strategy, set it on the collection's settings
+    subresource.
     """
 
     sources: str

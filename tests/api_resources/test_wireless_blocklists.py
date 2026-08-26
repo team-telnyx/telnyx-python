@@ -10,9 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    WirelessBlocklist,
+    WirelessWirelessBlocklist,
     WirelessBlocklistCreateResponse,
-    WirelessBlocklistDeleteResponse,
     WirelessBlocklistUpdateResponse,
     WirelessBlocklistRetrieveResponse,
 )
@@ -162,7 +161,7 @@ class TestWirelessBlocklists:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.list()
-        assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -170,11 +169,10 @@ class TestWirelessBlocklists:
         wireless_blocklist = client.wireless_blocklists.list(
             filter_name="filter[name]",
             filter_type="filter[type]",
-            filter_values="filter[values]",
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -184,7 +182,7 @@ class TestWirelessBlocklists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireless_blocklist = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -194,7 +192,9 @@ class TestWirelessBlocklists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireless_blocklist = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -204,7 +204,7 @@ class TestWirelessBlocklists:
         wireless_blocklist = client.wireless_blocklists.delete(
             "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
-        assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
+        assert wireless_blocklist is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -216,7 +216,7 @@ class TestWirelessBlocklists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireless_blocklist = response.parse()
-        assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
+        assert wireless_blocklist is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -228,7 +228,7 @@ class TestWirelessBlocklists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireless_blocklist = response.parse()
-            assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
+            assert wireless_blocklist is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -384,7 +384,9 @@ class TestAsyncWirelessBlocklists:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.list()
-        assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -392,11 +394,12 @@ class TestAsyncWirelessBlocklists:
         wireless_blocklist = await async_client.wireless_blocklists.list(
             filter_name="filter[name]",
             filter_type="filter[type]",
-            filter_values="filter[values]",
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -406,7 +409,9 @@ class TestAsyncWirelessBlocklists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireless_blocklist = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -416,7 +421,9 @@ class TestAsyncWirelessBlocklists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireless_blocklist = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[WirelessWirelessBlocklist], wireless_blocklist, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -426,7 +433,7 @@ class TestAsyncWirelessBlocklists:
         wireless_blocklist = await async_client.wireless_blocklists.delete(
             "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
-        assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
+        assert wireless_blocklist is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -438,7 +445,7 @@ class TestAsyncWirelessBlocklists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireless_blocklist = await response.parse()
-        assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
+        assert wireless_blocklist is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -450,7 +457,7 @@ class TestAsyncWirelessBlocklists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireless_blocklist = await response.parse()
-            assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
+            assert wireless_blocklist is None
 
         assert cast(Any, response.is_closed) is True
 
