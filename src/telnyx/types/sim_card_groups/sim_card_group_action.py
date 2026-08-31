@@ -16,6 +16,9 @@ class Settings(BaseModel):
     private_wireless_gateway_id: Optional[str] = None
     """The identification of the related Private Wireless Gateway resource."""
 
+    wireless_blocklist_id: Optional[str] = None
+    """The identification of the related Wireless Blocklist resource."""
+
 
 class SimCardGroupAction(BaseModel):
     """This object represents a SIM card group action request.

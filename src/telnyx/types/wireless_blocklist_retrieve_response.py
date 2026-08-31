@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
-from .wireless_blocklist import WirelessBlocklist
+from .wireless_wireless_blocklist import WirelessWirelessBlocklist
 
 __all__ = ["WirelessBlocklistRetrieveResponse"]
 
 
 class WirelessBlocklistRetrieveResponse(BaseModel):
-    data: Optional[WirelessBlocklist] = None
+    data: Optional[WirelessWirelessBlocklist] = None

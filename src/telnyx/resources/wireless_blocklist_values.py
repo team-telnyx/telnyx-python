@@ -56,8 +56,10 @@ class WirelessBlocklistValuesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WirelessBlocklistValueListResponse:
-        """
-        Retrieve all wireless blocklist values for a given blocklist type.
+        """Retrieve all wireless blocklist values for a given blocklist type.
+
+        The request
+        returns `422` when `type` is missing or invalid.
 
         Args:
           type: The Wireless Blocklist type for which to list possible values (e.g., `country`,
@@ -119,8 +121,10 @@ class AsyncWirelessBlocklistValuesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WirelessBlocklistValueListResponse:
-        """
-        Retrieve all wireless blocklist values for a given blocklist type.
+        """Retrieve all wireless blocklist values for a given blocklist type.
+
+        The request
+        returns `422` when `type` is missing or invalid.
 
         Args:
           type: The Wireless Blocklist type for which to list possible values (e.g., `country`,

@@ -60,8 +60,10 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
 
     send_message_history_updates: bool
     """
-    When `true`, a webhook is sent each time the conversation message history is
-    updated.
+    When `true`, a `call.ai_gather.message_history_updated` webhook carrying the
+    full message history is sent each time the conversation message history is
+    updated. The assistant's own `telephony_settings.send_message_history_updates`
+    overrides this value when it is set.
     """
 
     transcription: TranscriptionConfigParam

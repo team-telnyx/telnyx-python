@@ -249,7 +249,9 @@ class ActionsResource(SyncAPIResource):
 
           stop_playback_on_dtmf: Whether to stop the audio playback when a DTMF digit is received.
 
-          terminating_digit: Digit that terminates gathering.
+          terminating_digit: Digit that terminates gathering. Set to an empty string to disable the
+              terminating digit entirely, so that a digit such as `#` can be collected as
+              input per `valid_digits`.
 
           timeout_millis: Duration in milliseconds to wait for input before timing out.
 
@@ -1458,7 +1460,9 @@ class AsyncActionsResource(AsyncAPIResource):
 
           stop_playback_on_dtmf: Whether to stop the audio playback when a DTMF digit is received.
 
-          terminating_digit: Digit that terminates gathering.
+          terminating_digit: Digit that terminates gathering. Set to an empty string to disable the
+              terminating digit entirely, so that a digit such as `#` can be collected as
+              input per `valid_digits`.
 
           timeout_millis: Duration in milliseconds to wait for input before timing out.
 

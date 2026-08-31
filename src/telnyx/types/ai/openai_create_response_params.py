@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["OpenAICreateResponseParams"]
+__all__ = ["OpenAICreateResponseParams", "Reasoning"]
 
 
 class OpenAICreateResponseParams(TypedDict, total=False):
@@ -33,6 +33,8 @@ class OpenAICreateResponseParams(TypedDict, total=False):
     another model available from the Telnyx OpenAI-compatible models endpoint.
     """
 
+    reasoning: Reasoning
+
     service_tier: str
     """The service tier to use for this request.
 
@@ -44,4 +46,12 @@ class OpenAICreateResponseParams(TypedDict, total=False):
     """
     Set to `true` to stream Server-Sent Events, matching OpenAI's Responses
     streaming format.
+    """
+
+
+class Reasoning(TypedDict, total=False):
+    effort: Literal["none", "minimal", "low", "medium", "high", "xhigh", "max"]
+    """Controls the reasoning effort for models that support it.
+
+    Same values and semantics as reasoning_effort on Chat Completions.
     """

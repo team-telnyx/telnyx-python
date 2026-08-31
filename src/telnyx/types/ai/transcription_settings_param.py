@@ -32,7 +32,9 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     `auto` when `language` is omitted — omitting it applies `en` instead. For
     `reson8/turns`, supported values are `auto` (or unset) for automatic language
     detection, and the language codes `nl`, `en`, `fr`, `fy`, `de`, `it`, `pl`,
-    `pt`, `es`, and `sv` to fix the transcription language.
+    `pt`, `es`, and `sv` to fix the transcription language. For `cohere/ar-stt`,
+    supported values are `ar` and `en`; unlike other models, this model does not
+    auto-detect and defaults to `ar` when `language` is omitted.
     """
 
     model: Literal[
@@ -46,6 +48,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
         "nvidia/parakeet-v3",
         "humain/realtime",
         "reson8/turns",
+        "cohere/ar-stt",
         "distil-whisper/distil-large-v2",
         "openai/whisper-large-v3-turbo",
     ]
@@ -68,6 +71,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
       code-switching support.
     - `reson8/turns` is a turn-based streaming model covering 10 European languages
       with automatic language detection.
+    - `cohere/ar-stt` is a non-streaming Arabic and English transcription model.
     """
 
     region: str

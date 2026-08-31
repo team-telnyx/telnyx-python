@@ -32,6 +32,7 @@ class TestOpenAI:
             input={"0": "bar"},
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
+            reasoning={"effort": "none"},
             service_tier="service_tier",
             stream=False,
         )
@@ -107,6 +108,7 @@ class TestAsyncOpenAI:
             input={"0": "bar"},
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
+            reasoning={"effort": "none"},
             service_tier="service_tier",
             stream=False,
         )

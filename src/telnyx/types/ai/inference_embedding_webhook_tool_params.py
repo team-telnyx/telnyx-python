@@ -184,6 +184,29 @@ class Webhook(BaseModel):
     documentation about the format
     """
 
+    preset_body_fields: Optional[Dict[str, object]] = None
+    """Body fields supplied by the assistant configuration rather than by the model.
+
+    They are never advertised in the tool definition, so the LLM can neither see nor
+    set them, and they take precedence over a `body_parameters` value of the same
+    name. Values support mustache templating, so they can hold dynamic variables
+    (`{{customer_id}}`) and integration secrets
+    (`{{#integration_secret}}my-secret{{/integration_secret}}`). Not sent on `GET`
+    requests, which carry no body.
+    """
+
+    preset_query_params: Optional[Dict[str, object]] = None
+    """
+    Query string parameters supplied by the assistant configuration rather than by
+    the model. They are never advertised in the tool definition, so the LLM can
+    neither see nor set them, and they take precedence over a `query_parameters`
+    value of the same name. Values support mustache templating, so they can hold
+    dynamic variables (`{{telnyx_end_user_target}}`) and integration secrets
+    (`{{#integration_secret}}my-secret{{/integration_secret}}`). Unlike values
+    templated directly into the `url`, these are percent-encoded, so a value such as
+    `+15551234567` survives the round trip.
+    """
+
     query_parameters: Optional[WebhookQueryParameters] = None
     """The query parameters the webhook tool accepts, described as a JSON Schema
     object.

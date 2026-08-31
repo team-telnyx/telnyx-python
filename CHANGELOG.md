@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.177.0](https://github.com/team-telnyx/telnyx-python/compare/v4.176.0...v4.177.0) (2026-08-31)
+
+
+### Features
+
+* promote from staging f45738e ([cdb8672](https://github.com/team-telnyx/telnyx-python/commit/cdb8672158b362eec924f1940c861b9d0cd48cac))
+
+
+### Bug Fixes
+
+* wait for authoritative release checks ([#426](https://github.com/team-telnyx/telnyx-python/issues/426)) ([1cc3b43](https://github.com/team-telnyx/telnyx-python/commit/1cc3b43ac28d2277230a792cb951e8bbdade6e46))
+
 ## [4.176.0](https://github.com/team-telnyx/telnyx-python/compare/v4.175.0...v4.176.0) (2026-08-21)
 
 

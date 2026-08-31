@@ -609,7 +609,7 @@ class TestActions:
             send_message_history_updates=True,
             send_partial_results=True,
             transcription={
-                "language": "auto",
+                "language": "language",
                 "model": "distil-whisper/distil-large-v2",
             },
             user_response_timeout_ms=5000,
@@ -1621,7 +1621,7 @@ class TestActions:
             ],
             send_message_history_updates=True,
             transcription={
-                "language": "auto",
+                "language": "language",
                 "model": "distil-whisper/distil-large-v2",
             },
         )
@@ -3548,7 +3548,7 @@ class TestAsyncActions:
             send_message_history_updates=True,
             send_partial_results=True,
             transcription={
-                "language": "auto",
+                "language": "language",
                 "model": "distil-whisper/distil-large-v2",
             },
             user_response_timeout_ms=5000,
@@ -4560,7 +4560,7 @@ class TestAsyncActions:
             ],
             send_message_history_updates=True,
             transcription={
-                "language": "auto",
+                "language": "language",
                 "model": "distil-whisper/distil-large-v2",
             },
         )

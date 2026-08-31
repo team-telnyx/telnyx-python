@@ -74,7 +74,8 @@ class ActionGatherUsingAudioParams(TypedDict, total=False):
     terminating_digit: str
     """
     The digit used to terminate input if fewer than `maximum_digits` digits have
-    been gathered.
+    been gathered. Set to an empty string to disable the terminating digit entirely,
+    so that a digit such as `#` can be collected as input per `valid_digits`.
     """
 
     timeout_millis: int

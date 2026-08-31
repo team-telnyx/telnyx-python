@@ -128,6 +128,18 @@ class TelephonySettingsParam(TypedDict, total=False):
     recording_settings: RecordingSettings
     """Configuration for call recording format and channel settings."""
 
+    send_message_history_updates: bool
+    """
+    Whether the assistant sends a `call.ai_gather.message_history_updated` webhook
+    with the full message history every time the conversation history changes. Leave
+    unset to inherit the `send_message_history_updates` value from the
+    `ai_assistant_start` or `gather_using_ai` command that started the conversation.
+    Setting it here is authoritative: `true` turns the webhooks on even when the
+    start command did not request them, and `false` turns them off even when it did.
+    Messages exchanged during a private warm transfer acceptance phase are never
+    included.
+    """
+
     supports_unauthenticated_web_calls: bool
     """
     When enabled, allows users to interact with your AI assistant directly from your

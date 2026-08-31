@@ -2,39 +2,27 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import List, Union
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
 __all__ = ["WirelessBlocklistValueListResponse", "DataCountry", "DataMcc", "DataPlmn"]
 
 
 class DataCountry(BaseModel):
-    code: str
+    country_code: str
     """ISO 3166-1 Alpha-2 Country Code."""
-
-    name: str
-    """The name of the country."""
 
 
 class DataMcc(BaseModel):
-    code: str
+    mcc: str
     """Mobile Country Code."""
-
-    name: str
-    """The name of the country."""
 
 
 class DataPlmn(BaseModel):
-    code: str
+    plmn: str
     """Public land mobile network code (MCC + MNC)."""
-
-    name: str
-    """The name of the network."""
 
 
 class WirelessBlocklistValueListResponse(BaseModel):
-    data: Union[List[DataCountry], List[DataMcc], List[DataPlmn], None] = None
-
-    meta: Optional[PaginationMeta] = None
+    data: Union[List[DataCountry], List[DataMcc], List[DataPlmn]]
