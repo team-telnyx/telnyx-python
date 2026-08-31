@@ -4,11 +4,11 @@
 
 from __future__ import annotations
 
-import copy
-from pathlib import Path
 import re
+import copy
 import unittest
 import dataclasses
+from pathlib import Path
 from unittest import mock
 
 from release_pr_auto_merge import (
