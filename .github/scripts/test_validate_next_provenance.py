@@ -16,6 +16,14 @@ B = ("100644", "blob", "b" * 40)
 
 
 class PythonNextProvenanceTests(unittest.TestCase):
+    def test_release_version_overlay_helpers_are_production_policy(self):
+        self.assertTrue(
+            {
+                ".github/scripts/copy_pyproject_version.py",
+                ".github/scripts/test_copy_pyproject_version.py",
+            }.issubset(PRODUCTION_POLICY_PATHS)
+        )
+
     def test_generated_tree_change_is_rejected(self):
         with self.assertRaisesRegex(GateError, "src/generated.go"):
             require_only_allowed_changes(
