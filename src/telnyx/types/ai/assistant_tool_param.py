@@ -28,6 +28,7 @@ __all__ = [
     "TransferTransferVoicemailDetectionDetectionConfig",
     "TransferTransferVoicemailDetectionOnVoicemailDetected",
     "TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage",
+    "TransferTransferWarmTransferAcceptance",
     "Invite",
     "InviteInvite",
     "InviteInviteCustomHeader",
@@ -120,6 +121,13 @@ class Handoff(TypedDict, total=False):
 class TransferTransferTargetsTargetsList(TypedDict, total=False):
     to: Required[str]
     """The destination number or SIP URI of the call."""
+
+    message: str
+    """The warm transfer message to deliver to this specific target.
+
+    When set, it takes precedence over the message the assistant composes from
+    `warm_transfer_instructions`.
+    """
 
     name: str
     """The name of the target."""
@@ -239,6 +247,24 @@ class TransferTransferVoicemailDetection(TypedDict, total=False):
     """Action to take when voicemail is detected on the transferred call."""
 
 
+class TransferTransferWarmTransferAcceptance(TypedDict, total=False):
+    """
+    Requires the transfer destination to accept the call before the caller is bridged. When enabled, the assistant speaks privately with the destination after they answer — delivering the warm transfer message and asking whether they take the call — while the caller keeps hearing ringback. The assistant then finalizes the transfer with the built-in `complete_transfer` tool: an accept bridges the calls, a decline hangs up the destination and returns the assistant to the caller with the reason the destination gave. Requires either `warm_transfer_instructions` or a `message` on every target, otherwise the assistant fails to save. Only available for calls started with `ai_assistant_start`; single-caller conversations only (a conference or additional invited participants fall back to a regular warm transfer).
+    """
+
+    enabled: bool
+    """Whether the destination must accept the transfer before the calls are bridged."""
+
+    end_user_target_context_mode: Literal["private", "shared"]
+    """
+    Controls whether the private exchange between the assistant and the transfer
+    destination is kept out of the conversation. With `private` (default) the
+    exchange never reaches the conversation history, AI conversations, webhooks or
+    insights, and the transfer tool result is rewritten with the outcome only. With
+    `shared` the exchange stays in the conversation like any other messages.
+    """
+
+
 _TransferTransferReservedKeywords = TypedDict(
     "_TransferTransferReservedKeywords",
     {
@@ -283,6 +309,21 @@ class TransferTransfer(_TransferTransferReservedKeywords, total=False):
     transferred call is answered. When set, the audio_url is not included in the
     dial command; instead, playback starts after the specified delay. When not set,
     existing behavior (audio_url in dial) is preserved.
+    """
+
+    warm_transfer_acceptance: TransferTransferWarmTransferAcceptance
+    """
+    Requires the transfer destination to accept the call before the caller is
+    bridged. When enabled, the assistant speaks privately with the destination after
+    they answer — delivering the warm transfer message and asking whether they take
+    the call — while the caller keeps hearing ringback. The assistant then finalizes
+    the transfer with the built-in `complete_transfer` tool: an accept bridges the
+    calls, a decline hangs up the destination and returns the assistant to the
+    caller with the reason the destination gave. Requires either
+    `warm_transfer_instructions` or a `message` on every target, otherwise the
+    assistant fails to save. Only available for calls started with
+    `ai_assistant_start`; single-caller conversations only (a conference or
+    additional invited participants fall back to a regular warm transfer).
     """
 
     warm_transfer_instructions: str

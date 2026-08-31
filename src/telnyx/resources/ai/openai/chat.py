@@ -63,6 +63,7 @@ class ChatResource(SyncAPIResource):
         model: str | Omit = omit,
         n: float | Omit = omit,
         presence_penalty: float | Omit = omit,
+        reasoning_effort: Literal["none", "minimal", "low", "medium", "high", "xhigh", "max"] | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
         seed: int | Omit = omit,
         service_tier: str | Omit = omit,
@@ -133,6 +134,12 @@ class ChatResource(SyncAPIResource):
           n: This will return multiple choices for you instead of a single chat completion.
 
           presence_penalty: Higher values will penalize the model from repeating the same output tokens.
+
+          reasoning_effort: Controls the reasoning effort for models that support it. When set, the model
+              spends more or less compute on internal reasoning before generating its
+              response. Supported values: none, minimal, low, medium, high, xhigh, max. Not
+              all models support all values; unsupported values are rejected with a 400 error.
+              When omitted, reasoning models use their default effort level.
 
           response_format: Use this is you want to guarantee a JSON output without defining a schema. For
               control over the schema, use `guided_json`.
@@ -199,6 +206,7 @@ class ChatResource(SyncAPIResource):
                     "model": model,
                     "n": n,
                     "presence_penalty": presence_penalty,
+                    "reasoning_effort": reasoning_effort,
                     "response_format": response_format,
                     "seed": seed,
                     "service_tier": service_tier,
@@ -259,6 +267,7 @@ class AsyncChatResource(AsyncAPIResource):
         model: str | Omit = omit,
         n: float | Omit = omit,
         presence_penalty: float | Omit = omit,
+        reasoning_effort: Literal["none", "minimal", "low", "medium", "high", "xhigh", "max"] | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
         seed: int | Omit = omit,
         service_tier: str | Omit = omit,
@@ -330,6 +339,12 @@ class AsyncChatResource(AsyncAPIResource):
 
           presence_penalty: Higher values will penalize the model from repeating the same output tokens.
 
+          reasoning_effort: Controls the reasoning effort for models that support it. When set, the model
+              spends more or less compute on internal reasoning before generating its
+              response. Supported values: none, minimal, low, medium, high, xhigh, max. Not
+              all models support all values; unsupported values are rejected with a 400 error.
+              When omitted, reasoning models use their default effort level.
+
           response_format: Use this is you want to guarantee a JSON output without defining a schema. For
               control over the schema, use `guided_json`.
 
@@ -395,6 +410,7 @@ class AsyncChatResource(AsyncAPIResource):
                     "model": model,
                     "n": n,
                     "presence_penalty": presence_penalty,
+                    "reasoning_effort": reasoning_effort,
                     "response_format": response_format,
                     "seed": seed,
                     "service_tier": service_tier,

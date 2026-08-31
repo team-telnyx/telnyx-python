@@ -882,7 +882,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import Collection, CollectionEnvelope, CollectionRetrieveDocumentsResponse
+from telnyx.types.ai import Collection, CollectionEnvelope
 ```
 
 Methods:
@@ -893,7 +893,6 @@ Methods:
 - <code title="get /ai/collections">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">list</a>(\*\*<a href="src/telnyx/types/ai/collection_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection.py">SyncDefaultFlatPagination[Collection]</a></code>
 - <code title="delete /ai/collections/{uuid}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">delete</a>(uuid) -> None</code>
 - <code title="get /ai/collections/{uuid}">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve_by_id</a>(uuid) -> <a href="./src/telnyx/types/ai/collection_envelope.py">CollectionEnvelope</a></code>
-- <code title="get /ai/collections/{slug}/documents">client.ai.collections.<a href="./src/telnyx/resources/ai/collections/collections.py">retrieve_documents</a>(slug, \*\*<a href="src/telnyx/types/ai/collection_retrieve_documents_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collection_retrieve_documents_response.py">SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse]</a></code>
 
 ### Settings
 
@@ -1321,6 +1320,20 @@ Methods:
 
 - <code title="post /ai/anthropic/v1/messages">client.ai.anthropic.v1.<a href="./src/telnyx/resources/ai/anthropic/v1.py">messages</a>(\*\*<a href="src/telnyx/types/ai/anthropic/v1_messages_params.py">params</a>) -> <a href="./src/telnyx/types/ai/anthropic/v1_messages_response.py">V1MessagesResponse</a></code>
 
+## Knowledge
+
+### Collections
+
+Types:
+
+```python
+from telnyx.types.ai.knowledge import CollectionRetrieveDocumentsResponse
+```
+
+Methods:
+
+- <code title="get /ai/knowledge/collections/{slug}/documents">client.ai.knowledge.collections.<a href="./src/telnyx/resources/ai/knowledge/collections.py">retrieve_documents</a>(slug, \*\*<a href="src/telnyx/types/ai/knowledge/collection_retrieve_documents_params.py">params</a>) -> <a href="./src/telnyx/types/ai/knowledge/collection_retrieve_documents_response.py">CollectionRetrieveDocumentsResponse</a></code>
+
 # AuditEvents
 
 Types:
@@ -1571,6 +1584,7 @@ from telnyx.types.calls import (
     TranscriptionEngineAssemblyaiConfig,
     TranscriptionEngineAzureConfig,
     TranscriptionEngineBConfig,
+    TranscriptionEngineCohereConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
     TranscriptionEngineHumainConfig,
@@ -5253,10 +5267,10 @@ Types:
 ```python
 from telnyx.types import (
     WirelessBlocklist,
+    WirelessWirelessBlocklist,
     WirelessBlocklistCreateResponse,
     WirelessBlocklistRetrieveResponse,
     WirelessBlocklistUpdateResponse,
-    WirelessBlocklistDeleteResponse,
 )
 ```
 
@@ -5265,8 +5279,8 @@ Methods:
 - <code title="post /wireless_blocklists">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">create</a>(\*\*<a href="src/telnyx/types/wireless_blocklist_create_params.py">params</a>) -> <a href="./src/telnyx/types/wireless_blocklist_create_response.py">WirelessBlocklistCreateResponse</a></code>
 - <code title="get /wireless_blocklists/{id}">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">retrieve</a>(id) -> <a href="./src/telnyx/types/wireless_blocklist_retrieve_response.py">WirelessBlocklistRetrieveResponse</a></code>
 - <code title="patch /wireless_blocklists/{id}">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">update</a>(id, \*\*<a href="src/telnyx/types/wireless_blocklist_update_params.py">params</a>) -> <a href="./src/telnyx/types/wireless_blocklist_update_response.py">WirelessBlocklistUpdateResponse</a></code>
-- <code title="get /wireless_blocklists">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">list</a>(\*\*<a href="src/telnyx/types/wireless_blocklist_list_params.py">params</a>) -> <a href="./src/telnyx/types/wireless_blocklist.py">SyncDefaultFlatPagination[WirelessBlocklist]</a></code>
-- <code title="delete /wireless_blocklists/{id}">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">delete</a>(id) -> <a href="./src/telnyx/types/wireless_blocklist_delete_response.py">WirelessBlocklistDeleteResponse</a></code>
+- <code title="get /wireless_blocklists">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">list</a>(\*\*<a href="src/telnyx/types/wireless_blocklist_list_params.py">params</a>) -> <a href="./src/telnyx/types/wireless_wireless_blocklist.py">SyncDefaultFlatPagination[WirelessWirelessBlocklist]</a></code>
+- <code title="delete /wireless_blocklists/{id}">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">delete</a>(id) -> None</code>
 
 # WellKnown
 

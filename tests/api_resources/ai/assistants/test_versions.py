@@ -344,6 +344,7 @@ class TestVersions:
                     "format": "wav",
                     "stop_on_conversation_end": True,
                 },
+                "send_message_history_updates": True,
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
                 "user_idle_reply_secs": 0,
@@ -400,6 +401,14 @@ class TestVersions:
                             "properties": {"id": "bar"},
                             "required": ["id"],
                             "type": "object",
+                        },
+                        "preset_body_fields": {
+                            "account_id": "bar",
+                            "source": "bar",
+                        },
+                        "preset_query_params": {
+                            "caller": "bar",
+                            "channel": "bar",
                         },
                         "query_parameters": {
                             "properties": {"page": "bar"},
@@ -992,6 +1001,7 @@ class TestAsyncVersions:
                     "format": "wav",
                     "stop_on_conversation_end": True,
                 },
+                "send_message_history_updates": True,
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
                 "user_idle_reply_secs": 0,
@@ -1048,6 +1058,14 @@ class TestAsyncVersions:
                             "properties": {"id": "bar"},
                             "required": ["id"],
                             "type": "object",
+                        },
+                        "preset_body_fields": {
+                            "account_id": "bar",
+                            "source": "bar",
+                        },
+                        "preset_query_params": {
+                            "caller": "bar",
+                            "channel": "bar",
                         },
                         "query_parameters": {
                             "properties": {"page": "bar"},

@@ -8,12 +8,22 @@ __all__ = ["SpeechToTextRetrieveTranscriptionParams"]
 
 
 class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
-    input_format: Required[Literal["mp3", "wav"]]
+    input_format: Required[Literal["mp3", "wav", "linear16", "linear32"]]
     """The format of input audio stream."""
 
     transcription_engine: Required[
         Literal[
-            "Azure", "Deepgram", "Google", "Telnyx", "xAI", "Speechmatics", "Soniox", "Parakeet", "Humain", "Reson8"
+            "Azure",
+            "Deepgram",
+            "Google",
+            "Telnyx",
+            "xAI",
+            "Speechmatics",
+            "Soniox",
+            "Parakeet",
+            "Humain",
+            "Reson8",
+            "Cohere",
         ]
     ]
     """The transcription engine to use for processing the audio stream."""
@@ -44,7 +54,12 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
     """
 
     language: str
-    """The language spoken in the audio stream."""
+    """The language spoken in the audio stream.
+
+    For `cohere/ar-stt`, this must be `ar` or `en` — unlike other engines, Cohere
+    does not auto-detect the language, and rejects unsupported values including
+    `auto`; omitting it defaults to `ar`.
+    """
 
     model: Literal[
         "fast",
@@ -66,6 +81,7 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
         "nvidia/parakeet-v3",
         "humain/realtime",
         "reson8/turns",
+        "cohere/ar-stt",
     ]
     """The specific model to use within the selected transcription engine."""
 
@@ -73,4 +89,12 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
     """
     Enable redaction of sensitive information (e.g., PCI data, SSN) from
     transcription results. Supported values depend on the transcription engine.
+    """
+
+    sample_rate: int
+    """Audio sample rate in Hz.
+
+    Required when `input_format` is a raw encoding (`linear16`, `linear32`) — those
+    formats carry no header metadata. Ignored for container formats (`mp3`, `wav`),
+    which self-describe their rate.
     """

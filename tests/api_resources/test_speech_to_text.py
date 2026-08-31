@@ -78,6 +78,7 @@ class TestSpeechToText:
             language="language",
             model="fast",
             redact="redact",
+            sample_rate=0,
         )
         assert speech_to_text is None
 
@@ -174,6 +175,7 @@ class TestAsyncSpeechToText:
             language="language",
             model="fast",
             redact="redact",
+            sample_rate=0,
         )
         assert speech_to_text is None
 

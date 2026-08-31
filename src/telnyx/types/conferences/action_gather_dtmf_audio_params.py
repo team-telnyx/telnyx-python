@@ -63,7 +63,11 @@ class ActionGatherDtmfAudioParams(TypedDict, total=False):
     """Whether to stop the audio playback when a DTMF digit is received."""
 
     terminating_digit: str
-    """Digit that terminates gathering."""
+    """Digit that terminates gathering.
+
+    Set to an empty string to disable the terminating digit entirely, so that a
+    digit such as `#` can be collected as input per `valid_digits`.
+    """
 
     timeout_millis: int
     """Duration in milliseconds to wait for input before timing out."""

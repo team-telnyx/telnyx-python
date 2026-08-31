@@ -7,10 +7,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["WirelessBlocklist"]
+__all__ = ["WirelessWirelessBlocklist"]
 
 
-class WirelessBlocklist(BaseModel):
+class WirelessWirelessBlocklist(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
@@ -19,8 +19,6 @@ class WirelessBlocklist(BaseModel):
 
     name: Optional[str] = None
     """The wireless blocklist name."""
-
-    record_type: Optional[str] = None
 
     type: Optional[Literal["country", "mcc", "plmn"]] = None
     """The type of the wireless blocklist."""

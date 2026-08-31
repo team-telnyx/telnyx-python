@@ -207,8 +207,9 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemoveWirelessBlocklistResponse:
         """
-        This action will asynchronously remove an existing Wireless Blocklist to all the
-        SIMs in the SIM card group.
+        This action asynchronously removes the Wireless Blocklist assigned to a SIM Card
+        Group. The request returns `404` when the SIM Card Group does not exist and
+        `422` when no Wireless Blocklist is assigned.
 
         Args:
           extra_headers: Send extra headers
@@ -288,8 +289,9 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetWirelessBlocklistResponse:
         """
-        This action will asynchronously assign a Wireless Blocklist to all the SIMs in
-        the SIM card group.
+        This action asynchronously assigns a Wireless Blocklist to all SIMs in the SIM
+        Card Group. The request returns `404` when the SIM Card Group does not exist and
+        `422` when the Wireless Blocklist does not exist.
 
         Args:
           wireless_blocklist_id: The identification of the related Wireless Blocklist resource.
@@ -487,8 +489,9 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemoveWirelessBlocklistResponse:
         """
-        This action will asynchronously remove an existing Wireless Blocklist to all the
-        SIMs in the SIM card group.
+        This action asynchronously removes the Wireless Blocklist assigned to a SIM Card
+        Group. The request returns `404` when the SIM Card Group does not exist and
+        `422` when no Wireless Blocklist is assigned.
 
         Args:
           extra_headers: Send extra headers
@@ -568,8 +571,9 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetWirelessBlocklistResponse:
         """
-        This action will asynchronously assign a Wireless Blocklist to all the SIMs in
-        the SIM card group.
+        This action asynchronously assigns a Wireless Blocklist to all SIMs in the SIM
+        Card Group. The request returns `404` when the SIM Card Group does not exist and
+        `422` when the Wireless Blocklist does not exist.
 
         Args:
           wireless_blocklist_id: The identification of the related Wireless Blocklist resource.

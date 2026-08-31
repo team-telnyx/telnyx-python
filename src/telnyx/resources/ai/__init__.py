@@ -56,6 +56,14 @@ from .anthropic import (
     AnthropicResourceWithStreamingResponse,
     AsyncAnthropicResourceWithStreamingResponse,
 )
+from .knowledge import (
+    KnowledgeResource,
+    AsyncKnowledgeResource,
+    KnowledgeResourceWithRawResponse,
+    AsyncKnowledgeResourceWithRawResponse,
+    KnowledgeResourceWithStreamingResponse,
+    AsyncKnowledgeResourceWithStreamingResponse,
+)
 from .assistants import (
     AssistantsResource,
     AsyncAssistantsResource,
@@ -192,6 +200,12 @@ __all__ = [
     "AsyncAnthropicResourceWithRawResponse",
     "AnthropicResourceWithStreamingResponse",
     "AsyncAnthropicResourceWithStreamingResponse",
+    "KnowledgeResource",
+    "AsyncKnowledgeResource",
+    "KnowledgeResourceWithRawResponse",
+    "AsyncKnowledgeResourceWithRawResponse",
+    "KnowledgeResourceWithStreamingResponse",
+    "AsyncKnowledgeResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

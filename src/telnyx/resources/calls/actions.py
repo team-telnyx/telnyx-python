@@ -750,7 +750,8 @@ class ActionsResource(SyncAPIResource):
           minimum_digits: The minimum number of digits to fetch. This parameter has a minimum value of 1.
 
           terminating_digit: The digit used to terminate input if fewer than `maximum_digits` digits have
-              been gathered.
+              been gathered. Set to an empty string to disable the terminating digit entirely,
+              so that a digit such as `#` can be collected as input per `valid_digits`.
 
           timeout_millis: The number of milliseconds to wait to complete the request.
 
@@ -1026,7 +1027,8 @@ class ActionsResource(SyncAPIResource):
           minimum_digits: The minimum number of digits to fetch. This parameter has a minimum value of 1.
 
           terminating_digit: The digit used to terminate input if fewer than `maximum_digits` digits have
-              been gathered.
+              been gathered. Set to an empty string to disable the terminating digit entirely,
+              so that a digit such as `#` can be collected as input per `valid_digits`.
 
           timeout_millis: The number of milliseconds to wait for a DTMF response after file playback ends
               before a replaying the sound file.
@@ -1228,7 +1230,8 @@ class ActionsResource(SyncAPIResource):
               using `basic`, only the `en-US` language and payload type `text` are allowed.
 
           terminating_digit: The digit used to terminate input if fewer than `maximum_digits` digits have
-              been gathered.
+              been gathered. Set to an empty string to disable the terminating digit entirely,
+              so that a digit such as `#` can be collected as input per `valid_digits`.
 
           timeout_millis: The number of milliseconds to wait for a DTMF response after speak ends before a
               replaying the sound file.
@@ -2186,8 +2189,10 @@ class ActionsResource(SyncAPIResource):
 
           participants: A list of participants to add to the conversation when it starts.
 
-          send_message_history_updates: When `true`, a webhook is sent each time the conversation message history is
-              updated.
+          send_message_history_updates: When `true`, a `call.ai_gather.message_history_updated` webhook carrying the
+              full message history is sent each time the conversation message history is
+              updated. The assistant's own `telephony_settings.send_message_history_updates`
+              overrides this value when it is set.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
@@ -3264,6 +3269,7 @@ class ActionsResource(SyncAPIResource):
             "Parakeet",
             "Humain",
             "Reson8",
+            "Cohere",
             "A",
             "B",
         ]
@@ -4858,7 +4864,8 @@ class AsyncActionsResource(AsyncAPIResource):
           minimum_digits: The minimum number of digits to fetch. This parameter has a minimum value of 1.
 
           terminating_digit: The digit used to terminate input if fewer than `maximum_digits` digits have
-              been gathered.
+              been gathered. Set to an empty string to disable the terminating digit entirely,
+              so that a digit such as `#` can be collected as input per `valid_digits`.
 
           timeout_millis: The number of milliseconds to wait to complete the request.
 
@@ -5134,7 +5141,8 @@ class AsyncActionsResource(AsyncAPIResource):
           minimum_digits: The minimum number of digits to fetch. This parameter has a minimum value of 1.
 
           terminating_digit: The digit used to terminate input if fewer than `maximum_digits` digits have
-              been gathered.
+              been gathered. Set to an empty string to disable the terminating digit entirely,
+              so that a digit such as `#` can be collected as input per `valid_digits`.
 
           timeout_millis: The number of milliseconds to wait for a DTMF response after file playback ends
               before a replaying the sound file.
@@ -5336,7 +5344,8 @@ class AsyncActionsResource(AsyncAPIResource):
               using `basic`, only the `en-US` language and payload type `text` are allowed.
 
           terminating_digit: The digit used to terminate input if fewer than `maximum_digits` digits have
-              been gathered.
+              been gathered. Set to an empty string to disable the terminating digit entirely,
+              so that a digit such as `#` can be collected as input per `valid_digits`.
 
           timeout_millis: The number of milliseconds to wait for a DTMF response after speak ends before a
               replaying the sound file.
@@ -6294,8 +6303,10 @@ class AsyncActionsResource(AsyncAPIResource):
 
           participants: A list of participants to add to the conversation when it starts.
 
-          send_message_history_updates: When `true`, a webhook is sent each time the conversation message history is
-              updated.
+          send_message_history_updates: When `true`, a `call.ai_gather.message_history_updated` webhook carrying the
+              full message history is sent each time the conversation message history is
+              updated. The assistant's own `telephony_settings.send_message_history_updates`
+              overrides this value when it is set.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
@@ -7372,6 +7383,7 @@ class AsyncActionsResource(AsyncAPIResource):
             "Parakeet",
             "Humain",
             "Reson8",
+            "Cohere",
             "A",
             "B",
         ]

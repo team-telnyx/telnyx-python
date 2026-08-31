@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import wireless_blocklist_list_params, wireless_blocklist_create_params, wireless_blocklist_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -19,9 +19,8 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.wireless_blocklist import WirelessBlocklist
+from ..types.wireless_wireless_blocklist import WirelessWirelessBlocklist
 from ..types.wireless_blocklist_create_response import WirelessBlocklistCreateResponse
-from ..types.wireless_blocklist_delete_response import WirelessBlocklistDeleteResponse
 from ..types.wireless_blocklist_update_response import WirelessBlocklistUpdateResponse
 from ..types.wireless_blocklist_retrieve_response import WirelessBlocklistRetrieveResponse
 
@@ -183,7 +182,6 @@ class WirelessBlocklistsResource(SyncAPIResource):
         *,
         filter_name: str | Omit = omit,
         filter_type: str | Omit = omit,
-        filter_values: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -192,7 +190,7 @@ class WirelessBlocklistsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[WirelessBlocklist]:
+    ) -> SyncDefaultFlatPagination[WirelessWirelessBlocklist]:
         """
         Get all Wireless Blocklists belonging to the user.
 
@@ -200,8 +198,6 @@ class WirelessBlocklistsResource(SyncAPIResource):
           filter_name: The name of the Wireless Blocklist.
 
           filter_type: When the Private Wireless Gateway was last updated.
-
-          filter_values: Values to filter on (inclusive).
 
           page_number: The page number to load.
 
@@ -217,7 +213,7 @@ class WirelessBlocklistsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/wireless_blocklists",
-            page=SyncDefaultFlatPagination[WirelessBlocklist],
+            page=SyncDefaultFlatPagination[WirelessWirelessBlocklist],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -227,14 +223,13 @@ class WirelessBlocklistsResource(SyncAPIResource):
                     {
                         "filter_name": filter_name,
                         "filter_type": filter_type,
-                        "filter_values": filter_values,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
                     wireless_blocklist_list_params.WirelessBlocklistListParams,
                 ),
             ),
-            model=WirelessBlocklist,
+            model=WirelessWirelessBlocklist,
         )
 
     def delete(
@@ -247,9 +242,12 @@ class WirelessBlocklistsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WirelessBlocklistDeleteResponse:
-        """
-        Permanently deletes the specified wireless blocklist from your account.
+    ) -> None:
+        """Permanently deletes the specified wireless blocklist from your account.
+
+        The
+        request returns `422` when the wireless blocklist is assigned to a SIM Card
+        Group.
 
         Args:
           extra_headers: Send extra headers
@@ -262,12 +260,13 @@ class WirelessBlocklistsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template("/wireless_blocklists/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WirelessBlocklistDeleteResponse,
+            cast_to=NoneType,
         )
 
 
@@ -426,7 +425,6 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         *,
         filter_name: str | Omit = omit,
         filter_type: str | Omit = omit,
-        filter_values: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -435,7 +433,7 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WirelessBlocklist, AsyncDefaultFlatPagination[WirelessBlocklist]]:
+    ) -> AsyncPaginator[WirelessWirelessBlocklist, AsyncDefaultFlatPagination[WirelessWirelessBlocklist]]:
         """
         Get all Wireless Blocklists belonging to the user.
 
@@ -443,8 +441,6 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
           filter_name: The name of the Wireless Blocklist.
 
           filter_type: When the Private Wireless Gateway was last updated.
-
-          filter_values: Values to filter on (inclusive).
 
           page_number: The page number to load.
 
@@ -460,7 +456,7 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/wireless_blocklists",
-            page=AsyncDefaultFlatPagination[WirelessBlocklist],
+            page=AsyncDefaultFlatPagination[WirelessWirelessBlocklist],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -470,14 +466,13 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
                     {
                         "filter_name": filter_name,
                         "filter_type": filter_type,
-                        "filter_values": filter_values,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
                     wireless_blocklist_list_params.WirelessBlocklistListParams,
                 ),
             ),
-            model=WirelessBlocklist,
+            model=WirelessWirelessBlocklist,
         )
 
     async def delete(
@@ -490,9 +485,12 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WirelessBlocklistDeleteResponse:
-        """
-        Permanently deletes the specified wireless blocklist from your account.
+    ) -> None:
+        """Permanently deletes the specified wireless blocklist from your account.
+
+        The
+        request returns `422` when the wireless blocklist is assigned to a SIM Card
+        Group.
 
         Args:
           extra_headers: Send extra headers
@@ -505,12 +503,13 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template("/wireless_blocklists/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WirelessBlocklistDeleteResponse,
+            cast_to=NoneType,
         )
 
 

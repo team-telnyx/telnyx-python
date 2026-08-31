@@ -13,7 +13,10 @@ __all__ = ["Transcription", "Payload", "PayloadTranscriptionData"]
 
 class PayloadTranscriptionData(BaseModel):
     confidence: Optional[float] = None
-    """Speech recognition confidence level."""
+    """Speech recognition confidence level.
+
+    `cohere/ar-stt` returns `null` here rather than omitting the field.
+    """
 
     is_final: Optional[bool] = None
     """When false, it means that this is an interim result."""

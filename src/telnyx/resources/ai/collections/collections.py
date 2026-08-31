@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
-from typing_extensions import Literal
+from typing import Iterable
 
 import httpx
 
@@ -26,12 +25,7 @@ from .settings import (
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.ai import (
-    collection_list_params,
-    collection_create_params,
-    collection_update_params,
-    collection_retrieve_documents_params,
-)
+from ....types.ai import collection_list_params, collection_create_params, collection_update_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -44,7 +38,6 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.ai.collection import Collection
 from ....types.ai.collection_envelope import CollectionEnvelope
 from ....types.ai.collections.source_request_param import SourceRequestParam
-from ....types.ai.collection_retrieve_documents_response import CollectionRetrieveDocumentsResponse
 from ....types.ai.collections.retrieval_settings_wrapper_param import RetrievalSettingsWrapperParam
 
 __all__ = ["CollectionsResource", "AsyncCollectionsResource"]
@@ -339,113 +332,6 @@ class CollectionsResource(SyncAPIResource):
             cast_to=CollectionEnvelope,
         )
 
-    def retrieve_documents(
-        self,
-        slug: str,
-        *,
-        filter: Dict[str, object] | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
-        query: str | Omit = omit,
-        retrieval_type: Literal["vector", "hybrid", "keyword"] | Omit = omit,
-        sources: str | Omit = omit,
-        top_k: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse]:
-        """
-        Runs search over the documents in a collection, ranked by relevance to `query`.
-        The collection's `retrieval_type` setting selects the strategy: `vector`
-        (semantic similarity), `hybrid` (vector similarity fused with keyword matching),
-        or `keyword` (lexical BM25 matching). When `query` is omitted, returns a plain
-        catalog listing of the collection's documents.
-
-        **How it works:**
-
-        1. For `vector` and `hybrid`, the `query` text is embedded into a
-           1024-dimensional vector using the multilingual-e5-large model.
-        2. For `vector`, the embedding is compared against the collection's indexed
-           document chunks using semantic similarity; for `hybrid`, those similarity
-           scores are fused with keyword-match scores; for `keyword`, only lexical BM25
-           matching is applied.
-        3. Results are ranked by `score` (descending) and paginated via `page[number]` /
-           `page[size]`.
-
-        **Authentication:** Requires a Telnyx API key via `Authorization: Bearer <key>`.
-        Results are automatically scoped to your organization and cannot be overridden.
-
-        **Filtering:** Use `filter[field][operator]=value` query parameters to narrow
-        results before search. Supported operators: `eq` (default), `in`, `gte`, `gt`,
-        `lte`, `lt`, `contains`. Metadata fields resolve to `metadata.<field>`.
-
-        **Examples:**
-
-        - `GET /v2/ai/collections/my-collection/documents?query=billing+issue&top_k=10`
-        - `GET /v2/ai/collections/my-collection/documents?query=refund&sources=voice,message`
-        - `GET /v2/ai/collections/my-collection/documents?query=outage&filter[record_created_at][gte]=2026-01-01T00:00:00Z`
-
-        Args:
-          filter: Field filters applied before ranking, using `filter[field][operator]=value`.
-              Supported operators: `eq` (default), `in`, `gte`, `gt`, `lte`, `lt`, `contains`.
-              Known fields: `record_type`, `record_id`, `user_id`, `record_created_at`,
-              `ingested_at`; any other name resolves to a `metadata.<field>` filter. Example:
-              `filter[record_id][eq]=rec_123`.
-
-          page_number: Page number to return (1-based). Defaults to 1.
-
-          page_size: Number of results per page. Defaults to 20.
-
-          query: Natural-language search query. When provided, the text is matched against the
-              collection's document chunks using the collection's `retrieval_type` (vector or
-              hybrid). When omitted, documents are returned as a plain catalog listing.
-
-          retrieval_type: Override the collection's configured retrieval strategy for this request. Echoed
-              back in `meta.retrieval_type`.
-
-          sources: Comma-separated list of source types to restrict the search to. When omitted,
-              all of the collection's sources are searched.
-
-          top_k: Maximum number of ranked results to consider. When omitted, the collection's
-              configured `top_k` setting is used.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not slug:
-            raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
-        return self._get_api_list(
-            path_template("/ai/collections/{slug}/documents", slug=slug),
-            page=SyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
-                        "query": query,
-                        "retrieval_type": retrieval_type,
-                        "sources": sources,
-                        "top_k": top_k,
-                    },
-                    collection_retrieve_documents_params.CollectionRetrieveDocumentsParams,
-                ),
-            ),
-            model=CollectionRetrieveDocumentsResponse,
-        )
-
 
 class AsyncCollectionsResource(AsyncAPIResource):
     """
@@ -736,115 +622,6 @@ class AsyncCollectionsResource(AsyncAPIResource):
             cast_to=CollectionEnvelope,
         )
 
-    def retrieve_documents(
-        self,
-        slug: str,
-        *,
-        filter: Dict[str, object] | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
-        query: str | Omit = omit,
-        retrieval_type: Literal["vector", "hybrid", "keyword"] | Omit = omit,
-        sources: str | Omit = omit,
-        top_k: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        CollectionRetrieveDocumentsResponse, AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse]
-    ]:
-        """
-        Runs search over the documents in a collection, ranked by relevance to `query`.
-        The collection's `retrieval_type` setting selects the strategy: `vector`
-        (semantic similarity), `hybrid` (vector similarity fused with keyword matching),
-        or `keyword` (lexical BM25 matching). When `query` is omitted, returns a plain
-        catalog listing of the collection's documents.
-
-        **How it works:**
-
-        1. For `vector` and `hybrid`, the `query` text is embedded into a
-           1024-dimensional vector using the multilingual-e5-large model.
-        2. For `vector`, the embedding is compared against the collection's indexed
-           document chunks using semantic similarity; for `hybrid`, those similarity
-           scores are fused with keyword-match scores; for `keyword`, only lexical BM25
-           matching is applied.
-        3. Results are ranked by `score` (descending) and paginated via `page[number]` /
-           `page[size]`.
-
-        **Authentication:** Requires a Telnyx API key via `Authorization: Bearer <key>`.
-        Results are automatically scoped to your organization and cannot be overridden.
-
-        **Filtering:** Use `filter[field][operator]=value` query parameters to narrow
-        results before search. Supported operators: `eq` (default), `in`, `gte`, `gt`,
-        `lte`, `lt`, `contains`. Metadata fields resolve to `metadata.<field>`.
-
-        **Examples:**
-
-        - `GET /v2/ai/collections/my-collection/documents?query=billing+issue&top_k=10`
-        - `GET /v2/ai/collections/my-collection/documents?query=refund&sources=voice,message`
-        - `GET /v2/ai/collections/my-collection/documents?query=outage&filter[record_created_at][gte]=2026-01-01T00:00:00Z`
-
-        Args:
-          filter: Field filters applied before ranking, using `filter[field][operator]=value`.
-              Supported operators: `eq` (default), `in`, `gte`, `gt`, `lte`, `lt`, `contains`.
-              Known fields: `record_type`, `record_id`, `user_id`, `record_created_at`,
-              `ingested_at`; any other name resolves to a `metadata.<field>` filter. Example:
-              `filter[record_id][eq]=rec_123`.
-
-          page_number: Page number to return (1-based). Defaults to 1.
-
-          page_size: Number of results per page. Defaults to 20.
-
-          query: Natural-language search query. When provided, the text is matched against the
-              collection's document chunks using the collection's `retrieval_type` (vector or
-              hybrid). When omitted, documents are returned as a plain catalog listing.
-
-          retrieval_type: Override the collection's configured retrieval strategy for this request. Echoed
-              back in `meta.retrieval_type`.
-
-          sources: Comma-separated list of source types to restrict the search to. When omitted,
-              all of the collection's sources are searched.
-
-          top_k: Maximum number of ranked results to consider. When omitted, the collection's
-              configured `top_k` setting is used.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not slug:
-            raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
-        return self._get_api_list(
-            path_template("/ai/collections/{slug}/documents", slug=slug),
-            page=AsyncDefaultFlatPagination[CollectionRetrieveDocumentsResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
-                        "query": query,
-                        "retrieval_type": retrieval_type,
-                        "sources": sources,
-                        "top_k": top_k,
-                    },
-                    collection_retrieve_documents_params.CollectionRetrieveDocumentsParams,
-                ),
-            ),
-            model=CollectionRetrieveDocumentsResponse,
-        )
-
 
 class CollectionsResourceWithRawResponse:
     def __init__(self, collections: CollectionsResource) -> None:
@@ -867,9 +644,6 @@ class CollectionsResourceWithRawResponse:
         )
         self.retrieve_by_id = to_raw_response_wrapper(
             collections.retrieve_by_id,
-        )
-        self.retrieve_documents = to_raw_response_wrapper(
-            collections.retrieve_documents,
         )
 
     @cached_property
@@ -909,9 +683,6 @@ class AsyncCollectionsResourceWithRawResponse:
         self.retrieve_by_id = async_to_raw_response_wrapper(
             collections.retrieve_by_id,
         )
-        self.retrieve_documents = async_to_raw_response_wrapper(
-            collections.retrieve_documents,
-        )
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
@@ -950,9 +721,6 @@ class CollectionsResourceWithStreamingResponse:
         self.retrieve_by_id = to_streamed_response_wrapper(
             collections.retrieve_by_id,
         )
-        self.retrieve_documents = to_streamed_response_wrapper(
-            collections.retrieve_documents,
-        )
 
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
@@ -990,9 +758,6 @@ class AsyncCollectionsResourceWithStreamingResponse:
         )
         self.retrieve_by_id = async_to_streamed_response_wrapper(
             collections.retrieve_by_id,
-        )
-        self.retrieve_documents = async_to_streamed_response_wrapper(
-            collections.retrieve_documents,
         )
 
     @cached_property

@@ -28,7 +28,7 @@ class TestV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
         )
         assert_matches_type(V1MessagesResponse, v1, path=["response"])
 
@@ -43,7 +43,7 @@ class TestV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
             api_key_ref="api_key_ref",
             billing_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             fallback_config={"foo": "bar"},
@@ -75,7 +75,7 @@ class TestV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
         )
 
         assert response.is_closed is True
@@ -94,7 +94,7 @@ class TestV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,7 +121,7 @@ class TestAsyncV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
         )
         assert_matches_type(V1MessagesResponse, v1, path=["response"])
 
@@ -136,7 +136,7 @@ class TestAsyncV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
             api_key_ref="api_key_ref",
             billing_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             fallback_config={"foo": "bar"},
@@ -168,7 +168,7 @@ class TestAsyncV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
         )
 
         assert response.is_closed is True
@@ -187,7 +187,7 @@ class TestAsyncV1:
                     "content": "bar",
                 }
             ],
-            model="zai-org/GLM-5.2",
+            model="zai-org/GLM-5.3-Flash",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

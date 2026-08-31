@@ -11,6 +11,7 @@ from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam
 from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
 from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
 from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
+from .transcription_engine_cohere_config_param import TranscriptionEngineCohereConfigParam
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
 from .transcription_engine_humain_config_param import TranscriptionEngineHumainConfigParam
 from .transcription_engine_reson8_config_param import TranscriptionEngineReson8ConfigParam
@@ -33,6 +34,7 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineParakeetConfigParam,
     TranscriptionEngineHumainConfigParam,
     TranscriptionEngineReson8ConfigParam,
+    TranscriptionEngineCohereConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
@@ -66,6 +68,7 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
         "Parakeet",
         "Humain",
         "Reson8",
+        "Cohere",
         "A",
         "B",
     ]

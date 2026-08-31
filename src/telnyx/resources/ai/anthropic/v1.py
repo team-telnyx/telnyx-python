@@ -93,8 +93,9 @@ class V1Resource(SyncAPIResource):
           messages: The messages to send to the model, following the
               [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) format.
 
-          model: The model to use for generating the response, for example `zai-org/GLM-5.2` or
-              another model available from the Telnyx models endpoint.
+          model: The model to use for generating the response, for example
+              `zai-org/GLM-5.3-Flash` or another model available from the Telnyx models
+              endpoint.
 
           api_key_ref: If you are using an external inference provider, this field allows you to pass
               along a reference to your API key. After creating an
@@ -250,8 +251,9 @@ class AsyncV1Resource(AsyncAPIResource):
           messages: The messages to send to the model, following the
               [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) format.
 
-          model: The model to use for generating the response, for example `zai-org/GLM-5.2` or
-              another model available from the Telnyx models endpoint.
+          model: The model to use for generating the response, for example
+              `zai-org/GLM-5.3-Flash` or another model available from the Telnyx models
+              endpoint.
 
           api_key_ref: If you are using an external inference provider, this field allows you to pass
               along a reference to your API key. After creating an

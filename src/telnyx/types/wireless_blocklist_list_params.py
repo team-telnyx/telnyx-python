@@ -16,9 +16,6 @@ class WirelessBlocklistListParams(TypedDict, total=False):
     filter_type: Annotated[str, PropertyInfo(alias="filter[type]")]
     """When the Private Wireless Gateway was last updated."""
 
-    filter_values: Annotated[str, PropertyInfo(alias="filter[values]")]
-    """Values to filter on (inclusive)."""
-
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
     """The page number to load."""
 

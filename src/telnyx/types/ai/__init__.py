@@ -76,7 +76,6 @@ from .conversation_add_message_params import ConversationAddMessageParams as Con
 from .openai_create_response_response import OpenAICreateResponseResponse as OpenAICreateResponseResponse
 from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams as EmbeddingSimilaritySearchParams
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
-from .collection_retrieve_documents_params import CollectionRetrieveDocumentsParams as CollectionRetrieveDocumentsParams
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam as PostConversationSettingsReqParam
 from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam as TranscriptionEndpointingPlanParam
 from .update_dynamic_variables_tool_params_param import (
@@ -150,9 +149,6 @@ if TYPE_CHECKING:
     )
     from .update_dynamic_variables_tool_params import (
         UpdateDynamicVariablesToolParams as UpdateDynamicVariablesToolParams,
-    )
-    from .collection_retrieve_documents_response import (
-        CollectionRetrieveDocumentsResponse as CollectionRetrieveDocumentsResponse,
     )
     from .inference_embedding_webhook_tool_params import (
         InferenceEmbeddingWebhookToolParams as InferenceEmbeddingWebhookToolParams,
@@ -334,10 +330,6 @@ def __getattr__(name: str) -> Any:
         from .collection_envelope import CollectionEnvelope
 
         return CollectionEnvelope
-    if name == "CollectionRetrieveDocumentsResponse":
-        from .collection_retrieve_documents_response import CollectionRetrieveDocumentsResponse
-
-        return CollectionRetrieveDocumentsResponse
     if name == "Conversation":
         from .conversation import Conversation
 

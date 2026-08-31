@@ -80,6 +80,9 @@ from .action_add_ai_assistant_messages_params import (
 from .transcription_engine_azure_config_param import (
     TranscriptionEngineAzureConfigParam as TranscriptionEngineAzureConfigParam,
 )
+from .transcription_engine_cohere_config_param import (
+    TranscriptionEngineCohereConfigParam as TranscriptionEngineCohereConfigParam,
+)
 from .transcription_engine_google_config_param import (
     TranscriptionEngineGoogleConfigParam as TranscriptionEngineGoogleConfigParam,
 )

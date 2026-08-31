@@ -77,6 +77,14 @@ from .anthropic.anthropic import (
     AnthropicResourceWithStreamingResponse,
     AsyncAnthropicResourceWithStreamingResponse,
 )
+from .knowledge.knowledge import (
+    KnowledgeResource,
+    AsyncKnowledgeResource,
+    KnowledgeResourceWithRawResponse,
+    AsyncKnowledgeResourceWithRawResponse,
+    KnowledgeResourceWithStreamingResponse,
+    AsyncKnowledgeResourceWithStreamingResponse,
+)
 from .assistants.assistants import (
     AssistantsResource,
     AsyncAssistantsResource,
@@ -191,6 +199,10 @@ class AIResource(SyncAPIResource):
     @cached_property
     def anthropic(self) -> AnthropicResource:
         return AnthropicResource(self._client)
+
+    @cached_property
+    def knowledge(self) -> KnowledgeResource:
+        return KnowledgeResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -480,6 +492,10 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def anthropic(self) -> AsyncAnthropicResource:
         return AsyncAnthropicResource(self._client)
+
+    @cached_property
+    def knowledge(self) -> AsyncKnowledgeResource:
+        return AsyncKnowledgeResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -782,6 +798,10 @@ class AIResourceWithRawResponse:
     def anthropic(self) -> AnthropicResourceWithRawResponse:
         return AnthropicResourceWithRawResponse(self._ai.anthropic)
 
+    @cached_property
+    def knowledge(self) -> KnowledgeResourceWithRawResponse:
+        return KnowledgeResourceWithRawResponse(self._ai.knowledge)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -853,6 +873,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def anthropic(self) -> AsyncAnthropicResourceWithRawResponse:
         return AsyncAnthropicResourceWithRawResponse(self._ai.anthropic)
+
+    @cached_property
+    def knowledge(self) -> AsyncKnowledgeResourceWithRawResponse:
+        return AsyncKnowledgeResourceWithRawResponse(self._ai.knowledge)
 
 
 class AIResourceWithStreamingResponse:
@@ -926,6 +950,10 @@ class AIResourceWithStreamingResponse:
     def anthropic(self) -> AnthropicResourceWithStreamingResponse:
         return AnthropicResourceWithStreamingResponse(self._ai.anthropic)
 
+    @cached_property
+    def knowledge(self) -> KnowledgeResourceWithStreamingResponse:
+        return KnowledgeResourceWithStreamingResponse(self._ai.knowledge)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -997,3 +1025,7 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def anthropic(self) -> AsyncAnthropicResourceWithStreamingResponse:
         return AsyncAnthropicResourceWithStreamingResponse(self._ai.anthropic)
+
+    @cached_property
+    def knowledge(self) -> AsyncKnowledgeResourceWithStreamingResponse:
+        return AsyncKnowledgeResourceWithStreamingResponse(self._ai.knowledge)

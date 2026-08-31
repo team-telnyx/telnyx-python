@@ -23,8 +23,9 @@ class V1MessagesParams(TypedDict, total=False):
 
     model: Required[str]
     """
-    The model to use for generating the response, for example `zai-org/GLM-5.2` or
-    another model available from the Telnyx models endpoint.
+    The model to use for generating the response, for example
+    `zai-org/GLM-5.3-Flash` or another model available from the Telnyx models
+    endpoint.
     """
 
     api_key_ref: str
