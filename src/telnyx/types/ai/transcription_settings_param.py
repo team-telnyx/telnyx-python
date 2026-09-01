@@ -24,17 +24,18 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     language. For `deepgram/flux`, supported values are: `auto` (Telnyx language
     detection controls the language hint), `multi` (no language hint), and
     language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
-    and `nl`. For `soniox/stt-rt-v4`, `auto` omits the language hint and lets Soniox
-    auto-detect; ISO 639-1 codes (e.g. `en`, `es`) bias detection toward that
-    language. For `humain/realtime`, supported values are `ar`, `en`, `codeswitch`
-    (Arabic/English code-switching), and `auto` (resolves server-side to
-    code-switching). Unlike other models, `humain/realtime` does not fall back to
-    `auto` when `language` is omitted — omitting it applies `en` instead. For
-    `reson8/turns`, supported values are `auto` (or unset) for automatic language
-    detection, and the language codes `nl`, `en`, `fr`, `fy`, `de`, `it`, `pl`,
-    `pt`, `es`, and `sv` to fix the transcription language. For `cohere/ar-stt`,
-    supported values are `ar` and `en`; unlike other models, this model does not
-    auto-detect and defaults to `ar` when `language` is omitted.
+    and `nl`. For `soniox/stt-rt-v4` and `soniox/stt-rt-v5`, `auto` omits the
+    language hint and lets Soniox auto-detect; ISO 639-1 codes (e.g. `en`, `es`)
+    bias detection toward that language; `settings.language_hints` can pin multiple
+    languages at once instead. For `humain/realtime`, supported values are `ar`,
+    `en`, `codeswitch` (Arabic/English code-switching), and `auto` (resolves
+    server-side to code-switching). Unlike other models, `humain/realtime` does not
+    fall back to `auto` when `language` is omitted — omitting it applies `en`
+    instead. For `reson8/turns`, supported values are `auto` (or unset) for
+    automatic language detection, and the language codes `nl`, `en`, `fr`, `fy`,
+    `de`, `it`, `pl`, `pt`, `es`, and `sv` to fix the transcription language. For
+    `cohere/ar-stt`, supported values are `ar` and `en`; unlike other models, this
+    model does not auto-detect and defaults to `ar` when `language` is omitted.
     """
 
     model: Literal[
@@ -45,6 +46,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
         "assemblyai/universal-streaming",
         "xai/grok-stt",
         "soniox/stt-rt-v4",
+        "soniox/stt-rt-v5",
         "nvidia/parakeet-v3",
         "humain/realtime",
         "reson8/turns",
@@ -63,8 +65,9 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     - `assemblyai/universal-streaming` is a multilingual streaming model with
       configurable turn detection.
     - `xai/grok-stt` is a multilingual Grok STT model.
-    - `soniox/stt-rt-v4` is a multilingual streaming model with automatic language
-      detection and configurable endpointing.
+    - `soniox/stt-rt-v4` and `soniox/stt-rt-v5` are multilingual streaming models
+      with automatic language detection, configurable endpointing, term biasing
+      (`context`), and `language_hints`.
     - `nvidia/parakeet-v3` is a multilingual transcription model with automatic
       language detection.
     - `humain/realtime` is a streaming model with native Arabic and Arabic/English

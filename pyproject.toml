@@ -1,6 +1,6 @@
 [project]
 name = "telnyx"
-version = "4.177.0"
+version = "4.178.0"
 description = "The official Python library for the telnyx API"
 dynamic = ["readme"]
 license = "MIT"
@@ -43,7 +43,7 @@ Repository = "https://github.com/team-telnyx/telnyx-python"
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
 websockets = ["websockets >= 13, < 16"]
-webhooks = ["standardwebhooks >= 1.0.1, < 2"]
+webhooks = ["pynacl >= 1.5, < 2"]
 
 [tool.uv]
 managed = true

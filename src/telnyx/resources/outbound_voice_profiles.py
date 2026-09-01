@@ -96,8 +96,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
 
-          calling_window: (BETA) Specifies the time window and call limits for calls made using this
-              outbound voice profile. Note that all times are UTC in 24-hour clock time.
+          calling_window: Specifies the time window and call limits for calls made using this outbound
+              voice profile. Note that all times are UTC in 24-hour clock time.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 
@@ -224,8 +224,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
 
-          calling_window: (BETA) Specifies the time window and call limits for calls made using this
-              outbound voice profile.
+          calling_window: Specifies the time window and call limits for calls made using this outbound
+              voice profile.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 
@@ -458,8 +458,8 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
 
-          calling_window: (BETA) Specifies the time window and call limits for calls made using this
-              outbound voice profile. Note that all times are UTC in 24-hour clock time.
+          calling_window: Specifies the time window and call limits for calls made using this outbound
+              voice profile. Note that all times are UTC in 24-hour clock time.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 
@@ -586,8 +586,8 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
 
-          calling_window: (BETA) Specifies the time window and call limits for calls made using this
-              outbound voice profile.
+          calling_window: Specifies the time window and call limits for calls made using this outbound
+              voice profile.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 

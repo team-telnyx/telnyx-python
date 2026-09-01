@@ -28,8 +28,8 @@ class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
 
     calling_window: CallingWindow
     """
-    (BETA) Specifies the time window and call limits for calls made using this
-    outbound voice profile.
+    Specifies the time window and call limits for calls made using this outbound
+    voice profile.
     """
 
     concurrent_call_limit: Optional[int]
@@ -80,23 +80,23 @@ class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
 
 class CallingWindow(TypedDict, total=False):
     """
-    (BETA) Specifies the time window and call limits for calls made using this outbound voice profile.
+    Specifies the time window and call limits for calls made using this outbound voice profile.
     """
 
     calls_per_cld: int
     """
-    (BETA) The maximum number of calls that can be initiated to a single called
-    party (CLD) within the calling window. A null value means no limit.
+    The maximum number of calls that can be initiated to a single called party (CLD)
+    within the calling window. A null value means no limit.
     """
 
     end_time: str
     """
-    (BETA) The UTC time of day (in HH:MM format, 24-hour clock) when calls are no
-    longer allowed to start.
+    The UTC time of day (in HH:MM format, 24-hour clock) when calls are no longer
+    allowed to start.
     """
 
     start_time: str
     """
-    (BETA) The UTC time of day (in HH:MM format, 24-hour clock) when calls are
-    allowed to start.
+    The UTC time of day (in HH:MM format, 24-hour clock) when calls are allowed to
+    start.
     """
