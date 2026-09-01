@@ -78,6 +78,8 @@ jobs:
           # it directly makes old commits reappear and starts CHANGELOG from staging's
           # stale copy. The synthetic commit keeps next's code tree, restores release
           # metadata from the production base, and has exactly one parent: that base.
+          # pyproject.toml is mixed ownership: release-please owns only
+          # [project].version, while next owns dependencies and build metadata.
           BASE_BRANCH="${{ github.event.repository.default_branch }}"
           git fetch origin "$BASE_BRANCH:refs/remotes/origin/release-base" next
           RELEASE_BASE=$(git rev-parse refs/remotes/origin/release-base)
@@ -86,8 +88,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          RELEASE_FILES=("CHANGELOG.md" "pyproject.toml" "src/telnyx/_version.py" ".release-please-manifest.json")
+          RELEASE_FILES=("CHANGELOG.md" "src/telnyx/_version.py" ".release-please-manifest.json")
+          RELEASE_PYPROJECT=$(mktemp)
+          git show refs/remotes/origin/release-base:pyproject.toml > "$RELEASE_PYPROJECT"
           git restore --source=refs/remotes/origin/release-base --staged --worktree -- "${RELEASE_FILES[@]}"
+          python3 .github/scripts/copy_pyproject_version.py "$RELEASE_PYPROJECT" pyproject.toml
+          git add pyproject.toml
           SCAN_TREE=$(git write-tree)
           PROMOTE_SUBJECT=$(git log --format=%s --max-count=50 HEAD \
             | grep -m1 -E '^(feat|fix|chore)(\([^)]*\))?!?: promote from staging ' || true)
@@ -192,9 +198,11 @@ jobs:
           git fetch origin "$PR_BRANCH" next "$BASE_BRANCH:refs/remotes/origin/release-base"
           git checkout -f -B "$PR_BRANCH" "origin/$PR_BRANCH"
 
-          # Save version-bump files from the release PR branch (release-please output)
+          # Save release-please output. Keep pyproject.toml only as the source
+          # for [project].version; next remains authoritative for everything else.
           STASH_DIR=$(mktemp -d)
-          for f in CHANGELOG.md pyproject.toml src/telnyx/_version.py .release-please-manifest.json; do
+          cp pyproject.toml "$STASH_DIR/pyproject.toml"
+          for f in CHANGELOG.md src/telnyx/_version.py .release-please-manifest.json; do
             if [ -f "$f" ]; then
               mkdir -p "$STASH_DIR/$(dirname "$f")"
               cp "$f" "$STASH_DIR/$f"
@@ -209,14 +217,17 @@ jobs:
           git read-tree --reset -u origin/next
           git clean -fdx
 
-          # Restore version-bump files from the release PR branch
-          for f in CHANGELOG.md pyproject.toml src/telnyx/_version.py .release-please-manifest.json; do
+          # Restore whole release-owned files, then overlay only the package
+          # version onto next's pyproject.toml.
+          for f in CHANGELOG.md src/telnyx/_version.py .release-please-manifest.json; do
             if [ -f "$STASH_DIR/$f" ]; then
               mkdir -p "$(dirname "$f")"
               cp "$STASH_DIR/$f" "$f"
               git add "$f"
             fi
           done
+          python3 .github/scripts/copy_pyproject_version.py "$STASH_DIR/pyproject.toml" pyproject.toml
+          git add pyproject.toml
           rm -rf "$STASH_DIR"
 
           # Commit if there are changes
