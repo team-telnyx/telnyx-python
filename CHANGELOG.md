@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.178.0](https://github.com/team-telnyx/telnyx-python/compare/v4.177.0...v4.178.0) (2026-09-01)
+
+
+### Features
+
+* promote from staging 58335c8 ([9862a6e](https://github.com/team-telnyx/telnyx-python/commit/9862a6e33b525a91bb4e069c016734d063218bcf))
+
+
+### Bug Fixes
+
+* **ci:** skip post-merge release readiness ([#427](https://github.com/team-telnyx/telnyx-python/issues/427)) ([e4ff205](https://github.com/team-telnyx/telnyx-python/commit/e4ff20506500699a59326fb2ac3bb2ba9411ad14))
+* recognize release overlay policy in next provenance ([#431](https://github.com/team-telnyx/telnyx-python/issues/431)) ([5b12b2a](https://github.com/team-telnyx/telnyx-python/commit/5b12b2a08d196df553768d9c4006ba5d9c155a8d))
+* retain generated Python release dependencies ([#430](https://github.com/team-telnyx/telnyx-python/issues/430)) ([139bc09](https://github.com/team-telnyx/telnyx-python/commit/139bc0944dab5a9d483b6b5724b5503f9d4f13bc))
+
 ## [4.177.0](https://github.com/team-telnyx/telnyx-python/compare/v4.176.0...v4.177.0) (2026-08-31)
 
 

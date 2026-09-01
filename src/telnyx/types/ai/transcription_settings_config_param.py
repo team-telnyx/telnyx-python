@@ -4,10 +4,23 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["TranscriptionSettingsConfigParam"]
 
 
 class TranscriptionSettingsConfigParam(TypedDict, total=False):
+    context: str
+    """Available only for soniox/stt-rt-v4 and soniox/stt-rt-v5.
+
+    A comma-separated list of terms to boost for recognition during transcription,
+    for staff names, building names, or other domain-specific vocabulary. This field
+    may be templated with
+    [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+    using mustache syntax (e.g. `Telnyx,{{customer_name}},VoIP`). Variables are
+    resolved at call time before the value is sent to Soniox.
+    """
+
     eager_eot_threshold: float
     """Available only for deepgram/flux.
 
@@ -17,7 +30,7 @@ class TranscriptionSettingsConfigParam(TypedDict, total=False):
     """
 
     enable_endpoint_detection: bool
-    """Available only for soniox/stt-rt-v4.
+    """Available only for soniox/stt-rt-v4 and soniox/stt-rt-v5.
 
     When true, Soniox emits end-of-utterance events at the cadence configured by
     `max_endpoint_delay_ms`.
@@ -45,7 +58,7 @@ class TranscriptionSettingsConfigParam(TypedDict, total=False):
     """
 
     interim_results: bool
-    """Available only for soniox/stt-rt-v4.
+    """Available only for soniox/stt-rt-v4 and soniox/stt-rt-v5.
 
     When true, Soniox streams interim (non-final) results in addition to finalized
     transcripts.
@@ -62,8 +75,15 @@ class TranscriptionSettingsConfigParam(TypedDict, total=False):
     resolved at call time before the value is sent to the speech-to-text engine.
     """
 
+    language_hints: SequenceNotStr[str]
+    """Available only for soniox/stt-rt-v4 and soniox/stt-rt-v5.
+
+    A list of ISO 639-1 language codes (e.g. `["nl", "fr"]`) to pin recognition to
+    multiple languages at once, overriding the single hint derived from `language`.
+    """
+
     max_endpoint_delay_ms: int
-    """Available only for soniox/stt-rt-v4.
+    """Available only for soniox/stt-rt-v4 and soniox/stt-rt-v5.
 
     Maximum silence (in milliseconds) before Soniox emits an end-of-utterance event.
     Only honored when `enable_endpoint_detection` is true.
