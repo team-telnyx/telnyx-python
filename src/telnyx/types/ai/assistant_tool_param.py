@@ -296,6 +296,16 @@ class TransferTransfer(_TransferTransferReservedKeywords, total=False):
     users should leave this empty and let Telnyx manage it.
     """
 
+    diversion: str
+    """
+    The number the inbound call was received on, forwarded so an unverified
+    non-Telnyx `from` can be used as the caller id -- typically to transfer out as
+    the original caller by pairing `from: "{{telnyx_end_user_target}}"` with
+    `diversion: "{{telnyx_agent_target}}"`. The caller id is only accepted while
+    that number is still on an active inbound call to this `diversion` number, and
+    the `diversion` number must be one you own or have verified.
+    """
+
     voicemail_detection: TransferTransferVoicemailDetection
     """
     Configuration for voicemail detection (AMD - Answering Machine Detection) on the
