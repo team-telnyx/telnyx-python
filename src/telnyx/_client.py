@@ -167,6 +167,7 @@ if TYPE_CHECKING:
         mobile_phone_numbers,
         wireguard_interfaces,
         bulk_sim_card_actions,
+        external_requirements,
         global_ip_assignments,
         messaging_url_domains,
         notification_channels,
@@ -478,6 +479,10 @@ if TYPE_CHECKING:
     from .resources.mobile_phone_numbers.mobile_phone_numbers import (
         MobilePhoneNumbersResource,
         AsyncMobilePhoneNumbersResource,
+    )
+    from .resources.external_requirements.external_requirements import (
+        ExternalRequirementsResource,
+        AsyncExternalRequirementsResource,
     )
     from .resources.credential_connections.credential_connections import (
         CredentialConnectionsResource,
@@ -1847,6 +1852,12 @@ class Telnyx(SyncAPIClient):
         from .resources.meeting_sessions import MeetingSessionsResource
 
         return MeetingSessionsResource(self)
+
+    @cached_property
+    def external_requirements(self) -> ExternalRequirementsResource:
+        from .resources.external_requirements import ExternalRequirementsResource
+
+        return ExternalRequirementsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3348,6 +3359,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncMeetingSessionsResource(self)
 
     @cached_property
+    def external_requirements(self) -> AsyncExternalRequirementsResource:
+        from .resources.external_requirements import AsyncExternalRequirementsResource
+
+        return AsyncExternalRequirementsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4782,6 +4799,12 @@ class TelnyxWithRawResponse:
 
         return MeetingSessionsResourceWithRawResponse(self._client.meeting_sessions)
 
+    @cached_property
+    def external_requirements(self) -> external_requirements.ExternalRequirementsResourceWithRawResponse:
+        from .resources.external_requirements import ExternalRequirementsResourceWithRawResponse
+
+        return ExternalRequirementsResourceWithRawResponse(self._client.external_requirements)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6087,6 +6110,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.meeting_sessions import AsyncMeetingSessionsResourceWithRawResponse
 
         return AsyncMeetingSessionsResourceWithRawResponse(self._client.meeting_sessions)
+
+    @cached_property
+    def external_requirements(self) -> external_requirements.AsyncExternalRequirementsResourceWithRawResponse:
+        from .resources.external_requirements import AsyncExternalRequirementsResourceWithRawResponse
+
+        return AsyncExternalRequirementsResourceWithRawResponse(self._client.external_requirements)
 
 
 class TelnyxWithStreamedResponse:
@@ -7395,6 +7424,12 @@ class TelnyxWithStreamedResponse:
         from .resources.meeting_sessions import MeetingSessionsResourceWithStreamingResponse
 
         return MeetingSessionsResourceWithStreamingResponse(self._client.meeting_sessions)
+
+    @cached_property
+    def external_requirements(self) -> external_requirements.ExternalRequirementsResourceWithStreamingResponse:
+        from .resources.external_requirements import ExternalRequirementsResourceWithStreamingResponse
+
+        return ExternalRequirementsResourceWithStreamingResponse(self._client.external_requirements)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -8753,6 +8788,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.meeting_sessions import AsyncMeetingSessionsResourceWithStreamingResponse
 
         return AsyncMeetingSessionsResourceWithStreamingResponse(self._client.meeting_sessions)
+
+    @cached_property
+    def external_requirements(self) -> external_requirements.AsyncExternalRequirementsResourceWithStreamingResponse:
+        from .resources.external_requirements import AsyncExternalRequirementsResourceWithStreamingResponse
+
+        return AsyncExternalRequirementsResourceWithStreamingResponse(self._client.external_requirements)
 
 
 Client = Telnyx

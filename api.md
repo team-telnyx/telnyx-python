@@ -6780,3 +6780,21 @@ Methods:
 - <code title="post /meeting_sessions/{id}/artifacts">client.meeting_sessions.artifacts.<a href="./src/telnyx/resources/meeting_sessions/artifacts.py">create</a>(id, \*\*<a href="src/telnyx/types/meeting_sessions/artifact_create_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_sessions/meeting_session_artifact_response.py">MeetingSessionArtifactResponse</a></code>
 - <code title="get /meeting_sessions/{id}/artifacts/{artifact_id}">client.meeting_sessions.artifacts.<a href="./src/telnyx/resources/meeting_sessions/artifacts.py">retrieve</a>(artifact_id, \*, id) -> <a href="./src/telnyx/types/meeting_sessions/meeting_session_artifact_response.py">MeetingSessionArtifactResponse</a></code>
 - <code title="get /meeting_sessions/{id}/artifacts">client.meeting_sessions.artifacts.<a href="./src/telnyx/resources/meeting_sessions/artifacts.py">list</a>(id) -> <a href="./src/telnyx/types/meeting_sessions/artifact_list_response.py">ArtifactListResponse</a></code>
+
+# ExternalRequirements
+
+## SubNumberOrders
+
+Types:
+
+```python
+from telnyx.types.external_requirements import (
+    SubNumberOrderRetrieveResponse,
+    SubNumberOrderUpdateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /external_requirements/{regulatory_requirement_id}/sub_number_orders/{sub_number_order_id}">client.external_requirements.sub_number_orders.<a href="./src/telnyx/resources/external_requirements/sub_number_orders.py">retrieve</a>(sub_number_order_id, \*, regulatory_requirement_id) -> <a href="./src/telnyx/types/external_requirements/sub_number_order_retrieve_response.py">SubNumberOrderRetrieveResponse</a></code>
+- <code title="post /external_requirements/{regulatory_requirement_id}/sub_number_orders/{sub_number_order_id}">client.external_requirements.sub_number_orders.<a href="./src/telnyx/resources/external_requirements/sub_number_orders.py">update</a>(sub_number_order_id, \*, regulatory_requirement_id, \*\*<a href="src/telnyx/types/external_requirements/sub_number_order_update_params.py">params</a>) -> <a href="./src/telnyx/types/external_requirements/sub_number_order_update_response.py">SubNumberOrderUpdateResponse</a></code>

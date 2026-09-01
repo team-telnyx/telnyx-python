@@ -1041,6 +1041,14 @@ from .bulk_sim_card_actions import (
     BulkSimCardActionsResourceWithStreamingResponse,
     AsyncBulkSimCardActionsResourceWithStreamingResponse,
 )
+from .external_requirements import (
+    ExternalRequirementsResource,
+    AsyncExternalRequirementsResource,
+    ExternalRequirementsResourceWithRawResponse,
+    AsyncExternalRequirementsResourceWithRawResponse,
+    ExternalRequirementsResourceWithStreamingResponse,
+    AsyncExternalRequirementsResourceWithStreamingResponse,
+)
 from .global_ip_assignments import (
     GlobalIPAssignmentsResource,
     AsyncGlobalIPAssignmentsResource,
@@ -2539,4 +2547,10 @@ __all__ = [
     "AsyncMeetingSessionsResourceWithRawResponse",
     "MeetingSessionsResourceWithStreamingResponse",
     "AsyncMeetingSessionsResourceWithStreamingResponse",
+    "ExternalRequirementsResource",
+    "AsyncExternalRequirementsResource",
+    "ExternalRequirementsResourceWithRawResponse",
+    "AsyncExternalRequirementsResourceWithRawResponse",
+    "ExternalRequirementsResourceWithStreamingResponse",
+    "AsyncExternalRequirementsResourceWithStreamingResponse",
 ]

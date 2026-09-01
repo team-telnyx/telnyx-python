@@ -10,8 +10,8 @@ __all__ = ["ConnectionRtcpSettingsParam"]
 class ConnectionRtcpSettingsParam(TypedDict, total=False):
     capture_enabled: bool
     """
-    BETA - Enable the capture and storage of RTCP messages to create QoS reports on
-    the Telnyx Mission Control Portal.
+    Enable the capture and storage of RTCP messages to create QoS reports on the
+    Telnyx Mission Control Portal.
     """
 
     port: Literal["rtcp-mux", "rtp+1"]
