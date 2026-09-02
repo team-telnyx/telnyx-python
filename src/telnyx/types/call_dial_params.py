@@ -158,6 +158,15 @@ class CallDialParams(TypedDict, total=False):
 
     dialogflow_config: DialogflowConfigParam
 
+    diversion: str
+    """
+    The number the inbound call being transferred was originally received on, in
+    +E164 format. Supplying it lets an unverified non-Telnyx `from` be used as the
+    caller id, provided that number is still on an active inbound call to this
+    `diversion` number for your account. The `diversion` number itself must be one
+    you own or have verified.
+    """
+
     enable_dialogflow: bool
     """Enables Dialogflow for the current call. The default value is false."""
 
