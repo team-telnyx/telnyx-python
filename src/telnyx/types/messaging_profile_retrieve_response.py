@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
-from .messaging_profile import MessagingProfile
+from .messaging_messaging_profile import MessagingMessagingProfile
 
 __all__ = ["MessagingProfileRetrieveResponse"]
 
 
 class MessagingProfileRetrieveResponse(BaseModel):
-    data: Optional[MessagingProfile] = None
+    data: Optional[MessagingMessagingProfile] = None

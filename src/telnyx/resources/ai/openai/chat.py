@@ -60,10 +60,12 @@ class ChatResource(SyncAPIResource):
         logprobs: bool | Omit = omit,
         max_tokens: int | Omit = omit,
         min_p: float | Omit = omit,
+        mode: Literal["preferred", "strict"] | Omit = omit,
         model: str | Omit = omit,
         n: float | Omit = omit,
         presence_penalty: float | Omit = omit,
         reasoning_effort: Literal["none", "minimal", "low", "medium", "high", "xhigh", "max"] | Omit = omit,
+        region: Literal["USA", "EU", "AUS", "UAE"] | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
         seed: int | Omit = omit,
         service_tier: str | Omit = omit,
@@ -129,6 +131,12 @@ class ChatResource(SyncAPIResource):
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be
               in [0, 1].
 
+          mode: How strictly `region` is applied. `preferred` (the default when `region` is set)
+              tries that region first and falls back to another when the model cannot be
+              served there, so a request that would have succeeded still succeeds. `strict`
+              pins the request: it is served from that region or it fails with a 422, never
+              redirected to another region. Requires `region`.
+
           model: The language model to chat with.
 
           n: This will return multiple choices for you instead of a single chat completion.
@@ -140,6 +148,12 @@ class ChatResource(SyncAPIResource):
               response. Supported values: none, minimal, low, medium, high, xhigh, max. Not
               all models support all values; unsupported values are rejected with a 400 error.
               When omitted, reasoning models use their default effort level.
+
+          region: Optional data-residency region the request should be served from, using the same
+              vocabulary as your account's Data Locality setting. Behavior depends on `mode`.
+              Supported for Telnyx-hosted models only: a request routed to an external
+              provider never passes through Telnyx model routing, so a region cannot be
+              enforced for it. Omit for today's latency-based routing.
 
           response_format: Use this is you want to guarantee a JSON output without defining a schema. For
               control over the schema, use `guided_json`.
@@ -203,10 +217,12 @@ class ChatResource(SyncAPIResource):
                     "logprobs": logprobs,
                     "max_tokens": max_tokens,
                     "min_p": min_p,
+                    "mode": mode,
                     "model": model,
                     "n": n,
                     "presence_penalty": presence_penalty,
                     "reasoning_effort": reasoning_effort,
+                    "region": region,
                     "response_format": response_format,
                     "seed": seed,
                     "service_tier": service_tier,
@@ -264,10 +280,12 @@ class AsyncChatResource(AsyncAPIResource):
         logprobs: bool | Omit = omit,
         max_tokens: int | Omit = omit,
         min_p: float | Omit = omit,
+        mode: Literal["preferred", "strict"] | Omit = omit,
         model: str | Omit = omit,
         n: float | Omit = omit,
         presence_penalty: float | Omit = omit,
         reasoning_effort: Literal["none", "minimal", "low", "medium", "high", "xhigh", "max"] | Omit = omit,
+        region: Literal["USA", "EU", "AUS", "UAE"] | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
         seed: int | Omit = omit,
         service_tier: str | Omit = omit,
@@ -333,6 +351,12 @@ class AsyncChatResource(AsyncAPIResource):
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be
               in [0, 1].
 
+          mode: How strictly `region` is applied. `preferred` (the default when `region` is set)
+              tries that region first and falls back to another when the model cannot be
+              served there, so a request that would have succeeded still succeeds. `strict`
+              pins the request: it is served from that region or it fails with a 422, never
+              redirected to another region. Requires `region`.
+
           model: The language model to chat with.
 
           n: This will return multiple choices for you instead of a single chat completion.
@@ -344,6 +368,12 @@ class AsyncChatResource(AsyncAPIResource):
               response. Supported values: none, minimal, low, medium, high, xhigh, max. Not
               all models support all values; unsupported values are rejected with a 400 error.
               When omitted, reasoning models use their default effort level.
+
+          region: Optional data-residency region the request should be served from, using the same
+              vocabulary as your account's Data Locality setting. Behavior depends on `mode`.
+              Supported for Telnyx-hosted models only: a request routed to an external
+              provider never passes through Telnyx model routing, so a region cannot be
+              enforced for it. Omit for today's latency-based routing.
 
           response_format: Use this is you want to guarantee a JSON output without defining a schema. For
               control over the schema, use `guided_json`.
@@ -407,10 +437,12 @@ class AsyncChatResource(AsyncAPIResource):
                     "logprobs": logprobs,
                     "max_tokens": max_tokens,
                     "min_p": min_p,
+                    "mode": mode,
                     "model": model,
                     "n": n,
                     "presence_penalty": presence_penalty,
                     "reasoning_effort": reasoning_effort,
+                    "region": region,
                     "response_format": response_format,
                     "seed": seed,
                     "service_tier": service_tier,

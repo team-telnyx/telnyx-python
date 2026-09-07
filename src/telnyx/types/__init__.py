@@ -176,7 +176,6 @@ from .email_domain_type import EmailDomainType as EmailDomainType
 from .enterprise_public import EnterprisePublic as EnterprisePublic
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .media_list_params import MediaListParams as MediaListParams
-from .messaging_profile import MessagingProfile as MessagingProfile
 from .outbound_ip_param import OutboundIPParam as OutboundIPParam
 from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
@@ -548,6 +547,7 @@ from .ip_connection_update_params import IPConnectionUpdateParams as IPConnectio
 from .ledger_billing_group_report import LedgerBillingGroupReport as LedgerBillingGroupReport
 from .managed_account_list_params import ManagedAccountListParams as ManagedAccountListParams
 from .meeting_session_list_params import MeetingSessionListParams as MeetingSessionListParams
+from .messaging_messaging_profile import MessagingMessagingProfile as MessagingMessagingProfile
 from .netapps_location_17904fcfbc import NetappsLocation17904fcfbc as NetappsLocation17904fcfbc
 from .oauth_grant_delete_response import OAuthGrantDeleteResponse as OAuthGrantDeleteResponse
 from .oauth_oauth_pagination_meta import OAuthOAuthPaginationMeta as OAuthOAuthPaginationMeta
