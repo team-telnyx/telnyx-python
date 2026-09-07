@@ -187,7 +187,6 @@ if TYPE_CHECKING:
         mobile_push_credentials,
         outbound_voice_profiles,
         regulatory_requirements,
-        sip_registration_status,
         traffic_policy_profiles,
         authentication_providers,
         customer_service_records,
@@ -343,7 +342,6 @@ if TYPE_CHECKING:
     from .resources.mobile_push_credentials import MobilePushCredentialsResource, AsyncMobilePushCredentialsResource
     from .resources.outbound_voice_profiles import OutboundVoiceProfilesResource, AsyncOutboundVoiceProfilesResource
     from .resources.regulatory_requirements import RegulatoryRequirementsResource, AsyncRegulatoryRequirementsResource
-    from .resources.sip_registration_status import SipRegistrationStatusResource, AsyncSipRegistrationStatusResource
     from .resources.traffic_policy_profiles import TrafficPolicyProfilesResource, AsyncTrafficPolicyProfilesResource
     from .resources.authentication_providers import (
         AuthenticationProvidersResource,
@@ -1733,13 +1731,6 @@ class Telnyx(SyncAPIClient):
         from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResource
 
         return VoiceSDKCallReportsResource(self)
-
-    @cached_property
-    def sip_registration_status(self) -> SipRegistrationStatusResource:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import SipRegistrationStatusResource
-
-        return SipRegistrationStatusResource(self)
 
     @cached_property
     def call_reasons(self) -> CallReasonsResource:
@@ -3240,13 +3231,6 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncVoiceSDKCallReportsResource(self)
 
     @cached_property
-    def sip_registration_status(self) -> AsyncSipRegistrationStatusResource:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import AsyncSipRegistrationStatusResource
-
-        return AsyncSipRegistrationStatusResource(self)
-
-    @cached_property
     def call_reasons(self) -> AsyncCallReasonsResource:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -4681,13 +4665,6 @@ class TelnyxWithRawResponse:
         return VoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
 
     @cached_property
-    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import SipRegistrationStatusResourceWithRawResponse
-
-        return SipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
-
-    @cached_property
     def call_reasons(self) -> call_reasons.CallReasonsResourceWithRawResponse:
         """
         Static reference values the API accepts: call reasons, document types, rejection types.
@@ -5991,13 +5968,6 @@ class AsyncTelnyxWithRawResponse:
         from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithRawResponse
 
         return AsyncVoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
-
-    @cached_property
-    def sip_registration_status(self) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithRawResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
-
-        return AsyncSipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
 
     @cached_property
     def call_reasons(self) -> call_reasons.AsyncCallReasonsResourceWithRawResponse:
@@ -7305,13 +7275,6 @@ class TelnyxWithStreamedResponse:
         from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithStreamingResponse
 
         return VoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
-
-    @cached_property
-    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
-
-        return SipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
 
     @cached_property
     def call_reasons(self) -> call_reasons.CallReasonsResourceWithStreamingResponse:
@@ -8665,15 +8628,6 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithStreamingResponse
 
         return AsyncVoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
-
-    @cached_property
-    def sip_registration_status(
-        self,
-    ) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithStreamingResponse:
-        """UAC connection operations"""
-        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithStreamingResponse
-
-        return AsyncSipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
 
     @cached_property
     def call_reasons(self) -> call_reasons.AsyncCallReasonsResourceWithStreamingResponse:

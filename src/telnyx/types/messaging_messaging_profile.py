@@ -10,10 +10,10 @@ from .._models import BaseModel
 from .number_pool_settings import NumberPoolSettings
 from .url_shortener_settings import URLShortenerSettings
 
-__all__ = ["MessagingProfile"]
+__all__ = ["MessagingMessagingProfile"]
 
 
-class MessagingProfile(BaseModel):
+class MessagingMessagingProfile(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
@@ -72,12 +72,20 @@ class MessagingProfile(BaseModel):
     """Identifies the type of the resource."""
 
     redaction_enabled: Optional[bool] = None
-    """Indicates whether message content redaction is enabled for this profile."""
+    """Indicates whether message content redaction is enabled for this profile.
+
+    When enabled, message text, MMS media, and the counterparty phone number are
+    redacted in message records and reporting. Requires organization activation —
+    contact support to enable. The field is only present in responses for
+    organizations with redaction access.
+    """
 
     redaction_level: Optional[int] = None
-    """
-    Determines how much information is redacted in messages for privacy or
-    compliance purposes.
+    """Determines how much information is redacted for privacy or compliance purposes.
+
+    Level 1: message records and reporting are redacted, but inbound webhook
+    payloads are not. Level 2 (default): message records, reporting, and inbound
+    webhook payloads are all redacted.
     """
 
     resource_group_id: Optional[str] = None

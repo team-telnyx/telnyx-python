@@ -55,6 +55,22 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     To disable this feature, set the object field to `null`.
     """
 
+    redaction_enabled: bool
+    """
+    Set to true to enable message content redaction on this profile, or false to
+    disable it. Ignored if the organization is not on the redaction allowlist. See
+    the [Message Redaction guide](/docs/messaging/messages/message-redaction) for
+    what is redacted.
+    """
+
+    redaction_level: int
+    """The redaction level to apply when redaction is enabled.
+
+    1: redact message records and reporting only. 2 (default): also redact inbound
+    webhook payloads. See the
+    [Message Redaction guide](/docs/messaging/messages/message-redaction).
+    """
+
     smart_encoding: bool
     """Enables automatic character encoding optimization for SMS messages.
 

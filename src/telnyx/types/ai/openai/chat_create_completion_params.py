@@ -88,6 +88,16 @@ class ChatCreateCompletionParams(TypedDict, total=False):
     in [0, 1].
     """
 
+    mode: Literal["preferred", "strict"]
+    """How strictly `region` is applied.
+
+    `preferred` (the default when `region` is set) tries that region first and falls
+    back to another when the model cannot be served there, so a request that would
+    have succeeded still succeeds. `strict` pins the request: it is served from that
+    region or it fails with a 422, never redirected to another region. Requires
+    `region`.
+    """
+
     model: str
     """The language model to chat with."""
 
@@ -104,6 +114,15 @@ class ChatCreateCompletionParams(TypedDict, total=False):
     generating its response. Supported values: none, minimal, low, medium, high,
     xhigh, max. Not all models support all values; unsupported values are rejected
     with a 400 error. When omitted, reasoning models use their default effort level.
+    """
+
+    region: Literal["USA", "EU", "AUS", "UAE"]
+    """
+    Optional data-residency region the request should be served from, using the same
+    vocabulary as your account's Data Locality setting. Behavior depends on `mode`.
+    Supported for Telnyx-hosted models only: a request routed to an external
+    provider never passes through Telnyx model routing, so a region cannot be
+    enforced for it. Omit for today's latency-based routing.
     """
 
     response_format: ResponseFormat

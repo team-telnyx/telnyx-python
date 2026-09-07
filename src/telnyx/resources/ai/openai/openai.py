@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict
+from typing_extensions import Literal
 
 import httpx
 
@@ -77,8 +78,10 @@ class OpenAIResource(SyncAPIResource):
         conversation: str | Omit = omit,
         input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
+        mode: Literal["preferred", "strict"] | Omit = omit,
         model: str | Omit = omit,
         reasoning: openai_create_response_params.Reasoning | Omit = omit,
+        region: Literal["USA", "EU", "AUS", "UAE"] | Omit = omit,
         service_tier: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -130,8 +133,20 @@ class OpenAIResource(SyncAPIResource):
               `conversation`, send these on the first request that creates the thread;
               subsequent turns can rely on the stored history.
 
+          mode: How strictly `region` is applied. `preferred` (the default when `region` is set)
+              tries that region first and falls back to another when the model cannot be
+              served there, so a request that would have succeeded still succeeds. `strict`
+              pins the request: it is served from that region or it fails with a 422, never
+              redirected to another region. Requires `region`.
+
           model: Model identifier to use for the response, for example `zai-org/GLM-5.1-FP8` or
               another model available from the Telnyx OpenAI-compatible models endpoint.
+
+          region: Optional data-residency region the request should be served from, using the same
+              vocabulary as your account's Data Locality setting. Behavior depends on `mode`.
+              Supported for Telnyx-hosted models only: a request routed to an external
+              provider never passes through Telnyx model routing, so a region cannot be
+              enforced for it. Omit for today's latency-based routing.
 
           service_tier: The service tier to use for this request. Supported values vary by model; use
               `GET /v2/ai/openai/models` and inspect the model's `service_tiers` field. If
@@ -155,8 +170,10 @@ class OpenAIResource(SyncAPIResource):
                     "conversation": conversation,
                     "input": input,
                     "instructions": instructions,
+                    "mode": mode,
                     "model": model,
                     "reasoning": reasoning,
+                    "region": region,
                     "service_tier": service_tier,
                     "stream": stream,
                 },
@@ -241,8 +258,10 @@ class AsyncOpenAIResource(AsyncAPIResource):
         conversation: str | Omit = omit,
         input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
+        mode: Literal["preferred", "strict"] | Omit = omit,
         model: str | Omit = omit,
         reasoning: openai_create_response_params.Reasoning | Omit = omit,
+        region: Literal["USA", "EU", "AUS", "UAE"] | Omit = omit,
         service_tier: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -294,8 +313,20 @@ class AsyncOpenAIResource(AsyncAPIResource):
               `conversation`, send these on the first request that creates the thread;
               subsequent turns can rely on the stored history.
 
+          mode: How strictly `region` is applied. `preferred` (the default when `region` is set)
+              tries that region first and falls back to another when the model cannot be
+              served there, so a request that would have succeeded still succeeds. `strict`
+              pins the request: it is served from that region or it fails with a 422, never
+              redirected to another region. Requires `region`.
+
           model: Model identifier to use for the response, for example `zai-org/GLM-5.1-FP8` or
               another model available from the Telnyx OpenAI-compatible models endpoint.
+
+          region: Optional data-residency region the request should be served from, using the same
+              vocabulary as your account's Data Locality setting. Behavior depends on `mode`.
+              Supported for Telnyx-hosted models only: a request routed to an external
+              provider never passes through Telnyx model routing, so a region cannot be
+              enforced for it. Omit for today's latency-based routing.
 
           service_tier: The service tier to use for this request. Supported values vary by model; use
               `GET /v2/ai/openai/models` and inspect the model's `service_tiers` field. If
@@ -319,8 +350,10 @@ class AsyncOpenAIResource(AsyncAPIResource):
                     "conversation": conversation,
                     "input": input,
                     "instructions": instructions,
+                    "mode": mode,
                     "model": model,
                     "reasoning": reasoning,
+                    "region": region,
                     "service_tier": service_tier,
                     "stream": stream,
                 },

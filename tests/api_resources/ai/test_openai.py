@@ -31,8 +31,10 @@ class TestOpenAI:
             conversation="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             input={"0": "bar"},
             instructions="You are a friendly chatbot.",
+            mode="preferred",
             model="zai-org/GLM-5.1-FP8",
             reasoning={"effort": "none"},
+            region="USA",
             service_tier="service_tier",
             stream=False,
         )
@@ -107,8 +109,10 @@ class TestAsyncOpenAI:
             conversation="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             input={"0": "bar"},
             instructions="You are a friendly chatbot.",
+            mode="preferred",
             model="zai-org/GLM-5.1-FP8",
             reasoning={"effort": "none"},
+            region="USA",
             service_tier="service_tier",
             stream=False,
         )

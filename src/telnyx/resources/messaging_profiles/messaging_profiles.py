@@ -45,10 +45,10 @@ from .autoresp_configs import (
     AutorespConfigsResourceWithStreamingResponse,
     AsyncAutorespConfigsResourceWithStreamingResponse,
 )
-from ...types.messaging_profile import MessagingProfile
 from ...types.shared.short_code import ShortCode
 from ...types.alphanumeric_sender_id import AlphanumericSenderID
 from ...types.number_pool_settings_param import NumberPoolSettingsParam
+from ...types.messaging_messaging_profile import MessagingMessagingProfile
 from ...types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
 from ...types.url_shortener_settings_param import URLShortenerSettingsParam
 from ...types.messaging_profile_create_response import MessagingProfileCreateResponse
@@ -266,6 +266,8 @@ class MessagingProfilesResource(SyncAPIResource):
         mobile_only: bool | Omit = omit,
         name: str | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        redaction_enabled: bool | Omit = omit,
+        redaction_level: int | Omit = omit,
         smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         v1_secret: str | Omit = omit,
@@ -311,6 +313,15 @@ class MessagingProfilesResource(SyncAPIResource):
               and toll free numbers assigned to the messaging profile.
 
               To disable this feature, set the object field to `null`.
+
+          redaction_enabled: Set to true to enable message content redaction on this profile, or false to
+              disable it. Ignored if the organization is not on the redaction allowlist. See
+              the [Message Redaction guide](/docs/messaging/messages/message-redaction) for
+              what is redacted.
+
+          redaction_level: The redaction level to apply when redaction is enabled. 1: redact message
+              records and reporting only. 2 (default): also redact inbound webhook payloads.
+              See the [Message Redaction guide](/docs/messaging/messages/message-redaction).
 
           smart_encoding: Enables automatic character encoding optimization for SMS messages. When
               enabled, the system automatically selects the most efficient encoding (GSM-7 or
@@ -366,6 +377,8 @@ class MessagingProfilesResource(SyncAPIResource):
                     "mobile_only": mobile_only,
                     "name": name,
                     "number_pool_settings": number_pool_settings,
+                    "redaction_enabled": redaction_enabled,
+                    "redaction_level": redaction_level,
                     "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "v1_secret": v1_secret,
@@ -396,7 +409,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MessagingProfile]:
+    ) -> SyncDefaultFlatPagination[MessagingMessagingProfile]:
         """Lists messaging profiles owned by the authenticated account.
 
         Apply the
@@ -419,7 +432,7 @@ class MessagingProfilesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_profiles",
-            page=SyncDefaultFlatPagination[MessagingProfile],
+            page=SyncDefaultFlatPagination[MessagingMessagingProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -436,7 +449,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     messaging_profile_list_params.MessagingProfileListParams,
                 ),
             ),
-            model=MessagingProfile,
+            model=MessagingMessagingProfile,
         )
 
     def delete(
@@ -877,6 +890,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         mobile_only: bool | Omit = omit,
         name: str | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        redaction_enabled: bool | Omit = omit,
+        redaction_level: int | Omit = omit,
         smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         v1_secret: str | Omit = omit,
@@ -922,6 +937,15 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
               and toll free numbers assigned to the messaging profile.
 
               To disable this feature, set the object field to `null`.
+
+          redaction_enabled: Set to true to enable message content redaction on this profile, or false to
+              disable it. Ignored if the organization is not on the redaction allowlist. See
+              the [Message Redaction guide](/docs/messaging/messages/message-redaction) for
+              what is redacted.
+
+          redaction_level: The redaction level to apply when redaction is enabled. 1: redact message
+              records and reporting only. 2 (default): also redact inbound webhook payloads.
+              See the [Message Redaction guide](/docs/messaging/messages/message-redaction).
 
           smart_encoding: Enables automatic character encoding optimization for SMS messages. When
               enabled, the system automatically selects the most efficient encoding (GSM-7 or
@@ -977,6 +1001,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "mobile_only": mobile_only,
                     "name": name,
                     "number_pool_settings": number_pool_settings,
+                    "redaction_enabled": redaction_enabled,
+                    "redaction_level": redaction_level,
                     "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "v1_secret": v1_secret,
@@ -1007,7 +1033,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessagingProfile, AsyncDefaultFlatPagination[MessagingProfile]]:
+    ) -> AsyncPaginator[MessagingMessagingProfile, AsyncDefaultFlatPagination[MessagingMessagingProfile]]:
         """Lists messaging profiles owned by the authenticated account.
 
         Apply the
@@ -1030,7 +1056,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_profiles",
-            page=AsyncDefaultFlatPagination[MessagingProfile],
+            page=AsyncDefaultFlatPagination[MessagingMessagingProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1047,7 +1073,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     messaging_profile_list_params.MessagingProfileListParams,
                 ),
             ),
-            model=MessagingProfile,
+            model=MessagingMessagingProfile,
         )
 
     async def delete(
