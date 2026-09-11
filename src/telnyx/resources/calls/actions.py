@@ -3921,6 +3921,7 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        diversion: str | Omit = omit,
         early_media: bool | Omit = omit,
         from_: str | Omit = omit,
         from_display_name: str | Omit = omit,
@@ -4017,6 +4018,12 @@ class ActionsResource(SyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           custom_headers: Custom headers to be added to the SIP INVITE.
+
+          diversion: The number the inbound call being transferred was originally received on, in
+              +E164 format. Supplying it lets an unverified non-Telnyx `from` be used as the
+              caller id, provided that number is still on an active inbound call to this
+              `diversion` number for your account. The `diversion` number itself must be one
+              you own or have verified.
 
           early_media: If set to false, early media will not be passed to the originating leg.
 
@@ -4164,6 +4171,7 @@ class ActionsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "custom_headers": custom_headers,
+                    "diversion": diversion,
                     "early_media": early_media,
                     "from_": from_,
                     "from_display_name": from_display_name,
@@ -8037,6 +8045,7 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        diversion: str | Omit = omit,
         early_media: bool | Omit = omit,
         from_: str | Omit = omit,
         from_display_name: str | Omit = omit,
@@ -8133,6 +8142,12 @@ class AsyncActionsResource(AsyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           custom_headers: Custom headers to be added to the SIP INVITE.
+
+          diversion: The number the inbound call being transferred was originally received on, in
+              +E164 format. Supplying it lets an unverified non-Telnyx `from` be used as the
+              caller id, provided that number is still on an active inbound call to this
+              `diversion` number for your account. The `diversion` number itself must be one
+              you own or have verified.
 
           early_media: If set to false, early media will not be passed to the originating leg.
 
@@ -8280,6 +8295,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "custom_headers": custom_headers,
+                    "diversion": diversion,
                     "early_media": early_media,
                     "from_": from_,
                     "from_display_name": from_display_name,

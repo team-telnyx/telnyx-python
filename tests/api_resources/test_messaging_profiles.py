@@ -10,8 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    MessagingProfile,
     AlphanumericSenderID,
+    MessagingMessagingProfile,
     MessagingProfileCreateResponse,
     MessagingProfileDeleteResponse,
     MessagingProfileUpdateResponse,
@@ -171,6 +171,8 @@ class TestMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": True,
             },
+            redaction_enabled=True,
+            redaction_level=0,
             smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
@@ -224,7 +226,7 @@ class TestMessagingProfiles:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list()
-        assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -236,7 +238,7 @@ class TestMessagingProfiles:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -246,7 +248,7 @@ class TestMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -256,7 +258,9 @@ class TestMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -667,6 +671,8 @@ class TestAsyncMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": True,
             },
+            redaction_enabled=True,
+            redaction_level=0,
             smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
@@ -720,7 +726,7 @@ class TestAsyncMessagingProfiles:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list()
-        assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -732,7 +738,7 @@ class TestAsyncMessagingProfiles:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -742,7 +748,7 @@ class TestAsyncMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -752,7 +758,9 @@ class TestAsyncMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[MessagingMessagingProfile], messaging_profile, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

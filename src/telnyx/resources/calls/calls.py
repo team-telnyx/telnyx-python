@@ -100,6 +100,7 @@ class CallsResource(SyncAPIResource):
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
+        diversion: str | Omit = omit,
         enable_dialogflow: bool | Omit = omit,
         from_display_name: str | Omit = omit,
         link_to: str | Omit = omit,
@@ -262,6 +263,12 @@ class CallsResource(SyncAPIResource):
               party is streamed to a detection service that analyzes whether the voice is
               AI-generated. Results are delivered via the `call.deepfake_detection.result`
               webhook.
+
+          diversion: The number the inbound call being transferred was originally received on, in
+              +E164 format. Supplying it lets an unverified non-Telnyx `from` be used as the
+              caller id, provided that number is still on an active inbound call to this
+              `diversion` number for your account. The `diversion` number itself must be one
+              you own or have verified.
 
           enable_dialogflow: Enables Dialogflow for the current call. The default value is false.
 
@@ -451,6 +458,7 @@ class CallsResource(SyncAPIResource):
                     "custom_headers": custom_headers,
                     "deepfake_detection": deepfake_detection,
                     "dialogflow_config": dialogflow_config,
+                    "diversion": diversion,
                     "enable_dialogflow": enable_dialogflow,
                     "from_display_name": from_display_name,
                     "link_to": link_to,
@@ -589,6 +597,7 @@ class AsyncCallsResource(AsyncAPIResource):
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
+        diversion: str | Omit = omit,
         enable_dialogflow: bool | Omit = omit,
         from_display_name: str | Omit = omit,
         link_to: str | Omit = omit,
@@ -751,6 +760,12 @@ class AsyncCallsResource(AsyncAPIResource):
               party is streamed to a detection service that analyzes whether the voice is
               AI-generated. Results are delivered via the `call.deepfake_detection.result`
               webhook.
+
+          diversion: The number the inbound call being transferred was originally received on, in
+              +E164 format. Supplying it lets an unverified non-Telnyx `from` be used as the
+              caller id, provided that number is still on an active inbound call to this
+              `diversion` number for your account. The `diversion` number itself must be one
+              you own or have verified.
 
           enable_dialogflow: Enables Dialogflow for the current call. The default value is false.
 
@@ -940,6 +955,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "custom_headers": custom_headers,
                     "deepfake_detection": deepfake_detection,
                     "dialogflow_config": dialogflow_config,
+                    "diversion": diversion,
                     "enable_dialogflow": enable_dialogflow,
                     "from_display_name": from_display_name,
                     "link_to": link_to,

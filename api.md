@@ -2788,6 +2788,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    MessagingMessagingProfile,
     MessagingProfile,
     NumberPoolSettings,
     URLShortenerSettings,
@@ -2804,7 +2805,7 @@ Methods:
 - <code title="post /messaging_profiles">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">create</a>(\*\*<a href="src/telnyx/types/messaging_profile_create_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_create_response.py">MessagingProfileCreateResponse</a></code>
 - <code title="get /messaging_profiles/{id}">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">retrieve</a>(messaging_profile_id) -> <a href="./src/telnyx/types/messaging_profile_retrieve_response.py">MessagingProfileRetrieveResponse</a></code>
 - <code title="patch /messaging_profiles/{id}">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">update</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_update_response.py">MessagingProfileUpdateResponse</a></code>
-- <code title="get /messaging_profiles">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list</a>(\*\*<a href="src/telnyx/types/messaging_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile.py">SyncDefaultFlatPagination[MessagingProfile]</a></code>
+- <code title="get /messaging_profiles">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list</a>(\*\*<a href="src/telnyx/types/messaging_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_messaging_profile.py">SyncDefaultFlatPagination[MessagingMessagingProfile]</a></code>
 - <code title="delete /messaging_profiles/{id}">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">delete</a>(messaging_profile_id) -> <a href="./src/telnyx/types/messaging_profile_delete_response.py">MessagingProfileDeleteResponse</a></code>
 - <code title="get /messaging_profiles/{id}/alphanumeric_sender_ids">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_alphanumeric_sender_ids</a>(id, \*\*<a href="src/telnyx/types/messaging_profile_list_alphanumeric_sender_ids_params.py">params</a>) -> <a href="./src/telnyx/types/alphanumeric_sender_id.py">SyncDefaultFlatPagination[AlphanumericSenderID]</a></code>
 - <code title="get /messaging_profiles/{id}/phone_numbers">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_phone_numbers</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_list_phone_numbers_params.py">params</a>) -> <a href="./src/telnyx/types/shared/phone_number_with_messaging_settings.py">SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]</a></code>
@@ -6152,18 +6153,6 @@ Methods:
 
 - <code title="get /voice_sdk_call_reports/{call_id}">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">retrieve</a>(call_id) -> <a href="./src/telnyx/types/voice_sdk_call_report_retrieve_response.py">VoiceSDKCallReportRetrieveResponse</a></code>
 - <code title="get /voice_sdk_call_reports">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">list</a>(\*\*<a href="src/telnyx/types/voice_sdk_call_report_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_sdk_call_report.py">SyncDefaultFlatPagination[VoiceSDKCallReport]</a></code>
-
-# SipRegistrationStatus
-
-Types:
-
-```python
-from telnyx.types import SipRegistrationStatusRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /sip_registration_status">client.sip_registration_status.<a href="./src/telnyx/resources/sip_registration_status.py">retrieve</a>(\*\*<a href="src/telnyx/types/sip_registration_status_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/sip_registration_status_retrieve_response.py">SipRegistrationStatusRetrieveResponse</a></code>
 
 # CallReasons
 

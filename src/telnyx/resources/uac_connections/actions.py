@@ -53,10 +53,11 @@ class ActionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionCheckRegistrationStatusResponse:
-        """
-        Checks the registration status for a UAC connection (`registration_status`) as
-        well as the timestamp for the last SIP registration event
-        (`registration_status_updated_at`).
+        """Returns the live SIP registration status for a UAC connection.
+
+        Reports whether
+        the endpoint is currently registered (`status`) and the timestamp of the last
+        SIP registration event (`last_registration`).
 
         Args:
           extra_headers: Send extra headers
@@ -111,10 +112,11 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionCheckRegistrationStatusResponse:
-        """
-        Checks the registration status for a UAC connection (`registration_status`) as
-        well as the timestamp for the last SIP registration event
-        (`registration_status_updated_at`).
+        """Returns the live SIP registration status for a UAC connection.
+
+        Reports whether
+        the endpoint is currently registered (`status`) and the timestamp of the last
+        SIP registration event (`last_registration`).
 
         Args:
           extra_headers: Send extra headers
