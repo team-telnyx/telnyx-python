@@ -8,6 +8,7 @@ from typing_extensions import Literal, TypedDict
 from .._types import SequenceNotStr
 from .number_pool_settings_param import NumberPoolSettingsParam
 from .url_shortener_settings_param import URLShortenerSettingsParam
+from .messaging_profile_features_param import MessagingProfileFeaturesParam
 
 __all__ = ["MessagingProfileUpdateParams"]
 
@@ -33,6 +34,13 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
 
     enabled: bool
     """Specifies whether the messaging profile is enabled or not."""
+
+    features: Optional[MessagingProfileFeaturesParam]
+    """
+    Telnyx product features the messaging customer can enable on the messaging
+    profile. Keys map to individual feature flags; unknown keys are accepted and
+    preserved for forward compatibility with rolling deployments.
+    """
 
     mms_fall_back_to_sms: bool
     """enables SMS fallback for MMS messages."""

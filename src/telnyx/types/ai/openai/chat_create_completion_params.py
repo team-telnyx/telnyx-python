@@ -13,6 +13,10 @@ __all__ = [
     "Message",
     "MessageContentTextAndImageArray",
     "ResponseFormat",
+    "ResponseFormatResponseFormatText",
+    "ResponseFormatResponseFormatJsonObject",
+    "ResponseFormatResponseFormatJsonSchemaParam",
+    "ResponseFormatResponseFormatJsonSchemaParamJsonSchema",
     "Tool",
     "ToolFunction",
     "ToolFunctionFunction",
@@ -55,18 +59,6 @@ class ChatCreateCompletionParams(TypedDict, total=False):
 
     frequency_penalty: float
     """Higher values will penalize the model from repeating the same output tokens."""
-
-    guided_choice: SequenceNotStr[str]
-    """If specified, the output will be exactly one of the choices."""
-
-    guided_json: Dict[str, object]
-    """Must be a valid JSON schema.
-
-    If specified, the output will follow the JSON schema.
-    """
-
-    guided_regex: str
-    """If specified, the output will follow the regex pattern."""
 
     length_penalty: float
     """This is used with `use_beam_search` to prefer shorter or longer completions."""
@@ -126,9 +118,12 @@ class ChatCreateCompletionParams(TypedDict, total=False):
     """
 
     response_format: ResponseFormat
-    """Use this is you want to guarantee a JSON output without defining a schema.
+    """Controls the format of the model output.
 
-    For control over the schema, use `guided_json`.
+    `json_object` guarantees valid JSON output without defining a schema;
+    `json_schema` constrains the output to the JSON schema you supply via the
+    `json_schema` property and is the supported way to get guaranteed structured
+    output on Telnyx-hosted models.
     """
 
     seed: int
@@ -207,13 +202,69 @@ class Message(TypedDict, total=False):
     role: Required[Literal["system", "user", "assistant", "tool"]]
 
 
-class ResponseFormat(TypedDict, total=False):
-    """Use this is you want to guarantee a JSON output without defining a schema.
+class ResponseFormatResponseFormatText(TypedDict, total=False):
+    """Plain text output."""
 
-    For control over the schema, use `guided_json`.
+    type: Required[Literal["text"]]
+
+
+class ResponseFormatResponseFormatJsonObject(TypedDict, total=False):
+    """JSON mode: the model output is valid JSON, without a schema."""
+
+    type: Required[Literal["json_object"]]
+
+
+class ResponseFormatResponseFormatJsonSchemaParamJsonSchema(TypedDict, total=False):
+    """The JSON schema configuration, required when `type` is `json_schema`.
+
+    Matches the [OpenAI structured outputs](https://platform.openai.com/docs/guides/structured-outputs) `json_schema` response format.
     """
 
-    type: Required[Literal["text", "json_object"]]
+    name: Required[str]
+    """The name of the response format. Used for clarity only."""
+
+    description: str
+    """
+    A description of what the response format is for, typically used to guide the
+    model.
+    """
+
+    schema: Dict[str, object]
+    """The JSON schema the model output must conform to.
+
+    A valid [JSON Schema](https://json-schema.org) object, e.g. a Pydantic
+    `model_json_schema()` export.
+    """
+
+    strict: bool
+    """Enables strict schema adherence when supported by the model.
+
+    If the generated output does not match the provided schema, the request fails
+    instead of returning non-conformant output.
+    """
+
+
+class ResponseFormatResponseFormatJsonSchemaParam(TypedDict, total=False):
+    """
+    Structured output: the model output is constrained to the JSON schema supplied in `json_schema`.
+    """
+
+    json_schema: Required[ResponseFormatResponseFormatJsonSchemaParamJsonSchema]
+    """The JSON schema configuration, required when `type` is `json_schema`.
+
+    Matches the
+    [OpenAI structured outputs](https://platform.openai.com/docs/guides/structured-outputs)
+    `json_schema` response format.
+    """
+
+    type: Required[Literal["json_schema"]]
+
+
+ResponseFormat: TypeAlias = Union[
+    ResponseFormatResponseFormatText,
+    ResponseFormatResponseFormatJsonObject,
+    ResponseFormatResponseFormatJsonSchemaParam,
+]
 
 
 class ToolFunctionFunction(TypedDict, total=False):

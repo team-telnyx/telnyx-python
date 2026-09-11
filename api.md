@@ -330,6 +330,8 @@ from telnyx.types import (
     OutboundMessage,
     ReplacedLinkClick,
     Transcription,
+    WhatsappAccountUpdate,
+    WhatsappMessageEcho,
     CallAIGatherEndedWebhookEvent,
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
@@ -606,6 +608,7 @@ Types:
 from telnyx.types.ai import (
     ArithmeticExpression,
     Assistant,
+    AssistantA2AAgent,
     AssistantIntegration,
     AssistantMcpServer,
     AssistantTool,
@@ -2790,6 +2793,7 @@ Types:
 from telnyx.types import (
     MessagingMessagingProfile,
     MessagingProfile,
+    MessagingProfileFeatures,
     NumberPoolSettings,
     URLShortenerSettings,
     MessagingProfileCreateResponse,
@@ -5737,6 +5741,7 @@ from telnyx.types.whatsapp import (
     PhoneNumberListResponse,
     PhoneNumberGetResponse,
     PhoneNumberRetrieveConversationWindowResponse,
+    PhoneNumberRetrievePhoneNumberResponse,
 )
 ```
 
@@ -5747,6 +5752,7 @@ Methods:
 - <code title="get /whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">get</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_get_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_get_response.py">PhoneNumberGetResponse</a></code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/resend_verification">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">resend_verification</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_resend_verification_params.py">params</a>) -> None</code>
 - <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversation_window">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">retrieve_conversation_window</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_retrieve_conversation_window_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_retrieve_conversation_window_response.py">PhoneNumberRetrieveConversationWindowResponse</a></code>
+- <code title="get /whatsapp/phone_numbers/{phone_number}">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">retrieve_phone_number</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_number_retrieve_phone_number_response.py">PhoneNumberRetrievePhoneNumberResponse</a></code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/verify">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">verify</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_verify_params.py">params</a>) -> None</code>
 
 ### CallingSettings
@@ -6787,3 +6793,27 @@ Methods:
 
 - <code title="get /external_requirements/{regulatory_requirement_id}/sub_number_orders/{sub_number_order_id}">client.external_requirements.sub_number_orders.<a href="./src/telnyx/resources/external_requirements/sub_number_orders.py">retrieve</a>(sub_number_order_id, \*, regulatory_requirement_id) -> <a href="./src/telnyx/types/external_requirements/sub_number_order_retrieve_response.py">SubNumberOrderRetrieveResponse</a></code>
 - <code title="post /external_requirements/{regulatory_requirement_id}/sub_number_orders/{sub_number_order_id}">client.external_requirements.sub_number_orders.<a href="./src/telnyx/resources/external_requirements/sub_number_orders.py">update</a>(sub_number_order_id, \*, regulatory_requirement_id, \*\*<a href="src/telnyx/types/external_requirements/sub_number_order_update_params.py">params</a>) -> <a href="./src/telnyx/types/external_requirements/sub_number_order_update_response.py">SubNumberOrderUpdateResponse</a></code>
+
+# Compute
+
+## Funcs
+
+Types:
+
+```python
+from telnyx.types.compute import (
+    FunctionsObservabilityPaginationMeta,
+    LogsMeta,
+    FuncRetrieveLogsResponse,
+    FuncRetrieveMetricAggregatesResponse,
+    FuncRetrieveRevisionsResponse,
+    FuncRetrieveShipInspectionResponse,
+)
+```
+
+Methods:
+
+- <code title="get /compute/funcs/{id}/logs">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_logs</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_logs_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_logs_response.py">FuncRetrieveLogsResponse</a></code>
+- <code title="get /compute/funcs/{id}/metric_aggregates">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_metric_aggregates</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_metric_aggregates_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_metric_aggregates_response.py">FuncRetrieveMetricAggregatesResponse</a></code>
+- <code title="get /compute/funcs/{id}/revisions">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_revisions</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_revisions_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_revisions_response.py">FuncRetrieveRevisionsResponse</a></code>
+- <code title="get /compute/funcs/{id}/ship_inspection">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_ship_inspection</a>(id) -> <a href="./src/telnyx/types/compute/func_retrieve_ship_inspection_response.py">FuncRetrieveShipInspectionResponse</a></code>
