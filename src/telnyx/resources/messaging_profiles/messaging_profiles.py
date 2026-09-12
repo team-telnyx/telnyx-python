@@ -51,6 +51,7 @@ from ...types.number_pool_settings_param import NumberPoolSettingsParam
 from ...types.messaging_messaging_profile import MessagingMessagingProfile
 from ...types.messaging_metrics_time_frame import MessagingMetricsTimeFrame
 from ...types.url_shortener_settings_param import URLShortenerSettingsParam
+from ...types.messaging_profile_features_param import MessagingProfileFeaturesParam
 from ...types.messaging_profile_create_response import MessagingProfileCreateResponse
 from ...types.messaging_profile_delete_response import MessagingProfileDeleteResponse
 from ...types.messaging_profile_update_response import MessagingProfileUpdateResponse
@@ -100,6 +101,7 @@ class MessagingProfilesResource(SyncAPIResource):
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
         health_webhook_url: Optional[str] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
@@ -140,6 +142,10 @@ class MessagingProfilesResource(SyncAPIResource):
           daily_spend_limit_enabled: Whether to enforce the value configured by `daily_spend_limit`.
 
           enabled: Specifies whether the messaging profile is enabled or not.
+
+          features: Telnyx product features the messaging customer can enable on the messaging
+              profile. Keys map to individual feature flags; unknown keys are accepted and
+              preserved for forward compatibility with rolling deployments.
 
           health_webhook_url: A URL to receive health check webhooks for numbers in this profile.
 
@@ -196,6 +202,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
+                    "features": features,
                     "health_webhook_url": health_webhook_url,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
@@ -261,6 +268,7 @@ class MessagingProfilesResource(SyncAPIResource):
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
@@ -299,6 +307,10 @@ class MessagingProfilesResource(SyncAPIResource):
           daily_spend_limit_enabled: Whether to enforce the value configured by `daily_spend_limit`.
 
           enabled: Specifies whether the messaging profile is enabled or not.
+
+          features: Telnyx product features the messaging customer can enable on the messaging
+              profile. Keys map to individual feature flags; unknown keys are accepted and
+              preserved for forward compatibility with rolling deployments.
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -372,6 +384,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
+                    "features": features,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
@@ -724,6 +737,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
         health_webhook_url: Optional[str] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
@@ -764,6 +778,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
           daily_spend_limit_enabled: Whether to enforce the value configured by `daily_spend_limit`.
 
           enabled: Specifies whether the messaging profile is enabled or not.
+
+          features: Telnyx product features the messaging customer can enable on the messaging
+              profile. Keys map to individual feature flags; unknown keys are accepted and
+              preserved for forward compatibility with rolling deployments.
 
           health_webhook_url: A URL to receive health check webhooks for numbers in this profile.
 
@@ -820,6 +838,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
+                    "features": features,
                     "health_webhook_url": health_webhook_url,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
@@ -885,6 +904,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
@@ -923,6 +943,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
           daily_spend_limit_enabled: Whether to enforce the value configured by `daily_spend_limit`.
 
           enabled: Specifies whether the messaging profile is enabled or not.
+
+          features: Telnyx product features the messaging customer can enable on the messaging
+              profile. Keys map to individual feature flags; unknown keys are accepted and
+              preserved for forward compatibility with rolling deployments.
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -996,6 +1020,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
+                    "features": features,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,

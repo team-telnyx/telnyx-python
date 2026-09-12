@@ -17,6 +17,7 @@ from ..observability_req_param import ObservabilityReqParam
 from ..messaging_settings_param import MessagingSettingsParam
 from ..telephony_settings_param import TelephonySettingsParam
 from ..fallback_config_req_param import FallbackConfigReqParam
+from ..assistant_a2_a_agent_param import AssistantA2AAgentParam
 from ..assistant_mcp_server_param import AssistantMcpServerParam
 from ..assistant_integration_param import AssistantIntegrationParam
 from ..conversation_flow_req_param import ConversationFlowReqParam
@@ -29,6 +30,20 @@ __all__ = ["VersionUpdateParams"]
 
 class VersionUpdateParams(TypedDict, total=False):
     assistant_id: Required[str]
+
+    a2a_agents: Iterable[AssistantA2AAgentParam]
+    """A2A agents this assistant can delegate to.
+
+    Tools are not stored here: at the start of every conversation each agent's card
+    is fetched and one tool is derived per skill the card advertises, named
+    `a2a_<name>_<skill_id>`. The following limits are not enforced when the
+    assistant is saved, and anything past them is dropped when the conversation
+    starts: 64 agents per assistant, 64 skills per card, 128 derived tools per
+    assistant, and a 6 second budget for all card fetches combined. An agent whose
+    card cannot be fetched costs the assistant that capability for the conversation;
+    it does not fail the call. Omit this field to leave the assistant's agents
+    unchanged; send an empty array to remove them all.
+    """
 
     conversation_flow: ConversationFlowReqParam
     """Conversation flow as supplied by API clients (create / update).

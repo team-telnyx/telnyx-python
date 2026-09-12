@@ -42,6 +42,9 @@ if TYPE_CHECKING:
     from .user_data_retrieve_response import UserDataRetrieveResponse as UserDataRetrieveResponse
     from .business_account_list_response import BusinessAccountListResponse as BusinessAccountListResponse
     from .business_account_retrieve_response import BusinessAccountRetrieveResponse as BusinessAccountRetrieveResponse
+    from .phone_number_retrieve_phone_number_response import (
+        PhoneNumberRetrievePhoneNumberResponse as PhoneNumberRetrievePhoneNumberResponse,
+    )
     from .phone_number_retrieve_conversation_window_response import (
         PhoneNumberRetrieveConversationWindowResponse as PhoneNumberRetrieveConversationWindowResponse,
     )
@@ -72,6 +75,10 @@ def __getattr__(name: str) -> Any:
         from .phone_number_retrieve_conversation_window_response import PhoneNumberRetrieveConversationWindowResponse
 
         return PhoneNumberRetrieveConversationWindowResponse
+    if name == "PhoneNumberRetrievePhoneNumberResponse":
+        from .phone_number_retrieve_phone_number_response import PhoneNumberRetrievePhoneNumberResponse
+
+        return PhoneNumberRetrievePhoneNumberResponse
     if name == "WhatsappUserData":
         from .whatsapp_user_data import WhatsappUserData
 
