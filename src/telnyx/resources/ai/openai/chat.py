@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -53,9 +53,6 @@ class ChatResource(SyncAPIResource):
         early_stopping: bool | Omit = omit,
         enable_thinking: bool | Omit = omit,
         frequency_penalty: float | Omit = omit,
-        guided_choice: SequenceNotStr[str] | Omit = omit,
-        guided_json: Dict[str, object] | Omit = omit,
-        guided_regex: str | Omit = omit,
         length_penalty: float | Omit = omit,
         logprobs: bool | Omit = omit,
         max_tokens: int | Omit = omit,
@@ -112,13 +109,6 @@ class ChatResource(SyncAPIResource):
 
           frequency_penalty: Higher values will penalize the model from repeating the same output tokens.
 
-          guided_choice: If specified, the output will be exactly one of the choices.
-
-          guided_json: Must be a valid JSON schema. If specified, the output will follow the JSON
-              schema.
-
-          guided_regex: If specified, the output will follow the regex pattern.
-
           length_penalty: This is used with `use_beam_search` to prefer shorter or longer completions.
 
           logprobs: Whether to return log probabilities of the output tokens or not. If true,
@@ -155,8 +145,10 @@ class ChatResource(SyncAPIResource):
               provider never passes through Telnyx model routing, so a region cannot be
               enforced for it. Omit for today's latency-based routing.
 
-          response_format: Use this is you want to guarantee a JSON output without defining a schema. For
-              control over the schema, use `guided_json`.
+          response_format: Controls the format of the model output. `json_object` guarantees valid JSON
+              output without defining a schema; `json_schema` constrains the output to the
+              JSON schema you supply via the `json_schema` property and is the supported way
+              to get guaranteed structured output on Telnyx-hosted models.
 
           seed: If specified, the system will make a best effort to sample deterministically,
               such that repeated requests with the same `seed` and parameters should return
@@ -210,9 +202,6 @@ class ChatResource(SyncAPIResource):
                     "early_stopping": early_stopping,
                     "enable_thinking": enable_thinking,
                     "frequency_penalty": frequency_penalty,
-                    "guided_choice": guided_choice,
-                    "guided_json": guided_json,
-                    "guided_regex": guided_regex,
                     "length_penalty": length_penalty,
                     "logprobs": logprobs,
                     "max_tokens": max_tokens,
@@ -273,9 +262,6 @@ class AsyncChatResource(AsyncAPIResource):
         early_stopping: bool | Omit = omit,
         enable_thinking: bool | Omit = omit,
         frequency_penalty: float | Omit = omit,
-        guided_choice: SequenceNotStr[str] | Omit = omit,
-        guided_json: Dict[str, object] | Omit = omit,
-        guided_regex: str | Omit = omit,
         length_penalty: float | Omit = omit,
         logprobs: bool | Omit = omit,
         max_tokens: int | Omit = omit,
@@ -332,13 +318,6 @@ class AsyncChatResource(AsyncAPIResource):
 
           frequency_penalty: Higher values will penalize the model from repeating the same output tokens.
 
-          guided_choice: If specified, the output will be exactly one of the choices.
-
-          guided_json: Must be a valid JSON schema. If specified, the output will follow the JSON
-              schema.
-
-          guided_regex: If specified, the output will follow the regex pattern.
-
           length_penalty: This is used with `use_beam_search` to prefer shorter or longer completions.
 
           logprobs: Whether to return log probabilities of the output tokens or not. If true,
@@ -375,8 +354,10 @@ class AsyncChatResource(AsyncAPIResource):
               provider never passes through Telnyx model routing, so a region cannot be
               enforced for it. Omit for today's latency-based routing.
 
-          response_format: Use this is you want to guarantee a JSON output without defining a schema. For
-              control over the schema, use `guided_json`.
+          response_format: Controls the format of the model output. `json_object` guarantees valid JSON
+              output without defining a schema; `json_schema` constrains the output to the
+              JSON schema you supply via the `json_schema` property and is the supported way
+              to get guaranteed structured output on Telnyx-hosted models.
 
           seed: If specified, the system will make a best effort to sample deterministically,
               such that repeated requests with the same `seed` and parameters should return
@@ -430,9 +411,6 @@ class AsyncChatResource(AsyncAPIResource):
                     "early_stopping": early_stopping,
                     "enable_thinking": enable_thinking,
                     "frequency_penalty": frequency_penalty,
-                    "guided_choice": guided_choice,
-                    "guided_json": guided_json,
-                    "guided_regex": guided_regex,
                     "length_penalty": length_penalty,
                     "logprobs": logprobs,
                     "max_tokens": max_tokens,

@@ -382,10 +382,17 @@ class EmailMessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailMessageBatchResponse:
-        """
-        Creates up to 50 email messages in a single request.
+        """Creates up to 1,000 email messages in a single request.
+
+        Each message is
+        validated and sent independently; per-message failures do not affect other
+        messages in the batch. All responses use 207 Multi-Status.
 
         Args:
+          messages: Array of email messages to send. Up to 1,000 messages per batch request. Each
+              message is validated and sent independently; per-message failures do not affect
+              other messages in the batch.
+
           sandbox_mode: Applies sandbox mode to all messages in the batch. Overrides any per-message
               sandbox_mode in the messages array.
 
@@ -882,10 +889,17 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailMessageBatchResponse:
-        """
-        Creates up to 50 email messages in a single request.
+        """Creates up to 1,000 email messages in a single request.
+
+        Each message is
+        validated and sent independently; per-message failures do not affect other
+        messages in the batch. All responses use 207 Multi-Status.
 
         Args:
+          messages: Array of email messages to send. Up to 1,000 messages per batch request. Each
+              message is validated and sent independently; per-message failures do not affect
+              other messages in the batch.
+
           sandbox_mode: Applies sandbox mode to all messages in the batch. Overrides any per-message
               sandbox_mode in the messages array.
 

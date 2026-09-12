@@ -313,6 +313,7 @@ from .uac_external_settings import UacExternalSettings as UacExternalSettings
 from .uac_internal_settings import UacInternalSettings as UacInternalSettings
 from .voice_design_response import VoiceDesignResponse as VoiceDesignResponse
 from .voice_sdk_call_report import VoiceSDKCallReport as VoiceSDKCallReport
+from .whatsapp_message_echo import WhatsappMessageEcho as WhatsappMessageEcho
 from .alphanumeric_sender_id import AlphanumericSenderID as AlphanumericSenderID
 from .call_event_list_params import CallEventListParams as CallEventListParams
 from .call_streaming_started import CallStreamingStarted as CallStreamingStarted
@@ -397,6 +398,7 @@ from .tracking_settings_param import TrackingSettingsParam as TrackingSettingsPa
 from .transcribe_client_event import TranscribeClientEvent as TranscribeClientEvent
 from .transcribe_server_event import TranscribeServerEvent as TranscribeServerEvent
 from .voice_clone_list_params import VoiceCloneListParams as VoiceCloneListParams
+from .whatsapp_account_update import WhatsappAccountUpdate as WhatsappAccountUpdate
 from .whatsapp_location_param import WhatsappLocationParam as WhatsappLocationParam
 from .whatsapp_reaction_param import WhatsappReactionParam as WhatsappReactionParam
 from .attachment_request_param import AttachmentRequestParam as AttachmentRequestParam
@@ -501,6 +503,7 @@ from .global_ip_assignment_param import GlobalIPAssignmentParam as GlobalIPAssig
 from .infringement_claim_wrapped import InfringementClaimWrapped as InfringementClaimWrapped
 from .list_retrieve_all_response import ListRetrieveAllResponse as ListRetrieveAllResponse
 from .messaging_error_0b38e7044b import MessagingError0b38e7044b as MessagingError0b38e7044b
+from .messaging_profile_features import MessagingProfileFeatures as MessagingProfileFeatures
 from .number_order_create_params import NumberOrderCreateParams as NumberOrderCreateParams
 from .number_order_list_response import NumberOrderListResponse as NumberOrderListResponse
 from .number_order_update_params import NumberOrderUpdateParams as NumberOrderUpdateParams
@@ -792,6 +795,7 @@ from .inexplicit_number_order_response import InexplicitNumberOrderResponse as I
 from .integration_secret_create_params import IntegrationSecretCreateParams as IntegrationSecretCreateParams
 from .inventory_coverage_list_response import InventoryCoverageListResponse as InventoryCoverageListResponse
 from .message_send_short_code_response import MessageSendShortCodeResponse as MessageSendShortCodeResponse
+from .messaging_profile_features_param import MessagingProfileFeaturesParam as MessagingProfileFeaturesParam
 from .messaging_url_domain_list_params import MessagingURLDomainListParams as MessagingURLDomainListParams
 from .network_list_interfaces_response import NetworkListInterfacesResponse as NetworkListInterfacesResponse
 from .notification_channel_list_params import NotificationChannelListParams as NotificationChannelListParams

@@ -9,6 +9,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .number_pool_settings import NumberPoolSettings
 from .url_shortener_settings import URLShortenerSettings
+from .messaging_profile_features import MessagingProfileFeatures
 
 __all__ = ["MessagingMessagingProfile"]
 
@@ -40,6 +41,13 @@ class MessagingMessagingProfile(BaseModel):
 
     enabled: Optional[bool] = None
     """Specifies whether the messaging profile is enabled or not."""
+
+    features: Optional[MessagingProfileFeatures] = None
+    """
+    Telnyx product features the messaging customer can enable on the messaging
+    profile. Keys map to individual feature flags; unknown keys are accepted and
+    preserved for forward compatibility with rolling deployments.
+    """
 
     health_webhook_url: Optional[str] = None
     """DEPRECATED: health check url service checking"""

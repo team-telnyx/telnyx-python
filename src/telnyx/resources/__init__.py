@@ -144,6 +144,14 @@ from .balance import (
     BalanceResourceWithStreamingResponse,
     AsyncBalanceResourceWithStreamingResponse,
 )
+from .compute import (
+    ComputeResource,
+    AsyncComputeResource,
+    ComputeResourceWithRawResponse,
+    AsyncComputeResourceWithRawResponse,
+    ComputeResourceWithStreamingResponse,
+    AsyncComputeResourceWithStreamingResponse,
+)
 from .payment import (
     PaymentResource,
     AsyncPaymentResource,
@@ -2539,4 +2547,10 @@ __all__ = [
     "AsyncExternalRequirementsResourceWithRawResponse",
     "ExternalRequirementsResourceWithStreamingResponse",
     "AsyncExternalRequirementsResourceWithStreamingResponse",
+    "ComputeResource",
+    "AsyncComputeResource",
+    "ComputeResourceWithRawResponse",
+    "AsyncComputeResourceWithRawResponse",
+    "ComputeResourceWithStreamingResponse",
+    "AsyncComputeResourceWithStreamingResponse",
 ]

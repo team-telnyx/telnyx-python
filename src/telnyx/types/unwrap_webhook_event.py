@@ -10,9 +10,11 @@ from .fax_queued import FaxQueued
 from .fax_delivered import FaxDelivered
 from .fax_media_processed import FaxMediaProcessed
 from .fax_sending_started import FaxSendingStarted
+from .whatsapp_message_echo import WhatsappMessageEcho
 from .campaign_status_update import CampaignStatusUpdate
 from .call_cost_webhook_event import CallCostWebhookEvent
 from .call_hold_webhook_event import CallHoldWebhookEvent
+from .whatsapp_account_update import WhatsappAccountUpdate
 from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
 from .call_unhold_webhook_event import CallUnholdWebhookEvent
@@ -155,4 +157,6 @@ UnwrapWebhookEvent: TypeAlias = Union[
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,
     TranscriptionWebhookEvent,
+    WhatsappAccountUpdate,
+    WhatsappMessageEcho,
 ]

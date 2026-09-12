@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.180.0](https://github.com/team-telnyx/telnyx-python/compare/v4.179.0...v4.180.0) (2026-09-12)
+
+
+### Features
+
+* promote from staging 4a49676 ([10bc47a](https://github.com/team-telnyx/telnyx-python/commit/10bc47adf5243a0f687b3641d315fcf675f62a06))
+
 ## [4.179.0](https://github.com/team-telnyx/telnyx-python/compare/v4.178.0...v4.179.0) (2026-09-07)
 
 
