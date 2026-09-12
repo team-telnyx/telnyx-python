@@ -4,20 +4,28 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .payments import (
+    PaymentsResource,
+    AsyncPaymentsResource,
+    PaymentsResourceWithRawResponse,
+    AsyncPaymentsResourceWithRawResponse,
+    PaymentsResourceWithStreamingResponse,
+    AsyncPaymentsResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.x402 import credit_account_settle_params, credit_account_create_quote_params
-from ..._base_client import make_request_options
-from ...types.x402.credit_account_settle_response import CreditAccountSettleResponse
-from ...types.x402.credit_account_create_quote_response import CreditAccountCreateQuoteResponse
+from ....types.x402 import credit_account_settle_params, credit_account_create_quote_params
+from ...._base_client import make_request_options
+from ....types.x402.credit_account_settle_response import CreditAccountSettleResponse
+from ....types.x402.credit_account_create_quote_response import CreditAccountCreateQuoteResponse
 
 __all__ = ["CreditAccountResource", "AsyncCreditAccountResource"]
 
@@ -27,6 +35,14 @@ class CreditAccountResource(SyncAPIResource):
 
     Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
     """
+
+    @cached_property
+    def payments(self) -> PaymentsResource:
+        """Operations for x402 cryptocurrency payment transactions.
+
+        Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
+        """
+        return PaymentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CreditAccountResourceWithRawResponse:
@@ -141,6 +157,14 @@ class AsyncCreditAccountResource(AsyncAPIResource):
 
     Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
     """
+
+    @cached_property
+    def payments(self) -> AsyncPaymentsResource:
+        """Operations for x402 cryptocurrency payment transactions.
+
+        Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
+        """
+        return AsyncPaymentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCreditAccountResourceWithRawResponse:
@@ -261,6 +285,14 @@ class CreditAccountResourceWithRawResponse:
             credit_account.settle,
         )
 
+    @cached_property
+    def payments(self) -> PaymentsResourceWithRawResponse:
+        """Operations for x402 cryptocurrency payment transactions.
+
+        Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
+        """
+        return PaymentsResourceWithRawResponse(self._credit_account.payments)
+
 
 class AsyncCreditAccountResourceWithRawResponse:
     def __init__(self, credit_account: AsyncCreditAccountResource) -> None:
@@ -272,6 +304,14 @@ class AsyncCreditAccountResourceWithRawResponse:
         self.settle = async_to_raw_response_wrapper(
             credit_account.settle,
         )
+
+    @cached_property
+    def payments(self) -> AsyncPaymentsResourceWithRawResponse:
+        """Operations for x402 cryptocurrency payment transactions.
+
+        Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
+        """
+        return AsyncPaymentsResourceWithRawResponse(self._credit_account.payments)
 
 
 class CreditAccountResourceWithStreamingResponse:
@@ -285,6 +325,14 @@ class CreditAccountResourceWithStreamingResponse:
             credit_account.settle,
         )
 
+    @cached_property
+    def payments(self) -> PaymentsResourceWithStreamingResponse:
+        """Operations for x402 cryptocurrency payment transactions.
+
+        Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
+        """
+        return PaymentsResourceWithStreamingResponse(self._credit_account.payments)
+
 
 class AsyncCreditAccountResourceWithStreamingResponse:
     def __init__(self, credit_account: AsyncCreditAccountResource) -> None:
@@ -296,3 +344,11 @@ class AsyncCreditAccountResourceWithStreamingResponse:
         self.settle = async_to_streamed_response_wrapper(
             credit_account.settle,
         )
+
+    @cached_property
+    def payments(self) -> AsyncPaymentsResourceWithStreamingResponse:
+        """Operations for x402 cryptocurrency payment transactions.
+
+        Fund your Telnyx account using USDC stablecoin payments via the x402 protocol.
+        """
+        return AsyncPaymentsResourceWithStreamingResponse(self._credit_account.payments)
