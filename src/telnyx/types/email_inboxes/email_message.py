@@ -11,6 +11,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 from .email_address import EmailAddress
 from ..message_event import MessageEvent
+from ..suppressed_recipient import SuppressedRecipient
 
 __all__ = ["EmailMessage", "Attachment"]
 
@@ -112,4 +113,13 @@ class EmailMessage(BaseModel):
     """Present when a scheduled_at value was stored.
 
     Persists even after the scheduled send has been processed or cancelled.
+    """
+
+    suppressed: Optional[List[SuppressedRecipient]] = None
+    """Recipients excluded from delivery by suppression checks, with reasons.
+
+    On batch items, present when that item had suppressed recipients; all other
+    recipients of the item still receive the message. For single sends this
+    information appears at the top level of the response instead (see
+    EmailMessageResponse.suppressed).
     """

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .credit_account import (
+from .credit_account.credit_account import (
     CreditAccountResource,
     AsyncCreditAccountResource,
     CreditAccountResourceWithRawResponse,

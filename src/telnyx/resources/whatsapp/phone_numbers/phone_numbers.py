@@ -51,6 +51,7 @@ from .conversational_components import (
 )
 from ....types.whatsapp.phone_number_get_response import PhoneNumberGetResponse
 from ....types.whatsapp.phone_number_list_response import PhoneNumberListResponse
+from ....types.whatsapp.phone_number_retrieve_phone_number_response import PhoneNumberRetrievePhoneNumberResponse
 from ....types.whatsapp.phone_number_retrieve_conversation_window_response import (
     PhoneNumberRetrieveConversationWindowResponse,
 )
@@ -296,6 +297,41 @@ class PhoneNumbersResource(SyncAPIResource):
                 ),
             ),
             cast_to=PhoneNumberRetrieveConversationWindowResponse,
+        )
+
+    def retrieve_phone_number(
+        self,
+        phone_number: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberRetrievePhoneNumberResponse:
+        """
+        Returns one WhatsApp phone number linked to the authenticated Telnyx account.
+        For a coexistence number in the `syncing` state, the response includes
+        `sync_progress`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return self._get(
+            path_template("/whatsapp/phone_numbers/{phone_number}", phone_number=phone_number),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PhoneNumberRetrievePhoneNumberResponse,
         )
 
     def verify(
@@ -575,6 +611,41 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             cast_to=PhoneNumberRetrieveConversationWindowResponse,
         )
 
+    async def retrieve_phone_number(
+        self,
+        phone_number: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberRetrievePhoneNumberResponse:
+        """
+        Returns one WhatsApp phone number linked to the authenticated Telnyx account.
+        For a coexistence number in the `syncing` state, the response includes
+        `sync_progress`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return await self._get(
+            path_template("/whatsapp/phone_numbers/{phone_number}", phone_number=phone_number),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PhoneNumberRetrievePhoneNumberResponse,
+        )
+
     async def verify(
         self,
         phone_number: str,
@@ -631,6 +702,9 @@ class PhoneNumbersResourceWithRawResponse:
         self.retrieve_conversation_window = to_raw_response_wrapper(
             phone_numbers.retrieve_conversation_window,
         )
+        self.retrieve_phone_number = to_raw_response_wrapper(
+            phone_numbers.retrieve_phone_number,
+        )
         self.verify = to_raw_response_wrapper(
             phone_numbers.verify,
         )
@@ -669,6 +743,9 @@ class AsyncPhoneNumbersResourceWithRawResponse:
         )
         self.retrieve_conversation_window = async_to_raw_response_wrapper(
             phone_numbers.retrieve_conversation_window,
+        )
+        self.retrieve_phone_number = async_to_raw_response_wrapper(
+            phone_numbers.retrieve_phone_number,
         )
         self.verify = async_to_raw_response_wrapper(
             phone_numbers.verify,
@@ -709,6 +786,9 @@ class PhoneNumbersResourceWithStreamingResponse:
         self.retrieve_conversation_window = to_streamed_response_wrapper(
             phone_numbers.retrieve_conversation_window,
         )
+        self.retrieve_phone_number = to_streamed_response_wrapper(
+            phone_numbers.retrieve_phone_number,
+        )
         self.verify = to_streamed_response_wrapper(
             phone_numbers.verify,
         )
@@ -747,6 +827,9 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
         )
         self.retrieve_conversation_window = async_to_streamed_response_wrapper(
             phone_numbers.retrieve_conversation_window,
+        )
+        self.retrieve_phone_number = async_to_streamed_response_wrapper(
+            phone_numbers.retrieve_phone_number,
         )
         self.verify = async_to_streamed_response_wrapper(
             phone_numbers.verify,

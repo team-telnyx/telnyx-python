@@ -55,6 +55,7 @@ if TYPE_CHECKING:
         queues,
         actions,
         balance,
+        compute,
         payment,
         porting,
         pricing,
@@ -271,6 +272,7 @@ if TYPE_CHECKING:
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
     from .resources.advanced_orders import AdvancedOrdersResource, AsyncAdvancedOrdersResource
     from .resources.charges_summary import ChargesSummaryResource, AsyncChargesSummaryResource
+    from .resources.compute.compute import ComputeResource, AsyncComputeResource
     from .resources.email_templates import EmailTemplatesResource, AsyncEmailTemplatesResource
     from .resources.global_ip_usage import GlobalIPUsageResource, AsyncGlobalIPUsageResource
     from .resources.payment.payment import PaymentResource, AsyncPaymentResource
@@ -1851,6 +1853,12 @@ class Telnyx(SyncAPIClient):
         return ExternalRequirementsResource(self)
 
     @cached_property
+    def compute(self) -> ComputeResource:
+        from .resources.compute import ComputeResource
+
+        return ComputeResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3349,6 +3357,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncExternalRequirementsResource(self)
 
     @cached_property
+    def compute(self) -> AsyncComputeResource:
+        from .resources.compute import AsyncComputeResource
+
+        return AsyncComputeResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4782,6 +4796,12 @@ class TelnyxWithRawResponse:
 
         return ExternalRequirementsResourceWithRawResponse(self._client.external_requirements)
 
+    @cached_property
+    def compute(self) -> compute.ComputeResourceWithRawResponse:
+        from .resources.compute import ComputeResourceWithRawResponse
+
+        return ComputeResourceWithRawResponse(self._client.compute)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6086,6 +6106,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.external_requirements import AsyncExternalRequirementsResourceWithRawResponse
 
         return AsyncExternalRequirementsResourceWithRawResponse(self._client.external_requirements)
+
+    @cached_property
+    def compute(self) -> compute.AsyncComputeResourceWithRawResponse:
+        from .resources.compute import AsyncComputeResourceWithRawResponse
+
+        return AsyncComputeResourceWithRawResponse(self._client.compute)
 
 
 class TelnyxWithStreamedResponse:
@@ -7393,6 +7419,12 @@ class TelnyxWithStreamedResponse:
         from .resources.external_requirements import ExternalRequirementsResourceWithStreamingResponse
 
         return ExternalRequirementsResourceWithStreamingResponse(self._client.external_requirements)
+
+    @cached_property
+    def compute(self) -> compute.ComputeResourceWithStreamingResponse:
+        from .resources.compute import ComputeResourceWithStreamingResponse
+
+        return ComputeResourceWithStreamingResponse(self._client.compute)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -8748,6 +8780,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.external_requirements import AsyncExternalRequirementsResourceWithStreamingResponse
 
         return AsyncExternalRequirementsResourceWithStreamingResponse(self._client.external_requirements)
+
+    @cached_property
+    def compute(self) -> compute.AsyncComputeResourceWithStreamingResponse:
+        from .resources.compute import AsyncComputeResourceWithStreamingResponse
+
+        return AsyncComputeResourceWithStreamingResponse(self._client.compute)
 
 
 Client = Telnyx

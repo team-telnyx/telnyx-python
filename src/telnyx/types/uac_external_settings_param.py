@@ -38,7 +38,13 @@ class UacExternalSettingsParam(TypedDict, total=False):
     """
 
     password: str
-    """The SIP password used for digest authentication with the external SIP peer."""
+    """The SIP password used for digest authentication with the external SIP peer.
+
+    For primary accounts created on or after September 8, 2026, this password is
+    returned as `********`. The password is returned in full on create, and on
+    update only when that update changed the password. Accounts created before
+    September 8, 2026 are unaffected.
+    """
 
     proxy: str
     """

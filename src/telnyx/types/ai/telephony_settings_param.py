@@ -113,6 +113,17 @@ class TelephonySettingsParam(TypedDict, total=False):
     the main tool array or on any workflow node — enforced at write time.
     """
 
+    fallback_destination: str
+    """
+    Destination number or SIP URI to transfer the caller to when the AI conversation
+    ends abnormally, for example because of an assistant-side error, so the caller
+    is not left in dead air. This only fires for abnormal ends: it does not fire
+    when the conversation ends on purpose (the caller hung up, the assistant
+    completed normally, the caller hung up after a relay handoff, or voicemail was
+    detected), and it does not fire when the assistant already transferred or
+    bridged the call.
+    """
+
     noise_suppression: Literal["krisp", "deepfilternet", "disabled"]
     """The noise suppression engine to use.
 

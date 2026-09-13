@@ -38,6 +38,28 @@ class TestAssistants:
         assistant = client.ai.assistants.create(
             instructions="instructions",
             name="name",
+            a2a_agents=[
+                {
+                    "name": "billing_agent",
+                    "url": "https://agents.example.com",
+                    "async": True,
+                    "headers": [
+                        {
+                            "name": "X-Api-Key",
+                            "value": "{{#integration_secret}}my_agent_api_key{{/integration_secret}}",
+                        }
+                    ],
+                    "messages": [
+                        {
+                            "content": "x",
+                            "type": "request_start",
+                            "timing_ms": 100,
+                        }
+                    ],
+                    "poll_interval_ms": 500,
+                    "timeout_ms": 30000,
+                }
+            ],
             conversation_flow={
                 "nodes": [
                     {
@@ -276,6 +298,7 @@ class TestAssistants:
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
+                "fallback_destination": "fallback_destination",
                 "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
@@ -522,6 +545,28 @@ class TestAssistants:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.update(
             assistant_id="assistant_id",
+            a2a_agents=[
+                {
+                    "name": "billing_agent",
+                    "url": "https://agents.example.com",
+                    "async": True,
+                    "headers": [
+                        {
+                            "name": "X-Api-Key",
+                            "value": "{{#integration_secret}}my_agent_api_key{{/integration_secret}}",
+                        }
+                    ],
+                    "messages": [
+                        {
+                            "content": "x",
+                            "type": "request_start",
+                            "timing_ms": 100,
+                        }
+                    ],
+                    "poll_interval_ms": 500,
+                    "timeout_ms": 30000,
+                }
+            ],
             conversation_flow={
                 "nodes": [
                     {
@@ -763,6 +808,7 @@ class TestAssistants:
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
+                "fallback_destination": "fallback_destination",
                 "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
@@ -1306,6 +1352,28 @@ class TestAsyncAssistants:
         assistant = await async_client.ai.assistants.create(
             instructions="instructions",
             name="name",
+            a2a_agents=[
+                {
+                    "name": "billing_agent",
+                    "url": "https://agents.example.com",
+                    "async": True,
+                    "headers": [
+                        {
+                            "name": "X-Api-Key",
+                            "value": "{{#integration_secret}}my_agent_api_key{{/integration_secret}}",
+                        }
+                    ],
+                    "messages": [
+                        {
+                            "content": "x",
+                            "type": "request_start",
+                            "timing_ms": 100,
+                        }
+                    ],
+                    "poll_interval_ms": 500,
+                    "timeout_ms": 30000,
+                }
+            ],
             conversation_flow={
                 "nodes": [
                     {
@@ -1544,6 +1612,7 @@ class TestAsyncAssistants:
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
+                "fallback_destination": "fallback_destination",
                 "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
@@ -1790,6 +1859,28 @@ class TestAsyncAssistants:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.update(
             assistant_id="assistant_id",
+            a2a_agents=[
+                {
+                    "name": "billing_agent",
+                    "url": "https://agents.example.com",
+                    "async": True,
+                    "headers": [
+                        {
+                            "name": "X-Api-Key",
+                            "value": "{{#integration_secret}}my_agent_api_key{{/integration_secret}}",
+                        }
+                    ],
+                    "messages": [
+                        {
+                            "content": "x",
+                            "type": "request_start",
+                            "timing_ms": 100,
+                        }
+                    ],
+                    "poll_interval_ms": 500,
+                    "timeout_ms": 30000,
+                }
+            ],
             conversation_flow={
                 "nodes": [
                     {
@@ -2031,6 +2122,7 @@ class TestAsyncAssistants:
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
+                "fallback_destination": "fallback_destination",
                 "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,

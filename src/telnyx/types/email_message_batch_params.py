@@ -17,6 +17,11 @@ __all__ = ["EmailMessageBatchParams", "Message"]
 
 class EmailMessageBatchParams(TypedDict, total=False):
     messages: Required[Iterable[Message]]
+    """Array of email messages to send.
+
+    Up to 1,000 messages per batch request. Each message is validated and sent
+    independently; per-message failures do not affect other messages in the batch.
+    """
 
     sandbox_mode: bool
     """Applies sandbox mode to all messages in the batch.
