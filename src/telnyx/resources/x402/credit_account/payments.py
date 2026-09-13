@@ -78,7 +78,7 @@ class PaymentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            path_template("/v2/x402/credit_account/payments/{id}", id=id),
+            path_template("/x402/credit_account/payments/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -116,7 +116,7 @@ class PaymentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/v2/x402/credit_account/payments",
+            "/x402/credit_account/payments",
             page=SyncDefaultFlatPagination[X402TransactionRecord],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -190,7 +190,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            path_template("/v2/x402/credit_account/payments/{id}", id=id),
+            path_template("/x402/credit_account/payments/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -228,7 +228,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/v2/x402/credit_account/payments",
+            "/x402/credit_account/payments",
             page=AsyncDefaultFlatPagination[X402TransactionRecord],
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -92,7 +92,7 @@ class CreditAccountResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/x402/credit_account/quote",
+            "/x402/credit_account/quote",
             body=maybe_transform(
                 {"amount_usd": amount_usd}, credit_account_create_quote_params.CreditAccountCreateQuoteParams
             ),
@@ -137,7 +137,7 @@ class CreditAccountResource(SyncAPIResource):
         """
         extra_headers = {**strip_not_given({"PAYMENT-SIGNATURE": header_payment_signature}), **(extra_headers or {})}
         return self._post(
-            "/v2/x402/credit_account",
+            "/x402/credit_account",
             body=maybe_transform(
                 {
                     "id": id,
@@ -214,7 +214,7 @@ class AsyncCreditAccountResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/x402/credit_account/quote",
+            "/x402/credit_account/quote",
             body=await async_maybe_transform(
                 {"amount_usd": amount_usd}, credit_account_create_quote_params.CreditAccountCreateQuoteParams
             ),
@@ -259,7 +259,7 @@ class AsyncCreditAccountResource(AsyncAPIResource):
         """
         extra_headers = {**strip_not_given({"PAYMENT-SIGNATURE": header_payment_signature}), **(extra_headers or {})}
         return await self._post(
-            "/v2/x402/credit_account",
+            "/x402/credit_account",
             body=await async_maybe_transform(
                 {
                     "id": id,
