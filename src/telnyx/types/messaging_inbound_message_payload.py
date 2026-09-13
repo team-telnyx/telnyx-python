@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -13,6 +13,9 @@ from .messaging_error_0b38e7044b import MessagingError0b38e7044b
 
 __all__ = [
     "MessagingInboundMessagePayload",
+    "Body",
+    "BodyEdit",
+    "BodyRevoke",
     "Cc",
     "Cost",
     "CostBreakdown",
@@ -20,8 +23,74 @@ __all__ = [
     "CostBreakdownRate",
     "From",
     "Media",
-    "To",
+    "ToUnionMember0",
 ]
+
+
+class BodyEdit(BaseModel):
+    """Details for an edited WhatsApp message."""
+
+    message: Dict[str, object]
+    """Replacement WhatsApp message content. Its shape depends on the message type."""
+
+    original_message_id: str
+    """
+    Telnyx message ID when a mapping exists, otherwise the original Meta WhatsApp
+    message ID. Treat this value as opaque.
+    """
+
+
+class BodyRevoke(BaseModel):
+    """Details for a revoked WhatsApp message."""
+
+    original_message_id: str
+    """
+    Telnyx message ID when a mapping exists, otherwise the original Meta WhatsApp
+    message ID. Treat this value as opaque.
+    """
+
+
+class Body(BaseModel):
+    """WhatsApp message body.
+
+    For message edits and revocations, inspect `type` and the corresponding `edit` or `revoke` object.
+    """
+
+    id: Optional[str] = None
+    """Telnyx identifier for this webhook message."""
+
+    edit: Optional[BodyEdit] = None
+    """Details for an edited WhatsApp message."""
+
+    foreign_id: Optional[str] = None
+    """Meta WhatsApp message identifier for this webhook event."""
+
+    from_: Optional[str] = FieldInfo(alias="from", default=None)
+    """WhatsApp sender in E.164 format."""
+
+    revoke: Optional[BodyRevoke] = None
+    """Details for a revoked WhatsApp message."""
+
+    timestamp: Optional[str] = None
+    """Unix timestamp supplied by Meta."""
+
+    type: Optional[str] = None
+    """WhatsApp message body type.
+
+    Edit and revoke events use `edit` and `revoke`, respectively.
+    """
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
 
 
 class Cc(BaseModel):
@@ -101,7 +170,7 @@ class Media(BaseModel):
     """The url of the media requested to be sent."""
 
 
-class To(BaseModel):
+class ToUnionMember0(BaseModel):
     carrier: Optional[str] = None
     """The carrier of the receiver."""
 
@@ -128,6 +197,13 @@ class To(BaseModel):
 class MessagingInboundMessagePayload(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
+
+    body: Optional[Body] = None
+    """WhatsApp message body.
+
+    For message edits and revocations, inspect `type` and the corresponding `edit`
+    or `revoke` object.
+    """
 
     cc: Optional[List[Cc]] = None
 
@@ -200,10 +276,15 @@ class MessagingInboundMessagePayload(BaseModel):
     **Required for SMS**
     """
 
-    to: Optional[List[To]] = None
+    to: Union[List[ToUnionMember0], str, None] = None
+    """Receiving address.
 
-    type: Optional[Literal["SMS", "MMS"]] = None
-    """The type of message. This value can be either 'sms' or 'mms'."""
+    SMS and MMS webhooks use an array of recipients. WhatsApp webhooks use one E.164
+    phone number.
+    """
+
+    type: Optional[Literal["SMS", "MMS", "WHATSAPP"]] = None
+    """The messaging channel used for the message."""
 
     valid_until: Optional[datetime] = None
     """Not used for inbound messages."""

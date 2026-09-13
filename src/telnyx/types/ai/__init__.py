@@ -60,6 +60,7 @@ from .assistant_retrieve_params import AssistantRetrieveParams as AssistantRetri
 from .assistant_send_sms_params import AssistantSendSMSParams as AssistantSendSMSParams
 from .fallback_config_req_param import FallbackConfigReqParam as FallbackConfigReqParam
 from .start_speaking_plan_param import StartSpeakingPlanParam as StartSpeakingPlanParam
+from .assistant_a2_a_agent_param import AssistantA2AAgentParam as AssistantA2AAgentParam
 from .assistant_mcp_server_param import AssistantMcpServerParam as AssistantMcpServerParam
 from .cluster_fetch_graph_params import ClusterFetchGraphParams as ClusterFetchGraphParams
 from .conversation_create_params import ConversationCreateParams as ConversationCreateParams
@@ -122,6 +123,7 @@ if TYPE_CHECKING:
     from .collection_envelope import CollectionEnvelope as CollectionEnvelope
     from .inference_embedding import InferenceEmbedding as InferenceEmbedding
     from .start_speaking_plan import StartSpeakingPlan as StartSpeakingPlan
+    from .assistant_a2_a_agent import AssistantA2AAgent as AssistantA2AAgent
     from .assistant_mcp_server import AssistantMcpServer as AssistantMcpServer
     from .events_list_response import EventsListResponse as EventsListResponse
     from .shared_tool_response import SharedToolResponse as SharedToolResponse
@@ -162,6 +164,10 @@ if TYPE_CHECKING:
 
 
 def __getattr__(name: str) -> Any:
+    if name == "AssistantA2AAgent":
+        from .assistant_a2_a_agent import AssistantA2AAgent
+
+        return AssistantA2AAgent
     if name == "AssistantIntegration":
         from .assistant_integration import AssistantIntegration
 

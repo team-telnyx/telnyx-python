@@ -97,6 +97,7 @@ from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
 from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
+from ....types.ai.assistant_a2_a_agent_param import AssistantA2AAgentParam
 from ....types.ai.assistant_mcp_server_param import AssistantMcpServerParam
 from ....types.ai.assistant_integration_param import AssistantIntegrationParam
 from ....types.ai.assistant_send_sms_response import AssistantSendSMSResponse
@@ -170,6 +171,7 @@ class AssistantsResource(SyncAPIResource):
         *,
         instructions: str,
         name: str,
+        a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
@@ -211,6 +213,15 @@ class AssistantsResource(SyncAPIResource):
         Args:
           instructions: System instructions for the assistant. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+
+          a2a_agents: A2A agents this assistant can delegate to. Tools are not stored here: at the
+              start of every conversation each agent's card is fetched and one tool is derived
+              per skill the card advertises, named `a2a_<name>_<skill_id>`. The following
+              limits are not enforced when the assistant is saved, and anything past them is
+              dropped when the conversation starts: 64 agents per assistant, 64 skills per
+              card, 128 derived tools per assistant, and a 6 second budget for all card
+              fetches combined. An agent whose card cannot be fetched costs the assistant that
+              capability for the conversation; it does not fail the call.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -303,6 +314,7 @@ class AssistantsResource(SyncAPIResource):
                 {
                     "instructions": instructions,
                     "name": name,
+                    "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
@@ -399,6 +411,7 @@ class AssistantsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
+        a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
@@ -442,6 +455,16 @@ class AssistantsResource(SyncAPIResource):
         assistant versions.
 
         Args:
+          a2a_agents: A2A agents this assistant can delegate to. Tools are not stored here: at the
+              start of every conversation each agent's card is fetched and one tool is derived
+              per skill the card advertises, named `a2a_<name>_<skill_id>`. The following
+              limits are not enforced when the assistant is saved, and anything past them is
+              dropped when the conversation starts: 64 agents per assistant, 64 skills per
+              card, 128 derived tools per assistant, and a 6 second budget for all card
+              fetches combined. An agent whose card cannot be fetched costs the assistant that
+              capability for the conversation; it does not fail the call. Omit this field to
+              leave the assistant's agents unchanged; send an empty array to remove them all.
+
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
@@ -540,6 +563,7 @@ class AssistantsResource(SyncAPIResource):
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             body=maybe_transform(
                 {
+                    "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
@@ -944,6 +968,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         *,
         instructions: str,
         name: str,
+        a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
@@ -985,6 +1010,15 @@ class AsyncAssistantsResource(AsyncAPIResource):
         Args:
           instructions: System instructions for the assistant. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+
+          a2a_agents: A2A agents this assistant can delegate to. Tools are not stored here: at the
+              start of every conversation each agent's card is fetched and one tool is derived
+              per skill the card advertises, named `a2a_<name>_<skill_id>`. The following
+              limits are not enforced when the assistant is saved, and anything past them is
+              dropped when the conversation starts: 64 agents per assistant, 64 skills per
+              card, 128 derived tools per assistant, and a 6 second budget for all card
+              fetches combined. An agent whose card cannot be fetched costs the assistant that
+              capability for the conversation; it does not fail the call.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -1077,6 +1111,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                 {
                     "instructions": instructions,
                     "name": name,
+                    "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
@@ -1173,6 +1208,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
+        a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
@@ -1216,6 +1252,16 @@ class AsyncAssistantsResource(AsyncAPIResource):
         assistant versions.
 
         Args:
+          a2a_agents: A2A agents this assistant can delegate to. Tools are not stored here: at the
+              start of every conversation each agent's card is fetched and one tool is derived
+              per skill the card advertises, named `a2a_<name>_<skill_id>`. The following
+              limits are not enforced when the assistant is saved, and anything past them is
+              dropped when the conversation starts: 64 agents per assistant, 64 skills per
+              card, 128 derived tools per assistant, and a 6 second budget for all card
+              fetches combined. An agent whose card cannot be fetched costs the assistant that
+              capability for the conversation; it does not fail the call. Omit this field to
+              leave the assistant's agents unchanged; send an empty array to remove them all.
+
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
@@ -1314,6 +1360,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             body=await async_maybe_transform(
                 {
+                    "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,

@@ -19,6 +19,7 @@ from .privacy_settings import PrivacySettings
 from .conversation_flow import ConversationFlow
 from .messaging_settings import MessagingSettings
 from .telephony_settings import TelephonySettings
+from .assistant_a2_a_agent import AssistantA2AAgent
 from .assistant_mcp_server import AssistantMcpServer
 from .assistant_integration import AssistantIntegration
 from .transcription_settings import TranscriptionSettings
@@ -51,6 +52,19 @@ class InferenceEmbedding(BaseModel):
     """
 
     name: str
+
+    a2a_agents: Optional[List[AssistantA2AAgent]] = None
+    """A2A agents this assistant can delegate to.
+
+    Tools are not stored here: at the start of every conversation each agent's card
+    is fetched and one tool is derived per skill the card advertises, named
+    `a2a_<name>_<skill_id>`. The following limits are not enforced when the
+    assistant is saved, and anything past them is dropped when the conversation
+    starts: 64 agents per assistant, 64 skills per card, 128 derived tools per
+    assistant, and a 6 second budget for all card fetches combined. An agent whose
+    card cannot be fetched costs the assistant that capability for the conversation;
+    it does not fail the call.
+    """
 
     conversation_flow: Optional[ConversationFlow] = None
     """Conversation flow as returned by the API."""

@@ -17,6 +17,7 @@ class Error(BaseModel):
         "not_found",
         "forbidden",
         "service_unavailable",
+        "unprocessable_entity",
         "validation_error",
         "recipient_suppressed",
         "reputation_suspended",
