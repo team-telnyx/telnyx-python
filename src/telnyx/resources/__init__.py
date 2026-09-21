@@ -297,6 +297,14 @@ from .user_tags import (
     UserTagsResourceWithStreamingResponse,
     AsyncUserTagsResourceWithStreamingResponse,
 )
+from .bot_signup import (
+    BotSignupResource,
+    AsyncBotSignupResource,
+    BotSignupResourceWithRawResponse,
+    AsyncBotSignupResourceWithRawResponse,
+    BotSignupResourceWithStreamingResponse,
+    AsyncBotSignupResourceWithStreamingResponse,
+)
 from .global_ips import (
     GlobalIPsResource,
     AsyncGlobalIPsResource,
@@ -393,6 +401,14 @@ from .audit_events import (
     AuditEventsResourceWithStreamingResponse,
     AsyncAuditEventsResourceWithStreamingResponse,
 )
+from .bot_sessions import (
+    BotSessionsResource,
+    AsyncBotSessionsResource,
+    BotSessionsResourceWithRawResponse,
+    AsyncBotSessionsResourceWithRawResponse,
+    BotSessionsResourceWithStreamingResponse,
+    AsyncBotSessionsResourceWithStreamingResponse,
+)
 from .call_reasons import (
     CallReasonsResource,
     AsyncCallReasonsResource,
@@ -440,6 +456,14 @@ from .voice_clones import (
     AsyncVoiceClonesResourceWithRawResponse,
     VoiceClonesResourceWithStreamingResponse,
     AsyncVoiceClonesResourceWithStreamingResponse,
+)
+from .bot_challenge import (
+    BotChallengeResource,
+    AsyncBotChallengeResource,
+    BotChallengeResourceWithRawResponse,
+    AsyncBotChallengeResourceWithRawResponse,
+    BotChallengeResourceWithStreamingResponse,
+    AsyncBotChallengeResourceWithStreamingResponse,
 )
 from .channel_zones import (
     ChannelZonesResource,
@@ -1312,6 +1336,14 @@ from .messaging_profile_metrics import (
     AsyncMessagingProfileMetricsResourceWithRawResponse,
     MessagingProfileMetricsResourceWithStreamingResponse,
     AsyncMessagingProfileMetricsResourceWithStreamingResponse,
+)
+from .noise_suppression_engines import (
+    NoiseSuppressionEnginesResource,
+    AsyncNoiseSuppressionEnginesResource,
+    NoiseSuppressionEnginesResourceWithRawResponse,
+    AsyncNoiseSuppressionEnginesResourceWithRawResponse,
+    NoiseSuppressionEnginesResourceWithStreamingResponse,
+    AsyncNoiseSuppressionEnginesResourceWithStreamingResponse,
 )
 from .private_wireless_gateways import (
     PrivateWirelessGatewaysResource,
@@ -2553,4 +2585,28 @@ __all__ = [
     "AsyncComputeResourceWithRawResponse",
     "ComputeResourceWithStreamingResponse",
     "AsyncComputeResourceWithStreamingResponse",
+    "NoiseSuppressionEnginesResource",
+    "AsyncNoiseSuppressionEnginesResource",
+    "NoiseSuppressionEnginesResourceWithRawResponse",
+    "AsyncNoiseSuppressionEnginesResourceWithRawResponse",
+    "NoiseSuppressionEnginesResourceWithStreamingResponse",
+    "AsyncNoiseSuppressionEnginesResourceWithStreamingResponse",
+    "BotChallengeResource",
+    "AsyncBotChallengeResource",
+    "BotChallengeResourceWithRawResponse",
+    "AsyncBotChallengeResourceWithRawResponse",
+    "BotChallengeResourceWithStreamingResponse",
+    "AsyncBotChallengeResourceWithStreamingResponse",
+    "BotSessionsResource",
+    "AsyncBotSessionsResource",
+    "BotSessionsResourceWithRawResponse",
+    "AsyncBotSessionsResourceWithRawResponse",
+    "BotSessionsResourceWithStreamingResponse",
+    "AsyncBotSessionsResourceWithStreamingResponse",
+    "BotSignupResource",
+    "AsyncBotSignupResource",
+    "BotSignupResourceWithRawResponse",
+    "AsyncBotSignupResourceWithRawResponse",
+    "BotSignupResourceWithStreamingResponse",
+    "AsyncBotSignupResourceWithStreamingResponse",
 ]

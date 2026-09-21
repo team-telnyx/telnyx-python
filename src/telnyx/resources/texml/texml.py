@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .calls import (
+    CallsResource,
+    AsyncCallsResource,
+    CallsResourceWithRawResponse,
+    AsyncCallsResourceWithRawResponse,
+    CallsResourceWithStreamingResponse,
+    AsyncCallsResourceWithStreamingResponse,
+)
 from ...types import texml_secrets_params, texml_initiate_ai_call_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
@@ -35,6 +43,11 @@ __all__ = ["TexmlResource", "AsyncTexmlResource"]
 
 class TexmlResource(SyncAPIResource):
     """TeXML REST Commands"""
+
+    @cached_property
+    def calls(self) -> CallsResource:
+        """TeXML REST Commands"""
+        return CallsResource(self._client)
 
     @cached_property
     def accounts(self) -> AccountsResource:
@@ -364,6 +377,11 @@ class TexmlResource(SyncAPIResource):
 
 class AsyncTexmlResource(AsyncAPIResource):
     """TeXML REST Commands"""
+
+    @cached_property
+    def calls(self) -> AsyncCallsResource:
+        """TeXML REST Commands"""
+        return AsyncCallsResource(self._client)
 
     @cached_property
     def accounts(self) -> AsyncAccountsResource:
@@ -703,6 +721,11 @@ class TexmlResourceWithRawResponse:
         )
 
     @cached_property
+    def calls(self) -> CallsResourceWithRawResponse:
+        """TeXML REST Commands"""
+        return CallsResourceWithRawResponse(self._texml.calls)
+
+    @cached_property
     def accounts(self) -> AccountsResourceWithRawResponse:
         """TeXML REST Commands"""
         return AccountsResourceWithRawResponse(self._texml.accounts)
@@ -718,6 +741,11 @@ class AsyncTexmlResourceWithRawResponse:
         self.secrets = async_to_raw_response_wrapper(
             texml.secrets,
         )
+
+    @cached_property
+    def calls(self) -> AsyncCallsResourceWithRawResponse:
+        """TeXML REST Commands"""
+        return AsyncCallsResourceWithRawResponse(self._texml.calls)
 
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithRawResponse:
@@ -737,6 +765,11 @@ class TexmlResourceWithStreamingResponse:
         )
 
     @cached_property
+    def calls(self) -> CallsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
+        return CallsResourceWithStreamingResponse(self._texml.calls)
+
+    @cached_property
     def accounts(self) -> AccountsResourceWithStreamingResponse:
         """TeXML REST Commands"""
         return AccountsResourceWithStreamingResponse(self._texml.accounts)
@@ -752,6 +785,11 @@ class AsyncTexmlResourceWithStreamingResponse:
         self.secrets = async_to_streamed_response_wrapper(
             texml.secrets,
         )
+
+    @cached_property
+    def calls(self) -> AsyncCallsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
+        return AsyncCallsResourceWithStreamingResponse(self._texml.calls)
 
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithStreamingResponse:

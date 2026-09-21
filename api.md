@@ -326,6 +326,7 @@ from telnyx.types import (
     FaxSendingStarted,
     InboundMessage,
     InboundSipHeader,
+    MessagingInboundMessage,
     NumberOrderStatusUpdate,
     OutboundMessage,
     ReplacedLinkClick,
@@ -844,7 +845,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import AudioTranscribeResponse
+from telnyx.types.ai import AudioTranscriptionResponseWord, AudioTranscribeResponse
 ```
 
 Methods:
@@ -1286,7 +1287,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.openai import ChatCreateCompletionResponse
+from telnyx.types.ai.openai import FunctionDefinition, ChatCreateCompletionResponse
 ```
 
 Methods:
@@ -1823,7 +1824,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import Connection, ConnectionRetrieveResponse, ConnectionListActiveCallsResponse
+from telnyx.types import (
+    Connection,
+    ConnectionRetrieveResponse,
+    ConnectionListActiveCallsResponse,
+    ConnectionRetrieveCountResponse,
+)
 ```
 
 Methods:
@@ -1831,6 +1837,7 @@ Methods:
 - <code title="get /connections/{id}">client.connections.<a href="./src/telnyx/resources/connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/connection_retrieve_response.py">ConnectionRetrieveResponse</a></code>
 - <code title="get /connections">client.connections.<a href="./src/telnyx/resources/connections.py">list</a>(\*\*<a href="src/telnyx/types/connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/connection.py">SyncDefaultFlatPagination[Connection]</a></code>
 - <code title="get /connections/{connection_id}/active_calls">client.connections.<a href="./src/telnyx/resources/connections.py">list_active_calls</a>(connection_id, \*\*<a href="src/telnyx/types/connection_list_active_calls_params.py">params</a>) -> <a href="./src/telnyx/types/connection_list_active_calls_response.py">SyncDefaultFlatPagination[ConnectionListActiveCallsResponse]</a></code>
+- <code title="get /connections/count">client.connections.<a href="./src/telnyx/resources/connections.py">retrieve_count</a>() -> <a href="./src/telnyx/types/connection_retrieve_count_response.py">ConnectionRetrieveCountResponse</a></code>
 
 # CountryCoverage
 
@@ -4773,6 +4780,18 @@ Methods:
 - <code title="post /texml/ai_calls/{connection_id}">client.texml.<a href="./src/telnyx/resources/texml/texml.py">initiate_ai_call</a>(connection_id, \*\*<a href="src/telnyx/types/texml_initiate_ai_call_params.py">params</a>) -> <a href="./src/telnyx/types/texml_initiate_ai_call_response.py">TexmlInitiateAICallResponse</a></code>
 - <code title="post /texml/secrets">client.texml.<a href="./src/telnyx/resources/texml/texml.py">secrets</a>(\*\*<a href="src/telnyx/types/texml_secrets_params.py">params</a>) -> <a href="./src/telnyx/types/texml_secrets_response.py">TexmlSecretsResponse</a></code>
 
+## Calls
+
+Types:
+
+```python
+from telnyx.types.texml import CallCreateResponse
+```
+
+Methods:
+
+- <code title="post /texml/calls/{connection_id}">client.texml.calls.<a href="./src/telnyx/resources/texml/calls.py">create</a>(connection_id, \*\*<a href="src/telnyx/types/texml/call_create_params.py">params</a>) -> <a href="./src/telnyx/types/texml/call_create_response.py">CallCreateResponse</a></code>
+
 ## Accounts
 
 Types:
@@ -6830,3 +6849,52 @@ Methods:
 - <code title="get /compute/funcs/{id}/metric_aggregates">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_metric_aggregates</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_metric_aggregates_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_metric_aggregates_response.py">FuncRetrieveMetricAggregatesResponse</a></code>
 - <code title="get /compute/funcs/{id}/revisions">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_revisions</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_revisions_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_revisions_response.py">FuncRetrieveRevisionsResponse</a></code>
 - <code title="get /compute/funcs/{id}/ship_inspection">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_ship_inspection</a>(id) -> <a href="./src/telnyx/types/compute/func_retrieve_ship_inspection_response.py">FuncRetrieveShipInspectionResponse</a></code>
+
+# NoiseSuppressionEngines
+
+Types:
+
+```python
+from telnyx.types import NoiseSuppressionEngineListResponse
+```
+
+Methods:
+
+- <code title="get /noise_suppression_engines">client.noise_suppression_engines.<a href="./src/telnyx/resources/noise_suppression_engines.py">list</a>() -> <a href="./src/telnyx/types/noise_suppression_engine_list_response.py">NoiseSuppressionEngineListResponse</a></code>
+
+# BotChallenge
+
+Types:
+
+```python
+from telnyx.types import BotChallengeCreateResponse
+```
+
+Methods:
+
+- <code title="post /v2/bot_challenge">client.bot_challenge.<a href="./src/telnyx/resources/bot_challenge.py">create</a>(\*\*<a href="src/telnyx/types/bot_challenge_create_params.py">params</a>) -> <a href="./src/telnyx/types/bot_challenge_create_response.py">BotChallengeCreateResponse</a></code>
+
+# BotSessions
+
+Types:
+
+```python
+from telnyx.types import BotSessionListResponse
+```
+
+Methods:
+
+- <code title="get /v2/bot_sessions">client.bot_sessions.<a href="./src/telnyx/resources/bot_sessions.py">list</a>(\*\*<a href="src/telnyx/types/bot_session_list_params.py">params</a>) -> <a href="./src/telnyx/types/bot_session_list_response.py">BotSessionListResponse</a></code>
+
+# BotSignup
+
+Types:
+
+```python
+from telnyx.types import SuccessResponse
+```
+
+Methods:
+
+- <code title="post /v2/bot_signup">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">create</a>(\*\*<a href="src/telnyx/types/bot_signup_create_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>
+- <code title="post /v2/bot_signup/resend_magic_link">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">resend_magic_link</a>(\*\*<a href="src/telnyx/types/bot_signup_resend_magic_link_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>

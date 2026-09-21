@@ -74,6 +74,7 @@ if TYPE_CHECKING:
         messaging,
         sim_cards,
         user_tags,
+        bot_signup,
         global_ips,
         recordings,
         reputation,
@@ -86,12 +87,14 @@ if TYPE_CHECKING:
         ota_updates,
         short_codes,
         audit_events,
+        bot_sessions,
         call_reasons,
         email_blocks,
         email_events,
         oauth_grants,
         requirements,
         voice_clones,
+        bot_challenge,
         channel_zones,
         email_domains,
         email_inboxes,
@@ -201,6 +204,7 @@ if TYPE_CHECKING:
         sub_number_orders_report,
         call_control_applications,
         messaging_profile_metrics,
+        noise_suppression_engines,
         private_wireless_gateways,
         wireless_blocklist_values,
         custom_storage_credentials,
@@ -237,6 +241,7 @@ if TYPE_CHECKING:
     from .resources.documents import DocumentsResource, AsyncDocumentsResource
     from .resources.user_tags import UserTagsResource, AsyncUserTagsResource
     from .resources.x402.x402 import X402Resource, AsyncX402Resource
+    from .resources.bot_signup import BotSignupResource, AsyncBotSignupResource
     from .resources.global_ips import GlobalIPsResource, AsyncGlobalIPsResource
     from .resources.well_known import WellKnownResource, AsyncWellKnownResource
     from .resources.call_events import CallEventsResource, AsyncCallEventsResource
@@ -248,11 +253,13 @@ if TYPE_CHECKING:
     from .resources.short_codes import ShortCodesResource, AsyncShortCodesResource
     from .resources.texml.texml import TexmlResource, AsyncTexmlResource
     from .resources.audit_events import AuditEventsResource, AsyncAuditEventsResource
+    from .resources.bot_sessions import BotSessionsResource, AsyncBotSessionsResource
     from .resources.call_reasons import CallReasonsResource, AsyncCallReasonsResource
     from .resources.email_events import EmailEventsResource, AsyncEmailEventsResource
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
     from .resources.voice_clones import VoiceClonesResource, AsyncVoiceClonesResource
+    from .resources.bot_challenge import BotChallengeResource, AsyncBotChallengeResource
     from .resources.channel_zones import ChannelZonesResource, AsyncChannelZonesResource
     from .resources.email_threads import EmailThreadsResource, AsyncEmailThreadsResource
     from .resources.legacy.legacy import LegacyResource, AsyncLegacyResource
@@ -368,6 +375,10 @@ if TYPE_CHECKING:
     from .resources.messaging_profile_metrics import (
         MessagingProfileMetricsResource,
         AsyncMessagingProfileMetricsResource,
+    )
+    from .resources.noise_suppression_engines import (
+        NoiseSuppressionEnginesResource,
+        AsyncNoiseSuppressionEnginesResource,
     )
     from .resources.private_wireless_gateways import (
         PrivateWirelessGatewaysResource,
@@ -1857,6 +1868,45 @@ class Telnyx(SyncAPIClient):
         from .resources.compute import ComputeResource
 
         return ComputeResource(self)
+
+    @cached_property
+    def noise_suppression_engines(self) -> NoiseSuppressionEnginesResource:
+        """
+        Noise suppression engines that can be selected when configuring noise suppression on voice connections.
+        """
+        from .resources.noise_suppression_engines import NoiseSuppressionEnginesResource
+
+        return NoiseSuppressionEnginesResource(self)
+
+    @cached_property
+    def bot_challenge(self) -> BotChallengeResource:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_challenge import BotChallengeResource
+
+        return BotChallengeResource(self)
+
+    @cached_property
+    def bot_sessions(self) -> BotSessionsResource:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_sessions import BotSessionsResource
+
+        return BotSessionsResource(self)
+
+    @cached_property
+    def bot_signup(self) -> BotSignupResource:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_signup import BotSignupResource
+
+        return BotSignupResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3363,6 +3413,45 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncComputeResource(self)
 
     @cached_property
+    def noise_suppression_engines(self) -> AsyncNoiseSuppressionEnginesResource:
+        """
+        Noise suppression engines that can be selected when configuring noise suppression on voice connections.
+        """
+        from .resources.noise_suppression_engines import AsyncNoiseSuppressionEnginesResource
+
+        return AsyncNoiseSuppressionEnginesResource(self)
+
+    @cached_property
+    def bot_challenge(self) -> AsyncBotChallengeResource:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_challenge import AsyncBotChallengeResource
+
+        return AsyncBotChallengeResource(self)
+
+    @cached_property
+    def bot_sessions(self) -> AsyncBotSessionsResource:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_sessions import AsyncBotSessionsResource
+
+        return AsyncBotSessionsResource(self)
+
+    @cached_property
+    def bot_signup(self) -> AsyncBotSignupResource:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_signup import AsyncBotSignupResource
+
+        return AsyncBotSignupResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4802,6 +4891,45 @@ class TelnyxWithRawResponse:
 
         return ComputeResourceWithRawResponse(self._client.compute)
 
+    @cached_property
+    def noise_suppression_engines(self) -> noise_suppression_engines.NoiseSuppressionEnginesResourceWithRawResponse:
+        """
+        Noise suppression engines that can be selected when configuring noise suppression on voice connections.
+        """
+        from .resources.noise_suppression_engines import NoiseSuppressionEnginesResourceWithRawResponse
+
+        return NoiseSuppressionEnginesResourceWithRawResponse(self._client.noise_suppression_engines)
+
+    @cached_property
+    def bot_challenge(self) -> bot_challenge.BotChallengeResourceWithRawResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_challenge import BotChallengeResourceWithRawResponse
+
+        return BotChallengeResourceWithRawResponse(self._client.bot_challenge)
+
+    @cached_property
+    def bot_sessions(self) -> bot_sessions.BotSessionsResourceWithRawResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_sessions import BotSessionsResourceWithRawResponse
+
+        return BotSessionsResourceWithRawResponse(self._client.bot_sessions)
+
+    @cached_property
+    def bot_signup(self) -> bot_signup.BotSignupResourceWithRawResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_signup import BotSignupResourceWithRawResponse
+
+        return BotSignupResourceWithRawResponse(self._client.bot_signup)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6112,6 +6240,47 @@ class AsyncTelnyxWithRawResponse:
         from .resources.compute import AsyncComputeResourceWithRawResponse
 
         return AsyncComputeResourceWithRawResponse(self._client.compute)
+
+    @cached_property
+    def noise_suppression_engines(
+        self,
+    ) -> noise_suppression_engines.AsyncNoiseSuppressionEnginesResourceWithRawResponse:
+        """
+        Noise suppression engines that can be selected when configuring noise suppression on voice connections.
+        """
+        from .resources.noise_suppression_engines import AsyncNoiseSuppressionEnginesResourceWithRawResponse
+
+        return AsyncNoiseSuppressionEnginesResourceWithRawResponse(self._client.noise_suppression_engines)
+
+    @cached_property
+    def bot_challenge(self) -> bot_challenge.AsyncBotChallengeResourceWithRawResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_challenge import AsyncBotChallengeResourceWithRawResponse
+
+        return AsyncBotChallengeResourceWithRawResponse(self._client.bot_challenge)
+
+    @cached_property
+    def bot_sessions(self) -> bot_sessions.AsyncBotSessionsResourceWithRawResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_sessions import AsyncBotSessionsResourceWithRawResponse
+
+        return AsyncBotSessionsResourceWithRawResponse(self._client.bot_sessions)
+
+    @cached_property
+    def bot_signup(self) -> bot_signup.AsyncBotSignupResourceWithRawResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_signup import AsyncBotSignupResourceWithRawResponse
+
+        return AsyncBotSignupResourceWithRawResponse(self._client.bot_signup)
 
 
 class TelnyxWithStreamedResponse:
@@ -7425,6 +7594,47 @@ class TelnyxWithStreamedResponse:
         from .resources.compute import ComputeResourceWithStreamingResponse
 
         return ComputeResourceWithStreamingResponse(self._client.compute)
+
+    @cached_property
+    def noise_suppression_engines(
+        self,
+    ) -> noise_suppression_engines.NoiseSuppressionEnginesResourceWithStreamingResponse:
+        """
+        Noise suppression engines that can be selected when configuring noise suppression on voice connections.
+        """
+        from .resources.noise_suppression_engines import NoiseSuppressionEnginesResourceWithStreamingResponse
+
+        return NoiseSuppressionEnginesResourceWithStreamingResponse(self._client.noise_suppression_engines)
+
+    @cached_property
+    def bot_challenge(self) -> bot_challenge.BotChallengeResourceWithStreamingResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_challenge import BotChallengeResourceWithStreamingResponse
+
+        return BotChallengeResourceWithStreamingResponse(self._client.bot_challenge)
+
+    @cached_property
+    def bot_sessions(self) -> bot_sessions.BotSessionsResourceWithStreamingResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_sessions import BotSessionsResourceWithStreamingResponse
+
+        return BotSessionsResourceWithStreamingResponse(self._client.bot_sessions)
+
+    @cached_property
+    def bot_signup(self) -> bot_signup.BotSignupResourceWithStreamingResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_signup import BotSignupResourceWithStreamingResponse
+
+        return BotSignupResourceWithStreamingResponse(self._client.bot_signup)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -8786,6 +8996,47 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.compute import AsyncComputeResourceWithStreamingResponse
 
         return AsyncComputeResourceWithStreamingResponse(self._client.compute)
+
+    @cached_property
+    def noise_suppression_engines(
+        self,
+    ) -> noise_suppression_engines.AsyncNoiseSuppressionEnginesResourceWithStreamingResponse:
+        """
+        Noise suppression engines that can be selected when configuring noise suppression on voice connections.
+        """
+        from .resources.noise_suppression_engines import AsyncNoiseSuppressionEnginesResourceWithStreamingResponse
+
+        return AsyncNoiseSuppressionEnginesResourceWithStreamingResponse(self._client.noise_suppression_engines)
+
+    @cached_property
+    def bot_challenge(self) -> bot_challenge.AsyncBotChallengeResourceWithStreamingResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_challenge import AsyncBotChallengeResourceWithStreamingResponse
+
+        return AsyncBotChallengeResourceWithStreamingResponse(self._client.bot_challenge)
+
+    @cached_property
+    def bot_sessions(self) -> bot_sessions.AsyncBotSessionsResourceWithStreamingResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_sessions import AsyncBotSessionsResourceWithStreamingResponse
+
+        return AsyncBotSessionsResourceWithStreamingResponse(self._client.bot_sessions)
+
+    @cached_property
+    def bot_signup(self) -> bot_signup.AsyncBotSignupResourceWithStreamingResponse:
+        """Agentic (bot) signup for Telnyx accounts.
+
+        An AI agent solves a reverse-CAPTCHA challenge designed to be easy for LLMs and hard for humans, registers an account, and signs in by consuming a magic link emailed to the account owner. All endpoints are public and unauthenticated; signup endpoints are additionally gated by the freemium feature flags and per-country availability.
+        """
+        from .resources.bot_signup import AsyncBotSignupResourceWithStreamingResponse
+
+        return AsyncBotSignupResourceWithStreamingResponse(self._client.bot_signup)
 
 
 Client = Telnyx

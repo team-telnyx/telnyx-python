@@ -155,10 +155,10 @@ class AssistantCreateParams(TypedDict, total=False):
     """Configuration for post-conversation processing.
 
     When enabled, the assistant receives one additional LLM turn after the
-    conversation ends, allowing it to execute tool calls such as logging to a CRM or
-    sending a summary. The assistant can execute multiple parallel or sequential
-    tools during this phase. Telephony-control tools (e.g. hangup, transfer) are
-    unavailable post-conversation. Beta feature.
+    conversation ends, allowing it to execute final tool calls such as sending a
+    summary or updating a record via webhook or function tools. Integration and MCP
+    server tools are not available post-conversation; call-control tools (e.g.
+    hangup, transfer) are also unavailable. Beta feature.
     """
 
     privacy_settings: PrivacySettingsParam

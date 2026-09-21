@@ -16,7 +16,7 @@ class OutboundMessage(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
-    event_type: Optional[Literal["message.sent", "message.finalized"]] = None
+    event_type: Optional[Literal["message.sent", "message.finalized", "message.read"]] = None
     """The type of event being delivered."""
 
     occurred_at: Optional[datetime] = None

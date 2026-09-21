@@ -17,5 +17,9 @@ class TranscriptionEngineAssemblyaiConfigParam(TypedDict, total=False):
     transcription_engine: Literal["AssemblyAI"]
     """Engine identifier for AssemblyAI transcription service"""
 
-    transcription_model: Literal["assemblyai/universal-streaming"]
-    """The model to use for transcription."""
+    transcription_model: Literal["assemblyai/universal-3-5-pro", "assemblyai/universal-streaming"]
+    """The model to use for transcription.
+
+    `assemblyai/universal-streaming` is a legacy alias of
+    `assemblyai/universal-3-5-pro` and resolves to the same model.
+    """

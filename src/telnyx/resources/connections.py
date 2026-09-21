@@ -21,6 +21,7 @@ from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.connection import Connection
 from ..types.connection_retrieve_response import ConnectionRetrieveResponse
+from ..types.connection_retrieve_count_response import ConnectionRetrieveCountResponse
 from ..types.connection_list_active_calls_response import ConnectionListActiveCallsResponse
 
 __all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
@@ -197,6 +198,29 @@ class ConnectionsResource(SyncAPIResource):
             model=ConnectionListActiveCallsResponse,
         )
 
+    def retrieve_count(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ConnectionRetrieveCountResponse:
+        """
+        Returns the number of connections associated with the authenticated user,
+        grouped by connection type, together with the connection limits that apply to
+        the user. Forward-only connections are excluded from the counts.
+        """
+        return self._get(
+            "/connections/count",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConnectionRetrieveCountResponse,
+        )
+
 
 class AsyncConnectionsResource(AsyncAPIResource):
     @cached_property
@@ -371,6 +395,29 @@ class AsyncConnectionsResource(AsyncAPIResource):
             model=ConnectionListActiveCallsResponse,
         )
 
+    async def retrieve_count(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ConnectionRetrieveCountResponse:
+        """
+        Returns the number of connections associated with the authenticated user,
+        grouped by connection type, together with the connection limits that apply to
+        the user. Forward-only connections are excluded from the counts.
+        """
+        return await self._get(
+            "/connections/count",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConnectionRetrieveCountResponse,
+        )
+
 
 class ConnectionsResourceWithRawResponse:
     def __init__(self, connections: ConnectionsResource) -> None:
@@ -384,6 +431,9 @@ class ConnectionsResourceWithRawResponse:
         )
         self.list_active_calls = to_raw_response_wrapper(
             connections.list_active_calls,
+        )
+        self.retrieve_count = to_raw_response_wrapper(
+            connections.retrieve_count,
         )
 
 
@@ -400,6 +450,9 @@ class AsyncConnectionsResourceWithRawResponse:
         self.list_active_calls = async_to_raw_response_wrapper(
             connections.list_active_calls,
         )
+        self.retrieve_count = async_to_raw_response_wrapper(
+            connections.retrieve_count,
+        )
 
 
 class ConnectionsResourceWithStreamingResponse:
@@ -415,6 +468,9 @@ class ConnectionsResourceWithStreamingResponse:
         self.list_active_calls = to_streamed_response_wrapper(
             connections.list_active_calls,
         )
+        self.retrieve_count = to_streamed_response_wrapper(
+            connections.retrieve_count,
+        )
 
 
 class AsyncConnectionsResourceWithStreamingResponse:
@@ -429,4 +485,7 @@ class AsyncConnectionsResourceWithStreamingResponse:
         )
         self.list_active_calls = async_to_streamed_response_wrapper(
             connections.list_active_calls,
+        )
+        self.retrieve_count = async_to_streamed_response_wrapper(
+            connections.retrieve_count,
         )

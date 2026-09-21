@@ -79,6 +79,7 @@ class SpeechToTextRetrieveTranscriptionParams(TypedDict, total=False):
         "speechmatics/standard",
         "soniox/stt-rt-v4",
         "nvidia/parakeet-v3",
+        "omi-health/omi-med-stt-v1",
         "humain/realtime",
         "reson8/turns",
         "cohere/ar-stt",

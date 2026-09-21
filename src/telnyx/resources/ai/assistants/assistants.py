@@ -282,10 +282,10 @@ class AssistantsResource(SyncAPIResource):
 
           post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
               receives one additional LLM turn after the conversation ends, allowing it to
-              execute tool calls such as logging to a CRM or sending a summary. The assistant
-              can execute multiple parallel or sequential tools during this phase.
-              Telephony-control tools (e.g. hangup, transfer) are unavailable
-              post-conversation. Beta feature.
+              execute final tool calls such as sending a summary or updating a record via
+              webhook or function tools. Integration and MCP server tools are not available
+              post-conversation; call-control tools (e.g. hangup, transfer) are also
+              unavailable. Beta feature.
 
           tags: Tags associated with the assistant. Tags can also be managed with the assistant
               tag endpoints.
@@ -527,10 +527,10 @@ class AssistantsResource(SyncAPIResource):
 
           post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
               receives one additional LLM turn after the conversation ends, allowing it to
-              execute tool calls such as logging to a CRM or sending a summary. The assistant
-              can execute multiple parallel or sequential tools during this phase.
-              Telephony-control tools (e.g. hangup, transfer) are unavailable
-              post-conversation. Beta feature.
+              execute final tool calls such as sending a summary or updating a record via
+              webhook or function tools. Integration and MCP server tools are not available
+              post-conversation; call-control tools (e.g. hangup, transfer) are also
+              unavailable. Beta feature.
 
           promote_to_main: Indicates whether the assistant should be promoted to the main version. Defaults
               to true.
@@ -539,11 +539,22 @@ class AssistantsResource(SyncAPIResource):
               tag endpoints.
 
           tool_ids: IDs of shared tools to attach to the assistant. New integrations should prefer
-              `tool_ids` over inline `tools`.
+              `tool_ids` over inline `tools`. On update, a sent `tool_ids` array fully
+              replaces the assistant's attached shared tools; omit the field to leave them
+              unchanged. Single-instance tool types are counted across inline `tools` and
+              `tool_ids` combined, so attaching a shared tool of such a type when an instance
+              already exists returns HTTP 400 with error code 10015.
 
           tools: Deprecated for new integrations. Inline tool definitions available to the
               assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
-              endpoints.
+              endpoints. On update, a sent `tools` array fully replaces the assistant's inline
+              tools; omit the field to leave the inline tools unchanged. Each tool type except
+              `function`, `webhook`, and `client_side_tool` allows at most one instance per
+              assistant, counted across inline `tools` and shared `tool_ids` combined —
+              sending a duplicate of such a type returns HTTP 400 with error code 10015.
+              Responses merge shared tools into `tools` with `shared: true`; when updating,
+              omit those tools from the `tools` array and manage them through `tool_ids`
+              instead.
 
           version_name: Human-readable name for the assistant version.
 
@@ -1079,10 +1090,10 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
               receives one additional LLM turn after the conversation ends, allowing it to
-              execute tool calls such as logging to a CRM or sending a summary. The assistant
-              can execute multiple parallel or sequential tools during this phase.
-              Telephony-control tools (e.g. hangup, transfer) are unavailable
-              post-conversation. Beta feature.
+              execute final tool calls such as sending a summary or updating a record via
+              webhook or function tools. Integration and MCP server tools are not available
+              post-conversation; call-control tools (e.g. hangup, transfer) are also
+              unavailable. Beta feature.
 
           tags: Tags associated with the assistant. Tags can also be managed with the assistant
               tag endpoints.
@@ -1324,10 +1335,10 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
               receives one additional LLM turn after the conversation ends, allowing it to
-              execute tool calls such as logging to a CRM or sending a summary. The assistant
-              can execute multiple parallel or sequential tools during this phase.
-              Telephony-control tools (e.g. hangup, transfer) are unavailable
-              post-conversation. Beta feature.
+              execute final tool calls such as sending a summary or updating a record via
+              webhook or function tools. Integration and MCP server tools are not available
+              post-conversation; call-control tools (e.g. hangup, transfer) are also
+              unavailable. Beta feature.
 
           promote_to_main: Indicates whether the assistant should be promoted to the main version. Defaults
               to true.
@@ -1336,11 +1347,22 @@ class AsyncAssistantsResource(AsyncAPIResource):
               tag endpoints.
 
           tool_ids: IDs of shared tools to attach to the assistant. New integrations should prefer
-              `tool_ids` over inline `tools`.
+              `tool_ids` over inline `tools`. On update, a sent `tool_ids` array fully
+              replaces the assistant's attached shared tools; omit the field to leave them
+              unchanged. Single-instance tool types are counted across inline `tools` and
+              `tool_ids` combined, so attaching a shared tool of such a type when an instance
+              already exists returns HTTP 400 with error code 10015.
 
           tools: Deprecated for new integrations. Inline tool definitions available to the
               assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
-              endpoints.
+              endpoints. On update, a sent `tools` array fully replaces the assistant's inline
+              tools; omit the field to leave the inline tools unchanged. Each tool type except
+              `function`, `webhook`, and `client_side_tool` allows at most one instance per
+              assistant, counted across inline `tools` and shared `tool_ids` combined —
+              sending a duplicate of such a type returns HTTP 400 with error code 10015.
+              Responses merge shared tools into `tools` with `shared: true`; when updating,
+              omit those tools from the `tools` array and manage them through `tool_ids`
+              instead.
 
           version_name: Human-readable name for the assistant version.
 
