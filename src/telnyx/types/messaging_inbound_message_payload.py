@@ -286,6 +286,13 @@ class MessagingInboundMessagePayload(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
+    autoresponse_type: Optional[str] = None
+    """Automatic response type triggered by an inbound opt-in, opt-out, or help
+    keyword.
+
+    Examples include START, STOP, and HELP.
+    """
+
     body: Optional[Body] = None
     """Message body for RCS and WhatsApp.
 

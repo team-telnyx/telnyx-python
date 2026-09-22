@@ -6845,10 +6845,24 @@ from telnyx.types.compute import (
 
 Methods:
 
-- <code title="get /compute/funcs/{id}/logs">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_logs</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_logs_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_logs_response.py">FuncRetrieveLogsResponse</a></code>
-- <code title="get /compute/funcs/{id}/metric_aggregates">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_metric_aggregates</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_metric_aggregates_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_metric_aggregates_response.py">FuncRetrieveMetricAggregatesResponse</a></code>
-- <code title="get /compute/funcs/{id}/revisions">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_revisions</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_revisions_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_revisions_response.py">FuncRetrieveRevisionsResponse</a></code>
-- <code title="get /compute/funcs/{id}/ship_inspection">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs.py">retrieve_ship_inspection</a>(id) -> <a href="./src/telnyx/types/compute/func_retrieve_ship_inspection_response.py">FuncRetrieveShipInspectionResponse</a></code>
+- <code title="get /compute/funcs/{id}/logs">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">retrieve_logs</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_logs_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_logs_response.py">FuncRetrieveLogsResponse</a></code>
+- <code title="get /compute/funcs/{id}/metric_aggregates">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">retrieve_metric_aggregates</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_metric_aggregates_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_metric_aggregates_response.py">FuncRetrieveMetricAggregatesResponse</a></code>
+- <code title="get /compute/funcs/{id}/revisions">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">retrieve_revisions</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_revisions_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_revisions_response.py">FuncRetrieveRevisionsResponse</a></code>
+- <code title="get /compute/funcs/{id}/ship_inspection">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">retrieve_ship_inspection</a>(id) -> <a href="./src/telnyx/types/compute/func_retrieve_ship_inspection_response.py">FuncRetrieveShipInspectionResponse</a></code>
+
+### Export
+
+Types:
+
+```python
+from telnyx.types.compute.funcs import FuncLogExportConfigResponse
+```
+
+Methods:
+
+- <code title="put /compute/funcs/{id}/logs/export">client.compute.funcs.export.<a href="./src/telnyx/resources/compute/funcs/export.py">create</a>(id, \*\*<a href="src/telnyx/types/compute/funcs/export_create_params.py">params</a>) -> <a href="./src/telnyx/types/compute/funcs/func_log_export_config_response.py">FuncLogExportConfigResponse</a></code>
+- <code title="get /compute/funcs/{id}/logs/export">client.compute.funcs.export.<a href="./src/telnyx/resources/compute/funcs/export.py">list</a>(id) -> <a href="./src/telnyx/types/compute/funcs/func_log_export_config_response.py">FuncLogExportConfigResponse</a></code>
+- <code title="delete /compute/funcs/{id}/logs/export">client.compute.funcs.export.<a href="./src/telnyx/resources/compute/funcs/export.py">delete_all</a>(id) -> None</code>
 
 # NoiseSuppressionEngines
 

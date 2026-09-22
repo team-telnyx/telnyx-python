@@ -55,6 +55,8 @@ class AudioResource(SyncAPIResource):
             "deepgram/nova-2-medical",
             "deepgram/nova-3",
             "deepgram/nova-3-medical",
+            "nvidia/parakeet-v3",
+            "omi-health/omi-med-stt-v1",
         ],
         file: FileTypes | Omit = omit,
         file_url: str | Omit = omit,
@@ -82,6 +84,8 @@ class AudioResource(SyncAPIResource):
               `deepgram/nova-3` covers ~49 languages plus `multi` and `deepgram/nova-2` covers
               ~33, while the `-medical` variants are tuned for clinical vocabulary and accept
               English only (`en` and its regional variants, e.g. `en-US`, `en-GB`).
+              `nvidia/parakeet-v3` is multilingual with automatic language detection;
+              `omi-health/omi-med-stt-v1` is a medical model, English only.
 
           file: The audio file object to transcribe, in one of these formats: flac, mp3, mp4,
               mpeg, mpga, m4a, ogg, wav, or webm. File uploads are limited to 100 MB. Cannot
@@ -101,6 +105,8 @@ class AudioResource(SyncAPIResource):
               the base language is supported; an unsupported language returns a 400. For
               `openai/whisper-large-v3-turbo`, supports multiple languages.
               `distil-whisper/distil-large-v2` does not support language parameter.
+              `nvidia/parakeet-v3` detects the language automatically;
+              `omi-health/omi-med-stt-v1` is English only.
 
           model_config: Additional model-specific configuration parameters. Only allowed with the
               `deepgram/*` models. Can include Deepgram-specific options such as
@@ -181,6 +187,8 @@ class AsyncAudioResource(AsyncAPIResource):
             "deepgram/nova-2-medical",
             "deepgram/nova-3",
             "deepgram/nova-3-medical",
+            "nvidia/parakeet-v3",
+            "omi-health/omi-med-stt-v1",
         ],
         file: FileTypes | Omit = omit,
         file_url: str | Omit = omit,
@@ -208,6 +216,8 @@ class AsyncAudioResource(AsyncAPIResource):
               `deepgram/nova-3` covers ~49 languages plus `multi` and `deepgram/nova-2` covers
               ~33, while the `-medical` variants are tuned for clinical vocabulary and accept
               English only (`en` and its regional variants, e.g. `en-US`, `en-GB`).
+              `nvidia/parakeet-v3` is multilingual with automatic language detection;
+              `omi-health/omi-med-stt-v1` is a medical model, English only.
 
           file: The audio file object to transcribe, in one of these formats: flac, mp3, mp4,
               mpeg, mpga, m4a, ogg, wav, or webm. File uploads are limited to 100 MB. Cannot
@@ -227,6 +237,8 @@ class AsyncAudioResource(AsyncAPIResource):
               the base language is supported; an unsupported language returns a 400. For
               `openai/whisper-large-v3-turbo`, supports multiple languages.
               `distil-whisper/distil-large-v2` does not support language parameter.
+              `nvidia/parakeet-v3` detects the language automatically;
+              `omi-health/omi-med-stt-v1` is English only.
 
           model_config: Additional model-specific configuration parameters. Only allowed with the
               `deepgram/*` models. Can include Deepgram-specific options such as
