@@ -1338,6 +1338,20 @@ Methods:
 
 - <code title="get /ai/knowledge/collections/{slug}/documents">client.ai.knowledge.collections.<a href="./src/telnyx/resources/ai/knowledge/collections.py">retrieve_documents</a>(slug, \*\*<a href="src/telnyx/types/ai/knowledge/collection_retrieve_documents_params.py">params</a>) -> <a href="./src/telnyx/types/ai/knowledge/collection_retrieve_documents_response.py">CollectionRetrieveDocumentsResponse</a></code>
 
+## Typesafe
+
+### V1
+
+Types:
+
+```python
+from telnyx.types.ai.typesafe import V1SystemoneResponse
+```
+
+Methods:
+
+- <code title="post /ai/typesafe/v1/systemone">client.ai.typesafe.v1.<a href="./src/telnyx/resources/ai/typesafe/v1.py">systemone</a>(\*\*<a href="src/telnyx/types/ai/typesafe/v1_systemone_params.py">params</a>) -> <a href="./src/telnyx/types/ai/typesafe/v1_systemone_response.py">V1SystemoneResponse</a></code>
+
 # AuditEvents
 
 Types:
