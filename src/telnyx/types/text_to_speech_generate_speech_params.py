@@ -229,7 +229,12 @@ class Telnyx(TypedDict, total=False):
     """
 
     volume: float
-    """Volume level for the Ultra model. Range: 0.0 to 2.0."""
+    """Volume level for the Ultra model.
+
+    Telnyx `Ultra` voices accept values from 0.5 to 2.0 — requests outside that
+    range are rejected by the synthesis engine. `KokoroTTS`, `Qwen3TTS`, `Bayan`,
+    and `Sukhan` voices accept the field but do not apply it.
+    """
 
 
 class Xai(TypedDict, total=False):
