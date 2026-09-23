@@ -769,6 +769,14 @@ from .inbound_channels import (
     InboundChannelsResourceWithStreamingResponse,
     AsyncInboundChannelsResourceWithStreamingResponse,
 )
+from .machine_payments import (
+    MachinePaymentsResource,
+    AsyncMachinePaymentsResource,
+    MachinePaymentsResourceWithRawResponse,
+    AsyncMachinePaymentsResourceWithRawResponse,
+    MachinePaymentsResourceWithStreamingResponse,
+    AsyncMachinePaymentsResourceWithStreamingResponse,
+)
 from .managed_accounts import (
     ManagedAccountsResource,
     AsyncManagedAccountsResource,
@@ -2609,4 +2617,10 @@ __all__ = [
     "AsyncBotSignupResourceWithRawResponse",
     "BotSignupResourceWithStreamingResponse",
     "AsyncBotSignupResourceWithStreamingResponse",
+    "MachinePaymentsResource",
+    "AsyncMachinePaymentsResource",
+    "MachinePaymentsResourceWithRawResponse",
+    "AsyncMachinePaymentsResourceWithRawResponse",
+    "MachinePaymentsResourceWithStreamingResponse",
+    "AsyncMachinePaymentsResourceWithStreamingResponse",
 ]

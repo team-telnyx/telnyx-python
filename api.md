@@ -6926,3 +6926,15 @@ Methods:
 
 - <code title="post /v2/bot_signup">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">create</a>(\*\*<a href="src/telnyx/types/bot_signup_create_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>
 - <code title="post /v2/bot_signup/resend_magic_link">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">resend_magic_link</a>(\*\*<a href="src/telnyx/types/bot_signup_resend_magic_link_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>
+
+# MachinePayments
+
+Types:
+
+```python
+from telnyx.types import MachinePaymentAccountCreditResponse
+```
+
+Methods:
+
+- <code title="post /machine-payments/account-credit">client.machine_payments.<a href="./src/telnyx/resources/machine_payments.py">account_credit</a>(\*\*<a href="src/telnyx/types/machine_payment_account_credit_params.py">params</a>) -> <a href="./src/telnyx/types/machine_payment_account_credit_response.py">MachinePaymentAccountCreditResponse</a></code>

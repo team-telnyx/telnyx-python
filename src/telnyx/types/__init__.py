@@ -1049,6 +1049,9 @@ from .external_connection_retrieve_response import (
 from .inexplicit_number_order_create_params import (
     InexplicitNumberOrderCreateParams as InexplicitNumberOrderCreateParams,
 )
+from .machine_payment_account_credit_params import (
+    MachinePaymentAccountCreditParams as MachinePaymentAccountCreditParams,
+)
 from .messaging_hosted_number_update_params import (
     MessagingHostedNumberUpdateParams as MessagingHostedNumberUpdateParams,
 )
@@ -1230,6 +1233,9 @@ from .hosted_number_order_event_webhook_event import (
 )
 from .inexplicit_number_order_create_response import (
     InexplicitNumberOrderCreateResponse as InexplicitNumberOrderCreateResponse,
+)
+from .machine_payment_account_credit_response import (
+    MachinePaymentAccountCreditResponse as MachinePaymentAccountCreditResponse,
 )
 from .messaging_hosted_number_delete_response import (
     MessagingHostedNumberDeleteResponse as MessagingHostedNumberDeleteResponse,

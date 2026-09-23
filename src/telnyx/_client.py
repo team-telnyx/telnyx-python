@@ -133,6 +133,7 @@ if TYPE_CHECKING:
         fax_applications,
         fqdn_connections,
         inbound_channels,
+        machine_payments,
         managed_accounts,
         meeting_sessions,
         network_coverage,
@@ -295,6 +296,7 @@ if TYPE_CHECKING:
     from .resources.country_coverage import CountryCoverageResource, AsyncCountryCoverageResource
     from .resources.fax_applications import FaxApplicationsResource, AsyncFaxApplicationsResource
     from .resources.inbound_channels import InboundChannelsResource, AsyncInboundChannelsResource
+    from .resources.machine_payments import MachinePaymentsResource, AsyncMachinePaymentsResource
     from .resources.network_coverage import NetworkCoverageResource, AsyncNetworkCoverageResource
     from .resources.numbers_features import NumbersFeaturesResource, AsyncNumbersFeaturesResource
     from .resources.access_ip_address import AccessIPAddressResource, AsyncAccessIPAddressResource
@@ -1909,6 +1911,16 @@ class Telnyx(SyncAPIClient):
         return BotSignupResource(self)
 
     @cached_property
+    def machine_payments(self) -> MachinePaymentsResource:
+        """Machine payment (MPP) account-credit operations.
+
+        Fund your Telnyx account programmatically from a machine or agent using the Machine Payment Protocol, an HTTP-402 flow settled via Stripe or Tempo.
+        """
+        from .resources.machine_payments import MachinePaymentsResource
+
+        return MachinePaymentsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3452,6 +3464,16 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncBotSignupResource(self)
 
     @cached_property
+    def machine_payments(self) -> AsyncMachinePaymentsResource:
+        """Machine payment (MPP) account-credit operations.
+
+        Fund your Telnyx account programmatically from a machine or agent using the Machine Payment Protocol, an HTTP-402 flow settled via Stripe or Tempo.
+        """
+        from .resources.machine_payments import AsyncMachinePaymentsResource
+
+        return AsyncMachinePaymentsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4930,6 +4952,16 @@ class TelnyxWithRawResponse:
 
         return BotSignupResourceWithRawResponse(self._client.bot_signup)
 
+    @cached_property
+    def machine_payments(self) -> machine_payments.MachinePaymentsResourceWithRawResponse:
+        """Machine payment (MPP) account-credit operations.
+
+        Fund your Telnyx account programmatically from a machine or agent using the Machine Payment Protocol, an HTTP-402 flow settled via Stripe or Tempo.
+        """
+        from .resources.machine_payments import MachinePaymentsResourceWithRawResponse
+
+        return MachinePaymentsResourceWithRawResponse(self._client.machine_payments)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6281,6 +6313,16 @@ class AsyncTelnyxWithRawResponse:
         from .resources.bot_signup import AsyncBotSignupResourceWithRawResponse
 
         return AsyncBotSignupResourceWithRawResponse(self._client.bot_signup)
+
+    @cached_property
+    def machine_payments(self) -> machine_payments.AsyncMachinePaymentsResourceWithRawResponse:
+        """Machine payment (MPP) account-credit operations.
+
+        Fund your Telnyx account programmatically from a machine or agent using the Machine Payment Protocol, an HTTP-402 flow settled via Stripe or Tempo.
+        """
+        from .resources.machine_payments import AsyncMachinePaymentsResourceWithRawResponse
+
+        return AsyncMachinePaymentsResourceWithRawResponse(self._client.machine_payments)
 
 
 class TelnyxWithStreamedResponse:
@@ -7635,6 +7677,16 @@ class TelnyxWithStreamedResponse:
         from .resources.bot_signup import BotSignupResourceWithStreamingResponse
 
         return BotSignupResourceWithStreamingResponse(self._client.bot_signup)
+
+    @cached_property
+    def machine_payments(self) -> machine_payments.MachinePaymentsResourceWithStreamingResponse:
+        """Machine payment (MPP) account-credit operations.
+
+        Fund your Telnyx account programmatically from a machine or agent using the Machine Payment Protocol, an HTTP-402 flow settled via Stripe or Tempo.
+        """
+        from .resources.machine_payments import MachinePaymentsResourceWithStreamingResponse
+
+        return MachinePaymentsResourceWithStreamingResponse(self._client.machine_payments)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9037,6 +9089,16 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.bot_signup import AsyncBotSignupResourceWithStreamingResponse
 
         return AsyncBotSignupResourceWithStreamingResponse(self._client.bot_signup)
+
+    @cached_property
+    def machine_payments(self) -> machine_payments.AsyncMachinePaymentsResourceWithStreamingResponse:
+        """Machine payment (MPP) account-credit operations.
+
+        Fund your Telnyx account programmatically from a machine or agent using the Machine Payment Protocol, an HTTP-402 flow settled via Stripe or Tempo.
+        """
+        from .resources.machine_payments import AsyncMachinePaymentsResourceWithStreamingResponse
+
+        return AsyncMachinePaymentsResourceWithStreamingResponse(self._client.machine_payments)
 
 
 Client = Telnyx
