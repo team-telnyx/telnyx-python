@@ -92,7 +92,14 @@ class TexmlResource(SyncAPIResource):
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_max_frequency: int | Omit = omit,
+        machine_detection_beep_min_frequency: int | Omit = omit,
+        machine_detection_beep_min_tone_duration: int | Omit = omit,
         machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
+        machine_detection_beep_spectral_confirmation: bool | Omit = omit,
+        machine_detection_beep_spectral_min_purity: float | Omit = omit,
+        machine_detection_beep_spectral_reject_fax_cng: bool | Omit = omit,
+        machine_detection_beep_spectral_window: int | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -185,9 +192,34 @@ class TexmlResource(SyncAPIResource):
 
           machine_detection: Enables Answering Machine Detection.
 
+          machine_detection_beep_max_frequency: Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_min_frequency: Lowest frequency, in Hz, that a tone must reach to be treated as a beep. Raising
+              it above 480 excludes North American ringback (440 + 480 Hz), which can
+              otherwise be reported as a beep when the `freq_only` profile is in use. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_min_tone_duration: Shortest tone, in milliseconds, that can be treated as a beep. Raising it
+              rejects brief tones such as call-progress blips. Only used when MachineDetection
+              is enabled.
+
           machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
               frequency detectors to agree. `freq_only` uses the frequency detector alone, for
               beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
+
+          machine_detection_beep_spectral_confirmation: When enabled, a candidate beep must pass an additional spectral check before it
+              is reported. Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_min_purity: Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+              Raising it rejects mixed tones such as ringback, which combines two frequencies.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_reject_fax_cng: When enabled, the fax CNG tone is rejected rather than reported as a beep. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_window: Length of the spectral confirmation window, in milliseconds. Only used when
               MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
@@ -291,7 +323,14 @@ class TexmlResource(SyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_max_frequency": machine_detection_beep_max_frequency,
+                    "machine_detection_beep_min_frequency": machine_detection_beep_min_frequency,
+                    "machine_detection_beep_min_tone_duration": machine_detection_beep_min_tone_duration,
                     "machine_detection_beep_profile": machine_detection_beep_profile,
+                    "machine_detection_beep_spectral_confirmation": machine_detection_beep_spectral_confirmation,
+                    "machine_detection_beep_spectral_min_purity": machine_detection_beep_spectral_min_purity,
+                    "machine_detection_beep_spectral_reject_fax_cng": machine_detection_beep_spectral_reject_fax_cng,
+                    "machine_detection_beep_spectral_window": machine_detection_beep_spectral_window,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -426,7 +465,14 @@ class AsyncTexmlResource(AsyncAPIResource):
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_max_frequency: int | Omit = omit,
+        machine_detection_beep_min_frequency: int | Omit = omit,
+        machine_detection_beep_min_tone_duration: int | Omit = omit,
         machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
+        machine_detection_beep_spectral_confirmation: bool | Omit = omit,
+        machine_detection_beep_spectral_min_purity: float | Omit = omit,
+        machine_detection_beep_spectral_reject_fax_cng: bool | Omit = omit,
+        machine_detection_beep_spectral_window: int | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -519,9 +565,34 @@ class AsyncTexmlResource(AsyncAPIResource):
 
           machine_detection: Enables Answering Machine Detection.
 
+          machine_detection_beep_max_frequency: Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_min_frequency: Lowest frequency, in Hz, that a tone must reach to be treated as a beep. Raising
+              it above 480 excludes North American ringback (440 + 480 Hz), which can
+              otherwise be reported as a beep when the `freq_only` profile is in use. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_min_tone_duration: Shortest tone, in milliseconds, that can be treated as a beep. Raising it
+              rejects brief tones such as call-progress blips. Only used when MachineDetection
+              is enabled.
+
           machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
               frequency detectors to agree. `freq_only` uses the frequency detector alone, for
               beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
+
+          machine_detection_beep_spectral_confirmation: When enabled, a candidate beep must pass an additional spectral check before it
+              is reported. Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_min_purity: Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+              Raising it rejects mixed tones such as ringback, which combines two frequencies.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_reject_fax_cng: When enabled, the fax CNG tone is rejected rather than reported as a beep. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_window: Length of the spectral confirmation window, in milliseconds. Only used when
               MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
@@ -625,7 +696,14 @@ class AsyncTexmlResource(AsyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_max_frequency": machine_detection_beep_max_frequency,
+                    "machine_detection_beep_min_frequency": machine_detection_beep_min_frequency,
+                    "machine_detection_beep_min_tone_duration": machine_detection_beep_min_tone_duration,
                     "machine_detection_beep_profile": machine_detection_beep_profile,
+                    "machine_detection_beep_spectral_confirmation": machine_detection_beep_spectral_confirmation,
+                    "machine_detection_beep_spectral_min_purity": machine_detection_beep_spectral_min_purity,
+                    "machine_detection_beep_spectral_reject_fax_cng": machine_detection_beep_spectral_reject_fax_cng,
+                    "machine_detection_beep_spectral_window": machine_detection_beep_spectral_window,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,

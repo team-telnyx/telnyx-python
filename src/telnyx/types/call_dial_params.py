@@ -457,6 +457,52 @@ class AnsweringMachineDetectionConfig(TypedDict, total=False):
     default profile.
     """
 
+    beep_max_frequency_hz: int
+    """Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+
+    Only used when beep detection is active.
+    """
+
+    beep_min_frequency_hz: int
+    """Lowest frequency, in Hz, that a tone must reach to be treated as a beep.
+
+    Raising it above 480 excludes North American ringback (440 + 480 Hz), which can
+    otherwise be reported as a beep when the `freq_only` profile is in use. Only
+    used when beep detection is active.
+    """
+
+    beep_min_tone_duration_millis: int
+    """Shortest tone, in milliseconds, that can be treated as a beep.
+
+    Raising it rejects brief tones such as call-progress blips. Only used when beep
+    detection is active.
+    """
+
+    beep_spectral_confirmation: bool
+    """
+    When enabled, a candidate beep must pass an additional spectral check before it
+    is reported. Only used when beep detection is active.
+    """
+
+    beep_spectral_min_purity: float
+    """Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+
+    Raising it rejects mixed tones such as ringback, which combines two frequencies.
+    Only used when beep detection is active.
+    """
+
+    beep_spectral_reject_fax_cng: bool
+    """When enabled, the fax CNG tone is rejected rather than reported as a beep.
+
+    Only used when beep detection is active.
+    """
+
+    beep_spectral_window_millis: int
+    """Length of the spectral confirmation window, in milliseconds.
+
+    Only used when beep detection is active.
+    """
+
     between_words_silence_millis: int
     """Maximum threshold for silence between words."""
 
