@@ -23,11 +23,11 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     """The meeting URL the bot should join."""
 
     assistant: Assistant
-    """Request options for attaching a voice assistant to the session.
+    """Attach a Telnyx AI Assistant to the session.
 
-    Routing fields (`call_control_connection_id`, `from`, and `loopback_sip_uri`)
-    are used only to establish the assistant call leg and are omitted from response
-    objects. `audio_gate` is returned with `id` in the assistant response object.
+    Supply the Assistant's ID; the Meeting service connects it to the meeting
+    directly. The Call Control connection, caller ID and loopback SIP URI previously
+    required here have been removed and are now rejected as unknown fields.
     """
 
     avatar: Avatar
@@ -53,6 +53,15 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     this input is ignored and a URL source is not fetched.
     """
 
+    chat_on_enter: str
+    """
+    A message the bot posts to the meeting's chat as soon as it becomes active —
+    typically a recording disclosure. Delivered at most once. Independent of
+    `speak_on_enter`: both may be set, and the chat message posts first because it
+    does not wait for text-to-speech or avatar startup. Rejected with 422
+    `unsupported_capability` on platforms without meeting chat.
+    """
+
     idempotency_key: str
     """
     Client-supplied idempotency key to safely retry creation requests without
@@ -73,7 +82,13 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     """
 
     speak_on_enter: str
-    """Text the bot speaks when it enters the meeting."""
+    """Text the bot speaks when it enters the meeting.
+
+    **Not spoken when an `assistant` is attached**: the value is accepted and echoed
+    back on the session, but the assistant owns the voice and the line is never
+    delivered, with no event reporting the omission. Use `chat_on_enter` to announce
+    an assistant-backed bot.
+    """
 
     summarize_on_end: bool
     """If true, generate a summary artifact when the session ends."""
@@ -94,32 +109,48 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     """
 
 
-_AssistantReservedKeywords = TypedDict(
-    "_AssistantReservedKeywords",
-    {
-        "from": str,
-    },
-    total=False,
-)
+class Assistant(TypedDict, total=False):
+    """Attach a Telnyx AI Assistant to the session.
 
-
-class Assistant(_AssistantReservedKeywords, total=False):
-    """Request options for attaching a voice assistant to the session.
-
-    Routing fields (`call_control_connection_id`, `from`, and `loopback_sip_uri`) are used only to establish the assistant call leg and are omitted from response objects. `audio_gate` is returned with `id` in the assistant response object.
+    Supply the Assistant's ID; the Meeting service connects it to the meeting directly. The Call Control connection, caller ID and loopback SIP URI previously required here have been removed and are now rejected as unknown fields.
     """
 
     id: Required[str]
     """Identifier of the assistant to attach."""
 
-    call_control_connection_id: Required[str]
-    """Call control connection used to bridge the assistant into the meeting audio."""
+    audio_gate: Literal["half_duplex", "full_duplex"]
+    """Audio gating strategy for the assistant call leg.
 
-    loopback_sip_uri: Required[str]
-    """SIP URI to which the assistant media loopback is established."""
+    `half_duplex` (default) sends the assistant a single mixed meeting stream and
+    mutes it while the assistant speaks, so the assistant cannot hear itself and
+    cannot be interrupted. `full_duplex` sends a separate stream per participant,
+    which allows barge-in and removes self-hearing, and COSTS SIGNIFICANTLY MORE:
+    per-participant streams multiply the per-minute cost by the number of
+    participants.
+    """
 
-    audio_gate: Literal["none", "half_duplex"]
-    """Audio gating strategy for the assistant call leg."""
+    dynamic_variables: Dict[str, str]
+    """
+    Per-conversation values for the
+    [dynamic variables](/docs/inference/ai-assistants/dynamic-variables) used in the
+    Assistant's instructions, greeting, or tools. Delivered before the Assistant's
+    first utterance, so they resolve for the opening line as well as the rest of the
+    conversation. At most 63 entries; keys 1-128 characters; values must be strings.
+    The map is budgeted in aggregate at 1,047,552 bytes (1023 KiB) rather than
+    capped per value. `streaming_audio`, `ai_assistant_streaming_audio` and
+    `meeting_session_id` are reserved and rejected with `400 invalid_request` --
+    they toggle provider infrastructure or are set by the service rather than fill a
+    prompt template.
+    """
+
+    leave_on_end: bool
+    """
+    Leave the meeting when the Assistant's conversation reaches a terminal state --
+    `ended` **or** `failed`. Off by default, which leaves the bot in the meeting
+    after the Assistant stops. Fires once: a second terminal transition does not
+    leave twice, and a leave the provider refuses is logged without changing how the
+    session settles.
+    """
 
 
 class Avatar(TypedDict, total=False):
