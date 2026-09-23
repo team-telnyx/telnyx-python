@@ -3861,6 +3861,7 @@ from telnyx.types import (
     PrivateWirelessGateway,
     PrivateWirelessGatewayStatus,
     PwgAssignedResourcesSummary,
+    WirelessPrivateWirelessGateway,
     PrivateWirelessGatewayCreateResponse,
     PrivateWirelessGatewayRetrieveResponse,
     PrivateWirelessGatewayDeleteResponse,
@@ -3871,7 +3872,7 @@ Methods:
 
 - <code title="post /private_wireless_gateways">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">create</a>(\*\*<a href="src/telnyx/types/private_wireless_gateway_create_params.py">params</a>) -> <a href="./src/telnyx/types/private_wireless_gateway_create_response.py">PrivateWirelessGatewayCreateResponse</a></code>
 - <code title="get /private_wireless_gateways/{id}">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">retrieve</a>(id) -> <a href="./src/telnyx/types/private_wireless_gateway_retrieve_response.py">PrivateWirelessGatewayRetrieveResponse</a></code>
-- <code title="get /private_wireless_gateways">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">list</a>(\*\*<a href="src/telnyx/types/private_wireless_gateway_list_params.py">params</a>) -> <a href="./src/telnyx/types/private_wireless_gateway.py">SyncDefaultFlatPagination[PrivateWirelessGateway]</a></code>
+- <code title="get /private_wireless_gateways">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">list</a>(\*\*<a href="src/telnyx/types/private_wireless_gateway_list_params.py">params</a>) -> <a href="./src/telnyx/types/wireless_private_wireless_gateway.py">SyncDefaultFlatPagination[WirelessPrivateWirelessGateway]</a></code>
 - <code title="delete /private_wireless_gateways/{id}">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">delete</a>(id) -> <a href="./src/telnyx/types/private_wireless_gateway_delete_response.py">PrivateWirelessGatewayDeleteResponse</a></code>
 
 # PublicInternetGateways
