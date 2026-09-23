@@ -123,7 +123,7 @@ class Data(BaseModel):
     id: str
     """Unique identifier for the event"""
 
-    event_type: str
+    event_type: Literal["number_order.complete"]
     """The type of event being sent"""
 
     occurred_at: datetime

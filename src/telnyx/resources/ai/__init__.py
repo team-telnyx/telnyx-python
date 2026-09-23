@@ -48,6 +48,14 @@ from .missions import (
     MissionsResourceWithStreamingResponse,
     AsyncMissionsResourceWithStreamingResponse,
 )
+from .typesafe import (
+    TypesafeResource,
+    AsyncTypesafeResource,
+    TypesafeResourceWithRawResponse,
+    AsyncTypesafeResourceWithRawResponse,
+    TypesafeResourceWithStreamingResponse,
+    AsyncTypesafeResourceWithStreamingResponse,
+)
 from .anthropic import (
     AnthropicResource,
     AsyncAnthropicResource,
@@ -206,6 +214,12 @@ __all__ = [
     "AsyncKnowledgeResourceWithRawResponse",
     "KnowledgeResourceWithStreamingResponse",
     "AsyncKnowledgeResourceWithStreamingResponse",
+    "TypesafeResource",
+    "AsyncTypesafeResource",
+    "TypesafeResourceWithRawResponse",
+    "AsyncTypesafeResourceWithRawResponse",
+    "TypesafeResourceWithStreamingResponse",
+    "AsyncTypesafeResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

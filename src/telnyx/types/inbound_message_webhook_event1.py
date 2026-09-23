@@ -3,30 +3,12 @@
 from __future__ import annotations
 
 from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
-from .messaging_inbound_message_payload import MessagingInboundMessagePayload
+from .messaging_inbound_message import MessagingInboundMessage
 
-__all__ = ["InboundMessageWebhookEvent", "Data"]
-
-
-class Data(BaseModel):
-    id: Optional[str] = None
-    """Identifies the type of resource."""
-
-    event_type: Optional[Literal["message.received"]] = None
-    """The type of event being delivered."""
-
-    occurred_at: Optional[datetime] = None
-    """ISO 8601 formatted date indicating when the resource was created."""
-
-    payload: Optional[MessagingInboundMessagePayload] = None
-
-    record_type: Optional[Literal["event"]] = None
-    """Identifies the type of the resource."""
+__all__ = ["InboundMessageWebhookEvent"]
 
 
 class InboundMessageWebhookEvent(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[MessagingInboundMessage] = None

@@ -122,6 +122,27 @@ class BodyWithURL(TypedDict, total=False):
     ]
     """Enables Answering Machine Detection."""
 
+    machine_detection_beep_max_frequency: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMaxFrequency")]
+    """Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_min_frequency: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMinFrequency")]
+    """Lowest frequency, in Hz, that a tone must reach to be treated as a beep.
+
+    Raising it above 480 excludes North American ringback (440 + 480 Hz), which can
+    otherwise be reported as a beep when the `freq_only` profile is in use. Only
+    used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_min_tone_duration: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMinToneDuration")]
+    """Shortest tone, in milliseconds, that can be treated as a beep.
+
+    Raising it rejects brief tones such as call-progress blips. Only used when
+    MachineDetection is enabled.
+    """
+
     machine_detection_beep_profile: Annotated[
         Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
     ]
@@ -130,6 +151,37 @@ class BodyWithURL(TypedDict, total=False):
     `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
     the frequency detector alone, for beeps whose volume is too unsteady for the
     default profile. Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_confirmation: Annotated[
+        bool, PropertyInfo(alias="MachineDetectionBeepSpectralConfirmation")
+    ]
+    """
+    When enabled, a candidate beep must pass an additional spectral check before it
+    is reported. Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_min_purity: Annotated[
+        float, PropertyInfo(alias="MachineDetectionBeepSpectralMinPurity")
+    ]
+    """Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+
+    Raising it rejects mixed tones such as ringback, which combines two frequencies.
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_reject_fax_cng: Annotated[
+        bool, PropertyInfo(alias="MachineDetectionBeepSpectralRejectFaxCng")
+    ]
+    """When enabled, the fax CNG tone is rejected rather than reported as a beep.
+
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_window: Annotated[int, PropertyInfo(alias="MachineDetectionBeepSpectralWindow")]
+    """Length of the spectral confirmation window, in milliseconds.
+
+    Only used when MachineDetection is enabled.
     """
 
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
@@ -382,6 +434,27 @@ class BodyWithTeXml(TypedDict, total=False):
     ]
     """Enables Answering Machine Detection."""
 
+    machine_detection_beep_max_frequency: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMaxFrequency")]
+    """Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_min_frequency: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMinFrequency")]
+    """Lowest frequency, in Hz, that a tone must reach to be treated as a beep.
+
+    Raising it above 480 excludes North American ringback (440 + 480 Hz), which can
+    otherwise be reported as a beep when the `freq_only` profile is in use. Only
+    used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_min_tone_duration: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMinToneDuration")]
+    """Shortest tone, in milliseconds, that can be treated as a beep.
+
+    Raising it rejects brief tones such as call-progress blips. Only used when
+    MachineDetection is enabled.
+    """
+
     machine_detection_beep_profile: Annotated[
         Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
     ]
@@ -390,6 +463,37 @@ class BodyWithTeXml(TypedDict, total=False):
     `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
     the frequency detector alone, for beeps whose volume is too unsteady for the
     default profile. Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_confirmation: Annotated[
+        bool, PropertyInfo(alias="MachineDetectionBeepSpectralConfirmation")
+    ]
+    """
+    When enabled, a candidate beep must pass an additional spectral check before it
+    is reported. Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_min_purity: Annotated[
+        float, PropertyInfo(alias="MachineDetectionBeepSpectralMinPurity")
+    ]
+    """Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+
+    Raising it rejects mixed tones such as ringback, which combines two frequencies.
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_reject_fax_cng: Annotated[
+        bool, PropertyInfo(alias="MachineDetectionBeepSpectralRejectFaxCng")
+    ]
+    """When enabled, the fax CNG tone is rejected rather than reported as a beep.
+
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_window: Annotated[int, PropertyInfo(alias="MachineDetectionBeepSpectralWindow")]
+    """Length of the spectral confirmation window, in milliseconds.
+
+    Only used when MachineDetection is enabled.
     """
 
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
@@ -635,6 +739,27 @@ class BodyApplicationDefault(TypedDict, total=False):
     ]
     """Enables Answering Machine Detection."""
 
+    machine_detection_beep_max_frequency: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMaxFrequency")]
+    """Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_min_frequency: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMinFrequency")]
+    """Lowest frequency, in Hz, that a tone must reach to be treated as a beep.
+
+    Raising it above 480 excludes North American ringback (440 + 480 Hz), which can
+    otherwise be reported as a beep when the `freq_only` profile is in use. Only
+    used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_min_tone_duration: Annotated[int, PropertyInfo(alias="MachineDetectionBeepMinToneDuration")]
+    """Shortest tone, in milliseconds, that can be treated as a beep.
+
+    Raising it rejects brief tones such as call-progress blips. Only used when
+    MachineDetection is enabled.
+    """
+
     machine_detection_beep_profile: Annotated[
         Literal["both", "freq_only"], PropertyInfo(alias="MachineDetectionBeepProfile")
     ]
@@ -643,6 +768,37 @@ class BodyApplicationDefault(TypedDict, total=False):
     `both` requires the amplitude and frequency detectors to agree. `freq_only` uses
     the frequency detector alone, for beeps whose volume is too unsteady for the
     default profile. Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_confirmation: Annotated[
+        bool, PropertyInfo(alias="MachineDetectionBeepSpectralConfirmation")
+    ]
+    """
+    When enabled, a candidate beep must pass an additional spectral check before it
+    is reported. Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_min_purity: Annotated[
+        float, PropertyInfo(alias="MachineDetectionBeepSpectralMinPurity")
+    ]
+    """Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+
+    Raising it rejects mixed tones such as ringback, which combines two frequencies.
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_reject_fax_cng: Annotated[
+        bool, PropertyInfo(alias="MachineDetectionBeepSpectralRejectFaxCng")
+    ]
+    """When enabled, the fax CNG tone is rejected rather than reported as a beep.
+
+    Only used when MachineDetection is enabled.
+    """
+
+    machine_detection_beep_spectral_window: Annotated[int, PropertyInfo(alias="MachineDetectionBeepSpectralWindow")]
+    """Length of the spectral confirmation window, in milliseconds.
+
+    Only used when MachineDetection is enabled.
     """
 
     machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]

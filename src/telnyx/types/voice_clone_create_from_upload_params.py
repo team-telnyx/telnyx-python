@@ -62,7 +62,7 @@ class VoiceCloneUploadRequestTelnyxUltraClone(TypedDict, total=False):
     audio_file: Required[FileTypes]
     """Audio file to clone the voice from.
 
-    Supported formats: WAV, MP3, FLAC, OGG, M4A. For best quality, provide 5–10
+    Supported formats: WAV, MP3, FLAC, OGG, M4A. For best quality, provide up to 60
     seconds of clear, uninterrupted speech. Maximum size: 5MB.
     """
 

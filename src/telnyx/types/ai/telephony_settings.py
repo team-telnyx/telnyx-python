@@ -20,14 +20,40 @@ __all__ = [
 class NoiseSuppressionConfig(BaseModel):
     """Configuration for noise suppression.
 
-    Only applicable when noise_suppression is 'deepfilternet'.
+    Applicable fields depend on the engine: 'attenuation_limit' and 'mode' only when noise_suppression is 'deepfilternet'; 'family', 'size' and 'enhancement_level' only when noise_suppression is 'aicoustics'.
     """
 
     attenuation_limit: Optional[int] = None
-    """Attenuation limit for noise suppression. Range: 0-100."""
+    """Attenuation limit for noise suppression.
+
+    Range: 0-100. Only applicable when noise_suppression is 'deepfilternet'.
+    """
+
+    enhancement_level: Optional[float] = None
+    """AiCoustics enhancement intensity.
+
+    Range: 0-1. Only applicable when noise_suppression is 'aicoustics'.
+    """
+
+    family: Optional[Literal["quail"]] = None
+    """AiCoustics model family optimized for Voice AI and STT.
+
+    Only applicable when noise_suppression is 'aicoustics'.
+    """
 
     mode: Optional[Literal["advanced"]] = None
-    """Mode for noise suppression configuration."""
+    """Mode for noise suppression configuration.
+
+    Only applicable when noise_suppression is 'deepfilternet'.
+    """
+
+    size: Optional[Literal["vf", "vf_2_0_l"]] = None
+    """AiCoustics model size.
+
+    'vf' tracks the latest model release; 'vf_2_0_l' is pinned to version 2.0 for
+    consistent, predictable behavior. Only applicable when noise_suppression is
+    'aicoustics'.
+    """
 
 
 class RecordingSettings(BaseModel):
@@ -127,16 +153,19 @@ class TelephonySettings(BaseModel):
     bridged the call.
     """
 
-    noise_suppression: Optional[Literal["krisp", "deepfilternet", "disabled"]] = None
+    noise_suppression: Optional[Literal["aicoustics", "krisp", "deepfilternet", "disabled"]] = None
     """The noise suppression engine to use.
 
-    Use 'disabled' to turn off noise suppression.
+    'aicoustics' is STT-optimized and recommended for AI assistants (configure
+    through noise_suppression_config). Use 'disabled' to turn off noise suppression.
     """
 
     noise_suppression_config: Optional[NoiseSuppressionConfig] = None
     """Configuration for noise suppression.
 
-    Only applicable when noise_suppression is 'deepfilternet'.
+    Applicable fields depend on the engine: 'attenuation_limit' and 'mode' only when
+    noise_suppression is 'deepfilternet'; 'family', 'size' and 'enhancement_level'
+    only when noise_suppression is 'aicoustics'.
     """
 
     recording_settings: Optional[RecordingSettings] = None

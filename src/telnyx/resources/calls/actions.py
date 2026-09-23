@@ -4019,11 +4019,12 @@ class ActionsResource(SyncAPIResource):
 
           custom_headers: Custom headers to be added to the SIP INVITE.
 
-          diversion: The number the inbound call being transferred was originally received on, in
-              +E164 format. Supplying it lets an unverified non-Telnyx `from` be used as the
-              caller id, provided that number is still on an active inbound call to this
-              `diversion` number for your account. The `diversion` number itself must be one
-              you own or have verified.
+          diversion: The `to` number of an active inbound call, in +E164 format. Telnyx checks
+              whether there is currently an active inbound call where `to` matches this
+              `diversion` value and `from` matches the `from` number supplied for this
+              request. If such a call exists, the `from` number is treated as verified (since
+              it is already on an active inbound call to you) and can be used as the caller id
+              for this outbound call.
 
           early_media: If set to false, early media will not be passed to the originating leg.
 
@@ -8143,11 +8144,12 @@ class AsyncActionsResource(AsyncAPIResource):
 
           custom_headers: Custom headers to be added to the SIP INVITE.
 
-          diversion: The number the inbound call being transferred was originally received on, in
-              +E164 format. Supplying it lets an unverified non-Telnyx `from` be used as the
-              caller id, provided that number is still on an active inbound call to this
-              `diversion` number for your account. The `diversion` number itself must be one
-              you own or have verified.
+          diversion: The `to` number of an active inbound call, in +E164 format. Telnyx checks
+              whether there is currently an active inbound call where `to` matches this
+              `diversion` value and `from` matches the `from` number supplied for this
+              request. If such a call exists, the `from` number is treated as verified (since
+              it is already on an active inbound call to you) and can be used as the caller id
+              for this outbound call.
 
           early_media: If set to false, early media will not be passed to the originating leg.
 

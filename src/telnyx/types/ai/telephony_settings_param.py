@@ -17,14 +17,40 @@ __all__ = [
 class NoiseSuppressionConfig(TypedDict, total=False):
     """Configuration for noise suppression.
 
-    Only applicable when noise_suppression is 'deepfilternet'.
+    Applicable fields depend on the engine: 'attenuation_limit' and 'mode' only when noise_suppression is 'deepfilternet'; 'family', 'size' and 'enhancement_level' only when noise_suppression is 'aicoustics'.
     """
 
     attenuation_limit: int
-    """Attenuation limit for noise suppression. Range: 0-100."""
+    """Attenuation limit for noise suppression.
+
+    Range: 0-100. Only applicable when noise_suppression is 'deepfilternet'.
+    """
+
+    enhancement_level: float
+    """AiCoustics enhancement intensity.
+
+    Range: 0-1. Only applicable when noise_suppression is 'aicoustics'.
+    """
+
+    family: Literal["quail"]
+    """AiCoustics model family optimized for Voice AI and STT.
+
+    Only applicable when noise_suppression is 'aicoustics'.
+    """
 
     mode: Literal["advanced"]
-    """Mode for noise suppression configuration."""
+    """Mode for noise suppression configuration.
+
+    Only applicable when noise_suppression is 'deepfilternet'.
+    """
+
+    size: Literal["vf", "vf_2_0_l"]
+    """AiCoustics model size.
+
+    'vf' tracks the latest model release; 'vf_2_0_l' is pinned to version 2.0 for
+    consistent, predictable behavior. Only applicable when noise_suppression is
+    'aicoustics'.
+    """
 
 
 class RecordingSettings(TypedDict, total=False):
@@ -124,16 +150,19 @@ class TelephonySettingsParam(TypedDict, total=False):
     bridged the call.
     """
 
-    noise_suppression: Literal["krisp", "deepfilternet", "disabled"]
+    noise_suppression: Literal["aicoustics", "krisp", "deepfilternet", "disabled"]
     """The noise suppression engine to use.
 
-    Use 'disabled' to turn off noise suppression.
+    'aicoustics' is STT-optimized and recommended for AI assistants (configure
+    through noise_suppression_config). Use 'disabled' to turn off noise suppression.
     """
 
     noise_suppression_config: NoiseSuppressionConfig
     """Configuration for noise suppression.
 
-    Only applicable when noise_suppression is 'deepfilternet'.
+    Applicable fields depend on the engine: 'attenuation_limit' and 'mode' only when
+    noise_suppression is 'deepfilternet'; 'family', 'size' and 'enhancement_level'
+    only when noise_suppression is 'aicoustics'.
     """
 
     recording_settings: RecordingSettings

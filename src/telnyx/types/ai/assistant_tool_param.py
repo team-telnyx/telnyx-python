@@ -6,20 +6,23 @@ from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
-from .hangup_tool_param import HangupToolParam
 from .retrieval_tool_param import RetrievalToolParam
 from .pay_tool_params_param import PayToolParamsParam
+from .hangup_tool_params_param import HangupToolParamsParam
+from .openai.function_definition_param import FunctionDefinitionParam
 from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
 from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam
 
 __all__ = [
     "AssistantToolParam",
+    "Function",
     "ClientSideTool",
     "ClientSideToolClientSideTool",
     "ClientSideToolClientSideToolParameters",
     "Handoff",
     "HandoffHandoff",
     "HandoffHandoffAIAssistant",
+    "Hangup",
     "Transfer",
     "TransferTransfer",
     "TransferTransferTargetsTargetsList",
@@ -48,6 +51,12 @@ __all__ = [
     "Pay",
     "UpdateDynamicVariables",
 ]
+
+
+class Function(TypedDict, total=False):
+    function: Required[FunctionDefinitionParam]
+
+    type: Required[Literal["function"]]
 
 
 class ClientSideToolClientSideToolParameters(TypedDict, total=False):
@@ -116,6 +125,12 @@ class Handoff(TypedDict, total=False):
     handoff: Required[HandoffHandoff]
 
     type: Required[Literal["handoff"]]
+
+
+class Hangup(TypedDict, total=False):
+    hangup: Required[HangupToolParamsParam]
+
+    type: Required[Literal["hangup"]]
 
 
 class TransferTransferTargetsTargetsList(TypedDict, total=False):
@@ -549,11 +564,12 @@ class UpdateDynamicVariables(TypedDict, total=False):
 
 
 AssistantToolParam: TypeAlias = Union[
+    Function,
     InferenceEmbeddingWebhookToolParamsParam,
     ClientSideTool,
     RetrievalToolParam,
     Handoff,
-    HangupToolParam,
+    Hangup,
     Transfer,
     Invite,
     Refer,

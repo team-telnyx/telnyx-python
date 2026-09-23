@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .calls import (
+    CallsResource,
+    AsyncCallsResource,
+    CallsResourceWithRawResponse,
+    AsyncCallsResourceWithRawResponse,
+    CallsResourceWithStreamingResponse,
+    AsyncCallsResourceWithStreamingResponse,
+)
 from ...types import texml_secrets_params, texml_initiate_ai_call_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
@@ -35,6 +43,11 @@ __all__ = ["TexmlResource", "AsyncTexmlResource"]
 
 class TexmlResource(SyncAPIResource):
     """TeXML REST Commands"""
+
+    @cached_property
+    def calls(self) -> CallsResource:
+        """TeXML REST Commands"""
+        return CallsResource(self._client)
 
     @cached_property
     def accounts(self) -> AccountsResource:
@@ -79,7 +92,14 @@ class TexmlResource(SyncAPIResource):
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_max_frequency: int | Omit = omit,
+        machine_detection_beep_min_frequency: int | Omit = omit,
+        machine_detection_beep_min_tone_duration: int | Omit = omit,
         machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
+        machine_detection_beep_spectral_confirmation: bool | Omit = omit,
+        machine_detection_beep_spectral_min_purity: float | Omit = omit,
+        machine_detection_beep_spectral_reject_fax_cng: bool | Omit = omit,
+        machine_detection_beep_spectral_window: int | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -172,9 +192,34 @@ class TexmlResource(SyncAPIResource):
 
           machine_detection: Enables Answering Machine Detection.
 
+          machine_detection_beep_max_frequency: Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_min_frequency: Lowest frequency, in Hz, that a tone must reach to be treated as a beep. Raising
+              it above 480 excludes North American ringback (440 + 480 Hz), which can
+              otherwise be reported as a beep when the `freq_only` profile is in use. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_min_tone_duration: Shortest tone, in milliseconds, that can be treated as a beep. Raising it
+              rejects brief tones such as call-progress blips. Only used when MachineDetection
+              is enabled.
+
           machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
               frequency detectors to agree. `freq_only` uses the frequency detector alone, for
               beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
+
+          machine_detection_beep_spectral_confirmation: When enabled, a candidate beep must pass an additional spectral check before it
+              is reported. Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_min_purity: Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+              Raising it rejects mixed tones such as ringback, which combines two frequencies.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_reject_fax_cng: When enabled, the fax CNG tone is rejected rather than reported as a beep. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_window: Length of the spectral confirmation window, in milliseconds. Only used when
               MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
@@ -278,7 +323,14 @@ class TexmlResource(SyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_max_frequency": machine_detection_beep_max_frequency,
+                    "machine_detection_beep_min_frequency": machine_detection_beep_min_frequency,
+                    "machine_detection_beep_min_tone_duration": machine_detection_beep_min_tone_duration,
                     "machine_detection_beep_profile": machine_detection_beep_profile,
+                    "machine_detection_beep_spectral_confirmation": machine_detection_beep_spectral_confirmation,
+                    "machine_detection_beep_spectral_min_purity": machine_detection_beep_spectral_min_purity,
+                    "machine_detection_beep_spectral_reject_fax_cng": machine_detection_beep_spectral_reject_fax_cng,
+                    "machine_detection_beep_spectral_window": machine_detection_beep_spectral_window,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -366,6 +418,11 @@ class AsyncTexmlResource(AsyncAPIResource):
     """TeXML REST Commands"""
 
     @cached_property
+    def calls(self) -> AsyncCallsResource:
+        """TeXML REST Commands"""
+        return AsyncCallsResource(self._client)
+
+    @cached_property
     def accounts(self) -> AsyncAccountsResource:
         """TeXML REST Commands"""
         return AsyncAccountsResource(self._client)
@@ -408,7 +465,14 @@ class AsyncTexmlResource(AsyncAPIResource):
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_beep_max_frequency: int | Omit = omit,
+        machine_detection_beep_min_frequency: int | Omit = omit,
+        machine_detection_beep_min_tone_duration: int | Omit = omit,
         machine_detection_beep_profile: Literal["both", "freq_only"] | Omit = omit,
+        machine_detection_beep_spectral_confirmation: bool | Omit = omit,
+        machine_detection_beep_spectral_min_purity: float | Omit = omit,
+        machine_detection_beep_spectral_reject_fax_cng: bool | Omit = omit,
+        machine_detection_beep_spectral_window: int | Omit = omit,
         machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -501,9 +565,34 @@ class AsyncTexmlResource(AsyncAPIResource):
 
           machine_detection: Enables Answering Machine Detection.
 
+          machine_detection_beep_max_frequency: Highest frequency, in Hz, that a tone can reach and still be treated as a beep.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_min_frequency: Lowest frequency, in Hz, that a tone must reach to be treated as a beep. Raising
+              it above 480 excludes North American ringback (440 + 480 Hz), which can
+              otherwise be reported as a beep when the `freq_only` profile is in use. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_min_tone_duration: Shortest tone, in milliseconds, that can be treated as a beep. Raising it
+              rejects brief tones such as call-progress blips. Only used when MachineDetection
+              is enabled.
+
           machine_detection_beep_profile: Selects which detectors must validate a beep. `both` requires the amplitude and
               frequency detectors to agree. `freq_only` uses the frequency detector alone, for
               beeps whose volume is too unsteady for the default profile. Only used when
+              MachineDetection is enabled.
+
+          machine_detection_beep_spectral_confirmation: When enabled, a candidate beep must pass an additional spectral check before it
+              is reported. Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_min_purity: Minimum spectral purity, from 0 to 1, for a tone to be treated as a beep.
+              Raising it rejects mixed tones such as ringback, which combines two frequencies.
+              Only used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_reject_fax_cng: When enabled, the fax CNG tone is rejected rather than reported as a beep. Only
+              used when MachineDetection is enabled.
+
+          machine_detection_beep_spectral_window: Length of the spectral confirmation window, in milliseconds. Only used when
               MachineDetection is enabled.
 
           machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
@@ -607,7 +696,14 @@ class AsyncTexmlResource(AsyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_beep_max_frequency": machine_detection_beep_max_frequency,
+                    "machine_detection_beep_min_frequency": machine_detection_beep_min_frequency,
+                    "machine_detection_beep_min_tone_duration": machine_detection_beep_min_tone_duration,
                     "machine_detection_beep_profile": machine_detection_beep_profile,
+                    "machine_detection_beep_spectral_confirmation": machine_detection_beep_spectral_confirmation,
+                    "machine_detection_beep_spectral_min_purity": machine_detection_beep_spectral_min_purity,
+                    "machine_detection_beep_spectral_reject_fax_cng": machine_detection_beep_spectral_reject_fax_cng,
+                    "machine_detection_beep_spectral_window": machine_detection_beep_spectral_window,
                     "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -703,6 +799,11 @@ class TexmlResourceWithRawResponse:
         )
 
     @cached_property
+    def calls(self) -> CallsResourceWithRawResponse:
+        """TeXML REST Commands"""
+        return CallsResourceWithRawResponse(self._texml.calls)
+
+    @cached_property
     def accounts(self) -> AccountsResourceWithRawResponse:
         """TeXML REST Commands"""
         return AccountsResourceWithRawResponse(self._texml.accounts)
@@ -718,6 +819,11 @@ class AsyncTexmlResourceWithRawResponse:
         self.secrets = async_to_raw_response_wrapper(
             texml.secrets,
         )
+
+    @cached_property
+    def calls(self) -> AsyncCallsResourceWithRawResponse:
+        """TeXML REST Commands"""
+        return AsyncCallsResourceWithRawResponse(self._texml.calls)
 
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithRawResponse:
@@ -737,6 +843,11 @@ class TexmlResourceWithStreamingResponse:
         )
 
     @cached_property
+    def calls(self) -> CallsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
+        return CallsResourceWithStreamingResponse(self._texml.calls)
+
+    @cached_property
     def accounts(self) -> AccountsResourceWithStreamingResponse:
         """TeXML REST Commands"""
         return AccountsResourceWithStreamingResponse(self._texml.accounts)
@@ -752,6 +863,11 @@ class AsyncTexmlResourceWithStreamingResponse:
         self.secrets = async_to_streamed_response_wrapper(
             texml.secrets,
         )
+
+    @cached_property
+    def calls(self) -> AsyncCallsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
+        return AsyncCallsResourceWithStreamingResponse(self._texml.calls)
 
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithStreamingResponse:

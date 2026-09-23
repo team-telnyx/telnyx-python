@@ -23,18 +23,19 @@ class TranscriptionConfigParam(TypedDict, total=False):
     language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
     and `nl`. For `soniox/stt-rt-v4`, `auto` omits the language hint and lets Soniox
     auto-detect; ISO 639-1 codes (e.g. `en`, `es`) bias detection toward that
-    language. For `assemblyai/universal-streaming`, `auto` (or unset) enables native
-    multilingual code-switching; ISO 639-1 codes (`en`, `es`, `de`, `fr`, `pt`,
-    `it`, `tr`, `nl`, `sv`, `no`, `da`, `fi`, `hi`, `vi`, `ar`, `he`, `ja`, `zh`)
-    bias the session to that language. For `humain/realtime`, supported values are
-    `ar`, `en`, `codeswitch` (Arabic/English code-switching), and `auto` (resolves
-    server-side to code-switching). Unlike other models, `humain/realtime` does not
-    fall back to `auto` when `language` is omitted — omitting it applies `en`
-    instead. For `reson8/turns`, supported values are `auto` (or unset) for
-    automatic language detection, and the language codes `nl`, `en`, `fr`, `fy`,
-    `de`, `it`, `pl`, `pt`, `es`, and `sv` to fix the transcription language. For
-    `cohere/ar-stt`, supported values are `ar` and `en`; unlike other models, this
-    model does not auto-detect and defaults to `ar` when `language` is omitted.
+    language. For `assemblyai/universal-3-5-pro` (and its legacy alias
+    `assemblyai/universal-streaming`), `auto` (or unset) enables native multilingual
+    code-switching; ISO 639-1 codes (`en`, `es`, `de`, `fr`, `pt`, `it`, `tr`, `nl`,
+    `sv`, `no`, `da`, `fi`, `hi`, `vi`, `ar`, `he`, `ja`, `zh`) bias the session to
+    that language. For `humain/realtime`, supported values are `ar`, `en`,
+    `codeswitch` (Arabic/English code-switching), and `auto` (resolves server-side
+    to code-switching). Unlike other models, `humain/realtime` does not fall back to
+    `auto` when `language` is omitted — omitting it applies `en` instead. For
+    `reson8/turns`, supported values are `auto` (or unset) for automatic language
+    detection, and the language codes `nl`, `en`, `fr`, `fy`, `de`, `it`, `pl`,
+    `pt`, `es`, and `sv` to fix the transcription language. For `cohere/ar-stt`,
+    supported values are `ar` and `en`; unlike other models, this model does not
+    auto-detect and defaults to `ar` when `language` is omitted.
     """
 
     model: Literal[
@@ -44,10 +45,12 @@ class TranscriptionConfigParam(TypedDict, total=False):
         "deepgram/nova-2",
         "speechmatics/standard",
         "speechmatics/enhanced",
+        "assemblyai/universal-3-5-pro",
         "assemblyai/universal-streaming",
         "xai/grok-stt",
         "soniox/stt-rt-v4",
         "nvidia/parakeet-v3",
+        "omi-health/omi-med-stt-v1",
         "humain/realtime",
         "reson8/turns",
         "cohere/ar-stt",
@@ -65,12 +68,16 @@ class TranscriptionConfigParam(TypedDict, total=False):
     - `deepgram/nova-3` and `deepgram/nova-2` for live streaming transcription.
     - `speechmatics/standard` and `speechmatics/enhanced` for live streaming
       transcription.
-    - `assemblyai/universal-streaming` for live streaming transcription.
+    - `assemblyai/universal-3-5-pro` for live streaming transcription. The legacy
+      alias `assemblyai/universal-streaming` is still accepted and resolves to the
+      same model.
     - `xai/grok-stt` for live streaming transcription.
     - `soniox/stt-rt-v4` for live streaming multilingual transcription with
       automatic language detection.
     - `nvidia/parakeet-v3` for multilingual transcription with automatic language
       detection.
+    - `omi-health/omi-med-stt-v1` for English-only medical transcription
+      (Parakeet-based).
     - `humain/realtime` for live streaming transcription with native Arabic and
       Arabic/English code-switching support.
     - `reson8/turns` for live streaming turn-based transcription of 10 European

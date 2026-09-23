@@ -9,20 +9,23 @@ from pydantic import Field as FieldInfo
 
 from ..._utils import PropertyInfo
 from ..._models import BaseModel
-from .hangup_tool import HangupTool
 from .retrieval_tool import RetrievalTool
 from .pay_tool_params import PayToolParams
+from .hangup_tool_params import HangupToolParams
+from .openai.function_definition import FunctionDefinition
 from .update_dynamic_variables_tool_params import UpdateDynamicVariablesToolParams
 from .inference_embedding_webhook_tool_params import InferenceEmbeddingWebhookToolParams
 
 __all__ = [
     "AssistantTool",
+    "Function",
     "ClientSideTool",
     "ClientSideToolClientSideTool",
     "ClientSideToolClientSideToolParameters",
     "Handoff",
     "HandoffHandoff",
     "HandoffHandoffAIAssistant",
+    "Hangup",
     "Transfer",
     "TransferTransfer",
     "TransferTransferTargetsTargetsList",
@@ -51,6 +54,23 @@ __all__ = [
     "Pay",
     "UpdateDynamicVariables",
 ]
+
+
+class Function(BaseModel):
+    function: FunctionDefinition
+
+    type: Literal["function"]
+
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
 
 
 class ClientSideToolClientSideToolParameters(BaseModel):
@@ -89,6 +109,17 @@ class ClientSideTool(BaseModel):
 
     type: Literal["client_side_tool"]
 
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
 
 class HandoffHandoffAIAssistant(BaseModel):
     id: str
@@ -119,6 +150,34 @@ class Handoff(BaseModel):
     handoff: HandoffHandoff
 
     type: Literal["handoff"]
+
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
+
+class Hangup(BaseModel):
+    hangup: HangupToolParams
+
+    type: Literal["hangup"]
+
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
 
 
 class TransferTransferTargetsTargetsList(BaseModel):
@@ -345,6 +404,17 @@ class Transfer(BaseModel):
 
     type: Literal["transfer"]
 
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
 
 class InviteInviteCustomHeader(BaseModel):
     name: Optional[str] = None
@@ -418,6 +488,17 @@ class Invite(BaseModel):
 
     type: Literal["invite"]
 
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
 
 class ReferReferTarget(BaseModel):
     name: str
@@ -479,11 +560,33 @@ class Refer(BaseModel):
 
     type: Literal["refer"]
 
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
 
 class SendDtmf(BaseModel):
     send_dtmf: Dict[str, object]
 
     type: Literal["send_dtmf"]
+
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
 
 
 class SendMessageSendMessage(BaseModel):
@@ -518,6 +621,17 @@ class SendMessage(BaseModel):
 
     type: Literal["send_message"]
 
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
 
 class SkipTurnSkipTurn(BaseModel):
     description: Optional[str] = None
@@ -529,6 +643,17 @@ class SkipTurn(BaseModel):
 
     type: Literal["skip_turn"]
 
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
 
 class Pay(BaseModel):
     """
@@ -538,6 +663,17 @@ class Pay(BaseModel):
     pay: PayToolParams
 
     type: Literal["pay"]
+
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
 
 
 class UpdateDynamicVariables(BaseModel):
@@ -550,14 +686,26 @@ class UpdateDynamicVariables(BaseModel):
     update_dynamic_variables: UpdateDynamicVariablesToolParams
     """Configuration for an update_dynamic_variables tool."""
 
+    shared: Optional[bool] = None
+    """Whether this tool comes from the shared Tools Library.
+
+    Responses merge shared tools into `tools` with `shared: true`; inline tools
+    carry `shared: false`. Read-only: set by the server, not accepted in requests.
+    When updating an assistant, omit `shared: true` tools from the request `tools`
+    array and manage them through `tool_ids` instead — re-sending their definitions
+    creates an inline duplicate (rejected with error code 10015 when the type allows
+    only one instance per assistant).
+    """
+
 
 AssistantTool: TypeAlias = Annotated[
     Union[
+        Function,
         InferenceEmbeddingWebhookToolParams,
         ClientSideTool,
         RetrievalTool,
         Handoff,
-        HangupTool,
+        Hangup,
         Transfer,
         Invite,
         Refer,

@@ -7,6 +7,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
 from ..bucket_ids_param import BucketIDsParam
+from .function_definition_param import FunctionDefinitionParam
 
 __all__ = [
     "ChatCreateCompletionParams",
@@ -19,7 +20,6 @@ __all__ = [
     "ResponseFormatResponseFormatJsonSchemaParamJsonSchema",
     "Tool",
     "ToolFunction",
-    "ToolFunctionFunction",
     "ToolRetrieval",
 ]
 
@@ -267,16 +267,8 @@ ResponseFormat: TypeAlias = Union[
 ]
 
 
-class ToolFunctionFunction(TypedDict, total=False):
-    name: Required[str]
-
-    description: str
-
-    parameters: Dict[str, object]
-
-
 class ToolFunction(TypedDict, total=False):
-    function: Required[ToolFunctionFunction]
+    function: Required[FunctionDefinitionParam]
 
     type: Required[Literal["function"]]
 
