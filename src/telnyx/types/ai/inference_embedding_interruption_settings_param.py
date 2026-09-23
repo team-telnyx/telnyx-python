@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 from .start_speaking_plan_param import StartSpeakingPlanParam
@@ -19,6 +20,12 @@ class InferenceEmbeddingInterruptionSettingsParam(TypedDict, total=False):
 
     enable: bool
     """Whether users can interrupt the assistant while it is speaking."""
+
+    interrupt_prediction_threshold: Optional[float]
+    """Interrupt-prediction sensitivity, from 0.0 to 1.0.
+
+    Set to null or 0.0 to disable interrupt prediction.
+    """
 
     start_speaking_plan: StartSpeakingPlanParam
     """Controls when the assistant starts speaking after the user stops.

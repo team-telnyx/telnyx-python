@@ -9,10 +9,11 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .shared.messaging_error import MessagingError
+from .messaging_error_0b38e7044b import MessagingError0b38e7044b
 
 __all__ = [
     "OutboundMessagePayload",
+    "Body",
     "Cc",
     "Cost",
     "CostBreakdown",
@@ -22,6 +23,13 @@ __all__ = [
     "Media",
     "To",
 ]
+
+
+class Body(BaseModel):
+    """RCS webhook message body. Text messages use the text property."""
+
+    text: Optional[str] = None
+    """RCS text message."""
 
 
 class Cc(BaseModel):
@@ -72,6 +80,12 @@ class CostBreakdown(BaseModel):
 
 
 class From(BaseModel):
+    agent_id: Optional[str] = None
+    """RCS agent identifier."""
+
+    agent_name: Optional[str] = None
+    """RCS agent name."""
+
     carrier: Optional[str] = None
     """The carrier of the receiver."""
 
@@ -119,6 +133,7 @@ class To(BaseModel):
             "delivery_unconfirmed",
             "delivered",
             "delivery_failed",
+            "read",
         ]
     ] = None
     """The delivery status of the message."""
@@ -127,6 +142,9 @@ class To(BaseModel):
 class OutboundMessagePayload(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
+
+    body: Optional[Body] = None
+    """RCS webhook message body. Text messages use the text property."""
 
     cc: Optional[List[Cc]] = None
 
@@ -147,7 +165,7 @@ class OutboundMessagePayload(BaseModel):
     encoding: Optional[str] = None
     """Encoding scheme used for the message body."""
 
-    errors: Optional[List[MessagingError]] = None
+    errors: Optional[List[MessagingError0b38e7044b]] = None
     """
     These errors may point at addressees when referring to unsuccessful/unconfirmed
     delivery statuses.
@@ -209,7 +227,7 @@ class OutboundMessagePayload(BaseModel):
 
     to: Optional[List[To]] = None
 
-    type: Optional[Literal["SMS", "MMS"]] = None
+    type: Optional[Literal["SMS", "MMS", "RCS"]] = None
     """The type of message."""
 
     valid_until: Optional[datetime] = None

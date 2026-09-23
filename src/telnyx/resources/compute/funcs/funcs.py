@@ -8,31 +8,43 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .export import (
+    ExportResource,
+    AsyncExportResource,
+    ExportResourceWithRawResponse,
+    AsyncExportResourceWithRawResponse,
+    ExportResourceWithStreamingResponse,
+    AsyncExportResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.compute import (
+from ...._base_client import make_request_options
+from ....types.compute import (
     func_retrieve_logs_params,
     func_retrieve_revisions_params,
     func_retrieve_metric_aggregates_params,
 )
-from ...types.compute.func_retrieve_logs_response import FuncRetrieveLogsResponse
-from ...types.compute.func_retrieve_revisions_response import FuncRetrieveRevisionsResponse
-from ...types.compute.func_retrieve_ship_inspection_response import FuncRetrieveShipInspectionResponse
-from ...types.compute.func_retrieve_metric_aggregates_response import FuncRetrieveMetricAggregatesResponse
+from ....types.compute.func_retrieve_logs_response import FuncRetrieveLogsResponse
+from ....types.compute.func_retrieve_revisions_response import FuncRetrieveRevisionsResponse
+from ....types.compute.func_retrieve_ship_inspection_response import FuncRetrieveShipInspectionResponse
+from ....types.compute.func_retrieve_metric_aggregates_response import FuncRetrieveMetricAggregatesResponse
 
 __all__ = ["FuncsResource", "AsyncFuncsResource"]
 
 
 class FuncsResource(SyncAPIResource):
+    @cached_property
+    def export(self) -> ExportResource:
+        return ExportResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> FuncsResourceWithRawResponse:
         """
@@ -264,6 +276,10 @@ class FuncsResource(SyncAPIResource):
 
 
 class AsyncFuncsResource(AsyncAPIResource):
+    @cached_property
+    def export(self) -> AsyncExportResource:
+        return AsyncExportResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncFuncsResourceWithRawResponse:
         """
@@ -511,6 +527,10 @@ class FuncsResourceWithRawResponse:
             funcs.retrieve_ship_inspection,
         )
 
+    @cached_property
+    def export(self) -> ExportResourceWithRawResponse:
+        return ExportResourceWithRawResponse(self._funcs.export)
+
 
 class AsyncFuncsResourceWithRawResponse:
     def __init__(self, funcs: AsyncFuncsResource) -> None:
@@ -528,6 +548,10 @@ class AsyncFuncsResourceWithRawResponse:
         self.retrieve_ship_inspection = async_to_raw_response_wrapper(
             funcs.retrieve_ship_inspection,
         )
+
+    @cached_property
+    def export(self) -> AsyncExportResourceWithRawResponse:
+        return AsyncExportResourceWithRawResponse(self._funcs.export)
 
 
 class FuncsResourceWithStreamingResponse:
@@ -547,6 +571,10 @@ class FuncsResourceWithStreamingResponse:
             funcs.retrieve_ship_inspection,
         )
 
+    @cached_property
+    def export(self) -> ExportResourceWithStreamingResponse:
+        return ExportResourceWithStreamingResponse(self._funcs.export)
+
 
 class AsyncFuncsResourceWithStreamingResponse:
     def __init__(self, funcs: AsyncFuncsResource) -> None:
@@ -564,3 +592,7 @@ class AsyncFuncsResourceWithStreamingResponse:
         self.retrieve_ship_inspection = async_to_streamed_response_wrapper(
             funcs.retrieve_ship_inspection,
         )
+
+    @cached_property
+    def export(self) -> AsyncExportResourceWithStreamingResponse:
+        return AsyncExportResourceWithStreamingResponse(self._funcs.export)

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
@@ -15,7 +15,14 @@ __all__ = [
     "MessagingInboundMessagePayload",
     "Body",
     "BodyEdit",
+    "BodyLocation",
     "BodyRevoke",
+    "BodySuggestionResponse",
+    "BodyText",
+    "BodyTextBody",
+    "BodyUserFile",
+    "BodyUserFilePayload",
+    "BodyUserFileThumbnail",
     "Cc",
     "Cost",
     "CostBreakdown",
@@ -40,6 +47,14 @@ class BodyEdit(BaseModel):
     """
 
 
+class BodyLocation(BaseModel):
+    """Location shared in an RCS message."""
+
+    latitude: Optional[float] = None
+
+    longitude: Optional[float] = None
+
+
 class BodyRevoke(BaseModel):
     """Details for a revoked WhatsApp message."""
 
@@ -50,10 +65,65 @@ class BodyRevoke(BaseModel):
     """
 
 
-class Body(BaseModel):
-    """WhatsApp message body.
+class BodySuggestionResponse(BaseModel):
+    """Selected RCS suggestion."""
 
-    For message edits and revocations, inspect `type` and the corresponding `edit` or `revoke` object.
+    postback_data: Optional[str] = None
+
+    text: Optional[str] = None
+
+
+class BodyTextBody(BaseModel):
+    body: Optional[str] = None
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
+
+
+BodyText: TypeAlias = Union[str, BodyTextBody]
+
+
+class BodyUserFilePayload(BaseModel):
+    file_name: Optional[str] = None
+
+    file_size_bytes: Optional[int] = None
+
+    file_uri: Optional[str] = None
+
+    mime_type: Optional[str] = None
+
+
+class BodyUserFileThumbnail(BaseModel):
+    file_name: Optional[str] = None
+
+    file_size_bytes: Optional[int] = None
+
+    file_uri: Optional[str] = None
+
+    mime_type: Optional[str] = None
+
+
+class BodyUserFile(BaseModel):
+    """RCS file attachment and optional thumbnail."""
+
+    payload: Optional[BodyUserFilePayload] = None
+
+    thumbnail: Optional[BodyUserFileThumbnail] = None
+
+
+class Body(BaseModel):
+    """Message body for RCS and WhatsApp.
+
+    RCS messages contain text, user_file, location, or suggestion_response. For WhatsApp edits and revocations, inspect type and the corresponding edit or revoke object.
     """
 
     id: Optional[str] = None
@@ -68,8 +138,17 @@ class Body(BaseModel):
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """WhatsApp sender in E.164 format."""
 
+    location: Optional[BodyLocation] = None
+    """Location shared in an RCS message."""
+
     revoke: Optional[BodyRevoke] = None
     """Details for a revoked WhatsApp message."""
+
+    suggestion_response: Optional[BodySuggestionResponse] = None
+    """Selected RCS suggestion."""
+
+    text: Optional[BodyText] = None
+    """RCS text string or WhatsApp text object."""
 
     timestamp: Optional[str] = None
     """Unix timestamp supplied by Meta."""
@@ -79,6 +158,9 @@ class Body(BaseModel):
 
     Edit and revoke events use `edit` and `revoke`, respectively.
     """
+
+    user_file: Optional[BodyUserFile] = None
+    """RCS file attachment and optional thumbnail."""
 
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
@@ -144,7 +226,7 @@ class From(BaseModel):
     carrier: Optional[str] = None
     """The carrier of the sender."""
 
-    line_type: Optional[Literal["Wireline", "Wireless", "VoWiFi", "VoIP", "Pre-Paid Wireless", ""]] = None
+    line_type: Optional[Literal["Wireline", "Wireless", "VoWiFi", "VoIP", "Pre-Paid Wireless", "", "long_code"]] = None
     """The line-type of the sender."""
 
     phone_number: Optional[str] = None
@@ -153,7 +235,7 @@ class From(BaseModel):
     code).
     """
 
-    status: Optional[Literal["received", "delivered"]] = None
+    status: Optional[Literal["received", "delivered", "webhook_delivered"]] = None
 
 
 class Media(BaseModel):
@@ -171,6 +253,12 @@ class Media(BaseModel):
 
 
 class ToUnionMember0(BaseModel):
+    agent_id: Optional[str] = None
+    """RCS agent identifier."""
+
+    agent_name: Optional[str] = None
+    """RCS agent name."""
+
     carrier: Optional[str] = None
     """The carrier of the receiver."""
 
@@ -198,11 +286,19 @@ class MessagingInboundMessagePayload(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
-    body: Optional[Body] = None
-    """WhatsApp message body.
+    autoresponse_type: Optional[str] = None
+    """Automatic response type triggered by an inbound opt-in, opt-out, or help
+    keyword.
 
-    For message edits and revocations, inspect `type` and the corresponding `edit`
-    or `revoke` object.
+    Examples include START, STOP, and HELP.
+    """
+
+    body: Optional[Body] = None
+    """Message body for RCS and WhatsApp.
+
+    RCS messages contain text, user_file, location, or suggestion_response. For
+    WhatsApp edits and revocations, inspect type and the corresponding edit or
+    revoke object.
     """
 
     cc: Optional[List[Cc]] = None
@@ -279,11 +375,12 @@ class MessagingInboundMessagePayload(BaseModel):
     to: Union[List[ToUnionMember0], str, None] = None
     """Receiving address.
 
-    SMS and MMS webhooks use an array of recipients. WhatsApp webhooks use one E.164
-    phone number.
+    SMS, MMS and RCS webhooks use an array of recipients. RCS recipients are
+    identified by agent_id and agent_name. WhatsApp webhooks use one E.164 phone
+    number.
     """
 
-    type: Optional[Literal["SMS", "MMS", "WHATSAPP"]] = None
+    type: Optional[Literal["SMS", "MMS", "WHATSAPP", "RCS"]] = None
     """The messaging channel used for the message."""
 
     valid_until: Optional[datetime] = None

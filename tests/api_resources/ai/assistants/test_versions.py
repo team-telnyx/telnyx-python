@@ -320,6 +320,7 @@ class TestVersions:
             interruption_settings={
                 "disable_greeting_interruption": True,
                 "enable": True,
+                "interrupt_prediction_threshold": 0,
                 "start_speaking_plan": {
                     "transcription_endpointing_plan": {
                         "on_no_punctuation_seconds": 0,
@@ -354,16 +355,22 @@ class TestVersions:
                 "status": "enabled",
             },
             post_conversation_settings={"enabled": True},
-            privacy_settings={"data_retention": True},
+            privacy_settings={
+                "data_retention": True,
+                "in_transit_data_locality": True,
+            },
             tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
-                "noise_suppression": "krisp",
+                "noise_suppression": "aicoustics",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
+                    "enhancement_level": 0,
+                    "family": "quail",
                     "mode": "advanced",
+                    "size": "vf",
                 },
                 "recording_settings": {
                     "channels": "single",
@@ -390,66 +397,12 @@ class TestVersions:
             tool_ids=["string"],
             tools=[
                 {
-                    "type": "webhook",
-                    "webhook": {
-                        "description": "description",
+                    "function": {
                         "name": "name",
-                        "url": "https://example.com/api/v1/function",
-                        "async": True,
-                        "async_timeout_ms": 1,
-                        "body_parameters": {
-                            "properties": {
-                                "age": "bar",
-                                "location": "bar",
-                            },
-                            "required": ["age", "location"],
-                            "type": "object",
-                        },
-                        "headers": [
-                            {
-                                "name": "name",
-                                "value": "value",
-                            }
-                        ],
-                        "messages": [
-                            {
-                                "content": "Let me look that up for you.",
-                                "type": "request_start",
-                                "timing_ms": 100,
-                            },
-                            {
-                                "content": "Still working on that.",
-                                "timing_ms": 5000,
-                                "type": "request_response_delayed",
-                            },
-                        ],
-                        "method": "GET",
-                        "path_parameters": {
-                            "properties": {"id": "bar"},
-                            "required": ["id"],
-                            "type": "object",
-                        },
-                        "preset_body_fields": {
-                            "account_id": "bar",
-                            "source": "bar",
-                        },
-                        "preset_query_params": {
-                            "caller": "bar",
-                            "channel": "bar",
-                        },
-                        "query_parameters": {
-                            "properties": {"page": "bar"},
-                            "required": ["page"],
-                            "type": "object",
-                        },
-                        "store_fields_as_variables": [
-                            {
-                                "name": "x",
-                                "value_path": "x",
-                            }
-                        ],
-                        "timeout_ms": 500,
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
                     },
+                    "type": "function",
                 }
             ],
             transcription={
@@ -1006,6 +959,7 @@ class TestAsyncVersions:
             interruption_settings={
                 "disable_greeting_interruption": True,
                 "enable": True,
+                "interrupt_prediction_threshold": 0,
                 "start_speaking_plan": {
                     "transcription_endpointing_plan": {
                         "on_no_punctuation_seconds": 0,
@@ -1040,16 +994,22 @@ class TestAsyncVersions:
                 "status": "enabled",
             },
             post_conversation_settings={"enabled": True},
-            privacy_settings={"data_retention": True},
+            privacy_settings={
+                "data_retention": True,
+                "in_transit_data_locality": True,
+            },
             tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
-                "noise_suppression": "krisp",
+                "noise_suppression": "aicoustics",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
+                    "enhancement_level": 0,
+                    "family": "quail",
                     "mode": "advanced",
+                    "size": "vf",
                 },
                 "recording_settings": {
                     "channels": "single",
@@ -1076,66 +1036,12 @@ class TestAsyncVersions:
             tool_ids=["string"],
             tools=[
                 {
-                    "type": "webhook",
-                    "webhook": {
-                        "description": "description",
+                    "function": {
                         "name": "name",
-                        "url": "https://example.com/api/v1/function",
-                        "async": True,
-                        "async_timeout_ms": 1,
-                        "body_parameters": {
-                            "properties": {
-                                "age": "bar",
-                                "location": "bar",
-                            },
-                            "required": ["age", "location"],
-                            "type": "object",
-                        },
-                        "headers": [
-                            {
-                                "name": "name",
-                                "value": "value",
-                            }
-                        ],
-                        "messages": [
-                            {
-                                "content": "Let me look that up for you.",
-                                "type": "request_start",
-                                "timing_ms": 100,
-                            },
-                            {
-                                "content": "Still working on that.",
-                                "timing_ms": 5000,
-                                "type": "request_response_delayed",
-                            },
-                        ],
-                        "method": "GET",
-                        "path_parameters": {
-                            "properties": {"id": "bar"},
-                            "required": ["id"],
-                            "type": "object",
-                        },
-                        "preset_body_fields": {
-                            "account_id": "bar",
-                            "source": "bar",
-                        },
-                        "preset_query_params": {
-                            "caller": "bar",
-                            "channel": "bar",
-                        },
-                        "query_parameters": {
-                            "properties": {"page": "bar"},
-                            "required": ["page"],
-                            "type": "object",
-                        },
-                        "store_fields_as_variables": [
-                            {
-                                "name": "x",
-                                "value_path": "x",
-                            }
-                        ],
-                        "timeout_ms": 500,
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
                     },
+                    "type": "function",
                 }
             ],
             transcription={

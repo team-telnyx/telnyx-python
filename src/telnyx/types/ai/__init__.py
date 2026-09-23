@@ -97,7 +97,6 @@ if TYPE_CHECKING:
     from .collection import Collection as Collection
     from .mcp_server import McpServer as McpServer
     from .speak_node import SpeakNode as SpeakNode
-    from .hangup_tool import HangupTool as HangupTool
     from .integration import Integration as Integration
     from .conversation import Conversation as Conversation
     from .external_llm import ExternalLlm as ExternalLlm
@@ -146,6 +145,7 @@ if TYPE_CHECKING:
     from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
     from .conversation_retrieve_response import ConversationRetrieveResponse as ConversationRetrieveResponse
     from .transcription_endpointing_plan import TranscriptionEndpointingPlan as TranscriptionEndpointingPlan
+    from .audio_transcription_response_word import AudioTranscriptionResponseWord as AudioTranscriptionResponseWord
     from .embedding_similarity_search_response import (
         EmbeddingSimilaritySearchResponse as EmbeddingSimilaritySearchResponse,
     )
@@ -204,10 +204,6 @@ def __getattr__(name: str) -> Any:
         from .flow_node import FlowNode
 
         return FlowNode
-    if name == "HangupTool":
-        from .hangup_tool import HangupTool
-
-        return HangupTool
     if name == "HangupToolParams":
         from .hangup_tool_params import HangupToolParams
 
@@ -304,6 +300,10 @@ def __getattr__(name: str) -> Any:
         from .assistant_send_sms_response import AssistantSendSMSResponse
 
         return AssistantSendSMSResponse
+    if name == "AudioTranscriptionResponseWord":
+        from .audio_transcription_response_word import AudioTranscriptionResponseWord
+
+        return AudioTranscriptionResponseWord
     if name == "AudioTranscribeResponse":
         from .audio_transcribe_response import AudioTranscribeResponse
 

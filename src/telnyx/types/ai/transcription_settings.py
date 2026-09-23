@@ -46,11 +46,13 @@ class TranscriptionSettings(BaseModel):
             "deepgram/nova-3",
             "deepgram/nova-2",
             "azure/fast",
+            "assemblyai/universal-3-5-pro",
             "assemblyai/universal-streaming",
             "xai/grok-stt",
             "soniox/stt-rt-v4",
             "soniox/stt-rt-v5",
             "nvidia/parakeet-v3",
+            "omi-health/omi-med-stt-v1",
             "humain/realtime",
             "reson8/turns",
             "cohere/ar-stt",
@@ -66,14 +68,17 @@ class TranscriptionSettings(BaseModel):
     - `deepgram/nova-3` is multilingual with automatic language detection.
     - `deepgram/nova-2` is Deepgram's previous-generation multilingual model.
     - `azure/fast` is a multilingual Azure transcription model.
-    - `assemblyai/universal-streaming` is a multilingual streaming model with
-      configurable turn detection.
+    - `assemblyai/universal-3-5-pro` is a multilingual streaming model with
+      configurable turn detection. The legacy alias `assemblyai/universal-streaming`
+      is still accepted and resolves to the same model.
     - `xai/grok-stt` is a multilingual Grok STT model.
     - `soniox/stt-rt-v4` and `soniox/stt-rt-v5` are multilingual streaming models
       with automatic language detection, configurable endpointing, term biasing
       (`context`), and `language_hints`.
     - `nvidia/parakeet-v3` is a multilingual transcription model with automatic
       language detection.
+    - `omi-health/omi-med-stt-v1` is an English-only medical transcription model
+      (Parakeet-based).
     - `humain/realtime` is a streaming model with native Arabic and Arabic/English
       code-switching support.
     - `reson8/turns` is a turn-based streaming model covering 10 European languages

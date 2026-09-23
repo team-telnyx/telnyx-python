@@ -69,6 +69,14 @@ from .missions.missions import (
     MissionsResourceWithStreamingResponse,
     AsyncMissionsResourceWithStreamingResponse,
 )
+from .typesafe.typesafe import (
+    TypesafeResource,
+    AsyncTypesafeResource,
+    TypesafeResourceWithRawResponse,
+    AsyncTypesafeResourceWithRawResponse,
+    TypesafeResourceWithStreamingResponse,
+    AsyncTypesafeResourceWithStreamingResponse,
+)
 from .anthropic.anthropic import (
     AnthropicResource,
     AsyncAnthropicResource,
@@ -203,6 +211,10 @@ class AIResource(SyncAPIResource):
     @cached_property
     def knowledge(self) -> KnowledgeResource:
         return KnowledgeResource(self._client)
+
+    @cached_property
+    def typesafe(self) -> TypesafeResource:
+        return TypesafeResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -496,6 +508,10 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def knowledge(self) -> AsyncKnowledgeResource:
         return AsyncKnowledgeResource(self._client)
+
+    @cached_property
+    def typesafe(self) -> AsyncTypesafeResource:
+        return AsyncTypesafeResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -802,6 +818,10 @@ class AIResourceWithRawResponse:
     def knowledge(self) -> KnowledgeResourceWithRawResponse:
         return KnowledgeResourceWithRawResponse(self._ai.knowledge)
 
+    @cached_property
+    def typesafe(self) -> TypesafeResourceWithRawResponse:
+        return TypesafeResourceWithRawResponse(self._ai.typesafe)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -877,6 +897,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def knowledge(self) -> AsyncKnowledgeResourceWithRawResponse:
         return AsyncKnowledgeResourceWithRawResponse(self._ai.knowledge)
+
+    @cached_property
+    def typesafe(self) -> AsyncTypesafeResourceWithRawResponse:
+        return AsyncTypesafeResourceWithRawResponse(self._ai.typesafe)
 
 
 class AIResourceWithStreamingResponse:
@@ -954,6 +978,10 @@ class AIResourceWithStreamingResponse:
     def knowledge(self) -> KnowledgeResourceWithStreamingResponse:
         return KnowledgeResourceWithStreamingResponse(self._ai.knowledge)
 
+    @cached_property
+    def typesafe(self) -> TypesafeResourceWithStreamingResponse:
+        return TypesafeResourceWithStreamingResponse(self._ai.typesafe)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -1029,3 +1057,7 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def knowledge(self) -> AsyncKnowledgeResourceWithStreamingResponse:
         return AsyncKnowledgeResourceWithStreamingResponse(self._ai.knowledge)
+
+    @cached_property
+    def typesafe(self) -> AsyncTypesafeResourceWithStreamingResponse:
+        return AsyncTypesafeResourceWithStreamingResponse(self._ai.typesafe)

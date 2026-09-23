@@ -161,6 +161,7 @@ from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .stt_service_type import SttServiceType as SttServiceType
+from .success_response import SuccessResponse as SuccessResponse
 from .user_requirement import UserRequirement as UserRequirement
 from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .webhook_delivery import WebhookDelivery as WebhookDelivery
@@ -354,6 +355,7 @@ from .address_create_response import AddressCreateResponse as AddressCreateRespo
 from .address_delete_response import AddressDeleteResponse as AddressDeleteResponse
 from .audit_event_list_params import AuditEventListParams as AuditEventListParams
 from .authentication_provider import AuthenticationProvider as AuthenticationProvider
+from .bot_session_list_params import BotSessionListParams as BotSessionListParams
 from .call_conversation_ended import CallConversationEnded as CallConversationEnded
 from .call_cost_webhook_event import CallCostWebhookEvent as CallCostWebhookEvent
 from .call_hold_webhook_event import CallHoldWebhookEvent as CallHoldWebhookEvent
@@ -403,6 +405,7 @@ from .whatsapp_location_param import WhatsappLocationParam as WhatsappLocationPa
 from .whatsapp_reaction_param import WhatsappReactionParam as WhatsappReactionParam
 from .attachment_request_param import AttachmentRequestParam as AttachmentRequestParam
 from .azure_configuration_data import AzureConfigurationData as AzureConfigurationData
+from .bot_signup_create_params import BotSignupCreateParams as BotSignupCreateParams
 from .call_control_application import CallControlApplication as CallControlApplication
 from .call_event_list_response import CallEventListResponse as CallEventListResponse
 from .channel_zone_list_params import ChannelZoneListParams as ChannelZoneListParams
@@ -445,6 +448,7 @@ from .address_retrieve_response import AddressRetrieveResponse as AddressRetriev
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
 from .billing_group_list_params import BillingGroupListParams as BillingGroupListParams
+from .bot_session_list_response import BotSessionListResponse as BotSessionListResponse
 from .call_hangup_webhook_event import CallHangupWebhookEvent as CallHangupWebhookEvent
 from .call_reason_list_response import CallReasonListResponse as CallReasonListResponse
 from .call_unhold_webhook_event import CallUnholdWebhookEvent as CallUnholdWebhookEvent
@@ -469,6 +473,7 @@ from .ip_connection_list_params import IPConnectionListParams as IPConnectionLis
 from .message_retrieve_response import MessageRetrieveResponse as MessageRetrieveResponse
 from .message_schedule_response import MessageScheduleResponse as MessageScheduleResponse
 from .message_whatsapp_response import MessageWhatsappResponse as MessageWhatsappResponse
+from .messaging_inbound_message import MessagingInboundMessage as MessagingInboundMessage
 from .network_retrieve_response import NetworkRetrieveResponse as NetworkRetrieveResponse
 from .number_order_phone_number import NumberOrderPhoneNumber as NumberOrderPhoneNumber
 from .oauth_introspect_response import OAuthIntrospectResponse as OAuthIntrospectResponse
@@ -532,6 +537,7 @@ from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeer
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
 from .billing_group_create_params import BillingGroupCreateParams as BillingGroupCreateParams
 from .billing_group_update_params import BillingGroupUpdateParams as BillingGroupUpdateParams
+from .bot_challenge_create_params import BotChallengeCreateParams as BotChallengeCreateParams
 from .call_answered_webhook_event import CallAnsweredWebhookEvent as CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent as CallEnqueuedWebhookEvent
 from .call_machine_greeting_ended import CallMachineGreetingEnded as CallMachineGreetingEnded
@@ -629,6 +635,7 @@ from .artifact_failed_webhook_event import ArtifactFailedWebhookEvent as Artifac
 from .billing_group_create_response import BillingGroupCreateResponse as BillingGroupCreateResponse
 from .billing_group_delete_response import BillingGroupDeleteResponse as BillingGroupDeleteResponse
 from .billing_group_update_response import BillingGroupUpdateResponse as BillingGroupUpdateResponse
+from .bot_challenge_create_response import BotChallengeCreateResponse as BotChallengeCreateResponse
 from .bulk_sim_card_action_detailed import BulkSimCardActionDetailed as BulkSimCardActionDetailed
 from .call_left_queue_webhook_event import CallLeftQueueWebhookEvent as CallLeftQueueWebhookEvent
 from .call_reason_validate_response import CallReasonValidateResponse as CallReasonValidateResponse
@@ -873,13 +880,13 @@ from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent a
 from .call_recording_transcription_saved import CallRecordingTranscriptionSaved as CallRecordingTranscriptionSaved
 from .call_refer_completed_webhook_event import CallReferCompletedWebhookEvent as CallReferCompletedWebhookEvent
 from .conference_participant_speak_ended import ConferenceParticipantSpeakEnded as ConferenceParticipantSpeakEnded
+from .connection_retrieve_count_response import ConnectionRetrieveCountResponse as ConnectionRetrieveCountResponse
 from .country_coverage_retrieve_response import CountryCoverageRetrieveResponse as CountryCoverageRetrieveResponse
 from .email_block_retrieve_events_params import EmailBlockRetrieveEventsParams as EmailBlockRetrieveEventsParams
 from .email_block_retrieve_export_params import EmailBlockRetrieveExportParams as EmailBlockRetrieveExportParams
 from .global_ip_assignment_update_params import GlobalIPAssignmentUpdateParams as GlobalIPAssignmentUpdateParams
 from .global_ip_health_check_list_params import GlobalIPHealthCheckListParams as GlobalIPHealthCheckListParams
 from .integration_secret_create_response import IntegrationSecretCreateResponse as IntegrationSecretCreateResponse
-from .messaging_outbound_message_payload import MessagingOutboundMessagePayload as MessagingOutboundMessagePayload
 from .messaging_url_domain_list_response import MessagingURLDomainListResponse as MessagingURLDomainListResponse
 from .mobile_push_credential_list_params import MobilePushCredentialListParams as MobilePushCredentialListParams
 from .notification_channel_create_params import NotificationChannelCreateParams as NotificationChannelCreateParams
@@ -906,6 +913,7 @@ from .wireless_blocklist_create_response import WirelessBlocklistCreateResponse 
 from .wireless_blocklist_update_response import WirelessBlocklistUpdateResponse as WirelessBlocklistUpdateResponse
 from .wireless_retrieve_regions_response import WirelessRetrieveRegionsResponse as WirelessRetrieveRegionsResponse
 from .authentication_provider_list_params import AuthenticationProviderListParams as AuthenticationProviderListParams
+from .bot_signup_resend_magic_link_params import BotSignupResendMagicLinkParams as BotSignupResendMagicLinkParams
 from .call_machine_premium_greeting_ended import CallMachinePremiumGreetingEnded as CallMachinePremiumGreetingEnded
 from .call_payment_progress_webhook_event import CallPaymentProgressWebhookEvent as CallPaymentProgressWebhookEvent
 from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent as CallPlaybackStartedWebhookEvent
@@ -1041,6 +1049,9 @@ from .external_connection_retrieve_response import (
 from .inexplicit_number_order_create_params import (
     InexplicitNumberOrderCreateParams as InexplicitNumberOrderCreateParams,
 )
+from .machine_payment_account_credit_params import (
+    MachinePaymentAccountCreditParams as MachinePaymentAccountCreditParams,
+)
 from .messaging_hosted_number_update_params import (
     MessagingHostedNumberUpdateParams as MessagingHostedNumberUpdateParams,
 )
@@ -1136,6 +1147,9 @@ from .meeting_session_retrieve_events_params import (
 from .messaging_profile_metric_list_response import (
     MessagingProfileMetricListResponse as MessagingProfileMetricListResponse,
 )
+from .noise_suppression_engine_list_response import (
+    NoiseSuppressionEngineListResponse as NoiseSuppressionEngineListResponse,
+)
 from .notification_channel_retrieve_response import (
     NotificationChannelRetrieveResponse as NotificationChannelRetrieveResponse,
 )
@@ -1219,6 +1233,9 @@ from .hosted_number_order_event_webhook_event import (
 )
 from .inexplicit_number_order_create_response import (
     InexplicitNumberOrderCreateResponse as InexplicitNumberOrderCreateResponse,
+)
+from .machine_payment_account_credit_response import (
+    MachinePaymentAccountCreditResponse as MachinePaymentAccountCreditResponse,
 )
 from .messaging_hosted_number_delete_response import (
     MessagingHostedNumberDeleteResponse as MessagingHostedNumberDeleteResponse,

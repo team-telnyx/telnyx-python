@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
+from .call_create_params import CallCreateParams as CallCreateParams
 from .account_retrieve_recordings_json_params import (
     AccountRetrieveRecordingsJsonParams as AccountRetrieveRecordingsJsonParams,
 )
@@ -12,6 +13,7 @@ from .account_retrieve_transcriptions_json_params import (
 )
 
 if TYPE_CHECKING:
+    from .call_create_response import CallCreateResponse as CallCreateResponse
     from .texml_recording_subresources_uris import TexmlRecordingSubresourcesUris as TexmlRecordingSubresourcesUris
     from .texml_get_call_recording_response_body import (
         TexmlGetCallRecordingResponseBody as TexmlGetCallRecordingResponseBody,
@@ -22,6 +24,10 @@ if TYPE_CHECKING:
 
 
 def __getattr__(name: str) -> Any:
+    if name == "CallCreateResponse":
+        from .call_create_response import CallCreateResponse
+
+        return CallCreateResponse
     if name == "TexmlGetCallRecordingResponseBody":
         from .texml_get_call_recording_response_body import TexmlGetCallRecordingResponseBody
 

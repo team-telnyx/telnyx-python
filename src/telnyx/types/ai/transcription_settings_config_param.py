@@ -37,10 +37,10 @@ class TranscriptionSettingsConfigParam(TypedDict, total=False):
     """
 
     end_of_turn_confidence_threshold: float
-    """Available only for assemblyai/universal-streaming.
-
-    Confidence level required to trigger an end of turn. Higher values require more
-    certainty before ending a turn.
+    """
+    Available only for assemblyai/universal-3-5-pro (and its legacy alias
+    assemblyai/universal-streaming). Confidence level required to trigger an end of
+    turn. Higher values require more certainty before ending a turn.
     """
 
     eot_threshold: float
@@ -90,16 +90,17 @@ class TranscriptionSettingsConfigParam(TypedDict, total=False):
     """
 
     max_turn_silence: int
-    """Available only for assemblyai/universal-streaming.
-
-    Maximum duration of silence in milliseconds before forcing an end of turn.
+    """
+    Available only for assemblyai/universal-3-5-pro (and its legacy alias
+    assemblyai/universal-streaming). Maximum duration of silence in milliseconds
+    before forcing an end of turn.
     """
 
     min_turn_silence: int
-    """Available only for assemblyai/universal-streaming.
-
-    Minimum duration of silence in milliseconds before a turn can end. Must be less
-    than or equal to max_turn_silence.
+    """
+    Available only for assemblyai/universal-3-5-pro (and its legacy alias
+    assemblyai/universal-streaming). Minimum duration of silence in milliseconds
+    before a turn can end. Must be less than or equal to max_turn_silence.
     """
 
     numerals: bool

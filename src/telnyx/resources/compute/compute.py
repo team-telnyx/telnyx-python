@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .funcs import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .funcs.funcs import (
     FuncsResource,
     AsyncFuncsResource,
     FuncsResourceWithRawResponse,
@@ -10,8 +12,6 @@ from .funcs import (
     FuncsResourceWithStreamingResponse,
     AsyncFuncsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["ComputeResource", "AsyncComputeResource"]
 
