@@ -28,7 +28,19 @@ class EmailRecipient(BaseModel):
 
     record_type: Literal["email_recipient"]
 
-    status: Literal["queued", "sending", "sent", "deferred", "delivered", "bounced", "failed", "gw_reject", "cancelled"]
+    status: Literal[
+        "queued",
+        "sending",
+        "sent",
+        "deferred",
+        "delivered",
+        "bounced",
+        "failed",
+        "gw_reject",
+        "cancelled",
+        "injection_timeout",
+        "expired",
+    ]
     """Current per-recipient delivery status."""
 
     delivered_at: Optional[datetime] = None

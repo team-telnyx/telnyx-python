@@ -45,6 +45,13 @@ class EmailBlock(BaseModel):
     """`null` ⇒ account scope. Stored on the row; exposed here."""
 
     expires_at: Optional[datetime] = None
+    """Optional expiration time.
+
+    An active row stops matching send-time suppression checks as soon as
+    `expires_at <= now()`. A maintenance worker later transitions the row to
+    `status: expired` and appends an `expired` audit event (normally within 15
+    minutes).
+    """
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """`null` ⇒ not address-scope. (schema: from_address)"""

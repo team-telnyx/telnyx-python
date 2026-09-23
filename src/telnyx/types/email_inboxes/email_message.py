@@ -10,10 +10,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 from .email_address import EmailAddress
-from ..message_event import MessageEvent
+from ..email_event_type import EmailEventType
 from ..suppressed_recipient import SuppressedRecipient
 
-__all__ = ["EmailMessage", "Attachment"]
+__all__ = ["EmailMessage", "Attachment", "Event"]
 
 
 class Attachment(BaseModel):
@@ -43,6 +43,28 @@ class Attachment(BaseModel):
     """Telnyx-hosted public URL for the attachment content."""
 
 
+class Event(BaseModel):
+    """An event embedded in a message response.
+
+    The dedicated per-message events endpoint additionally returns event_type and canonical_event_type.
+    """
+
+    occurred_at: datetime
+
+    type: EmailEventType
+    """Bare stored event names returned by message history.
+
+    In addition to the normal send and delivery lifecycle, polling can expose
+    suppression, scan, and quarantine lifecycle rows. Sharp canonical names
+    gw_reject, injection_timeout, and expired distinguish gateway rejection,
+    ambiguous injection timeout, and MTA expiration. The failed and bounced names
+    remain valid for system/admin failures and hard bounces respectively. Existing
+    stored rows retain their original names.
+    """
+
+    payload: Optional[Dict[str, object]] = None
+
+
 class EmailMessage(BaseModel):
     id: str
 
@@ -54,9 +76,12 @@ class EmailMessage(BaseModel):
 
     created_at: datetime
 
-    events: List[MessageEvent]
+    events: List[Event]
 
     from_: EmailAddress = FieldInfo(alias="from")
+
+    metadata: Dict[str, object]
+    """Customer-supplied metadata stored with the message."""
 
     record_type: Literal["email_message"]
 
@@ -86,6 +111,9 @@ class EmailMessage(BaseModel):
     """
 
     subject: str
+
+    tags: List[str]
+    """Customer-supplied tags stored with the message."""
 
     template_id: Optional[str] = None
 

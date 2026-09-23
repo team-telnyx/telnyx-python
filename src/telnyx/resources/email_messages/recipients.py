@@ -98,7 +98,17 @@ class RecipientsResource(SyncAPIResource):
         page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
         status: Literal[
-            "queued", "sending", "sent", "deferred", "delivered", "bounced", "failed", "gw_reject", "cancelled"
+            "queued",
+            "sending",
+            "sent",
+            "deferred",
+            "delivered",
+            "bounced",
+            "failed",
+            "gw_reject",
+            "cancelled",
+            "injection_timeout",
+            "expired",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -229,7 +239,17 @@ class AsyncRecipientsResource(AsyncAPIResource):
         page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
         status: Literal[
-            "queued", "sending", "sent", "deferred", "delivered", "bounced", "failed", "gw_reject", "cancelled"
+            "queued",
+            "sending",
+            "sent",
+            "deferred",
+            "delivered",
+            "bounced",
+            "failed",
+            "gw_reject",
+            "cancelled",
+            "injection_timeout",
+            "expired",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

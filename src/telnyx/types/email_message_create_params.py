@@ -82,7 +82,11 @@ class EmailMessageCreateParams(TypedDict, total=False):
     inline_css: bool
 
     metadata: Dict[str, object]
-    """Custom metadata. Write-only; not returned in responses."""
+    """Custom metadata key/value pairs.
+
+    Stored on the message, returned on message responses, and propagated to Email
+    Detail Records. Usable in `filter[metadata]` when listing messages.
+    """
 
     reply_to: EmailAddressInputParam
     """Reply-to address.
@@ -105,13 +109,42 @@ class EmailMessageCreateParams(TypedDict, total=False):
     """
 
     sandbox_mode: bool
+    """
+    Validates and accepts the message without injecting it into the MTA or outbound
+    Kafka path. Nothing is delivered: sandbox records are non-billable, consume no
+    daily-send-limit quota, and feed no delivery-reputation signals.
+
+    The reserved sandbox test-recipient domain is `test.telnyx.com`. In sandbox
+    mode, these addresses produce deterministic recipient-scoped lifecycle events:
+
+    - `delivered@test.telnyx.com`: queued -> sending -> sent -> delivered
+    - `hard-bounce@test.telnyx.com`: queued -> sending -> sent -> bounced
+      (permanent)
+    - `soft-bounce@test.telnyx.com`: queued -> sending -> sent -> bounced
+      (transient)
+    - `complaint@test.telnyx.com`: queued -> sending -> sent -> complained
+    - `suppressed@test.telnyx.com`: queued -> suppressed
+    - `invalid@test.telnyx.com`: queued -> sending -> failed (invalid recipient)
+    - `dkim-fail@test.telnyx.com`: queued -> sending -> failed (DKIM unavailable)
+    - `rate-limit@test.telnyx.com`: queued -> sending -> failed (rate limit
+      exceeded)
+
+    Matching is case-insensitive for both the local part and the domain and requires
+    the exact domain `test.telnyx.com` — subdomains and other domains do not match.
+    Mixed sandbox sends simulate only reserved test recipients; other recipients
+    retain ordinary sandbox behavior (accepted, no delivery attempted). Hard-bounce
+    and complaint outcomes also use the normal automatic-suppression pipeline.
+    Non-sandbox sends to these addresses use the normal delivery path.
+    """
 
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """Future ISO 8601 time to schedule sending.
+    """Future ISO 8601 delivery time.
 
-    Invalid or past timestamps are silently ignored and the email is sent
-    immediately. The legacy alias `send_at` is still accepted for backward
-    compatibility; when both are provided, `scheduled_at` wins.
+    Invalid or non-future timestamps are rejected. Single sends return HTTP 422; in
+    batch sends the invalid item is reported in the 207 per-item errors while other
+    items continue. `send_at` remains a deprecated request alias. A non-null
+    `scheduled_at` takes precedence over `send_at`; when `scheduled_at` is omitted
+    or null, `send_at` is used.
     """
 
     send_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
@@ -125,10 +158,10 @@ class EmailMessageCreateParams(TypedDict, total=False):
     """
 
     tags: SequenceNotStr[str]
-    """Tags for categorization and reporting.
+    """Tags for categorization and filtering.
 
-    Stored on the message and propagated to Email Detail Records. Not returned in
-    API responses.
+    Stored on the message, returned on message responses, and propagated to Email
+    Detail Records. Usable in `filter[tags]` when listing messages.
     """
 
     template_id: str
@@ -137,7 +170,10 @@ class EmailMessageCreateParams(TypedDict, total=False):
     """Variables for Liquid template rendering.
 
     Non-object values may cause a 422 validation error on message creation, but are
-    silently treated as an empty object for template rendering.
+    silently treated as an empty object for template rendering. When the template
+    enables `strict_variables`, a missing required variable fails the request with
+    422 (single send) or a per-item `unprocessable_entity` error (batch) naming the
+    variable; no message is persisted for the failed item.
     """
 
     text_body: str

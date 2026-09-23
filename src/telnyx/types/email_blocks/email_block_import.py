@@ -39,7 +39,11 @@ class EmailBlockImport(BaseModel):
     """Only when `status == completed`."""
 
     error_count: Optional[int] = None
-    """Only when `status == completed`."""
+    """
+    Rows that passed CSV parsing but failed suppression creation. This is the
+    creation-failure subset of `skipped_count`; parser-rejected rows equal
+    `skipped_count - error_count`. Only when `status == completed`.
+    """
 
     errors: Optional[Dict[str, str]] = None
     """`{row_number: reason}`; only rendered when non-empty."""

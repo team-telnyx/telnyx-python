@@ -20,5 +20,17 @@ class RecipientListParams(TypedDict, total=False):
     Defaults to 25; maximum is 100. Invalid values are clamped to the valid range.
     """
 
-    status: Literal["queued", "sending", "sent", "deferred", "delivered", "bounced", "failed", "gw_reject", "cancelled"]
+    status: Literal[
+        "queued",
+        "sending",
+        "sent",
+        "deferred",
+        "delivered",
+        "bounced",
+        "failed",
+        "gw_reject",
+        "cancelled",
+        "injection_timeout",
+        "expired",
+    ]
     """Filter recipients by status."""

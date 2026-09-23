@@ -35,9 +35,17 @@ class TestEmailTemplates:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         email_template = client.email_templates.create(
             name="Welcome Email",
+            autoescape=True,
             html_body="<h1>Hello {{ first_name }}</h1>",
+            strict_variables=True,
             subject="Welcome, {{ first_name }}!",
             text_body="Hello {{ first_name }}",
+            variable_schema={
+                "foo": {
+                    "required": True,
+                    "default": "default",
+                }
+            },
             variables=["string"],
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
@@ -124,10 +132,18 @@ class TestEmailTemplates:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         email_template = client.email_templates.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            autoescape=True,
             html_body="html_body",
             name="name",
+            strict_variables=True,
             subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
+            variable_schema={
+                "foo": {
+                    "required": True,
+                    "default": "default",
+                }
+            },
             variables=["string"],
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
@@ -309,10 +325,18 @@ class TestEmailTemplates:
     def test_method_replace_with_all_params(self, client: Telnyx) -> None:
         email_template = client.email_templates.replace(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            autoescape=True,
             html_body="html_body",
             name="name",
+            strict_variables=True,
             subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
+            variable_schema={
+                "foo": {
+                    "required": True,
+                    "default": "default",
+                }
+            },
             variables=["string"],
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
@@ -370,9 +394,17 @@ class TestAsyncEmailTemplates:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         email_template = await async_client.email_templates.create(
             name="Welcome Email",
+            autoescape=True,
             html_body="<h1>Hello {{ first_name }}</h1>",
+            strict_variables=True,
             subject="Welcome, {{ first_name }}!",
             text_body="Hello {{ first_name }}",
+            variable_schema={
+                "foo": {
+                    "required": True,
+                    "default": "default",
+                }
+            },
             variables=["string"],
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
@@ -459,10 +491,18 @@ class TestAsyncEmailTemplates:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         email_template = await async_client.email_templates.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            autoescape=True,
             html_body="html_body",
             name="name",
+            strict_variables=True,
             subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
+            variable_schema={
+                "foo": {
+                    "required": True,
+                    "default": "default",
+                }
+            },
             variables=["string"],
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
@@ -644,10 +684,18 @@ class TestAsyncEmailTemplates:
     async def test_method_replace_with_all_params(self, async_client: AsyncTelnyx) -> None:
         email_template = await async_client.email_templates.replace(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            autoescape=True,
             html_body="html_body",
             name="name",
+            strict_variables=True,
             subject="Welcome aboard, {{first_name}}!",
             text_body="text_body",
+            variable_schema={
+                "foo": {
+                    "required": True,
+                    "default": "default",
+                }
+            },
             variables=["string"],
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
