@@ -20,7 +20,7 @@ class TypesafeResource(SyncAPIResource):
     @cached_property
     def v1(self) -> V1Resource:
         """
-        Beta API for evaluating shared context with typed questions and structured answers. Telnyx manages model selection.
+        Beta API for evaluating shared context with typed questions and structured answers using Flash or Pro.
         """
         return V1Resource(self._client)
 
@@ -48,7 +48,7 @@ class AsyncTypesafeResource(AsyncAPIResource):
     @cached_property
     def v1(self) -> AsyncV1Resource:
         """
-        Beta API for evaluating shared context with typed questions and structured answers. Telnyx manages model selection.
+        Beta API for evaluating shared context with typed questions and structured answers using Flash or Pro.
         """
         return AsyncV1Resource(self._client)
 
@@ -79,7 +79,7 @@ class TypesafeResourceWithRawResponse:
     @cached_property
     def v1(self) -> V1ResourceWithRawResponse:
         """
-        Beta API for evaluating shared context with typed questions and structured answers. Telnyx manages model selection.
+        Beta API for evaluating shared context with typed questions and structured answers using Flash or Pro.
         """
         return V1ResourceWithRawResponse(self._typesafe.v1)
 
@@ -91,7 +91,7 @@ class AsyncTypesafeResourceWithRawResponse:
     @cached_property
     def v1(self) -> AsyncV1ResourceWithRawResponse:
         """
-        Beta API for evaluating shared context with typed questions and structured answers. Telnyx manages model selection.
+        Beta API for evaluating shared context with typed questions and structured answers using Flash or Pro.
         """
         return AsyncV1ResourceWithRawResponse(self._typesafe.v1)
 
@@ -103,7 +103,7 @@ class TypesafeResourceWithStreamingResponse:
     @cached_property
     def v1(self) -> V1ResourceWithStreamingResponse:
         """
-        Beta API for evaluating shared context with typed questions and structured answers. Telnyx manages model selection.
+        Beta API for evaluating shared context with typed questions and structured answers using Flash or Pro.
         """
         return V1ResourceWithStreamingResponse(self._typesafe.v1)
 
@@ -115,6 +115,6 @@ class AsyncTypesafeResourceWithStreamingResponse:
     @cached_property
     def v1(self) -> AsyncV1ResourceWithStreamingResponse:
         """
-        Beta API for evaluating shared context with typed questions and structured answers. Telnyx manages model selection.
+        Beta API for evaluating shared context with typed questions and structured answers using Flash or Pro.
         """
         return AsyncV1ResourceWithStreamingResponse(self._typesafe.v1)
