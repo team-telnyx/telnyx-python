@@ -52,6 +52,14 @@ from .mcp_servers import (
     AsyncMcpServersResourceWithStreamingResponse,
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .memory.memory import (
+    MemoryResource,
+    AsyncMemoryResource,
+    MemoryResourceWithRawResponse,
+    AsyncMemoryResourceWithRawResponse,
+    MemoryResourceWithStreamingResponse,
+    AsyncMemoryResourceWithStreamingResponse,
+)
 from .openai.openai import (
     OpenAIResource,
     AsyncOpenAIResource,
@@ -215,6 +223,10 @@ class AIResource(SyncAPIResource):
     @cached_property
     def typesafe(self) -> TypesafeResource:
         return TypesafeResource(self._client)
+
+    @cached_property
+    def memory(self) -> MemoryResource:
+        return MemoryResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -512,6 +524,10 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def typesafe(self) -> AsyncTypesafeResource:
         return AsyncTypesafeResource(self._client)
+
+    @cached_property
+    def memory(self) -> AsyncMemoryResource:
+        return AsyncMemoryResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -822,6 +838,10 @@ class AIResourceWithRawResponse:
     def typesafe(self) -> TypesafeResourceWithRawResponse:
         return TypesafeResourceWithRawResponse(self._ai.typesafe)
 
+    @cached_property
+    def memory(self) -> MemoryResourceWithRawResponse:
+        return MemoryResourceWithRawResponse(self._ai.memory)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -901,6 +921,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def typesafe(self) -> AsyncTypesafeResourceWithRawResponse:
         return AsyncTypesafeResourceWithRawResponse(self._ai.typesafe)
+
+    @cached_property
+    def memory(self) -> AsyncMemoryResourceWithRawResponse:
+        return AsyncMemoryResourceWithRawResponse(self._ai.memory)
 
 
 class AIResourceWithStreamingResponse:
@@ -982,6 +1006,10 @@ class AIResourceWithStreamingResponse:
     def typesafe(self) -> TypesafeResourceWithStreamingResponse:
         return TypesafeResourceWithStreamingResponse(self._ai.typesafe)
 
+    @cached_property
+    def memory(self) -> MemoryResourceWithStreamingResponse:
+        return MemoryResourceWithStreamingResponse(self._ai.memory)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -1061,3 +1089,7 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def typesafe(self) -> AsyncTypesafeResourceWithStreamingResponse:
         return AsyncTypesafeResourceWithStreamingResponse(self._ai.typesafe)
+
+    @cached_property
+    def memory(self) -> AsyncMemoryResourceWithStreamingResponse:
+        return AsyncMemoryResourceWithStreamingResponse(self._ai.memory)

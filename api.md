@@ -924,6 +924,7 @@ Types:
 
 ```python
 from telnyx.types.ai.collections import (
+    CollectionsSource,
     Source,
     SourceRequest,
     SourceType,
@@ -1352,6 +1353,85 @@ from telnyx.types.ai.typesafe import V1SystemoneResponse
 Methods:
 
 - <code title="post /ai/typesafe/v1/systemone">client.ai.typesafe.v1.<a href="./src/telnyx/resources/ai/typesafe/v1.py">systemone</a>(\*\*<a href="src/telnyx/types/ai/typesafe/v1_systemone_params.py">params</a>) -> <a href="./src/telnyx/types/ai/typesafe/v1_systemone_response.py">V1SystemoneResponse</a></code>
+
+## Memory
+
+### Namespaces
+
+Types:
+
+```python
+from telnyx.types.ai.memory import NamespaceRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/operations/{operation_id}">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">retrieve</a>(operation_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespace_retrieve_response.py">NamespaceRetrieveResponse</a></code>
+
+#### Profiles
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces import (
+    PageMeta,
+    ProfileListResponse,
+    ProfileDeleteResponse,
+    ProfileIngestResponse,
+    ProfileRecallResponse,
+    ProfileRememberResponse,
+    ProfileRetrieveSummaryResponse,
+)
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/profiles">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">list</a>(namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_list_response.py">SyncDefaultFlatPagination[ProfileListResponse]</a></code>
+- <code title="delete /ai/memory/namespaces/{namespace}/profiles/{profile_id}">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">delete</a>(profile_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_delete_response.py">ProfileDeleteResponse</a></code>
+- <code title="post /ai/memory/namespaces/{namespace}/profiles/{profile_id}/ingest">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">ingest</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_ingest_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_ingest_response.py">ProfileIngestResponse</a></code>
+- <code title="post /ai/memory/namespaces/{namespace}/profiles/{profile_id}/recall">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">recall</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_recall_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_recall_response.py">ProfileRecallResponse</a></code>
+- <code title="post /ai/memory/namespaces/{namespace}/profiles/{profile_id}/remember">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">remember</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_remember_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_remember_response.py">ProfileRememberResponse</a></code>
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/summary">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">retrieve_summary</a>(profile_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_retrieve_summary_response.py">ProfileRetrieveSummaryResponse</a></code>
+
+##### Memories
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces.profiles import MemoryRetrieveResponse, MemoryListResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/memories/{memory_id}">client.ai.memory.namespaces.profiles.memories.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/memories.py">retrieve</a>(memory_id, \*, namespace, profile_id) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/memory_retrieve_response.py">MemoryRetrieveResponse</a></code>
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/memories">client.ai.memory.namespaces.profiles.memories.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/memories.py">list</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profiles/memory_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/memory_list_response.py">SyncDefaultFlatPagination[MemoryListResponse]</a></code>
+
+##### Sources
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces.profiles import SourceRetrieveResponse, SourceDeleteResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/sources/{source_id}">client.ai.memory.namespaces.profiles.sources.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/sources.py">retrieve</a>(source_id, \*, namespace, profile_id) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/source_retrieve_response.py">SourceRetrieveResponse</a></code>
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/sources">client.ai.memory.namespaces.profiles.sources.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/sources.py">list</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profiles/source_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collections/source.py">SyncDefaultFlatPagination[Source]</a></code>
+- <code title="delete /ai/memory/namespaces/{namespace}/profiles/{profile_id}/sources/{source_id}">client.ai.memory.namespaces.profiles.sources.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/sources.py">delete</a>(source_id, \*, namespace, profile_id) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/source_delete_response.py">SourceDeleteResponse</a></code>
+
+#### Settings
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces import NamespaceSettingsResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">list</a>(namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
+- <code title="patch /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">patch_all</a>(namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/setting_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
 
 # AuditEvents
 
