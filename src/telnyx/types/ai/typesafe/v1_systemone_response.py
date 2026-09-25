@@ -120,11 +120,11 @@ class V1SystemoneResponse(BaseModel):
     Each answer type matches its question.
     """
 
-    model: str
-    """
-    Opaque Telnyx-controlled identifier retained for TypeSafe SDK response
-    compatibility. It is not a selectable model name or a guarantee of a particular
-    underlying model.
+    model: Literal["telnyx/decision-flash", "telnyx/decision-pro"]
+    """Public model alias used to evaluate the request.
+
+    Returns telnyx/decision-flash when model was omitted. The underlying model is
+    managed by Telnyx.
     """
 
     usage: Usage

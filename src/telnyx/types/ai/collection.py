@@ -6,7 +6,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .collections.source import Source
+from .collections.collections_source import CollectionsSource
 from .collections.retrieval_settings_wrapper import RetrievalSettingsWrapper
 
 __all__ = ["Collection"]
@@ -26,7 +26,7 @@ class Collection(BaseModel):
 
     slug: Optional[str] = None
 
-    sources: Optional[List[Source]] = None
+    sources: Optional[List[CollectionsSource]] = None
 
     status: Optional[str] = None
 

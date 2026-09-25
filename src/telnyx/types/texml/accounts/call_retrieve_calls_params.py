@@ -13,11 +13,11 @@ class CallRetrieveCallsParams(TypedDict, total=False):
     end_time: Annotated[str, PropertyInfo(alias="EndTime")]
     """Filters calls by their end date. Expected format is YYYY-MM-DD"""
 
-    end_time_gt: Annotated[str, PropertyInfo(alias="EndTime_gt")]
-    """Filters calls by their end date (after). Expected format is YYYY-MM-DD"""
-
-    end_time_lt: Annotated[str, PropertyInfo(alias="EndTime_lt")]
+    end_time_lt: Annotated[str, PropertyInfo(alias="EndTime<")]
     """Filters calls by their end date (before). Expected format is YYYY-MM-DD"""
+
+    end_time_gt: Annotated[str, PropertyInfo(alias="EndTime>")]
+    """Filters calls by their end date (after). Expected format is YYYY-MM-DD"""
 
     from_: Annotated[str, PropertyInfo(alias="From")]
     """Filters calls by the from number."""
@@ -37,11 +37,11 @@ class CallRetrieveCallsParams(TypedDict, total=False):
     start_time: Annotated[str, PropertyInfo(alias="StartTime")]
     """Filters calls by their start date. Expected format is YYYY-MM-DD."""
 
-    start_time_gt: Annotated[str, PropertyInfo(alias="StartTime_gt")]
-    """Filters calls by their start date (after). Expected format is YYYY-MM-DD"""
-
-    start_time_lt: Annotated[str, PropertyInfo(alias="StartTime_lt")]
+    start_time_lt: Annotated[str, PropertyInfo(alias="StartTime<")]
     """Filters calls by their start date (before). Expected format is YYYY-MM-DD"""
+
+    start_time_gt: Annotated[str, PropertyInfo(alias="StartTime>")]
+    """Filters calls by their start date (after). Expected format is YYYY-MM-DD"""
 
     status: Annotated[Literal["canceled", "completed", "failed", "busy", "no-answer"], PropertyInfo(alias="Status")]
     """Filters calls by status."""

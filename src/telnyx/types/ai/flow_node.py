@@ -9,8 +9,8 @@ from ..._models import BaseModel
 from .external_llm import ExternalLlm
 from .node_position import NodePosition
 from .assistant_tool import AssistantTool
-from .voice_settings import VoiceSettings
 from .transcription_settings import TranscriptionSettings
+from .inference_embedding_voice_settings import InferenceEmbeddingVoiceSettings
 
 __all__ = ["FlowNode"]
 
@@ -95,5 +95,5 @@ class FlowNode(BaseModel):
     type: Optional[Literal["prompt"]] = None
     """Node kind discriminator. `prompt` is an LLM-driven step."""
 
-    voice_settings: Optional[VoiceSettings] = None
+    voice_settings: Optional[InferenceEmbeddingVoiceSettings] = None
     """Per-node voice override (response form)."""

@@ -13,6 +13,7 @@ from ...types import (
     email_message_create_params,
     email_message_delete_all_params,
     email_message_retrieve_events_params,
+    email_message_update_schedule_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
@@ -40,7 +41,7 @@ from ...types.attachment_request_param import AttachmentRequestParam
 from ...types.email_address_input_param import EmailAddressInputParam
 from ...types.email_inboxes.email_message import EmailMessage
 from ...types.email_message_batch_response import EmailMessageBatchResponse
-from ...types.email_message_retrieve_response import EmailMessageRetrieveResponse
+from ...types.email_message_detail_response import EmailMessageDetailResponse
 from ...types.email_inboxes.email_message_response import EmailMessageResponse
 
 __all__ = ["EmailMessagesResource", "AsyncEmailMessagesResource"]
@@ -162,7 +163,9 @@ class EmailMessagesResource(SyncAPIResource):
 
               Cannot be combined with `forward_of_message_id` (422).
 
-          metadata: Custom metadata. Write-only; not returned in responses.
+          metadata: Custom metadata key/value pairs. Stored on the message, returned on message
+              responses, and propagated to Email Detail Records. Usable in `filter[metadata]`
+              when listing messages.
 
           reply_to: Reply-to address. If provided as an object with a name, only the email is
               stored; the name is ignored.
@@ -176,10 +179,37 @@ class EmailMessagesResource(SyncAPIResource):
 
               Only meaningful alongside `in_reply_to_message_id`.
 
-          scheduled_at: Future ISO 8601 time to schedule sending. Invalid or past timestamps are
-              silently ignored and the email is sent immediately. The legacy alias `send_at`
-              is still accepted for backward compatibility; when both are provided,
-              `scheduled_at` wins.
+          sandbox_mode: Validates and accepts the message without injecting it into the MTA or outbound
+              Kafka path. Nothing is delivered: sandbox records are non-billable, consume no
+              daily-send-limit quota, and feed no delivery-reputation signals.
+
+              The reserved sandbox test-recipient domain is `test.telnyx.com`. In sandbox
+              mode, these addresses produce deterministic recipient-scoped lifecycle events:
+
+              - `delivered@test.telnyx.com`: queued -> sending -> sent -> delivered
+              - `hard-bounce@test.telnyx.com`: queued -> sending -> sent -> bounced
+                (permanent)
+              - `soft-bounce@test.telnyx.com`: queued -> sending -> sent -> bounced
+                (transient)
+              - `complaint@test.telnyx.com`: queued -> sending -> sent -> complained
+              - `suppressed@test.telnyx.com`: queued -> suppressed
+              - `invalid@test.telnyx.com`: queued -> sending -> failed (invalid recipient)
+              - `dkim-fail@test.telnyx.com`: queued -> sending -> failed (DKIM unavailable)
+              - `rate-limit@test.telnyx.com`: queued -> sending -> failed (rate limit
+                exceeded)
+
+              Matching is case-insensitive for both the local part and the domain and requires
+              the exact domain `test.telnyx.com` — subdomains and other domains do not match.
+              Mixed sandbox sends simulate only reserved test recipients; other recipients
+              retain ordinary sandbox behavior (accepted, no delivery attempted). Hard-bounce
+              and complaint outcomes also use the normal automatic-suppression pipeline.
+              Non-sandbox sends to these addresses use the normal delivery path.
+
+          scheduled_at: Future ISO 8601 delivery time. Invalid or non-future timestamps are rejected.
+              Single sends return HTTP 422; in batch sends the invalid item is reported in the
+              207 per-item errors while other items continue. `send_at` remains a deprecated
+              request alias. A non-null `scheduled_at` takes precedence over `send_at`; when
+              `scheduled_at` is omitted or null, `send_at` is used.
 
           send_at: Deprecated alias for `scheduled_at`.
 
@@ -187,12 +217,16 @@ class EmailMessagesResource(SyncAPIResource):
               subject is rendered; if the template has no subject or renders empty, the
               request returns 400.
 
-          tags: Tags for categorization and reporting. Stored on the message and propagated to
-              Email Detail Records. Not returned in API responses.
+          tags: Tags for categorization and filtering. Stored on the message, returned on
+              message responses, and propagated to Email Detail Records. Usable in
+              `filter[tags]` when listing messages.
 
           template_variables: Variables for Liquid template rendering. Non-object values may cause a 422
               validation error on message creation, but are silently treated as an empty
-              object for template rendering.
+              object for template rendering. When the template enables `strict_variables`, a
+              missing required variable fails the request with 422 (single send) or a per-item
+              `unprocessable_entity` error (batch) naming the variable; no message is
+              persisted for the failed item.
 
           text_body: Plain text email body. Returned only by `GET /email_messages/{id}`; omitted from
               create and list responses.
@@ -257,7 +291,7 @@ class EmailMessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailMessageRetrieveResponse:
+    ) -> EmailMessageDetailResponse:
         """
         The legacy `/v2/emails/{id}` GET route is a backward-compatible alias for this
         operation.
@@ -278,12 +312,14 @@ class EmailMessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EmailMessageRetrieveResponse,
+            cast_to=EmailMessageDetailResponse,
         )
 
     def list(
         self,
         *,
+        filter_metadata: str | Omit = omit,
+        filter_tags: str | Omit = omit,
         page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -295,11 +331,24 @@ class EmailMessagesResource(SyncAPIResource):
     ) -> SyncEmailCursorPagination[EmailMessage]:
         """Lists messages sorted newest first by `created_at desc, id desc`.
 
-        No filters
-        other than cursor pagination are implemented. The legacy `/v2/emails` GET route
-        is a backward-compatible alias for this operation.
+        Tags and
+        metadata filters compose with cursor pagination. The legacy `/v2/emails` GET
+        route is a backward-compatible alias for this operation.
 
         Args:
+          filter_metadata: Metadata containment filter, supplied as a JSON object or comma-separated
+              `key=value` pairs. All supplied key/value pairs must be contained in the message
+              metadata. An empty value or empty JSON object omits the filter. Malformed
+              values, valid non-object JSON, pairs without `=`, empty keys, and
+              non-string/nested query shapes return HTTP 400.
+
+          filter_tags: Comma-separated tags. Each segment is trimmed, and messages having at least one
+              supplied tag are returned; matching is exact and case-sensitive after trimming.
+              Because commas delimit values and surrounding whitespace is removed, this filter
+              cannot represent stored tags containing literal commas or leading/trailing
+              whitespace. An empty value omits the filter. Empty segments and
+              non-string/nested query shapes return HTTP 400.
+
           page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
 
           page_size: Number of results to return. Defaults to 25; maximum is 100. Invalid values are
@@ -323,6 +372,8 @@ class EmailMessagesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_metadata": filter_metadata,
+                        "filter_tags": filter_tags,
                         "page_cursor": page_cursor,
                         "page_size": page_size,
                     },
@@ -388,15 +439,23 @@ class EmailMessagesResource(SyncAPIResource):
         checks run first and can reject the whole batch before message creation. After
         those checks pass, each message is validated and sent independently; item-level
         failures do not affect other messages, and the processed batch returns 207
-        Multi-Status.
+        Multi-Status. Per-message failures include validation errors; when a template
+        has `strict_variables` enabled, a missing required variable produces a per-item
+        `unprocessable_entity` error naming that variable while the other messages
+        continue.
 
         Args:
           messages: Array of email messages to send. Up to 1,000 messages per batch request. Each
               message is validated and sent independently; per-message failures do not affect
               other messages in the batch.
 
-          sandbox_mode: Applies sandbox mode to all messages in the batch. Overrides any per-message
-              sandbox_mode in the messages array.
+          sandbox_mode: Applies sandbox mode to all messages in the batch and overrides any per-message
+              `sandbox_mode` value — each message's effective `sandbox_mode` is exactly this
+              envelope value. Reserved recipients at `test.telnyx.com` produce the
+              deterministic event chains documented on CreateEmailRequest.sandbox_mode; no
+              batch item is injected into the MTA or outbound Kafka path. Sandbox batch items
+              are non-billable, consume no daily-send-limit quota, and feed no
+              delivery-reputation signals.
 
           extra_headers: Send extra headers
 
@@ -519,6 +578,15 @@ class EmailMessagesResource(SyncAPIResource):
         `occurred_at asc, id asc`. The legacy `/v2/emails/{id}/events` GET route is a
         backward-compatible alias.
 
+        For compatibility, each event carries the legacy customer-visible `event_type`
+        (`email.`-prefixed), the additive `canonical_event_type` (`email.`-prefixed),
+        and the deprecated `type` duplicate — whose value keeps the exact legacy format:
+        the bare stored event name, never `email.`-prefixed. Gateway rejections render
+        `email.failed` + canonical `email.gw_reject`; MTA expirations render
+        `email.bounced` + canonical `email.expired`; every unchanged outcome carries
+        identical `event_type` and `canonical_event_type` values (and `type` keeps the
+        stored name).
+
         Args:
           page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
 
@@ -552,6 +620,50 @@ class EmailMessagesResource(SyncAPIResource):
                 ),
             ),
             model=MessageEvent,
+        )
+
+    def update_schedule(
+        self,
+        email_id: str,
+        *,
+        scheduled_at: Union[str, datetime],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailMessageDetailResponse:
+        """Moves an existing scheduled email to a new future send time.
+
+        Only the delivery
+        time (`scheduled_at`) changes; the message ID, content, recipients, tags, and
+        metadata remain unchanged. Returns `409 Conflict` if the message is no longer
+        scheduled or its scheduled-send worker has already started processing it. This
+        route emits no dedicated `rescheduled` event.
+
+        Args:
+          scheduled_at: New ISO 8601 delivery time. Must be strictly in the future.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not email_id:
+            raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
+        return self._patch(
+            path_template("/email_messages/{email_id}/schedule", email_id=email_id),
+            body=maybe_transform(
+                {"scheduled_at": scheduled_at}, email_message_update_schedule_params.EmailMessageUpdateScheduleParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailMessageDetailResponse,
         )
 
 
@@ -671,7 +783,9 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
 
               Cannot be combined with `forward_of_message_id` (422).
 
-          metadata: Custom metadata. Write-only; not returned in responses.
+          metadata: Custom metadata key/value pairs. Stored on the message, returned on message
+              responses, and propagated to Email Detail Records. Usable in `filter[metadata]`
+              when listing messages.
 
           reply_to: Reply-to address. If provided as an object with a name, only the email is
               stored; the name is ignored.
@@ -685,10 +799,37 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
 
               Only meaningful alongside `in_reply_to_message_id`.
 
-          scheduled_at: Future ISO 8601 time to schedule sending. Invalid or past timestamps are
-              silently ignored and the email is sent immediately. The legacy alias `send_at`
-              is still accepted for backward compatibility; when both are provided,
-              `scheduled_at` wins.
+          sandbox_mode: Validates and accepts the message without injecting it into the MTA or outbound
+              Kafka path. Nothing is delivered: sandbox records are non-billable, consume no
+              daily-send-limit quota, and feed no delivery-reputation signals.
+
+              The reserved sandbox test-recipient domain is `test.telnyx.com`. In sandbox
+              mode, these addresses produce deterministic recipient-scoped lifecycle events:
+
+              - `delivered@test.telnyx.com`: queued -> sending -> sent -> delivered
+              - `hard-bounce@test.telnyx.com`: queued -> sending -> sent -> bounced
+                (permanent)
+              - `soft-bounce@test.telnyx.com`: queued -> sending -> sent -> bounced
+                (transient)
+              - `complaint@test.telnyx.com`: queued -> sending -> sent -> complained
+              - `suppressed@test.telnyx.com`: queued -> suppressed
+              - `invalid@test.telnyx.com`: queued -> sending -> failed (invalid recipient)
+              - `dkim-fail@test.telnyx.com`: queued -> sending -> failed (DKIM unavailable)
+              - `rate-limit@test.telnyx.com`: queued -> sending -> failed (rate limit
+                exceeded)
+
+              Matching is case-insensitive for both the local part and the domain and requires
+              the exact domain `test.telnyx.com` — subdomains and other domains do not match.
+              Mixed sandbox sends simulate only reserved test recipients; other recipients
+              retain ordinary sandbox behavior (accepted, no delivery attempted). Hard-bounce
+              and complaint outcomes also use the normal automatic-suppression pipeline.
+              Non-sandbox sends to these addresses use the normal delivery path.
+
+          scheduled_at: Future ISO 8601 delivery time. Invalid or non-future timestamps are rejected.
+              Single sends return HTTP 422; in batch sends the invalid item is reported in the
+              207 per-item errors while other items continue. `send_at` remains a deprecated
+              request alias. A non-null `scheduled_at` takes precedence over `send_at`; when
+              `scheduled_at` is omitted or null, `send_at` is used.
 
           send_at: Deprecated alias for `scheduled_at`.
 
@@ -696,12 +837,16 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
               subject is rendered; if the template has no subject or renders empty, the
               request returns 400.
 
-          tags: Tags for categorization and reporting. Stored on the message and propagated to
-              Email Detail Records. Not returned in API responses.
+          tags: Tags for categorization and filtering. Stored on the message, returned on
+              message responses, and propagated to Email Detail Records. Usable in
+              `filter[tags]` when listing messages.
 
           template_variables: Variables for Liquid template rendering. Non-object values may cause a 422
               validation error on message creation, but are silently treated as an empty
-              object for template rendering.
+              object for template rendering. When the template enables `strict_variables`, a
+              missing required variable fails the request with 422 (single send) or a per-item
+              `unprocessable_entity` error (batch) naming the variable; no message is
+              persisted for the failed item.
 
           text_body: Plain text email body. Returned only by `GET /email_messages/{id}`; omitted from
               create and list responses.
@@ -766,7 +911,7 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmailMessageRetrieveResponse:
+    ) -> EmailMessageDetailResponse:
         """
         The legacy `/v2/emails/{id}` GET route is a backward-compatible alias for this
         operation.
@@ -787,12 +932,14 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EmailMessageRetrieveResponse,
+            cast_to=EmailMessageDetailResponse,
         )
 
     def list(
         self,
         *,
+        filter_metadata: str | Omit = omit,
+        filter_tags: str | Omit = omit,
         page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -804,11 +951,24 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
     ) -> AsyncPaginator[EmailMessage, AsyncEmailCursorPagination[EmailMessage]]:
         """Lists messages sorted newest first by `created_at desc, id desc`.
 
-        No filters
-        other than cursor pagination are implemented. The legacy `/v2/emails` GET route
-        is a backward-compatible alias for this operation.
+        Tags and
+        metadata filters compose with cursor pagination. The legacy `/v2/emails` GET
+        route is a backward-compatible alias for this operation.
 
         Args:
+          filter_metadata: Metadata containment filter, supplied as a JSON object or comma-separated
+              `key=value` pairs. All supplied key/value pairs must be contained in the message
+              metadata. An empty value or empty JSON object omits the filter. Malformed
+              values, valid non-object JSON, pairs without `=`, empty keys, and
+              non-string/nested query shapes return HTTP 400.
+
+          filter_tags: Comma-separated tags. Each segment is trimmed, and messages having at least one
+              supplied tag are returned; matching is exact and case-sensitive after trimming.
+              Because commas delimit values and surrounding whitespace is removed, this filter
+              cannot represent stored tags containing literal commas or leading/trailing
+              whitespace. An empty value omits the filter. Empty segments and
+              non-string/nested query shapes return HTTP 400.
+
           page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
 
           page_size: Number of results to return. Defaults to 25; maximum is 100. Invalid values are
@@ -832,6 +992,8 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_metadata": filter_metadata,
+                        "filter_tags": filter_tags,
                         "page_cursor": page_cursor,
                         "page_size": page_size,
                     },
@@ -897,15 +1059,23 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
         checks run first and can reject the whole batch before message creation. After
         those checks pass, each message is validated and sent independently; item-level
         failures do not affect other messages, and the processed batch returns 207
-        Multi-Status.
+        Multi-Status. Per-message failures include validation errors; when a template
+        has `strict_variables` enabled, a missing required variable produces a per-item
+        `unprocessable_entity` error naming that variable while the other messages
+        continue.
 
         Args:
           messages: Array of email messages to send. Up to 1,000 messages per batch request. Each
               message is validated and sent independently; per-message failures do not affect
               other messages in the batch.
 
-          sandbox_mode: Applies sandbox mode to all messages in the batch. Overrides any per-message
-              sandbox_mode in the messages array.
+          sandbox_mode: Applies sandbox mode to all messages in the batch and overrides any per-message
+              `sandbox_mode` value — each message's effective `sandbox_mode` is exactly this
+              envelope value. Reserved recipients at `test.telnyx.com` produce the
+              deterministic event chains documented on CreateEmailRequest.sandbox_mode; no
+              batch item is injected into the MTA or outbound Kafka path. Sandbox batch items
+              are non-billable, consume no daily-send-limit quota, and feed no
+              delivery-reputation signals.
 
           extra_headers: Send extra headers
 
@@ -1028,6 +1198,15 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
         `occurred_at asc, id asc`. The legacy `/v2/emails/{id}/events` GET route is a
         backward-compatible alias.
 
+        For compatibility, each event carries the legacy customer-visible `event_type`
+        (`email.`-prefixed), the additive `canonical_event_type` (`email.`-prefixed),
+        and the deprecated `type` duplicate — whose value keeps the exact legacy format:
+        the bare stored event name, never `email.`-prefixed. Gateway rejections render
+        `email.failed` + canonical `email.gw_reject`; MTA expirations render
+        `email.bounced` + canonical `email.expired`; every unchanged outcome carries
+        identical `event_type` and `canonical_event_type` values (and `type` keeps the
+        stored name).
+
         Args:
           page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
 
@@ -1063,6 +1242,50 @@ class AsyncEmailMessagesResource(AsyncAPIResource):
             model=MessageEvent,
         )
 
+    async def update_schedule(
+        self,
+        email_id: str,
+        *,
+        scheduled_at: Union[str, datetime],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailMessageDetailResponse:
+        """Moves an existing scheduled email to a new future send time.
+
+        Only the delivery
+        time (`scheduled_at`) changes; the message ID, content, recipients, tags, and
+        metadata remain unchanged. Returns `409 Conflict` if the message is no longer
+        scheduled or its scheduled-send worker has already started processing it. This
+        route emits no dedicated `rescheduled` event.
+
+        Args:
+          scheduled_at: New ISO 8601 delivery time. Must be strictly in the future.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not email_id:
+            raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
+        return await self._patch(
+            path_template("/email_messages/{email_id}/schedule", email_id=email_id),
+            body=await async_maybe_transform(
+                {"scheduled_at": scheduled_at}, email_message_update_schedule_params.EmailMessageUpdateScheduleParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailMessageDetailResponse,
+        )
+
 
 class EmailMessagesResourceWithRawResponse:
     def __init__(self, email_messages: EmailMessagesResource) -> None:
@@ -1091,6 +1314,9 @@ class EmailMessagesResourceWithRawResponse:
         )
         self.retrieve_events = to_raw_response_wrapper(
             email_messages.retrieve_events,
+        )
+        self.update_schedule = to_raw_response_wrapper(
+            email_messages.update_schedule,
         )
 
     @cached_property
@@ -1130,6 +1356,9 @@ class AsyncEmailMessagesResourceWithRawResponse:
         self.retrieve_events = async_to_raw_response_wrapper(
             email_messages.retrieve_events,
         )
+        self.update_schedule = async_to_raw_response_wrapper(
+            email_messages.update_schedule,
+        )
 
     @cached_property
     def recipients(self) -> AsyncRecipientsResourceWithRawResponse:
@@ -1168,6 +1397,9 @@ class EmailMessagesResourceWithStreamingResponse:
         self.retrieve_events = to_streamed_response_wrapper(
             email_messages.retrieve_events,
         )
+        self.update_schedule = to_streamed_response_wrapper(
+            email_messages.update_schedule,
+        )
 
     @cached_property
     def recipients(self) -> RecipientsResourceWithStreamingResponse:
@@ -1205,6 +1437,9 @@ class AsyncEmailMessagesResourceWithStreamingResponse:
         )
         self.retrieve_events = async_to_streamed_response_wrapper(
             email_messages.retrieve_events,
+        )
+        self.update_schedule = async_to_streamed_response_wrapper(
+            email_messages.update_schedule,
         )
 
     @cached_property

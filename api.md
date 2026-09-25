@@ -634,6 +634,7 @@ from telnyx.types.ai import (
     ImportMetadata,
     InferenceEmbedding,
     InferenceEmbeddingInterruptionSettings,
+    InferenceEmbeddingVoiceSettings,
     InferenceEmbeddingWebhookToolParams,
     InsightSettings,
     MessagingSettings,
@@ -923,6 +924,7 @@ Types:
 
 ```python
 from telnyx.types.ai.collections import (
+    CollectionsSource,
     Source,
     SourceRequest,
     SourceType,
@@ -1352,6 +1354,85 @@ Methods:
 
 - <code title="post /ai/typesafe/v1/systemone">client.ai.typesafe.v1.<a href="./src/telnyx/resources/ai/typesafe/v1.py">systemone</a>(\*\*<a href="src/telnyx/types/ai/typesafe/v1_systemone_params.py">params</a>) -> <a href="./src/telnyx/types/ai/typesafe/v1_systemone_response.py">V1SystemoneResponse</a></code>
 
+## Memory
+
+### Namespaces
+
+Types:
+
+```python
+from telnyx.types.ai.memory import NamespaceRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/operations/{operation_id}">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">retrieve</a>(operation_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespace_retrieve_response.py">NamespaceRetrieveResponse</a></code>
+
+#### Profiles
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces import (
+    PageMeta,
+    ProfileListResponse,
+    ProfileDeleteResponse,
+    ProfileIngestResponse,
+    ProfileRecallResponse,
+    ProfileRememberResponse,
+    ProfileRetrieveSummaryResponse,
+)
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/profiles">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">list</a>(namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_list_response.py">SyncDefaultFlatPagination[ProfileListResponse]</a></code>
+- <code title="delete /ai/memory/namespaces/{namespace}/profiles/{profile_id}">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">delete</a>(profile_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_delete_response.py">ProfileDeleteResponse</a></code>
+- <code title="post /ai/memory/namespaces/{namespace}/profiles/{profile_id}/ingest">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">ingest</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_ingest_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_ingest_response.py">ProfileIngestResponse</a></code>
+- <code title="post /ai/memory/namespaces/{namespace}/profiles/{profile_id}/recall">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">recall</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_recall_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_recall_response.py">ProfileRecallResponse</a></code>
+- <code title="post /ai/memory/namespaces/{namespace}/profiles/{profile_id}/remember">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">remember</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profile_remember_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_remember_response.py">ProfileRememberResponse</a></code>
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/summary">client.ai.memory.namespaces.profiles.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/profiles.py">retrieve_summary</a>(profile_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/profile_retrieve_summary_response.py">ProfileRetrieveSummaryResponse</a></code>
+
+##### Memories
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces.profiles import MemoryRetrieveResponse, MemoryListResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/memories/{memory_id}">client.ai.memory.namespaces.profiles.memories.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/memories.py">retrieve</a>(memory_id, \*, namespace, profile_id) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/memory_retrieve_response.py">MemoryRetrieveResponse</a></code>
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/memories">client.ai.memory.namespaces.profiles.memories.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/memories.py">list</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profiles/memory_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/memory_list_response.py">SyncDefaultFlatPagination[MemoryListResponse]</a></code>
+
+##### Sources
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces.profiles import SourceRetrieveResponse, SourceDeleteResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/sources/{source_id}">client.ai.memory.namespaces.profiles.sources.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/sources.py">retrieve</a>(source_id, \*, namespace, profile_id) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/source_retrieve_response.py">SourceRetrieveResponse</a></code>
+- <code title="get /ai/memory/namespaces/{namespace}/profiles/{profile_id}/sources">client.ai.memory.namespaces.profiles.sources.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/sources.py">list</a>(profile_id, \*, namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/profiles/source_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/collections/source.py">SyncDefaultFlatPagination[Source]</a></code>
+- <code title="delete /ai/memory/namespaces/{namespace}/profiles/{profile_id}/sources/{source_id}">client.ai.memory.namespaces.profiles.sources.<a href="./src/telnyx/resources/ai/memory/namespaces/profiles/sources.py">delete</a>(source_id, \*, namespace, profile_id) -> <a href="./src/telnyx/types/ai/memory/namespaces/profiles/source_delete_response.py">SourceDeleteResponse</a></code>
+
+#### Settings
+
+Types:
+
+```python
+from telnyx.types.ai.memory.namespaces import NamespaceSettingsResponse
+```
+
+Methods:
+
+- <code title="get /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">list</a>(namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
+- <code title="patch /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">patch_all</a>(namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/setting_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
+
 # AuditEvents
 
 Types:
@@ -1592,6 +1673,7 @@ from telnyx.types.calls import (
     InterruptionSettings,
     Loopcount,
     PayPromptValue,
+    SonioxVoiceSettings,
     StopRecordingRequest,
     SystemMessage,
     TelnyxTranscriptionLanguage,
@@ -3861,6 +3943,7 @@ from telnyx.types import (
     PrivateWirelessGateway,
     PrivateWirelessGatewayStatus,
     PwgAssignedResourcesSummary,
+    WirelessPrivateWirelessGateway,
     PrivateWirelessGatewayCreateResponse,
     PrivateWirelessGatewayRetrieveResponse,
     PrivateWirelessGatewayDeleteResponse,
@@ -3871,7 +3954,7 @@ Methods:
 
 - <code title="post /private_wireless_gateways">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">create</a>(\*\*<a href="src/telnyx/types/private_wireless_gateway_create_params.py">params</a>) -> <a href="./src/telnyx/types/private_wireless_gateway_create_response.py">PrivateWirelessGatewayCreateResponse</a></code>
 - <code title="get /private_wireless_gateways/{id}">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">retrieve</a>(id) -> <a href="./src/telnyx/types/private_wireless_gateway_retrieve_response.py">PrivateWirelessGatewayRetrieveResponse</a></code>
-- <code title="get /private_wireless_gateways">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">list</a>(\*\*<a href="src/telnyx/types/private_wireless_gateway_list_params.py">params</a>) -> <a href="./src/telnyx/types/private_wireless_gateway.py">SyncDefaultFlatPagination[PrivateWirelessGateway]</a></code>
+- <code title="get /private_wireless_gateways">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">list</a>(\*\*<a href="src/telnyx/types/private_wireless_gateway_list_params.py">params</a>) -> <a href="./src/telnyx/types/wireless_private_wireless_gateway.py">SyncDefaultFlatPagination[WirelessPrivateWirelessGateway]</a></code>
 - <code title="delete /private_wireless_gateways/{id}">client.private_wireless_gateways.<a href="./src/telnyx/resources/private_wireless_gateways.py">delete</a>(id) -> <a href="./src/telnyx/types/private_wireless_gateway_delete_response.py">PrivateWirelessGatewayDeleteResponse</a></code>
 
 # PublicInternetGateways
@@ -6385,6 +6468,7 @@ from telnyx.types import (
     EmailDomainVerification,
     EmailDomainRetrieveDNSRecordsResponse,
     EmailDomainRetrieveHealthResponse,
+    EmailDomainRotateDkimResponse,
 )
 ```
 
@@ -6397,6 +6481,7 @@ Methods:
 - <code title="delete /email_domains/{id}">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">delete</a>(id, \*\*<a href="src/telnyx/types/email_domain_delete_params.py">params</a>) -> <a href="./src/telnyx/types/email_domain_response.py">EmailDomainResponse</a></code>
 - <code title="get /email_domains/{domain_id}/dns_records">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">retrieve_dns_records</a>(domain_id) -> <a href="./src/telnyx/types/email_domain_retrieve_dns_records_response.py">EmailDomainRetrieveDNSRecordsResponse</a></code>
 - <code title="get /email_domains/{id}/health">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">retrieve_health</a>(id) -> <a href="./src/telnyx/types/email_domain_retrieve_health_response.py">EmailDomainRetrieveHealthResponse</a></code>
+- <code title="post /email_domains/{domain_id}/rotate_dkim">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">rotate_dkim</a>(domain_id) -> <a href="./src/telnyx/types/email_domain_rotate_dkim_response.py">EmailDomainRotateDkimResponse</a></code>
 - <code title="post /email_domains/{domain_id}/verify">client.email_domains.<a href="./src/telnyx/resources/email_domains/email_domains.py">verify</a>(domain_id) -> <a href="./src/telnyx/types/email_domain_response.py">EmailDomainResponse</a></code>
 
 ## Webhooks
@@ -6427,6 +6512,7 @@ Types:
 ```python
 from telnyx.types import (
     EmailEventType,
+    EmailWebhookRecipient,
     TimeRange,
     EmailEventListResponse,
     EmailEventRetrieveStatsResponse,
@@ -6435,7 +6521,7 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="get /email_events">client.email_events.<a href="./src/telnyx/resources/email_events.py">list</a>(\*\*<a href="src/telnyx/types/email_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_list_response.py">SyncEmailCursorPagination[EmailEventListResponse]</a></code>
+- <code title="get /email_events">client.email_events.<a href="./src/telnyx/resources/email_events.py">list</a>(\*\*<a href="src/telnyx/types/email_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_list_response.py">EmailEventListResponse</a></code>
 - <code title="get /email_events/stats">client.email_events.<a href="./src/telnyx/resources/email_events.py">retrieve_stats</a>(\*\*<a href="src/telnyx/types/email_event_retrieve_stats_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_retrieve_stats_response.py">EmailEventRetrieveStatsResponse</a></code>
 
 # EmailInboxes
@@ -6591,10 +6677,10 @@ Types:
 from telnyx.types import (
     AttachmentRequest,
     EmailAddressInput,
+    EmailMessageDetailResponse,
     MessageEvent,
     SuppressedRecipient,
     TrackingSettings,
-    EmailMessageRetrieveResponse,
     EmailMessageBatchResponse,
 )
 ```
@@ -6602,13 +6688,14 @@ from telnyx.types import (
 Methods:
 
 - <code title="post /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">create</a>(\*\*<a href="src/telnyx/types/email_message_create_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
-- <code title="get /email_messages/{id}">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_message_retrieve_response.py">EmailMessageRetrieveResponse</a></code>
+- <code title="get /email_messages/{id}">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email_message_detail_response.py">EmailMessageDetailResponse</a></code>
 - <code title="get /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">list</a>(\*\*<a href="src/telnyx/types/email_message_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_inboxes/email_message.py">SyncEmailCursorPagination[EmailMessage]</a></code>
 - <code title="delete /email_messages/{id}">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete</a>(id) -> None</code>
 - <code title="post /email_messages/batch">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">batch</a>(\*\*<a href="src/telnyx/types/email_message_batch_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_batch_response.py">EmailMessageBatchResponse</a></code>
 - <code title="delete /email_messages">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete_all</a>(\*\*<a href="src/telnyx/types/email_message_delete_all_params.py">params</a>) -> None</code>
 - <code title="delete /email_messages/{email_id}/schedule">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">delete_schedule</a>(email_id) -> <a href="./src/telnyx/types/email_inboxes/email_message_response.py">EmailMessageResponse</a></code>
 - <code title="get /email_messages/{email_id}/events">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">retrieve_events</a>(email_id, \*\*<a href="src/telnyx/types/email_message_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/message_event.py">SyncEmailCursorPagination[MessageEvent]</a></code>
+- <code title="patch /email_messages/{email_id}/schedule">client.email_messages.<a href="./src/telnyx/resources/email_messages/email_messages.py">update_schedule</a>(email_id, \*\*<a href="src/telnyx/types/email_message_update_schedule_params.py">params</a>) -> <a href="./src/telnyx/types/email_message_detail_response.py">EmailMessageDetailResponse</a></code>
 
 ## Recipients
 

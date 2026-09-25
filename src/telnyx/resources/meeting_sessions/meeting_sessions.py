@@ -91,6 +91,7 @@ class MeetingSessionsResource(SyncAPIResource):
         barge_in: bool | Omit = omit,
         bot_name: str | Omit = omit,
         camera_image: meeting_session_create_params.CameraImage | Omit = omit,
+        chat_on_enter: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         join_at: Union[str, datetime] | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
@@ -122,10 +123,10 @@ class MeetingSessionsResource(SyncAPIResource):
         Args:
           meeting_url: The meeting URL the bot should join.
 
-          assistant: Request options for attaching a voice assistant to the session. Routing fields
-              (`call_control_connection_id`, `from`, and `loopback_sip_uri`) are used only to
-              establish the assistant call leg and are omitted from response objects.
-              `audio_gate` is returned with `id` in the assistant response object.
+          assistant: Attach a Telnyx AI Assistant to the session. Supply the Assistant's ID; the
+              Meeting service connects it to the meeting directly. The Call Control
+              connection, caller ID and loopback SIP URI previously required here have been
+              removed and are now rejected as unknown fields.
 
           avatar: Request options for attaching a bring-your-own-key avatar to the session.
 
@@ -142,6 +143,12 @@ class MeetingSessionsResource(SyncAPIResource):
               recordings. An effective Avatar or Assistant webpage output takes precedence, so
               this input is ignored and a URL source is not fetched.
 
+          chat_on_enter: A message the bot posts to the meeting's chat as soon as it becomes active —
+              typically a recording disclosure. Delivered at most once. Independent of
+              `speak_on_enter`: both may be set, and the chat message posts first because it
+              does not wait for text-to-speech or avatar startup. Rejected with 422
+              `unsupported_capability` on platforms without meeting chat.
+
           idempotency_key: Client-supplied idempotency key to safely retry creation requests without
               duplicating sessions. Lookup is scoped to the authenticated account and compares
               the key only; the request payload is not fingerprinted or compared.
@@ -152,7 +159,10 @@ class MeetingSessionsResource(SyncAPIResource):
           metadata: Arbitrary key-value metadata attached to the session. The serialized JSON
               representation must not exceed 16384 characters at runtime.
 
-          speak_on_enter: Text the bot speaks when it enters the meeting.
+          speak_on_enter: Text the bot speaks when it enters the meeting. **Not spoken when an `assistant`
+              is attached**: the value is accepted and echoed back on the session, but the
+              assistant owns the voice and the line is never delivered, with no event
+              reporting the omission. Use `chat_on_enter` to announce an assistant-backed bot.
 
           summarize_on_end: If true, generate a summary artifact when the session ends.
 
@@ -182,6 +192,7 @@ class MeetingSessionsResource(SyncAPIResource):
                     "barge_in": barge_in,
                     "bot_name": bot_name,
                     "camera_image": camera_image,
+                    "chat_on_enter": chat_on_enter,
                     "idempotency_key": idempotency_key,
                     "join_at": join_at,
                     "metadata": metadata,
@@ -371,8 +382,6 @@ class MeetingSessionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MeetingSessionDeleteRecordingMediaResponse:
         """
-        **Not yet available in production** — this route is not currently routed on
-        api.telnyx.com and returns a generic 404; it is documented ahead of rollout.
         Irreversibly requests deletion of provider-hosted aggregate recording media
         under the provider contract. The operation retains the Telnyx-local Meeting
         session, transcript segments, events, artifacts, and usage records. It is
@@ -584,6 +593,7 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
         barge_in: bool | Omit = omit,
         bot_name: str | Omit = omit,
         camera_image: meeting_session_create_params.CameraImage | Omit = omit,
+        chat_on_enter: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         join_at: Union[str, datetime] | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
@@ -615,10 +625,10 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
         Args:
           meeting_url: The meeting URL the bot should join.
 
-          assistant: Request options for attaching a voice assistant to the session. Routing fields
-              (`call_control_connection_id`, `from`, and `loopback_sip_uri`) are used only to
-              establish the assistant call leg and are omitted from response objects.
-              `audio_gate` is returned with `id` in the assistant response object.
+          assistant: Attach a Telnyx AI Assistant to the session. Supply the Assistant's ID; the
+              Meeting service connects it to the meeting directly. The Call Control
+              connection, caller ID and loopback SIP URI previously required here have been
+              removed and are now rejected as unknown fields.
 
           avatar: Request options for attaching a bring-your-own-key avatar to the session.
 
@@ -635,6 +645,12 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
               recordings. An effective Avatar or Assistant webpage output takes precedence, so
               this input is ignored and a URL source is not fetched.
 
+          chat_on_enter: A message the bot posts to the meeting's chat as soon as it becomes active —
+              typically a recording disclosure. Delivered at most once. Independent of
+              `speak_on_enter`: both may be set, and the chat message posts first because it
+              does not wait for text-to-speech or avatar startup. Rejected with 422
+              `unsupported_capability` on platforms without meeting chat.
+
           idempotency_key: Client-supplied idempotency key to safely retry creation requests without
               duplicating sessions. Lookup is scoped to the authenticated account and compares
               the key only; the request payload is not fingerprinted or compared.
@@ -645,7 +661,10 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
           metadata: Arbitrary key-value metadata attached to the session. The serialized JSON
               representation must not exceed 16384 characters at runtime.
 
-          speak_on_enter: Text the bot speaks when it enters the meeting.
+          speak_on_enter: Text the bot speaks when it enters the meeting. **Not spoken when an `assistant`
+              is attached**: the value is accepted and echoed back on the session, but the
+              assistant owns the voice and the line is never delivered, with no event
+              reporting the omission. Use `chat_on_enter` to announce an assistant-backed bot.
 
           summarize_on_end: If true, generate a summary artifact when the session ends.
 
@@ -675,6 +694,7 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
                     "barge_in": barge_in,
                     "bot_name": bot_name,
                     "camera_image": camera_image,
+                    "chat_on_enter": chat_on_enter,
                     "idempotency_key": idempotency_key,
                     "join_at": join_at,
                     "metadata": metadata,
@@ -866,8 +886,6 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MeetingSessionDeleteRecordingMediaResponse:
         """
-        **Not yet available in production** — this route is not currently routed on
-        api.telnyx.com and returns a generic 404; it is documented ahead of rollout.
         Irreversibly requests deletion of provider-hosted aggregate recording media
         under the provider contract. The operation retains the Telnyx-local Meeting
         session, transcript segments, events, artifacts, and usage records. It is

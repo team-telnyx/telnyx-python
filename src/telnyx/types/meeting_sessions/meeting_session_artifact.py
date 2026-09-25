@@ -34,10 +34,17 @@ class MeetingSessionArtifact(BaseModel):
 
     api_model_provenance: Optional[ModelProvenance] = FieldInfo(alias="model_provenance", default=None)
 
+    prompt: Optional[str] = None
+    """The prompt that produced this artifact, or null for a named type.
+
+    Non-null only when `type` is `custom`; the five named types always return
+    `null`.
+    """
+
     session_id: str
 
     status: Literal["pending", "completed", "failed"]
 
-    type: Literal["summary", "action_items"]
+    type: Literal["summary", "action_items", "decisions", "topics", "open_questions", "custom"]
 
     updated_at: datetime

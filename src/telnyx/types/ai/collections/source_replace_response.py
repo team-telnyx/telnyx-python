@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from .source import Source
 from ...._models import BaseModel
+from .collections_source import CollectionsSource
 
 __all__ = ["SourceReplaceResponse", "Meta"]
 
@@ -23,7 +23,7 @@ class Meta(BaseModel):
 
 
 class SourceReplaceResponse(BaseModel):
-    data: Optional[List[Source]] = None
+    data: Optional[List[CollectionsSource]] = None
 
     meta: Optional[Meta] = None
     """

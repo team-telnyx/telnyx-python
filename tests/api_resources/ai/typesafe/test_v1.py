@@ -47,6 +47,39 @@ class TestV1:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_systemone_with_all_params(self, client: Telnyx) -> None:
+        v1 = client.ai.typesafe.v1.systemone(
+            questions={
+                "team": {
+                    "criteria": {
+                        "billing": "Payments and refunds",
+                        "technical_support": "Service faults and technical problems",
+                        "sales": "New purchases",
+                    },
+                    "instructions": "Choose the team that should handle this incident.",
+                    "type": "choice",
+                },
+                "production_incident": {
+                    "instructions": "Does the message describe an active production incident?",
+                    "type": "noul",
+                    "criteria": {
+                        "false": "false",
+                        "true": "true",
+                    },
+                },
+                "urgency": {
+                    "criteria": ["Low", "Normal", "High", "Critical"],
+                    "instructions": "Rate operational urgency.",
+                    "type": "score",
+                },
+            },
+            state="Our production calls are failing. Every customer is affected.",
+            model="telnyx/decision-flash",
+        )
+        assert_matches_type(V1SystemoneResponse, v1, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_systemone(self, client: Telnyx) -> None:
         response = client.ai.typesafe.v1.with_raw_response.systemone(
             questions={
@@ -142,6 +175,39 @@ class TestAsyncV1:
                 },
             },
             state="Our production calls are failing. Every customer is affected.",
+        )
+        assert_matches_type(V1SystemoneResponse, v1, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_systemone_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        v1 = await async_client.ai.typesafe.v1.systemone(
+            questions={
+                "team": {
+                    "criteria": {
+                        "billing": "Payments and refunds",
+                        "technical_support": "Service faults and technical problems",
+                        "sales": "New purchases",
+                    },
+                    "instructions": "Choose the team that should handle this incident.",
+                    "type": "choice",
+                },
+                "production_incident": {
+                    "instructions": "Does the message describe an active production incident?",
+                    "type": "noul",
+                    "criteria": {
+                        "false": "false",
+                        "true": "true",
+                    },
+                },
+                "urgency": {
+                    "criteria": ["Low", "Normal", "High", "Critical"],
+                    "instructions": "Rate operational urgency.",
+                    "type": "score",
+                },
+            },
+            state="Our production calls are failing. Every customer is affected.",
+            model="telnyx/decision-flash",
         )
         assert_matches_type(V1SystemoneResponse, v1, path=["response"])
 

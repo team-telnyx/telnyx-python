@@ -16,6 +16,7 @@ from .retrieval_settings_wrapper_param import RetrievalSettingsWrapperParam as R
 if TYPE_CHECKING:
     from .source import Source as Source
     from .settings_envelope import SettingsEnvelope as SettingsEnvelope
+    from .collections_source import CollectionsSource as CollectionsSource
     from .retrieval_settings import RetrievalSettings as RetrievalSettings
     from .source_list_response import SourceListResponse as SourceListResponse
     from .source_create_response import SourceCreateResponse as SourceCreateResponse
@@ -36,6 +37,10 @@ def __getattr__(name: str) -> Any:
         from .settings_envelope import SettingsEnvelope
 
         return SettingsEnvelope
+    if name == "CollectionsSource":
+        from .collections_source import CollectionsSource
+
+        return CollectionsSource
     if name == "Source":
         from .source import Source
 

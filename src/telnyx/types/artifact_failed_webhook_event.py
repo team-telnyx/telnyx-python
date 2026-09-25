@@ -19,7 +19,7 @@ class Data(BaseModel):
     session_id: str
     """The meeting session this event belongs to."""
 
-    type: Literal["summary", "action_items"]
+    type: Literal["summary", "action_items", "decisions", "topics", "open_questions", "custom"]
     """Type of the failed artifact."""
 
 

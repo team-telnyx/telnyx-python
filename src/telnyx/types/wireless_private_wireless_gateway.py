@@ -3,17 +3,26 @@
 from __future__ import annotations
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from .._models import BaseModel
 from .pwg_assigned_resources_summary import PwgAssignedResourcesSummary
 from .private_wireless_gateway_status import PrivateWirelessGatewayStatus
 
-__all__ = ["PrivateWirelessGateway"]
+__all__ = ["WirelessPrivateWirelessGateway"]
 
 
-class PrivateWirelessGateway(BaseModel):
+class WirelessPrivateWirelessGateway(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
+
+    address_mode: Optional[Literal["static", "dynamic"]] = None
+    """The address mode of the private wireless gateway.
+
+    With static, each SIM card gets a fixed IP address from the gateway's IP range
+    that is preserved across sessions. With dynamic, IP addresses are assigned by
+    the network at attach time and may change between sessions.
+    """
 
     assigned_resources: Optional[List[PwgAssignedResourcesSummary]] = None
     """

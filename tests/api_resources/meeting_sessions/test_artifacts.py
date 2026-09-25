@@ -19,7 +19,7 @@ class TestArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create(self, client: Telnyx) -> None:
+    def test_method_create_overload_1(self, client: Telnyx) -> None:
         artifact = client.meeting_sessions.artifacts.create(
             id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             type="summary",
@@ -28,7 +28,7 @@ class TestArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: Telnyx) -> None:
+    def test_raw_response_create_overload_1(self, client: Telnyx) -> None:
         response = client.meeting_sessions.artifacts.with_raw_response.create(
             id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             type="summary",
@@ -41,7 +41,7 @@ class TestArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: Telnyx) -> None:
+    def test_streaming_response_create_overload_1(self, client: Telnyx) -> None:
         with client.meeting_sessions.artifacts.with_streaming_response.create(
             id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             type="summary",
@@ -56,11 +56,61 @@ class TestArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_create(self, client: Telnyx) -> None:
+    def test_path_params_create_overload_1(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.meeting_sessions.artifacts.with_raw_response.create(
                 id="",
                 type="summary",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create_overload_2(self, client: Telnyx) -> None:
+        artifact = client.meeting_sessions.artifacts.create(
+            id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            prompt="x",
+            type="custom",
+        )
+        assert_matches_type(MeetingSessionArtifactResponse, artifact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Telnyx) -> None:
+        response = client.meeting_sessions.artifacts.with_raw_response.create(
+            id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            prompt="x",
+            type="custom",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        artifact = response.parse()
+        assert_matches_type(MeetingSessionArtifactResponse, artifact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Telnyx) -> None:
+        with client.meeting_sessions.artifacts.with_streaming_response.create(
+            id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            prompt="x",
+            type="custom",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            artifact = response.parse()
+            assert_matches_type(MeetingSessionArtifactResponse, artifact, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_create_overload_2(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.meeting_sessions.artifacts.with_raw_response.create(
+                id="",
+                prompt="x",
+                type="custom",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -165,7 +215,7 @@ class TestAsyncArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncTelnyx) -> None:
         artifact = await async_client.meeting_sessions.artifacts.create(
             id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             type="summary",
@@ -174,7 +224,7 @@ class TestAsyncArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.meeting_sessions.artifacts.with_raw_response.create(
             id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             type="summary",
@@ -187,7 +237,7 @@ class TestAsyncArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncTelnyx) -> None:
         async with async_client.meeting_sessions.artifacts.with_streaming_response.create(
             id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             type="summary",
@@ -202,11 +252,61 @@ class TestAsyncArtifacts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncTelnyx) -> None:
+    async def test_path_params_create_overload_1(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.meeting_sessions.artifacts.with_raw_response.create(
                 id="",
                 type="summary",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncTelnyx) -> None:
+        artifact = await async_client.meeting_sessions.artifacts.create(
+            id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            prompt="x",
+            type="custom",
+        )
+        assert_matches_type(MeetingSessionArtifactResponse, artifact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.meeting_sessions.artifacts.with_raw_response.create(
+            id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            prompt="x",
+            type="custom",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        artifact = await response.parse()
+        assert_matches_type(MeetingSessionArtifactResponse, artifact, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.meeting_sessions.artifacts.with_streaming_response.create(
+            id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            prompt="x",
+            type="custom",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            artifact = await response.parse()
+            assert_matches_type(MeetingSessionArtifactResponse, artifact, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_create_overload_2(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.meeting_sessions.artifacts.with_raw_response.create(
+                id="",
+                prompt="x",
+                type="custom",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

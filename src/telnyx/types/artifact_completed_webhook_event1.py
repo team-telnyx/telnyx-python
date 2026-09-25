@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -39,10 +40,17 @@ class Data(BaseModel):
     api_model_provenance: DataModelProvenance = FieldInfo(alias="model_provenance")
     """Model that generated the artifact."""
 
+    prompt: Optional[str] = None
+    """The prompt that produced this artifact, or null for a named type.
+
+    Non-null only when `type` is `custom`; the five named types always return
+    `null`.
+    """
+
     session_id: str
     """The meeting session this event belongs to."""
 
-    type: Literal["summary", "action_items"]
+    type: Literal["summary", "action_items", "decisions", "topics", "open_questions", "custom"]
     """Type of the completed artifact."""
 
 

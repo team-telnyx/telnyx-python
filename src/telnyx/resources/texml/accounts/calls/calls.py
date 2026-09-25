@@ -265,15 +265,15 @@ class CallsResource(SyncAPIResource):
         account_sid: str,
         *,
         end_time: str | Omit = omit,
-        end_time_gt: str | Omit = omit,
         end_time_lt: str | Omit = omit,
+        end_time_gt: str | Omit = omit,
         from_: str | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
         page_token: str | Omit = omit,
         start_time: str | Omit = omit,
-        start_time_gt: str | Omit = omit,
         start_time_lt: str | Omit = omit,
+        start_time_gt: str | Omit = omit,
         status: Literal["canceled", "completed", "failed", "busy", "no-answer"] | Omit = omit,
         to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -291,9 +291,9 @@ class CallsResource(SyncAPIResource):
         Args:
           end_time: Filters calls by their end date. Expected format is YYYY-MM-DD
 
-          end_time_gt: Filters calls by their end date (after). Expected format is YYYY-MM-DD
-
           end_time_lt: Filters calls by their end date (before). Expected format is YYYY-MM-DD
+
+          end_time_gt: Filters calls by their end date (after). Expected format is YYYY-MM-DD
 
           from_: Filters calls by the from number.
 
@@ -306,9 +306,9 @@ class CallsResource(SyncAPIResource):
 
           start_time: Filters calls by their start date. Expected format is YYYY-MM-DD.
 
-          start_time_gt: Filters calls by their start date (after). Expected format is YYYY-MM-DD
-
           start_time_lt: Filters calls by their start date (before). Expected format is YYYY-MM-DD
+
+          start_time_gt: Filters calls by their start date (after). Expected format is YYYY-MM-DD
 
           status: Filters calls by status.
 
@@ -334,15 +334,15 @@ class CallsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "end_time": end_time,
-                        "end_time_gt": end_time_gt,
                         "end_time_lt": end_time_lt,
+                        "end_time_gt": end_time_gt,
                         "from_": from_,
                         "page": page,
                         "page_size": page_size,
                         "page_token": page_token,
                         "start_time": start_time,
-                        "start_time_gt": start_time_gt,
                         "start_time_lt": start_time_lt,
+                        "start_time_gt": start_time_gt,
                         "status": status,
                         "to": to,
                     },
@@ -715,15 +715,15 @@ class AsyncCallsResource(AsyncAPIResource):
         account_sid: str,
         *,
         end_time: str | Omit = omit,
-        end_time_gt: str | Omit = omit,
         end_time_lt: str | Omit = omit,
+        end_time_gt: str | Omit = omit,
         from_: str | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
         page_token: str | Omit = omit,
         start_time: str | Omit = omit,
-        start_time_gt: str | Omit = omit,
         start_time_lt: str | Omit = omit,
+        start_time_gt: str | Omit = omit,
         status: Literal["canceled", "completed", "failed", "busy", "no-answer"] | Omit = omit,
         to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -741,9 +741,9 @@ class AsyncCallsResource(AsyncAPIResource):
         Args:
           end_time: Filters calls by their end date. Expected format is YYYY-MM-DD
 
-          end_time_gt: Filters calls by their end date (after). Expected format is YYYY-MM-DD
-
           end_time_lt: Filters calls by their end date (before). Expected format is YYYY-MM-DD
+
+          end_time_gt: Filters calls by their end date (after). Expected format is YYYY-MM-DD
 
           from_: Filters calls by the from number.
 
@@ -756,9 +756,9 @@ class AsyncCallsResource(AsyncAPIResource):
 
           start_time: Filters calls by their start date. Expected format is YYYY-MM-DD.
 
-          start_time_gt: Filters calls by their start date (after). Expected format is YYYY-MM-DD
-
           start_time_lt: Filters calls by their start date (before). Expected format is YYYY-MM-DD
+
+          start_time_gt: Filters calls by their start date (after). Expected format is YYYY-MM-DD
 
           status: Filters calls by status.
 
@@ -784,15 +784,15 @@ class AsyncCallsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "end_time": end_time,
-                        "end_time_gt": end_time_gt,
                         "end_time_lt": end_time_lt,
+                        "end_time_gt": end_time_gt,
                         "from_": from_,
                         "page": page,
                         "page_size": page_size,
                         "page_token": page_token,
                         "start_time": start_time,
-                        "start_time_gt": start_time_gt,
                         "start_time_lt": start_time_lt,
+                        "start_time_gt": start_time_gt,
                         "status": status,
                         "to": to,
                     },

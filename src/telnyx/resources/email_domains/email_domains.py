@@ -41,6 +41,7 @@ from ...types.email_domain_status import EmailDomainStatus
 from ...types.email_domain_response import EmailDomainResponse
 from ...types.email_dmarc_policy_param import EmailDmarcPolicyParam
 from ...types.domains_tracking_settings_param import DomainsTrackingSettingsParam
+from ...types.email_domain_rotate_dkim_response import EmailDomainRotateDkimResponse
 from ...types.email_domain_retrieve_health_response import EmailDomainRetrieveHealthResponse
 from ...types.email_domain_retrieve_dns_records_response import EmailDomainRetrieveDNSRecordsResponse
 
@@ -403,6 +404,47 @@ class EmailDomainsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=EmailDomainRetrieveHealthResponse,
+        )
+
+    def rotate_dkim(
+        self,
+        domain_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailDomainRotateDkimResponse:
+        """
+        Generates a new DKIM key for the domain, activates it, and retires the previous
+        key. The response includes the updated DKIM DNS records the customer must
+        publish. Selectors are fixed, so rotation replaces the TXT value at the existing
+        `<selector>._domainkey.<domain>` host rather than adding a second record —
+        `old_selector_retained` is false and the new TXT value must be published
+        promptly, since signing switches to the new key immediately and the old TXT
+        value will no longer match. The previous key is retired to a `retiring` state
+        (retained, not revoked) so it can be revoked after the DNS propagation grace
+        period.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
+        return self._post(
+            path_template("/email_domains/{domain_id}/rotate_dkim", domain_id=domain_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailDomainRotateDkimResponse,
         )
 
     def verify(
@@ -798,6 +840,47 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
             cast_to=EmailDomainRetrieveHealthResponse,
         )
 
+    async def rotate_dkim(
+        self,
+        domain_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailDomainRotateDkimResponse:
+        """
+        Generates a new DKIM key for the domain, activates it, and retires the previous
+        key. The response includes the updated DKIM DNS records the customer must
+        publish. Selectors are fixed, so rotation replaces the TXT value at the existing
+        `<selector>._domainkey.<domain>` host rather than adding a second record —
+        `old_selector_retained` is false and the new TXT value must be published
+        promptly, since signing switches to the new key immediately and the old TXT
+        value will no longer match. The previous key is retired to a `retiring` state
+        (retained, not revoked) so it can be revoked after the DNS propagation grace
+        period.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
+        return await self._post(
+            path_template("/email_domains/{domain_id}/rotate_dkim", domain_id=domain_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EmailDomainRotateDkimResponse,
+        )
+
     async def verify(
         self,
         domain_id: str,
@@ -858,6 +941,9 @@ class EmailDomainsResourceWithRawResponse:
         self.retrieve_health = to_raw_response_wrapper(
             email_domains.retrieve_health,
         )
+        self.rotate_dkim = to_raw_response_wrapper(
+            email_domains.rotate_dkim,
+        )
         self.verify = to_raw_response_wrapper(
             email_domains.verify,
         )
@@ -892,6 +978,9 @@ class AsyncEmailDomainsResourceWithRawResponse:
         )
         self.retrieve_health = async_to_raw_response_wrapper(
             email_domains.retrieve_health,
+        )
+        self.rotate_dkim = async_to_raw_response_wrapper(
+            email_domains.rotate_dkim,
         )
         self.verify = async_to_raw_response_wrapper(
             email_domains.verify,
@@ -928,6 +1017,9 @@ class EmailDomainsResourceWithStreamingResponse:
         self.retrieve_health = to_streamed_response_wrapper(
             email_domains.retrieve_health,
         )
+        self.rotate_dkim = to_streamed_response_wrapper(
+            email_domains.rotate_dkim,
+        )
         self.verify = to_streamed_response_wrapper(
             email_domains.verify,
         )
@@ -962,6 +1054,9 @@ class AsyncEmailDomainsResourceWithStreamingResponse:
         )
         self.retrieve_health = async_to_streamed_response_wrapper(
             email_domains.retrieve_health,
+        )
+        self.rotate_dkim = async_to_streamed_response_wrapper(
+            email_domains.rotate_dkim,
         )
         self.verify = async_to_streamed_response_wrapper(
             email_domains.verify,

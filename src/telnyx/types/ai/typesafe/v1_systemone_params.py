@@ -24,6 +24,15 @@ class V1SystemoneParams(TypedDict, total=False):
     state: Required[Union[str, Dict[str, object], Iterable[object]]]
     """Shared context evaluated by every question."""
 
+    model: Literal["telnyx/decision-flash", "telnyx/decision-pro"]
+    """Public model alias.
+
+    telnyx/decision-flash offers the lowest cost and latency; telnyx/decision-pro
+    supports decisions that require long context, including inputs beyond Jev’s 32k
+    per-decision limit. Applies to every question in the request. Other values are
+    rejected.
+    """
+
 
 class QuestionsDecisionModelChoiceQuestion(TypedDict, total=False):
     """Select one of the supplied options."""

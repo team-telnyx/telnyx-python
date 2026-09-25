@@ -18,8 +18,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.email_event_list_response import EmailEventListResponse
 from ..types.email_event_retrieve_stats_response import EmailEventRetrieveStatsResponse
 
@@ -54,8 +53,8 @@ class EmailEventsResource(SyncAPIResource):
         email_id: str | Omit = omit,
         event_type: Union[str, SequenceNotStr[str]] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
-        page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
+        page_cursor: str | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,10 +62,23 @@ class EmailEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncEmailCursorPagination[EmailEventListResponse]:
+    ) -> EmailEventListResponse:
         """
         Lists account-level email events sorted oldest first by
-        `occurred_at asc, id asc`.
+        `occurred_at asc, id asc`. Each row contains a legacy email.-prefixed event_type
+        and an additive canonical_event_type. Gateway rejection renders email.failed
+        with canonical email.gw_reject; ambiguous injection timeout renders
+        email.injection_timeout in both; MTA expiration renders email.bounced with
+        canonical email.expired. Message-scoped queued, sending, sandbox, cancelled, and
+        daily_limit_exceeded rows fan out per durable recipient with stable derived IDs
+        matching webhook delivery. Scheduled is the cardinality exception: account
+        polling retains one message-scoped scheduled row with its stored event ID, while
+        scheduled webhook publication fans out per recipient with derived IDs; reconcile
+        scheduled events by message ID, event type, and occurrence time rather than
+        event UUID. Recipient-scoped stored rows retain their stored UUIDs across
+        polling and webhook delivery. Legacy names are derived from stored rows; an
+        AdminBounce row stored as failed renders email.failed in polling while its
+        webhook retains email.bounced, both with canonical email.failed.
 
         Args:
           email_id: Filter events for a specific email message UUID. Invalid UUID values are
@@ -76,12 +88,24 @@ class EmailEventsResource(SyncAPIResource):
               parameters (e.g. event_type=delivered&event_type=bounced). Unknown values return
               no matches.
 
-          from_: Inclusive ISO 8601 start timestamp. Defaults to 30 days ago when omitted.
+              Dual-name compatibility: values are accepted bare or `email.`-prefixed. A legacy
+              value keeps matching the rows it matched pre-rename — no widening: `failed` also
+              matches the rows that now store the canonical names of the outcomes it covered
+              (`gw_reject`, `injection_timeout`, `expired`); `bounced` matches stored
+              `bounced` rows only (recipient-scoped Expirations stored `failed` pre-rename and
+              never matched `bounced`, so `expired` is deliberately not a `bounced`
+              expansion). A canonical value matches its own rows plus legacy rows whose
+              recorded payload evidence proves that outcome (`expired` also surfaces legacy
+              `bounced` rows with `bounce_category: transient`). The additive
+              `canonical_event_type` field in each response row names the canonical outcome.
 
-          page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
+          from_: Inclusive ISO 8601 start timestamp. Defaults to 30 days ago when omitted.
 
           page_size: Number of results to return. Defaults to 25; maximum is 100. Invalid values are
               clamped to the valid range.
+
+          page_cursor: Opaque URL-safe Base64 cursor returned by a previous event list response. The
+              legacy `page[after]` and flat `page_cursor` forms are also accepted.
 
           to: Inclusive ISO 8601 end timestamp. When `from` is provided without `to`, defaults
               to `from + 30 days`.
@@ -94,9 +118,8 @@ class EmailEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/email_events",
-            page=SyncEmailCursorPagination[EmailEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -107,14 +130,14 @@ class EmailEventsResource(SyncAPIResource):
                         "email_id": email_id,
                         "event_type": event_type,
                         "from_": from_,
-                        "page_cursor": page_cursor,
                         "page_size": page_size,
+                        "page_cursor": page_cursor,
                         "to": to,
                     },
                     email_event_list_params.EmailEventListParams,
                 ),
             ),
-            model=EmailEventListResponse,
+            cast_to=EmailEventListResponse,
         )
 
     def retrieve_stats(
@@ -189,14 +212,14 @@ class AsyncEmailEventsResource(AsyncAPIResource):
         """
         return AsyncEmailEventsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         email_id: str | Omit = omit,
         event_type: Union[str, SequenceNotStr[str]] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
-        page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
+        page_cursor: str | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,10 +227,23 @@ class AsyncEmailEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[EmailEventListResponse, AsyncEmailCursorPagination[EmailEventListResponse]]:
+    ) -> EmailEventListResponse:
         """
         Lists account-level email events sorted oldest first by
-        `occurred_at asc, id asc`.
+        `occurred_at asc, id asc`. Each row contains a legacy email.-prefixed event_type
+        and an additive canonical_event_type. Gateway rejection renders email.failed
+        with canonical email.gw_reject; ambiguous injection timeout renders
+        email.injection_timeout in both; MTA expiration renders email.bounced with
+        canonical email.expired. Message-scoped queued, sending, sandbox, cancelled, and
+        daily_limit_exceeded rows fan out per durable recipient with stable derived IDs
+        matching webhook delivery. Scheduled is the cardinality exception: account
+        polling retains one message-scoped scheduled row with its stored event ID, while
+        scheduled webhook publication fans out per recipient with derived IDs; reconcile
+        scheduled events by message ID, event type, and occurrence time rather than
+        event UUID. Recipient-scoped stored rows retain their stored UUIDs across
+        polling and webhook delivery. Legacy names are derived from stored rows; an
+        AdminBounce row stored as failed renders email.failed in polling while its
+        webhook retains email.bounced, both with canonical email.failed.
 
         Args:
           email_id: Filter events for a specific email message UUID. Invalid UUID values are
@@ -217,12 +253,24 @@ class AsyncEmailEventsResource(AsyncAPIResource):
               parameters (e.g. event_type=delivered&event_type=bounced). Unknown values return
               no matches.
 
-          from_: Inclusive ISO 8601 start timestamp. Defaults to 30 days ago when omitted.
+              Dual-name compatibility: values are accepted bare or `email.`-prefixed. A legacy
+              value keeps matching the rows it matched pre-rename — no widening: `failed` also
+              matches the rows that now store the canonical names of the outcomes it covered
+              (`gw_reject`, `injection_timeout`, `expired`); `bounced` matches stored
+              `bounced` rows only (recipient-scoped Expirations stored `failed` pre-rename and
+              never matched `bounced`, so `expired` is deliberately not a `bounced`
+              expansion). A canonical value matches its own rows plus legacy rows whose
+              recorded payload evidence proves that outcome (`expired` also surfaces legacy
+              `bounced` rows with `bounce_category: transient`). The additive
+              `canonical_event_type` field in each response row names the canonical outcome.
 
-          page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
+          from_: Inclusive ISO 8601 start timestamp. Defaults to 30 days ago when omitted.
 
           page_size: Number of results to return. Defaults to 25; maximum is 100. Invalid values are
               clamped to the valid range.
+
+          page_cursor: Opaque URL-safe Base64 cursor returned by a previous event list response. The
+              legacy `page[after]` and flat `page_cursor` forms are also accepted.
 
           to: Inclusive ISO 8601 end timestamp. When `from` is provided without `to`, defaults
               to `from + 30 days`.
@@ -235,27 +283,26 @@ class AsyncEmailEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/email_events",
-            page=AsyncEmailCursorPagination[EmailEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "email_id": email_id,
                         "event_type": event_type,
                         "from_": from_,
-                        "page_cursor": page_cursor,
                         "page_size": page_size,
+                        "page_cursor": page_cursor,
                         "to": to,
                     },
                     email_event_list_params.EmailEventListParams,
                 ),
             ),
-            model=EmailEventListResponse,
+            cast_to=EmailEventListResponse,
         )
 
     async def retrieve_stats(
