@@ -20,7 +20,7 @@ class AudioChunkFrame(BaseModel):
     """Base64-encoded audio data.
 
     May be `null` for providers that use `drop_concatenated_audio` mode (Telnyx,
-    Minimax, MurfAI, Resemble) — in that case only streamed chunks carry audio.
+    Minimax, Resemble) — in that case only streamed chunks carry audio.
     """
 
     cached: Optional[bool] = None
