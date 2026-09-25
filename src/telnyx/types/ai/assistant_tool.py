@@ -184,6 +184,15 @@ class TransferTransferTargetsTargetsList(BaseModel):
     to: str
     """The destination number or SIP URI of the call."""
 
+    extension: Optional[str] = None
+    """DTMF digits to send automatically after the transfer destination answers.
+
+    Useful for reaching an extension behind an IVR (e.g. `"200"` to dial extension
+    200 once the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s
+    pause), `W` (1s pause), `*`, `#`. Maximum 64 characters. When omitted, no
+    automatic DTMF is sent.
+    """
+
     message: Optional[str] = None
     """The warm transfer message to deliver to this specific target.
 
@@ -193,6 +202,18 @@ class TransferTransferTargetsTargetsList(BaseModel):
 
     name: Optional[str] = None
     """The name of the target."""
+
+    sip_auth_password: Optional[str] = None
+    """SIP Authentication password used for SIP challenges.
+
+    Applies when `to` is a SIP URI.
+    """
+
+    sip_auth_username: Optional[str] = None
+    """SIP Authentication username used for SIP challenges.
+
+    Applies when `to` is a SIP URI.
+    """
 
 
 class TransferTransferCustomHeader(BaseModel):

@@ -140,11 +140,26 @@ class NumbersPhoneNumberDetailed(BaseModel):
     feature has an additional per-number monthly cost associated with it.
     """
 
+    messaging_campaign_id: Optional[str] = None
+    """
+    Identifies the messaging campaign associated with the phone number's messaging
+    profile. If the messaging profile details could not be retrieved, this value is
+    the string `UNAVAILABLE`.
+    """
+
     messaging_profile_id: Optional[str] = None
-    """Identifies the messaging profile associated with the phone number."""
+    """Identifies the messaging profile associated with the phone number.
+
+    If the messaging profile details could not be retrieved, this value is the
+    string `UNAVAILABLE`.
+    """
 
     messaging_profile_name: Optional[str] = None
-    """The name of the messaging profile associated with the phone number."""
+    """The name of the messaging profile associated with the phone number.
+
+    If the messaging profile details could not be retrieved, this value is the
+    string `UNAVAILABLE`.
+    """
 
     source_type: Optional[Literal["number_order", "port_request"]] = None
     """Indicates if the phone number was purchased or ported in.
