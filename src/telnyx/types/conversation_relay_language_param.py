@@ -7,6 +7,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .calls.aws_voice_settings_param import AwsVoiceSettingsParam
 from .shared_params.xai_voice_settings import XaiVoiceSettings
+from .calls.soniox_voice_settings_param import SonioxVoiceSettingsParam
 from .calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .shared_params.azure_voice_settings import AzureVoiceSettings
 from .shared_params.inworld_voice_settings import InworldVoiceSettings
@@ -25,6 +26,7 @@ VoiceSettings: TypeAlias = Union[
     ResembleVoiceSettings,
     InworldVoiceSettings,
     XaiVoiceSettings,
+    SonioxVoiceSettingsParam,
 ]
 
 

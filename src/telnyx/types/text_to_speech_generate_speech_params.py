@@ -15,6 +15,7 @@ __all__ = [
     "Humain",
     "Minimax",
     "Resemble",
+    "Soniox",
     "Telnyx",
     "Xai",
 ]
@@ -54,11 +55,18 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     audio in JSON.
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain"]
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
     """TTS provider. Required unless `voice` is provided."""
 
     resemble: Resemble
     """Resemble AI provider-specific parameters."""
+
+    soniox: Soniox
+    """Soniox provider-specific parameters.
+
+    Every voice speaks all supported languages; set `language` to the language of
+    the text.
+    """
 
     telnyx: Telnyx
     """Telnyx provider-specific parameters.
@@ -201,6 +209,42 @@ class Resemble(TypedDict, total=False):
 
     sample_rate: str
     """Audio sample rate."""
+
+
+class Soniox(TypedDict, total=False):
+    """Soniox provider-specific parameters.
+
+    Every voice speaks all supported languages; set `language` to the language of the text.
+    """
+
+    voice_id: Required[str]
+    """
+    Soniox voice name from the
+    [voices listing](https://developers.telnyx.com/api-reference/text-to-speech-commands/list-available-voices),
+    for example `Emma`.
+    """
+
+    audio_format: Literal["mp3", "wav", "pcm_s16le", "pcm_mulaw", "pcm_alaw"]
+    """Audio output format."""
+
+    language: str
+    """Two-letter ISO 639-1 code of the text."""
+
+    model_id: Literal["tts-rt-v2"]
+    """Soniox model."""
+
+    reduce_silence: bool
+    """Shortens the pauses between words."""
+
+    sample_rate: Literal[8000, 16000, 24000, 44100, 48000]
+    """Audio sample rate in Hz.
+
+    `pcm_mulaw` and `pcm_alaw` accept 8000 only; `mp3` does not accept 8000.
+    Defaults to 24000, or 8000 for `pcm_mulaw` and `pcm_alaw`.
+    """
+
+    speed: float
+    """Speaking rate. 1.0 is normal speed."""
 
 
 class Telnyx(TypedDict, total=False):

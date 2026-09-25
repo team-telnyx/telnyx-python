@@ -9,7 +9,6 @@ from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .enabled_features import EnabledFeatures
 from .assistant_tool_param import AssistantToolParam
-from .voice_settings_param import VoiceSettingsParam
 from .widget_settings_param import WidgetSettingsParam
 from .external_llm_req_param import ExternalLlmReqParam
 from .insight_settings_param import InsightSettingsParam
@@ -24,6 +23,7 @@ from .assistant_integration_param import AssistantIntegrationParam
 from .conversation_flow_req_param import ConversationFlowReqParam
 from .transcription_settings_param import TranscriptionSettingsParam
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam
+from .inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
 from .inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
 __all__ = ["AssistantCreateParams"]
@@ -186,7 +186,7 @@ class AssistantCreateParams(TypedDict, total=False):
 
     transcription: TranscriptionSettingsParam
 
-    voice_settings: VoiceSettingsParam
+    voice_settings: InferenceEmbeddingVoiceSettingsParam
 
     widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""
