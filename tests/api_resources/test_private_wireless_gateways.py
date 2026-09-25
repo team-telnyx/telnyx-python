@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    PrivateWirelessGateway,
+    WirelessPrivateWirelessGateway,
     PrivateWirelessGatewayCreateResponse,
     PrivateWirelessGatewayDeleteResponse,
     PrivateWirelessGatewayRetrieveResponse,
@@ -38,6 +38,7 @@ class TestPrivateWirelessGateways:
         private_wireless_gateway = client.private_wireless_gateways.create(
             name="My private wireless gateway",
             network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            address_mode="static",
             region_code="dc2",
         )
         assert_matches_type(PrivateWirelessGatewayCreateResponse, private_wireless_gateway, path=["response"])
@@ -117,7 +118,7 @@ class TestPrivateWirelessGateways:
     def test_method_list(self, client: Telnyx) -> None:
         private_wireless_gateway = client.private_wireless_gateways.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+            SyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -133,7 +134,7 @@ class TestPrivateWirelessGateways:
             page_size=1,
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+            SyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -145,7 +146,7 @@ class TestPrivateWirelessGateways:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         private_wireless_gateway = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+            SyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -157,7 +158,7 @@ class TestPrivateWirelessGateways:
 
             private_wireless_gateway = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+                SyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -225,6 +226,7 @@ class TestAsyncPrivateWirelessGateways:
         private_wireless_gateway = await async_client.private_wireless_gateways.create(
             name="My private wireless gateway",
             network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            address_mode="static",
             region_code="dc2",
         )
         assert_matches_type(PrivateWirelessGatewayCreateResponse, private_wireless_gateway, path=["response"])
@@ -304,7 +306,7 @@ class TestAsyncPrivateWirelessGateways:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         private_wireless_gateway = await async_client.private_wireless_gateways.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+            AsyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -320,7 +322,7 @@ class TestAsyncPrivateWirelessGateways:
             page_size=1,
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+            AsyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -332,7 +334,7 @@ class TestAsyncPrivateWirelessGateways:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         private_wireless_gateway = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+            AsyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -344,7 +346,7 @@ class TestAsyncPrivateWirelessGateways:
 
             private_wireless_gateway = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
+                AsyncDefaultFlatPagination[WirelessPrivateWirelessGateway], private_wireless_gateway, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

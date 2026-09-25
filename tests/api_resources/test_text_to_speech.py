@@ -73,6 +73,15 @@ class TestTextToSpeech:
                 "precision": "string",
                 "sample_rate": "string",
             },
+            soniox={
+                "voice_id": "Emma",
+                "audio_format": "mp3",
+                "language": "en",
+                "model_id": "tts-rt-v2",
+                "reduce_silence": True,
+                "sample_rate": 8000,
+                "speed": 1,
+            },
             telnyx={
                 "emotion": "neutral",
                 "response_format": "mp3",
@@ -252,6 +261,15 @@ class TestAsyncTextToSpeech:
                 "format": "string",
                 "precision": "string",
                 "sample_rate": "string",
+            },
+            soniox={
+                "voice_id": "Emma",
+                "audio_format": "mp3",
+                "language": "en",
+                "model_id": "tts-rt-v2",
+                "reduce_silence": True,
+                "sample_rate": 8000,
+                "speed": 1,
             },
             telnyx={
                 "emotion": "neutral",

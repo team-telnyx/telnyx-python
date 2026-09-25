@@ -24,6 +24,14 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
+from .memory import (
+    MemoryResource,
+    AsyncMemoryResource,
+    MemoryResourceWithRawResponse,
+    AsyncMemoryResourceWithRawResponse,
+    MemoryResourceWithStreamingResponse,
+    AsyncMemoryResourceWithStreamingResponse,
+)
 from .openai import (
     OpenAIResource,
     AsyncOpenAIResource,
@@ -220,6 +228,12 @@ __all__ = [
     "AsyncTypesafeResourceWithRawResponse",
     "TypesafeResourceWithStreamingResponse",
     "AsyncTypesafeResourceWithStreamingResponse",
+    "MemoryResource",
+    "AsyncMemoryResource",
+    "MemoryResourceWithRawResponse",
+    "AsyncMemoryResourceWithRawResponse",
+    "MemoryResourceWithStreamingResponse",
+    "AsyncMemoryResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

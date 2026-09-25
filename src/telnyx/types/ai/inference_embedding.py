@@ -9,7 +9,6 @@ from ..._models import BaseModel
 from .external_llm import ExternalLlm
 from .observability import Observability
 from .assistant_tool import AssistantTool
-from .voice_settings import VoiceSettings
 from .fallback_config import FallbackConfig
 from .import_metadata import ImportMetadata
 from .widget_settings import WidgetSettings
@@ -24,6 +23,7 @@ from .assistant_mcp_server import AssistantMcpServer
 from .assistant_integration import AssistantIntegration
 from .transcription_settings import TranscriptionSettings
 from .post_conversation_settings import PostConversationSettings
+from .inference_embedding_voice_settings import InferenceEmbeddingVoiceSettings
 from .inference_embedding_interruption_settings import InferenceEmbeddingInterruptionSettings
 
 __all__ = ["InferenceEmbedding"]
@@ -200,7 +200,7 @@ class InferenceEmbedding(BaseModel):
     version_name: Optional[str] = None
     """Human-readable name for the assistant version."""
 
-    voice_settings: Optional[VoiceSettings] = None
+    voice_settings: Optional[InferenceEmbeddingVoiceSettings] = None
 
     widget_settings: Optional[WidgetSettings] = None
     """Configuration settings for the assistant's web widget."""

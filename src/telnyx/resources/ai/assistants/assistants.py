@@ -86,7 +86,6 @@ from ....types.ai.assistants_list import AssistantsList
 from ....types.ai.enabled_features import EnabledFeatures
 from ....types.ai.inference_embedding import InferenceEmbedding
 from ....types.ai.assistant_tool_param import AssistantToolParam
-from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.widget_settings_param import WidgetSettingsParam
 from ....types.ai.external_llm_req_param import ExternalLlmReqParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
@@ -104,6 +103,7 @@ from ....types.ai.assistant_send_sms_response import AssistantSendSMSResponse
 from ....types.ai.conversation_flow_req_param import ConversationFlowReqParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
 from ....types.ai.post_conversation_settings_req_param import PostConversationSettingsReqParam
+from ....types.ai.inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
 from ....types.ai.inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
 __all__ = ["AssistantsResource", "AsyncAssistantsResource"]
@@ -196,7 +196,7 @@ class AssistantsResource(SyncAPIResource):
         tool_ids: SequenceNotStr[str] | Omit = omit,
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
-        voice_settings: VoiceSettingsParam | Omit = omit,
+        voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -440,7 +440,7 @@ class AssistantsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
-        voice_settings: VoiceSettingsParam | Omit = omit,
+        voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1004,7 +1004,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tool_ids: SequenceNotStr[str] | Omit = omit,
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
-        voice_settings: VoiceSettingsParam | Omit = omit,
+        voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1248,7 +1248,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
-        voice_settings: VoiceSettingsParam | Omit = omit,
+        voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

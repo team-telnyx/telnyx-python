@@ -7,7 +7,7 @@ from typing import Optional
 from .._models import BaseModel
 from .email_inboxes.email_message import EmailMessage
 
-__all__ = ["EmailMessageRetrieveResponse", "Data"]
+__all__ = ["EmailMessageDetailResponse", "Data"]
 
 
 class Data(EmailMessage):
@@ -18,5 +18,5 @@ class Data(EmailMessage):
     """Plain-text body submitted for the message."""
 
 
-class EmailMessageRetrieveResponse(BaseModel):
+class EmailMessageDetailResponse(BaseModel):
     data: Data

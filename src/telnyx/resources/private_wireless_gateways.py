@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import private_wireless_gateway_list_params, private_wireless_gateway_create_params
@@ -17,7 +19,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.private_wireless_gateway import PrivateWirelessGateway
+from ..types.wireless_private_wireless_gateway import WirelessPrivateWirelessGateway
 from ..types.private_wireless_gateway_create_response import PrivateWirelessGatewayCreateResponse
 from ..types.private_wireless_gateway_delete_response import PrivateWirelessGatewayDeleteResponse
 from ..types.private_wireless_gateway_retrieve_response import PrivateWirelessGatewayRetrieveResponse
@@ -52,6 +54,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         *,
         name: str,
         network_id: str,
+        address_mode: Literal["static", "dynamic"] | Omit = omit,
         region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,6 +73,12 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
 
           network_id: The identification of the related network resource.
 
+          address_mode: Determines how IP addresses are assigned to SIM cards using this gateway. With
+              static, each SIM card gets a fixed IP address from the gateway's IP range that
+              is preserved across sessions. With dynamic, an IP address is assigned by the
+              network at attach time and may change between sessions. If omitted, the gateway
+              is created with the default address mode, dynamic.
+
           region_code: The code of the region where the private wireless gateway will be assigned. A
               list of available regions can be found at the regions endpoint
 
@@ -87,6 +96,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
                 {
                     "name": name,
                     "network_id": network_id,
+                    "address_mode": address_mode,
                     "region_code": region_code,
                 },
                 private_wireless_gateway_create_params.PrivateWirelessGatewayCreateParams,
@@ -146,7 +156,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PrivateWirelessGateway]:
+    ) -> SyncDefaultFlatPagination[WirelessPrivateWirelessGateway]:
         """
         Get all Private Wireless Gateways belonging to the user.
 
@@ -175,7 +185,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/private_wireless_gateways",
-            page=SyncDefaultFlatPagination[PrivateWirelessGateway],
+            page=SyncDefaultFlatPagination[WirelessPrivateWirelessGateway],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,7 +204,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
                     private_wireless_gateway_list_params.PrivateWirelessGatewayListParams,
                 ),
             ),
-            model=PrivateWirelessGateway,
+            model=WirelessPrivateWirelessGateway,
         )
 
     def delete(
@@ -258,6 +268,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         *,
         name: str,
         network_id: str,
+        address_mode: Literal["static", "dynamic"] | Omit = omit,
         region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -276,6 +287,12 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
 
           network_id: The identification of the related network resource.
 
+          address_mode: Determines how IP addresses are assigned to SIM cards using this gateway. With
+              static, each SIM card gets a fixed IP address from the gateway's IP range that
+              is preserved across sessions. With dynamic, an IP address is assigned by the
+              network at attach time and may change between sessions. If omitted, the gateway
+              is created with the default address mode, dynamic.
+
           region_code: The code of the region where the private wireless gateway will be assigned. A
               list of available regions can be found at the regions endpoint
 
@@ -293,6 +310,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
                 {
                     "name": name,
                     "network_id": network_id,
+                    "address_mode": address_mode,
                     "region_code": region_code,
                 },
                 private_wireless_gateway_create_params.PrivateWirelessGatewayCreateParams,
@@ -352,7 +370,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PrivateWirelessGateway, AsyncDefaultFlatPagination[PrivateWirelessGateway]]:
+    ) -> AsyncPaginator[WirelessPrivateWirelessGateway, AsyncDefaultFlatPagination[WirelessPrivateWirelessGateway]]:
         """
         Get all Private Wireless Gateways belonging to the user.
 
@@ -381,7 +399,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/private_wireless_gateways",
-            page=AsyncDefaultFlatPagination[PrivateWirelessGateway],
+            page=AsyncDefaultFlatPagination[WirelessPrivateWirelessGateway],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -400,7 +418,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
                     private_wireless_gateway_list_params.PrivateWirelessGatewayListParams,
                 ),
             ),
-            model=PrivateWirelessGateway,
+            model=WirelessPrivateWirelessGateway,
         )
 
     async def delete(

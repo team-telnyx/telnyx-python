@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from .source import Source
 from ...._models import BaseModel
+from .collections_source import CollectionsSource
 
 __all__ = ["SourceListResponse"]
 
 
 class SourceListResponse(BaseModel):
-    data: Optional[List[Source]] = None
+    data: Optional[List[CollectionsSource]] = None

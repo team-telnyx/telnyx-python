@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -46,11 +46,12 @@ class ArtifactsResource(SyncAPIResource):
         """
         return ArtifactsResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         id: str,
         *,
-        type: Literal["summary", "action_items"],
+        type: Literal["summary", "action_items", "decisions", "topics", "open_questions"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,14 +60,21 @@ class ArtifactsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MeetingSessionArtifactResponse:
         """
-        Requests asynchronous generation of one `summary` or `action_items` artifact.
-        Each type requires its own request. Generation requires transcript content and
-        configured inference and currently reads at most the first 10,000 segments, so
-        exceptionally long transcripts may produce incomplete artifacts or fail model
-        limits.
+        Requests asynchronous generation of one artifact: `summary`, `action_items`,
+        `decisions`, `topics`, `open_questions`, or `custom`. Each request produces one
+        artifact. `custom` is answered from a `prompt` you supply, which is required for
+        `custom` and rejected on the five named types. Generation requires transcript
+        content and configured inference and currently reads at most the first 10,000
+        segments, so exceptionally long transcripts may produce incomplete artifacts or
+        fail model limits. **Not idempotent, and every call is billed**: each request is
+        a separate inference run, so a retry or a duplicate POST produces a second
+        artifact and a second charge. Guard the call rather than relying on the service
+        to collapse it. The automatic `summarize_on_end` attempt is billed on the same
+        basis.
 
         Args:
-          type: Type of artifact to generate from the session.
+          type: What to generate from the transcript. `custom` is answered from a `prompt` you
+              supply; the five named types need none.
 
           extra_headers: Send extra headers
 
@@ -76,11 +84,77 @@ class ArtifactsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        id: str,
+        *,
+        prompt: str,
+        type: Literal["custom"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MeetingSessionArtifactResponse:
+        """
+        Requests asynchronous generation of one artifact: `summary`, `action_items`,
+        `decisions`, `topics`, `open_questions`, or `custom`. Each request produces one
+        artifact. `custom` is answered from a `prompt` you supply, which is required for
+        `custom` and rejected on the five named types. Generation requires transcript
+        content and configured inference and currently reads at most the first 10,000
+        segments, so exceptionally long transcripts may produce incomplete artifacts or
+        fail model limits. **Not idempotent, and every call is billed**: each request is
+        a separate inference run, so a retry or a duplicate POST produces a second
+        artifact and a second charge. Guard the call rather than relying on the service
+        to collapse it. The automatic `summarize_on_end` attempt is billed on the same
+        basis.
+
+        Args:
+          prompt: An open-ended request answered from the transcript. Required when `type` is
+              `custom`, and rejected with 400 on any named type. Trimmed before storage and
+              echoed back in artifact responses and the `artifact.completed` webhook.
+
+          type: Answered from the `prompt` below rather than a fixed question.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["type"], ["prompt", "type"])
+    def create(
+        self,
+        id: str,
+        *,
+        type: Literal["summary", "action_items", "decisions", "topics", "open_questions"] | Literal["custom"],
+        prompt: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MeetingSessionArtifactResponse:
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             path_template("/meeting_sessions/{id}/artifacts", id=id),
-            body=maybe_transform({"type": type}, artifact_create_params.ArtifactCreateParams),
+            body=maybe_transform(
+                {
+                    "type": type,
+                    "prompt": prompt,
+                },
+                artifact_create_params.ArtifactCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -179,11 +253,12 @@ class AsyncArtifactsResource(AsyncAPIResource):
         """
         return AsyncArtifactsResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         id: str,
         *,
-        type: Literal["summary", "action_items"],
+        type: Literal["summary", "action_items", "decisions", "topics", "open_questions"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,14 +267,21 @@ class AsyncArtifactsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MeetingSessionArtifactResponse:
         """
-        Requests asynchronous generation of one `summary` or `action_items` artifact.
-        Each type requires its own request. Generation requires transcript content and
-        configured inference and currently reads at most the first 10,000 segments, so
-        exceptionally long transcripts may produce incomplete artifacts or fail model
-        limits.
+        Requests asynchronous generation of one artifact: `summary`, `action_items`,
+        `decisions`, `topics`, `open_questions`, or `custom`. Each request produces one
+        artifact. `custom` is answered from a `prompt` you supply, which is required for
+        `custom` and rejected on the five named types. Generation requires transcript
+        content and configured inference and currently reads at most the first 10,000
+        segments, so exceptionally long transcripts may produce incomplete artifacts or
+        fail model limits. **Not idempotent, and every call is billed**: each request is
+        a separate inference run, so a retry or a duplicate POST produces a second
+        artifact and a second charge. Guard the call rather than relying on the service
+        to collapse it. The automatic `summarize_on_end` attempt is billed on the same
+        basis.
 
         Args:
-          type: Type of artifact to generate from the session.
+          type: What to generate from the transcript. `custom` is answered from a `prompt` you
+              supply; the five named types need none.
 
           extra_headers: Send extra headers
 
@@ -209,11 +291,77 @@ class AsyncArtifactsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        id: str,
+        *,
+        prompt: str,
+        type: Literal["custom"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MeetingSessionArtifactResponse:
+        """
+        Requests asynchronous generation of one artifact: `summary`, `action_items`,
+        `decisions`, `topics`, `open_questions`, or `custom`. Each request produces one
+        artifact. `custom` is answered from a `prompt` you supply, which is required for
+        `custom` and rejected on the five named types. Generation requires transcript
+        content and configured inference and currently reads at most the first 10,000
+        segments, so exceptionally long transcripts may produce incomplete artifacts or
+        fail model limits. **Not idempotent, and every call is billed**: each request is
+        a separate inference run, so a retry or a duplicate POST produces a second
+        artifact and a second charge. Guard the call rather than relying on the service
+        to collapse it. The automatic `summarize_on_end` attempt is billed on the same
+        basis.
+
+        Args:
+          prompt: An open-ended request answered from the transcript. Required when `type` is
+              `custom`, and rejected with 400 on any named type. Trimmed before storage and
+              echoed back in artifact responses and the `artifact.completed` webhook.
+
+          type: Answered from the `prompt` below rather than a fixed question.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["type"], ["prompt", "type"])
+    async def create(
+        self,
+        id: str,
+        *,
+        type: Literal["summary", "action_items", "decisions", "topics", "open_questions"] | Literal["custom"],
+        prompt: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MeetingSessionArtifactResponse:
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             path_template("/meeting_sessions/{id}/artifacts", id=id),
-            body=await async_maybe_transform({"type": type}, artifact_create_params.ArtifactCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "type": type,
+                    "prompt": prompt,
+                },
+                artifact_create_params.ArtifactCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

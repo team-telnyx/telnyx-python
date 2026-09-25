@@ -6,9 +6,9 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
 from .node_position_param import NodePositionParam
-from .voice_settings_param import VoiceSettingsParam
 from .external_llm_req_param import ExternalLlmReqParam
 from .transcription_settings_param import TranscriptionSettingsParam
+from .inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
 
 __all__ = ["FlowNodeReqParam"]
 
@@ -95,7 +95,7 @@ class FlowNodeReqParam(TypedDict, total=False):
     (see `ToolNodeReq`).
     """
 
-    voice_settings: VoiceSettingsParam
+    voice_settings: InferenceEmbeddingVoiceSettingsParam
     """Per-node voice override.
 
     Only fields set here override the assistant-level voice settings; unset fields

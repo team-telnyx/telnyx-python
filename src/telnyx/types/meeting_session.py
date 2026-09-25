@@ -17,8 +17,17 @@ class Assistant(BaseModel):
     id: str
     """Identifier of the assistant."""
 
-    audio_gate: Literal["none", "half_duplex"]
-    """Audio gating strategy for the assistant call leg."""
+    audio_gate: Literal["half_duplex", "full_duplex"]
+    """Audio gating strategy in force for the assistant call leg."""
+
+    dynamic_variables: Optional[Dict[str, str]] = None
+    """
+    The dynamic variables in force for this session, or null when none were
+    supplied.
+    """
+
+    leave_on_end: bool
+    """Whether the bot leaves when the Assistant's conversation ends or fails."""
 
 
 class Avatar(BaseModel):
@@ -38,6 +47,9 @@ class Config(BaseModel):
     current bot audio; it does not bypass admission or initiate speech. Assistant
     sessions reject `barge_in: true`.
     """
+
+    chat_on_enter: Optional[str] = None
+    """The message posted to chat on join, or null when unset."""
 
     speak_on_enter: Optional[str] = None
     """Text spoken on meeting entry, or null if not set."""

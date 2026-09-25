@@ -58,9 +58,12 @@ class EmailTemplatesResource(SyncAPIResource):
         self,
         *,
         name: str,
+        autoescape: bool | Omit = omit,
         html_body: Optional[str] | Omit = omit,
+        strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
+        variable_schema: Optional[Dict[str, email_template_create_params.VariableSchema]] | Omit = omit,
         variables: SequenceNotStr[str] | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -77,11 +80,35 @@ class EmailTemplatesResource(SyncAPIResource):
         Args:
           name: Letters, numbers, spaces, hyphens, and underscores only.
 
+          autoescape: Per-template HTML autoescaping setting. Defaults to `false` for backward
+              compatibility. When `true`, the rendered `html_body` HTML-escapes each Liquid
+              expression's output at the output boundary (after its filters run, before
+              concatenation with literal template markup). Input values are never mutated and
+              `subject`/`text_body` are never autoescaped. The boundary escape is idempotent:
+              HTML entities already present in the output (e.g. from an explicit `escape`
+              filter) are preserved, so an explicit `escape`/`escape_once` is never
+              double-escaped, and markup introduced by any later filter in the chain is still
+              escaped.
+
           html_body: Liquid template HTML body.
+
+          strict_variables: Per-template strict variable-validation setting. Defaults to `false` for
+              backward compatibility. When `true`, a send or render that is missing a variable
+              marked `required: true` in `variable_schema` fails with 422 naming the variable.
+              Missing optional variables never fail; their schema `default` (when set) is
+              applied to the render.
 
           subject: Liquid template subject.
 
           text_body: Liquid template text body.
+
+          variable_schema: Structured variable requirements. Required variables cannot define defaults;
+              invalid combinations return 422. This is independent of the legacy `variables`
+              array. On render with `strict_variables` enabled: `required` variables must be
+              supplied as non-empty values — absent, `null`, empty string, empty object `{}`,
+              and empty array `[]` all fail with 422 naming the variable, while present values
+              such as `false` and `0` pass (they are present, not empty). Optional variables
+              fall back to their `default` when absent.
 
           variables: Template variables. Auto-extracted from subject/body fields when absent.
 
@@ -99,9 +126,12 @@ class EmailTemplatesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "autoescape": autoescape,
                     "html_body": html_body,
+                    "strict_variables": strict_variables,
                     "subject": subject,
                     "text_body": text_body,
+                    "variable_schema": variable_schema,
                     "variables": variables,
                 },
                 email_template_create_params.EmailTemplateCreateParams,
@@ -150,10 +180,13 @@ class EmailTemplatesResource(SyncAPIResource):
         self,
         id: str,
         *,
+        autoescape: bool | Omit = omit,
         html_body: Optional[str] | Omit = omit,
         name: str | Omit = omit,
+        strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
+        variable_schema: Optional[Dict[str, email_template_update_params.VariableSchema]] | Omit = omit,
         variables: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -167,11 +200,18 @@ class EmailTemplatesResource(SyncAPIResource):
         updated template.
 
         Args:
+          autoescape: Per-template HTML autoescaping setting.
+
           html_body: Liquid template HTML body.
+
+          strict_variables: Per-template strict variable-validation setting.
 
           subject: Liquid template subject.
 
           text_body: Liquid template text body.
+
+          variable_schema: Structured variable requirements. Required variables cannot define defaults;
+              invalid combinations return 422. Set to `null` to clear the schema.
 
           extra_headers: Send extra headers
 
@@ -187,10 +227,13 @@ class EmailTemplatesResource(SyncAPIResource):
             path_template("/email_templates/{id}", id=id),
             body=maybe_transform(
                 {
+                    "autoescape": autoescape,
                     "html_body": html_body,
                     "name": name,
+                    "strict_variables": strict_variables,
                     "subject": subject,
                     "text_body": text_body,
+                    "variable_schema": variable_schema,
                     "variables": variables,
                 },
                 email_template_update_params.EmailTemplateUpdateParams,
@@ -302,6 +345,12 @@ class EmailTemplatesResource(SyncAPIResource):
         Missing
         `template_variables` defaults to `{}`.
 
+        When the template has `strict_variables` enabled and a required variable (per
+        `variable_schema`) is missing, returns 422 naming the variable. When the
+        template has `autoescape` enabled, the rendered `html_body` expression output is
+        HTML-escaped at the output boundary; `subject` and `text_body` are not
+        autoescaped.
+
         Args:
           template_variables: Variables for Liquid template rendering. Non-object values are silently treated
               as an empty object.
@@ -331,10 +380,13 @@ class EmailTemplatesResource(SyncAPIResource):
         self,
         id: str,
         *,
+        autoescape: bool | Omit = omit,
         html_body: Optional[str] | Omit = omit,
         name: str | Omit = omit,
+        strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
+        variable_schema: Optional[Dict[str, email_template_replace_params.VariableSchema]] | Omit = omit,
         variables: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -349,11 +401,18 @@ class EmailTemplatesResource(SyncAPIResource):
         compatibility with Phoenix resource routes.
 
         Args:
+          autoescape: Per-template HTML autoescaping setting.
+
           html_body: Liquid template HTML body.
+
+          strict_variables: Per-template strict variable-validation setting.
 
           subject: Liquid template subject.
 
           text_body: Liquid template text body.
+
+          variable_schema: Structured variable requirements. Required variables cannot define defaults;
+              invalid combinations return 422. Set to `null` to clear the schema.
 
           extra_headers: Send extra headers
 
@@ -369,10 +428,13 @@ class EmailTemplatesResource(SyncAPIResource):
             path_template("/email_templates/{id}", id=id),
             body=maybe_transform(
                 {
+                    "autoescape": autoescape,
                     "html_body": html_body,
                     "name": name,
+                    "strict_variables": strict_variables,
                     "subject": subject,
                     "text_body": text_body,
+                    "variable_schema": variable_schema,
                     "variables": variables,
                 },
                 email_template_replace_params.EmailTemplateReplaceParams,
@@ -410,9 +472,12 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         self,
         *,
         name: str,
+        autoescape: bool | Omit = omit,
         html_body: Optional[str] | Omit = omit,
+        strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
+        variable_schema: Optional[Dict[str, email_template_create_params.VariableSchema]] | Omit = omit,
         variables: SequenceNotStr[str] | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -429,11 +494,35 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         Args:
           name: Letters, numbers, spaces, hyphens, and underscores only.
 
+          autoescape: Per-template HTML autoescaping setting. Defaults to `false` for backward
+              compatibility. When `true`, the rendered `html_body` HTML-escapes each Liquid
+              expression's output at the output boundary (after its filters run, before
+              concatenation with literal template markup). Input values are never mutated and
+              `subject`/`text_body` are never autoescaped. The boundary escape is idempotent:
+              HTML entities already present in the output (e.g. from an explicit `escape`
+              filter) are preserved, so an explicit `escape`/`escape_once` is never
+              double-escaped, and markup introduced by any later filter in the chain is still
+              escaped.
+
           html_body: Liquid template HTML body.
+
+          strict_variables: Per-template strict variable-validation setting. Defaults to `false` for
+              backward compatibility. When `true`, a send or render that is missing a variable
+              marked `required: true` in `variable_schema` fails with 422 naming the variable.
+              Missing optional variables never fail; their schema `default` (when set) is
+              applied to the render.
 
           subject: Liquid template subject.
 
           text_body: Liquid template text body.
+
+          variable_schema: Structured variable requirements. Required variables cannot define defaults;
+              invalid combinations return 422. This is independent of the legacy `variables`
+              array. On render with `strict_variables` enabled: `required` variables must be
+              supplied as non-empty values — absent, `null`, empty string, empty object `{}`,
+              and empty array `[]` all fail with 422 naming the variable, while present values
+              such as `false` and `0` pass (they are present, not empty). Optional variables
+              fall back to their `default` when absent.
 
           variables: Template variables. Auto-extracted from subject/body fields when absent.
 
@@ -451,9 +540,12 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "autoescape": autoescape,
                     "html_body": html_body,
+                    "strict_variables": strict_variables,
                     "subject": subject,
                     "text_body": text_body,
+                    "variable_schema": variable_schema,
                     "variables": variables,
                 },
                 email_template_create_params.EmailTemplateCreateParams,
@@ -502,10 +594,13 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        autoescape: bool | Omit = omit,
         html_body: Optional[str] | Omit = omit,
         name: str | Omit = omit,
+        strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
+        variable_schema: Optional[Dict[str, email_template_update_params.VariableSchema]] | Omit = omit,
         variables: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -519,11 +614,18 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         updated template.
 
         Args:
+          autoescape: Per-template HTML autoescaping setting.
+
           html_body: Liquid template HTML body.
+
+          strict_variables: Per-template strict variable-validation setting.
 
           subject: Liquid template subject.
 
           text_body: Liquid template text body.
+
+          variable_schema: Structured variable requirements. Required variables cannot define defaults;
+              invalid combinations return 422. Set to `null` to clear the schema.
 
           extra_headers: Send extra headers
 
@@ -539,10 +641,13 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
             path_template("/email_templates/{id}", id=id),
             body=await async_maybe_transform(
                 {
+                    "autoescape": autoescape,
                     "html_body": html_body,
                     "name": name,
+                    "strict_variables": strict_variables,
                     "subject": subject,
                     "text_body": text_body,
+                    "variable_schema": variable_schema,
                     "variables": variables,
                 },
                 email_template_update_params.EmailTemplateUpdateParams,
@@ -654,6 +759,12 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         Missing
         `template_variables` defaults to `{}`.
 
+        When the template has `strict_variables` enabled and a required variable (per
+        `variable_schema`) is missing, returns 422 naming the variable. When the
+        template has `autoescape` enabled, the rendered `html_body` expression output is
+        HTML-escaped at the output boundary; `subject` and `text_body` are not
+        autoescaped.
+
         Args:
           template_variables: Variables for Liquid template rendering. Non-object values are silently treated
               as an empty object.
@@ -683,10 +794,13 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        autoescape: bool | Omit = omit,
         html_body: Optional[str] | Omit = omit,
         name: str | Omit = omit,
+        strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
+        variable_schema: Optional[Dict[str, email_template_replace_params.VariableSchema]] | Omit = omit,
         variables: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -701,11 +815,18 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         compatibility with Phoenix resource routes.
 
         Args:
+          autoescape: Per-template HTML autoescaping setting.
+
           html_body: Liquid template HTML body.
+
+          strict_variables: Per-template strict variable-validation setting.
 
           subject: Liquid template subject.
 
           text_body: Liquid template text body.
+
+          variable_schema: Structured variable requirements. Required variables cannot define defaults;
+              invalid combinations return 422. Set to `null` to clear the schema.
 
           extra_headers: Send extra headers
 
@@ -721,10 +842,13 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
             path_template("/email_templates/{id}", id=id),
             body=await async_maybe_transform(
                 {
+                    "autoescape": autoescape,
                     "html_body": html_body,
                     "name": name,
+                    "strict_variables": strict_variables,
                     "subject": subject,
                     "text_body": text_body,
+                    "variable_schema": variable_schema,
                     "variables": variables,
                 },
                 email_template_replace_params.EmailTemplateReplaceParams,

@@ -79,6 +79,9 @@ from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams 
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam as PostConversationSettingsReqParam
 from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam as TranscriptionEndpointingPlanParam
+from .inference_embedding_voice_settings_param import (
+    InferenceEmbeddingVoiceSettingsParam as InferenceEmbeddingVoiceSettingsParam,
+)
 from .update_dynamic_variables_tool_params_param import (
     UpdateDynamicVariablesToolParamsParam as UpdateDynamicVariablesToolParamsParam,
 )
@@ -104,7 +107,6 @@ if TYPE_CHECKING:
     from .node_position import NodePosition as NodePosition
     from .observability import Observability as Observability
     from .retrieval_tool import RetrievalTool as RetrievalTool
-    from .voice_settings import VoiceSettings as VoiceSettings
     from .assistants_list import AssistantsList as AssistantsList
     from .fallback_config import FallbackConfig as FallbackConfig
     from .import_metadata import ImportMetadata as ImportMetadata
@@ -146,6 +148,7 @@ if TYPE_CHECKING:
     from .conversation_retrieve_response import ConversationRetrieveResponse as ConversationRetrieveResponse
     from .transcription_endpointing_plan import TranscriptionEndpointingPlan as TranscriptionEndpointingPlan
     from .audio_transcription_response_word import AudioTranscriptionResponseWord as AudioTranscriptionResponseWord
+    from .inference_embedding_voice_settings import InferenceEmbeddingVoiceSettings as InferenceEmbeddingVoiceSettings
     from .embedding_similarity_search_response import (
         EmbeddingSimilaritySearchResponse as EmbeddingSimilaritySearchResponse,
     )
@@ -220,6 +223,10 @@ def __getattr__(name: str) -> Any:
         from .inference_embedding_interruption_settings import InferenceEmbeddingInterruptionSettings
 
         return InferenceEmbeddingInterruptionSettings
+    if name == "InferenceEmbeddingVoiceSettings":
+        from .inference_embedding_voice_settings import InferenceEmbeddingVoiceSettings
+
+        return InferenceEmbeddingVoiceSettings
     if name == "InferenceEmbeddingWebhookToolParams":
         from .inference_embedding_webhook_tool_params import InferenceEmbeddingWebhookToolParams
 
@@ -280,10 +287,6 @@ def __getattr__(name: str) -> Any:
         from .transcription_settings_config import TranscriptionSettingsConfig
 
         return TranscriptionSettingsConfig
-    if name == "VoiceSettings":
-        from .voice_settings import VoiceSettings
-
-        return VoiceSettings
     if name == "WidgetSettings":
         from .widget_settings import WidgetSettings
 

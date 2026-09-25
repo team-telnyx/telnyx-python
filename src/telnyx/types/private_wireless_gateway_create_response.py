@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
-from .private_wireless_gateway import PrivateWirelessGateway
+from .wireless_private_wireless_gateway import WirelessPrivateWirelessGateway
 
 __all__ = ["PrivateWirelessGatewayCreateResponse"]
 
 
 class PrivateWirelessGatewayCreateResponse(BaseModel):
-    data: Optional[PrivateWirelessGateway] = None
+    data: Optional[WirelessPrivateWirelessGateway] = None

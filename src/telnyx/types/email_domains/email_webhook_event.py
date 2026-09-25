@@ -21,9 +21,12 @@ EmailWebhookEvent: TypeAlias = Literal[
     "email.clicked",
     "email.unsubscribed",
     "email.received",
+    "email.cancelled",
+    "email.daily_limit_exceeded",
     "email_domain.created",
     "email_domain.verified",
     "email_domain.degraded",
     "email_domain.suspended",
     "email_domain.deleted",
+    "email_domain.dkim_rotated",
 ]

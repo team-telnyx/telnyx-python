@@ -5,28 +5,29 @@ from __future__ import annotations
 from typing import Optional
 
 from ...._models import BaseModel
-from .source_type import SourceType
 
 __all__ = ["Source"]
 
 
 class Source(BaseModel):
-    id: Optional[str] = None
-
-    bucket_id: Optional[str] = None
-    """The Telnyx Storage bucket name. Present only for `bucket` sources."""
-
-    collection_id: Optional[str] = None
-
-    record_type: Optional[str] = None
-    """Identifies the record type. Always `ai_collection_source`."""
-
-    source_type: Optional[SourceType] = None
-    """The type of Telnyx data attached as a source.
-
-    `bucket` requires an additional `bucket_id`. Only `voice` is searchable today;
-    `meeting_bot`, `message`, and `bucket` attach but are not yet searchable (Coming
-    soon).
+    id: str
+    """
+    Identifies one source within its profile: an ingested session, or one remembered
+    fact. Returned by `ingest` and `remember` when the write is accepted.
+    Re-ingesting a session keeps its source id.
     """
 
-    status: Optional[str] = None
+    memory_count: int
+    """Memories extracted from this source.
+
+    A memory derived from several sources is not counted here.
+    """
+
+    session_id: Optional[str] = None
+    """The session this source was ingested as. Null for a remembered fact."""
+
+    created_at: Optional[str] = None
+    """When the source was first stored."""
+
+    updated_at: Optional[str] = None
+    """When the source was last written; re-ingesting moves it."""
