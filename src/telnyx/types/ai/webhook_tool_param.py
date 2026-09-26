@@ -127,3 +127,11 @@ class WebhookToolParam(TypedDict, total=False):
     type: Required[Literal["webhook"]]
 
     webhook: Required[Webhook]
+
+    timeout_ms: int
+    """
+    The maximum number of milliseconds to wait for the webhook to respond before the
+    tool call is aborted. Set this at the tool level, as a sibling of `type` — a
+    `timeout_ms` nested inside the `webhook` object is not applied, and the tool
+    runs at this default instead.
+    """

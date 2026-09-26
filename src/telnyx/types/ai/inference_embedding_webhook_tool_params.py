@@ -223,12 +223,6 @@ class Webhook(BaseModel):
     dot-notation path to the value in the response body.
     """
 
-    timeout_ms: Optional[int] = None
-    """The maximum number of milliseconds to wait for the webhook to respond.
-
-    Only applicable when async is false.
-    """
-
 
 class InferenceEmbeddingWebhookToolParams(BaseModel):
     type: Literal["webhook"]
@@ -244,4 +238,12 @@ class InferenceEmbeddingWebhookToolParams(BaseModel):
     array and manage them through `tool_ids` instead — re-sending their definitions
     creates an inline duplicate (rejected with error code 10015 when the type allows
     only one instance per assistant).
+    """
+
+    timeout_ms: Optional[int] = None
+    """
+    The maximum number of milliseconds to wait for the webhook to respond before the
+    tool call is aborted. Set this at the tool level, as a sibling of `type` — a
+    `timeout_ms` nested inside the `webhook` object is stored but not applied, and
+    the tool runs at this default instead. Applies when `webhook.async` is false.
     """

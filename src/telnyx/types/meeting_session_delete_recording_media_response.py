@@ -15,7 +15,7 @@ class Data(BaseModel):
     meeting_session_id: str
     """The account-scoped Meeting Session identifier."""
 
-    provider: Literal["recall"]
+    provider: Literal["telnyx"]
 
     scope: Literal["provider_recording_media"]
 
