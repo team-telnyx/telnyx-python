@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -55,7 +55,7 @@ class ChatResource(SyncAPIResource):
         frequency_penalty: float | Omit = omit,
         length_penalty: float | Omit = omit,
         logprobs: bool | Omit = omit,
-        max_tokens: int | Omit = omit,
+        max_tokens: Optional[int] | Omit = omit,
         min_p: float | Omit = omit,
         mode: Literal["preferred", "strict"] | Omit = omit,
         model: str | Omit = omit,
@@ -115,7 +115,12 @@ class ChatResource(SyncAPIResource):
               returns the log probabilities of each output token returned in the `content` of
               `message`.
 
-          max_tokens: Maximum number of completion tokens the model should generate.
+          max_tokens: Maximum number of completion (output) tokens the model may generate per request.
+              Defaults to 8192 when omitted or `null`. Set a higher value to allow longer
+              completions. The model's `max_completion_tokens` metadata (see
+              `GET /ai/models`), when set, caps both the default and any larger explicit
+              value. Reasoning models consume this budget across reasoning and answer tokens
+              combined.
 
           min_p: This is an alternative to `top_p` that
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be
@@ -264,7 +269,7 @@ class AsyncChatResource(AsyncAPIResource):
         frequency_penalty: float | Omit = omit,
         length_penalty: float | Omit = omit,
         logprobs: bool | Omit = omit,
-        max_tokens: int | Omit = omit,
+        max_tokens: Optional[int] | Omit = omit,
         min_p: float | Omit = omit,
         mode: Literal["preferred", "strict"] | Omit = omit,
         model: str | Omit = omit,
@@ -324,7 +329,12 @@ class AsyncChatResource(AsyncAPIResource):
               returns the log probabilities of each output token returned in the `content` of
               `message`.
 
-          max_tokens: Maximum number of completion tokens the model should generate.
+          max_tokens: Maximum number of completion (output) tokens the model may generate per request.
+              Defaults to 8192 when omitted or `null`. Set a higher value to allow longer
+              completions. The model's `max_completion_tokens` metadata (see
+              `GET /ai/models`), when set, caps both the default and any larger explicit
+              value. Reasoning models consume this budget across reasoning and answer tokens
+              combined.
 
           min_p: This is an alternative to `top_p` that
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be
