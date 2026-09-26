@@ -1736,7 +1736,7 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        cause: Literal["CALL_REJECTED", "USER_BUSY"],
+        cause: Literal["CALL_REJECTED", "NOT_FOUND", "TEMPORARILY_UNAVAILABLE", "USER_BUSY"],
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1754,7 +1754,11 @@ class ActionsResource(SyncAPIResource):
         - `call.hangup`
 
         Args:
-          cause: Cause for call rejection.
+          cause:
+              Cause for call rejection. The cause sets the SIP response the caller receives:
+              `USER_BUSY` sends 486 User Busy, `CALL_REJECTED` sends 603 Decline, `NOT_FOUND`
+              sends 404 Not Found, and `TEMPORARILY_UNAVAILABLE` sends 480 Temporarily
+              Unavailable.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -5883,7 +5887,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        cause: Literal["CALL_REJECTED", "USER_BUSY"],
+        cause: Literal["CALL_REJECTED", "NOT_FOUND", "TEMPORARILY_UNAVAILABLE", "USER_BUSY"],
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5901,7 +5905,11 @@ class AsyncActionsResource(AsyncAPIResource):
         - `call.hangup`
 
         Args:
-          cause: Cause for call rejection.
+          cause:
+              Cause for call rejection. The cause sets the SIP response the caller receives:
+              `USER_BUSY` sends 486 User Busy, `CALL_REJECTED` sends 603 Decline, `NOT_FOUND`
+              sends 404 Not Found, and `TEMPORARILY_UNAVAILABLE` sends 480 Temporarily
+              Unavailable.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
