@@ -94,7 +94,9 @@ from ....types.ai.assistant_chat_response import AssistantChatResponse
 from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
+from ....types.ai.websocket_settings_param import WebsocketSettingsParam
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
+from ....types.ai.delegation_settings_param import DelegationSettingsParam
 from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
 from ....types.ai.assistant_a2_a_agent_param import AssistantA2AAgentParam
 from ....types.ai.assistant_mcp_server_param import AssistantMcpServerParam
@@ -173,6 +175,7 @@ class AssistantsResource(SyncAPIResource):
         name: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -197,6 +200,7 @@ class AssistantsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -228,6 +232,14 @@ class AssistantsResource(SyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -297,6 +309,12 @@ class AssistantsResource(SyncAPIResource):
               assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
               endpoints.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -316,6 +334,7 @@ class AssistantsResource(SyncAPIResource):
                     "name": name,
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -340,6 +359,7 @@ class AssistantsResource(SyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_create_params.AssistantCreateParams,
@@ -413,6 +433,7 @@ class AssistantsResource(SyncAPIResource):
         *,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -441,6 +462,7 @@ class AssistantsResource(SyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -470,6 +492,14 @@ class AssistantsResource(SyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -558,6 +588,12 @@ class AssistantsResource(SyncAPIResource):
 
           version_name: Human-readable name for the assistant version.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -576,6 +612,7 @@ class AssistantsResource(SyncAPIResource):
                 {
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -604,6 +641,7 @@ class AssistantsResource(SyncAPIResource):
                     "transcription": transcription,
                     "version_name": version_name,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_update_params.AssistantUpdateParams,
@@ -981,6 +1019,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         name: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -1005,6 +1044,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1036,6 +1076,14 @@ class AsyncAssistantsResource(AsyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -1105,6 +1153,12 @@ class AsyncAssistantsResource(AsyncAPIResource):
               assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
               endpoints.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -1124,6 +1178,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "name": name,
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -1148,6 +1203,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_create_params.AssistantCreateParams,
@@ -1221,6 +1277,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         *,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -1249,6 +1306,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1278,6 +1336,14 @@ class AsyncAssistantsResource(AsyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -1366,6 +1432,12 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           version_name: Human-readable name for the assistant version.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -1384,6 +1456,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                 {
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -1412,6 +1485,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "transcription": transcription,
                     "version_name": version_name,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_update_params.AssistantUpdateParams,
