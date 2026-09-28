@@ -92,7 +92,7 @@ class FlowNodeReqParam(TypedDict, total=False):
     """Node kind discriminator.
 
     `prompt` (default) is an LLM-driven step; `tool` is a standalone tool execution
-    (see `ToolNodeReq`).
+    and `speak` a scripted message (see `ToolNodeReq` / `SpeakNodeReq`).
     """
 
     voice_settings: InferenceEmbeddingVoiceSettingsParam
