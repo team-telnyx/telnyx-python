@@ -93,6 +93,7 @@ if TYPE_CHECKING:
         email_events,
         oauth_grants,
         requirements,
+        spend_limits,
         voice_clones,
         bot_challenge,
         channel_zones,
@@ -259,6 +260,7 @@ if TYPE_CHECKING:
     from .resources.email_events import EmailEventsResource, AsyncEmailEventsResource
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
+    from .resources.spend_limits import SpendLimitsResource, AsyncSpendLimitsResource
     from .resources.voice_clones import VoiceClonesResource, AsyncVoiceClonesResource
     from .resources.bot_challenge import BotChallengeResource, AsyncBotChallengeResource
     from .resources.channel_zones import ChannelZonesResource, AsyncChannelZonesResource
@@ -1921,6 +1923,22 @@ class Telnyx(SyncAPIClient):
         return MachinePaymentsResource(self)
 
     @cached_property
+    def spend_limits(self) -> SpendLimitsResource:
+        """Daily and monthly spend limits per product.
+
+        A limit applies to the organization of the authenticated user, or to the user's own account when they belong to no organization; every user of the organization sees and changes the same limits.
+
+        - **Periods.** `daily` covers the current UTC day and `monthly` the current UTC calendar month. The two limits are independent: you can set either, both or neither.
+        - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
+        - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
+        - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
+        """
+        from .resources.spend_limits import SpendLimitsResource
+
+        return SpendLimitsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3474,6 +3492,22 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncMachinePaymentsResource(self)
 
     @cached_property
+    def spend_limits(self) -> AsyncSpendLimitsResource:
+        """Daily and monthly spend limits per product.
+
+        A limit applies to the organization of the authenticated user, or to the user's own account when they belong to no organization; every user of the organization sees and changes the same limits.
+
+        - **Periods.** `daily` covers the current UTC day and `monthly` the current UTC calendar month. The two limits are independent: you can set either, both or neither.
+        - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
+        - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
+        - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
+        """
+        from .resources.spend_limits import AsyncSpendLimitsResource
+
+        return AsyncSpendLimitsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4962,6 +4996,22 @@ class TelnyxWithRawResponse:
 
         return MachinePaymentsResourceWithRawResponse(self._client.machine_payments)
 
+    @cached_property
+    def spend_limits(self) -> spend_limits.SpendLimitsResourceWithRawResponse:
+        """Daily and monthly spend limits per product.
+
+        A limit applies to the organization of the authenticated user, or to the user's own account when they belong to no organization; every user of the organization sees and changes the same limits.
+
+        - **Periods.** `daily` covers the current UTC day and `monthly` the current UTC calendar month. The two limits are independent: you can set either, both or neither.
+        - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
+        - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
+        - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
+        """
+        from .resources.spend_limits import SpendLimitsResourceWithRawResponse
+
+        return SpendLimitsResourceWithRawResponse(self._client.spend_limits)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6323,6 +6373,22 @@ class AsyncTelnyxWithRawResponse:
         from .resources.machine_payments import AsyncMachinePaymentsResourceWithRawResponse
 
         return AsyncMachinePaymentsResourceWithRawResponse(self._client.machine_payments)
+
+    @cached_property
+    def spend_limits(self) -> spend_limits.AsyncSpendLimitsResourceWithRawResponse:
+        """Daily and monthly spend limits per product.
+
+        A limit applies to the organization of the authenticated user, or to the user's own account when they belong to no organization; every user of the organization sees and changes the same limits.
+
+        - **Periods.** `daily` covers the current UTC day and `monthly` the current UTC calendar month. The two limits are independent: you can set either, both or neither.
+        - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
+        - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
+        - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
+        """
+        from .resources.spend_limits import AsyncSpendLimitsResourceWithRawResponse
+
+        return AsyncSpendLimitsResourceWithRawResponse(self._client.spend_limits)
 
 
 class TelnyxWithStreamedResponse:
@@ -7687,6 +7753,22 @@ class TelnyxWithStreamedResponse:
         from .resources.machine_payments import MachinePaymentsResourceWithStreamingResponse
 
         return MachinePaymentsResourceWithStreamingResponse(self._client.machine_payments)
+
+    @cached_property
+    def spend_limits(self) -> spend_limits.SpendLimitsResourceWithStreamingResponse:
+        """Daily and monthly spend limits per product.
+
+        A limit applies to the organization of the authenticated user, or to the user's own account when they belong to no organization; every user of the organization sees and changes the same limits.
+
+        - **Periods.** `daily` covers the current UTC day and `monthly` the current UTC calendar month. The two limits are independent: you can set either, both or neither.
+        - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
+        - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
+        - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
+        """
+        from .resources.spend_limits import SpendLimitsResourceWithStreamingResponse
+
+        return SpendLimitsResourceWithStreamingResponse(self._client.spend_limits)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9099,6 +9181,22 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.machine_payments import AsyncMachinePaymentsResourceWithStreamingResponse
 
         return AsyncMachinePaymentsResourceWithStreamingResponse(self._client.machine_payments)
+
+    @cached_property
+    def spend_limits(self) -> spend_limits.AsyncSpendLimitsResourceWithStreamingResponse:
+        """Daily and monthly spend limits per product.
+
+        A limit applies to the organization of the authenticated user, or to the user's own account when they belong to no organization; every user of the organization sees and changes the same limits.
+
+        - **Periods.** `daily` covers the current UTC day and `monthly` the current UTC calendar month. The two limits are independent: you can set either, both or neither.
+        - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
+        - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
+        - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
+        """
+        from .resources.spend_limits import AsyncSpendLimitsResourceWithStreamingResponse
+
+        return AsyncSpendLimitsResourceWithStreamingResponse(self._client.spend_limits)
 
 
 Client = Telnyx

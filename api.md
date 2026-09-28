@@ -7025,3 +7025,18 @@ from telnyx.types import MachinePaymentAccountCreditResponse
 Methods:
 
 - <code title="post /machine-payments/account-credit">client.machine_payments.<a href="./src/telnyx/resources/machine_payments.py">account_credit</a>(\*\*<a href="src/telnyx/types/machine_payment_account_credit_params.py">params</a>) -> <a href="./src/telnyx/types/machine_payment_account_credit_response.py">MachinePaymentAccountCreditResponse</a></code>
+
+# SpendLimits
+
+Types:
+
+```python
+from telnyx.types import SpendLimit, SpendLimitPeriod, SpendLimitResponse, SpendLimitListResponse
+```
+
+Methods:
+
+- <code title="post /spend_limits">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">create</a>(\*\*<a href="src/telnyx/types/spend_limit_create_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
+- <code title="patch /spend_limits/{product}">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">update</a>(product, \*\*<a href="src/telnyx/types/spend_limit_update_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
+- <code title="get /spend_limits">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">list</a>() -> <a href="./src/telnyx/types/spend_limit_list_response.py">SpendLimitListResponse</a></code>
+- <code title="delete /spend_limits/{product}">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">delete</a>(product, \*\*<a href="src/telnyx/types/spend_limit_delete_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
