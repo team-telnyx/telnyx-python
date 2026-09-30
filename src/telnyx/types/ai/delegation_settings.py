@@ -61,8 +61,9 @@ class DelegationSettings(BaseModel):
     model: Optional[str] = None
     """The backend model that answers delegations.
 
-    Must be a model available for AI Assistants. Leave unset to use the platform
-    default backend model. Only applies when `mode` is `telnyx`.
+    Must be a model available for AI Assistants. When enabling `telnyx` delegation,
+    explicitly set this field or `external_llm.model`; a configuration without
+    either backend model is rejected. Only applies when `mode` is `telnyx`.
     """
 
     speak_results: Optional[bool] = None
