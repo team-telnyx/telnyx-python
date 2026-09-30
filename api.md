@@ -1363,12 +1363,20 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.memory import NamespaceRetrieveResponse
+from telnyx.types.ai.memory import (
+    Namespace,
+    NamespaceCreateResponse,
+    NamespaceRetrieveResponse,
+    NamespaceListResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /ai/memory/namespaces">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">create</a>(\*\*<a href="src/telnyx/types/ai/memory/namespace_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespace_create_response.py">NamespaceCreateResponse</a></code>
 - <code title="get /ai/memory/namespaces/{namespace}/operations/{operation_id}">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">retrieve</a>(operation_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespace_retrieve_response.py">NamespaceRetrieveResponse</a></code>
+- <code title="get /ai/memory/namespaces">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">list</a>() -> <a href="./src/telnyx/types/ai/memory/namespace_list_response.py">NamespaceListResponse</a></code>
+- <code title="delete /ai/memory/namespaces/{namespace}">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">delete</a>(namespace) -> None</code>
 
 #### Profiles
 
