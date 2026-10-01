@@ -18,15 +18,19 @@ class TosAgreement(BaseModel):
     """
 
     id: Optional[str] = None
+    """The unique identifier of this recorded agreement."""
 
     agreed_at: Optional[datetime] = None
+    """When you accepted this version of the terms."""
 
     created_at: Optional[datetime] = None
+    """When this agreement record was created."""
 
     product_type: Optional[TosProductType] = None
     """Telnyx product the Terms of Service apply to."""
 
     terms_version: Optional[str] = None
+    """The version of the terms you accepted."""
 
     version: Optional[str] = None
     """Convenience alias of `terms_version`. Both keys are present on every response."""

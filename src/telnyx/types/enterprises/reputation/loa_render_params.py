@@ -5,13 +5,11 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from .agent_input_param import AgentInputParam
-
-__all__ = ["LoaRenderParams", "Signature"]
+__all__ = ["LoaRenderParams", "Agent", "Signature"]
 
 
 class LoaRenderParams(TypedDict, total=False):
-    agent: AgentInputParam
+    agent: Agent
     """Third-party reseller / partner managing the enterprise's phone numbers.
 
     Omit when the enterprise works directly with Telnyx.
@@ -22,6 +20,37 @@ class LoaRenderParams(TypedDict, total=False):
 
     When omitted the PDF is returned unsigned for the customer to sign and upload.
     """
+
+
+class Agent(TypedDict, total=False):
+    """Third-party reseller / partner managing the enterprise's phone numbers.
+
+    Omit when the enterprise works directly with Telnyx.
+    """
+
+    administrative_area: Required[str]
+
+    city: Required[str]
+
+    contact_email: Required[str]
+
+    contact_name: Required[str]
+
+    contact_phone: Required[str]
+
+    contact_title: Required[str]
+
+    country: Required[str]
+
+    legal_name: Required[str]
+
+    postal_code: Required[str]
+
+    street_address: Required[str]
+
+    dba: Optional[str]
+
+    extended_address: Optional[str]
 
 
 class Signature(TypedDict, total=False):

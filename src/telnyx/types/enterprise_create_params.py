@@ -21,6 +21,11 @@ class EnterpriseCreateParams(TypedDict, total=False):
     """ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported."""
 
     doing_business_as: Required[str]
+    """
+    The trade name your business operates under if it is different from your legal
+    name, also called a Doing Business As (DBA) name. Leave blank if you only use
+    your legal name.
+    """
 
     fein: Required[str]
     """
@@ -74,12 +79,23 @@ class EnterpriseCreateParams(TypedDict, total=False):
             "hotel",
         ]
     ]
-    """Industry classification."""
+    """The industry your business operates in.
+
+    Choose the closest match from the list; if your value is not accepted, pick the
+    nearest category.
+    """
 
     jurisdiction_of_incorporation: Required[str]
+    """
+    The state, province, or country where your business was legally incorporated,
+    for example Delaware.
+    """
 
     legal_name: Required[str]
-    """Legal name of the enterprise."""
+    """
+    Your business's full registered legal name, exactly as it appears on your
+    incorporation or tax documents, 3 to 64 characters.
+    """
 
     number_of_employees: Required[Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"]]
     """Approximate headcount range.
@@ -115,27 +131,53 @@ class EnterpriseCreateParams(TypedDict, total=False):
     """
 
     website: Required[str]
+    """Your business's public website address, including https://.
+
+    Leave blank if your business has no website.
+    """
 
     corporate_registration_number: Optional[str]
-    """Optional corporate-registration / company-number identifier."""
+    """
+    The official number your company received when it was legally registered or
+    incorporated (for example from your state or national business registry). It is
+    on your certificate of incorporation.
+    """
 
     customer_reference: str
-    """Optional free-form string the caller can attach for their own bookkeeping.
+    """Your own label for this account.
 
-    Telnyx does not interpret it.
+    Enter any reference that helps you find it in your records. Telnyx does not use
+    it during vetting.
     """
 
     dun_bradstreet_number: Optional[str]
-    """Optional D-U-N-S Number."""
+    """
+    Your optional 9-digit D-U-N-S Number issued by Dun & Bradstreet, a unique
+    identifier for your business. Leave blank if you do not have one.
+    """
 
     primary_business_domain_sic_code: Optional[str]
-    """Optional SIC code for the primary line of business."""
+    """
+    The 4-digit Standard Industrial Classification code for your main line of
+    business, which tells us what industry you operate in. Look it up in the SIC
+    code directory if you are unsure.
+    """
 
     professional_license_number: Optional[str]
-    """Optional professional-license number for regulated industries."""
+    """
+    If your business operates under a professional license (for example legal,
+    medical, or financial services), enter the license number issued by the
+    licensing authority. Leave blank if it does not apply.
+    """
 
     role_type: Literal["enterprise", "bpo"]
     """
-    `enterprise` for an organization registering its own DIRs; `bpo` for a Business
-    Process Outsourcer placing calls on behalf of one or more enterprises.
+    `enterprise` for an organization registering its own DIRs (the default, and the
+    right choice when the calls display your own brand). `bpo` for a Business
+    Process Outsourcer: a call center that places calls on behalf of other
+    enterprises and displays their brand. A `bpo` enterprise describes the call
+    center itself and cannot own a DIR. Each client the call center calls for gets
+    its own `enterprise` in the same account, with the client's DIR under it; that
+    DIR is then linked to the `bpo` enterprise through `bpo_authorizations`. Fixed
+    at creation.
     """

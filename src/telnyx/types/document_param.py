@@ -39,3 +39,4 @@ class DocumentParam(TypedDict, total=False):
     """
 
     description: str
+    """An optional note describing this document, for example what it proves."""

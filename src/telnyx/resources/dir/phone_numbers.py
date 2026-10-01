@@ -188,6 +188,9 @@ class PhoneNumbersResource(SyncAPIResource):
         the DIR id. Returns a partial-success envelope.
 
         Args:
+          phone_numbers: The phone numbers to remove from this brand, in E.164 format, up to 100 per
+              request. They must currently be attached to this brand.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -363,6 +366,9 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         the DIR id. Returns a partial-success envelope.
 
         Args:
+          phone_numbers: The phone numbers to remove from this brand, in E.164 format, up to 100 per
+              request. They must currently be attached to this brand.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

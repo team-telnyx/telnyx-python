@@ -195,6 +195,7 @@ from .call_siprec_failed import CallSiprecFailed as CallSiprecFailed
 from .call_speak_started import CallSpeakStarted as CallSpeakStarted
 from .conference_created import ConferenceCreated as ConferenceCreated
 from .credential_inbound import CredentialInbound as CredentialInbound
+from .dir_bpo_loa_params import DirBpoLoaParams as DirBpoLoaParams
 from .dir_new_loa_params import DirNewLoaParams as DirNewLoaParams
 from .doc_service_record import DocServiceRecord as DocServiceRecord
 from .email_dmarc_policy import EmailDmarcPolicy as EmailDmarcPolicy
@@ -227,6 +228,7 @@ from .call_siprec_started import CallSiprecStarted as CallSiprecStarted
 from .call_siprec_stopped import CallSiprecStopped as CallSiprecStopped
 from .comment_list_params import CommentListParams as CommentListParams
 from .credential_outbound import CredentialOutbound as CredentialOutbound
+from .dir_delete_response import DirDeleteResponse as DirDeleteResponse
 from .email_domain_status import EmailDomainStatus as EmailDomainStatus
 from .external_connection import ExternalConnection as ExternalConnection
 from .fax_create_response import FaxCreateResponse as FaxCreateResponse
@@ -400,6 +402,7 @@ from .recording_transcription import RecordingTranscription as RecordingTranscri
 from .report_list_mdrs_params import ReportListMdrsParams as ReportListMdrsParams
 from .report_list_wdrs_params import ReportListWdrsParams as ReportListWdrsParams
 from .requirement_list_params import RequirementListParams as RequirementListParams
+from .signature_payload_param import SignaturePayloadParam as SignaturePayloadParam
 from .tracking_settings_param import TrackingSettingsParam as TrackingSettingsParam
 from .transcribe_client_event import TranscribeClientEvent as TranscribeClientEvent
 from .transcribe_server_event import TranscribeServerEvent as TranscribeServerEvent
@@ -643,6 +646,7 @@ from .billing_group_create_response import BillingGroupCreateResponse as Billing
 from .billing_group_delete_response import BillingGroupDeleteResponse as BillingGroupDeleteResponse
 from .billing_group_update_response import BillingGroupUpdateResponse as BillingGroupUpdateResponse
 from .bot_challenge_create_response import BotChallengeCreateResponse as BotChallengeCreateResponse
+from .bpo_authorization_input_param import BpoAuthorizationInputParam as BpoAuthorizationInputParam
 from .bulk_sim_card_action_detailed import BulkSimCardActionDetailed as BulkSimCardActionDetailed
 from .call_left_queue_webhook_event import CallLeftQueueWebhookEvent as CallLeftQueueWebhookEvent
 from .call_reason_validate_response import CallReasonValidateResponse as CallReasonValidateResponse
@@ -1139,6 +1143,9 @@ from .call_control_application_update_params import (
 from .conference_speak_started_webhook_event import (
     ConferenceSpeakStartedWebhookEvent as ConferenceSpeakStartedWebhookEvent,
 )
+from .dir_retrieve_bpo_authorizations_params import (
+    DirRetrieveBpoAuthorizationsParams as DirRetrieveBpoAuthorizationsParams,
+)
 from .dynamic_emergency_endpoint_list_params import (
     DynamicEmergencyEndpointListParams as DynamicEmergencyEndpointListParams,
 )
@@ -1324,6 +1331,9 @@ from .conference_recording_saved_webhook_event import (
 )
 from .conversation_relay_embedded_config_param import (
     ConversationRelayEmbeddedConfigParam as ConversationRelayEmbeddedConfigParam,
+)
+from .dir_retrieve_bpo_authorizations_response import (
+    DirRetrieveBpoAuthorizationsResponse as DirRetrieveBpoAuthorizationsResponse,
 )
 from .document_generate_download_link_response import (
     DocumentGenerateDownloadLinkResponse as DocumentGenerateDownloadLinkResponse,

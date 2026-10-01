@@ -6173,6 +6173,19 @@ Methods:
 - <code title="post /enterprises/{enterprise_id}/dir">client.enterprises.dir.<a href="./src/telnyx/resources/enterprises/dir.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/dir_create_params.py">params</a>) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="get /enterprises/{enterprise_id}/dir">client.enterprises.dir.<a href="./src/telnyx/resources/enterprises/dir.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/dir_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/dir.py">SyncDefaultFlatPagination[Dir]</a></code>
 
+## VerifyEmail
+
+Types:
+
+```python
+from telnyx.types.enterprises import EnterpriseEmailVerificationStatusWrapped
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/verify_email">client.enterprises.verify_email.<a href="./src/telnyx/resources/enterprises/verify_email.py">create</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprises/enterprise_email_verification_status_wrapped.py">EnterpriseEmailVerificationStatusWrapped</a></code>
+- <code title="post /enterprises/{enterprise_id}/verify_email/confirm">client.enterprises.verify_email.<a href="./src/telnyx/resources/enterprises/verify_email.py">confirm</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/verify_email_confirm_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/enterprise_email_verification_status_wrapped.py">EnterpriseEmailVerificationStatusWrapped</a></code>
+
 # Reputation
 
 ## Numbers
@@ -6321,7 +6334,18 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import Dir, DirList, DirStatus, DirWrapped, Document, DirListDocumentTypesResponse
+from telnyx.types import (
+    BpoAuthorizationInput,
+    Dir,
+    DirList,
+    DirStatus,
+    DirWrapped,
+    Document,
+    SignaturePayload,
+    DirDeleteResponse,
+    DirListDocumentTypesResponse,
+    DirRetrieveBpoAuthorizationsResponse,
+)
 ```
 
 Methods:
@@ -6329,10 +6353,12 @@ Methods:
 - <code title="get /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">retrieve</a>(dir_id) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="patch /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">update</a>(dir_id, \*\*<a href="src/telnyx/types/dir_update_params.py">params</a>) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="get /dir">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list</a>(\*\*<a href="src/telnyx/types/dir_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/dir.py">SyncDefaultFlatPagination[Dir]</a></code>
-- <code title="delete /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">delete</a>(dir_id) -> None</code>
+- <code title="delete /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">delete</a>(dir_id) -> <a href="./src/telnyx/types/dir_delete_response.py">DirDeleteResponse</a></code>
+- <code title="post /dir/{dir_id}/bpo_loa">client.dir.<a href="./src/telnyx/resources/dir/dir.py">bpo_loa</a>(dir_id, \*\*<a href="src/telnyx/types/dir_bpo_loa_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /dir/document_types">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_document_types</a>() -> <a href="./src/telnyx/types/dir_list_document_types_response.py">DirListDocumentTypesResponse</a></code>
 - <code title="get /dir/{dir_id}/infringement_claims">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_infringement_claims</a>(dir_id, \*\*<a href="src/telnyx/types/dir_list_infringement_claims_params.py">params</a>) -> <a href="./src/telnyx/types/infringement_claim.py">SyncDefaultFlatPagination[InfringementClaim]</a></code>
 - <code title="post /dir/{dir_id}/loa">client.dir.<a href="./src/telnyx/resources/dir/dir.py">new_loa</a>(dir_id, \*\*<a href="src/telnyx/types/dir_new_loa_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="get /dir/{dir_id}/bpo_authorizations">client.dir.<a href="./src/telnyx/resources/dir/dir.py">retrieve_bpo_authorizations</a>(dir_id, \*\*<a href="src/telnyx/types/dir_retrieve_bpo_authorizations_params.py">params</a>) -> <a href="./src/telnyx/types/dir_retrieve_bpo_authorizations_response.py">DirRetrieveBpoAuthorizationsResponse</a></code>
 - <code title="post /dir/{dir_id}/submit">client.dir.<a href="./src/telnyx/resources/dir/dir.py">submit</a>(dir_id) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="put /dir/{dir_id}/infringement_update">client.dir.<a href="./src/telnyx/resources/dir/dir.py">update_infringement</a>(dir_id, \*\*<a href="src/telnyx/types/dir_update_infringement_params.py">params</a>) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 

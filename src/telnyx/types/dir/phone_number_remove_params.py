@@ -11,3 +11,7 @@ __all__ = ["PhoneNumberRemoveParams"]
 
 class PhoneNumberRemoveParams(TypedDict, total=False):
     phone_numbers: Required[SequenceNotStr[str]]
+    """
+    The phone numbers to remove from this brand, in E.164 format, up to 100 per
+    request. They must currently be attached to this brand.
+    """

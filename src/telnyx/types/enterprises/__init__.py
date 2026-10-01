@@ -8,12 +8,16 @@ from .dir_list_params import DirListParams as DirListParams
 from .dir_create_params import DirCreateParams as DirCreateParams
 from .reputation_enable_params import ReputationEnableParams as ReputationEnableParams
 from .reputation_check_frequency import ReputationCheckFrequency as ReputationCheckFrequency
+from .verify_email_confirm_params import VerifyEmailConfirmParams as VerifyEmailConfirmParams
 from .reputation_update_frequency_params import ReputationUpdateFrequencyParams as ReputationUpdateFrequencyParams
 
 if TYPE_CHECKING:
     from .enterprise_reputation_public import EnterpriseReputationPublic as EnterpriseReputationPublic
     from .enterprise_reputation_public_wrapped import (
         EnterpriseReputationPublicWrapped as EnterpriseReputationPublicWrapped,
+    )
+    from .enterprise_email_verification_status_wrapped import (
+        EnterpriseEmailVerificationStatusWrapped as EnterpriseEmailVerificationStatusWrapped,
     )
 
 
@@ -26,4 +30,8 @@ def __getattr__(name: str) -> Any:
         from .enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
 
         return EnterpriseReputationPublicWrapped
+    if name == "EnterpriseEmailVerificationStatusWrapped":
+        from .enterprise_email_verification_status_wrapped import EnterpriseEmailVerificationStatusWrapped
+
+        return EnterpriseEmailVerificationStatusWrapped
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
