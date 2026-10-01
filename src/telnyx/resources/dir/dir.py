@@ -12,11 +12,13 @@ from ...types import (
     DirStatus,
     dir_list_params,
     dir_update_params,
+    dir_bpo_loa_params,
     dir_new_loa_params,
     dir_update_infringement_params,
     dir_list_infringement_claims_params,
+    dir_retrieve_bpo_authorizations_params,
 )
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .comments import (
     CommentsResource,
@@ -81,7 +83,11 @@ from .phone_number_batches import (
 )
 from ...types.document_param import DocumentParam
 from ...types.infringement_claim import InfringementClaim
+from ...types.dir_delete_response import DirDeleteResponse
+from ...types.signature_payload_param import SignaturePayloadParam
+from ...types.bpo_authorization_input_param import BpoAuthorizationInputParam
 from ...types.dir_list_document_types_response import DirListDocumentTypesResponse
+from ...types.dir_retrieve_bpo_authorizations_response import DirRetrieveBpoAuthorizationsResponse
 from ...types.enterprises.reputation.agent_input_param import AgentInputParam
 
 __all__ = ["DirResource", "AsyncDirResource"]
@@ -185,6 +191,7 @@ class DirResource(SyncAPIResource):
         *,
         authorizer_email: str | Omit = omit,
         authorizer_name: str | Omit = omit,
+        bpo_authorizations: Iterable[BpoAuthorizationInputParam] | Omit = omit,
         call_reasons: SequenceNotStr[str] | Omit = omit,
         certify_brand_is_accurate: bool | Omit = omit,
         certify_ip_ownership: bool | Omit = omit,
@@ -193,6 +200,7 @@ class DirResource(SyncAPIResource):
         documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,11 +213,14 @@ class DirResource(SyncAPIResource):
         DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
         edited freely: PATCH is a pure edit, `status` is never changed, and you re-vet
         by calling `POST /v2/dir/{dir_id}/submit` explicitly. A `verified` DIR can also
-        be edited in place: a PATCH that changes any value returns the DIR to `draft`
-        and branded delivery stops until you re-submit and the DIR is approved again,
-        while a PATCH that changes nothing (an empty body or values identical to the
-        current ones) leaves the DIR `verified`, so idempotent retries are safe. DIRs in
-        any other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
+        be edited in place: a PATCH that changes any value returns the DIR to `draft`;
+        the currently approved identity keeps displaying, and the edited content goes
+        live only after you re-submit and the DIR is approved again. A PATCH that
+        changes nothing (an empty body or values identical to the current ones) leaves
+        the DIR `verified`, so idempotent retries are safe. Changing only
+        `bpo_authorizations` or `webhook_url` is the exception: the DIR stays
+        `verified`. Each BPO authorization is reviewed on its own instead. DIRs in any
+        other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
         `permanently_rejected`) cannot be edited.
 
         Args:
@@ -218,6 +229,13 @@ class DirResource(SyncAPIResource):
 
           authorizer_name: Name of the person at your enterprise authorizing this DIR. Must be a real
               individual.
+
+          bpo_authorizations: Optional. Replace this DIR's authorized BPO (Business Process Outsourcer)
+              accounts with these, each with its signed Letter of Authorization. The supplied
+              list replaces the current one: a BPO left out has its authorization removed, and
+              a new BPO (or a changed Letter of Authorization) is created `pending` admin
+              review. Send an empty list to clear all authorizations; omit the field to leave
+              them unchanged. Editing this list does not re-vet the DIR. Maximum 10.
 
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
@@ -243,6 +261,10 @@ class DirResource(SyncAPIResource):
           reselling: Set to true if your organization places calls on behalf of other enterprises
               (BPO/reseller). Updating this triggers re-vetting on next submit.
 
+          webhook_url: Optional `https://` URL that receives webhook notifications when this DIR's
+              compliance review completes. Send `null` to clear. Changing only this field on a
+              `verified` DIR does not re-vet it. Maximum 2048 characters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -259,6 +281,7 @@ class DirResource(SyncAPIResource):
                 {
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
+                    "bpo_authorizations": bpo_authorizations,
                     "call_reasons": call_reasons,
                     "certify_brand_is_accurate": certify_brand_is_accurate,
                     "certify_ip_ownership": certify_ip_ownership,
@@ -267,6 +290,7 @@ class DirResource(SyncAPIResource):
                     "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
+                    "webhook_url": webhook_url,
                 },
                 dir_update_params.DirUpdateParams,
             ),
@@ -380,12 +404,16 @@ class DirResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Delete a DIR.
+    ) -> DirDeleteResponse:
+        """Request deletion of a DIR.
 
-        Failure modes: `400` if a child phone number is in a non-deletable
-        status, `409` if the DIR has an unresolved infringement claim, `404` if the DIR
-        is not yours.
+        This does not remove the DIR on this call: it records
+        the request, moves the DIR to `delete_requested`, and Telnyx completes the
+        removal (de-registration and cleanup) shortly after. A verified DIR keeps
+        serving its branded identity, and keeps billing, until the removal is executed.
+        Failure modes: `400` if a child phone number is still attached or the DIR is
+        `in_review` (wait for the review to finish), `409` if the DIR has an unresolved
+        infringement claim, `404` if the DIR is not yours.
 
         Args:
           extra_headers: Send extra headers
@@ -398,13 +426,73 @@ class DirResource(SyncAPIResource):
         """
         if not dir_id:
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template("/dir/{dir_id}", dir_id=dir_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=DirDeleteResponse,
+        )
+
+    def bpo_loa(
+        self,
+        dir_id: str,
+        *,
+        bpo_enterprise_id: str,
+        signature: SignaturePayloadParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BinaryAPIResponse:
+        """
+        The Letter of Authorization in which a Brand Owner authorizes an approved BPO
+        (Business Process Outsourcer) to place branded calls that display this DIR on
+        the owner's behalf. Both parties are read from the caller's account: the Brand
+        Owner is the enterprise that owns the DIR, and the BPO is `bpo_enterprise_id`.
+        No business identity is accepted in the body.
+
+        When `signature` is omitted the PDF is returned unsigned so the Brand Owner can
+        sign it externally and the BPO can upload it via the Documents API. When
+        `signature` is present the PDF embeds the supplied image, printed name, and
+        signed-at date.
+
+        Returns `application/pdf`.
+
+        Args:
+          bpo_enterprise_id: The approved BPO enterprise the Brand Owner is authorizing. Must be a BPO
+              account on the caller's organization that has already been approved.
+
+          signature: Optional. When provided the rendered PDF embeds the signature image, printed
+              name, and signed-at date. When absent the PDF is returned unsigned so the Brand
+              Owner can sign externally and the BPO can upload it via the Documents API.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return self._post(
+            path_template("/dir/{dir_id}/bpo_loa", dir_id=dir_id),
+            body=maybe_transform(
+                {
+                    "bpo_enterprise_id": bpo_enterprise_id,
+                    "signature": signature,
+                },
+                dir_bpo_loa_params.DirBpoLoaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BinaryAPIResponse,
         )
 
     def list_document_types(
@@ -493,7 +581,7 @@ class DirResource(SyncAPIResource):
         *,
         phone_numbers: SequenceNotStr[str],
         agent: AgentInputParam | Omit = omit,
-        signature: dir_new_loa_params.Signature | Omit = omit,
+        signature: SignaturePayloadParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -550,6 +638,66 @@ class DirResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BinaryAPIResponse,
+        )
+
+    def retrieve_bpo_authorizations(
+        self,
+        dir_id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirRetrieveBpoAuthorizationsResponse:
+        """
+        List the BPO (Business Process Outsourcer) accounts a Brand Owner has authorized
+        on this DIR, together with the review state of each authorization.
+
+        Authorizations are supplied as the `bpo_authorizations` array when creating or
+        updating a DIR, and each one is reviewed on its own. Only an `approved`
+        authorization adds that BPO to this DIR's authorized callers in the branded
+        calling registry; `pending` and `rejected` authorizations do not. Each entry
+        includes the `loa_document_id` you submitted: because `bpo_authorizations`
+        replaces the whole list on every DIR update, send each entry you want to keep
+        back with its `loa_document_id` unchanged, and it keeps its review state. A
+        rejected entry carries a `rejection_reason`. Returns an empty list when the DIR
+        has authorized no BPOs.
+
+        Args:
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._get(
+            path_template("/dir/{dir_id}/bpo_authorizations", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    dir_retrieve_bpo_authorizations_params.DirRetrieveBpoAuthorizationsParams,
+                ),
+            ),
+            cast_to=DirRetrieveBpoAuthorizationsResponse,
         )
 
     def submit(
@@ -627,11 +775,15 @@ class DirResource(SyncAPIResource):
 
           certify_ip_ownership: Must be `true`.
 
-          certify_no_infringement: Must be `true`.
+          certify_no_infringement: Check to certify that the brand no longer infringes anyone else's trademark or
+              intellectual property.
 
           certify_no_shaft_content: Must be `true`.
 
           infringement_resolution_notes: Explanation of how the infringement concern was addressed.
+
+          display_name: The business name shown to call recipients, 1 to 35 characters, no emoji, not
+              blank.
 
           documents: Append-only supporting documents to attach while resolving the claim (e.g.
               authorization or licensing proof).
@@ -769,6 +921,7 @@ class AsyncDirResource(AsyncAPIResource):
         *,
         authorizer_email: str | Omit = omit,
         authorizer_name: str | Omit = omit,
+        bpo_authorizations: Iterable[BpoAuthorizationInputParam] | Omit = omit,
         call_reasons: SequenceNotStr[str] | Omit = omit,
         certify_brand_is_accurate: bool | Omit = omit,
         certify_ip_ownership: bool | Omit = omit,
@@ -777,6 +930,7 @@ class AsyncDirResource(AsyncAPIResource):
         documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -789,11 +943,14 @@ class AsyncDirResource(AsyncAPIResource):
         DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` can be
         edited freely: PATCH is a pure edit, `status` is never changed, and you re-vet
         by calling `POST /v2/dir/{dir_id}/submit` explicitly. A `verified` DIR can also
-        be edited in place: a PATCH that changes any value returns the DIR to `draft`
-        and branded delivery stops until you re-submit and the DIR is approved again,
-        while a PATCH that changes nothing (an empty body or values identical to the
-        current ones) leaves the DIR `verified`, so idempotent retries are safe. DIRs in
-        any other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
+        be edited in place: a PATCH that changes any value returns the DIR to `draft`;
+        the currently approved identity keeps displaying, and the edited content goes
+        live only after you re-submit and the DIR is approved again. A PATCH that
+        changes nothing (an empty body or values identical to the current ones) leaves
+        the DIR `verified`, so idempotent retries are safe. Changing only
+        `bpo_authorizations` or `webhook_url` is the exception: the DIR stays
+        `verified`. Each BPO authorization is reviewed on its own instead. DIRs in any
+        other status (`submitted`, `in_review`, `expired`, `infringement_claimed`,
         `permanently_rejected`) cannot be edited.
 
         Args:
@@ -802,6 +959,13 @@ class AsyncDirResource(AsyncAPIResource):
 
           authorizer_name: Name of the person at your enterprise authorizing this DIR. Must be a real
               individual.
+
+          bpo_authorizations: Optional. Replace this DIR's authorized BPO (Business Process Outsourcer)
+              accounts with these, each with its signed Letter of Authorization. The supplied
+              list replaces the current one: a BPO left out has its authorization removed, and
+              a new BPO (or a changed Letter of Authorization) is created `pending` admin
+              review. Send an empty list to clear all authorizations; omit the field to leave
+              them unchanged. Editing this list does not re-vet the DIR. Maximum 10.
 
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
@@ -827,6 +991,10 @@ class AsyncDirResource(AsyncAPIResource):
           reselling: Set to true if your organization places calls on behalf of other enterprises
               (BPO/reseller). Updating this triggers re-vetting on next submit.
 
+          webhook_url: Optional `https://` URL that receives webhook notifications when this DIR's
+              compliance review completes. Send `null` to clear. Changing only this field on a
+              `verified` DIR does not re-vet it. Maximum 2048 characters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -843,6 +1011,7 @@ class AsyncDirResource(AsyncAPIResource):
                 {
                     "authorizer_email": authorizer_email,
                     "authorizer_name": authorizer_name,
+                    "bpo_authorizations": bpo_authorizations,
                     "call_reasons": call_reasons,
                     "certify_brand_is_accurate": certify_brand_is_accurate,
                     "certify_ip_ownership": certify_ip_ownership,
@@ -851,6 +1020,7 @@ class AsyncDirResource(AsyncAPIResource):
                     "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
+                    "webhook_url": webhook_url,
                 },
                 dir_update_params.DirUpdateParams,
             ),
@@ -964,12 +1134,16 @@ class AsyncDirResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Delete a DIR.
+    ) -> DirDeleteResponse:
+        """Request deletion of a DIR.
 
-        Failure modes: `400` if a child phone number is in a non-deletable
-        status, `409` if the DIR has an unresolved infringement claim, `404` if the DIR
-        is not yours.
+        This does not remove the DIR on this call: it records
+        the request, moves the DIR to `delete_requested`, and Telnyx completes the
+        removal (de-registration and cleanup) shortly after. A verified DIR keeps
+        serving its branded identity, and keeps billing, until the removal is executed.
+        Failure modes: `400` if a child phone number is still attached or the DIR is
+        `in_review` (wait for the review to finish), `409` if the DIR has an unresolved
+        infringement claim, `404` if the DIR is not yours.
 
         Args:
           extra_headers: Send extra headers
@@ -982,13 +1156,73 @@ class AsyncDirResource(AsyncAPIResource):
         """
         if not dir_id:
             raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template("/dir/{dir_id}", dir_id=dir_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=DirDeleteResponse,
+        )
+
+    async def bpo_loa(
+        self,
+        dir_id: str,
+        *,
+        bpo_enterprise_id: str,
+        signature: SignaturePayloadParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncBinaryAPIResponse:
+        """
+        The Letter of Authorization in which a Brand Owner authorizes an approved BPO
+        (Business Process Outsourcer) to place branded calls that display this DIR on
+        the owner's behalf. Both parties are read from the caller's account: the Brand
+        Owner is the enterprise that owns the DIR, and the BPO is `bpo_enterprise_id`.
+        No business identity is accepted in the body.
+
+        When `signature` is omitted the PDF is returned unsigned so the Brand Owner can
+        sign it externally and the BPO can upload it via the Documents API. When
+        `signature` is present the PDF embeds the supplied image, printed name, and
+        signed-at date.
+
+        Returns `application/pdf`.
+
+        Args:
+          bpo_enterprise_id: The approved BPO enterprise the Brand Owner is authorizing. Must be a BPO
+              account on the caller's organization that has already been approved.
+
+          signature: Optional. When provided the rendered PDF embeds the signature image, printed
+              name, and signed-at date. When absent the PDF is returned unsigned so the Brand
+              Owner can sign externally and the BPO can upload it via the Documents API.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
+        return await self._post(
+            path_template("/dir/{dir_id}/bpo_loa", dir_id=dir_id),
+            body=await async_maybe_transform(
+                {
+                    "bpo_enterprise_id": bpo_enterprise_id,
+                    "signature": signature,
+                },
+                dir_bpo_loa_params.DirBpoLoaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AsyncBinaryAPIResponse,
         )
 
     async def list_document_types(
@@ -1077,7 +1311,7 @@ class AsyncDirResource(AsyncAPIResource):
         *,
         phone_numbers: SequenceNotStr[str],
         agent: AgentInputParam | Omit = omit,
-        signature: dir_new_loa_params.Signature | Omit = omit,
+        signature: SignaturePayloadParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1134,6 +1368,66 @@ class AsyncDirResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=AsyncBinaryAPIResponse,
+        )
+
+    async def retrieve_bpo_authorizations(
+        self,
+        dir_id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirRetrieveBpoAuthorizationsResponse:
+        """
+        List the BPO (Business Process Outsourcer) accounts a Brand Owner has authorized
+        on this DIR, together with the review state of each authorization.
+
+        Authorizations are supplied as the `bpo_authorizations` array when creating or
+        updating a DIR, and each one is reviewed on its own. Only an `approved`
+        authorization adds that BPO to this DIR's authorized callers in the branded
+        calling registry; `pending` and `rejected` authorizations do not. Each entry
+        includes the `loa_document_id` you submitted: because `bpo_authorizations`
+        replaces the whole list on every DIR update, send each entry you want to keep
+        back with its `loa_document_id` unchanged, and it keeps its review state. A
+        rejected entry carries a `rejection_reason`. Returns an empty list when the DIR
+        has authorized no BPOs.
+
+        Args:
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return await self._get(
+            path_template("/dir/{dir_id}/bpo_authorizations", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    dir_retrieve_bpo_authorizations_params.DirRetrieveBpoAuthorizationsParams,
+                ),
+            ),
+            cast_to=DirRetrieveBpoAuthorizationsResponse,
         )
 
     async def submit(
@@ -1211,11 +1505,15 @@ class AsyncDirResource(AsyncAPIResource):
 
           certify_ip_ownership: Must be `true`.
 
-          certify_no_infringement: Must be `true`.
+          certify_no_infringement: Check to certify that the brand no longer infringes anyone else's trademark or
+              intellectual property.
 
           certify_no_shaft_content: Must be `true`.
 
           infringement_resolution_notes: Explanation of how the infringement concern was addressed.
+
+          display_name: The business name shown to call recipients, 1 to 35 characters, no emoji, not
+              blank.
 
           documents: Append-only supporting documents to attach while resolving the claim (e.g.
               authorization or licensing proof).
@@ -1271,6 +1569,10 @@ class DirResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             dir.delete,
         )
+        self.bpo_loa = to_custom_raw_response_wrapper(
+            dir.bpo_loa,
+            BinaryAPIResponse,
+        )
         self.list_document_types = to_raw_response_wrapper(
             dir.list_document_types,
         )
@@ -1280,6 +1582,9 @@ class DirResourceWithRawResponse:
         self.new_loa = to_custom_raw_response_wrapper(
             dir.new_loa,
             BinaryAPIResponse,
+        )
+        self.retrieve_bpo_authorizations = to_raw_response_wrapper(
+            dir.retrieve_bpo_authorizations,
         )
         self.submit = to_raw_response_wrapper(
             dir.submit,
@@ -1342,6 +1647,10 @@ class AsyncDirResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             dir.delete,
         )
+        self.bpo_loa = async_to_custom_raw_response_wrapper(
+            dir.bpo_loa,
+            AsyncBinaryAPIResponse,
+        )
         self.list_document_types = async_to_raw_response_wrapper(
             dir.list_document_types,
         )
@@ -1351,6 +1660,9 @@ class AsyncDirResourceWithRawResponse:
         self.new_loa = async_to_custom_raw_response_wrapper(
             dir.new_loa,
             AsyncBinaryAPIResponse,
+        )
+        self.retrieve_bpo_authorizations = async_to_raw_response_wrapper(
+            dir.retrieve_bpo_authorizations,
         )
         self.submit = async_to_raw_response_wrapper(
             dir.submit,
@@ -1413,6 +1725,10 @@ class DirResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             dir.delete,
         )
+        self.bpo_loa = to_custom_streamed_response_wrapper(
+            dir.bpo_loa,
+            StreamedBinaryAPIResponse,
+        )
         self.list_document_types = to_streamed_response_wrapper(
             dir.list_document_types,
         )
@@ -1422,6 +1738,9 @@ class DirResourceWithStreamingResponse:
         self.new_loa = to_custom_streamed_response_wrapper(
             dir.new_loa,
             StreamedBinaryAPIResponse,
+        )
+        self.retrieve_bpo_authorizations = to_streamed_response_wrapper(
+            dir.retrieve_bpo_authorizations,
         )
         self.submit = to_streamed_response_wrapper(
             dir.submit,
@@ -1484,6 +1803,10 @@ class AsyncDirResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             dir.delete,
         )
+        self.bpo_loa = async_to_custom_streamed_response_wrapper(
+            dir.bpo_loa,
+            AsyncStreamedBinaryAPIResponse,
+        )
         self.list_document_types = async_to_streamed_response_wrapper(
             dir.list_document_types,
         )
@@ -1493,6 +1816,9 @@ class AsyncDirResourceWithStreamingResponse:
         self.new_loa = async_to_custom_streamed_response_wrapper(
             dir.new_loa,
             AsyncStreamedBinaryAPIResponse,
+        )
+        self.retrieve_bpo_authorizations = async_to_streamed_response_wrapper(
+            dir.retrieve_bpo_authorizations,
         )
         self.submit = async_to_streamed_response_wrapper(
             dir.submit,

@@ -449,6 +449,14 @@ from .requirements import (
     RequirementsResourceWithStreamingResponse,
     AsyncRequirementsResourceWithStreamingResponse,
 )
+from .spend_limits import (
+    SpendLimitsResource,
+    AsyncSpendLimitsResource,
+    SpendLimitsResourceWithRawResponse,
+    AsyncSpendLimitsResourceWithRawResponse,
+    SpendLimitsResourceWithStreamingResponse,
+    AsyncSpendLimitsResourceWithStreamingResponse,
+)
 from .voice_clones import (
     VoiceClonesResource,
     AsyncVoiceClonesResource,
@@ -2623,4 +2631,10 @@ __all__ = [
     "AsyncMachinePaymentsResourceWithRawResponse",
     "MachinePaymentsResourceWithStreamingResponse",
     "AsyncMachinePaymentsResourceWithStreamingResponse",
+    "SpendLimitsResource",
+    "AsyncSpendLimitsResource",
+    "SpendLimitsResourceWithRawResponse",
+    "AsyncSpendLimitsResourceWithRawResponse",
+    "SpendLimitsResourceWithStreamingResponse",
+    "AsyncSpendLimitsResourceWithStreamingResponse",
 ]

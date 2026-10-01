@@ -40,3 +40,4 @@ class Document(BaseModel):
     """
 
     description: Optional[str] = None
+    """An optional note describing this document, for example what it proves."""

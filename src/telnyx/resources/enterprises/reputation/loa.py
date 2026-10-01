@@ -24,7 +24,6 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.enterprises.reputation import loa_render_params, loa_update_params
-from ....types.enterprises.reputation.agent_input_param import AgentInputParam
 from ....types.enterprises.enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
 
 __all__ = ["LoaResource", "AsyncLoaResource"]
@@ -98,7 +97,7 @@ class LoaResource(SyncAPIResource):
         self,
         enterprise_id: str,
         *,
-        agent: AgentInputParam | Omit = omit,
+        agent: loa_render_params.Agent | Omit = omit,
         signature: loa_render_params.Signature | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -219,7 +218,7 @@ class AsyncLoaResource(AsyncAPIResource):
         self,
         enterprise_id: str,
         *,
-        agent: AgentInputParam | Omit = omit,
+        agent: loa_render_params.Agent | Omit = omit,
         signature: loa_render_params.Signature | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

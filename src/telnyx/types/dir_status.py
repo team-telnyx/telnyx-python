@@ -17,4 +17,5 @@ DirStatus: TypeAlias = Literal[
     "expired",
     "infringement_claimed",
     "permanently_rejected",
+    "delete_requested",
 ]
