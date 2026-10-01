@@ -638,8 +638,8 @@ class EnterprisesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterprisePublicWrapped:
-        """
-        Branded Calling is a paid product that must be activated on each enterprise.
+        """Branded Calling must be activated on each enterprise.
+
         Activation is idempotent:
 
         - First call: marks the enterprise as activated and begins onboarding it with
@@ -654,11 +654,15 @@ class EnterprisesResource(SyncAPIResource):
 
         Failure modes:
 
+        - `400` - the account has no available credit. Add funds and retry.
+        - `400` - the enterprise is not in the United States. Branded Calling is
+          currently available only to US enterprises.
         - `403` - Branded Calling Terms of Service not accepted.
         - `404` - enterprise does not exist or does not belong to your account.
 
-        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
-        for current pricing.
+        **Pricing:** Activation itself is free, but the account must have available
+        credit. Branded Calling fees are charged per DIR and per branded call. See
+        https://telnyx.com/pricing/branded-calling for current pricing.
 
         Args:
           extra_headers: Send extra headers
@@ -1261,8 +1265,8 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterprisePublicWrapped:
-        """
-        Branded Calling is a paid product that must be activated on each enterprise.
+        """Branded Calling must be activated on each enterprise.
+
         Activation is idempotent:
 
         - First call: marks the enterprise as activated and begins onboarding it with
@@ -1277,11 +1281,15 @@ class AsyncEnterprisesResource(AsyncAPIResource):
 
         Failure modes:
 
+        - `400` - the account has no available credit. Add funds and retry.
+        - `400` - the enterprise is not in the United States. Branded Calling is
+          currently available only to US enterprises.
         - `403` - Branded Calling Terms of Service not accepted.
         - `404` - enterprise does not exist or does not belong to your account.
 
-        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
-        for current pricing.
+        **Pricing:** Activation itself is free, but the account must have available
+        credit. Branded Calling fees are charged per DIR and per branded call. See
+        https://telnyx.com/pricing/branded-calling for current pricing.
 
         Args:
           extra_headers: Send extra headers
