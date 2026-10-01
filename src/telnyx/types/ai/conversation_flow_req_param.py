@@ -26,8 +26,8 @@ class ConversationFlowReqParam(TypedDict, total=False):
     nodes: Required[Iterable[Node]]
     """All nodes in the flow.
 
-    Must contain `start_node_id`. Each node is a prompt node (`type: prompt`) or a
-    tool node (`type: tool`).
+    Must contain `start_node_id`. Each node is a prompt node (`type: prompt`), a
+    tool node (`type: tool`), or a speak node (`type: speak`).
     """
 
     start_node_id: Required[str]

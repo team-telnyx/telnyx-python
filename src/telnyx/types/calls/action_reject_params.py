@@ -8,8 +8,13 @@ __all__ = ["ActionRejectParams"]
 
 
 class ActionRejectParams(TypedDict, total=False):
-    cause: Required[Literal["CALL_REJECTED", "USER_BUSY"]]
-    """Cause for call rejection."""
+    cause: Required[Literal["CALL_REJECTED", "NOT_FOUND", "TEMPORARILY_UNAVAILABLE", "USER_BUSY"]]
+    """Cause for call rejection.
+
+    The cause sets the SIP response the caller receives: `USER_BUSY` sends 486 User
+    Busy, `CALL_REJECTED` sends 603 Decline, `NOT_FOUND` sends 404 Not Found, and
+    `TEMPORARILY_UNAVAILABLE` sends 480 Temporarily Unavailable.
+    """
 
     client_state: str
     """Use this field to add state to every subsequent webhook.

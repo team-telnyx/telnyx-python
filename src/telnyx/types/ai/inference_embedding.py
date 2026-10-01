@@ -18,6 +18,8 @@ from .privacy_settings import PrivacySettings
 from .conversation_flow import ConversationFlow
 from .messaging_settings import MessagingSettings
 from .telephony_settings import TelephonySettings
+from .websocket_settings import WebsocketSettings
+from .delegation_settings import DelegationSettings
 from .assistant_a2_a_agent import AssistantA2AAgent
 from .assistant_mcp_server import AssistantMcpServer
 from .assistant_integration import AssistantIntegration
@@ -68,6 +70,17 @@ class InferenceEmbedding(BaseModel):
 
     conversation_flow: Optional[ConversationFlow] = None
     """Conversation flow as returned by the API."""
+
+    delegation_settings: Optional[DelegationSettings] = None
+    """
+    Splits the conversation between a frontend model that talks to the caller and a
+    backend model that does the work. On the GPT-Live route the frontend model
+    cannot call tools at all — when it needs something done it raises a delegation
+    and waits. On the chat completion route the frontend keeps a single `delegate`
+    tool that returns immediately, so the conversation carries on while the backend
+    works. Either way the backend's answer is spoken as commentary or kept as silent
+    context, depending on `speak_results`. Beta feature.
+    """
 
     description: Optional[str] = None
 
@@ -201,6 +214,15 @@ class InferenceEmbedding(BaseModel):
     """Human-readable name for the assistant version."""
 
     voice_settings: Optional[InferenceEmbeddingVoiceSettings] = None
+
+    websocket_settings: Optional[WebsocketSettings] = None
+    """
+    Streams conversation and telephony events to a WebSocket server you host, and
+    accepts messages injected back into the conversation. Telnyx opens the
+    connection as a client, once per conversation. Delivery is best effort
+    throughout: while the connection is down events are dropped rather than queued,
+    and no socket failure is ever allowed to affect the call. Beta feature.
+    """
 
     widget_settings: Optional[WidgetSettings] = None
     """Configuration settings for the assistant's web widget."""

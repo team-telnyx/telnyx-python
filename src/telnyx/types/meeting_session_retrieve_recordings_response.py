@@ -11,10 +11,7 @@ __all__ = ["MeetingSessionRetrieveRecordingsResponse", "Data"]
 
 class Data(BaseModel):
     expires_at: Optional[str] = None
-    """Expiry timestamp when supplied by the provider, or null.
-
-    The current adapter returns null.
-    """
+    """Expiry timestamp when available, or null. Currently returns null."""
 
     type: str
 

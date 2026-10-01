@@ -24,6 +24,14 @@ from .enterprises import (
     EnterprisesResourceWithStreamingResponse,
     AsyncEnterprisesResourceWithStreamingResponse,
 )
+from .verify_email import (
+    VerifyEmailResource,
+    AsyncVerifyEmailResource,
+    VerifyEmailResourceWithRawResponse,
+    AsyncVerifyEmailResourceWithRawResponse,
+    VerifyEmailResourceWithStreamingResponse,
+    AsyncVerifyEmailResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ReputationResource",
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncDirResourceWithRawResponse",
     "DirResourceWithStreamingResponse",
     "AsyncDirResourceWithStreamingResponse",
+    "VerifyEmailResource",
+    "AsyncVerifyEmailResource",
+    "VerifyEmailResourceWithRawResponse",
+    "AsyncVerifyEmailResourceWithRawResponse",
+    "VerifyEmailResourceWithStreamingResponse",
+    "AsyncVerifyEmailResourceWithStreamingResponse",
     "EnterprisesResource",
     "AsyncEnterprisesResource",
     "EnterprisesResourceWithRawResponse",

@@ -86,10 +86,10 @@ class ModelMetadata(BaseModel):
     """
 
     max_completion_tokens: Optional[int] = None
-    """Maximum number of completion (output) tokens the model will generate per
-    request.
+    """Maximum completion (output) tokens the model may generate per request.
 
-    `null` if unconstrained beyond `context_length`.
+    This value caps the Chat Completions `max_tokens` default and any larger
+    explicit value on that model. `null` if unconstrained beyond `context_length`.
     """
 
     object: Optional[str] = None

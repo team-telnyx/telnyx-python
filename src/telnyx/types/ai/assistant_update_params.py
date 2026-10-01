@@ -15,6 +15,8 @@ from .privacy_settings_param import PrivacySettingsParam
 from .observability_req_param import ObservabilityReqParam
 from .messaging_settings_param import MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam
+from .websocket_settings_param import WebsocketSettingsParam
+from .delegation_settings_param import DelegationSettingsParam
 from .fallback_config_req_param import FallbackConfigReqParam
 from .assistant_a2_a_agent_param import AssistantA2AAgentParam
 from .assistant_mcp_server_param import AssistantMcpServerParam
@@ -49,6 +51,17 @@ class AssistantUpdateParams(TypedDict, total=False):
     A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
     unique node/edge IDs, that `start_node_id` references a real node, and that
     every edge's endpoints reference real nodes.
+    """
+
+    delegation_settings: DelegationSettingsParam
+    """
+    Splits the conversation between a frontend model that talks to the caller and a
+    backend model that does the work. On the GPT-Live route the frontend model
+    cannot call tools at all — when it needs something done it raises a delegation
+    and waits. On the chat completion route the frontend keeps a single `delegate`
+    tool that returns immediately, so the conversation carries on while the backend
+    works. Either way the backend's answer is spoken as commentary or kept as silent
+    context, depending on `speak_results`. Beta feature.
     """
 
     description: str
@@ -207,6 +220,15 @@ class AssistantUpdateParams(TypedDict, total=False):
     """Human-readable name for the assistant version."""
 
     voice_settings: InferenceEmbeddingVoiceSettingsParam
+
+    websocket_settings: WebsocketSettingsParam
+    """
+    Streams conversation and telephony events to a WebSocket server you host, and
+    accepts messages injected back into the conversation. Telnyx opens the
+    connection as a client, once per conversation. Delivery is best effort
+    throughout: while the connection is down events are dropped rather than queued,
+    and no socket failure is ever allowed to affect the call. Beta feature.
+    """
 
     widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""

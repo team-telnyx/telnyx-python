@@ -162,19 +162,22 @@ class ReferencesResource(SyncAPIResource):
         pending call into the new local calling window.
 
         Args:
-          email: Reference contact email address.
+          email: The reference's email address. We email them scheduling and dial-in instructions
+              before we call, so use an address they check.
 
-          full_name: Full name of the reference contact.
+          full_name: The full name of the person we should contact as your reference.
 
-          job_title: Job title of the reference contact.
+          job_title: The reference contact's job title, for example CFO or Owner.
 
-          organization: Organization the reference contact belongs to.
+          organization: The name of the organization the reference contact works for.
 
-          phone_e164: Reference phone number in E.164 format.
+          phone_e164: The reference's phone number in E.164 format, for example +14155550123. We call
+              this number during their local business hours.
 
           relationship_to_registrant: How the reference contact is related to the registering business.
 
-          timezone: IANA timezone id for the reference.
+          timezone: The reference's IANA time zone, for example America/New_York. We only call
+              during their local 8am to 9pm hours, which is why we need it.
 
           extra_headers: Send extra headers
 
@@ -385,19 +388,22 @@ class AsyncReferencesResource(AsyncAPIResource):
         pending call into the new local calling window.
 
         Args:
-          email: Reference contact email address.
+          email: The reference's email address. We email them scheduling and dial-in instructions
+              before we call, so use an address they check.
 
-          full_name: Full name of the reference contact.
+          full_name: The full name of the person we should contact as your reference.
 
-          job_title: Job title of the reference contact.
+          job_title: The reference contact's job title, for example CFO or Owner.
 
-          organization: Organization the reference contact belongs to.
+          organization: The name of the organization the reference contact works for.
 
-          phone_e164: Reference phone number in E.164 format.
+          phone_e164: The reference's phone number in E.164 format, for example +14155550123. We call
+              this number during their local business hours.
 
           relationship_to_registrant: How the reference contact is related to the registering business.
 
-          timezone: IANA timezone id for the reference.
+          timezone: The reference's IANA time zone, for example America/New_York. We only call
+              during their local 8am to 9pm hours, which is why we need it.
 
           extra_headers: Send extra headers
 
