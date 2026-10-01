@@ -666,6 +666,7 @@ from telnyx.types.ai import (
     AssistantChatResponse,
     AssistantGetTexmlResponse,
     AssistantSendSMSResponse,
+    AssistantWhatsappResponse,
 )
 ```
 
@@ -681,6 +682,7 @@ Methods:
 - <code title="get /ai/assistants/{assistant_id}/texml">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">get_texml</a>(assistant_id) -> str</code>
 - <code title="post /ai/assistants/import">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">imports</a>(\*\*<a href="src/telnyx/types/ai/assistant_imports_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat/sms">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">send_sms</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_send_sms_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_send_sms_response.py">AssistantSendSMSResponse</a></code>
+- <code title="post /ai/assistants/{assistant_id}/chat/whatsapp">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">whatsapp</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_whatsapp_response.py">AssistantWhatsappResponse</a></code>
 
 ### Tests
 

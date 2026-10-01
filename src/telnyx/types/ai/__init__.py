@@ -60,6 +60,7 @@ from .telephony_settings_param import TelephonySettingsParam as TelephonySetting
 from .websocket_settings_param import WebsocketSettingsParam as WebsocketSettingsParam
 from .assistant_retrieve_params import AssistantRetrieveParams as AssistantRetrieveParams
 from .assistant_send_sms_params import AssistantSendSMSParams as AssistantSendSMSParams
+from .assistant_whatsapp_params import AssistantWhatsappParams as AssistantWhatsappParams
 from .delegation_settings_param import DelegationSettingsParam as DelegationSettingsParam
 from .fallback_config_req_param import FallbackConfigReqParam as FallbackConfigReqParam
 from .start_speaking_plan_param import StartSpeakingPlanParam as StartSpeakingPlanParam
@@ -147,6 +148,7 @@ if TYPE_CHECKING:
     from .conversation_list_response import ConversationListResponse as ConversationListResponse
     from .post_conversation_settings import PostConversationSettings as PostConversationSettings
     from .assistant_send_sms_response import AssistantSendSMSResponse as AssistantSendSMSResponse
+    from .assistant_whatsapp_response import AssistantWhatsappResponse as AssistantWhatsappResponse
     from .embedding_retrieve_response import EmbeddingRetrieveResponse as EmbeddingRetrieveResponse
     from .conversation_update_response import ConversationUpdateResponse as ConversationUpdateResponse
     from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
@@ -316,6 +318,10 @@ def __getattr__(name: str) -> Any:
         from .assistant_send_sms_response import AssistantSendSMSResponse
 
         return AssistantSendSMSResponse
+    if name == "AssistantWhatsappResponse":
+        from .assistant_whatsapp_response import AssistantWhatsappResponse
+
+        return AssistantWhatsappResponse
     if name == "AudioTranscriptionResponseWord":
         from .audio_transcription_response_word import AudioTranscriptionResponseWord
 

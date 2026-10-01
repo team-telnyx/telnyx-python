@@ -15,6 +15,7 @@ from telnyx.types.ai import (
     AssistantChatResponse,
     AssistantDeleteResponse,
     AssistantSendSMSResponse,
+    AssistantWhatsappResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -1281,6 +1282,73 @@ class TestAssistants:
                 to="To",
             )
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_whatsapp(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_whatsapp_with_all_params(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+            conversation_metadata={"order_id": "A1"},
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_whatsapp(self, client: Telnyx) -> None:
+        response = client.ai.assistants.with_raw_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = response.parse()
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_whatsapp(self, client: Telnyx) -> None:
+        with client.ai.assistants.with_streaming_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = response.parse()
+            assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_whatsapp(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            client.ai.assistants.with_raw_response.whatsapp(
+                assistant_id="",
+                content="Send the login verification code 482913 to the customer.",
+                from_="+13125550001",
+                to="+13125550002",
+            )
+
 
 class TestAsyncAssistants:
     parametrize = pytest.mark.parametrize(
@@ -2543,4 +2611,71 @@ class TestAsyncAssistants:
                 assistant_id="",
                 from_="From",
                 to="To",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_whatsapp_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+            conversation_metadata={"order_id": "A1"},
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.assistants.with_raw_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = await response.parse()
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.assistants.with_streaming_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = await response.parse()
+            assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            await async_client.ai.assistants.with_raw_response.whatsapp(
+                assistant_id="",
+                content="Send the login verification code 482913 to the customer.",
+                from_="+13125550001",
+                to="+13125550002",
             )
