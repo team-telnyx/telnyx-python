@@ -23,6 +23,14 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
+from .deleted import (
+    DeletedResource,
+    AsyncDeletedResource,
+    DeletedResourceWithRawResponse,
+    AsyncDeletedResourceWithRawResponse,
+    DeletedResourceWithStreamingResponse,
+    AsyncDeletedResourceWithStreamingResponse,
+)
 from .versions import (
     VersionsResource,
     AsyncVersionsResource,
@@ -37,6 +45,7 @@ from ...._compat import cached_property
 from ....types.ai import (
     assistant_chat_params,
     assistant_create_params,
+    assistant_delete_params,
     assistant_update_params,
     assistant_imports_params,
     assistant_retrieve_params,
@@ -150,6 +159,11 @@ class AssistantsResource(SyncAPIResource):
     def instructions(self) -> InstructionsResource:
         """Configure AI assistant specifications"""
         return InstructionsResource(self._client)
+
+    @cached_property
+    def deleted(self) -> DeletedResource:
+        """Configure AI assistant specifications"""
+        return DeletedResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AssistantsResourceWithRawResponse:
@@ -677,6 +691,7 @@ class AssistantsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
+        hard_delete: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -687,7 +702,24 @@ class AssistantsResource(SyncAPIResource):
         """
         Delete an AI Assistant by `assistant_id`.
 
+        By default this performs a soft delete: the assistant moves to the Recently
+        Deleted list and stays restorable for 30 days, after which it is permanently
+        deleted automatically. The assistant's versions and TeXML application are
+        preserved during the retention window.
+
+        Pass `hard_delete=true` to skip the retention window and permanently delete the
+        assistant immediately. A hard delete erases the assistant and all of its
+        versions, and deletes its TeXML application unless phone numbers are still
+        assigned to it. It does not delete conversations, recordings, shared tools the
+        assistant referenced, or knowledge-base embeddings.
+
+        Deletion fails with `400` if other assistants reference this one through a
+        handoff tool or a conversation-flow edge — remove those references first.
+
         Args:
+          hard_delete: Permanently delete the assistant immediately instead of soft-deleting it to the
+              Recently Deleted list, where it stays restorable for 30 days.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -701,7 +733,11 @@ class AssistantsResource(SyncAPIResource):
         return self._delete(
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"hard_delete": hard_delete}, assistant_delete_params.AssistantDeleteParams),
             ),
             cast_to=AssistantDeleteResponse,
         )
@@ -895,6 +931,43 @@ class AssistantsResource(SyncAPIResource):
             cast_to=AssistantsList,
         )
 
+    def restore(
+        self,
+        assistant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InferenceEmbedding:
+        """
+        Restore a soft-deleted assistant from the Recently Deleted list.
+
+        The assistant becomes fully active again with its versions and TeXML application
+        as they were at deletion time. Restoring does not re-enable numbers or
+        connections that were released separately after the deletion.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return self._post(
+            path_template("/ai/assistants/{assistant_id}/restore", assistant_id=assistant_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InferenceEmbedding,
+        )
+
     def send_sms(
         self,
         assistant_id: str,
@@ -1069,6 +1142,11 @@ class AsyncAssistantsResource(AsyncAPIResource):
     def instructions(self) -> AsyncInstructionsResource:
         """Configure AI assistant specifications"""
         return AsyncInstructionsResource(self._client)
+
+    @cached_property
+    def deleted(self) -> AsyncDeletedResource:
+        """Configure AI assistant specifications"""
+        return AsyncDeletedResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAssistantsResourceWithRawResponse:
@@ -1596,6 +1674,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
+        hard_delete: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1606,7 +1685,24 @@ class AsyncAssistantsResource(AsyncAPIResource):
         """
         Delete an AI Assistant by `assistant_id`.
 
+        By default this performs a soft delete: the assistant moves to the Recently
+        Deleted list and stays restorable for 30 days, after which it is permanently
+        deleted automatically. The assistant's versions and TeXML application are
+        preserved during the retention window.
+
+        Pass `hard_delete=true` to skip the retention window and permanently delete the
+        assistant immediately. A hard delete erases the assistant and all of its
+        versions, and deletes its TeXML application unless phone numbers are still
+        assigned to it. It does not delete conversations, recordings, shared tools the
+        assistant referenced, or knowledge-base embeddings.
+
+        Deletion fails with `400` if other assistants reference this one through a
+        handoff tool or a conversation-flow edge — remove those references first.
+
         Args:
+          hard_delete: Permanently delete the assistant immediately instead of soft-deleting it to the
+              Recently Deleted list, where it stays restorable for 30 days.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1620,7 +1716,13 @@ class AsyncAssistantsResource(AsyncAPIResource):
         return await self._delete(
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"hard_delete": hard_delete}, assistant_delete_params.AssistantDeleteParams
+                ),
             ),
             cast_to=AssistantDeleteResponse,
         )
@@ -1814,6 +1916,43 @@ class AsyncAssistantsResource(AsyncAPIResource):
             cast_to=AssistantsList,
         )
 
+    async def restore(
+        self,
+        assistant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InferenceEmbedding:
+        """
+        Restore a soft-deleted assistant from the Recently Deleted list.
+
+        The assistant becomes fully active again with its versions and TeXML application
+        as they were at deletion time. Restoring does not re-enable numbers or
+        connections that were released separately after the deletion.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return await self._post(
+            path_template("/ai/assistants/{assistant_id}/restore", assistant_id=assistant_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InferenceEmbedding,
+        )
+
     async def send_sms(
         self,
         assistant_id: str,
@@ -1982,6 +2121,9 @@ class AssistantsResourceWithRawResponse:
         self.imports = to_raw_response_wrapper(
             assistants.imports,
         )
+        self.restore = to_raw_response_wrapper(
+            assistants.restore,
+        )
         self.send_sms = to_raw_response_wrapper(
             assistants.send_sms,
         )
@@ -2024,6 +2166,11 @@ class AssistantsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return InstructionsResourceWithRawResponse(self._assistants.instructions)
 
+    @cached_property
+    def deleted(self) -> DeletedResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return DeletedResourceWithRawResponse(self._assistants.deleted)
+
 
 class AsyncAssistantsResourceWithRawResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -2055,6 +2202,9 @@ class AsyncAssistantsResourceWithRawResponse:
         )
         self.imports = async_to_raw_response_wrapper(
             assistants.imports,
+        )
+        self.restore = async_to_raw_response_wrapper(
+            assistants.restore,
         )
         self.send_sms = async_to_raw_response_wrapper(
             assistants.send_sms,
@@ -2098,6 +2248,11 @@ class AsyncAssistantsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return AsyncInstructionsResourceWithRawResponse(self._assistants.instructions)
 
+    @cached_property
+    def deleted(self) -> AsyncDeletedResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return AsyncDeletedResourceWithRawResponse(self._assistants.deleted)
+
 
 class AssistantsResourceWithStreamingResponse:
     def __init__(self, assistants: AssistantsResource) -> None:
@@ -2129,6 +2284,9 @@ class AssistantsResourceWithStreamingResponse:
         )
         self.imports = to_streamed_response_wrapper(
             assistants.imports,
+        )
+        self.restore = to_streamed_response_wrapper(
+            assistants.restore,
         )
         self.send_sms = to_streamed_response_wrapper(
             assistants.send_sms,
@@ -2172,6 +2330,11 @@ class AssistantsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return InstructionsResourceWithStreamingResponse(self._assistants.instructions)
 
+    @cached_property
+    def deleted(self) -> DeletedResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return DeletedResourceWithStreamingResponse(self._assistants.deleted)
+
 
 class AsyncAssistantsResourceWithStreamingResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -2203,6 +2366,9 @@ class AsyncAssistantsResourceWithStreamingResponse:
         )
         self.imports = async_to_streamed_response_wrapper(
             assistants.imports,
+        )
+        self.restore = async_to_streamed_response_wrapper(
+            assistants.restore,
         )
         self.send_sms = async_to_streamed_response_wrapper(
             assistants.send_sms,
@@ -2245,3 +2411,8 @@ class AsyncAssistantsResourceWithStreamingResponse:
     def instructions(self) -> AsyncInstructionsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return AsyncInstructionsResourceWithStreamingResponse(self._assistants.instructions)
+
+    @cached_property
+    def deleted(self) -> AsyncDeletedResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return AsyncDeletedResourceWithStreamingResponse(self._assistants.deleted)

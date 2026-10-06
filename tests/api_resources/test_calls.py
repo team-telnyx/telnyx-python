@@ -55,6 +55,7 @@ class TestCalls:
                 "initial_silence_millis": 1000,
                 "maximum_number_of_words": 1000,
                 "maximum_word_length_millis": 2000,
+                "prompt_end_timeout_millis": 5000,
                 "silence_threshold": 512,
                 "total_analysis_time_millis": 5000,
             },
@@ -105,6 +106,10 @@ class TestCalls:
                         "type": "book_appointment",
                     }
                 ],
+                "transcription": {
+                    "language": "language",
+                    "model": "distil-whisper/distil-large-v2",
+                },
                 "voice_settings": {
                     "voice": "voice",
                     "api_key_ref": "api_key_ref",
@@ -414,6 +419,7 @@ class TestAsyncCalls:
                 "initial_silence_millis": 1000,
                 "maximum_number_of_words": 1000,
                 "maximum_word_length_millis": 2000,
+                "prompt_end_timeout_millis": 5000,
                 "silence_threshold": 512,
                 "total_analysis_time_millis": 5000,
             },
@@ -464,6 +470,10 @@ class TestAsyncCalls:
                         "type": "book_appointment",
                     }
                 ],
+                "transcription": {
+                    "language": "language",
+                    "model": "distil-whisper/distil-large-v2",
+                },
                 "voice_settings": {
                     "voice": "voice",
                     "api_key_ref": "api_key_ref",

@@ -977,7 +977,16 @@ class TestAssistants:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
+        )
+        assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.delete(
+            assistant_id="assistant_id",
+            hard_delete=True,
         )
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
@@ -985,7 +994,7 @@ class TestAssistants:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         )
 
         assert response.is_closed is True
@@ -997,7 +1006,7 @@ class TestAssistants:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1012,7 +1021,7 @@ class TestAssistants:
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             client.ai.assistants.with_raw_response.delete(
-                "",
+                assistant_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -1217,6 +1226,48 @@ class TestAssistants:
             assert_matches_type(AssistantsList, assistant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_restore(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.restore(
+            "assistant_id",
+        )
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_restore(self, client: Telnyx) -> None:
+        response = client.ai.assistants.with_raw_response.restore(
+            "assistant_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = response.parse()
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_restore(self, client: Telnyx) -> None:
+        with client.ai.assistants.with_streaming_response.restore(
+            "assistant_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = response.parse()
+            assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_restore(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            client.ai.assistants.with_raw_response.restore(
+                "",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -2308,7 +2359,16 @@ class TestAsyncAssistants:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
+        )
+        assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.delete(
+            assistant_id="assistant_id",
+            hard_delete=True,
         )
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
@@ -2316,7 +2376,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         )
 
         assert response.is_closed is True
@@ -2328,7 +2388,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2343,7 +2403,7 @@ class TestAsyncAssistants:
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             await async_client.ai.assistants.with_raw_response.delete(
-                "",
+                assistant_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -2548,6 +2608,48 @@ class TestAsyncAssistants:
             assert_matches_type(AssistantsList, assistant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_restore(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.restore(
+            "assistant_id",
+        )
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_restore(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.assistants.with_raw_response.restore(
+            "assistant_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = await response.parse()
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_restore(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.assistants.with_streaming_response.restore(
+            "assistant_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = await response.parse()
+            assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_restore(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            await async_client.ai.assistants.with_raw_response.restore(
+                "",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

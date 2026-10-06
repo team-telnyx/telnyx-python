@@ -254,7 +254,7 @@ class TestTools:
         tool = client.ai.tools.delete(
             "tool_id",
         )
-        assert_matches_type(object, tool, path=["response"])
+        assert tool is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -266,7 +266,7 @@ class TestTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = response.parse()
-        assert_matches_type(object, tool, path=["response"])
+        assert tool is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -278,7 +278,7 @@ class TestTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = response.parse()
-            assert_matches_type(object, tool, path=["response"])
+            assert tool is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -530,7 +530,7 @@ class TestAsyncTools:
         tool = await async_client.ai.tools.delete(
             "tool_id",
         )
-        assert_matches_type(object, tool, path=["response"])
+        assert tool is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -542,7 +542,7 @@ class TestAsyncTools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tool = await response.parse()
-        assert_matches_type(object, tool, path=["response"])
+        assert tool is None
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -554,7 +554,7 @@ class TestAsyncTools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tool = await response.parse()
-            assert_matches_type(object, tool, path=["response"])
+            assert tool is None
 
         assert cast(Any, response.is_closed) is True
 

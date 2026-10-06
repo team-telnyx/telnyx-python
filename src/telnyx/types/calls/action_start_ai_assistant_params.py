@@ -12,10 +12,13 @@ __all__ = ["ActionStartAIAssistantParams", "MessageHistory"]
 
 class ActionStartAIAssistantParams(TypedDict, total=False):
     assistant: CallAssistantRequestParam
-    """AI Assistant configuration.
+    """AI Assistant configuration and per-call overrides.
 
-    All fields except `id` are optional — the assistant's stored configuration will
-    be used as fallback for any omitted fields.
+    All fields except `id` are optional. Omitted assistant fields use the stored
+    configuration. Supplied `voice_settings` and `transcription` objects replace
+    their stored objects rather than merging individual settings; include every
+    setting you want to retain. `dynamic_variables` are merged, with request values
+    taking precedence.
     """
 
     client_state: str

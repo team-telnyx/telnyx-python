@@ -147,6 +147,7 @@ if TYPE_CHECKING:
         charges_breakdown,
         email_validations,
         global_ip_latency,
+        llm_token_gateway,
         messaging_optouts,
         requirement_types,
         room_compositions,
@@ -467,6 +468,7 @@ if TYPE_CHECKING:
     from .resources.terms_of_service.terms_of_service import TermsOfServiceResource, AsyncTermsOfServiceResource
     from .resources.verified_numbers.verified_numbers import VerifiedNumbersResource, AsyncVerifiedNumbersResource
     from .resources.email_validations.email_validations import EmailValidationsResource, AsyncEmailValidationsResource
+    from .resources.llm_token_gateway.llm_token_gateway import LlmTokenGatewayResource, AsyncLlmTokenGatewayResource
     from .resources.messaging_profiles.messaging_profiles import (
         MessagingProfilesResource,
         AsyncMessagingProfilesResource,
@@ -1937,6 +1939,12 @@ class Telnyx(SyncAPIClient):
         from .resources.spend_limits import SpendLimitsResource
 
         return SpendLimitsResource(self)
+
+    @cached_property
+    def llm_token_gateway(self) -> LlmTokenGatewayResource:
+        from .resources.llm_token_gateway import LlmTokenGatewayResource
+
+        return LlmTokenGatewayResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3508,6 +3516,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncSpendLimitsResource(self)
 
     @cached_property
+    def llm_token_gateway(self) -> AsyncLlmTokenGatewayResource:
+        from .resources.llm_token_gateway import AsyncLlmTokenGatewayResource
+
+        return AsyncLlmTokenGatewayResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -5012,6 +5026,12 @@ class TelnyxWithRawResponse:
 
         return SpendLimitsResourceWithRawResponse(self._client.spend_limits)
 
+    @cached_property
+    def llm_token_gateway(self) -> llm_token_gateway.LlmTokenGatewayResourceWithRawResponse:
+        from .resources.llm_token_gateway import LlmTokenGatewayResourceWithRawResponse
+
+        return LlmTokenGatewayResourceWithRawResponse(self._client.llm_token_gateway)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6389,6 +6409,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.spend_limits import AsyncSpendLimitsResourceWithRawResponse
 
         return AsyncSpendLimitsResourceWithRawResponse(self._client.spend_limits)
+
+    @cached_property
+    def llm_token_gateway(self) -> llm_token_gateway.AsyncLlmTokenGatewayResourceWithRawResponse:
+        from .resources.llm_token_gateway import AsyncLlmTokenGatewayResourceWithRawResponse
+
+        return AsyncLlmTokenGatewayResourceWithRawResponse(self._client.llm_token_gateway)
 
 
 class TelnyxWithStreamedResponse:
@@ -7769,6 +7795,12 @@ class TelnyxWithStreamedResponse:
         from .resources.spend_limits import SpendLimitsResourceWithStreamingResponse
 
         return SpendLimitsResourceWithStreamingResponse(self._client.spend_limits)
+
+    @cached_property
+    def llm_token_gateway(self) -> llm_token_gateway.LlmTokenGatewayResourceWithStreamingResponse:
+        from .resources.llm_token_gateway import LlmTokenGatewayResourceWithStreamingResponse
+
+        return LlmTokenGatewayResourceWithStreamingResponse(self._client.llm_token_gateway)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9197,6 +9229,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.spend_limits import AsyncSpendLimitsResourceWithStreamingResponse
 
         return AsyncSpendLimitsResourceWithStreamingResponse(self._client.spend_limits)
+
+    @cached_property
+    def llm_token_gateway(self) -> llm_token_gateway.AsyncLlmTokenGatewayResourceWithStreamingResponse:
+        from .resources.llm_token_gateway import AsyncLlmTokenGatewayResourceWithStreamingResponse
+
+        return AsyncLlmTokenGatewayResourceWithStreamingResponse(self._client.llm_token_gateway)
 
 
 Client = Telnyx

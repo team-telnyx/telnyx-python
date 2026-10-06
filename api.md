@@ -340,6 +340,7 @@ from telnyx.types import (
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
     CallCostWebhookEvent,
@@ -356,7 +357,9 @@ from telnyx.types import (
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,
@@ -406,6 +409,7 @@ from telnyx.types import (
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
     CallCostWebhookEvent,
@@ -422,7 +426,9 @@ from telnyx.types import (
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,
@@ -676,11 +682,12 @@ Methods:
 - <code title="get /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">retrieve</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="post /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">update</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">list</a>() -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
-- <code title="delete /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">delete</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant_delete_response.py">AssistantDeleteResponse</a></code>
+- <code title="delete /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">delete</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_delete_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_delete_response.py">AssistantDeleteResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">chat</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_chat_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_chat_response.py">AssistantChatResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/clone">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">clone</a>(assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants/{assistant_id}/texml">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">get_texml</a>(assistant_id) -> str</code>
 - <code title="post /ai/assistants/import">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">imports</a>(\*\*<a href="src/telnyx/types/ai/assistant_imports_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
+- <code title="post /ai/assistants/{assistant_id}/restore">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">restore</a>(assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat/sms">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">send_sms</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_send_sms_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_send_sms_response.py">AssistantSendSMSResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat/whatsapp">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">whatsapp</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_whatsapp_response.py">AssistantWhatsappResponse</a></code>
 
@@ -844,6 +851,19 @@ from telnyx.types.ai.assistants import InstructionEnhanceResponse
 Methods:
 
 - <code title="post /ai/assistants/{assistant_id}/instructions/enhance">client.ai.assistants.instructions.<a href="./src/telnyx/resources/ai/assistants/instructions.py">enhance</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/instruction_enhance_params.py">params</a>) -> str</code>
+
+### Deleted
+
+Types:
+
+```python
+from telnyx.types.ai.assistants import DeletedAssistant
+```
+
+Methods:
+
+- <code title="get /ai/assistants/deleted">client.ai.assistants.deleted.<a href="./src/telnyx/resources/ai/assistants/deleted.py">list</a>(\*\*<a href="src/telnyx/types/ai/assistants/deleted_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/deleted_assistant.py">SyncDefaultFlatPagination[DeletedAssistant]</a></code>
+- <code title="get /ai/assistants/{assistant_id}/deleted">client.ai.assistants.deleted.<a href="./src/telnyx/resources/ai/assistants/deleted.py">get</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistants/deleted_assistant.py">DeletedAssistant</a></code>
 
 ## Audio
 
@@ -1314,7 +1334,7 @@ Methods:
 - <code title="get /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">retrieve</a>(tool_id) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SharedToolResponse</a></code>
 - <code title="patch /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">update</a>(tool_id, \*\*<a href="src/telnyx/types/ai/tool_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SharedToolResponse</a></code>
 - <code title="get /ai/tools">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">list</a>(\*\*<a href="src/telnyx/types/ai/tool_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SyncDefaultFlatPagination[SharedToolResponse]</a></code>
-- <code title="delete /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">delete</a>(tool_id) -> object</code>
+- <code title="delete /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">delete</a>(tool_id) -> None</code>
 
 ## Anthropic
 
@@ -5948,6 +5968,23 @@ Methods:
 - <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">list</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_list_response.py">ConversationalComponentListResponse</a></code>
 - <code title="patch /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">patch_all</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_response.py">ConversationalComponentPatchAllResponse</a></code>
 
+### CallingRouting
+
+Types:
+
+```python
+from telnyx.types.whatsapp.phone_numbers import (
+    WhatsappCallingRoutingData,
+    CallingRoutingListResponse,
+    CallingRoutingPatchAllResponse,
+)
+```
+
+Methods:
+
+- <code title="get /whatsapp/phone_numbers/{id}/calling_routing">client.whatsapp.phone_numbers.calling_routing.<a href="./src/telnyx/resources/whatsapp/phone_numbers/calling_routing.py">list</a>(id) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/calling_routing_list_response.py">CallingRoutingListResponse</a></code>
+- <code title="patch /whatsapp/phone_numbers/{id}/calling_routing">client.whatsapp.phone_numbers.calling_routing.<a href="./src/telnyx/resources/whatsapp/phone_numbers/calling_routing.py">patch_all</a>(id, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/calling_routing_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/calling_routing_patch_all_response.py">CallingRoutingPatchAllResponse</a></code>
+
 ## UserData
 
 Types:
@@ -7078,3 +7115,17 @@ Methods:
 - <code title="patch /spend_limits/{product}">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">update</a>(product, \*\*<a href="src/telnyx/types/spend_limit_update_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
 - <code title="get /spend_limits">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">list</a>() -> <a href="./src/telnyx/types/spend_limit_list_response.py">SpendLimitListResponse</a></code>
 - <code title="delete /spend_limits/{product}">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">delete</a>(product, \*\*<a href="src/telnyx/types/spend_limit_delete_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
+
+# LlmTokenGateway
+
+## Usage
+
+Types:
+
+```python
+from telnyx.types.llm_token_gateway import UsageRetrieveSummaryResponse
+```
+
+Methods:
+
+- <code title="get /llm_token_gateway/usage/summary">client.llm_token_gateway.usage.<a href="./src/telnyx/resources/llm_token_gateway/usage.py">retrieve_summary</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/usage_retrieve_summary_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/usage_retrieve_summary_response.py">UsageRetrieveSummaryResponse</a></code>

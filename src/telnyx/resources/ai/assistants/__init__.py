@@ -24,6 +24,14 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
+from .deleted import (
+    DeletedResource,
+    AsyncDeletedResource,
+    DeletedResourceWithRawResponse,
+    AsyncDeletedResourceWithRawResponse,
+    DeletedResourceWithStreamingResponse,
+    AsyncDeletedResourceWithStreamingResponse,
+)
 from .versions import (
     VersionsResource,
     AsyncVersionsResource,
@@ -108,6 +116,12 @@ __all__ = [
     "AsyncInstructionsResourceWithRawResponse",
     "InstructionsResourceWithStreamingResponse",
     "AsyncInstructionsResourceWithStreamingResponse",
+    "DeletedResource",
+    "AsyncDeletedResource",
+    "DeletedResourceWithRawResponse",
+    "AsyncDeletedResourceWithRawResponse",
+    "DeletedResourceWithStreamingResponse",
+    "AsyncDeletedResourceWithStreamingResponse",
     "AssistantsResource",
     "AsyncAssistantsResource",
     "AssistantsResourceWithRawResponse",

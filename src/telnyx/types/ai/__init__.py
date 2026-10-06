@@ -43,6 +43,7 @@ from .insight_settings_param import InsightSettingsParam as InsightSettingsParam
 from .mcp_server_list_params import McpServerListParams as McpServerListParams
 from .privacy_settings_param import PrivacySettingsParam as PrivacySettingsParam
 from .assistant_create_params import AssistantCreateParams as AssistantCreateParams
+from .assistant_delete_params import AssistantDeleteParams as AssistantDeleteParams
 from .assistant_update_params import AssistantUpdateParams as AssistantUpdateParams
 from .audio_transcribe_params import AudioTranscribeParams as AudioTranscribeParams
 from .cluster_retrieve_params import ClusterRetrieveParams as ClusterRetrieveParams
