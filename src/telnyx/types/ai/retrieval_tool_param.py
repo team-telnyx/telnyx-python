@@ -4,12 +4,13 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from .bucket_ids_param import BucketIDsParam
-
 __all__ = ["RetrievalToolParam"]
 
 
 class RetrievalToolParam(TypedDict, total=False):
-    retrieval: Required[BucketIDsParam]
+    retrieval: Required["BucketIDsParam"]
 
     type: Required[Literal["retrieval"]]
+
+
+from .bucket_ids_param import BucketIDsParam

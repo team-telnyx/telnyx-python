@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .whatsapp_message_content_param import WhatsappMessageContentParam
 
 __all__ = ["MessageWhatsappParams"]
 
@@ -17,7 +16,7 @@ class MessageWhatsappParams(TypedDict, total=False):
     to: Required[str]
     """Phone number in +E.164 format"""
 
-    whatsapp_message: Required[WhatsappMessageContentParam]
+    whatsapp_message: Required["WhatsappMessageContentParam"]
 
     messaging_profile_id: str
     """Messaging profile ID - required if the 'from' number is not SMS-enabled"""
@@ -27,3 +26,6 @@ class MessageWhatsappParams(TypedDict, total=False):
 
     webhook_url: str
     """The URL where webhooks related to this message will be sent."""
+
+
+from .whatsapp_message_content_param import WhatsappMessageContentParam

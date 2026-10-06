@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .quality import Quality
 
 __all__ = ["FaxCreateParams"]
 
@@ -62,7 +61,7 @@ class FaxCreateParams(TypedDict, total=False):
     preview_format: Literal["pdf", "tiff"]
     """The format for the preview file in case the `store_preview` is `true`."""
 
-    quality: Quality
+    quality: "Quality"
     """The quality of the fax.
 
     The `ultra` settings provides the highest quality available, but also present
@@ -87,3 +86,6 @@ class FaxCreateParams(TypedDict, total=False):
     Use this field to override the URL to which Telnyx will send subsequent webhooks
     for this fax.
     """
+
+
+from .quality import Quality

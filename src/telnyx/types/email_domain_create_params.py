@@ -5,16 +5,13 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from .email_dmarc_policy_param import EmailDmarcPolicyParam
-from .domains_tracking_settings_param import DomainsTrackingSettingsParam
-
 __all__ = ["EmailDomainCreateParams"]
 
 
 class EmailDomainCreateParams(TypedDict, total=False):
     domain: Required[str]
 
-    dmarc_policy: Optional[EmailDmarcPolicyParam]
+    dmarc_policy: Optional["EmailDmarcPolicyParam"]
     """DMARC policy for a sending domain.
 
     Drives the recommended \\__dmarc.<domain> TXT record. DMARC is advisory and never
@@ -25,4 +22,8 @@ class EmailDomainCreateParams(TypedDict, total=False):
     inbound_enabled: bool
     """Enable inbound routing for this domain"""
 
-    tracking: DomainsTrackingSettingsParam
+    tracking: "DomainsTrackingSettingsParam"
+
+
+from .email_dmarc_policy_param import EmailDmarcPolicyParam
+from .domains_tracking_settings_param import DomainsTrackingSettingsParam

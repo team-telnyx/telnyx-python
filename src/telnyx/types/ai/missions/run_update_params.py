@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import Required, TypedDict
 
-from .run_status import RunStatus
-
 __all__ = ["RunUpdateParams"]
 
 
@@ -21,4 +19,7 @@ class RunUpdateParams(TypedDict, total=False):
 
     result_summary: str
 
-    status: RunStatus
+    status: "RunStatus"
+
+
+from .run_status import RunStatus

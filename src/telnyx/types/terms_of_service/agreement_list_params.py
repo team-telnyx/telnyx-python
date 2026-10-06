@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .tos_product_type import TosProductType
 
 __all__ = ["AgreementListParams"]
 
@@ -20,9 +19,12 @@ class AgreementListParams(TypedDict, total=False):
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
 
-    product_type: TosProductType
+    product_type: "TosProductType"
     """Optional filter.
 
     Omit to list the user's agreements for **every** product (branded_calling and
     number_reputation); pass a value to return only that product's agreements.
     """
+
+
+from .tos_product_type import TosProductType

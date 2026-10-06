@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import TypedDict
 
-from .rollout_slot_param import RolloutSlotParam
-
 __all__ = ["ServeParam"]
 
 
@@ -19,6 +17,9 @@ class ServeParam(TypedDict, total=False):
       less than 100, with the leftover routing to the main version
     """
 
-    rollout: Iterable[RolloutSlotParam]
+    rollout: Iterable["RolloutSlotParam"]
 
     version_id: str
+
+
+from .rollout_slot_param import RolloutSlotParam

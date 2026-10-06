@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .loopcount_param import LoopcountParam
-
 __all__ = ["ActionStartPlaybackParams"]
 
 
@@ -39,7 +37,7 @@ class ActionStartPlaybackParams(TypedDict, total=False):
     `call_control_id`.
     """
 
-    loop: LoopcountParam
+    loop: "LoopcountParam"
     """The number of times the audio file should be played.
 
     If supplied, the value must be an integer between 1 and 100, or the special
@@ -81,3 +79,6 @@ class ActionStartPlaybackParams(TypedDict, total=False):
 
     If supplied, the value must be either `self`, `opposite` or `both`.
     """
+
+
+from .loopcount_param import LoopcountParam

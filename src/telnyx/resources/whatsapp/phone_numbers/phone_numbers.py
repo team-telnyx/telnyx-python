@@ -18,6 +18,14 @@ from ...._response import (
 )
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
+from .calling_routing import (
+    CallingRoutingResource,
+    AsyncCallingRoutingResource,
+    CallingRoutingResourceWithRawResponse,
+    AsyncCallingRoutingResourceWithRawResponse,
+    CallingRoutingResourceWithStreamingResponse,
+    AsyncCallingRoutingResourceWithStreamingResponse,
+)
 from .profile.profile import (
     ProfileResource,
     AsyncProfileResource,
@@ -76,6 +84,11 @@ class PhoneNumbersResource(SyncAPIResource):
     def conversational_components(self) -> ConversationalComponentsResource:
         """Manage Whatsapp phone numbers"""
         return ConversationalComponentsResource(self._client)
+
+    @cached_property
+    def calling_routing(self) -> CallingRoutingResource:
+        """Manage Whatsapp phone numbers"""
+        return CallingRoutingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> PhoneNumbersResourceWithRawResponse:
@@ -388,6 +401,11 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
     def conversational_components(self) -> AsyncConversationalComponentsResource:
         """Manage Whatsapp phone numbers"""
         return AsyncConversationalComponentsResource(self._client)
+
+    @cached_property
+    def calling_routing(self) -> AsyncCallingRoutingResource:
+        """Manage Whatsapp phone numbers"""
+        return AsyncCallingRoutingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncPhoneNumbersResourceWithRawResponse:
@@ -724,6 +742,11 @@ class PhoneNumbersResourceWithRawResponse:
         """Manage Whatsapp phone numbers"""
         return ConversationalComponentsResourceWithRawResponse(self._phone_numbers.conversational_components)
 
+    @cached_property
+    def calling_routing(self) -> CallingRoutingResourceWithRawResponse:
+        """Manage Whatsapp phone numbers"""
+        return CallingRoutingResourceWithRawResponse(self._phone_numbers.calling_routing)
+
 
 class AsyncPhoneNumbersResourceWithRawResponse:
     def __init__(self, phone_numbers: AsyncPhoneNumbersResource) -> None:
@@ -765,6 +788,11 @@ class AsyncPhoneNumbersResourceWithRawResponse:
     def conversational_components(self) -> AsyncConversationalComponentsResourceWithRawResponse:
         """Manage Whatsapp phone numbers"""
         return AsyncConversationalComponentsResourceWithRawResponse(self._phone_numbers.conversational_components)
+
+    @cached_property
+    def calling_routing(self) -> AsyncCallingRoutingResourceWithRawResponse:
+        """Manage Whatsapp phone numbers"""
+        return AsyncCallingRoutingResourceWithRawResponse(self._phone_numbers.calling_routing)
 
 
 class PhoneNumbersResourceWithStreamingResponse:
@@ -808,6 +836,11 @@ class PhoneNumbersResourceWithStreamingResponse:
         """Manage Whatsapp phone numbers"""
         return ConversationalComponentsResourceWithStreamingResponse(self._phone_numbers.conversational_components)
 
+    @cached_property
+    def calling_routing(self) -> CallingRoutingResourceWithStreamingResponse:
+        """Manage Whatsapp phone numbers"""
+        return CallingRoutingResourceWithStreamingResponse(self._phone_numbers.calling_routing)
+
 
 class AsyncPhoneNumbersResourceWithStreamingResponse:
     def __init__(self, phone_numbers: AsyncPhoneNumbersResource) -> None:
@@ -849,3 +882,8 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
     def conversational_components(self) -> AsyncConversationalComponentsResourceWithStreamingResponse:
         """Manage Whatsapp phone numbers"""
         return AsyncConversationalComponentsResourceWithStreamingResponse(self._phone_numbers.conversational_components)
+
+    @cached_property
+    def calling_routing(self) -> AsyncCallingRoutingResourceWithStreamingResponse:
+        """Manage Whatsapp phone numbers"""
+        return AsyncCallingRoutingResourceWithStreamingResponse(self._phone_numbers.calling_routing)

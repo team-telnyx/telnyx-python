@@ -6,7 +6,6 @@ from typing import Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
-from .inbox_action_email_address_input_param import InboxActionEmailAddressInputParam
 
 __all__ = ["InboxActionRecipientInputParam", "InboxRecipientAddress"]
 
@@ -18,5 +17,7 @@ class InboxRecipientAddress(TypedDict, total=False):
 
 
 InboxActionRecipientInputParam: TypeAlias = Union[
-    str, InboxRecipientAddress, SequenceNotStr[InboxActionEmailAddressInputParam]
+    str, InboxRecipientAddress, SequenceNotStr["InboxActionEmailAddressInputParam"]
 ]
+
+from .inbox_action_email_address_input_param import InboxActionEmailAddressInputParam

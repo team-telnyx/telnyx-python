@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .email_domain_type import EmailDomainType
-from .email_domain_status import EmailDomainStatus
 
 __all__ = ["EmailDomainListParams"]
 
@@ -18,13 +16,13 @@ class EmailDomainListParams(TypedDict, total=False):
     filter_profile_id: Annotated[str, PropertyInfo(alias="filter[profile_id]")]
     """Filter by profile UUID"""
 
-    filter_status: Annotated[EmailDomainStatus, PropertyInfo(alias="filter[status]")]
+    filter_status: Annotated["EmailDomainStatus", PropertyInfo(alias="filter[status]")]
     """
     Filter domains by verification status: pending, verifying, verified, failed,
     degraded, or suspended.
     """
 
-    filter_type: Annotated[EmailDomainType, PropertyInfo(alias="filter[type]")]
+    filter_type: Annotated["EmailDomainType", PropertyInfo(alias="filter[type]")]
     """Filter domains by type: custom, shared, or shared_inbound."""
 
     filter_usable_for_inbound: Annotated[bool, PropertyInfo(alias="filter[usable_for_inbound]")]
@@ -47,3 +45,7 @@ class EmailDomainListParams(TypedDict, total=False):
 
     sort: Literal["created_at", "-created_at", "domain", "-domain"]
     """Field to sort by. Prefix with `-` for descending order."""
+
+
+from .email_domain_type import EmailDomainType
+from .email_domain_status import EmailDomainStatus

@@ -5,10 +5,6 @@ from __future__ import annotations
 from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
-from .node_position_param import NodePositionParam
-from .external_llm_req_param import ExternalLlmReqParam
-from .transcription_settings_param import TranscriptionSettingsParam
-from .inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
 
 __all__ = ["FlowNodeReqParam"]
 
@@ -26,7 +22,7 @@ class FlowNodeReqParam(TypedDict, total=False):
     instructions: Required[str]
     """Prompt that drives the LLM while this node is active. Required."""
 
-    external_llm: ExternalLlmReqParam
+    external_llm: "ExternalLlmReqParam"
     """Override for `Assistant.external_llm` while this node is active.
 
     Use this to route a node's turns to a different external LLM (different `model`,
@@ -60,7 +56,7 @@ class FlowNodeReqParam(TypedDict, total=False):
     name: str
     """Optional human-readable label, displayed in authoring UIs."""
 
-    position: NodePositionParam
+    position: "NodePositionParam"
     """Optional canvas coordinates used by authoring UIs to lay out the graph.
 
     Ignored by the runtime; round-trips so frontends can persist graph layout across
@@ -82,7 +78,7 @@ class FlowNodeReqParam(TypedDict, total=False):
     null.
     """
 
-    transcription: TranscriptionSettingsParam
+    transcription: "TranscriptionSettingsParam"
     """Per-node transcription override (model/language/region).
 
     Unset fields cascade from the assistant-level transcription.
@@ -92,12 +88,18 @@ class FlowNodeReqParam(TypedDict, total=False):
     """Node kind discriminator.
 
     `prompt` (default) is an LLM-driven step; `tool` is a standalone tool execution
-    (see `ToolNodeReq`).
+    and `speak` a scripted message (see `ToolNodeReq` / `SpeakNodeReq`).
     """
 
-    voice_settings: InferenceEmbeddingVoiceSettingsParam
+    voice_settings: "InferenceEmbeddingVoiceSettingsParam"
     """Per-node voice override.
 
     Only fields set here override the assistant-level voice settings; unset fields
     cascade.
     """
+
+
+from .node_position_param import NodePositionParam
+from .external_llm_req_param import ExternalLlmReqParam
+from .transcription_settings_param import TranscriptionSettingsParam
+from .inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam

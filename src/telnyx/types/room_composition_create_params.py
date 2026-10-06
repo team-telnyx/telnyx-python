@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import TypedDict
 
-from .video_region_param import VideoRegionParam
-
 __all__ = ["RoomCompositionCreateParams"]
 
 
@@ -24,7 +22,7 @@ class RoomCompositionCreateParams(TypedDict, total=False):
     session_id: str
     """id of the room session associated with the room composition."""
 
-    video_layout: Dict[str, VideoRegionParam]
+    video_layout: Dict[str, "VideoRegionParam"]
     """Describes the video layout of the room composition in terms of regions."""
 
     webhook_event_failover_url: str
@@ -41,3 +39,6 @@ class RoomCompositionCreateParams(TypedDict, total=False):
 
     webhook_timeout_secs: int
     """Specifies how many seconds to wait before timing out a webhook."""
+
+
+from .video_region_param import VideoRegionParam

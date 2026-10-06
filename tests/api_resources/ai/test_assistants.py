@@ -15,6 +15,7 @@ from telnyx.types.ai import (
     AssistantChatResponse,
     AssistantDeleteResponse,
     AssistantSendSMSResponse,
+    AssistantWhatsappResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -222,6 +223,23 @@ class TestAssistants:
                     },
                 ],
             },
+            delegation_settings={
+                "enabled": True,
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "instructions": "instructions",
+                "llm_api_key_ref": "llm_api_key_ref",
+                "mode": "telnyx",
+                "model": "model",
+                "speak_results": True,
+            },
             description="description",
             dynamic_variables={"foo": "bar"},
             dynamic_variables_webhook_timeout_ms=1,
@@ -382,6 +400,11 @@ class TestAssistants:
                 "temperature": 0,
                 "use_speaker_boost": True,
                 "voice_speed": 0,
+            },
+            websocket_settings={
+                "auth_ref": "auth_ref",
+                "enabled": True,
+                "url": "url",
             },
             widget_settings={
                 "agent_thinking_text": "agent_thinking_text",
@@ -682,6 +705,23 @@ class TestAssistants:
                     },
                 ],
             },
+            delegation_settings={
+                "enabled": True,
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "instructions": "instructions",
+                "llm_api_key_ref": "llm_api_key_ref",
+                "mode": "telnyx",
+                "model": "model",
+                "speak_results": True,
+            },
             description="description",
             dynamic_variables={"foo": "bar"},
             dynamic_variables_webhook_timeout_ms=1,
@@ -847,6 +887,11 @@ class TestAssistants:
                 "use_speaker_boost": True,
                 "voice_speed": 0,
             },
+            websocket_settings={
+                "auth_ref": "auth_ref",
+                "enabled": True,
+                "url": "url",
+            },
             widget_settings={
                 "agent_thinking_text": "agent_thinking_text",
                 "audio_visualizer_config": {
@@ -932,7 +977,16 @@ class TestAssistants:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
+        )
+        assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.delete(
+            assistant_id="assistant_id",
+            hard_delete=True,
         )
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
@@ -940,7 +994,7 @@ class TestAssistants:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         )
 
         assert response.is_closed is True
@@ -952,7 +1006,7 @@ class TestAssistants:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -967,7 +1021,7 @@ class TestAssistants:
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             client.ai.assistants.with_raw_response.delete(
-                "",
+                assistant_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -1175,6 +1229,48 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_restore(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.restore(
+            "assistant_id",
+        )
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_restore(self, client: Telnyx) -> None:
+        response = client.ai.assistants.with_raw_response.restore(
+            "assistant_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = response.parse()
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_restore(self, client: Telnyx) -> None:
+        with client.ai.assistants.with_streaming_response.restore(
+            "assistant_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = response.parse()
+            assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_restore(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            client.ai.assistants.with_raw_response.restore(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_send_sms(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.send_sms(
             assistant_id="assistant_id",
@@ -1235,6 +1331,73 @@ class TestAssistants:
                 assistant_id="",
                 from_="From",
                 to="To",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_whatsapp(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_whatsapp_with_all_params(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+            conversation_metadata={"order_id": "A1"},
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_whatsapp(self, client: Telnyx) -> None:
+        response = client.ai.assistants.with_raw_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = response.parse()
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_whatsapp(self, client: Telnyx) -> None:
+        with client.ai.assistants.with_streaming_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = response.parse()
+            assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_whatsapp(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            client.ai.assistants.with_raw_response.whatsapp(
+                assistant_id="",
+                content="Send the login verification code 482913 to the customer.",
+                from_="+13125550001",
+                to="+13125550002",
             )
 
 
@@ -1442,6 +1605,23 @@ class TestAsyncAssistants:
                     },
                 ],
             },
+            delegation_settings={
+                "enabled": True,
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "instructions": "instructions",
+                "llm_api_key_ref": "llm_api_key_ref",
+                "mode": "telnyx",
+                "model": "model",
+                "speak_results": True,
+            },
             description="description",
             dynamic_variables={"foo": "bar"},
             dynamic_variables_webhook_timeout_ms=1,
@@ -1602,6 +1782,11 @@ class TestAsyncAssistants:
                 "temperature": 0,
                 "use_speaker_boost": True,
                 "voice_speed": 0,
+            },
+            websocket_settings={
+                "auth_ref": "auth_ref",
+                "enabled": True,
+                "url": "url",
             },
             widget_settings={
                 "agent_thinking_text": "agent_thinking_text",
@@ -1902,6 +2087,23 @@ class TestAsyncAssistants:
                     },
                 ],
             },
+            delegation_settings={
+                "enabled": True,
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "instructions": "instructions",
+                "llm_api_key_ref": "llm_api_key_ref",
+                "mode": "telnyx",
+                "model": "model",
+                "speak_results": True,
+            },
             description="description",
             dynamic_variables={"foo": "bar"},
             dynamic_variables_webhook_timeout_ms=1,
@@ -2067,6 +2269,11 @@ class TestAsyncAssistants:
                 "use_speaker_boost": True,
                 "voice_speed": 0,
             },
+            websocket_settings={
+                "auth_ref": "auth_ref",
+                "enabled": True,
+                "url": "url",
+            },
             widget_settings={
                 "agent_thinking_text": "agent_thinking_text",
                 "audio_visualizer_config": {
@@ -2152,7 +2359,16 @@ class TestAsyncAssistants:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
+        )
+        assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.delete(
+            assistant_id="assistant_id",
+            hard_delete=True,
         )
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
@@ -2160,7 +2376,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         )
 
         assert response.is_closed is True
@@ -2172,7 +2388,7 @@ class TestAsyncAssistants:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.delete(
-            "assistant_id",
+            assistant_id="assistant_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2187,7 +2403,7 @@ class TestAsyncAssistants:
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             await async_client.ai.assistants.with_raw_response.delete(
-                "",
+                assistant_id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -2395,6 +2611,48 @@ class TestAsyncAssistants:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_restore(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.restore(
+            "assistant_id",
+        )
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_restore(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.assistants.with_raw_response.restore(
+            "assistant_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = await response.parse()
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_restore(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.assistants.with_streaming_response.restore(
+            "assistant_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = await response.parse()
+            assert_matches_type(InferenceEmbedding, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_restore(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            await async_client.ai.assistants.with_raw_response.restore(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_method_send_sms(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.send_sms(
             assistant_id="assistant_id",
@@ -2455,4 +2713,71 @@ class TestAsyncAssistants:
                 assistant_id="",
                 from_="From",
                 to="To",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_whatsapp_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+            conversation_metadata={"order_id": "A1"},
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
+        )
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.assistants.with_raw_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = await response.parse()
+        assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.assistants.with_streaming_response.whatsapp(
+            assistant_id="assistant_id",
+            content="Send the login verification code 482913 to the customer.",
+            from_="+13125550001",
+            to="+13125550002",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = await response.parse()
+            assert_matches_type(AssistantWhatsappResponse, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_whatsapp(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            await async_client.ai.assistants.with_raw_response.whatsapp(
+                assistant_id="",
+                content="Send the login verification code 482913 to the customer.",
+                from_="+13125550001",
+                to="+13125550002",
             )

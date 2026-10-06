@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam
-
 __all__ = ["StartSpeakingPlanParam"]
 
 
@@ -15,7 +13,7 @@ class StartSpeakingPlanParam(TypedDict, total=False):
     These thresholds primarily apply to non turn-taking transcription models. For turn-taking models like `deepgram/flux`, end-of-turn detection is driven by the transcription end-of-turn settings under `transcription.settings` instead.
     """
 
-    transcription_endpointing_plan: TranscriptionEndpointingPlanParam
+    transcription_endpointing_plan: "TranscriptionEndpointingPlanParam"
     """Endpointing thresholds used to decide when the user has finished speaking.
 
     Applies to non turn-taking transcription models. For `deepgram/flux`, use
@@ -25,3 +23,6 @@ class StartSpeakingPlanParam(TypedDict, total=False):
 
     wait_seconds: float
     """Minimum seconds to wait before the assistant starts speaking."""
+
+
+from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam

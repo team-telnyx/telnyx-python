@@ -6,7 +6,6 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
-from .update_voice_settings_param import UpdateVoiceSettingsParam
 
 __all__ = ["JobUpdateBatchParams", "Filter", "FilterVoiceConnectionName"]
 
@@ -64,7 +63,7 @@ class JobUpdateBatchParams(TypedDict, total=False):
     tags: SequenceNotStr[str]
     """A list of user-assigned tags to help organize phone numbers."""
 
-    voice: UpdateVoiceSettingsParam
+    voice: "UpdateVoiceSettingsParam"
 
 
 class FilterVoiceConnectionName(TypedDict, total=False):
@@ -142,3 +141,6 @@ class Filter(TypedDict, total=False):
         Literal["pay-per-minute", "channel"], PropertyInfo(alias="voice.usage_payment_method")
     ]
     """Filter by usage_payment_method."""
+
+
+from .update_voice_settings_param import UpdateVoiceSettingsParam

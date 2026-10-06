@@ -224,14 +224,16 @@ class Webhook(_WebhookReservedKeywords, total=False):
     dot-notation path to the value in the response body.
     """
 
-    timeout_ms: int
-    """The maximum number of milliseconds to wait for the webhook to respond.
-
-    Only applicable when async is false.
-    """
-
 
 class InferenceEmbeddingWebhookToolParamsParam(TypedDict, total=False):
     type: Required[Literal["webhook"]]
 
     webhook: Required[Webhook]
+
+    timeout_ms: int
+    """
+    The maximum number of milliseconds to wait for the webhook to respond before the
+    tool call is aborted. Set this at the tool level, as a sibling of `type` — a
+    `timeout_ms` nested inside the `webhook` object is stored but not applied, and
+    the tool runs at this default instead. Applies when `webhook.async` is false.
+    """

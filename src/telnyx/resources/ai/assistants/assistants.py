@@ -23,6 +23,14 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
+from .deleted import (
+    DeletedResource,
+    AsyncDeletedResource,
+    DeletedResourceWithRawResponse,
+    AsyncDeletedResourceWithRawResponse,
+    DeletedResourceWithStreamingResponse,
+    AsyncDeletedResourceWithStreamingResponse,
+)
 from .versions import (
     VersionsResource,
     AsyncVersionsResource,
@@ -37,10 +45,12 @@ from ...._compat import cached_property
 from ....types.ai import (
     assistant_chat_params,
     assistant_create_params,
+    assistant_delete_params,
     assistant_update_params,
     assistant_imports_params,
     assistant_retrieve_params,
     assistant_send_sms_params,
+    assistant_whatsapp_params,
 )
 from .tests.tests import (
     TestsResource,
@@ -94,12 +104,15 @@ from ....types.ai.assistant_chat_response import AssistantChatResponse
 from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
+from ....types.ai.websocket_settings_param import WebsocketSettingsParam
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
+from ....types.ai.delegation_settings_param import DelegationSettingsParam
 from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
 from ....types.ai.assistant_a2_a_agent_param import AssistantA2AAgentParam
 from ....types.ai.assistant_mcp_server_param import AssistantMcpServerParam
 from ....types.ai.assistant_integration_param import AssistantIntegrationParam
 from ....types.ai.assistant_send_sms_response import AssistantSendSMSResponse
+from ....types.ai.assistant_whatsapp_response import AssistantWhatsappResponse
 from ....types.ai.conversation_flow_req_param import ConversationFlowReqParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
 from ....types.ai.post_conversation_settings_req_param import PostConversationSettingsReqParam
@@ -148,6 +161,11 @@ class AssistantsResource(SyncAPIResource):
         return InstructionsResource(self._client)
 
     @cached_property
+    def deleted(self) -> DeletedResource:
+        """Configure AI assistant specifications"""
+        return DeletedResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AssistantsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -173,6 +191,7 @@ class AssistantsResource(SyncAPIResource):
         name: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -197,6 +216,7 @@ class AssistantsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -228,6 +248,14 @@ class AssistantsResource(SyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -297,6 +325,12 @@ class AssistantsResource(SyncAPIResource):
               assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
               endpoints.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -316,6 +350,7 @@ class AssistantsResource(SyncAPIResource):
                     "name": name,
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -340,6 +375,7 @@ class AssistantsResource(SyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_create_params.AssistantCreateParams,
@@ -413,6 +449,7 @@ class AssistantsResource(SyncAPIResource):
         *,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -441,6 +478,7 @@ class AssistantsResource(SyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -470,6 +508,14 @@ class AssistantsResource(SyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -558,6 +604,12 @@ class AssistantsResource(SyncAPIResource):
 
           version_name: Human-readable name for the assistant version.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -576,6 +628,7 @@ class AssistantsResource(SyncAPIResource):
                 {
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -604,6 +657,7 @@ class AssistantsResource(SyncAPIResource):
                     "transcription": transcription,
                     "version_name": version_name,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_update_params.AssistantUpdateParams,
@@ -637,6 +691,7 @@ class AssistantsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
+        hard_delete: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -647,7 +702,24 @@ class AssistantsResource(SyncAPIResource):
         """
         Delete an AI Assistant by `assistant_id`.
 
+        By default this performs a soft delete: the assistant moves to the Recently
+        Deleted list and stays restorable for 30 days, after which it is permanently
+        deleted automatically. The assistant's versions and TeXML application are
+        preserved during the retention window.
+
+        Pass `hard_delete=true` to skip the retention window and permanently delete the
+        assistant immediately. A hard delete erases the assistant and all of its
+        versions, and deletes its TeXML application unless phone numbers are still
+        assigned to it. It does not delete conversations, recordings, shared tools the
+        assistant referenced, or knowledge-base embeddings.
+
+        Deletion fails with `400` if other assistants reference this one through a
+        handoff tool or a conversation-flow edge — remove those references first.
+
         Args:
+          hard_delete: Permanently delete the assistant immediately instead of soft-deleting it to the
+              Recently Deleted list, where it stays restorable for 30 days.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -661,7 +733,11 @@ class AssistantsResource(SyncAPIResource):
         return self._delete(
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"hard_delete": hard_delete}, assistant_delete_params.AssistantDeleteParams),
             ),
             cast_to=AssistantDeleteResponse,
         )
@@ -855,6 +931,43 @@ class AssistantsResource(SyncAPIResource):
             cast_to=AssistantsList,
         )
 
+    def restore(
+        self,
+        assistant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InferenceEmbedding:
+        """
+        Restore a soft-deleted assistant from the Recently Deleted list.
+
+        The assistant becomes fully active again with its versions and TeXML application
+        as they were at deletion time. Restoring does not re-enable numbers or
+        connections that were released separately after the deletion.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return self._post(
+            path_template("/ai/assistants/{assistant_id}/restore", assistant_id=assistant_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InferenceEmbedding,
+        )
+
     def send_sms(
         self,
         assistant_id: str,
@@ -916,6 +1029,81 @@ class AssistantsResource(SyncAPIResource):
             cast_to=AssistantSendSMSResponse,
         )
 
+    def whatsapp(
+        self,
+        assistant_id: str,
+        *,
+        content: str,
+        from_: str,
+        to: str,
+        conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AssistantWhatsappResponse:
+        """Start a WhatsApp conversation with a customer from the business side.
+
+        This
+        endpoint:
+
+        1. Validates that `from` is a WhatsApp number on your account whose messaging
+           profile has this assistant configured
+        2. Creates a new `whatsapp_chat` conversation with the provided metadata
+        3. Asks the assistant to pick one of its approved WhatsApp templates and fill
+           its variables from `content`
+        4. Sends the template from `from` to `to`
+        5. Returns the conversation ID and the message ID
+
+        When the customer replies, the reply is routed to the same conversation and the
+        assistant answers within the 24-hour customer service window. The assistant
+        needs a `whatsapp_template` tool with at least one approved template, data
+        retention enabled and PII redaction disabled.
+
+        Args:
+          content: Instruction for the assistant, including the values for the template variables,
+              e.g. `Send the login verification code 482913 to the customer.`
+
+          from_: WhatsApp number on your account to send from, in E.164 format. Its messaging
+              profile must have this assistant configured.
+
+          to: Customer to message, as an E.164 phone number or a WhatsApp business-scoped user
+              ID (BSUID).
+
+          conversation_metadata: Metadata stored on the conversation. Keys starting with `telnyx_` and the
+              `assistant_id` key are reserved.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
+        return self._post(
+            path_template("/ai/assistants/{assistant_id}/chat/whatsapp", assistant_id=assistant_id),
+            body=maybe_transform(
+                {
+                    "content": content,
+                    "from_": from_,
+                    "to": to,
+                    "conversation_metadata": conversation_metadata,
+                },
+                assistant_whatsapp_params.AssistantWhatsappParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AssistantWhatsappResponse,
+        )
+
 
 class AsyncAssistantsResource(AsyncAPIResource):
     """Configure AI assistant specifications"""
@@ -956,6 +1144,11 @@ class AsyncAssistantsResource(AsyncAPIResource):
         return AsyncInstructionsResource(self._client)
 
     @cached_property
+    def deleted(self) -> AsyncDeletedResource:
+        """Configure AI assistant specifications"""
+        return AsyncDeletedResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAssistantsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -981,6 +1174,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         name: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -1005,6 +1199,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1036,6 +1231,14 @@ class AsyncAssistantsResource(AsyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -1105,6 +1308,12 @@ class AsyncAssistantsResource(AsyncAPIResource):
               assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
               endpoints.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -1124,6 +1333,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "name": name,
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -1148,6 +1358,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_create_params.AssistantCreateParams,
@@ -1221,6 +1432,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         *,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -1249,6 +1461,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1278,6 +1491,14 @@ class AsyncAssistantsResource(AsyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -1366,6 +1587,12 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           version_name: Human-readable name for the assistant version.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -1384,6 +1611,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                 {
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -1412,6 +1640,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "transcription": transcription,
                     "version_name": version_name,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 assistant_update_params.AssistantUpdateParams,
@@ -1445,6 +1674,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
+        hard_delete: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1455,7 +1685,24 @@ class AsyncAssistantsResource(AsyncAPIResource):
         """
         Delete an AI Assistant by `assistant_id`.
 
+        By default this performs a soft delete: the assistant moves to the Recently
+        Deleted list and stays restorable for 30 days, after which it is permanently
+        deleted automatically. The assistant's versions and TeXML application are
+        preserved during the retention window.
+
+        Pass `hard_delete=true` to skip the retention window and permanently delete the
+        assistant immediately. A hard delete erases the assistant and all of its
+        versions, and deletes its TeXML application unless phone numbers are still
+        assigned to it. It does not delete conversations, recordings, shared tools the
+        assistant referenced, or knowledge-base embeddings.
+
+        Deletion fails with `400` if other assistants reference this one through a
+        handoff tool or a conversation-flow edge — remove those references first.
+
         Args:
+          hard_delete: Permanently delete the assistant immediately instead of soft-deleting it to the
+              Recently Deleted list, where it stays restorable for 30 days.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1469,7 +1716,13 @@ class AsyncAssistantsResource(AsyncAPIResource):
         return await self._delete(
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"hard_delete": hard_delete}, assistant_delete_params.AssistantDeleteParams
+                ),
             ),
             cast_to=AssistantDeleteResponse,
         )
@@ -1663,6 +1916,43 @@ class AsyncAssistantsResource(AsyncAPIResource):
             cast_to=AssistantsList,
         )
 
+    async def restore(
+        self,
+        assistant_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InferenceEmbedding:
+        """
+        Restore a soft-deleted assistant from the Recently Deleted list.
+
+        The assistant becomes fully active again with its versions and TeXML application
+        as they were at deletion time. Restoring does not re-enable numbers or
+        connections that were released separately after the deletion.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return await self._post(
+            path_template("/ai/assistants/{assistant_id}/restore", assistant_id=assistant_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InferenceEmbedding,
+        )
+
     async def send_sms(
         self,
         assistant_id: str,
@@ -1724,6 +2014,81 @@ class AsyncAssistantsResource(AsyncAPIResource):
             cast_to=AssistantSendSMSResponse,
         )
 
+    async def whatsapp(
+        self,
+        assistant_id: str,
+        *,
+        content: str,
+        from_: str,
+        to: str,
+        conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AssistantWhatsappResponse:
+        """Start a WhatsApp conversation with a customer from the business side.
+
+        This
+        endpoint:
+
+        1. Validates that `from` is a WhatsApp number on your account whose messaging
+           profile has this assistant configured
+        2. Creates a new `whatsapp_chat` conversation with the provided metadata
+        3. Asks the assistant to pick one of its approved WhatsApp templates and fill
+           its variables from `content`
+        4. Sends the template from `from` to `to`
+        5. Returns the conversation ID and the message ID
+
+        When the customer replies, the reply is routed to the same conversation and the
+        assistant answers within the 24-hour customer service window. The assistant
+        needs a `whatsapp_template` tool with at least one approved template, data
+        retention enabled and PII redaction disabled.
+
+        Args:
+          content: Instruction for the assistant, including the values for the template variables,
+              e.g. `Send the login verification code 482913 to the customer.`
+
+          from_: WhatsApp number on your account to send from, in E.164 format. Its messaging
+              profile must have this assistant configured.
+
+          to: Customer to message, as an E.164 phone number or a WhatsApp business-scoped user
+              ID (BSUID).
+
+          conversation_metadata: Metadata stored on the conversation. Keys starting with `telnyx_` and the
+              `assistant_id` key are reserved.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
+        return await self._post(
+            path_template("/ai/assistants/{assistant_id}/chat/whatsapp", assistant_id=assistant_id),
+            body=await async_maybe_transform(
+                {
+                    "content": content,
+                    "from_": from_,
+                    "to": to,
+                    "conversation_metadata": conversation_metadata,
+                },
+                assistant_whatsapp_params.AssistantWhatsappParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AssistantWhatsappResponse,
+        )
+
 
 class AssistantsResourceWithRawResponse:
     def __init__(self, assistants: AssistantsResource) -> None:
@@ -1756,8 +2121,14 @@ class AssistantsResourceWithRawResponse:
         self.imports = to_raw_response_wrapper(
             assistants.imports,
         )
+        self.restore = to_raw_response_wrapper(
+            assistants.restore,
+        )
         self.send_sms = to_raw_response_wrapper(
             assistants.send_sms,
+        )
+        self.whatsapp = to_raw_response_wrapper(
+            assistants.whatsapp,
         )
 
     @cached_property
@@ -1795,6 +2166,11 @@ class AssistantsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return InstructionsResourceWithRawResponse(self._assistants.instructions)
 
+    @cached_property
+    def deleted(self) -> DeletedResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return DeletedResourceWithRawResponse(self._assistants.deleted)
+
 
 class AsyncAssistantsResourceWithRawResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -1827,8 +2203,14 @@ class AsyncAssistantsResourceWithRawResponse:
         self.imports = async_to_raw_response_wrapper(
             assistants.imports,
         )
+        self.restore = async_to_raw_response_wrapper(
+            assistants.restore,
+        )
         self.send_sms = async_to_raw_response_wrapper(
             assistants.send_sms,
+        )
+        self.whatsapp = async_to_raw_response_wrapper(
+            assistants.whatsapp,
         )
 
     @cached_property
@@ -1866,6 +2248,11 @@ class AsyncAssistantsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return AsyncInstructionsResourceWithRawResponse(self._assistants.instructions)
 
+    @cached_property
+    def deleted(self) -> AsyncDeletedResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return AsyncDeletedResourceWithRawResponse(self._assistants.deleted)
+
 
 class AssistantsResourceWithStreamingResponse:
     def __init__(self, assistants: AssistantsResource) -> None:
@@ -1898,8 +2285,14 @@ class AssistantsResourceWithStreamingResponse:
         self.imports = to_streamed_response_wrapper(
             assistants.imports,
         )
+        self.restore = to_streamed_response_wrapper(
+            assistants.restore,
+        )
         self.send_sms = to_streamed_response_wrapper(
             assistants.send_sms,
+        )
+        self.whatsapp = to_streamed_response_wrapper(
+            assistants.whatsapp,
         )
 
     @cached_property
@@ -1937,6 +2330,11 @@ class AssistantsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return InstructionsResourceWithStreamingResponse(self._assistants.instructions)
 
+    @cached_property
+    def deleted(self) -> DeletedResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return DeletedResourceWithStreamingResponse(self._assistants.deleted)
+
 
 class AsyncAssistantsResourceWithStreamingResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -1969,8 +2367,14 @@ class AsyncAssistantsResourceWithStreamingResponse:
         self.imports = async_to_streamed_response_wrapper(
             assistants.imports,
         )
+        self.restore = async_to_streamed_response_wrapper(
+            assistants.restore,
+        )
         self.send_sms = async_to_streamed_response_wrapper(
             assistants.send_sms,
+        )
+        self.whatsapp = async_to_streamed_response_wrapper(
+            assistants.whatsapp,
         )
 
     @cached_property
@@ -2007,3 +2411,8 @@ class AsyncAssistantsResourceWithStreamingResponse:
     def instructions(self) -> AsyncInstructionsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return AsyncInstructionsResourceWithStreamingResponse(self._assistants.instructions)
+
+    @cached_property
+    def deleted(self) -> AsyncDeletedResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return AsyncDeletedResourceWithStreamingResponse(self._assistants.deleted)

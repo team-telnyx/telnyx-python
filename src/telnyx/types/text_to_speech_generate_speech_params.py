@@ -268,8 +268,9 @@ class Telnyx(TypedDict, total=False):
     voice_speed: float
     """Voice speed multiplier.
 
-    Applies to all models except `Bayan` and `Sukhan`, which don't support it.
-    Range: 0.5 to 2.0.
+    Telnyx `Ultra` voices accept values from 0.6 to 1.5 — requests outside that
+    range are rejected by the synthesis engine. `KokoroTTS` and `Qwen3TTS` accept
+    the field but do not apply it. `Bayan` and `Sukhan` don't support it.
     """
 
     volume: float

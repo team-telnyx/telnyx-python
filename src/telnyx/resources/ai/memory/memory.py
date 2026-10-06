@@ -19,7 +19,6 @@ __all__ = ["MemoryResource", "AsyncMemoryResource"]
 class MemoryResource(SyncAPIResource):
     @cached_property
     def namespaces(self) -> NamespacesResource:
-        """Whether a write has finished."""
         return NamespacesResource(self._client)
 
     @cached_property
@@ -45,7 +44,6 @@ class MemoryResource(SyncAPIResource):
 class AsyncMemoryResource(AsyncAPIResource):
     @cached_property
     def namespaces(self) -> AsyncNamespacesResource:
-        """Whether a write has finished."""
         return AsyncNamespacesResource(self._client)
 
     @cached_property
@@ -74,7 +72,6 @@ class MemoryResourceWithRawResponse:
 
     @cached_property
     def namespaces(self) -> NamespacesResourceWithRawResponse:
-        """Whether a write has finished."""
         return NamespacesResourceWithRawResponse(self._memory.namespaces)
 
 
@@ -84,7 +81,6 @@ class AsyncMemoryResourceWithRawResponse:
 
     @cached_property
     def namespaces(self) -> AsyncNamespacesResourceWithRawResponse:
-        """Whether a write has finished."""
         return AsyncNamespacesResourceWithRawResponse(self._memory.namespaces)
 
 
@@ -94,7 +90,6 @@ class MemoryResourceWithStreamingResponse:
 
     @cached_property
     def namespaces(self) -> NamespacesResourceWithStreamingResponse:
-        """Whether a write has finished."""
         return NamespacesResourceWithStreamingResponse(self._memory.namespaces)
 
 
@@ -104,5 +99,4 @@ class AsyncMemoryResourceWithStreamingResponse:
 
     @cached_property
     def namespaces(self) -> AsyncNamespacesResourceWithStreamingResponse:
-        """Whether a write has finished."""
         return AsyncNamespacesResourceWithStreamingResponse(self._memory.namespaces)

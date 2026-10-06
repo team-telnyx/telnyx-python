@@ -5,13 +5,11 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .reference_input_param import ReferenceInputParam
-
 __all__ = ["ReferenceCreateParams"]
 
 
 class ReferenceCreateParams(TypedDict, total=False):
-    business_references: Required[Iterable[ReferenceInputParam]]
+    business_references: Required[Iterable["ReferenceInputParam"]]
     """Exactly two business references.
 
     Array order determines each one's slot: the first entry becomes slot 1 and the
@@ -23,9 +21,12 @@ class ReferenceCreateParams(TypedDict, total=False):
     client.
     """
 
-    financial_reference: Required[ReferenceInputParam]
+    financial_reference: Required["ReferenceInputParam"]
     """One reference supplied at submit.
 
     The reference type is implied by the field that carries it (business_references
     vs financial_reference).
     """
+
+
+from .reference_input_param import ReferenceInputParam

@@ -6,8 +6,6 @@ from typing import Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
-from .inbox_action_recipient_input_param import InboxActionRecipientInputParam
-from .inbox_action_email_address_input_param import InboxActionEmailAddressInputParam
 
 __all__ = ["ActionForwardParams", "To", "ToInboxRecipientAddress"]
 
@@ -22,14 +20,14 @@ class ActionForwardParams(TypedDict, total=False):
     `name`.
     """
 
-    bcc: InboxActionRecipientInputParam
+    bcc: "InboxActionRecipientInputParam"
     """One recipient or a recipient array.
 
     Each recipient may be an email string or an object with `email` and optional
     `name`.
     """
 
-    cc: InboxActionRecipientInputParam
+    cc: "InboxActionRecipientInputParam"
     """One recipient or a recipient array.
 
     Each recipient may be an email string or an object with `email` and optional
@@ -55,4 +53,7 @@ class ToInboxRecipientAddress(TypedDict, total=False):
     name: str
 
 
-To: TypeAlias = Union[str, ToInboxRecipientAddress, SequenceNotStr[InboxActionEmailAddressInputParam]]
+To: TypeAlias = Union[str, ToInboxRecipientAddress, SequenceNotStr["InboxActionEmailAddressInputParam"]]
+
+from .inbox_action_recipient_input_param import InboxActionRecipientInputParam
+from .inbox_action_email_address_input_param import InboxActionEmailAddressInputParam

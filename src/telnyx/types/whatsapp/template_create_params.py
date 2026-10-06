@@ -5,12 +5,6 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .whatsapp_template_body_component_param import WhatsappTemplateBodyComponentParam
-from .whatsapp_template_footer_component_param import WhatsappTemplateFooterComponentParam
-from .whatsapp_template_header_component_param import WhatsappTemplateHeaderComponentParam
-from .whatsapp_template_buttons_component_param import WhatsappTemplateButtonsComponentParam
-from .whatsapp_template_carousel_component_param import WhatsappTemplateCarouselComponentParam
-
 __all__ = ["TemplateCreateParams", "Component"]
 
 
@@ -37,9 +31,15 @@ class TemplateCreateParams(TypedDict, total=False):
 
 
 Component: TypeAlias = Union[
-    WhatsappTemplateHeaderComponentParam,
-    WhatsappTemplateBodyComponentParam,
-    WhatsappTemplateFooterComponentParam,
-    WhatsappTemplateButtonsComponentParam,
-    WhatsappTemplateCarouselComponentParam,
+    "WhatsappTemplateHeaderComponentParam",
+    "WhatsappTemplateBodyComponentParam",
+    "WhatsappTemplateFooterComponentParam",
+    "WhatsappTemplateButtonsComponentParam",
+    "WhatsappTemplateCarouselComponentParam",
 ]
+
+from .whatsapp_template_body_component_param import WhatsappTemplateBodyComponentParam
+from .whatsapp_template_footer_component_param import WhatsappTemplateFooterComponentParam
+from .whatsapp_template_header_component_param import WhatsappTemplateHeaderComponentParam
+from .whatsapp_template_buttons_component_param import WhatsappTemplateButtonsComponentParam
+from .whatsapp_template_carousel_component_param import WhatsappTemplateCarouselComponentParam

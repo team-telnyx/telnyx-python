@@ -6,7 +6,6 @@ from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
-from .shared_params.sim_card_status import SimCardStatus
 
 __all__ = ["SimCardUpdateParams", "DataLimit"]
 
@@ -25,7 +24,7 @@ class SimCardUpdateParams(TypedDict, total=False):
     resource.
     """
 
-    status: SimCardStatus
+    status: "SimCardStatus"
 
     tags: SequenceNotStr[str]
     """Searchable tags associated with the SIM card"""
@@ -37,3 +36,6 @@ class DataLimit(TypedDict, total=False):
     amount: str
 
     unit: Literal["MB", "GB"]
+
+
+from .shared_params.sim_card_status import SimCardStatus

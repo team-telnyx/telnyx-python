@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .settings_param import SettingsParam
-
 __all__ = ["AuthenticationProviderCreateParams"]
 
 
@@ -13,7 +11,7 @@ class AuthenticationProviderCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name associated with the authentication provider."""
 
-    settings: Required[SettingsParam]
+    settings: Required["SettingsParam"]
     """The settings associated with the authentication provider."""
 
     short_name: Required[str]
@@ -30,3 +28,6 @@ class AuthenticationProviderCreateParams(TypedDict, total=False):
     The URL for the identity provider metadata file to populate the settings
     automatically. If the settings attribute is provided, that will be used instead.
     """
+
+
+from .settings_param import SettingsParam

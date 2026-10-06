@@ -7,11 +7,6 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .porting_order_misc_param import PortingOrderMiscParam
-from .porting_order_end_user_param import PortingOrderEndUserParam
-from .porting_order_documents_param import PortingOrderDocumentsParam
-from .porting_order_user_feedback_param import PortingOrderUserFeedbackParam
-from .porting_order_phone_number_configuration_param import PortingOrderPhoneNumberConfigurationParam
 
 __all__ = ["PortingOrderUpdateParams", "ActivationSettings", "Messaging", "Requirement"]
 
@@ -23,16 +18,16 @@ class PortingOrderUpdateParams(TypedDict, total=False):
 
     customer_reference: str
 
-    documents: PortingOrderDocumentsParam
+    documents: "PortingOrderDocumentsParam"
     """Can be specified directly or via the `requirement_group_id` parameter."""
 
-    end_user: PortingOrderEndUserParam
+    end_user: "PortingOrderEndUserParam"
 
     messaging: Messaging
 
-    misc: Optional[PortingOrderMiscParam]
+    misc: Optional["PortingOrderMiscParam"]
 
-    phone_number_configuration: PortingOrderPhoneNumberConfigurationParam
+    phone_number_configuration: "PortingOrderPhoneNumberConfigurationParam"
 
     requirement_group_id: str
     """
@@ -46,7 +41,7 @@ class PortingOrderUpdateParams(TypedDict, total=False):
     requirements: Iterable[Requirement]
     """List of requirements for porting numbers."""
 
-    user_feedback: PortingOrderUserFeedbackParam
+    user_feedback: "PortingOrderUserFeedbackParam"
 
     webhook_url: str
 
@@ -76,3 +71,10 @@ class Requirement(TypedDict, total=False):
 
     requirement_type_id: Required[str]
     """Identifies the requirement type that the `field_value` fulfills"""
+
+
+from .porting_order_misc_param import PortingOrderMiscParam
+from .porting_order_end_user_param import PortingOrderEndUserParam
+from .porting_order_documents_param import PortingOrderDocumentsParam
+from .porting_order_user_feedback_param import PortingOrderUserFeedbackParam
+from .porting_order_phone_number_configuration_param import PortingOrderPhoneNumberConfigurationParam

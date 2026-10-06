@@ -36,6 +36,12 @@ class Dir(BaseModel):
 
     created_at: Optional[datetime] = None
 
+    delete_requested_at: Optional[datetime] = None
+    """When deletion was requested.
+
+    Set once the DIR enters `delete_requested`; `null` otherwise.
+    """
+
     display_name: Optional[str] = None
 
     documents: Optional[List[Document]] = None
@@ -71,6 +77,10 @@ class Dir(BaseModel):
     - `infringement_claimed` - a trademark/impersonation claim is open against this
       DIR.
     - `permanently_rejected` - terminal; cannot be resubmitted.
+    - `delete_requested` - you have requested deletion; the DIR still exists and
+      Telnyx is completing the removal (de-registration and cleanup). A verified DIR
+      keeps serving its branded identity, and keeps billing, until the removal
+      finishes.
     """
 
     submitted_at: Optional[datetime] = None
@@ -78,3 +88,9 @@ class Dir(BaseModel):
     updated_at: Optional[datetime] = None
 
     verified_at: Optional[datetime] = None
+
+    webhook_url: Optional[str] = None
+    """
+    `https://` URL that receives webhook notifications for this DIR's
+    compliance-review outcomes. `null` when not subscribed.
+    """

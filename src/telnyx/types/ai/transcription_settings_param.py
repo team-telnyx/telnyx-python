@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .transcription_settings_config_param import TranscriptionSettingsConfigParam
-
 __all__ = ["TranscriptionSettingsParam"]
 
 
@@ -88,4 +86,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     models. Some regions require `api_key_ref`.
     """
 
-    settings: TranscriptionSettingsConfigParam
+    settings: "TranscriptionSettingsConfigParam"
+
+
+from .transcription_settings_config_param import TranscriptionSettingsConfigParam

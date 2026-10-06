@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from .node_position_param import NodePositionParam
-
 __all__ = ["ToolNodeReqParam"]
 
 
@@ -15,7 +13,10 @@ class ToolNodeReqParam(TypedDict, total=False):
     Unlike a prompt node, a tool node has no instructions or model — it
     isn't an LLM turn. Reaching it deterministically runs one shared tool
     (arguments filled from matching dynamic variables by name), then routes
-    on the result via outgoing `tool_result` edges.
+    via outgoing `llm` / `expression` edges, with exactly one `default`
+    fallback edge required when the node has any outgoing edges (the
+    tool's outcome is readable as `telnyx_last_tool_status_code` in
+    `expression` conditions).
     """
 
     id: Required[str]
@@ -25,16 +26,27 @@ class ToolNodeReqParam(TypedDict, total=False):
     """ID of the single shared (org-level) tool this node executes.
 
     When the flow reaches this node the tool runs as a deliberate step (no LLM
-    turn); its outgoing `tool_result` edges then route on the outcome. Arguments are
-    filled from the conversation's dynamic variables by name — a dynamic variable
-    whose name matches one of the tool's parameters supplies that argument.
-    Cross-validated against the org's shared tools on write.
+    turn); its outgoing `llm` / `expression` edges route the flow on the tool's
+    outcome. Arguments are filled from the conversation's dynamic variables by name
+    — a dynamic variable whose name matches one of the tool's parameters supplies
+    that argument. Cross-validated against the org's shared tools on write.
+    """
+
+    message: str
+    """
+    Optional message delivered to the user verbatim immediately before the tool
+    executes — an announcement such as 'One moment while I look that up.' No LLM
+    turn and no customer turn: the message is spoken/sent, then the tool runs, in
+    the same deterministic step. `{{variable}}` placeholders are interpolated from
+    the conversation's dynamic variables (unresolved → empty string); the tool's own
+    result is not yet available when the message is rendered. Omit for a silent tool
+    step.
     """
 
     name: str
     """Optional human-readable label, displayed in authoring UIs."""
 
-    position: NodePositionParam
+    position: "NodePositionParam"
     """Optional canvas coordinates used by authoring UIs to lay out the graph.
 
     Ignored by the runtime; round-trips so frontends can persist graph layout across
@@ -43,3 +55,6 @@ class ToolNodeReqParam(TypedDict, total=False):
 
     type: Literal["tool"]
     """Node kind discriminator. Always `tool` for a tool node."""
+
+
+from .node_position_param import NodePositionParam

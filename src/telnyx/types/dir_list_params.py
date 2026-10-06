@@ -7,7 +7,6 @@ from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .dir_status import DirStatus
 
 __all__ = ["DirListParams"]
 
@@ -35,7 +34,7 @@ class DirListParams(TypedDict, total=False):
     ]
     """Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp."""
 
-    filter_status: Annotated[DirStatus, PropertyInfo(alias="filter[status]")]
+    filter_status: Annotated["DirStatus", PropertyInfo(alias="filter[status]")]
     """Filter by DIR status."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
@@ -55,3 +54,6 @@ class DirListParams(TypedDict, total=False):
     Allowed values: `created_at`, `updated_at`, `display_name`, `status`. Prefix
     with `-` for descending. Default `-created_at`.
     """
+
+
+from .dir_status import DirStatus

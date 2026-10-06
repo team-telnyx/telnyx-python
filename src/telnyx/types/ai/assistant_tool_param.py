@@ -6,12 +6,6 @@ from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
-from .retrieval_tool_param import RetrievalToolParam
-from .pay_tool_params_param import PayToolParamsParam
-from .hangup_tool_params_param import HangupToolParamsParam
-from .openai.function_definition_param import FunctionDefinitionParam
-from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
-from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam
 
 __all__ = [
     "AssistantToolParam",
@@ -54,7 +48,7 @@ __all__ = [
 
 
 class Function(TypedDict, total=False):
-    function: Required[FunctionDefinitionParam]
+    function: Required["FunctionDefinitionParam"]
 
     type: Required[Literal["function"]]
 
@@ -128,7 +122,7 @@ class Handoff(TypedDict, total=False):
 
 
 class Hangup(TypedDict, total=False):
-    hangup: Required[HangupToolParamsParam]
+    hangup: Required["HangupToolParamsParam"]
 
     type: Required[Literal["hangup"]]
 
@@ -568,7 +562,7 @@ class Pay(TypedDict, total=False):
     (BETA) The pay tool allows the assistant to collect card payments from the caller via DTMF during the conversation. Recording is automatically paused while the pay tool is active and resumes when the payment flow completes. The connector_name must reference a pay connector configured in the Telnyx API.
     """
 
-    pay: Required[PayToolParamsParam]
+    pay: Required["PayToolParamsParam"]
 
     type: Required[Literal["pay"]]
 
@@ -580,15 +574,15 @@ class UpdateDynamicVariables(TypedDict, total=False):
 
     type: Required[Literal["update_dynamic_variables"]]
 
-    update_dynamic_variables: Required[UpdateDynamicVariablesToolParamsParam]
+    update_dynamic_variables: Required["UpdateDynamicVariablesToolParamsParam"]
     """Configuration for an update_dynamic_variables tool."""
 
 
 AssistantToolParam: TypeAlias = Union[
     Function,
-    InferenceEmbeddingWebhookToolParamsParam,
+    "InferenceEmbeddingWebhookToolParamsParam",
     ClientSideTool,
-    RetrievalToolParam,
+    "RetrievalToolParam",
     Handoff,
     Hangup,
     Transfer,
@@ -600,3 +594,10 @@ AssistantToolParam: TypeAlias = Union[
     Pay,
     UpdateDynamicVariables,
 ]
+
+from .retrieval_tool_param import RetrievalToolParam
+from .pay_tool_params_param import PayToolParamsParam
+from .hangup_tool_params_param import HangupToolParamsParam
+from .openai.function_definition_param import FunctionDefinitionParam
+from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
+from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam

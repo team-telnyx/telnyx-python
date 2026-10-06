@@ -5,14 +5,6 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .ai.hangup_tool_param import HangupToolParam
-from .ai.webhook_tool_param import WebhookToolParam
-from .ai.transfer_tool_param import TransferToolParam
-from .ai.voice_settings_param import VoiceSettingsParam
-from .shared_params.book_appointment_tool import BookAppointmentTool
-from .shared_params.check_availability_tool import CheckAvailabilityTool
-from .shared_params.call_control_retrieval_tool import CallControlRetrievalTool
-
 __all__ = ["CallAssistantRequestParam", "ExternalLlm", "FallbackConfig", "FallbackConfigExternalLlm", "Tool"]
 
 
@@ -105,19 +97,19 @@ class FallbackConfig(TypedDict, total=False, extra_items=object):  # type: ignor
 
 
 Tool: TypeAlias = Union[
-    BookAppointmentTool,
-    CheckAvailabilityTool,
-    WebhookToolParam,
-    HangupToolParam,
-    TransferToolParam,
-    CallControlRetrievalTool,
+    "BookAppointmentTool",
+    "CheckAvailabilityTool",
+    "WebhookToolParam",
+    "HangupToolParam",
+    "TransferToolParam",
+    "CallControlRetrievalTool",
 ]
 
 
 class CallAssistantRequestParam(TypedDict, total=False):
-    """AI Assistant configuration.
+    """AI Assistant configuration and per-call overrides.
 
-    All fields except `id` are optional — the assistant's stored configuration will be used as fallback for any omitted fields.
+    All fields except `id` are optional. Omitted assistant fields use the stored configuration. Supplied `voice_settings` and `transcription` objects replace their stored objects rather than merging individual settings; include every setting you want to retain. `dynamic_variables` are merged, with request values taking precedence.
     """
 
     id: Required[str]
@@ -198,4 +190,27 @@ class CallAssistantRequestParam(TypedDict, total=False):
     transfer, hangup, etc.). Overrides the assistant's stored tools if provided.
     """
 
-    voice_settings: VoiceSettingsParam
+    transcription: "TranscriptionConfigParam"
+    """Per-call speech-to-text configuration for the assistant.
+
+    If omitted, the stored assistant transcription configuration is used. If
+    supplied, this object replaces the stored transcription settings. This is
+    separate from the top-level `transcription` boolean on answer and dial commands.
+    """
+
+    voice_settings: "VoiceSettingsParam"
+    """Per-call voice configuration.
+
+    Set the voice identifier in `voice_settings.voice`, not in `assistant.voice`. If
+    supplied, this object replaces the stored voice settings.
+    """
+
+
+from .ai.hangup_tool_param import HangupToolParam
+from .ai.webhook_tool_param import WebhookToolParam
+from .ai.transfer_tool_param import TransferToolParam
+from .ai.voice_settings_param import VoiceSettingsParam
+from .calls.transcription_config_param import TranscriptionConfigParam
+from .shared_params.book_appointment_tool import BookAppointmentTool
+from .shared_params.check_availability_tool import CheckAvailabilityTool
+from .shared_params.call_control_retrieval_tool import CallControlRetrievalTool

@@ -14,7 +14,6 @@ from ..stream_bidirectional_mode import StreamBidirectionalMode
 from ..stream_bidirectional_codec import StreamBidirectionalCodec
 from ..call_assistant_request_param import CallAssistantRequestParam
 from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
-from .transcription_start_request_param import TranscriptionStartRequestParam
 from ..conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 
 __all__ = ["ActionAnswerParams", "DeepfakeDetection", "WebhookRetriesPolicies"]
@@ -22,10 +21,13 @@ __all__ = ["ActionAnswerParams", "DeepfakeDetection", "WebhookRetriesPolicies"]
 
 class ActionAnswerParams(TypedDict, total=False):
     assistant: CallAssistantRequestParam
-    """AI Assistant configuration.
+    """AI Assistant configuration and per-call overrides.
 
-    All fields except `id` are optional — the assistant's stored configuration will
-    be used as fallback for any omitted fields.
+    All fields except `id` are optional. Omitted assistant fields use the stored
+    configuration. Supplied `voice_settings` and `transcription` objects replace
+    their stored objects rather than merging individual settings; include every
+    setting you want to retain. `dynamic_variables` are merged, with request values
+    taking precedence.
     """
 
     billing_group_id: str
@@ -162,9 +164,14 @@ class ActionAnswerParams(TypedDict, total=False):
     """The destination WebSocket address where the stream is going to be delivered."""
 
     transcription: bool
-    """Enable transcription upon call answer. The default value is false."""
+    """Enable standalone call transcription upon call answer.
 
-    transcription_config: TranscriptionStartRequestParam
+    The default value is false. Configure this feature with `transcription_config`.
+    To configure speech recognition for an AI assistant, use
+    `assistant.transcription` instead.
+    """
+
+    transcription_config: "TranscriptionStartRequestParam"
 
     webhook_retries_policies: Dict[str, WebhookRetriesPolicies]
     """A map of event types to retry policies.
@@ -220,3 +227,6 @@ class WebhookRetriesPolicies(TypedDict, total=False):
 
     Total sum cannot exceed 60000ms.
     """
+
+
+from .transcription_start_request_param import TranscriptionStartRequestParam

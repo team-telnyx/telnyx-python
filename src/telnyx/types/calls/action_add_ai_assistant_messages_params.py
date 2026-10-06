@@ -5,12 +5,6 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import TypeAlias, TypedDict
 
-from .tool_message_param import ToolMessageParam
-from .user_message_param import UserMessageParam
-from .system_message_param import SystemMessageParam
-from .assistant_message_param import AssistantMessageParam
-from .developer_message_param import DeveloperMessageParam
-
 __all__ = ["ActionAddAIAssistantMessagesParams", "Message"]
 
 
@@ -40,5 +34,11 @@ class ActionAddAIAssistantMessagesParams(TypedDict, total=False):
 
 
 Message: TypeAlias = Union[
-    UserMessageParam, AssistantMessageParam, ToolMessageParam, SystemMessageParam, DeveloperMessageParam
+    "UserMessageParam", "AssistantMessageParam", "ToolMessageParam", "SystemMessageParam", "DeveloperMessageParam"
 ]
+
+from .tool_message_param import ToolMessageParam
+from .user_message_param import UserMessageParam
+from .system_message_param import SystemMessageParam
+from .assistant_message_param import AssistantMessageParam
+from .developer_message_param import DeveloperMessageParam

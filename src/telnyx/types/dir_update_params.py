@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
-from .document_param import DocumentParam
 
 __all__ = ["DirUpdateParams"]
 
@@ -22,6 +21,17 @@ class DirUpdateParams(TypedDict, total=False):
     """Name of the person at your enterprise authorizing this DIR.
 
     Must be a real individual.
+    """
+
+    bpo_authorizations: Iterable["BpoAuthorizationInputParam"]
+    """Optional.
+
+    Replace this DIR's authorized BPO (Business Process Outsourcer) accounts with
+    these, each with its signed Letter of Authorization. The supplied list replaces
+    the current one: a BPO left out has its authorization removed, and a new BPO (or
+    a changed Letter of Authorization) is created `pending` admin review. Send an
+    empty list to clear all authorizations; omit the field to leave them unchanged.
+    Editing this list does not re-vet the DIR. Maximum 10.
     """
 
     call_reasons: SequenceNotStr[str]
@@ -52,7 +62,7 @@ class DirUpdateParams(TypedDict, total=False):
     display_name: str
     """Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only."""
 
-    documents: Iterable[DocumentParam]
+    documents: Iterable["DocumentParam"]
     """Additional supporting documents to attach.
 
     Append-only: existing documents are never removed or replaced, and an empty or
@@ -67,3 +77,14 @@ class DirUpdateParams(TypedDict, total=False):
     Set to true if your organization places calls on behalf of other enterprises
     (BPO/reseller). Updating this triggers re-vetting on next submit.
     """
+
+    webhook_url: Optional[str]
+    """
+    Optional `https://` URL that receives webhook notifications when this DIR's
+    compliance review completes. Send `null` to clear. Changing only this field on a
+    `verified` DIR does not re-vet it. Maximum 2048 characters.
+    """
+
+
+from .document_param import DocumentParam
+from .bpo_authorization_input_param import BpoAuthorizationInputParam

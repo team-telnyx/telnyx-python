@@ -7,18 +7,6 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
-from .stream_codec import StreamCodec
-from .sip_header_param import SipHeaderParam
-from .custom_sip_header_param import CustomSipHeaderParam
-from .dialogflow_config_param import DialogflowConfigParam
-from .sound_modifications_param import SoundModificationsParam
-from .stream_bidirectional_mode import StreamBidirectionalMode
-from .stream_bidirectional_codec import StreamBidirectionalCodec
-from .call_assistant_request_param import CallAssistantRequestParam
-from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
-from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
-from .calls.transcription_start_request_param import TranscriptionStartRequestParam
-from .conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 
 __all__ = [
     "CallDialParams",
@@ -57,7 +45,15 @@ class CallDialParams(TypedDict, total=False):
     is not supported when `to` is an array.
     """
 
-    answering_machine_detection: Literal["premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"]
+    answering_machine_detection: Literal[
+        "premium",
+        "premium_ios_call_screening_detection",
+        "detect",
+        "detect_beep",
+        "detect_words",
+        "greeting_end",
+        "disabled",
+    ]
     """Enables Answering Machine Detection.
 
     Telnyx offers Premium and Standard detections. With Premium detection, when a
@@ -76,7 +72,16 @@ class CallDialParams(TypedDict, total=False):
     `greeting_end` or `detect_words` is used and a `machine` is detected, you will
     receive another `call.machine.greeting.ended` webhook when the answering machine
     greeting ends with a beep or silence. If `detect_beep` is used, you will only
-    receive `call.machine.greeting.ended` if a beep is detected.
+    receive `call.machine.greeting.ended` if a beep is detected. If
+    `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+    Premium AMD runs with iOS Call Screening support: after an initial `machine`
+    result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+    Call Screening tone, sends `call.machine.premium.greeting.ended` with
+    `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+    `result=screening` respectively. When the Apple Call Screening tone is detected,
+    Premium AMD is restarted on the screened call and a
+    `call.machine.premium.detection.ended` webhook with the post-screening
+    classification follows.
     """
 
     answering_machine_detection_config: AnsweringMachineDetectionConfig
@@ -84,14 +89,18 @@ class CallDialParams(TypedDict, total=False):
     Optional configuration parameters to modify 'answering_machine_detection'
     performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
     parameters are applicable when `premium` is selected as
-    answering_machine_detection.
+    answering_machine_detection. `prompt_end_timeout_millis` is additionally
+    applicable when `premium_ios_call_screening_detection` is selected.
     """
 
-    assistant: CallAssistantRequestParam
-    """AI Assistant configuration.
+    assistant: "CallAssistantRequestParam"
+    """AI Assistant configuration and per-call overrides.
 
-    All fields except `id` are optional — the assistant's stored configuration will
-    be used as fallback for any omitted fields.
+    All fields except `id` are optional. Omitted assistant fields use the stored
+    configuration. Supplied `voice_settings` and `transcription` objects replace
+    their stored objects rather than merging individual settings; include every
+    setting you want to retain. `dynamic_variables` are merged, with request values
+    taking precedence.
     """
 
     audio_url: str
@@ -135,7 +144,7 @@ class CallDialParams(TypedDict, total=False):
     conference_config: ConferenceConfig
     """Optional configuration parameters to dial new participant into a conference."""
 
-    conversation_relay_config: ConversationRelayEmbeddedConfigParam
+    conversation_relay_config: "ConversationRelayEmbeddedConfigParam"
     """
     Starts a Conversation Relay session automatically when the answered/dialed call
     is answered. This embedded shape is supported on `answer` and `dial`. It uses
@@ -145,7 +154,7 @@ class CallDialParams(TypedDict, total=False):
     the parent command's `client_state` and `command_id` fields instead.
     """
 
-    custom_headers: Iterable[CustomSipHeaderParam]
+    custom_headers: Iterable["CustomSipHeaderParam"]
     """Custom headers to be added to the SIP INVITE."""
 
     deepfake_detection: DeepfakeDetection
@@ -156,7 +165,7 @@ class CallDialParams(TypedDict, total=False):
     `call.deepfake_detection.result` webhook.
     """
 
-    dialogflow_config: DialogflowConfigParam
+    dialogflow_config: "DialogflowConfigParam"
 
     diversion: str
     """The `to` number of an active inbound call, in +E164 format.
@@ -317,7 +326,7 @@ class CallDialParams(TypedDict, total=False):
     sip_auth_username: str
     """SIP Authentication username used for SIP challenges."""
 
-    sip_headers: Iterable[SipHeaderParam]
+    sip_headers: Iterable["SipHeaderParam"]
     """SIP headers to be added to the SIP INVITE request.
 
     Currently only User-to-User header is supported.
@@ -329,7 +338,7 @@ class CallDialParams(TypedDict, total=False):
     sip_transport_protocol: Literal["UDP", "TCP", "TLS"]
     """Defines SIP transport protocol to be used on the call."""
 
-    sound_modifications: SoundModificationsParam
+    sound_modifications: "SoundModificationsParam"
     """Use this field to modify sound effects, for example adjust the pitch."""
 
     stream_auth_token: str
@@ -338,22 +347,22 @@ class CallDialParams(TypedDict, total=False):
     using streaming. Maximum length is 4000 characters.
     """
 
-    stream_bidirectional_codec: StreamBidirectionalCodec
+    stream_bidirectional_codec: "StreamBidirectionalCodec"
     """Indicates codec for bidirectional streaming RTP payloads.
 
     Used only with stream_bidirectional_mode=rtp. Case sensitive.
     """
 
-    stream_bidirectional_mode: StreamBidirectionalMode
+    stream_bidirectional_mode: "StreamBidirectionalMode"
     """Configures method of bidirectional streaming (mp3, rtp)."""
 
-    stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate
+    stream_bidirectional_sampling_rate: "StreamBidirectionalSamplingRate"
     """Audio sampling rate."""
 
-    stream_bidirectional_target_legs: StreamBidirectionalTargetLegs
+    stream_bidirectional_target_legs: "StreamBidirectionalTargetLegs"
     """Specifies which call legs should receive the bidirectional stream audio."""
 
-    stream_codec: StreamCodec
+    stream_codec: "StreamCodec"
     """Specifies the codec to be used for the streamed audio.
 
     When set to 'default' or when transcoding is not possible, the codec from the
@@ -407,7 +416,7 @@ class CallDialParams(TypedDict, total=False):
     transcription: bool
     """Enable transcription upon call answer. The default value is false."""
 
-    transcription_config: TranscriptionStartRequestParam
+    transcription_config: "TranscriptionStartRequestParam"
 
     webhook_retries_policies: Dict[str, WebhookRetriesPolicies]
     """A map of event types to retry policies.
@@ -440,7 +449,7 @@ class CallDialParams(TypedDict, total=False):
 
 class AnsweringMachineDetectionConfig(TypedDict, total=False):
     """
-    Optional configuration parameters to modify 'answering_machine_detection' performance. Only `total_analysis_time_millis` and `greeting_duration_millis` parameters are applicable when `premium` is selected as answering_machine_detection.
+    Optional configuration parameters to modify 'answering_machine_detection' performance. Only `total_analysis_time_millis` and `greeting_duration_millis` parameters are applicable when `premium` is selected as answering_machine_detection. `prompt_end_timeout_millis` is additionally applicable when `premium_ios_call_screening_detection` is selected.
     """
 
     after_greeting_silence_millis: int
@@ -532,6 +541,14 @@ class AnsweringMachineDetectionConfig(TypedDict, total=False):
 
     maximum_word_length_millis: int
     """If a single word lasts longer than this threshold, consider it a machine."""
+
+    prompt_end_timeout_millis: int
+    """
+    Maximum time Telnyx waits, in milliseconds, for the iOS call-screening prompt to
+    end after Premium AMD initially detects a `machine`. Used when
+    `answering_machine_detection` is `premium_ios_call_screening_detection`.
+    Defaults to 5000 milliseconds.
+    """
 
     silence_threshold: int
     """Minimum noise threshold for any analysis."""
@@ -661,3 +678,17 @@ class WebhookRetriesPolicies(TypedDict, total=False):
 
     Total sum cannot exceed 60000ms.
     """
+
+
+from .stream_codec import StreamCodec
+from .sip_header_param import SipHeaderParam
+from .custom_sip_header_param import CustomSipHeaderParam
+from .dialogflow_config_param import DialogflowConfigParam
+from .sound_modifications_param import SoundModificationsParam
+from .stream_bidirectional_mode import StreamBidirectionalMode
+from .stream_bidirectional_codec import StreamBidirectionalCodec
+from .call_assistant_request_param import CallAssistantRequestParam
+from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
+from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
+from .calls.transcription_start_request_param import TranscriptionStartRequestParam
+from .conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam

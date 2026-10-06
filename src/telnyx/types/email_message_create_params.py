@@ -8,23 +8,20 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
-from .tracking_settings_param import TrackingSettingsParam
-from .attachment_request_param import AttachmentRequestParam
-from .email_address_input_param import EmailAddressInputParam
 
 __all__ = ["EmailMessageCreateParams"]
 
 
 class EmailMessageCreateParams(TypedDict, total=False):
-    from_: Required[Annotated[EmailAddressInputParam, PropertyInfo(alias="from")]]
+    from_: Required[Annotated["EmailAddressInputParam", PropertyInfo(alias="from")]]
 
-    to: Required[SequenceNotStr[EmailAddressInputParam]]
+    to: Required[SequenceNotStr["EmailAddressInputParam"]]
 
-    attachments: Iterable[AttachmentRequestParam]
+    attachments: Iterable["AttachmentRequestParam"]
 
-    bcc: SequenceNotStr[EmailAddressInputParam]
+    bcc: SequenceNotStr["EmailAddressInputParam"]
 
-    cc: SequenceNotStr[EmailAddressInputParam]
+    cc: SequenceNotStr["EmailAddressInputParam"]
 
     forward_of_message_id: Optional[str]
     """Telnyx message UUID of the message this send forwards.
@@ -88,7 +85,7 @@ class EmailMessageCreateParams(TypedDict, total=False):
     Detail Records. Usable in `filter[metadata]` when listing messages.
     """
 
-    reply_to: EmailAddressInputParam
+    reply_to: "EmailAddressInputParam"
     """Reply-to address.
 
     If provided as an object with a name, only the email is stored; the name is
@@ -183,10 +180,15 @@ class EmailMessageCreateParams(TypedDict, total=False):
     responses.
     """
 
-    tracking_settings: TrackingSettingsParam
+    tracking_settings: "TrackingSettingsParam"
     """Per-send open and click tracking overrides.
 
     Omitted properties inherit the sender domain's tracking settings.
     """
 
     idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
+
+
+from .tracking_settings_param import TrackingSettingsParam
+from .attachment_request_param import AttachmentRequestParam
+from .email_address_input_param import EmailAddressInputParam

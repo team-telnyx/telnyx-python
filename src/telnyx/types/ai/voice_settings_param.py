@@ -176,8 +176,9 @@ class VoiceSettingsParam(TypedDict, total=False):
     """
 
     voice_speed: float
-    """The speed of the voice in the range [0.25, 2.0].
+    """The speed of the voice in the range [0.6, 1.5].
 
-    1.0 is deafult speed. Larger numbers make the voice faster, smaller numbers make
-    it slower. This is only applicable for Telnyx Natural voices.
+    1.0 is the default speed. Larger numbers make the voice faster, smaller numbers
+    make it slower. Applies to Telnyx `Ultra` voices; values outside this range are
+    rejected by the synthesis engine.
     """
