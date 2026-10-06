@@ -5,15 +5,13 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import TypedDict
 
-from .execution_mode import ExecutionMode
-
 __all__ = ["MissionUpdateMissionParams"]
 
 
 class MissionUpdateMissionParams(TypedDict, total=False):
     description: str
 
-    execution_mode: ExecutionMode
+    execution_mode: "ExecutionMode"
 
     instructions: str
 
@@ -22,3 +20,6 @@ class MissionUpdateMissionParams(TypedDict, total=False):
     model: str
 
     name: str
+
+
+from .execution_mode import ExecutionMode

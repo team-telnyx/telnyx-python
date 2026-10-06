@@ -59,6 +59,7 @@ from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEve
 from .session_status_changed_webhook_event import SessionStatusChangedWebhookEvent
 from .call_conversation_ended_webhook_event import CallConversationEndedWebhookEvent
 from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhookEvent
+from .call_conversation_created_webhook_event import CallConversationCreatedWebhookEvent
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
 from .hosted_number_order_event_webhook_event import HostedNumberOrderEventWebhookEvent
 from .conference_recording_saved_webhook_event import ConferenceRecordingSavedWebhookEvent
@@ -79,7 +80,11 @@ from .call_machine_premium_detection_ended_webhook_event import CallMachinePremi
 from .conference_participant_speak_started_webhook_event import ConferenceParticipantSpeakStartedWebhookEvent
 from .conference_participant_playback_ended_webhook_event import ConferenceParticipantPlaybackEndedWebhookEvent
 from .call_ai_gather_message_history_updated_webhook_event import CallAIGatherMessageHistoryUpdatedWebhookEvent
+from .call_machine_premium_detection_started_webhook_event import CallMachinePremiumDetectionStartedWebhookEvent
 from .conference_participant_playback_started_webhook_event import ConferenceParticipantPlaybackStartedWebhookEvent
+from .call_machine_premium_call_screening_detected_webhook_event import (
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
+)
 
 __all__ = ["UnwrapWebhookEvent"]
 
@@ -91,6 +96,7 @@ UnwrapWebhookEvent: TypeAlias = Union[
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
     CallCostWebhookEvent,
@@ -107,7 +113,9 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,

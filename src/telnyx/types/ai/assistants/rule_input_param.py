@@ -5,9 +5,6 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .serve_param import ServeParam
-from .clause_param import ClauseParam
-
 __all__ = ["RuleInputParam"]
 
 
@@ -17,7 +14,7 @@ class RuleInputParam(TypedDict, total=False):
     An empty ``match`` is a catch-all (always fires).
     """
 
-    serve: Required[ServeParam]
+    serve: Required["ServeParam"]
     """What a rule serves when matched.
 
     Exactly one of:
@@ -27,4 +24,8 @@ class RuleInputParam(TypedDict, total=False):
       100, with the leftover routing to the main version
     """
 
-    match: Iterable[ClauseParam]
+    match: Iterable["ClauseParam"]
+
+
+from .serve_param import ServeParam
+from .clause_param import ClauseParam

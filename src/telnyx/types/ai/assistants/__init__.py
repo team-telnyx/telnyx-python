@@ -11,9 +11,11 @@ from .tag_add_params import TagAddParams as TagAddParams
 from .rule_input_param import RuleInputParam as RuleInputParam
 from .test_list_params import TestListParams as TestListParams
 from .tool_test_params import ToolTestParams as ToolTestParams
+from .deleted_assistant import DeletedAssistant as DeletedAssistant
 from .rollout_slot_param import RolloutSlotParam as RolloutSlotParam
 from .test_create_params import TestCreateParams as TestCreateParams
 from .test_update_params import TestUpdateParams as TestUpdateParams
+from .deleted_list_params import DeletedListParams as DeletedListParams
 from .version_update_params import VersionUpdateParams as VersionUpdateParams
 from .version_retrieve_params import VersionRetrieveParams as VersionRetrieveParams
 from .scheduled_event_response import ScheduledEventResponse as ScheduledEventResponse

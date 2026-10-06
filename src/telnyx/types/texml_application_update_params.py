@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
-from .dtmf_type import DtmfType
-from .anchorsite_override import AnchorsiteOverride
 
 __all__ = ["TexmlApplicationUpdateParams", "Inbound", "Outbound"]
 
@@ -21,7 +19,7 @@ class TexmlApplicationUpdateParams(TypedDict, total=False):
     active: bool
     """Specifies whether the connection can be used."""
 
-    anchorsite_override: AnchorsiteOverride
+    anchorsite_override: "AnchorsiteOverride"
     """
     `Latency` directs Telnyx to route media through the site with the lowest
     round-trip time to the user's connection. Telnyx calculates this time using ICMP
@@ -31,7 +29,7 @@ class TexmlApplicationUpdateParams(TypedDict, total=False):
     call_cost_in_webhooks: bool
     """Specifies if call cost webhooks should be sent for this TeXML Application."""
 
-    dtmf_type: DtmfType
+    dtmf_type: "DtmfType"
     """Sets the type of DTMF digits sent from Telnyx to this Connection.
 
     Note that DTMF digits sent to Telnyx will be accepted in all formats.
@@ -115,3 +113,7 @@ class Outbound(TypedDict, total=False):
 
     outbound_voice_profile_id: str
     """Identifies the associated outbound voice profile."""
+
+
+from .dtmf_type import DtmfType
+from .anchorsite_override import AnchorsiteOverride

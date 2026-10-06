@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .settings_param import SettingsParam
-
 __all__ = ["AuthenticationProviderUpdateParams"]
 
 
@@ -16,7 +14,7 @@ class AuthenticationProviderUpdateParams(TypedDict, total=False):
     name: str
     """The name associated with the authentication provider."""
 
-    settings: SettingsParam
+    settings: "SettingsParam"
     """The settings associated with the authentication provider."""
 
     settings_url: str
@@ -30,3 +28,6 @@ class AuthenticationProviderUpdateParams(TypedDict, total=False):
 
     This must be unique and URL-friendly, as it's going to be part of the login URL.
     """
+
+
+from .settings_param import SettingsParam

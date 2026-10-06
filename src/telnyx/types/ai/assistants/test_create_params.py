@@ -6,7 +6,6 @@ from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from .telnyx_conversation_channel import TelnyxConversationChannel
 
 __all__ = ["TestCreateParams", "Rubric"]
 
@@ -49,7 +48,7 @@ class TestCreateParams(TypedDict, total=False):
     out. If not specified, uses system default timeout.
     """
 
-    telnyx_conversation_channel: TelnyxConversationChannel
+    telnyx_conversation_channel: "TelnyxConversationChannel"
     """The communication channel through which the test will be conducted.
 
     Determines how the assistant will receive and respond to test messages.
@@ -73,3 +72,6 @@ class Rubric(TypedDict, total=False):
 
     name: Required[str]
     """Label for the evaluation criterion, e.g., Empathy, Accuracy, Clarity."""
+
+
+from .telnyx_conversation_channel import TelnyxConversationChannel

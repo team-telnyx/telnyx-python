@@ -5,13 +5,12 @@ from __future__ import annotations
 from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .dir_phone_number_status import DirPhoneNumberStatus
 
 __all__ = ["PhoneNumberBatchListParams"]
 
 
 class PhoneNumberBatchListParams(TypedDict, total=False):
-    filter_status: Annotated[DirPhoneNumberStatus, PropertyInfo(alias="filter[status]")]
+    filter_status: Annotated["DirPhoneNumberStatus", PropertyInfo(alias="filter[status]")]
     """Restrict to batches whose aggregate status equals this value."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
@@ -22,3 +21,6 @@ class PhoneNumberBatchListParams(TypedDict, total=False):
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
+
+
+from .dir_phone_number_status import DirPhoneNumberStatus

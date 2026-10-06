@@ -6,17 +6,6 @@ from typing import Optional
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
-from .dtmf_type import DtmfType
-from .encrypted_media import EncryptedMedia
-from .inbound_fqdn_param import InboundFqdnParam
-from .transport_protocol import TransportProtocol
-from .anchorsite_override import AnchorsiteOverride
-from .outbound_fqdn_param import OutboundFqdnParam
-from .webhook_api_version import WebhookAPIVersion
-from .connection_noise_suppression import ConnectionNoiseSuppression
-from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
-from .shared_params.connection_jitter_buffer import ConnectionJitterBuffer
-from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["FqdnConnectionCreateParams"]
 
@@ -28,7 +17,7 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
     active: bool
     """Defaults to true"""
 
-    anchorsite_override: AnchorsiteOverride
+    anchorsite_override: "AnchorsiteOverride"
     """
     `Latency` directs Telnyx to route media through the site with the lowest
     round-trip time to the user's connection. Telnyx calculates this time using ICMP
@@ -49,7 +38,7 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
     RTP timeout.
     """
 
-    dtmf_type: DtmfType
+    dtmf_type: "DtmfType"
     """Sets the type of DTMF digits sent from Telnyx to this Connection.
 
     Note that DTMF digits sent to Telnyx will be accepted in all formats.
@@ -61,18 +50,18 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
     scenarios.
     """
 
-    encrypted_media: Optional[EncryptedMedia]
+    encrypted_media: Optional["EncryptedMedia"]
     """Enable use of SRTP for encryption.
 
     Cannot be set if the transport_portocol is TLS.
     """
 
-    inbound: InboundFqdnParam
+    inbound: "InboundFqdnParam"
 
     ios_push_credential_id: Optional[str]
     """The uuid of the push credential for Ios"""
 
-    jitter_buffer: ConnectionJitterBuffer
+    jitter_buffer: "ConnectionJitterBuffer"
     """Configuration options for Jitter Buffer.
 
     Enables Jitter Buffer for RTP streams of SIP Trunking calls. The feature is off
@@ -87,7 +76,7 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
     A \\**.mstsbc.telnyx.tech FQDN will be created for the connection automatically.
     """
 
-    noise_suppression: ConnectionNoiseSuppression
+    noise_suppression: "ConnectionNoiseSuppression"
     """Controls when noise suppression is applied to calls.
 
     When set to 'inbound', noise suppression is applied to incoming audio. When set
@@ -95,7 +84,7 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
     in both directions. When set to 'disabled', noise suppression is turned off.
     """
 
-    noise_suppression_details: ConnectionNoiseSuppressionDetails
+    noise_suppression_details: "ConnectionNoiseSuppressionDetails"
     """Configuration options for noise suppression.
 
     These settings are stored regardless of the noise_suppression value, but only
@@ -111,20 +100,20 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
     use T38 on just one leg of the call depending on each leg's settings.
     """
 
-    outbound: OutboundFqdnParam
+    outbound: "OutboundFqdnParam"
 
-    rtcp_settings: ConnectionRtcpSettingsParam
+    rtcp_settings: "ConnectionRtcpSettingsParam"
 
     tags: SequenceNotStr[str]
     """Tags associated with the connection."""
 
-    transport_protocol: TransportProtocol
+    transport_protocol: "TransportProtocol"
     """One of UDP, TLS, or TCP.
 
     Applies only to connections with IP authentication or FQDN authentication.
     """
 
-    webhook_api_version: WebhookAPIVersion
+    webhook_api_version: "WebhookAPIVersion"
     """Determines which webhook format will be used, Telnyx API v1 or v2."""
 
     webhook_event_failover_url: Optional[str]
@@ -141,3 +130,16 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
 
     webhook_timeout_secs: Optional[int]
     """Specifies how many seconds to wait before timing out a webhook."""
+
+
+from .dtmf_type import DtmfType
+from .encrypted_media import EncryptedMedia
+from .inbound_fqdn_param import InboundFqdnParam
+from .transport_protocol import TransportProtocol
+from .anchorsite_override import AnchorsiteOverride
+from .outbound_fqdn_param import OutboundFqdnParam
+from .webhook_api_version import WebhookAPIVersion
+from .connection_noise_suppression import ConnectionNoiseSuppression
+from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+from .shared_params.connection_jitter_buffer import ConnectionJitterBuffer
+from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails

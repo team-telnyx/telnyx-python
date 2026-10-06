@@ -18,7 +18,9 @@ class PortingPhoneNumber(BaseModel):
     phone_number: Optional[str] = None
     """E164 formatted phone number"""
 
-    phone_number_type: Optional[Literal["landline", "local", "mobile", "national", "shared_cost", "toll_free"]] = None
+    phone_number_type: Optional[
+        Literal["landline", "local", "mobile", "multipurpose", "national", "other", "shared_cost", "toll_free"]
+    ] = None
     """The type of the phone number"""
 
     portability_status: Optional[Literal["pending", "confirmed", "provisional"]] = None

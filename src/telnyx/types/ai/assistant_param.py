@@ -5,9 +5,6 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import TypeAlias, TypedDict
 
-from .hangup_tool_param import HangupToolParam
-from .webhook_tool_param import WebhookToolParam
-from .transfer_tool_param import TransferToolParam
 from ..shared_params.book_appointment_tool import BookAppointmentTool
 from ..shared_params.check_availability_tool import CheckAvailabilityTool
 from ..shared_params.call_control_retrieval_tool import CallControlRetrievalTool
@@ -17,9 +14,9 @@ __all__ = ["AssistantParam", "Tool"]
 Tool: TypeAlias = Union[
     BookAppointmentTool,
     CheckAvailabilityTool,
-    WebhookToolParam,
-    HangupToolParam,
-    TransferToolParam,
+    "WebhookToolParam",
+    "HangupToolParam",
+    "TransferToolParam",
     CallControlRetrievalTool,
 ]
 
@@ -46,3 +43,8 @@ class AssistantParam(TypedDict, total=False):
 
     tools: Iterable[Tool]
     """The tools that the voice assistant can use."""
+
+
+from .hangup_tool_param import HangupToolParam
+from .webhook_tool_param import WebhookToolParam
+from .transfer_tool_param import TransferToolParam

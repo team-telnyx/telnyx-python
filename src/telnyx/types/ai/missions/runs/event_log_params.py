@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import Required, TypedDict
 
-from .event_type import EventType
-
 __all__ = ["EventLogParams"]
 
 
@@ -15,7 +13,7 @@ class EventLogParams(TypedDict, total=False):
 
     summary: Required[str]
 
-    type: Required[EventType]
+    type: Required["EventType"]
 
     agent_id: str
 
@@ -25,3 +23,6 @@ class EventLogParams(TypedDict, total=False):
     payload: Dict[str, object]
 
     step_id: str
+
+
+from .event_type import EventType

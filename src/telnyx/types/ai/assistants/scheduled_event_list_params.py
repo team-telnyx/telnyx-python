@@ -7,13 +7,12 @@ from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from .conversation_channel_type import ConversationChannelType
 
 __all__ = ["ScheduledEventListParams"]
 
 
 class ScheduledEventListParams(TypedDict, total=False):
-    conversation_channel: ConversationChannelType
+    conversation_channel: "ConversationChannelType"
     """Filter results by conversation channel."""
 
     from_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
@@ -25,3 +24,6 @@ class ScheduledEventListParams(TypedDict, total=False):
 
     to_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """End of the date range filter (inclusive, ISO 8601)."""
+
+
+from .conversation_channel_type import ConversationChannelType

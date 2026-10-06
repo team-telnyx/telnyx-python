@@ -6,13 +6,6 @@ from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..ai.assistant_param import AssistantParam
-from .aws_voice_settings_param import AwsVoiceSettingsParam
-from .transcription_config_param import TranscriptionConfigParam
-from .interruption_settings_param import InterruptionSettingsParam
-from .soniox_voice_settings_param import SonioxVoiceSettingsParam
-from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
-from .google_transcription_language import GoogleTranscriptionLanguage
-from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
@@ -60,10 +53,10 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
     for `AWS.Polly.<voice_id>` voices. There is a 3,000 character limit.
     """
 
-    interruption_settings: InterruptionSettingsParam
+    interruption_settings: "InterruptionSettingsParam"
     """Settings for handling user interruptions during assistant speech"""
 
-    language: GoogleTranscriptionLanguage
+    language: "GoogleTranscriptionLanguage"
     """Language to use for speech recognition"""
 
     message_history: Iterable[MessageHistory]
@@ -90,7 +83,7 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
     via the `call.ai_gather.ended` callback.
     """
 
-    transcription: TranscriptionConfigParam
+    transcription: "TranscriptionConfigParam"
     """The settings associated with speech to text for the voice assistant.
 
     This is only relevant if the assistant uses a text-to-text language model. Any
@@ -158,11 +151,19 @@ class MessageHistory(TypedDict, total=False):
 
 
 VoiceSettings: TypeAlias = Union[
-    ElevenLabsVoiceSettingsParam,
-    TelnyxVoiceSettingsParam,
-    AwsVoiceSettingsParam,
+    "ElevenLabsVoiceSettingsParam",
+    "TelnyxVoiceSettingsParam",
+    "AwsVoiceSettingsParam",
     AzureVoiceSettings,
     ResembleVoiceSettings,
     XaiVoiceSettings,
-    SonioxVoiceSettingsParam,
+    "SonioxVoiceSettingsParam",
 ]
+
+from .aws_voice_settings_param import AwsVoiceSettingsParam
+from .transcription_config_param import TranscriptionConfigParam
+from .interruption_settings_param import InterruptionSettingsParam
+from .soniox_voice_settings_param import SonioxVoiceSettingsParam
+from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
+from .google_transcription_language import GoogleTranscriptionLanguage
+from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam

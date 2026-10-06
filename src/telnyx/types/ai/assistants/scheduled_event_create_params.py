@@ -7,8 +7,6 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from .conversation_channel_type import ConversationChannelType
-from .scheduled_call_settings_param import ScheduledCallSettingsParam
 
 __all__ = ["ScheduledEventCreateParams"]
 
@@ -20,12 +18,12 @@ class ScheduledEventCreateParams(TypedDict, total=False):
     telnyx_agent_target: Required[str]
     """The phone number, SIP URI, to schedule the call or text from."""
 
-    telnyx_conversation_channel: Required[ConversationChannelType]
+    telnyx_conversation_channel: Required["ConversationChannelType"]
 
     telnyx_end_user_target: Required[str]
     """The phone number, SIP URI, to schedule the call or text to."""
 
-    call_settings: ScheduledCallSettingsParam
+    call_settings: "ScheduledCallSettingsParam"
     """
     Per-call telephony overrides applied when a scheduled phone-call event
     dispatches. Phone-call events only. New per-call dispatch options should be
@@ -58,3 +56,7 @@ class ScheduledEventCreateParams(TypedDict, total=False):
     """Required for sms scheduled events. The text to be sent to the end user."""
 
     idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
+
+
+from .conversation_channel_type import ConversationChannelType
+from .scheduled_call_settings_param import ScheduledCallSettingsParam

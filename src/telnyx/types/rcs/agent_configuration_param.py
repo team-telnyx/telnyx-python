@@ -5,12 +5,6 @@ from __future__ import annotations
 from typing import Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-from .agent_email_contact_param import AgentEmailContactParam
-from .agent_phone_contact_param import AgentPhoneContactParam
-from .agent_website_contact_param import AgentWebsiteContactParam
-from .agent_testing_configuration_param import AgentTestingConfigurationParam
-from .agent_campaign_configuration_param import AgentCampaignConfigurationParam
-
 __all__ = [
     "AgentConfigurationParam",
     "Basics",
@@ -21,13 +15,13 @@ __all__ = [
 
 
 class BasicsAgentPhoneContactRequirement(TypedDict, total=False):
-    phone_number: Required[AgentPhoneContactParam]
+    phone_number: Required["AgentPhoneContactParam"]
 
     brand_color: str
 
     description: str
 
-    email: Optional[AgentEmailContactParam]
+    email: Optional["AgentEmailContactParam"]
 
     hero_url: str
 
@@ -37,23 +31,23 @@ class BasicsAgentPhoneContactRequirement(TypedDict, total=False):
 
     terms_and_conditions_url: str
 
-    website: Optional[AgentWebsiteContactParam]
+    website: Optional["AgentWebsiteContactParam"]
 
 
 class BasicsAgentWebhookContactRequirement(TypedDict, total=False):
-    website: Required[AgentWebsiteContactParam]
+    website: Required["AgentWebsiteContactParam"]
 
     brand_color: str
 
     description: str
 
-    email: Optional[AgentEmailContactParam]
+    email: Optional["AgentEmailContactParam"]
 
     hero_url: str
 
     logo_url: str
 
-    phone_number: Optional[AgentPhoneContactParam]
+    phone_number: Optional["AgentPhoneContactParam"]
 
     privacy_policy_url: str
 
@@ -61,7 +55,7 @@ class BasicsAgentWebhookContactRequirement(TypedDict, total=False):
 
 
 class BasicsAgentProfileContactRequirement(TypedDict, total=False):
-    email: Required[AgentEmailContactParam]
+    email: Required["AgentEmailContactParam"]
 
     brand_color: str
 
@@ -71,13 +65,13 @@ class BasicsAgentProfileContactRequirement(TypedDict, total=False):
 
     logo_url: str
 
-    phone_number: Optional[AgentPhoneContactParam]
+    phone_number: Optional["AgentPhoneContactParam"]
 
     privacy_policy_url: str
 
     terms_and_conditions_url: str
 
-    website: Optional[AgentWebsiteContactParam]
+    website: Optional["AgentWebsiteContactParam"]
 
 
 Basics: TypeAlias = Union[
@@ -92,6 +86,13 @@ class AgentConfigurationParam(TypedDict, total=False):
     At least one complete phone, website, or email contact is required.
     """
 
-    campaign: Optional[AgentCampaignConfigurationParam]
+    campaign: Optional["AgentCampaignConfigurationParam"]
 
-    testing: Optional[AgentTestingConfigurationParam]
+    testing: Optional["AgentTestingConfigurationParam"]
+
+
+from .agent_email_contact_param import AgentEmailContactParam
+from .agent_phone_contact_param import AgentPhoneContactParam
+from .agent_website_contact_param import AgentWebsiteContactParam
+from .agent_testing_configuration_param import AgentTestingConfigurationParam
+from .agent_campaign_configuration_param import AgentCampaignConfigurationParam

@@ -5,12 +5,7 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
-from .volume import Volume
 from ...._utils import PropertyInfo
-from .url_param import URLParam
-from .use_case_categories import UseCaseCategories
-from .tf_phone_number_param import TfPhoneNumberParam
-from .messaging_toll_free_verification_entity_type import MessagingTollFreeVerificationEntityType
 
 __all__ = ["RequestCreateParams"]
 
@@ -58,7 +53,7 @@ class RequestCreateParams(TypedDict, total=False):
     corporate_website: Required[Annotated[str, PropertyInfo(alias="corporateWebsite")]]
     """A URL, including the scheme, pointing to the corporate website"""
 
-    message_volume: Required[Annotated[Volume, PropertyInfo(alias="messageVolume")]]
+    message_volume: Required[Annotated["Volume", PropertyInfo(alias="messageVolume")]]
     """Message Volume Enums"""
 
     opt_in_workflow: Required[Annotated[str, PropertyInfo(alias="optInWorkflow")]]
@@ -67,16 +62,16 @@ class RequestCreateParams(TypedDict, total=False):
     from the given phone numbers
     """
 
-    opt_in_workflow_image_urls: Required[Annotated[Iterable[URLParam], PropertyInfo(alias="optInWorkflowImageURLs")]]
+    opt_in_workflow_image_urls: Required[Annotated[Iterable["URLParam"], PropertyInfo(alias="optInWorkflowImageURLs")]]
     """Images showing the opt-in workflow"""
 
-    phone_numbers: Required[Annotated[Iterable[TfPhoneNumberParam], PropertyInfo(alias="phoneNumbers")]]
+    phone_numbers: Required[Annotated[Iterable["TfPhoneNumberParam"], PropertyInfo(alias="phoneNumbers")]]
     """The phone numbers to request the verification of"""
 
     production_message_content: Required[Annotated[str, PropertyInfo(alias="productionMessageContent")]]
     """An example of a message that will be sent from the given phone numbers"""
 
-    use_case: Required[Annotated[UseCaseCategories, PropertyInfo(alias="useCase")]]
+    use_case: Required[Annotated["UseCaseCategories", PropertyInfo(alias="useCase")]]
     """Tollfree usecase categories"""
 
     use_case_summary: Required[Annotated[str, PropertyInfo(alias="useCaseSummary")]]
@@ -119,7 +114,7 @@ class RequestCreateParams(TypedDict, total=False):
     doing_business_as: Annotated[Optional[str], PropertyInfo(alias="doingBusinessAs")]
     """Doing Business As (DBA) name if different from legal name"""
 
-    entity_type: Annotated[Optional[MessagingTollFreeVerificationEntityType], PropertyInfo(alias="entityType")]
+    entity_type: Annotated[Optional["MessagingTollFreeVerificationEntityType"], PropertyInfo(alias="entityType")]
     """Business entity classification"""
 
     help_message_response: Annotated[Optional[str], PropertyInfo(alias="helpMessageResponse")]
@@ -148,3 +143,10 @@ class RequestCreateParams(TypedDict, total=False):
 
     webhook_url: Annotated[str, PropertyInfo(alias="webhookUrl")]
     """URL that should receive webhooks relating to this verification request"""
+
+
+from .volume import Volume
+from .url_param import URLParam
+from .use_case_categories import UseCaseCategories
+from .tf_phone_number_param import TfPhoneNumberParam
+from .messaging_toll_free_verification_entity_type import MessagingTollFreeVerificationEntityType

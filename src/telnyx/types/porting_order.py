@@ -66,7 +66,9 @@ class PortingOrder(BaseModel):
 
     phone_number_configuration: Optional[PortingOrderPhoneNumberConfiguration] = None
 
-    phone_number_type: Optional[Literal["landline", "local", "mobile", "national", "shared_cost", "toll_free"]] = None
+    phone_number_type: Optional[
+        Literal["landline", "local", "mobile", "multipurpose", "national", "other", "shared_cost", "toll_free"]
+    ] = None
     """The type of the phone number"""
 
     phone_numbers: Optional[List[PortingPhoneNumber]] = None

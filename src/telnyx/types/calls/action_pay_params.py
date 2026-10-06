@@ -6,7 +6,6 @@ from typing import Dict, List
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .pay_prompt_value_param import PayPromptValueParam
 
 __all__ = ["ActionPayParams", "Prompts"]
 
@@ -95,20 +94,23 @@ class ActionPayParams(TypedDict, total=False):
 class Prompts(TypedDict, total=False):
     """Custom text-to-speech prompts keyed by payment collection step."""
 
-    bank_account_number: Annotated[PayPromptValueParam, PropertyInfo(alias="bank-account-number")]
+    bank_account_number: Annotated["PayPromptValueParam", PropertyInfo(alias="bank-account-number")]
     """A default prompt string or an ordered list of qualified prompts."""
 
-    bank_routing_number: Annotated[PayPromptValueParam, PropertyInfo(alias="bank-routing-number")]
+    bank_routing_number: Annotated["PayPromptValueParam", PropertyInfo(alias="bank-routing-number")]
     """A default prompt string or an ordered list of qualified prompts."""
 
-    expiration_date: Annotated[PayPromptValueParam, PropertyInfo(alias="expiration-date")]
+    expiration_date: Annotated["PayPromptValueParam", PropertyInfo(alias="expiration-date")]
     """A default prompt string or an ordered list of qualified prompts."""
 
-    payment_card_number: Annotated[PayPromptValueParam, PropertyInfo(alias="payment-card-number")]
+    payment_card_number: Annotated["PayPromptValueParam", PropertyInfo(alias="payment-card-number")]
     """A default prompt string or an ordered list of qualified prompts."""
 
-    postal_code: Annotated[PayPromptValueParam, PropertyInfo(alias="postal-code")]
+    postal_code: Annotated["PayPromptValueParam", PropertyInfo(alias="postal-code")]
     """A default prompt string or an ordered list of qualified prompts."""
 
-    security_code: Annotated[PayPromptValueParam, PropertyInfo(alias="security-code")]
+    security_code: Annotated["PayPromptValueParam", PropertyInfo(alias="security-code")]
     """A default prompt string or an ordered list of qualified prompts."""
+
+
+from .pay_prompt_value_param import PayPromptValueParam

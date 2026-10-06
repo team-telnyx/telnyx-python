@@ -60,5 +60,5 @@ class Filter(TypedDict, total=False):
     code
     """
 
-    phone_number_type: Literal["local", "national", "toll_free"]
+    phone_number_type: Literal["local", "mobile", "multipurpose", "national", "shared_cost", "toll_free"]
     """Filters results to those applying to a specific phone_number_type"""

@@ -6,7 +6,6 @@ from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
-from .anchorsite_override import AnchorsiteOverride
 
 __all__ = ["FaxApplicationCreateParams", "Inbound", "Outbound"]
 
@@ -24,7 +23,7 @@ class FaxApplicationCreateParams(TypedDict, total=False):
     active: bool
     """Specifies whether the connection can be used."""
 
-    anchorsite_override: AnchorsiteOverride
+    anchorsite_override: "AnchorsiteOverride"
     """
     `Latency` directs Telnyx to route media through the site with the lowest
     round-trip time to the user's connection. Telnyx calculates this time using ICMP
@@ -82,3 +81,6 @@ class Outbound(TypedDict, total=False):
 
     outbound_voice_profile_id: str
     """Identifies the associated outbound voice profile."""
+
+
+from .anchorsite_override import AnchorsiteOverride

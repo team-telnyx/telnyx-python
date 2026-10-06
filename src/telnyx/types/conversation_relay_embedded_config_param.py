@@ -5,31 +5,18 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .calls.aws_voice_settings_param import AwsVoiceSettingsParam
-from .shared_params.xai_voice_settings import XaiVoiceSettings
-from .calls.soniox_voice_settings_param import SonioxVoiceSettingsParam
-from .calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
-from .conversation_relay_language_param import ConversationRelayLanguageParam
-from .shared_params.azure_voice_settings import AzureVoiceSettings
-from .shared_params.inworld_voice_settings import InworldVoiceSettings
-from .shared_params.minimax_voice_settings import MinimaxVoiceSettings
-from .shared_params.resemble_voice_settings import ResembleVoiceSettings
-from .calls.conversation_relay_interruptible import ConversationRelayInterruptible
-from .calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
-from .conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
-
 __all__ = ["ConversationRelayEmbeddedConfigParam", "VoiceSettings"]
 
 VoiceSettings: TypeAlias = Union[
-    ElevenLabsVoiceSettingsParam,
-    TelnyxVoiceSettingsParam,
-    AwsVoiceSettingsParam,
-    MinimaxVoiceSettings,
-    AzureVoiceSettings,
-    ResembleVoiceSettings,
-    InworldVoiceSettings,
-    XaiVoiceSettings,
-    SonioxVoiceSettingsParam,
+    "ElevenLabsVoiceSettingsParam",
+    "TelnyxVoiceSettingsParam",
+    "AwsVoiceSettingsParam",
+    "MinimaxVoiceSettings",
+    "AzureVoiceSettings",
+    "ResembleVoiceSettings",
+    "InworldVoiceSettings",
+    "XaiVoiceSettings",
+    "SonioxVoiceSettingsParam",
 ]
 
 
@@ -56,27 +43,27 @@ class ConversationRelayEmbeddedConfigParam(TypedDict, total=False):
     greeting: str
     """Text played when the relay session starts."""
 
-    interruptible: ConversationRelayInterruptible
+    interruptible: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
     `speech` allows speech only; `dtmf` allows DTMF only.
     """
 
-    interruptible_greeting: ConversationRelayInterruptible
+    interruptible_greeting: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
     `speech` allows speech only; `dtmf` allows DTMF only.
     """
 
-    interruption_settings: ConversationRelayInterruptionSettingsParam
+    interruption_settings: "ConversationRelayInterruptionSettingsParam"
     """Settings for handling caller interruptions during Conversation Relay speech."""
 
     language: str
     """Default language for both text-to-speech and speech recognition."""
 
-    languages: Iterable[ConversationRelayLanguageParam]
+    languages: Iterable["ConversationRelayLanguageParam"]
     """Per-language TTS and transcription settings."""
 
     provider: str
@@ -162,3 +149,17 @@ class ConversationRelayEmbeddedConfigParam(TypedDict, total=False):
 
     voice_settings: VoiceSettings
     """The settings associated with the voice selected"""
+
+
+from .calls.aws_voice_settings_param import AwsVoiceSettingsParam
+from .shared_params.xai_voice_settings import XaiVoiceSettings
+from .calls.soniox_voice_settings_param import SonioxVoiceSettingsParam
+from .calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
+from .conversation_relay_language_param import ConversationRelayLanguageParam
+from .shared_params.azure_voice_settings import AzureVoiceSettings
+from .shared_params.inworld_voice_settings import InworldVoiceSettings
+from .shared_params.minimax_voice_settings import MinimaxVoiceSettings
+from .shared_params.resemble_voice_settings import ResembleVoiceSettings
+from .calls.conversation_relay_interruptible import ConversationRelayInterruptible
+from .calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from .conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam

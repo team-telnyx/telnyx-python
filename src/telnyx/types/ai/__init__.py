@@ -12,6 +12,7 @@ from .bucket_ids_param import BucketIDsParam as BucketIDsParam
 from .enabled_features import EnabledFeatures as EnabledFeatures
 from .tool_list_params import ToolListParams as ToolListParams
 from .hangup_tool_param import HangupToolParam as HangupToolParam
+from .external_llm_param import ExternalLlmParam as ExternalLlmParam
 from .prompt_sync_status import PromptSyncStatus as PromptSyncStatus
 from .tool_create_params import ToolCreateParams as ToolCreateParams
 from .tool_update_params import ToolUpdateParams as ToolUpdateParams
@@ -42,6 +43,7 @@ from .insight_settings_param import InsightSettingsParam as InsightSettingsParam
 from .mcp_server_list_params import McpServerListParams as McpServerListParams
 from .privacy_settings_param import PrivacySettingsParam as PrivacySettingsParam
 from .assistant_create_params import AssistantCreateParams as AssistantCreateParams
+from .assistant_delete_params import AssistantDeleteParams as AssistantDeleteParams
 from .assistant_update_params import AssistantUpdateParams as AssistantUpdateParams
 from .audio_transcribe_params import AudioTranscribeParams as AudioTranscribeParams
 from .cluster_retrieve_params import ClusterRetrieveParams as ClusterRetrieveParams
@@ -56,8 +58,11 @@ from .mcp_server_create_params import McpServerCreateParams as McpServerCreatePa
 from .mcp_server_update_params import McpServerUpdateParams as McpServerUpdateParams
 from .messaging_settings_param import MessagingSettingsParam as MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam as TelephonySettingsParam
+from .websocket_settings_param import WebsocketSettingsParam as WebsocketSettingsParam
 from .assistant_retrieve_params import AssistantRetrieveParams as AssistantRetrieveParams
 from .assistant_send_sms_params import AssistantSendSMSParams as AssistantSendSMSParams
+from .assistant_whatsapp_params import AssistantWhatsappParams as AssistantWhatsappParams
+from .delegation_settings_param import DelegationSettingsParam as DelegationSettingsParam
 from .fallback_config_req_param import FallbackConfigReqParam as FallbackConfigReqParam
 from .start_speaking_plan_param import StartSpeakingPlanParam as StartSpeakingPlanParam
 from .assistant_a2_a_agent_param import AssistantA2AAgentParam as AssistantA2AAgentParam
@@ -121,7 +126,9 @@ if TYPE_CHECKING:
     from .hangup_tool_params import HangupToolParams as HangupToolParams
     from .messaging_settings import MessagingSettings as MessagingSettings
     from .telephony_settings import TelephonySettings as TelephonySettings
+    from .websocket_settings import WebsocketSettings as WebsocketSettings
     from .collection_envelope import CollectionEnvelope as CollectionEnvelope
+    from .delegation_settings import DelegationSettings as DelegationSettings
     from .inference_embedding import InferenceEmbedding as InferenceEmbedding
     from .start_speaking_plan import StartSpeakingPlan as StartSpeakingPlan
     from .assistant_a2_a_agent import AssistantA2AAgent as AssistantA2AAgent
@@ -142,6 +149,7 @@ if TYPE_CHECKING:
     from .conversation_list_response import ConversationListResponse as ConversationListResponse
     from .post_conversation_settings import PostConversationSettings as PostConversationSettings
     from .assistant_send_sms_response import AssistantSendSMSResponse as AssistantSendSMSResponse
+    from .assistant_whatsapp_response import AssistantWhatsappResponse as AssistantWhatsappResponse
     from .embedding_retrieve_response import EmbeddingRetrieveResponse as EmbeddingRetrieveResponse
     from .conversation_update_response import ConversationUpdateResponse as ConversationUpdateResponse
     from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
@@ -191,6 +199,10 @@ def __getattr__(name: str) -> Any:
         from .conversation_flow import ConversationFlow
 
         return ConversationFlow
+    if name == "DelegationSettings":
+        from .delegation_settings import DelegationSettings
+
+        return DelegationSettings
     if name == "ExternalLlm":
         from .external_llm import ExternalLlm
 
@@ -287,6 +299,10 @@ def __getattr__(name: str) -> Any:
         from .transcription_settings_config import TranscriptionSettingsConfig
 
         return TranscriptionSettingsConfig
+    if name == "WebsocketSettings":
+        from .websocket_settings import WebsocketSettings
+
+        return WebsocketSettings
     if name == "WidgetSettings":
         from .widget_settings import WidgetSettings
 
@@ -303,6 +319,10 @@ def __getattr__(name: str) -> Any:
         from .assistant_send_sms_response import AssistantSendSMSResponse
 
         return AssistantSendSMSResponse
+    if name == "AssistantWhatsappResponse":
+        from .assistant_whatsapp_response import AssistantWhatsappResponse
+
+        return AssistantWhatsappResponse
     if name == "AudioTranscriptionResponseWord":
         from .audio_transcription_response_word import AudioTranscriptionResponseWord
 

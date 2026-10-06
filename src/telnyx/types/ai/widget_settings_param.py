@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-from .audio_visualizer_config_param import AudioVisualizerConfigParam
-
 __all__ = ["WidgetSettingsParam"]
 
 
@@ -16,7 +14,7 @@ class WidgetSettingsParam(TypedDict, total=False):
     agent_thinking_text: str
     """Text displayed while the agent is processing."""
 
-    audio_visualizer_config: AudioVisualizerConfigParam
+    audio_visualizer_config: "AudioVisualizerConfigParam"
 
     default_state: Literal["expanded", "collapsed"]
     """The default state of the widget."""
@@ -44,3 +42,6 @@ class WidgetSettingsParam(TypedDict, total=False):
 
     view_history_url: Optional[str]
     """URL to view conversation history."""
+
+
+from .audio_visualizer_config_param import AudioVisualizerConfigParam

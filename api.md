@@ -340,6 +340,7 @@ from telnyx.types import (
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
     CallCostWebhookEvent,
@@ -356,7 +357,9 @@ from telnyx.types import (
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,
@@ -406,6 +409,7 @@ from telnyx.types import (
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
     CallCostWebhookEvent,
@@ -422,7 +426,9 @@ from telnyx.types import (
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,
@@ -620,6 +626,7 @@ from telnyx.types.ai import (
     ComparisonExpression,
     ConversationFlow,
     ConversationFlowReq,
+    DelegationSettings,
     EnabledFeatures,
     Expression,
     ExternalLlm,
@@ -659,11 +666,13 @@ from telnyx.types.ai import (
     TransferTool,
     VoiceSettings,
     WebhookTool,
+    WebsocketSettings,
     WidgetSettings,
     AssistantDeleteResponse,
     AssistantChatResponse,
     AssistantGetTexmlResponse,
     AssistantSendSMSResponse,
+    AssistantWhatsappResponse,
 )
 ```
 
@@ -673,12 +682,14 @@ Methods:
 - <code title="get /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">retrieve</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="post /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">update</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">list</a>() -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
-- <code title="delete /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">delete</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant_delete_response.py">AssistantDeleteResponse</a></code>
+- <code title="delete /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">delete</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_delete_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_delete_response.py">AssistantDeleteResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">chat</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_chat_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_chat_response.py">AssistantChatResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/clone">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">clone</a>(assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants/{assistant_id}/texml">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">get_texml</a>(assistant_id) -> str</code>
 - <code title="post /ai/assistants/import">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">imports</a>(\*\*<a href="src/telnyx/types/ai/assistant_imports_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
+- <code title="post /ai/assistants/{assistant_id}/restore">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">restore</a>(assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat/sms">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">send_sms</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_send_sms_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_send_sms_response.py">AssistantSendSMSResponse</a></code>
+- <code title="post /ai/assistants/{assistant_id}/chat/whatsapp">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">whatsapp</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_whatsapp_response.py">AssistantWhatsappResponse</a></code>
 
 ### Tests
 
@@ -840,6 +851,19 @@ from telnyx.types.ai.assistants import InstructionEnhanceResponse
 Methods:
 
 - <code title="post /ai/assistants/{assistant_id}/instructions/enhance">client.ai.assistants.instructions.<a href="./src/telnyx/resources/ai/assistants/instructions.py">enhance</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/instruction_enhance_params.py">params</a>) -> str</code>
+
+### Deleted
+
+Types:
+
+```python
+from telnyx.types.ai.assistants import DeletedAssistant
+```
+
+Methods:
+
+- <code title="get /ai/assistants/deleted">client.ai.assistants.deleted.<a href="./src/telnyx/resources/ai/assistants/deleted.py">list</a>(\*\*<a href="src/telnyx/types/ai/assistants/deleted_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/deleted_assistant.py">SyncDefaultFlatPagination[DeletedAssistant]</a></code>
+- <code title="get /ai/assistants/{assistant_id}/deleted">client.ai.assistants.deleted.<a href="./src/telnyx/resources/ai/assistants/deleted.py">get</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistants/deleted_assistant.py">DeletedAssistant</a></code>
 
 ## Audio
 
@@ -1310,7 +1334,7 @@ Methods:
 - <code title="get /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">retrieve</a>(tool_id) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SharedToolResponse</a></code>
 - <code title="patch /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">update</a>(tool_id, \*\*<a href="src/telnyx/types/ai/tool_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SharedToolResponse</a></code>
 - <code title="get /ai/tools">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">list</a>(\*\*<a href="src/telnyx/types/ai/tool_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/shared_tool_response.py">SyncDefaultFlatPagination[SharedToolResponse]</a></code>
-- <code title="delete /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">delete</a>(tool_id) -> object</code>
+- <code title="delete /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">delete</a>(tool_id) -> None</code>
 
 ## Anthropic
 
@@ -1361,12 +1385,20 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.memory import NamespaceRetrieveResponse
+from telnyx.types.ai.memory import (
+    Namespace,
+    NamespaceCreateResponse,
+    NamespaceRetrieveResponse,
+    NamespaceListResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /ai/memory/namespaces">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">create</a>(\*\*<a href="src/telnyx/types/ai/memory/namespace_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespace_create_response.py">NamespaceCreateResponse</a></code>
 - <code title="get /ai/memory/namespaces/{namespace}/operations/{operation_id}">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">retrieve</a>(operation_id, \*, namespace) -> <a href="./src/telnyx/types/ai/memory/namespace_retrieve_response.py">NamespaceRetrieveResponse</a></code>
+- <code title="get /ai/memory/namespaces">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">list</a>() -> <a href="./src/telnyx/types/ai/memory/namespace_list_response.py">NamespaceListResponse</a></code>
+- <code title="delete /ai/memory/namespaces/{namespace}">client.ai.memory.namespaces.<a href="./src/telnyx/resources/ai/memory/namespaces/namespaces.py">delete</a>(namespace) -> None</code>
 
 #### Profiles
 
@@ -5936,6 +5968,23 @@ Methods:
 - <code title="get /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">list</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_list_response.py">ConversationalComponentListResponse</a></code>
 - <code title="patch /v2/whatsapp/phone_numbers/{phone_number}/conversational_components">client.whatsapp.phone_numbers.conversational_components.<a href="./src/telnyx/resources/whatsapp/phone_numbers/conversational_components.py">patch_all</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/conversational_component_patch_all_response.py">ConversationalComponentPatchAllResponse</a></code>
 
+### CallingRouting
+
+Types:
+
+```python
+from telnyx.types.whatsapp.phone_numbers import (
+    WhatsappCallingRoutingData,
+    CallingRoutingListResponse,
+    CallingRoutingPatchAllResponse,
+)
+```
+
+Methods:
+
+- <code title="get /whatsapp/phone_numbers/{id}/calling_routing">client.whatsapp.phone_numbers.calling_routing.<a href="./src/telnyx/resources/whatsapp/phone_numbers/calling_routing.py">list</a>(id) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/calling_routing_list_response.py">CallingRoutingListResponse</a></code>
+- <code title="patch /whatsapp/phone_numbers/{id}/calling_routing">client.whatsapp.phone_numbers.calling_routing.<a href="./src/telnyx/resources/whatsapp/phone_numbers/calling_routing.py">patch_all</a>(id, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/calling_routing_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/calling_routing_patch_all_response.py">CallingRoutingPatchAllResponse</a></code>
+
 ## UserData
 
 Types:
@@ -6163,6 +6212,19 @@ Methods:
 - <code title="post /enterprises/{enterprise_id}/dir">client.enterprises.dir.<a href="./src/telnyx/resources/enterprises/dir.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/dir_create_params.py">params</a>) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="get /enterprises/{enterprise_id}/dir">client.enterprises.dir.<a href="./src/telnyx/resources/enterprises/dir.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/dir_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/dir.py">SyncDefaultFlatPagination[Dir]</a></code>
 
+## VerifyEmail
+
+Types:
+
+```python
+from telnyx.types.enterprises import EnterpriseEmailVerificationStatusWrapped
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/verify_email">client.enterprises.verify_email.<a href="./src/telnyx/resources/enterprises/verify_email.py">create</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprises/enterprise_email_verification_status_wrapped.py">EnterpriseEmailVerificationStatusWrapped</a></code>
+- <code title="post /enterprises/{enterprise_id}/verify_email/confirm">client.enterprises.verify_email.<a href="./src/telnyx/resources/enterprises/verify_email.py">confirm</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/verify_email_confirm_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/enterprise_email_verification_status_wrapped.py">EnterpriseEmailVerificationStatusWrapped</a></code>
+
 # Reputation
 
 ## Numbers
@@ -6311,7 +6373,18 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import Dir, DirList, DirStatus, DirWrapped, Document, DirListDocumentTypesResponse
+from telnyx.types import (
+    BpoAuthorizationInput,
+    Dir,
+    DirList,
+    DirStatus,
+    DirWrapped,
+    Document,
+    SignaturePayload,
+    DirDeleteResponse,
+    DirListDocumentTypesResponse,
+    DirRetrieveBpoAuthorizationsResponse,
+)
 ```
 
 Methods:
@@ -6319,10 +6392,12 @@ Methods:
 - <code title="get /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">retrieve</a>(dir_id) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="patch /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">update</a>(dir_id, \*\*<a href="src/telnyx/types/dir_update_params.py">params</a>) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="get /dir">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list</a>(\*\*<a href="src/telnyx/types/dir_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/dir.py">SyncDefaultFlatPagination[Dir]</a></code>
-- <code title="delete /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">delete</a>(dir_id) -> None</code>
+- <code title="delete /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">delete</a>(dir_id) -> <a href="./src/telnyx/types/dir_delete_response.py">DirDeleteResponse</a></code>
+- <code title="post /dir/{dir_id}/bpo_loa">client.dir.<a href="./src/telnyx/resources/dir/dir.py">bpo_loa</a>(dir_id, \*\*<a href="src/telnyx/types/dir_bpo_loa_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /dir/document_types">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_document_types</a>() -> <a href="./src/telnyx/types/dir_list_document_types_response.py">DirListDocumentTypesResponse</a></code>
 - <code title="get /dir/{dir_id}/infringement_claims">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_infringement_claims</a>(dir_id, \*\*<a href="src/telnyx/types/dir_list_infringement_claims_params.py">params</a>) -> <a href="./src/telnyx/types/infringement_claim.py">SyncDefaultFlatPagination[InfringementClaim]</a></code>
 - <code title="post /dir/{dir_id}/loa">client.dir.<a href="./src/telnyx/resources/dir/dir.py">new_loa</a>(dir_id, \*\*<a href="src/telnyx/types/dir_new_loa_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="get /dir/{dir_id}/bpo_authorizations">client.dir.<a href="./src/telnyx/resources/dir/dir.py">retrieve_bpo_authorizations</a>(dir_id, \*\*<a href="src/telnyx/types/dir_retrieve_bpo_authorizations_params.py">params</a>) -> <a href="./src/telnyx/types/dir_retrieve_bpo_authorizations_response.py">DirRetrieveBpoAuthorizationsResponse</a></code>
 - <code title="post /dir/{dir_id}/submit">client.dir.<a href="./src/telnyx/resources/dir/dir.py">submit</a>(dir_id) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 - <code title="put /dir/{dir_id}/infringement_update">client.dir.<a href="./src/telnyx/resources/dir/dir.py">update_infringement</a>(dir_id, \*\*<a href="src/telnyx/types/dir_update_infringement_params.py">params</a>) -> <a href="./src/telnyx/types/dir_wrapped.py">DirWrapped</a></code>
 
@@ -7025,3 +7100,32 @@ from telnyx.types import MachinePaymentAccountCreditResponse
 Methods:
 
 - <code title="post /machine-payments/account-credit">client.machine_payments.<a href="./src/telnyx/resources/machine_payments.py">account_credit</a>(\*\*<a href="src/telnyx/types/machine_payment_account_credit_params.py">params</a>) -> <a href="./src/telnyx/types/machine_payment_account_credit_response.py">MachinePaymentAccountCreditResponse</a></code>
+
+# SpendLimits
+
+Types:
+
+```python
+from telnyx.types import SpendLimit, SpendLimitPeriod, SpendLimitResponse, SpendLimitListResponse
+```
+
+Methods:
+
+- <code title="post /spend_limits">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">create</a>(\*\*<a href="src/telnyx/types/spend_limit_create_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
+- <code title="patch /spend_limits/{product}">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">update</a>(product, \*\*<a href="src/telnyx/types/spend_limit_update_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
+- <code title="get /spend_limits">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">list</a>() -> <a href="./src/telnyx/types/spend_limit_list_response.py">SpendLimitListResponse</a></code>
+- <code title="delete /spend_limits/{product}">client.spend_limits.<a href="./src/telnyx/resources/spend_limits.py">delete</a>(product, \*\*<a href="src/telnyx/types/spend_limit_delete_params.py">params</a>) -> <a href="./src/telnyx/types/spend_limit_response.py">SpendLimitResponse</a></code>
+
+# LlmTokenGateway
+
+## Usage
+
+Types:
+
+```python
+from telnyx.types.llm_token_gateway import UsageRetrieveSummaryResponse
+```
+
+Methods:
+
+- <code title="get /llm_token_gateway/usage/summary">client.llm_token_gateway.usage.<a href="./src/telnyx/resources/llm_token_gateway/usage.py">retrieve_summary</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/usage_retrieve_summary_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/usage_retrieve_summary_response.py">UsageRetrieveSummaryResponse</a></code>

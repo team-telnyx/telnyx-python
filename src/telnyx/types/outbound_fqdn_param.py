@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-from .encrypted_media import EncryptedMedia
-
 __all__ = ["OutboundFqdnParam"]
 
 
@@ -37,7 +35,7 @@ class OutboundFqdnParam(TypedDict, total=False):
     associated with this connection.
     """
 
-    encrypted_media: Optional[EncryptedMedia]
+    encrypted_media: Optional["EncryptedMedia"]
     """Enable use of SRTP for encryption.
 
     Cannot be set if the transport_portocol is TLS.
@@ -83,3 +81,6 @@ class OutboundFqdnParam(TypedDict, total=False):
 
     timeout_2xx_secs: int
     """Time(sec) before aborting if call is unanswered (min: 1, max: 600)."""
+
+
+from .encrypted_media import EncryptedMedia

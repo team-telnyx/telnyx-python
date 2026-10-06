@@ -5,9 +5,6 @@ from __future__ import annotations
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .vertical import Vertical
-from .entity_type import EntityType
-from .stock_exchange import StockExchange
 
 __all__ = ["BrandCreateParams"]
 
@@ -22,10 +19,10 @@ class BrandCreateParams(TypedDict, total=False):
     email: Required[str]
     """Valid email address of brand support contact."""
 
-    entity_type: Required[Annotated[EntityType, PropertyInfo(alias="entityType")]]
+    entity_type: Required[Annotated["EntityType", PropertyInfo(alias="entityType")]]
     """Entity type behind the brand. This is the form of business establishment."""
 
-    vertical: Required[Vertical]
+    vertical: Required["Vertical"]
     """Vertical or industry segment of the brand or campaign."""
 
     business_contact_email: Annotated[str, PropertyInfo(alias="businessContactEmail")]
@@ -73,7 +70,7 @@ class BrandCreateParams(TypedDict, total=False):
     state: str
     """State. Must be 2 letters code for United States."""
 
-    stock_exchange: Annotated[StockExchange, PropertyInfo(alias="stockExchange")]
+    stock_exchange: Annotated["StockExchange", PropertyInfo(alias="stockExchange")]
     """(Required for public company) stock exchange."""
 
     stock_symbol: Annotated[str, PropertyInfo(alias="stockSymbol")]
@@ -90,3 +87,8 @@ class BrandCreateParams(TypedDict, total=False):
 
     website: str
     """Brand website URL."""
+
+
+from .vertical import Vertical
+from .entity_type import EntityType
+from .stock_exchange import StockExchange

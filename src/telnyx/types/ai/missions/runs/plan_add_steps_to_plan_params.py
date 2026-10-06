@@ -5,12 +5,13 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .create_plan_step_request_param import CreatePlanStepRequestParam
-
 __all__ = ["PlanAddStepsToPlanParams"]
 
 
 class PlanAddStepsToPlanParams(TypedDict, total=False):
     mission_id: Required[str]
 
-    steps: Required[Iterable[CreatePlanStepRequestParam]]
+    steps: Required[Iterable["CreatePlanStepRequestParam"]]
+
+
+from .create_plan_step_request_param import CreatePlanStepRequestParam

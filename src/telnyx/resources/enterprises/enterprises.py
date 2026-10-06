@@ -31,6 +31,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .verify_email import (
+    VerifyEmailResource,
+    AsyncVerifyEmailResource,
+    VerifyEmailResourceWithRawResponse,
+    AsyncVerifyEmailResourceWithRawResponse,
+    VerifyEmailResourceWithStreamingResponse,
+    AsyncVerifyEmailResourceWithStreamingResponse,
+)
 from ..._base_client import AsyncPaginator, make_request_options
 from .reputation.reputation import (
     ReputationResource,
@@ -63,6 +71,14 @@ class EnterprisesResource(SyncAPIResource):
         A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
         """
         return DirResource(self._client)
+
+    @cached_property
+    def verify_email(self) -> VerifyEmailResource:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return VerifyEmailResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EnterprisesResourceWithRawResponse:
@@ -175,11 +191,20 @@ class EnterprisesResource(SyncAPIResource):
         Args:
           country_code: ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported.
 
+          doing_business_as: The trade name your business operates under if it is different from your legal
+              name, also called a Doing Business As (DBA) name. Leave blank if you only use
+              your legal name.
+
           fein: US Federal Employer Identification Number (`NN-NNNNNNN`) or Canadian equivalent.
 
-          industry: Industry classification.
+          industry: The industry your business operates in. Choose the closest match from the list;
+              if your value is not accepted, pick the nearest category.
 
-          legal_name: Legal name of the enterprise.
+          jurisdiction_of_incorporation: The state, province, or country where your business was legally incorporated,
+              for example Delaware.
+
+          legal_name: Your business's full registered legal name, exactly as it appears on your
+              incorporation or tax documents, 3 to 64 characters.
 
           number_of_employees: Approximate headcount range. Used for vetting heuristics; pick the bucket that
               contains your current employee count.
@@ -204,19 +229,35 @@ class EnterprisesResource(SyncAPIResource):
               - `non_profit` - registered 501(c)(3)/equivalent (incl. educational
                 institutions, charities, religious organisations).
 
-          corporate_registration_number: Optional corporate-registration / company-number identifier.
+          website: Your business's public website address, including https://. Leave blank if your
+              business has no website.
 
-          customer_reference: Optional free-form string the caller can attach for their own bookkeeping.
-              Telnyx does not interpret it.
+          corporate_registration_number: The official number your company received when it was legally registered or
+              incorporated (for example from your state or national business registry). It is
+              on your certificate of incorporation.
 
-          dun_bradstreet_number: Optional D-U-N-S Number.
+          customer_reference: Your own label for this account. Enter any reference that helps you find it in
+              your records. Telnyx does not use it during vetting.
 
-          primary_business_domain_sic_code: Optional SIC code for the primary line of business.
+          dun_bradstreet_number: Your optional 9-digit D-U-N-S Number issued by Dun & Bradstreet, a unique
+              identifier for your business. Leave blank if you do not have one.
 
-          professional_license_number: Optional professional-license number for regulated industries.
+          primary_business_domain_sic_code: The 4-digit Standard Industrial Classification code for your main line of
+              business, which tells us what industry you operate in. Look it up in the SIC
+              code directory if you are unsure.
 
-          role_type: `enterprise` for an organization registering its own DIRs; `bpo` for a Business
-              Process Outsourcer placing calls on behalf of one or more enterprises.
+          professional_license_number: If your business operates under a professional license (for example legal,
+              medical, or financial services), enter the license number issued by the
+              licensing authority. Leave blank if it does not apply.
+
+          role_type: `enterprise` for an organization registering its own DIRs (the default, and the
+              right choice when the calls display your own brand). `bpo` for a Business
+              Process Outsourcer: a call center that places calls on behalf of other
+              enterprises and displays their brand. A `bpo` enterprise describes the call
+              center itself and cannot own a DIR. Each client the call center calls for gets
+              its own `enterprise` in the same account, with the client's DIR under it; that
+              DIR is then linked to the `bpo` enterprise through `bpo_authorizations`. Fixed
+              at creation.
 
           extra_headers: Send extra headers
 
@@ -375,10 +416,71 @@ class EnterprisesResource(SyncAPIResource):
         cannot be changed: including any of them in the body is rejected with
         `400 Bad Request` (`Field 'X' is not allowed in this request`).
 
-        Args:
-          jurisdiction_of_incorporation: Updated state/province/country of incorporation. Optional on update.
+        For an approved BPO enterprise (`role_type` `bpo`), changing any identity field
+        (legal name, DBA, website, FEIN, industry, number of employees, physical
+        address, organization contact, D-U-N-S number, legal type, SIC code, corporate
+        registration number, professional license number, or jurisdiction of
+        incorporation) resets `bpo_verification_status` to `pending` for re-approval and
+        sets every DIR authorization for that BPO to `rejected`. After re-approval, link
+        it again with a newly signed LOA (a new `loa_document_id`); resending the old
+        one keeps the authorization `rejected`. Re-sending an unchanged value does not
+        reset anything.
 
-          legal_name: Legal name of the enterprise.
+        If Number Reputation is enabled on the enterprise, `legal_name`,
+        `doing_business_as`, `website`, `fein`, `industry`, `number_of_employees`,
+        `organization_physical_address`, `organization_contact`, and
+        `dun_bradstreet_number` cannot be changed: the request is rejected with `400`.
+
+        Args:
+          corporate_registration_number: The official number your company received when it was legally registered or
+              incorporated (for example from your state or national business registry). It is
+              on your certificate of incorporation.
+
+          customer_reference: Your own label for this account. Enter any reference that helps you find it in
+              your records. Telnyx does not use it during vetting.
+
+          doing_business_as: The trade name your business operates under if it is different from your legal
+              name, also called a Doing Business As (DBA) name. Leave blank if you only use
+              your legal name.
+
+          dun_bradstreet_number: Your optional 9-digit D-U-N-S Number issued by Dun & Bradstreet, a unique
+              identifier for your business. Leave blank if you do not have one.
+
+          fein: US Federal Employer Identification Number (`NN-NNNNNNN`) or Canadian equivalent.
+
+          industry: The industry your business operates in. Choose the closest match from the list;
+              if your value is not accepted, pick the nearest category.
+
+          jurisdiction_of_incorporation: The state, province, or country where your business was legally incorporated,
+              for example Delaware.
+
+          legal_name: Your business's full registered legal name, exactly as it appears on your
+              incorporation or tax documents, 3 to 64 characters.
+
+          number_of_employees: Approximate headcount range. Used for vetting heuristics; pick the bucket that
+              contains your current employee count.
+
+          organization_legal_type:
+              Legal-entity form. Pick the form that matches your incorporation documents:
+
+              - `corporation` - C-corp or S-corp.
+              - `llc` - limited liability company.
+              - `partnership` - general/limited partnership.
+              - `nonprofit` - non-profit corporation, charitable trust, or
+                501(c)(3)/equivalent.
+              - `other` - anything else (sole proprietorships, government bodies, DBAs, etc.).
+                You may be asked for additional documents during vetting.
+
+          primary_business_domain_sic_code: The 4-digit Standard Industrial Classification code for your main line of
+              business, which tells us what industry you operate in. Look it up in the SIC
+              code directory if you are unsure.
+
+          professional_license_number: If your business operates under a professional license (for example legal,
+              medical, or financial services), enter the license number issued by the
+              licensing authority. Leave blank if it does not apply.
+
+          website: Your business's public website address, including https://. Leave blank if your
+              business has no website.
 
           extra_headers: Send extra headers
 
@@ -424,6 +526,7 @@ class EnterprisesResource(SyncAPIResource):
         self,
         *,
         filter_legal_name_contains: str | Omit = omit,
+        filter_role_type: Literal["enterprise", "bpo"] | Omit = omit,
         legal_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -441,6 +544,9 @@ class EnterprisesResource(SyncAPIResource):
 
         Args:
           filter_legal_name_contains: Case-insensitive partial match on legal name.
+
+          filter_role_type: Only return enterprises of this type: `bpo` for call-center (BPO) enterprises,
+              `enterprise` for normal enterprises. Omit to return both.
 
           legal_name: Filter by legal name (partial match).
 
@@ -467,6 +573,7 @@ class EnterprisesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_legal_name_contains": filter_legal_name_contains,
+                        "filter_role_type": filter_role_type,
                         "legal_name": legal_name,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -531,8 +638,8 @@ class EnterprisesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterprisePublicWrapped:
-        """
-        Branded Calling is a paid product that must be activated on each enterprise.
+        """Branded Calling must be activated on each enterprise.
+
         Activation is idempotent:
 
         - First call: marks the enterprise as activated and begins onboarding it with
@@ -547,11 +654,15 @@ class EnterprisesResource(SyncAPIResource):
 
         Failure modes:
 
+        - `400` - the account has no available credit. Add funds and retry.
+        - `400` - the enterprise is not in the United States. Branded Calling is
+          currently available only to US enterprises.
         - `403` - Branded Calling Terms of Service not accepted.
         - `404` - enterprise does not exist or does not belong to your account.
 
-        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
-        for current pricing.
+        **Pricing:** Activation itself is free, but the account must have available
+        credit. Branded Calling fees are charged per DIR and per branded call. See
+        https://telnyx.com/pricing/branded-calling for current pricing.
 
         Args:
           extra_headers: Send extra headers
@@ -587,6 +698,14 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
         """
         return AsyncDirResource(self._client)
+
+    @cached_property
+    def verify_email(self) -> AsyncVerifyEmailResource:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return AsyncVerifyEmailResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEnterprisesResourceWithRawResponse:
@@ -699,11 +818,20 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         Args:
           country_code: ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported.
 
+          doing_business_as: The trade name your business operates under if it is different from your legal
+              name, also called a Doing Business As (DBA) name. Leave blank if you only use
+              your legal name.
+
           fein: US Federal Employer Identification Number (`NN-NNNNNNN`) or Canadian equivalent.
 
-          industry: Industry classification.
+          industry: The industry your business operates in. Choose the closest match from the list;
+              if your value is not accepted, pick the nearest category.
 
-          legal_name: Legal name of the enterprise.
+          jurisdiction_of_incorporation: The state, province, or country where your business was legally incorporated,
+              for example Delaware.
+
+          legal_name: Your business's full registered legal name, exactly as it appears on your
+              incorporation or tax documents, 3 to 64 characters.
 
           number_of_employees: Approximate headcount range. Used for vetting heuristics; pick the bucket that
               contains your current employee count.
@@ -728,19 +856,35 @@ class AsyncEnterprisesResource(AsyncAPIResource):
               - `non_profit` - registered 501(c)(3)/equivalent (incl. educational
                 institutions, charities, religious organisations).
 
-          corporate_registration_number: Optional corporate-registration / company-number identifier.
+          website: Your business's public website address, including https://. Leave blank if your
+              business has no website.
 
-          customer_reference: Optional free-form string the caller can attach for their own bookkeeping.
-              Telnyx does not interpret it.
+          corporate_registration_number: The official number your company received when it was legally registered or
+              incorporated (for example from your state or national business registry). It is
+              on your certificate of incorporation.
 
-          dun_bradstreet_number: Optional D-U-N-S Number.
+          customer_reference: Your own label for this account. Enter any reference that helps you find it in
+              your records. Telnyx does not use it during vetting.
 
-          primary_business_domain_sic_code: Optional SIC code for the primary line of business.
+          dun_bradstreet_number: Your optional 9-digit D-U-N-S Number issued by Dun & Bradstreet, a unique
+              identifier for your business. Leave blank if you do not have one.
 
-          professional_license_number: Optional professional-license number for regulated industries.
+          primary_business_domain_sic_code: The 4-digit Standard Industrial Classification code for your main line of
+              business, which tells us what industry you operate in. Look it up in the SIC
+              code directory if you are unsure.
 
-          role_type: `enterprise` for an organization registering its own DIRs; `bpo` for a Business
-              Process Outsourcer placing calls on behalf of one or more enterprises.
+          professional_license_number: If your business operates under a professional license (for example legal,
+              medical, or financial services), enter the license number issued by the
+              licensing authority. Leave blank if it does not apply.
+
+          role_type: `enterprise` for an organization registering its own DIRs (the default, and the
+              right choice when the calls display your own brand). `bpo` for a Business
+              Process Outsourcer: a call center that places calls on behalf of other
+              enterprises and displays their brand. A `bpo` enterprise describes the call
+              center itself and cannot own a DIR. Each client the call center calls for gets
+              its own `enterprise` in the same account, with the client's DIR under it; that
+              DIR is then linked to the `bpo` enterprise through `bpo_authorizations`. Fixed
+              at creation.
 
           extra_headers: Send extra headers
 
@@ -899,10 +1043,71 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         cannot be changed: including any of them in the body is rejected with
         `400 Bad Request` (`Field 'X' is not allowed in this request`).
 
-        Args:
-          jurisdiction_of_incorporation: Updated state/province/country of incorporation. Optional on update.
+        For an approved BPO enterprise (`role_type` `bpo`), changing any identity field
+        (legal name, DBA, website, FEIN, industry, number of employees, physical
+        address, organization contact, D-U-N-S number, legal type, SIC code, corporate
+        registration number, professional license number, or jurisdiction of
+        incorporation) resets `bpo_verification_status` to `pending` for re-approval and
+        sets every DIR authorization for that BPO to `rejected`. After re-approval, link
+        it again with a newly signed LOA (a new `loa_document_id`); resending the old
+        one keeps the authorization `rejected`. Re-sending an unchanged value does not
+        reset anything.
 
-          legal_name: Legal name of the enterprise.
+        If Number Reputation is enabled on the enterprise, `legal_name`,
+        `doing_business_as`, `website`, `fein`, `industry`, `number_of_employees`,
+        `organization_physical_address`, `organization_contact`, and
+        `dun_bradstreet_number` cannot be changed: the request is rejected with `400`.
+
+        Args:
+          corporate_registration_number: The official number your company received when it was legally registered or
+              incorporated (for example from your state or national business registry). It is
+              on your certificate of incorporation.
+
+          customer_reference: Your own label for this account. Enter any reference that helps you find it in
+              your records. Telnyx does not use it during vetting.
+
+          doing_business_as: The trade name your business operates under if it is different from your legal
+              name, also called a Doing Business As (DBA) name. Leave blank if you only use
+              your legal name.
+
+          dun_bradstreet_number: Your optional 9-digit D-U-N-S Number issued by Dun & Bradstreet, a unique
+              identifier for your business. Leave blank if you do not have one.
+
+          fein: US Federal Employer Identification Number (`NN-NNNNNNN`) or Canadian equivalent.
+
+          industry: The industry your business operates in. Choose the closest match from the list;
+              if your value is not accepted, pick the nearest category.
+
+          jurisdiction_of_incorporation: The state, province, or country where your business was legally incorporated,
+              for example Delaware.
+
+          legal_name: Your business's full registered legal name, exactly as it appears on your
+              incorporation or tax documents, 3 to 64 characters.
+
+          number_of_employees: Approximate headcount range. Used for vetting heuristics; pick the bucket that
+              contains your current employee count.
+
+          organization_legal_type:
+              Legal-entity form. Pick the form that matches your incorporation documents:
+
+              - `corporation` - C-corp or S-corp.
+              - `llc` - limited liability company.
+              - `partnership` - general/limited partnership.
+              - `nonprofit` - non-profit corporation, charitable trust, or
+                501(c)(3)/equivalent.
+              - `other` - anything else (sole proprietorships, government bodies, DBAs, etc.).
+                You may be asked for additional documents during vetting.
+
+          primary_business_domain_sic_code: The 4-digit Standard Industrial Classification code for your main line of
+              business, which tells us what industry you operate in. Look it up in the SIC
+              code directory if you are unsure.
+
+          professional_license_number: If your business operates under a professional license (for example legal,
+              medical, or financial services), enter the license number issued by the
+              licensing authority. Leave blank if it does not apply.
+
+          website: Your business's public website address, including https://. Leave blank if your
+              business has no website.
 
           extra_headers: Send extra headers
 
@@ -948,6 +1153,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         self,
         *,
         filter_legal_name_contains: str | Omit = omit,
+        filter_role_type: Literal["enterprise", "bpo"] | Omit = omit,
         legal_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -965,6 +1171,9 @@ class AsyncEnterprisesResource(AsyncAPIResource):
 
         Args:
           filter_legal_name_contains: Case-insensitive partial match on legal name.
+
+          filter_role_type: Only return enterprises of this type: `bpo` for call-center (BPO) enterprises,
+              `enterprise` for normal enterprises. Omit to return both.
 
           legal_name: Filter by legal name (partial match).
 
@@ -991,6 +1200,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_legal_name_contains": filter_legal_name_contains,
+                        "filter_role_type": filter_role_type,
                         "legal_name": legal_name,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -1055,8 +1265,8 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterprisePublicWrapped:
-        """
-        Branded Calling is a paid product that must be activated on each enterprise.
+        """Branded Calling must be activated on each enterprise.
+
         Activation is idempotent:
 
         - First call: marks the enterprise as activated and begins onboarding it with
@@ -1071,11 +1281,15 @@ class AsyncEnterprisesResource(AsyncAPIResource):
 
         Failure modes:
 
+        - `400` - the account has no available credit. Add funds and retry.
+        - `400` - the enterprise is not in the United States. Branded Calling is
+          currently available only to US enterprises.
         - `403` - Branded Calling Terms of Service not accepted.
         - `404` - enterprise does not exist or does not belong to your account.
 
-        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
-        for current pricing.
+        **Pricing:** Activation itself is free, but the account must have available
+        credit. Branded Calling fees are charged per DIR and per branded call. See
+        https://telnyx.com/pricing/branded-calling for current pricing.
 
         Args:
           extra_headers: Send extra headers
@@ -1132,6 +1346,14 @@ class EnterprisesResourceWithRawResponse:
         """
         return DirResourceWithRawResponse(self._enterprises.dir)
 
+    @cached_property
+    def verify_email(self) -> VerifyEmailResourceWithRawResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return VerifyEmailResourceWithRawResponse(self._enterprises.verify_email)
+
 
 class AsyncEnterprisesResourceWithRawResponse:
     def __init__(self, enterprises: AsyncEnterprisesResource) -> None:
@@ -1167,6 +1389,14 @@ class AsyncEnterprisesResourceWithRawResponse:
         A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
         """
         return AsyncDirResourceWithRawResponse(self._enterprises.dir)
+
+    @cached_property
+    def verify_email(self) -> AsyncVerifyEmailResourceWithRawResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return AsyncVerifyEmailResourceWithRawResponse(self._enterprises.verify_email)
 
 
 class EnterprisesResourceWithStreamingResponse:
@@ -1204,6 +1434,14 @@ class EnterprisesResourceWithStreamingResponse:
         """
         return DirResourceWithStreamingResponse(self._enterprises.dir)
 
+    @cached_property
+    def verify_email(self) -> VerifyEmailResourceWithStreamingResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return VerifyEmailResourceWithStreamingResponse(self._enterprises.verify_email)
+
 
 class AsyncEnterprisesResourceWithStreamingResponse:
     def __init__(self, enterprises: AsyncEnterprisesResource) -> None:
@@ -1239,3 +1477,11 @@ class AsyncEnterprisesResourceWithStreamingResponse:
         A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
         """
         return AsyncDirResourceWithStreamingResponse(self._enterprises.dir)
+
+    @cached_property
+    def verify_email(self) -> AsyncVerifyEmailResourceWithStreamingResponse:
+        """Verify ownership of a DIR's authorizer email.
+
+        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        """
+        return AsyncVerifyEmailResourceWithStreamingResponse(self._enterprises.verify_email)

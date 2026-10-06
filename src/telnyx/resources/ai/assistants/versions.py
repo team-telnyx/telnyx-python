@@ -29,6 +29,8 @@ from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
+from ....types.ai.websocket_settings_param import WebsocketSettingsParam
+from ....types.ai.delegation_settings_param import DelegationSettingsParam
 from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
 from ....types.ai.assistant_a2_a_agent_param import AssistantA2AAgentParam
 from ....types.ai.assistant_mcp_server_param import AssistantMcpServerParam
@@ -118,6 +120,7 @@ class VersionsResource(SyncAPIResource):
         assistant_id: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -145,6 +148,7 @@ class VersionsResource(SyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,6 +178,14 @@ class VersionsResource(SyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -259,6 +271,12 @@ class VersionsResource(SyncAPIResource):
 
           version_name: Human-readable name for the assistant version.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -281,6 +299,7 @@ class VersionsResource(SyncAPIResource):
                 {
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -308,6 +327,7 @@ class VersionsResource(SyncAPIResource):
                     "transcription": transcription,
                     "version_name": version_name,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 version_update_params.VersionUpdateParams,
@@ -512,6 +532,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         assistant_id: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
+        delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -539,6 +560,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         transcription: TranscriptionSettingsParam | Omit = omit,
         version_name: str | Omit = omit,
         voice_settings: InferenceEmbeddingVoiceSettingsParam | Omit = omit,
+        websocket_settings: WebsocketSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -568,6 +590,14 @@ class AsyncVersionsResource(AsyncAPIResource):
               A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
               unique node/edge IDs, that `start_node_id` references a real node, and that
               every edge's endpoints reference real nodes.
+
+          delegation_settings: Splits the conversation between a frontend model that talks to the caller and a
+              backend model that does the work. On the GPT-Live route the frontend model
+              cannot call tools at all — when it needs something done it raises a delegation
+              and waits. On the chat completion route the frontend keeps a single `delegate`
+              tool that returns immediately, so the conversation carries on while the backend
+              works. Either way the backend's answer is spoken as commentary or kept as silent
+              context, depending on `speak_results`. Beta feature.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -653,6 +683,12 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           version_name: Human-readable name for the assistant version.
 
+          websocket_settings: Streams conversation and telephony events to a WebSocket server you host, and
+              accepts messages injected back into the conversation. Telnyx opens the
+              connection as a client, once per conversation. Delivery is best effort
+              throughout: while the connection is down events are dropped rather than queued,
+              and no socket failure is ever allowed to affect the call. Beta feature.
+
           widget_settings: Configuration settings for the assistant's web widget.
 
           extra_headers: Send extra headers
@@ -675,6 +711,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                 {
                     "a2a_agents": a2a_agents,
                     "conversation_flow": conversation_flow,
+                    "delegation_settings": delegation_settings,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -702,6 +739,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     "transcription": transcription,
                     "version_name": version_name,
                     "voice_settings": voice_settings,
+                    "websocket_settings": websocket_settings,
                     "widget_settings": widget_settings,
                 },
                 version_update_params.VersionUpdateParams,

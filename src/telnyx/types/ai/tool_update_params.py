@@ -5,9 +5,6 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import TypedDict
 
-from .pay_tool_params_param import PayToolParamsParam
-from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
-
 __all__ = ["ToolUpdateParams"]
 
 
@@ -22,7 +19,7 @@ class ToolUpdateParams(TypedDict, total=False):
 
     invite: Dict[str, object]
 
-    pay: PayToolParamsParam
+    pay: "PayToolParamsParam"
 
     retrieval: Dict[str, object]
 
@@ -30,7 +27,11 @@ class ToolUpdateParams(TypedDict, total=False):
 
     type: str
 
-    update_dynamic_variables: UpdateDynamicVariablesToolParamsParam
+    update_dynamic_variables: "UpdateDynamicVariablesToolParamsParam"
     """Configuration for an update_dynamic_variables tool."""
 
     webhook: Dict[str, object]
+
+
+from .pay_tool_params_param import PayToolParamsParam
+from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam

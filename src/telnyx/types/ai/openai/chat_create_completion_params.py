@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
 from ..bucket_ids_param import BucketIDsParam
-from .function_definition_param import FunctionDefinitionParam
 
 __all__ = [
     "ChatCreateCompletionParams",
@@ -70,8 +69,15 @@ class ChatCreateCompletionParams(TypedDict, total=False):
     `content` of `message`.
     """
 
-    max_tokens: int
-    """Maximum number of completion tokens the model should generate."""
+    max_tokens: Optional[int]
+    """Maximum number of completion (output) tokens the model may generate per request.
+
+    Defaults to 8192 when omitted or `null`. Set a higher value to allow longer
+    completions. The model's `max_completion_tokens` metadata (see
+    `GET /ai/models`), when set, caps both the default and any larger explicit
+    value. Reasoning models consume this budget across reasoning and answer tokens
+    combined.
+    """
 
     min_p: float
     """
@@ -268,7 +274,7 @@ ResponseFormat: TypeAlias = Union[
 
 
 class ToolFunction(TypedDict, total=False):
-    function: Required[FunctionDefinitionParam]
+    function: Required["FunctionDefinitionParam"]
 
     type: Required[Literal["function"]]
 
@@ -280,3 +286,5 @@ class ToolRetrieval(TypedDict, total=False):
 
 
 Tool: TypeAlias = Union[ToolFunction, ToolRetrieval]
+
+from .function_definition_param import FunctionDefinitionParam

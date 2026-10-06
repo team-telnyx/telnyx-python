@@ -7,7 +7,6 @@ from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from .remediation_status import RemediationStatus
 
 __all__ = ["RemediationListParams"]
 
@@ -23,7 +22,7 @@ class RemediationListParams(TypedDict, total=False):
     ]
     """Only requests created on or before this timestamp (ISO 8601)."""
 
-    filter_status: Annotated[RemediationStatus, PropertyInfo(alias="filter[status]")]
+    filter_status: Annotated["RemediationStatus", PropertyInfo(alias="filter[status]")]
     """Filter by customer-facing status."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
@@ -34,3 +33,6 @@ class RemediationListParams(TypedDict, total=False):
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
+
+
+from .remediation_status import RemediationStatus

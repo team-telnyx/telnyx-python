@@ -5,11 +5,6 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .s3_configuration_data_param import S3ConfigurationDataParam
-from .gcs_configuration_data_param import GcsConfigurationDataParam
-from .azure_configuration_data_param import AzureConfigurationDataParam
-from .s3_generic_configuration_data_param import S3GenericConfigurationDataParam
-
 __all__ = ["CustomStorageCredentialCreateParams", "Configuration"]
 
 
@@ -20,5 +15,13 @@ class CustomStorageCredentialCreateParams(TypedDict, total=False):
 
 
 Configuration: TypeAlias = Union[
-    GcsConfigurationDataParam, S3ConfigurationDataParam, S3GenericConfigurationDataParam, AzureConfigurationDataParam
+    "GcsConfigurationDataParam",
+    "S3ConfigurationDataParam",
+    "S3GenericConfigurationDataParam",
+    "AzureConfigurationDataParam",
 ]
+
+from .s3_configuration_data_param import S3ConfigurationDataParam
+from .gcs_configuration_data_param import GcsConfigurationDataParam
+from .azure_configuration_data_param import AzureConfigurationDataParam
+from .s3_generic_configuration_data_param import S3GenericConfigurationDataParam

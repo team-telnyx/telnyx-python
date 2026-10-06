@@ -16,6 +16,14 @@ from .phone_numbers import (
     PhoneNumbersResourceWithStreamingResponse,
     AsyncPhoneNumbersResourceWithStreamingResponse,
 )
+from .calling_routing import (
+    CallingRoutingResource,
+    AsyncCallingRoutingResource,
+    CallingRoutingResourceWithRawResponse,
+    AsyncCallingRoutingResourceWithRawResponse,
+    CallingRoutingResourceWithStreamingResponse,
+    AsyncCallingRoutingResourceWithStreamingResponse,
+)
 from .calling_settings import (
     CallingSettingsResource,
     AsyncCallingSettingsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncConversationalComponentsResourceWithRawResponse",
     "ConversationalComponentsResourceWithStreamingResponse",
     "AsyncConversationalComponentsResourceWithStreamingResponse",
+    "CallingRoutingResource",
+    "AsyncCallingRoutingResource",
+    "CallingRoutingResourceWithRawResponse",
+    "AsyncCallingRoutingResourceWithRawResponse",
+    "CallingRoutingResourceWithStreamingResponse",
+    "AsyncCallingRoutingResourceWithStreamingResponse",
     "PhoneNumbersResource",
     "AsyncPhoneNumbersResource",
     "PhoneNumbersResourceWithRawResponse",

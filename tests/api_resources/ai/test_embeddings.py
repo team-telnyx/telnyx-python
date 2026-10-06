@@ -37,7 +37,7 @@ class TestEmbeddings:
             bucket_name="Bucket Name",
             document_chunk_overlap_size=512,
             document_chunk_size=1024,
-            embedding_model="thenlper/gte-large",
+            embedding_model="intfloat/multilingual-e5-large",
             loader="default",
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
@@ -262,7 +262,7 @@ class TestAsyncEmbeddings:
             bucket_name="Bucket Name",
             document_chunk_overlap_size=512,
             document_chunk_size=1024,
-            embedding_model="thenlper/gte-large",
+            embedding_model="intfloat/multilingual-e5-large",
             loader="default",
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )

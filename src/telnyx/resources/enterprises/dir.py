@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -26,6 +26,7 @@ from ...types.dir_status import DirStatus
 from ...types.dir_wrapped import DirWrapped
 from ...types.enterprises import dir_list_params, dir_create_params
 from ...types.document_param import DocumentParam
+from ...types.bpo_authorization_input_param import BpoAuthorizationInputParam
 
 __all__ = ["DirResource", "AsyncDirResource"]
 
@@ -65,9 +66,11 @@ class DirResource(SyncAPIResource):
         certify_ip_ownership: Literal[True],
         certify_no_shaft_content: Literal[True],
         display_name: str,
+        bpo_authorizations: Iterable[BpoAuthorizationInputParam] | Omit = omit,
         documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -113,7 +116,8 @@ class DirResource(SyncAPIResource):
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
 
-          certify_brand_is_accurate: Must be `true`.
+          certify_brand_is_accurate: Certification that the DIR information is accurate. Must be `true` for the DIR
+              to be submitted for vetting.
 
           certify_ip_ownership: Must be `true`. Confirms ownership of any logos/trademarks shown.
 
@@ -122,12 +126,23 @@ class DirResource(SyncAPIResource):
 
           display_name: Name shown to call recipients. No emoji; not whitespace-only.
 
+          bpo_authorizations: Optional. Approved BPO (Business Process Outsourcer) accounts on your
+              organization authorized to place branded calls for this DIR, each with the
+              signed Letter of Authorization the Brand Owner granted it. Each authorization
+              starts `pending` and takes effect only after an admin reviews its Letter of
+              Authorization. Omit or send an empty list to authorize no BPO on this DIR.
+              Maximum 10.
+
           documents: Supporting documents. Each `document_id` may appear at most once on a DIR.
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
           reselling: Set to true if your organization places calls on behalf of other enterprises
               (BPO/reseller).
+
+          webhook_url: Optional `https://` URL that receives webhook notifications when this DIR's
+              compliance review completes (rejection outcomes include structured rejection
+              reasons). Maximum 2048 characters.
 
           extra_headers: Send extra headers
 
@@ -150,9 +165,11 @@ class DirResource(SyncAPIResource):
                     "certify_ip_ownership": certify_ip_ownership,
                     "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
+                    "bpo_authorizations": bpo_authorizations,
                     "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
+                    "webhook_url": webhook_url,
                 },
                 dir_create_params.DirCreateParams,
             ),
@@ -305,9 +322,11 @@ class AsyncDirResource(AsyncAPIResource):
         certify_ip_ownership: Literal[True],
         certify_no_shaft_content: Literal[True],
         display_name: str,
+        bpo_authorizations: Iterable[BpoAuthorizationInputParam] | Omit = omit,
         documents: Iterable[DocumentParam] | Omit = omit,
         logo_url: str | Omit = omit,
         reselling: bool | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -353,7 +372,8 @@ class AsyncDirResource(AsyncAPIResource):
           call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
               `POST /call_reasons/validate`.
 
-          certify_brand_is_accurate: Must be `true`.
+          certify_brand_is_accurate: Certification that the DIR information is accurate. Must be `true` for the DIR
+              to be submitted for vetting.
 
           certify_ip_ownership: Must be `true`. Confirms ownership of any logos/trademarks shown.
 
@@ -362,12 +382,23 @@ class AsyncDirResource(AsyncAPIResource):
 
           display_name: Name shown to call recipients. No emoji; not whitespace-only.
 
+          bpo_authorizations: Optional. Approved BPO (Business Process Outsourcer) accounts on your
+              organization authorized to place branded calls for this DIR, each with the
+              signed Letter of Authorization the Brand Owner granted it. Each authorization
+              starts `pending` and takes effect only after an admin reviews its Letter of
+              Authorization. Omit or send an empty list to authorize no BPO on this DIR.
+              Maximum 10.
+
           documents: Supporting documents. Each `document_id` may appear at most once on a DIR.
 
           logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
 
           reselling: Set to true if your organization places calls on behalf of other enterprises
               (BPO/reseller).
+
+          webhook_url: Optional `https://` URL that receives webhook notifications when this DIR's
+              compliance review completes (rejection outcomes include structured rejection
+              reasons). Maximum 2048 characters.
 
           extra_headers: Send extra headers
 
@@ -390,9 +421,11 @@ class AsyncDirResource(AsyncAPIResource):
                     "certify_ip_ownership": certify_ip_ownership,
                     "certify_no_shaft_content": certify_no_shaft_content,
                     "display_name": display_name,
+                    "bpo_authorizations": bpo_authorizations,
                     "documents": documents,
                     "logo_url": logo_url,
                     "reselling": reselling,
+                    "webhook_url": webhook_url,
                 },
                 dir_create_params.DirCreateParams,
             ),

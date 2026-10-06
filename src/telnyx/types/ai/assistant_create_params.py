@@ -7,24 +7,6 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
-from .enabled_features import EnabledFeatures
-from .assistant_tool_param import AssistantToolParam
-from .widget_settings_param import WidgetSettingsParam
-from .external_llm_req_param import ExternalLlmReqParam
-from .insight_settings_param import InsightSettingsParam
-from .privacy_settings_param import PrivacySettingsParam
-from .observability_req_param import ObservabilityReqParam
-from .messaging_settings_param import MessagingSettingsParam
-from .telephony_settings_param import TelephonySettingsParam
-from .fallback_config_req_param import FallbackConfigReqParam
-from .assistant_a2_a_agent_param import AssistantA2AAgentParam
-from .assistant_mcp_server_param import AssistantMcpServerParam
-from .assistant_integration_param import AssistantIntegrationParam
-from .conversation_flow_req_param import ConversationFlowReqParam
-from .transcription_settings_param import TranscriptionSettingsParam
-from .post_conversation_settings_req_param import PostConversationSettingsReqParam
-from .inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
-from .inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
 __all__ = ["AssistantCreateParams"]
 
@@ -39,7 +21,7 @@ class AssistantCreateParams(TypedDict, total=False):
 
     name: Required[str]
 
-    a2a_agents: Iterable[AssistantA2AAgentParam]
+    a2a_agents: Iterable["AssistantA2AAgentParam"]
     """A2A agents this assistant can delegate to.
 
     Tools are not stored here: at the start of every conversation each agent's card
@@ -52,12 +34,23 @@ class AssistantCreateParams(TypedDict, total=False):
     it does not fail the call.
     """
 
-    conversation_flow: ConversationFlowReqParam
+    conversation_flow: "ConversationFlowReqParam"
     """Conversation flow as supplied by API clients (create / update).
 
     A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
     unique node/edge IDs, that `start_node_id` references a real node, and that
     every edge's endpoints reference real nodes.
+    """
+
+    delegation_settings: "DelegationSettingsParam"
+    """
+    Splits the conversation between a frontend model that talks to the caller and a
+    backend model that does the work. On the GPT-Live route the frontend model
+    cannot call tools at all — when it needs something done it raises a delegation
+    and waits. On the chat completion route the frontend keeps a single `delegate`
+    tool that returns immediately, so the conversation carries on while the backend
+    works. Either way the backend's answer is spoken as commentary or kept as silent
+    context, depending on `speak_results`. Beta feature.
     """
 
     description: str
@@ -85,11 +78,11 @@ class AssistantCreateParams(TypedDict, total=False):
     for the full request/response format and timeout behavior.
     """
 
-    enabled_features: List[EnabledFeatures]
+    enabled_features: List["EnabledFeatures"]
 
-    external_llm: ExternalLlmReqParam
+    external_llm: "ExternalLlmReqParam"
 
-    fallback_config: FallbackConfigReqParam
+    fallback_config: "FallbackConfigReqParam"
 
     greeting: str
     """Text that the assistant will use to start the conversation.
@@ -101,9 +94,9 @@ class AssistantCreateParams(TypedDict, total=False):
     have the assistant generate the greeting based on the system instructions.
     """
 
-    insight_settings: InsightSettingsParam
+    insight_settings: "InsightSettingsParam"
 
-    integrations: Iterable[AssistantIntegrationParam]
+    integrations: Iterable["AssistantIntegrationParam"]
     """Connected integrations attached to the assistant.
 
     The catalog of available integrations is at `/ai/integrations`; the user's
@@ -111,7 +104,7 @@ class AssistantCreateParams(TypedDict, total=False):
     references a catalog integration by `integration_id`.
     """
 
-    interruption_settings: InferenceEmbeddingInterruptionSettingsParam
+    interruption_settings: "InferenceEmbeddingInterruptionSettingsParam"
     """
     Settings for interruptions and how the assistant decides the user has finished
     speaking. These timings are most relevant when using non turn-taking
@@ -131,13 +124,13 @@ class AssistantCreateParams(TypedDict, total=False):
     are unlikely to work with this integration.
     """
 
-    mcp_servers: Iterable[AssistantMcpServerParam]
+    mcp_servers: Iterable["AssistantMcpServerParam"]
     """MCP servers attached to the assistant.
 
     Create MCP servers with `/ai/mcp_servers`, then reference them by `id` here.
     """
 
-    messaging_settings: MessagingSettingsParam
+    messaging_settings: "MessagingSettingsParam"
 
     model: str
     """ID of the model to use when `external_llm` is not set.
@@ -149,9 +142,9 @@ class AssistantCreateParams(TypedDict, total=False):
     provided, Telnyx applies the default model.
     """
 
-    observability_settings: ObservabilityReqParam
+    observability_settings: "ObservabilityReqParam"
 
-    post_conversation_settings: PostConversationSettingsReqParam
+    post_conversation_settings: "PostConversationSettingsReqParam"
     """Configuration for post-conversation processing.
 
     When enabled, the assistant receives one additional LLM turn after the
@@ -161,7 +154,7 @@ class AssistantCreateParams(TypedDict, total=False):
     hangup, transfer) are also unavailable. Beta feature.
     """
 
-    privacy_settings: PrivacySettingsParam
+    privacy_settings: "PrivacySettingsParam"
 
     tags: SequenceNotStr[str]
     """Tags associated with the assistant.
@@ -169,7 +162,7 @@ class AssistantCreateParams(TypedDict, total=False):
     Tags can also be managed with the assistant tag endpoints.
     """
 
-    telephony_settings: TelephonySettingsParam
+    telephony_settings: "TelephonySettingsParam"
 
     tool_ids: SequenceNotStr[str]
     """IDs of shared tools to attach to the assistant.
@@ -177,18 +170,49 @@ class AssistantCreateParams(TypedDict, total=False):
     New integrations should prefer `tool_ids` over inline `tools`.
     """
 
-    tools: Iterable[AssistantToolParam]
+    tools: Iterable["AssistantToolParam"]
     """Deprecated for new integrations.
 
     Inline tool definitions available to the assistant. Prefer `tool_ids` to attach
     shared tools created with the AI Tools endpoints.
     """
 
-    transcription: TranscriptionSettingsParam
+    transcription: "TranscriptionSettingsParam"
 
-    voice_settings: InferenceEmbeddingVoiceSettingsParam
+    voice_settings: "InferenceEmbeddingVoiceSettingsParam"
 
-    widget_settings: WidgetSettingsParam
+    websocket_settings: "WebsocketSettingsParam"
+    """
+    Streams conversation and telephony events to a WebSocket server you host, and
+    accepts messages injected back into the conversation. Telnyx opens the
+    connection as a client, once per conversation. Delivery is best effort
+    throughout: while the connection is down events are dropped rather than queued,
+    and no socket failure is ever allowed to affect the call. Beta feature.
+    """
+
+    widget_settings: "WidgetSettingsParam"
     """Configuration settings for the assistant's web widget."""
 
     idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
+
+
+from .enabled_features import EnabledFeatures
+from .assistant_tool_param import AssistantToolParam
+from .widget_settings_param import WidgetSettingsParam
+from .external_llm_req_param import ExternalLlmReqParam
+from .insight_settings_param import InsightSettingsParam
+from .privacy_settings_param import PrivacySettingsParam
+from .observability_req_param import ObservabilityReqParam
+from .messaging_settings_param import MessagingSettingsParam
+from .telephony_settings_param import TelephonySettingsParam
+from .websocket_settings_param import WebsocketSettingsParam
+from .delegation_settings_param import DelegationSettingsParam
+from .fallback_config_req_param import FallbackConfigReqParam
+from .assistant_a2_a_agent_param import AssistantA2AAgentParam
+from .assistant_mcp_server_param import AssistantMcpServerParam
+from .assistant_integration_param import AssistantIntegrationParam
+from .conversation_flow_req_param import ConversationFlowReqParam
+from .transcription_settings_param import TranscriptionSettingsParam
+from .post_conversation_settings_req_param import PostConversationSettingsReqParam
+from .inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
+from .inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam

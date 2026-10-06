@@ -6,7 +6,6 @@ from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
-from .document_param import DocumentParam
 
 __all__ = ["DirUpdateInfringementParams"]
 
@@ -19,7 +18,10 @@ class DirUpdateInfringementParams(TypedDict, total=False):
     """Must be `true`."""
 
     certify_no_infringement: Required[Literal[True]]
-    """Must be `true`."""
+    """
+    Check to certify that the brand no longer infringes anyone else's trademark or
+    intellectual property.
+    """
 
     certify_no_shaft_content: Required[Literal[True]]
     """Must be `true`."""
@@ -30,8 +32,12 @@ class DirUpdateInfringementParams(TypedDict, total=False):
     call_reasons: Optional[SequenceNotStr[str]]
 
     display_name: Optional[str]
+    """
+    The business name shown to call recipients, 1 to 35 characters, no emoji, not
+    blank.
+    """
 
-    documents: Optional[Iterable[DocumentParam]]
+    documents: Optional[Iterable["DocumentParam"]]
     """Append-only supporting documents to attach while resolving the claim (e.g.
 
     authorization or licensing proof).
@@ -39,3 +45,6 @@ class DirUpdateInfringementParams(TypedDict, total=False):
 
     logo_url: Optional[str]
     """Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB)."""
+
+
+from .document_param import DocumentParam

@@ -129,11 +129,11 @@ class PhoneNumbersResource(SyncAPIResource):
         """Register phone numbers under a DIR.
 
         The enterprise is resolved server-side from
-        the DIR id. Same body, failure modes, and batch semantics whichever path form
-        you use.
+        the DIR id.
 
-        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
-        for current pricing.
+        **Pricing:** Adding phone numbers is free. Branded Calling fees are charged per
+        DIR and per branded call. See https://telnyx.com/pricing/branded-calling for
+        current pricing.
 
         Args:
           documents: Supporting documents covering this batch. At least one entry with
@@ -188,6 +188,9 @@ class PhoneNumbersResource(SyncAPIResource):
         the DIR id. Returns a partial-success envelope.
 
         Args:
+          phone_numbers: The phone numbers to remove from this brand, in E.164 format, up to 100 per
+              request. They must currently be attached to this brand.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -304,11 +307,11 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         """Register phone numbers under a DIR.
 
         The enterprise is resolved server-side from
-        the DIR id. Same body, failure modes, and batch semantics whichever path form
-        you use.
+        the DIR id.
 
-        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
-        for current pricing.
+        **Pricing:** Adding phone numbers is free. Branded Calling fees are charged per
+        DIR and per branded call. See https://telnyx.com/pricing/branded-calling for
+        current pricing.
 
         Args:
           documents: Supporting documents covering this batch. At least one entry with
@@ -363,6 +366,9 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         the DIR id. Returns a partial-success envelope.
 
         Args:
+          phone_numbers: The phone numbers to remove from this brand, in E.164 format, up to 100 per
+              request. They must currently be attached to this brand.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

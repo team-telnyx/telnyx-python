@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
 from ..document_param import DocumentParam
+from ..bpo_authorization_input_param import BpoAuthorizationInputParam
 
 __all__ = ["DirCreateParams"]
 
@@ -32,7 +33,10 @@ class DirCreateParams(TypedDict, total=False):
     """
 
     certify_brand_is_accurate: Required[Literal[True]]
-    """Must be `true`."""
+    """Certification that the DIR information is accurate.
+
+    Must be `true` for the DIR to be submitted for vetting.
+    """
 
     certify_ip_ownership: Required[Literal[True]]
     """Must be `true`. Confirms ownership of any logos/trademarks shown."""
@@ -47,6 +51,16 @@ class DirCreateParams(TypedDict, total=False):
     display_name: Required[str]
     """Name shown to call recipients. No emoji; not whitespace-only."""
 
+    bpo_authorizations: Iterable[BpoAuthorizationInputParam]
+    """Optional.
+
+    Approved BPO (Business Process Outsourcer) accounts on your organization
+    authorized to place branded calls for this DIR, each with the signed Letter of
+    Authorization the Brand Owner granted it. Each authorization starts `pending`
+    and takes effect only after an admin reviews its Letter of Authorization. Omit
+    or send an empty list to authorize no BPO on this DIR. Maximum 10.
+    """
+
     documents: Iterable[DocumentParam]
     """Supporting documents. Each `document_id` may appear at most once on a DIR."""
 
@@ -57,4 +71,11 @@ class DirCreateParams(TypedDict, total=False):
     """
     Set to true if your organization places calls on behalf of other enterprises
     (BPO/reseller).
+    """
+
+    webhook_url: Optional[str]
+    """
+    Optional `https://` URL that receives webhook notifications when this DIR's
+    compliance review completes (rejection outcomes include structured rejection
+    reasons). Maximum 2048 characters.
     """

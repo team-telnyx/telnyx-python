@@ -266,9 +266,33 @@ class ActionsResource(SyncAPIResource):
         You must issue this command before executing subsequent
         commands on an incoming call.
 
+        To answer with an AI assistant, include `assistant.id` and any per-call
+        overrides in the `assistant` object. Telnyx attempts to warm up the assistant
+        before answering the call, then starts the assistant automatically when the call
+        is answered. Do not also send `ai_assistant_start` for this flow. The HTTP
+        success response can arrive before the call is answered; use the `call.answered`
+        webhook to track the answer. If warm-up fails, Telnyx falls back to starting the
+        assistant after answering.
+
+        When `assistant.id` is supplied, obtain the conversation ID from
+        `data.payload.conversation_id` in the
+        [call.conversation.created](/api-reference/callbacks/call-conversation-created)
+        webhook and correlate it using `data.payload.call_control_id`. The `answer` HTTP
+        response does not include `conversation_id`. The created event is emitted during
+        assistant startup and does not indicate that the assistant is ready to speak.
+
+        Set the assistant voice with `assistant.voice_settings.voice` and speech-to-text
+        settings with `assistant.transcription`. You can reuse one stored assistant with
+        different per-call settings. Warm-up prepares assistant configuration and
+        dependencies; it does not wait for the greeting audio to be ready or guarantee
+        zero silence after answer. A plain `answer` followed by `ai_assistant_start`
+        performs assistant startup after the call has already been answered.
+
         **Expected Webhooks:**
 
         - `call.answered`
+        - `call.conversation.created` when the requested assistant conversation is
+          created
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.deepfake_detection.result` if `deepfake_detection` was enabled
         - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
@@ -280,9 +304,11 @@ class ActionsResource(SyncAPIResource):
         include a `recording_id` field.
 
         Args:
-          assistant: AI Assistant configuration. All fields except `id` are optional — the
-              assistant's stored configuration will be used as fallback for any omitted
-              fields.
+          assistant: AI Assistant configuration and per-call overrides. All fields except `id` are
+              optional. Omitted assistant fields use the stored configuration. Supplied
+              `voice_settings` and `transcription` objects replace their stored objects rather
+              than merging individual settings; include every setting you want to retain.
+              `dynamic_variables` are merged, with request values taking precedence.
 
           billing_group_id: Use this field to set the Billing Group ID for the call. Must be a valid and
               existing Billing Group ID.
@@ -358,7 +384,9 @@ class ActionsResource(SyncAPIResource):
 
           stream_url: The destination WebSocket address where the stream is going to be delivered.
 
-          transcription: Enable transcription upon call answer. The default value is false.
+          transcription: Enable standalone call transcription upon call answer. The default value is
+              false. Configure this feature with `transcription_config`. To configure speech
+              recognition for an AI assistant, use `assistant.transcription` instead.
 
           webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
               `retries_ms` specifying the delays between retry attempts in milliseconds.
@@ -824,6 +852,8 @@ class ActionsResource(SyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.ai_gather.ended`
         - `call.conversation.ended`
         - `call.ai_gather.partial_results` (if `send_partial_results` is set to `true`)
@@ -1736,7 +1766,7 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        cause: Literal["CALL_REJECTED", "USER_BUSY"],
+        cause: Literal["CALL_REJECTED", "NOT_FOUND", "TEMPORARILY_UNAVAILABLE", "USER_BUSY"],
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1754,7 +1784,11 @@ class ActionsResource(SyncAPIResource):
         - `call.hangup`
 
         Args:
-          cause: Cause for call rejection.
+          cause:
+              Cause for call rejection. The cause sets the SIP response the caller receives:
+              `USER_BUSY` sends 486 User Busy, `CALL_REJECTED` sends 603 Decline, `NOT_FOUND`
+              sends 404 Not Found, and `TEMPORARILY_UNAVAILABLE` sends 480 Temporarily
+              Unavailable.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -2182,13 +2216,17 @@ class ActionsResource(SyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.conversation.ended`
         - `call.conversation_insights.generated`
 
         Args:
-          assistant: AI Assistant configuration. All fields except `id` are optional — the
-              assistant's stored configuration will be used as fallback for any omitted
-              fields.
+          assistant: AI Assistant configuration and per-call overrides. All fields except `id` are
+              optional. Omitted assistant fields use the stored configuration. Supplied
+              `voice_settings` and `transcription` objects replace their stored objects rather
+              than merging individual settings; include every setting you want to retain.
+              `dynamic_variables` are merged, with request values taking precedence.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -3937,7 +3975,13 @@ class ActionsResource(SyncAPIResource):
         *,
         to: str,
         answering_machine_detection: Literal[
-            "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
+            "premium",
+            "premium_ios_call_screening_detection",
+            "detect",
+            "detect_beep",
+            "detect_words",
+            "greeting_end",
+            "disabled",
         ]
         | Omit = omit,
         answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig | Omit = omit,
@@ -4006,6 +4050,9 @@ class ActionsResource(SyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.machine.premium.call_screening.detected` if
+          `answering_machine_detection=premium_ios_call_screening_detection` was
+          requested and an Apple Call Screening tone was detected
 
         Args:
           to: The DID or SIP URI to dial out to. For SIP URI destinations, append
@@ -4024,12 +4071,22 @@ class ActionsResource(SyncAPIResource):
               'greeting_end' or 'detect_words' is used and a 'machine' is detected, you will
               receive another 'call.machine.greeting.ended' webhook when the answering machine
               greeting ends with a beep or silence. If `detect_beep` is used, you will only
-              receive 'call.machine.greeting.ended' if a beep is detected.
+              receive 'call.machine.greeting.ended' if a beep is detected. If
+              `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+              Premium AMD runs with iOS Call Screening support: after an initial `machine`
+              result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+              Call Screening tone, sends `call.machine.premium.greeting.ended` with
+              `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+              `result=screening` respectively. When the Apple Call Screening tone is detected,
+              Premium AMD is restarted on the screened call and a
+              `call.machine.premium.detection.ended` webhook with the post-screening
+              classification follows.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
               parameters are applicable when `premium` is selected as
-              answering_machine_detection.
+              answering_machine_detection. `prompt_end_timeout_millis` is additionally
+              applicable when `premium_ios_call_screening_detection` is selected.
 
           audio_url: The URL of a file to be played back when the transfer destination answers before
               bridging the call. The URL can point to either a WAV or MP3 file. media_name and
@@ -4413,9 +4470,33 @@ class AsyncActionsResource(AsyncAPIResource):
         You must issue this command before executing subsequent
         commands on an incoming call.
 
+        To answer with an AI assistant, include `assistant.id` and any per-call
+        overrides in the `assistant` object. Telnyx attempts to warm up the assistant
+        before answering the call, then starts the assistant automatically when the call
+        is answered. Do not also send `ai_assistant_start` for this flow. The HTTP
+        success response can arrive before the call is answered; use the `call.answered`
+        webhook to track the answer. If warm-up fails, Telnyx falls back to starting the
+        assistant after answering.
+
+        When `assistant.id` is supplied, obtain the conversation ID from
+        `data.payload.conversation_id` in the
+        [call.conversation.created](/api-reference/callbacks/call-conversation-created)
+        webhook and correlate it using `data.payload.call_control_id`. The `answer` HTTP
+        response does not include `conversation_id`. The created event is emitted during
+        assistant startup and does not indicate that the assistant is ready to speak.
+
+        Set the assistant voice with `assistant.voice_settings.voice` and speech-to-text
+        settings with `assistant.transcription`. You can reuse one stored assistant with
+        different per-call settings. Warm-up prepares assistant configuration and
+        dependencies; it does not wait for the greeting audio to be ready or guarantee
+        zero silence after answer. A plain `answer` followed by `ai_assistant_start`
+        performs assistant startup after the call has already been answered.
+
         **Expected Webhooks:**
 
         - `call.answered`
+        - `call.conversation.created` when the requested assistant conversation is
+          created
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.deepfake_detection.result` if `deepfake_detection` was enabled
         - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
@@ -4427,9 +4508,11 @@ class AsyncActionsResource(AsyncAPIResource):
         include a `recording_id` field.
 
         Args:
-          assistant: AI Assistant configuration. All fields except `id` are optional — the
-              assistant's stored configuration will be used as fallback for any omitted
-              fields.
+          assistant: AI Assistant configuration and per-call overrides. All fields except `id` are
+              optional. Omitted assistant fields use the stored configuration. Supplied
+              `voice_settings` and `transcription` objects replace their stored objects rather
+              than merging individual settings; include every setting you want to retain.
+              `dynamic_variables` are merged, with request values taking precedence.
 
           billing_group_id: Use this field to set the Billing Group ID for the call. Must be a valid and
               existing Billing Group ID.
@@ -4505,7 +4588,9 @@ class AsyncActionsResource(AsyncAPIResource):
 
           stream_url: The destination WebSocket address where the stream is going to be delivered.
 
-          transcription: Enable transcription upon call answer. The default value is false.
+          transcription: Enable standalone call transcription upon call answer. The default value is
+              false. Configure this feature with `transcription_config`. To configure speech
+              recognition for an AI assistant, use `assistant.transcription` instead.
 
           webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
               `retries_ms` specifying the delays between retry attempts in milliseconds.
@@ -4971,6 +5056,8 @@ class AsyncActionsResource(AsyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.ai_gather.ended`
         - `call.conversation.ended`
         - `call.ai_gather.partial_results` (if `send_partial_results` is set to `true`)
@@ -5883,7 +5970,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        cause: Literal["CALL_REJECTED", "USER_BUSY"],
+        cause: Literal["CALL_REJECTED", "NOT_FOUND", "TEMPORARILY_UNAVAILABLE", "USER_BUSY"],
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5901,7 +5988,11 @@ class AsyncActionsResource(AsyncAPIResource):
         - `call.hangup`
 
         Args:
-          cause: Cause for call rejection.
+          cause:
+              Cause for call rejection. The cause sets the SIP response the caller receives:
+              `USER_BUSY` sends 486 User Busy, `CALL_REJECTED` sends 603 Decline, `NOT_FOUND`
+              sends 404 Not Found, and `TEMPORARILY_UNAVAILABLE` sends 480 Temporarily
+              Unavailable.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -6329,13 +6420,17 @@ class AsyncActionsResource(AsyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.conversation.ended`
         - `call.conversation_insights.generated`
 
         Args:
-          assistant: AI Assistant configuration. All fields except `id` are optional — the
-              assistant's stored configuration will be used as fallback for any omitted
-              fields.
+          assistant: AI Assistant configuration and per-call overrides. All fields except `id` are
+              optional. Omitted assistant fields use the stored configuration. Supplied
+              `voice_settings` and `transcription` objects replace their stored objects rather
+              than merging individual settings; include every setting you want to retain.
+              `dynamic_variables` are merged, with request values taking precedence.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -8086,7 +8181,13 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         to: str,
         answering_machine_detection: Literal[
-            "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
+            "premium",
+            "premium_ios_call_screening_detection",
+            "detect",
+            "detect_beep",
+            "detect_words",
+            "greeting_end",
+            "disabled",
         ]
         | Omit = omit,
         answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig | Omit = omit,
@@ -8155,6 +8256,9 @@ class AsyncActionsResource(AsyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.machine.premium.call_screening.detected` if
+          `answering_machine_detection=premium_ios_call_screening_detection` was
+          requested and an Apple Call Screening tone was detected
 
         Args:
           to: The DID or SIP URI to dial out to. For SIP URI destinations, append
@@ -8173,12 +8277,22 @@ class AsyncActionsResource(AsyncAPIResource):
               'greeting_end' or 'detect_words' is used and a 'machine' is detected, you will
               receive another 'call.machine.greeting.ended' webhook when the answering machine
               greeting ends with a beep or silence. If `detect_beep` is used, you will only
-              receive 'call.machine.greeting.ended' if a beep is detected.
+              receive 'call.machine.greeting.ended' if a beep is detected. If
+              `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+              Premium AMD runs with iOS Call Screening support: after an initial `machine`
+              result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+              Call Screening tone, sends `call.machine.premium.greeting.ended` with
+              `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+              `result=screening` respectively. When the Apple Call Screening tone is detected,
+              Premium AMD is restarted on the screened call and a
+              `call.machine.premium.detection.ended` webhook with the post-screening
+              classification follows.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
               parameters are applicable when `premium` is selected as
-              answering_machine_detection.
+              answering_machine_detection. `prompt_end_timeout_millis` is additionally
+              applicable when `premium_ios_call_screening_detection` is selected.
 
           audio_url: The URL of a file to be played back when the transfer destination answers before
               bridging the call. The URL can point to either a WAV or MP3 file. media_name and

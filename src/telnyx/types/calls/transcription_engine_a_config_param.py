@@ -6,7 +6,6 @@ from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
-from .google_transcription_language import GoogleTranscriptionLanguage
 
 __all__ = ["TranscriptionEngineAConfigParam", "SpeechContext"]
 
@@ -31,7 +30,7 @@ class TranscriptionEngineAConfigParam(TypedDict, total=False):
     If set to false, only final results will be sent.
     """
 
-    language: GoogleTranscriptionLanguage
+    language: "GoogleTranscriptionLanguage"
     """Language to use for speech recognition"""
 
     max_speaker_count: int
@@ -63,3 +62,6 @@ class TranscriptionEngineAConfigParam(TypedDict, total=False):
 
     use_enhanced: bool
     """Enables enhanced transcription, this works for models `phone_call` and `video`."""
+
+
+from .google_transcription_language import GoogleTranscriptionLanguage

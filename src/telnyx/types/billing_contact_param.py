@@ -9,10 +9,25 @@ __all__ = ["BillingContactParam"]
 
 class BillingContactParam(TypedDict, total=False):
     email: Required[str]
+    """
+    The email address of the person Telnyx should contact about billing for this
+    account.
+    """
 
     first_name: Required[str]
+    """
+    The first name of the person Telnyx should contact about billing for this
+    account.
+    """
 
     last_name: Required[str]
+    """
+    The last name of the person Telnyx should contact about billing for this
+    account.
+    """
 
     phone_number: Required[str]
-    """E.164 format with leading `+`."""
+    """
+    The phone number of the billing contact, in E.164 format, for example
+    +12125551234.
+    """

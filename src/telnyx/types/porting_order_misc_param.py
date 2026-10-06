@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-from .porting_order_type import PortingOrderType
-
 __all__ = ["PortingOrderMiscParam"]
 
 
@@ -26,8 +24,11 @@ class PortingOrderMiscParam(TypedDict, total=False):
     'remaining_numbers_action' is 'keep'.
     """
 
-    type: PortingOrderType
+    type: "PortingOrderType"
     """A port can be either 'full' or 'partial'.
 
     When type is 'full' the other attributes should be omitted.
     """
+
+
+from .porting_order_type import PortingOrderType

@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .stt_service_type import SttServiceType
-
 __all__ = ["SpeechToTextListProvidersParams"]
 
 
@@ -33,7 +31,7 @@ class SpeechToTextListProvidersParams(TypedDict, total=False):
     type will return an empty `data` array rather than an error.
     """
 
-    service_type: SttServiceType
+    service_type: "SttServiceType"
     """Filter to entries that support the given service type.
 
     For backward compatibility with the values that briefly shipped before the
@@ -42,3 +40,6 @@ class SpeechToTextListProvidersParams(TypedDict, total=False):
     and normalized to `file_based`, `in_call`, and `ai_assistant` respectively. The
     response always emits the canonical (post-rename) values.
     """
+
+
+from .stt_service_type import SttServiceType

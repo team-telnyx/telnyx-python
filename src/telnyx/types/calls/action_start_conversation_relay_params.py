@@ -5,11 +5,6 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .aws_voice_settings_param import AwsVoiceSettingsParam
-from .soniox_voice_settings_param import SonioxVoiceSettingsParam
-from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
-from .conversation_relay_interruptible import ConversationRelayInterruptible
-from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..conversation_relay_language_param import ConversationRelayLanguageParam
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
@@ -75,14 +70,14 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     greeting: str
     """Text played when the relay session starts."""
 
-    interruptible: ConversationRelayInterruptible
+    interruptible: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
     `speech` allows speech only; `dtmf` allows DTMF only.
     """
 
-    interruptible_greeting: ConversationRelayInterruptible
+    interruptible_greeting: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
@@ -223,14 +218,14 @@ class ConversationRelaySettings(TypedDict, total=False):
     dtmf_detection: bool
     """Whether to enable DTMF detection during the relay session."""
 
-    interruptible: ConversationRelayInterruptible
+    interruptible: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
     `speech` allows speech only; `dtmf` allows DTMF only.
     """
 
-    interruptible_greeting: ConversationRelayInterruptible
+    interruptible_greeting: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
@@ -242,13 +237,19 @@ class ConversationRelaySettings(TypedDict, total=False):
 
 
 VoiceSettings: TypeAlias = Union[
-    ElevenLabsVoiceSettingsParam,
-    TelnyxVoiceSettingsParam,
-    AwsVoiceSettingsParam,
+    "ElevenLabsVoiceSettingsParam",
+    "TelnyxVoiceSettingsParam",
+    "AwsVoiceSettingsParam",
     MinimaxVoiceSettings,
     AzureVoiceSettings,
     ResembleVoiceSettings,
     InworldVoiceSettings,
     XaiVoiceSettings,
-    SonioxVoiceSettingsParam,
+    "SonioxVoiceSettingsParam",
 ]
+
+from .aws_voice_settings_param import AwsVoiceSettingsParam
+from .soniox_voice_settings_param import SonioxVoiceSettingsParam
+from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
+from .conversation_relay_interruptible import ConversationRelayInterruptible
+from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam

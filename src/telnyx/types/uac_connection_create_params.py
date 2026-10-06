@@ -6,17 +6,6 @@ from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
-from .dtmf_type import DtmfType
-from .encrypted_media import EncryptedMedia
-from .uac_outbound_param import UacOutboundParam
-from .anchorsite_override import AnchorsiteOverride
-from .uac_inbound_request_param import UacInboundRequestParam
-from .uac_external_settings_param import UacExternalSettingsParam
-from .uac_internal_settings_param import UacInternalSettingsParam
-from .connection_noise_suppression import ConnectionNoiseSuppression
-from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
-from .shared_params.connection_jitter_buffer import ConnectionJitterBuffer
-from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["UacConnectionCreateParams"]
 
@@ -28,7 +17,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     active: bool
     """Defaults to true"""
 
-    anchorsite_override: AnchorsiteOverride
+    anchorsite_override: "AnchorsiteOverride"
     """
     `Latency` directs Telnyx to route media through the site with the lowest
     round-trip time to the user's connection. Telnyx calculates this time using ICMP
@@ -49,7 +38,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     RTP timeout.
     """
 
-    dtmf_type: DtmfType
+    dtmf_type: "DtmfType"
     """Sets the type of DTMF digits sent from Telnyx to this Connection.
 
     Note that DTMF digits sent to Telnyx will be accepted in all formats.
@@ -61,19 +50,19 @@ class UacConnectionCreateParams(TypedDict, total=False):
     scenarios.
     """
 
-    encrypted_media: Optional[EncryptedMedia]
+    encrypted_media: Optional["EncryptedMedia"]
     """Enable use of SRTP for encryption.
 
     Cannot be set if the transport_portocol is TLS.
     """
 
-    external_uac_settings: UacExternalSettingsParam
+    external_uac_settings: "UacExternalSettingsParam"
     """
     External SIP peer settings used by Telnyx when registering to your PBX and
     routing outbound calls.
     """
 
-    inbound: UacInboundRequestParam
+    inbound: "UacInboundRequestParam"
     """Inbound settings that can be supplied when creating or updating a UAC
     connection.
 
@@ -81,13 +70,13 @@ class UacConnectionCreateParams(TypedDict, total=False):
     Telnyx and are not accepted as request parameters.
     """
 
-    internal_uac_settings: UacInternalSettingsParam
+    internal_uac_settings: "UacInternalSettingsParam"
     """Internal Telnyx-side settings for a UAC connection."""
 
     ios_push_credential_id: Optional[str]
     """The uuid of the push credential for Ios"""
 
-    jitter_buffer: ConnectionJitterBuffer
+    jitter_buffer: "ConnectionJitterBuffer"
     """Configuration options for Jitter Buffer.
 
     Enables Jitter Buffer for RTP streams of SIP Trunking calls. The feature is off
@@ -96,7 +85,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     smaller values reduce latency but are more sensitive to jitter and reordering.
     """
 
-    noise_suppression: ConnectionNoiseSuppression
+    noise_suppression: "ConnectionNoiseSuppression"
     """Controls when noise suppression is applied to calls.
 
     When set to 'inbound', noise suppression is applied to incoming audio. When set
@@ -104,7 +93,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     in both directions. When set to 'disabled', noise suppression is turned off.
     """
 
-    noise_suppression_details: ConnectionNoiseSuppressionDetails
+    noise_suppression_details: "ConnectionNoiseSuppressionDetails"
     """Configuration options for noise suppression.
 
     These settings are stored regardless of the noise_suppression value, but only
@@ -120,7 +109,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     use T38 on just one leg of the call depending on each leg's settings.
     """
 
-    outbound: UacOutboundParam
+    outbound: "UacOutboundParam"
 
     password: str
     """The password to be used as part of the credentials.
@@ -128,7 +117,7 @@ class UacConnectionCreateParams(TypedDict, total=False):
     Must be 8 to 128 characters long.
     """
 
-    rtcp_settings: ConnectionRtcpSettingsParam
+    rtcp_settings: "ConnectionRtcpSettingsParam"
 
     sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"]
     """This feature enables inbound SIP URI calls to your Credential Auth Connection.
@@ -170,3 +159,16 @@ class UacConnectionCreateParams(TypedDict, total=False):
 
     webhook_timeout_secs: Optional[int]
     """Specifies how many seconds to wait before timing out a webhook."""
+
+
+from .dtmf_type import DtmfType
+from .encrypted_media import EncryptedMedia
+from .uac_outbound_param import UacOutboundParam
+from .anchorsite_override import AnchorsiteOverride
+from .uac_inbound_request_param import UacInboundRequestParam
+from .uac_external_settings_param import UacExternalSettingsParam
+from .uac_internal_settings_param import UacInternalSettingsParam
+from .connection_noise_suppression import ConnectionNoiseSuppression
+from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+from .shared_params.connection_jitter_buffer import ConnectionJitterBuffer
+from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails

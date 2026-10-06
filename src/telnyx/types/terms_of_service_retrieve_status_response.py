@@ -33,6 +33,7 @@ class Data(BaseModel):
     """Telnyx product the Terms of Service apply to."""
 
     agreed_at: Optional[datetime] = None
+    """When you accepted the terms, or null if you have not."""
 
     agreed_version: Optional[str] = None
     """

@@ -7,9 +7,6 @@ from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .rcs_suggestion_param import RcsSuggestionParam
-from .rcs_card_content_param import RcsCardContentParam
-from .rcs_content_info_param import RcsContentInfoParam
 
 __all__ = [
     "RcsAgentMessageParam",
@@ -24,7 +21,7 @@ __all__ = [
 class ContentMessageRichCardCarouselCard(TypedDict, total=False):
     """Carousel of cards."""
 
-    card_contents: Required[Iterable[RcsCardContentParam]]
+    card_contents: Required[Iterable["RcsCardContentParam"]]
     """The list of contents for each card in the carousel.
 
     A carousel can have a minimum of 2 cards and a maximum 10 cards.
@@ -37,7 +34,7 @@ class ContentMessageRichCardCarouselCard(TypedDict, total=False):
 class ContentMessageRichCardStandaloneCard(TypedDict, total=False):
     """Standalone card"""
 
-    card_content: Required[RcsCardContentParam]
+    card_content: Required["RcsCardContentParam"]
 
     card_orientation: Required[Literal["CARD_ORIENTATION_UNSPECIFIED", "HORIZONTAL", "VERTICAL"]]
     """Orientation of the card."""
@@ -55,11 +52,11 @@ class ContentMessageRichCard(TypedDict, total=False):
 
 
 class ContentMessage(TypedDict, total=False):
-    content_info: RcsContentInfoParam
+    content_info: "RcsContentInfoParam"
 
     rich_card: ContentMessageRichCard
 
-    suggestions: Iterable[RcsSuggestionParam]
+    suggestions: Iterable["RcsSuggestionParam"]
     """List of suggested actions and replies"""
 
     text: str
@@ -83,3 +80,8 @@ class RcsAgentMessageParam(TypedDict, total=False):
 
     ttl: str
     """Duration in seconds ending with 's'"""
+
+
+from .rcs_suggestion_param import RcsSuggestionParam
+from .rcs_card_content_param import RcsCardContentParam
+from .rcs_content_info_param import RcsContentInfoParam

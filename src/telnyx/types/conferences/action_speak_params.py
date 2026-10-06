@@ -6,7 +6,6 @@ from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
-from .conference_region import ConferenceRegion
 from ..calls.aws_voice_settings_param import AwsVoiceSettingsParam
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..calls.soniox_voice_settings_param import SonioxVoiceSettingsParam
@@ -142,7 +141,7 @@ class ActionSpeakParams(TypedDict, total=False):
     (SSML).
     """
 
-    region: ConferenceRegion
+    region: "ConferenceRegion"
     """Region where the conference data is located.
 
     Defaults to the region defined in user's data locality settings (Europe or US).
@@ -163,3 +162,5 @@ VoiceSettings: TypeAlias = Union[
     XaiVoiceSettings,
     SonioxVoiceSettingsParam,
 ]
+
+from .conference_region import ConferenceRegion

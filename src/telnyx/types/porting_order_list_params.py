@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .porting_order_type import PortingOrderType
 
 __all__ = [
     "PortingOrderListParams",
@@ -77,7 +76,7 @@ class FilterEndUser(TypedDict, total=False):
 
 
 class FilterMisc(TypedDict, total=False):
-    type: PortingOrderType
+    type: "PortingOrderType"
     """Filter results by porting order type"""
 
 
@@ -136,3 +135,6 @@ class Sort(TypedDict, total=False):
 
     If not given, results are sorted by created_at in descending order.
     """
+
+
+from .porting_order_type import PortingOrderType

@@ -5,10 +5,11 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import TypedDict
 
-from .rule_input_param import RuleInputParam
-
 __all__ = ["CanaryDeployUpdateParams"]
 
 
 class CanaryDeployUpdateParams(TypedDict, total=False):
-    rules: Iterable[RuleInputParam]
+    rules: Iterable["RuleInputParam"]
+
+
+from .rule_input_param import RuleInputParam

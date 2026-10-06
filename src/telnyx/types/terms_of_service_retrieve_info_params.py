@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .terms_of_service.tos_product_type import TosProductType
-
 __all__ = ["TermsOfServiceRetrieveInfoParams"]
 
 
 class TermsOfServiceRetrieveInfoParams(TypedDict, total=False):
-    product_type: TosProductType
+    product_type: "TosProductType"
     """Optional product filter. Omit to return info for all products."""
+
+
+from .terms_of_service.tos_product_type import TosProductType
