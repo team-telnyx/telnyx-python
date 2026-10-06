@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .dir_phone_number_status import DirPhoneNumberStatus
 
 __all__ = ["PhoneNumberListParams"]
 
@@ -20,5 +19,8 @@ class PhoneNumberListParams(TypedDict, total=False):
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
 
-    status: DirPhoneNumberStatus
+    status: "DirPhoneNumberStatus"
     """Filter by phone-number status."""
+
+
+from .dir_phone_number_status import DirPhoneNumberStatus

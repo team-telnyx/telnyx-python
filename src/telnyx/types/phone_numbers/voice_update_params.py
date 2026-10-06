@@ -4,25 +4,20 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .cnam_listing_param import CnamListingParam
-from .call_recording_param import CallRecordingParam
-from .media_features_param import MediaFeaturesParam
-from .call_forwarding_param import CallForwardingParam
-
 __all__ = ["VoiceUpdateParams"]
 
 
 class VoiceUpdateParams(TypedDict, total=False):
-    call_forwarding: CallForwardingParam
+    call_forwarding: "CallForwardingParam"
     """The call forwarding settings for a phone number."""
 
-    call_recording: CallRecordingParam
+    call_recording: "CallRecordingParam"
     """The call recording settings for a phone number."""
 
     caller_id_name_enabled: bool
     """Controls whether the caller ID name is enabled for this phone number."""
 
-    cnam_listing: CnamListingParam
+    cnam_listing: "CnamListingParam"
     """The CNAM listing settings for a phone number."""
 
     inbound_call_screening: Literal["disabled", "reject_calls", "flag_calls"]
@@ -33,7 +28,7 @@ class VoiceUpdateParams(TypedDict, total=False):
     feature has an additional per-number monthly cost associated with it.
     """
 
-    media_features: MediaFeaturesParam
+    media_features: "MediaFeaturesParam"
     """The media features settings for a phone number."""
 
     tech_prefix_enabled: bool
@@ -50,3 +45,9 @@ class VoiceUpdateParams(TypedDict, total=False):
     """
     Controls whether a number is billed per minute or uses your concurrent channels.
     """
+
+
+from .cnam_listing_param import CnamListingParam
+from .call_recording_param import CallRecordingParam
+from .media_features_param import MediaFeaturesParam
+from .call_forwarding_param import CallForwardingParam

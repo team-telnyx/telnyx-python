@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .node_position_param import NodePositionParam
-
 __all__ = [
     "FlowEdgeParam",
     "Condition",
@@ -108,7 +106,7 @@ class TargetAssistantTarget(TypedDict, total=False):
 
     type: Required[Literal["assistant"]]
 
-    position: NodePositionParam
+    position: "NodePositionParam"
     """
     Optional canvas coordinates for rendering the target assistant as a node in
     authoring UIs. Pure presentation — the runtime ignores it; round-trips so
@@ -163,3 +161,6 @@ class FlowEdgeParam(TypedDict, total=False):
     Discriminated by `type`: `node` (jump to another node in this flow) or
     `assistant` (hand off to a different assistant).
     """
+
+
+from .node_position_param import NodePositionParam

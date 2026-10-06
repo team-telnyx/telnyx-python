@@ -5,17 +5,13 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-from .billing_contact_param import BillingContactParam
-from .physical_address_param import PhysicalAddressParam
-from .organization_contact_param import OrganizationContactParam
-
 __all__ = ["EnterpriseUpdateParams"]
 
 
 class EnterpriseUpdateParams(TypedDict, total=False):
-    billing_address: PhysicalAddressParam
+    billing_address: "PhysicalAddressParam"
 
-    billing_contact: BillingContactParam
+    billing_contact: "BillingContactParam"
 
     corporate_registration_number: Optional[str]
     """
@@ -119,7 +115,7 @@ class EnterpriseUpdateParams(TypedDict, total=False):
     count.
     """
 
-    organization_contact: OrganizationContactParam
+    organization_contact: "OrganizationContactParam"
 
     organization_legal_type: str
     """Legal-entity form. Pick the form that matches your incorporation documents:
@@ -133,7 +129,7 @@ class EnterpriseUpdateParams(TypedDict, total=False):
       You may be asked for additional documents during vetting.
     """
 
-    organization_physical_address: PhysicalAddressParam
+    organization_physical_address: "PhysicalAddressParam"
 
     primary_business_domain_sic_code: Optional[str]
     """
@@ -154,3 +150,8 @@ class EnterpriseUpdateParams(TypedDict, total=False):
 
     Leave blank if your business has no website.
     """
+
+
+from .billing_contact_param import BillingContactParam
+from .physical_address_param import PhysicalAddressParam
+from .organization_contact_param import OrganizationContactParam

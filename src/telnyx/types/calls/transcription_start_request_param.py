@@ -5,40 +5,24 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, TypeAlias, TypedDict
 
-from .deepgram_nova2_config_param import DeepgramNova2ConfigParam
-from .deepgram_nova3_config_param import DeepgramNova3ConfigParam
-from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam
-from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
-from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
-from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
-from .transcription_engine_cohere_config_param import TranscriptionEngineCohereConfigParam
-from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
-from .transcription_engine_humain_config_param import TranscriptionEngineHumainConfigParam
-from .transcription_engine_reson8_config_param import TranscriptionEngineReson8ConfigParam
-from .transcription_engine_soniox_config_param import TranscriptionEngineSonioxConfigParam
-from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
-from .transcription_engine_parakeet_config_param import TranscriptionEngineParakeetConfigParam
-from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
-from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
-
 __all__ = ["TranscriptionStartRequestParam", "TranscriptionEngineConfig"]
 
 TranscriptionEngineConfig: TypeAlias = Union[
-    TranscriptionEngineGoogleConfigParam,
-    TranscriptionEngineTelnyxConfigParam,
-    TranscriptionEngineAzureConfigParam,
-    TranscriptionEngineXaiConfigParam,
-    TranscriptionEngineAssemblyaiConfigParam,
-    TranscriptionEngineSpeechmaticsConfigParam,
-    TranscriptionEngineSonioxConfigParam,
-    TranscriptionEngineParakeetConfigParam,
-    TranscriptionEngineHumainConfigParam,
-    TranscriptionEngineReson8ConfigParam,
-    TranscriptionEngineCohereConfigParam,
-    TranscriptionEngineAConfigParam,
-    TranscriptionEngineBConfigParam,
-    DeepgramNova2ConfigParam,
-    DeepgramNova3ConfigParam,
+    "TranscriptionEngineGoogleConfigParam",
+    "TranscriptionEngineTelnyxConfigParam",
+    "TranscriptionEngineAzureConfigParam",
+    "TranscriptionEngineXaiConfigParam",
+    "TranscriptionEngineAssemblyaiConfigParam",
+    "TranscriptionEngineSpeechmaticsConfigParam",
+    "TranscriptionEngineSonioxConfigParam",
+    "TranscriptionEngineParakeetConfigParam",
+    "TranscriptionEngineHumainConfigParam",
+    "TranscriptionEngineReson8ConfigParam",
+    "TranscriptionEngineCohereConfigParam",
+    "TranscriptionEngineAConfigParam",
+    "TranscriptionEngineBConfigParam",
+    "DeepgramNova2ConfigParam",
+    "DeepgramNova3ConfigParam",
 ]
 
 
@@ -86,3 +70,20 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
     Use `inbound` for the leg that requested the transcription, `outbound` for the
     other leg, and `both` for both legs of the call. Will default to `inbound`.
     """
+
+
+from .deepgram_nova2_config_param import DeepgramNova2ConfigParam
+from .deepgram_nova3_config_param import DeepgramNova3ConfigParam
+from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam
+from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
+from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
+from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
+from .transcription_engine_cohere_config_param import TranscriptionEngineCohereConfigParam
+from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
+from .transcription_engine_humain_config_param import TranscriptionEngineHumainConfigParam
+from .transcription_engine_reson8_config_param import TranscriptionEngineReson8ConfigParam
+from .transcription_engine_soniox_config_param import TranscriptionEngineSonioxConfigParam
+from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
+from .transcription_engine_parakeet_config_param import TranscriptionEngineParakeetConfigParam
+from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
+from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam

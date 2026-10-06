@@ -4,14 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .agent_use_case import AgentUseCase
-from .agent_configuration_param import AgentConfigurationParam
-
 __all__ = ["AgentUpdateParams"]
 
 
 class AgentUpdateParams(TypedDict, total=False):
-    configuration: AgentConfigurationParam
+    configuration: "AgentConfigurationParam"
 
     display_name: str
 
@@ -19,4 +16,8 @@ class AgentUpdateParams(TypedDict, total=False):
 
     profile_id: str
 
-    use_case: AgentUseCase
+    use_case: "AgentUseCase"
+
+
+from .agent_use_case import AgentUseCase
+from .agent_configuration_param import AgentConfigurationParam

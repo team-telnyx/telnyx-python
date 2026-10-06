@@ -6,10 +6,6 @@ from typing import Optional
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
-from .service_plan import ServicePlan
-from .traffic_type import TrafficType
-from .usage_payment_method import UsagePaymentMethod
-from .outbound_call_recording_param import OutboundCallRecordingParam
 
 __all__ = ["OutboundVoiceProfileCreateParams", "CallingWindow"]
 
@@ -24,7 +20,7 @@ class OutboundVoiceProfileCreateParams(TypedDict, total=False):
     Defaults to null (for no group assigned).
     """
 
-    call_recording: OutboundCallRecordingParam
+    call_recording: "OutboundCallRecordingParam"
 
     calling_window: CallingWindow
     """
@@ -60,15 +56,15 @@ class OutboundVoiceProfileCreateParams(TypedDict, total=False):
     outbound calls.
     """
 
-    service_plan: ServicePlan
+    service_plan: "ServicePlan"
     """Indicates the coverage of the termination regions."""
 
     tags: SequenceNotStr[str]
 
-    traffic_type: TrafficType
+    traffic_type: "TrafficType"
     """Specifies the type of traffic allowed in this profile."""
 
-    usage_payment_method: UsagePaymentMethod
+    usage_payment_method: "UsagePaymentMethod"
     """Setting for how costs for outbound profile are calculated."""
 
     whitelisted_destinations: SequenceNotStr[str]
@@ -100,3 +96,9 @@ class CallingWindow(TypedDict, total=False):
     The UTC time of day (in HH:MM format, 24-hour clock) when calls are allowed to
     start.
     """
+
+
+from .service_plan import ServicePlan
+from .traffic_type import TrafficType
+from .usage_payment_method import UsagePaymentMethod
+from .outbound_call_recording_param import OutboundCallRecordingParam

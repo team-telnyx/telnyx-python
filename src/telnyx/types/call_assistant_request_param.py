@@ -5,14 +5,6 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .ai.hangup_tool_param import HangupToolParam
-from .ai.webhook_tool_param import WebhookToolParam
-from .ai.transfer_tool_param import TransferToolParam
-from .ai.voice_settings_param import VoiceSettingsParam
-from .shared_params.book_appointment_tool import BookAppointmentTool
-from .shared_params.check_availability_tool import CheckAvailabilityTool
-from .shared_params.call_control_retrieval_tool import CallControlRetrievalTool
-
 __all__ = ["CallAssistantRequestParam", "ExternalLlm", "FallbackConfig", "FallbackConfigExternalLlm", "Tool"]
 
 
@@ -105,12 +97,12 @@ class FallbackConfig(TypedDict, total=False, extra_items=object):  # type: ignor
 
 
 Tool: TypeAlias = Union[
-    BookAppointmentTool,
-    CheckAvailabilityTool,
-    WebhookToolParam,
-    HangupToolParam,
-    TransferToolParam,
-    CallControlRetrievalTool,
+    "BookAppointmentTool",
+    "CheckAvailabilityTool",
+    "WebhookToolParam",
+    "HangupToolParam",
+    "TransferToolParam",
+    "CallControlRetrievalTool",
 ]
 
 
@@ -198,4 +190,13 @@ class CallAssistantRequestParam(TypedDict, total=False):
     transfer, hangup, etc.). Overrides the assistant's stored tools if provided.
     """
 
-    voice_settings: VoiceSettingsParam
+    voice_settings: "VoiceSettingsParam"
+
+
+from .ai.hangup_tool_param import HangupToolParam
+from .ai.webhook_tool_param import WebhookToolParam
+from .ai.transfer_tool_param import TransferToolParam
+from .ai.voice_settings_param import VoiceSettingsParam
+from .shared_params.book_appointment_tool import BookAppointmentTool
+from .shared_params.check_availability_tool import CheckAvailabilityTool
+from .shared_params.call_control_retrieval_tool import CallControlRetrievalTool

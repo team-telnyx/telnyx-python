@@ -5,11 +5,6 @@ from __future__ import annotations
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .vertical import Vertical
-from .entity_type import EntityType
-from .stock_exchange import StockExchange
-from .alt_business_id_type import AltBusinessIDType
-from .brand_identity_status import BrandIdentityStatus
 
 __all__ = ["BrandUpdateParams"]
 
@@ -24,16 +19,16 @@ class BrandUpdateParams(TypedDict, total=False):
     email: Required[str]
     """Valid email address of brand support contact."""
 
-    entity_type: Required[Annotated[EntityType, PropertyInfo(alias="entityType")]]
+    entity_type: Required[Annotated["EntityType", PropertyInfo(alias="entityType")]]
     """Entity type behind the brand. This is the form of business establishment."""
 
-    vertical: Required[Vertical]
+    vertical: Required["Vertical"]
     """Vertical or industry segment of the brand or campaign."""
 
     alt_business_id: Annotated[str, PropertyInfo(alias="altBusinessId")]
     """Alternate business identifier such as DUNS, LEI, or GIIN"""
 
-    alt_business_id_type: Annotated[AltBusinessIDType, PropertyInfo(alias="altBusinessIdType")]
+    alt_business_id_type: Annotated["AltBusinessIDType", PropertyInfo(alias="altBusinessIdType")]
     """An enumeration."""
 
     business_contact_email: Annotated[str, PropertyInfo(alias="businessContactEmail")]
@@ -58,7 +53,7 @@ class BrandUpdateParams(TypedDict, total=False):
     first_name: Annotated[str, PropertyInfo(alias="firstName")]
     """First name of business contact."""
 
-    identity_status: Annotated[BrandIdentityStatus, PropertyInfo(alias="identityStatus")]
+    identity_status: Annotated["BrandIdentityStatus", PropertyInfo(alias="identityStatus")]
     """The verification status of an active brand"""
 
     ip_address: Annotated[str, PropertyInfo(alias="ipAddress")]
@@ -78,7 +73,7 @@ class BrandUpdateParams(TypedDict, total=False):
     state: str
     """State. Must be 2 letters code for United States."""
 
-    stock_exchange: Annotated[StockExchange, PropertyInfo(alias="stockExchange")]
+    stock_exchange: Annotated["StockExchange", PropertyInfo(alias="stockExchange")]
     """(Required for public company) stock exchange."""
 
     stock_symbol: Annotated[str, PropertyInfo(alias="stockSymbol")]
@@ -95,3 +90,10 @@ class BrandUpdateParams(TypedDict, total=False):
 
     website: str
     """Brand website URL."""
+
+
+from .vertical import Vertical
+from .entity_type import EntityType
+from .stock_exchange import StockExchange
+from .alt_business_id_type import AltBusinessIDType
+from .brand_identity_status import BrandIdentityStatus

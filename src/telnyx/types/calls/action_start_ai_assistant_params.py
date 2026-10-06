@@ -5,15 +5,7 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import TypeAlias, TypedDict
 
-from .tool_message_param import ToolMessageParam
-from .user_message_param import UserMessageParam
-from .system_message_param import SystemMessageParam
-from .assistant_message_param import AssistantMessageParam
-from .developer_message_param import DeveloperMessageParam
-from .transcription_config_param import TranscriptionConfigParam
-from .interruption_settings_param import InterruptionSettingsParam
 from ..call_assistant_request_param import CallAssistantRequestParam
-from .ai_assistant_join_participant_param import AIAssistantJoinParticipantParam
 
 __all__ = ["ActionStartAIAssistantParams", "MessageHistory"]
 
@@ -46,7 +38,7 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
     for `AWS.Polly.<voice_id>` voices. There is a 3,000 character limit.
     """
 
-    interruption_settings: InterruptionSettingsParam
+    interruption_settings: "InterruptionSettingsParam"
     """Settings for handling user interruptions during assistant speech"""
 
     message_history: Iterable[MessageHistory]
@@ -55,7 +47,7 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
     Follows the same message format as the `ai_assistant_add_messages` command.
     """
 
-    participants: Iterable[AIAssistantJoinParticipantParam]
+    participants: Iterable["AIAssistantJoinParticipantParam"]
     """A list of participants to add to the conversation when it starts."""
 
     send_message_history_updates: bool
@@ -66,7 +58,7 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
     overrides this value when it is set.
     """
 
-    transcription: TranscriptionConfigParam
+    transcription: "TranscriptionConfigParam"
     """The settings associated with speech to text for the voice assistant.
 
     This is only relevant if the assistant uses a text-to-text language model. Any
@@ -76,5 +68,14 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
 
 
 MessageHistory: TypeAlias = Union[
-    UserMessageParam, AssistantMessageParam, ToolMessageParam, SystemMessageParam, DeveloperMessageParam
+    "UserMessageParam", "AssistantMessageParam", "ToolMessageParam", "SystemMessageParam", "DeveloperMessageParam"
 ]
+
+from .tool_message_param import ToolMessageParam
+from .user_message_param import UserMessageParam
+from .system_message_param import SystemMessageParam
+from .assistant_message_param import AssistantMessageParam
+from .developer_message_param import DeveloperMessageParam
+from .transcription_config_param import TranscriptionConfigParam
+from .interruption_settings_param import InterruptionSettingsParam
+from .ai_assistant_join_participant_param import AIAssistantJoinParticipantParam

@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .spend_limit_period import SpendLimitPeriod
-
 __all__ = ["SpendLimitCreateParams", "CreateSpendLimitWithAmount", "CreateSpendLimitUnlimited"]
 
 
@@ -17,7 +15,7 @@ class CreateSpendLimitWithAmount(TypedDict, total=False):
     product: Required[str]
     """Product to limit, as returned in `product` by the list operation."""
 
-    period: SpendLimitPeriod
+    period: "SpendLimitPeriod"
     """`daily` is the current UTC day; `monthly` is the current UTC calendar month."""
 
     reason: str
@@ -34,7 +32,7 @@ class CreateSpendLimitUnlimited(TypedDict, total=False):
     unlimited: Required[Literal[True]]
     """`true`: explicitly no cap."""
 
-    period: SpendLimitPeriod
+    period: "SpendLimitPeriod"
     """`daily` is the current UTC day; `monthly` is the current UTC calendar month."""
 
     reason: str
@@ -42,3 +40,5 @@ class CreateSpendLimitUnlimited(TypedDict, total=False):
 
 
 SpendLimitCreateParams: TypeAlias = Union[CreateSpendLimitWithAmount, CreateSpendLimitUnlimited]
+
+from .spend_limit_period import SpendLimitPeriod

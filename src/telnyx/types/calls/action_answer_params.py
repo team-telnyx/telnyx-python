@@ -14,7 +14,6 @@ from ..stream_bidirectional_mode import StreamBidirectionalMode
 from ..stream_bidirectional_codec import StreamBidirectionalCodec
 from ..call_assistant_request_param import CallAssistantRequestParam
 from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
-from .transcription_start_request_param import TranscriptionStartRequestParam
 from ..conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 
 __all__ = ["ActionAnswerParams", "DeepfakeDetection", "WebhookRetriesPolicies"]
@@ -164,7 +163,7 @@ class ActionAnswerParams(TypedDict, total=False):
     transcription: bool
     """Enable transcription upon call answer. The default value is false."""
 
-    transcription_config: TranscriptionStartRequestParam
+    transcription_config: "TranscriptionStartRequestParam"
 
     webhook_retries_policies: Dict[str, WebhookRetriesPolicies]
     """A map of event types to retry policies.
@@ -220,3 +219,6 @@ class WebhookRetriesPolicies(TypedDict, total=False):
 
     Total sum cannot exceed 60000ms.
     """
+
+
+from .transcription_start_request_param import TranscriptionStartRequestParam

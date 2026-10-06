@@ -5,17 +5,13 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from .billing_contact_param import BillingContactParam
-from .physical_address_param import PhysicalAddressParam
-from .organization_contact_param import OrganizationContactParam
-
 __all__ = ["EnterpriseCreateParams"]
 
 
 class EnterpriseCreateParams(TypedDict, total=False):
-    billing_address: Required[PhysicalAddressParam]
+    billing_address: Required["PhysicalAddressParam"]
 
-    billing_contact: Required[BillingContactParam]
+    billing_contact: Required["BillingContactParam"]
 
     country_code: Required[str]
     """ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported."""
@@ -104,7 +100,7 @@ class EnterpriseCreateParams(TypedDict, total=False):
     count.
     """
 
-    organization_contact: Required[OrganizationContactParam]
+    organization_contact: Required["OrganizationContactParam"]
 
     organization_legal_type: Required[Literal["corporation", "llc", "partnership", "nonprofit", "other"]]
     """Legal-entity form. Pick the form that matches your incorporation documents:
@@ -118,7 +114,7 @@ class EnterpriseCreateParams(TypedDict, total=False):
       You may be asked for additional documents during vetting.
     """
 
-    organization_physical_address: Required[PhysicalAddressParam]
+    organization_physical_address: Required["PhysicalAddressParam"]
 
     organization_type: Required[Literal["commercial", "government", "non_profit"]]
     """Organization category for vetting purposes:
@@ -181,3 +177,8 @@ class EnterpriseCreateParams(TypedDict, total=False):
     DIR is then linked to the `bpo` enterprise through `bpo_authorizations`. Fixed
     at creation.
     """
+
+
+from .billing_contact_param import BillingContactParam
+from .physical_address_param import PhysicalAddressParam
+from .organization_contact_param import OrganizationContactParam

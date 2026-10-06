@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .spend_limit_period import SpendLimitPeriod
-
 __all__ = ["SpendLimitUpdateParams", "UpdateSpendLimitWithAmount", "UpdateSpendLimitUnlimited"]
 
 
@@ -14,7 +12,7 @@ class UpdateSpendLimitWithAmount(TypedDict, total=False):
     amount: Required[float]
     """Limit in USD. `0` blocks at the first cent of spend."""
 
-    period: SpendLimitPeriod
+    period: "SpendLimitPeriod"
     """Limit period. Defaults to `daily`; send it explicitly."""
 
     reason: str
@@ -28,7 +26,7 @@ class UpdateSpendLimitUnlimited(TypedDict, total=False):
     unlimited: Required[Literal[True]]
     """`true`: explicitly no cap."""
 
-    period: SpendLimitPeriod
+    period: "SpendLimitPeriod"
     """Limit period. Defaults to `daily`; send it explicitly."""
 
     reason: str
@@ -36,3 +34,5 @@ class UpdateSpendLimitUnlimited(TypedDict, total=False):
 
 
 SpendLimitUpdateParams: TypeAlias = Union[UpdateSpendLimitWithAmount, UpdateSpendLimitUnlimited]
+
+from .spend_limit_period import SpendLimitPeriod

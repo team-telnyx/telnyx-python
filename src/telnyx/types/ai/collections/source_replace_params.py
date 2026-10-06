@@ -5,10 +5,11 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .source_request_param import SourceRequestParam
-
 __all__ = ["SourceReplaceParams"]
 
 
 class SourceReplaceParams(TypedDict, total=False):
-    sources: Required[Iterable[SourceRequestParam]]
+    sources: Required[Iterable["SourceRequestParam"]]
+
+
+from .source_request_param import SourceRequestParam

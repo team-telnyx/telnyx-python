@@ -6,9 +6,6 @@ from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
-from .number_pool_settings_param import NumberPoolSettingsParam
-from .url_shortener_settings_param import URLShortenerSettingsParam
-from .messaging_profile_features_param import MessagingProfileFeaturesParam
 
 __all__ = ["MessagingProfileUpdateParams"]
 
@@ -35,7 +32,7 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     enabled: bool
     """Specifies whether the messaging profile is enabled or not."""
 
-    features: Optional[MessagingProfileFeaturesParam]
+    features: Optional["MessagingProfileFeaturesParam"]
     """
     Telnyx product features the messaging customer can enable on the messaging
     profile. Keys map to individual feature flags; unknown keys are accepted and
@@ -54,7 +51,7 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     name: str
     """A user friendly name for the messaging profile."""
 
-    number_pool_settings: Optional[NumberPoolSettingsParam]
+    number_pool_settings: Optional["NumberPoolSettingsParam"]
     """
     Number Pool allows you to send messages from a pool of numbers of different
     types, assigning weights to each type. The pool consists of all the long code
@@ -87,7 +84,7 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     minimize costs.
     """
 
-    url_shortener_settings: Optional[URLShortenerSettingsParam]
+    url_shortener_settings: Optional["URLShortenerSettingsParam"]
     """
     The URL shortener feature allows automatic replacement of URLs that were
     generated using a public URL shortener service. Some examples include bit.do,
@@ -124,3 +121,8 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
 
     This field is required if the messaging profile doesn't have it defined yet.
     """
+
+
+from .number_pool_settings_param import NumberPoolSettingsParam
+from .url_shortener_settings_param import URLShortenerSettingsParam
+from .messaging_profile_features_param import MessagingProfileFeaturesParam

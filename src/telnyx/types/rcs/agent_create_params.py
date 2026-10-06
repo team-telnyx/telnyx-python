@@ -6,8 +6,6 @@ from typing import Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .agent_use_case import AgentUseCase
-from .agent_configuration_param import AgentConfigurationParam
 
 __all__ = ["AgentCreateParams"]
 
@@ -15,11 +13,11 @@ __all__ = ["AgentCreateParams"]
 class AgentCreateParams(TypedDict, total=False):
     brand_id: Required[str]
 
-    configuration: Required[AgentConfigurationParam]
+    configuration: Required["AgentConfigurationParam"]
 
     display_name: Required[str]
 
-    use_case: Required[AgentUseCase]
+    use_case: Required["AgentUseCase"]
 
     idempotency_key: Required[Annotated[str, PropertyInfo(alias="Idempotency-Key")]]
 
@@ -30,3 +28,7 @@ class AgentCreateParams(TypedDict, total=False):
 
     When omitted, the agent inherits the brand profile.
     """
+
+
+from .agent_use_case import AgentUseCase
+from .agent_configuration_param import AgentConfigurationParam

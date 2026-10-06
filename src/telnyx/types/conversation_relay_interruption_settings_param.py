@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .calls.conversation_relay_interruptible import ConversationRelayInterruptible
-
 __all__ = ["ConversationRelayInterruptionSettingsParam"]
 
 
@@ -19,23 +17,26 @@ class ConversationRelayInterruptionSettingsParam(TypedDict, total=False):
     `interruptible=none`.
     """
 
-    interruptible: ConversationRelayInterruptible
+    interruptible: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
     `speech` allows speech only; `dtmf` allows DTMF only.
     """
 
-    interruptible_greeting: ConversationRelayInterruptible
+    interruptible_greeting: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
     `speech` allows speech only; `dtmf` allows DTMF only.
     """
 
-    welcome_greeting_interruptible: ConversationRelayInterruptible
+    welcome_greeting_interruptible: "ConversationRelayInterruptible"
     """Controls when caller input can interrupt assistant speech.
 
     `any` allows speech or DTMF interruptions; `none` disables interruptions;
     `speech` allows speech only; `dtmf` allows DTMF only.
     """
+
+
+from .calls.conversation_relay_interruptible import ConversationRelayInterruptible

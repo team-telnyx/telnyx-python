@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .messaging_metrics_time_frame import MessagingMetricsTimeFrame
-
 __all__ = ["MessagingProfileMetricListParams"]
 
 
 class MessagingProfileMetricListParams(TypedDict, total=False):
-    time_frame: MessagingMetricsTimeFrame
+    time_frame: "MessagingMetricsTimeFrame"
     """The time frame for metrics."""
+
+
+from .messaging_metrics_time_frame import MessagingMetricsTimeFrame

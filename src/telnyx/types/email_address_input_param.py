@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import TypeAlias
 
-from .email_inboxes.email_address_param import EmailAddressParam
-
 __all__ = ["EmailAddressInputParam"]
 
-EmailAddressInputParam: TypeAlias = Union[str, EmailAddressParam]
+EmailAddressInputParam: TypeAlias = Union[str, "EmailAddressParam"]
+
+from .email_inboxes.email_address_param import EmailAddressParam

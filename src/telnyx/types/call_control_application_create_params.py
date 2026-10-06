@@ -5,9 +5,6 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from .call_control_application_inbound_param import CallControlApplicationInboundParam
-from .call_control_application_outbound_param import CallControlApplicationOutboundParam
-
 __all__ = ["CallControlApplicationCreateParams"]
 
 
@@ -63,9 +60,9 @@ class CallControlApplicationCreateParams(TypedDict, total=False):
     first_command_timeout_secs: int
     """Specifies how many seconds to wait before timing out a dial command."""
 
-    inbound: CallControlApplicationInboundParam
+    inbound: "CallControlApplicationInboundParam"
 
-    outbound: CallControlApplicationOutboundParam
+    outbound: "CallControlApplicationOutboundParam"
 
     redact_dtmf_debug_logging: bool
     """
@@ -84,3 +81,7 @@ class CallControlApplicationCreateParams(TypedDict, total=False):
 
     webhook_timeout_secs: Optional[int]
     """Specifies how many seconds to wait before timing out a webhook."""
+
+
+from .call_control_application_inbound_param import CallControlApplicationInboundParam
+from .call_control_application_outbound_param import CallControlApplicationOutboundParam

@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from .node_position_param import NodePositionParam
-
 __all__ = ["ToolNodeReqParam"]
 
 
@@ -48,7 +46,7 @@ class ToolNodeReqParam(TypedDict, total=False):
     name: str
     """Optional human-readable label, displayed in authoring UIs."""
 
-    position: NodePositionParam
+    position: "NodePositionParam"
     """Optional canvas coordinates used by authoring UIs to lay out the graph.
 
     Ignored by the runtime; round-trips so frontends can persist graph layout across
@@ -57,3 +55,6 @@ class ToolNodeReqParam(TypedDict, total=False):
 
     type: Literal["tool"]
     """Node kind discriminator. Always `tool` for a tool node."""
+
+
+from .node_position_param import NodePositionParam

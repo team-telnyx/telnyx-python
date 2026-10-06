@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .telnyx_conversation_channel import TelnyxConversationChannel
-
 __all__ = ["TestUpdateParams", "Rubric"]
 
 
@@ -29,7 +27,7 @@ class TestUpdateParams(TypedDict, total=False):
     rubric: Iterable[Rubric]
     """Updated evaluation criteria for assessing assistant performance."""
 
-    telnyx_conversation_channel: TelnyxConversationChannel
+    telnyx_conversation_channel: "TelnyxConversationChannel"
     """Updated communication channel for the test execution."""
 
     test_suite: str
@@ -45,3 +43,6 @@ class Rubric(TypedDict, total=False):
 
     name: Required[str]
     """Label for the evaluation criterion, e.g., Empathy, Accuracy, Clarity."""
+
+
+from .telnyx_conversation_channel import TelnyxConversationChannel

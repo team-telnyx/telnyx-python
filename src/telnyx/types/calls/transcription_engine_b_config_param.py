@@ -4,13 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .telnyx_transcription_language import TelnyxTranscriptionLanguage
-
 __all__ = ["TranscriptionEngineBConfigParam"]
 
 
 class TranscriptionEngineBConfigParam(TypedDict, total=False):
-    language: TelnyxTranscriptionLanguage
+    language: "TelnyxTranscriptionLanguage"
     """Language to use for speech recognition"""
 
     transcription_engine: Literal["B"]
@@ -18,3 +16,6 @@ class TranscriptionEngineBConfigParam(TypedDict, total=False):
 
     transcription_model: Literal["openai/whisper-tiny", "openai/whisper-large-v3-turbo"]
     """The model to use for transcription."""
+
+
+from .telnyx_transcription_language import TelnyxTranscriptionLanguage

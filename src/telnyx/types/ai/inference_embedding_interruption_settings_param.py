@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import TypedDict
 
-from .start_speaking_plan_param import StartSpeakingPlanParam
-
 __all__ = ["InferenceEmbeddingInterruptionSettingsParam"]
 
 
@@ -27,10 +25,13 @@ class InferenceEmbeddingInterruptionSettingsParam(TypedDict, total=False):
     Set to null or 0.0 to disable interrupt prediction.
     """
 
-    start_speaking_plan: StartSpeakingPlanParam
+    start_speaking_plan: "StartSpeakingPlanParam"
     """Controls when the assistant starts speaking after the user stops.
 
     These thresholds primarily apply to non turn-taking transcription models. For
     turn-taking models like `deepgram/flux`, end-of-turn detection is driven by the
     transcription end-of-turn settings under `transcription.settings` instead.
     """
+
+
+from .start_speaking_plan_param import StartSpeakingPlanParam

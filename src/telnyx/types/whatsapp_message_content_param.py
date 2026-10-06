@@ -5,12 +5,6 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .whatsapp_media_param import WhatsappMediaParam
-from .whatsapp_contact_param import WhatsappContactParam
-from .whatsapp_location_param import WhatsappLocationParam
-from .whatsapp_reaction_param import WhatsappReactionParam
-from .whatsapp_interactive_param import WhatsappInteractiveParam
-
 __all__ = [
     "WhatsappMessageContentParam",
     "Template",
@@ -83,24 +77,24 @@ class Text(TypedDict, total=False):
 
 
 class WhatsappMessageContentParam(TypedDict, total=False):
-    audio: WhatsappMediaParam
+    audio: "WhatsappMediaParam"
 
     biz_opaque_callback_data: str
     """custom data to return with status update"""
 
-    contacts: Iterable[WhatsappContactParam]
+    contacts: Iterable["WhatsappContactParam"]
 
-    document: WhatsappMediaParam
+    document: "WhatsappMediaParam"
 
-    image: WhatsappMediaParam
+    image: "WhatsappMediaParam"
 
-    interactive: WhatsappInteractiveParam
+    interactive: "WhatsappInteractiveParam"
 
-    location: WhatsappLocationParam
+    location: "WhatsappLocationParam"
 
-    reaction: WhatsappReactionParam
+    reaction: "WhatsappReactionParam"
 
-    sticker: WhatsappMediaParam
+    sticker: "WhatsappMediaParam"
 
     template: Template
     """Template message object.
@@ -128,4 +122,11 @@ class WhatsappMessageContentParam(TypedDict, total=False):
         "text",
     ]
 
-    video: WhatsappMediaParam
+    video: "WhatsappMediaParam"
+
+
+from .whatsapp_media_param import WhatsappMediaParam
+from .whatsapp_contact_param import WhatsappContactParam
+from .whatsapp_location_param import WhatsappLocationParam
+from .whatsapp_reaction_param import WhatsappReactionParam
+from .whatsapp_interactive_param import WhatsappInteractiveParam

@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .authentication_method import AuthenticationMethod
-
 __all__ = ["ExternalLlmParam"]
 
 
@@ -16,7 +14,7 @@ class ExternalLlmParam(TypedDict, total=False):
     model: Required[str]
     """Model identifier to use with the external LLM endpoint."""
 
-    authentication_method: AuthenticationMethod
+    authentication_method: "AuthenticationMethod"
     """Authentication method used when connecting to the external LLM endpoint."""
 
     certificate_ref: str
@@ -43,3 +41,6 @@ class ExternalLlmParam(TypedDict, total=False):
     """
     URL used to retrieve an access token when certificate authentication is enabled.
     """
+
+
+from .authentication_method import AuthenticationMethod

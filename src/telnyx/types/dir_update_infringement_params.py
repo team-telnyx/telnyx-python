@@ -6,7 +6,6 @@ from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
-from .document_param import DocumentParam
 
 __all__ = ["DirUpdateInfringementParams"]
 
@@ -38,7 +37,7 @@ class DirUpdateInfringementParams(TypedDict, total=False):
     blank.
     """
 
-    documents: Optional[Iterable[DocumentParam]]
+    documents: Optional[Iterable["DocumentParam"]]
     """Append-only supporting documents to attach while resolving the claim (e.g.
 
     authorization or licensing proof).
@@ -46,3 +45,6 @@ class DirUpdateInfringementParams(TypedDict, total=False):
 
     logo_url: Optional[str]
     """Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB)."""
+
+
+from .document_param import DocumentParam

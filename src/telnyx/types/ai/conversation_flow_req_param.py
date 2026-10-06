@@ -5,14 +5,9 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Required, TypeAlias, TypedDict
 
-from .flow_edge_param import FlowEdgeParam
-from .flow_node_req_param import FlowNodeReqParam
-from .tool_node_req_param import ToolNodeReqParam
-from .speak_node_req_param import SpeakNodeReqParam
-
 __all__ = ["ConversationFlowReqParam", "Node"]
 
-Node: TypeAlias = Union[FlowNodeReqParam, ToolNodeReqParam, SpeakNodeReqParam]
+Node: TypeAlias = Union["FlowNodeReqParam", "ToolNodeReqParam", "SpeakNodeReqParam"]
 
 
 class ConversationFlowReqParam(TypedDict, total=False):
@@ -33,5 +28,11 @@ class ConversationFlowReqParam(TypedDict, total=False):
     start_node_id: Required[str]
     """ID of the node where the conversation begins."""
 
-    edges: Iterable[FlowEdgeParam]
+    edges: Iterable["FlowEdgeParam"]
     """Directed transitions between nodes. May be empty for a single-node flow."""
+
+
+from .flow_edge_param import FlowEdgeParam
+from .flow_node_req_param import FlowNodeReqParam
+from .tool_node_req_param import ToolNodeReqParam
+from .speak_node_req_param import SpeakNodeReqParam

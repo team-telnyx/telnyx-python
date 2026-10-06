@@ -6,7 +6,6 @@ from typing import Union
 from typing_extensions import Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
-from .available_service import AvailableService
 
 __all__ = [
     "NetworkCoverageListParams",
@@ -58,11 +57,11 @@ class Filter(TypedDict, total=False):
 class FiltersAvailableServicesContains(TypedDict, total=False):
     """Available service filtering operations"""
 
-    contains: AvailableService
+    contains: "AvailableService"
     """Filter by available services containing the specified service"""
 
 
-FiltersAvailableServices: TypeAlias = Union[AvailableService, FiltersAvailableServicesContains]
+FiltersAvailableServices: TypeAlias = Union["AvailableService", FiltersAvailableServicesContains]
 
 
 class Filters(TypedDict, total=False):
@@ -73,3 +72,6 @@ class Filters(TypedDict, total=False):
 
     available_services: FiltersAvailableServices
     """Filter by exact available service match"""
+
+
+from .available_service import AvailableService

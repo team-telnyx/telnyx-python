@@ -7,7 +7,6 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from .tf_verification_status import TfVerificationStatus
 
 __all__ = ["RequestListParams"]
 
@@ -34,5 +33,8 @@ class RequestListParams(TypedDict, total=False):
     phone_number: str
     """Filter results by phone number."""
 
-    status: TfVerificationStatus
+    status: "TfVerificationStatus"
     """Filter results by status."""
+
+
+from .tf_verification_status import TfVerificationStatus

@@ -4,9 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .prompt_sync_status import PromptSyncStatus
-from .observability_status import ObservabilityStatus
-
 __all__ = ["ObservabilityReqParam"]
 
 
@@ -17,7 +14,7 @@ class ObservabilityReqParam(TypedDict, total=False):
 
     prompt_name: str
 
-    prompt_sync: PromptSyncStatus
+    prompt_sync: "PromptSyncStatus"
     """Whether to auto-publish the assistant's instructions as a Langfuse prompt.
 
     When ENABLED + prompt_name set, every assistant create/update pushes
@@ -31,4 +28,8 @@ class ObservabilityReqParam(TypedDict, total=False):
 
     secret_key_ref: str
 
-    status: ObservabilityStatus
+    status: "ObservabilityStatus"
+
+
+from .prompt_sync_status import PromptSyncStatus
+from .observability_status import ObservabilityStatus

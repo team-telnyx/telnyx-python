@@ -7,18 +7,6 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
-from .stream_codec import StreamCodec
-from .sip_header_param import SipHeaderParam
-from .custom_sip_header_param import CustomSipHeaderParam
-from .dialogflow_config_param import DialogflowConfigParam
-from .sound_modifications_param import SoundModificationsParam
-from .stream_bidirectional_mode import StreamBidirectionalMode
-from .stream_bidirectional_codec import StreamBidirectionalCodec
-from .call_assistant_request_param import CallAssistantRequestParam
-from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
-from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
-from .calls.transcription_start_request_param import TranscriptionStartRequestParam
-from .conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam
 
 __all__ = [
     "CallDialParams",
@@ -87,7 +75,7 @@ class CallDialParams(TypedDict, total=False):
     answering_machine_detection.
     """
 
-    assistant: CallAssistantRequestParam
+    assistant: "CallAssistantRequestParam"
     """AI Assistant configuration.
 
     All fields except `id` are optional — the assistant's stored configuration will
@@ -135,7 +123,7 @@ class CallDialParams(TypedDict, total=False):
     conference_config: ConferenceConfig
     """Optional configuration parameters to dial new participant into a conference."""
 
-    conversation_relay_config: ConversationRelayEmbeddedConfigParam
+    conversation_relay_config: "ConversationRelayEmbeddedConfigParam"
     """
     Starts a Conversation Relay session automatically when the answered/dialed call
     is answered. This embedded shape is supported on `answer` and `dial`. It uses
@@ -145,7 +133,7 @@ class CallDialParams(TypedDict, total=False):
     the parent command's `client_state` and `command_id` fields instead.
     """
 
-    custom_headers: Iterable[CustomSipHeaderParam]
+    custom_headers: Iterable["CustomSipHeaderParam"]
     """Custom headers to be added to the SIP INVITE."""
 
     deepfake_detection: DeepfakeDetection
@@ -156,7 +144,7 @@ class CallDialParams(TypedDict, total=False):
     `call.deepfake_detection.result` webhook.
     """
 
-    dialogflow_config: DialogflowConfigParam
+    dialogflow_config: "DialogflowConfigParam"
 
     diversion: str
     """The `to` number of an active inbound call, in +E164 format.
@@ -317,7 +305,7 @@ class CallDialParams(TypedDict, total=False):
     sip_auth_username: str
     """SIP Authentication username used for SIP challenges."""
 
-    sip_headers: Iterable[SipHeaderParam]
+    sip_headers: Iterable["SipHeaderParam"]
     """SIP headers to be added to the SIP INVITE request.
 
     Currently only User-to-User header is supported.
@@ -329,7 +317,7 @@ class CallDialParams(TypedDict, total=False):
     sip_transport_protocol: Literal["UDP", "TCP", "TLS"]
     """Defines SIP transport protocol to be used on the call."""
 
-    sound_modifications: SoundModificationsParam
+    sound_modifications: "SoundModificationsParam"
     """Use this field to modify sound effects, for example adjust the pitch."""
 
     stream_auth_token: str
@@ -338,22 +326,22 @@ class CallDialParams(TypedDict, total=False):
     using streaming. Maximum length is 4000 characters.
     """
 
-    stream_bidirectional_codec: StreamBidirectionalCodec
+    stream_bidirectional_codec: "StreamBidirectionalCodec"
     """Indicates codec for bidirectional streaming RTP payloads.
 
     Used only with stream_bidirectional_mode=rtp. Case sensitive.
     """
 
-    stream_bidirectional_mode: StreamBidirectionalMode
+    stream_bidirectional_mode: "StreamBidirectionalMode"
     """Configures method of bidirectional streaming (mp3, rtp)."""
 
-    stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate
+    stream_bidirectional_sampling_rate: "StreamBidirectionalSamplingRate"
     """Audio sampling rate."""
 
-    stream_bidirectional_target_legs: StreamBidirectionalTargetLegs
+    stream_bidirectional_target_legs: "StreamBidirectionalTargetLegs"
     """Specifies which call legs should receive the bidirectional stream audio."""
 
-    stream_codec: StreamCodec
+    stream_codec: "StreamCodec"
     """Specifies the codec to be used for the streamed audio.
 
     When set to 'default' or when transcoding is not possible, the codec from the
@@ -407,7 +395,7 @@ class CallDialParams(TypedDict, total=False):
     transcription: bool
     """Enable transcription upon call answer. The default value is false."""
 
-    transcription_config: TranscriptionStartRequestParam
+    transcription_config: "TranscriptionStartRequestParam"
 
     webhook_retries_policies: Dict[str, WebhookRetriesPolicies]
     """A map of event types to retry policies.
@@ -661,3 +649,17 @@ class WebhookRetriesPolicies(TypedDict, total=False):
 
     Total sum cannot exceed 60000ms.
     """
+
+
+from .stream_codec import StreamCodec
+from .sip_header_param import SipHeaderParam
+from .custom_sip_header_param import CustomSipHeaderParam
+from .dialogflow_config_param import DialogflowConfigParam
+from .sound_modifications_param import SoundModificationsParam
+from .stream_bidirectional_mode import StreamBidirectionalMode
+from .stream_bidirectional_codec import StreamBidirectionalCodec
+from .call_assistant_request_param import CallAssistantRequestParam
+from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
+from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
+from .calls.transcription_start_request_param import TranscriptionStartRequestParam
+from .conversation_relay_embedded_config_param import ConversationRelayEmbeddedConfigParam

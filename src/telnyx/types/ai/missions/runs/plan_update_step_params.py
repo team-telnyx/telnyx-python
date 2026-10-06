@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import Required, TypedDict
 
-from .step_status import StepStatus
-
 __all__ = ["PlanUpdateStepParams"]
 
 
@@ -17,4 +15,7 @@ class PlanUpdateStepParams(TypedDict, total=False):
 
     metadata: Dict[str, object]
 
-    status: StepStatus
+    status: "StepStatus"
+
+
+from .step_status import StepStatus

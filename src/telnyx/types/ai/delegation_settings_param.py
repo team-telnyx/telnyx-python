@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .external_llm_param import ExternalLlmParam
-
 __all__ = ["DelegationSettingsParam"]
 
 
@@ -21,7 +19,7 @@ class DelegationSettingsParam(TypedDict, total=False):
     conversation but can never look anything up or run a tool.
     """
 
-    external_llm: ExternalLlmParam
+    external_llm: "ExternalLlmParam"
     """
     Run the backend on your own OpenAI-compatible endpoint instead of a
     Telnyx-hosted model. As above, a raw `api_key` here is rejected — reference an
@@ -71,3 +69,6 @@ class DelegationSettingsParam(TypedDict, total=False):
     `false` it is kept as silent context that informs later answers without being
     read out. Defaults to `true`.
     """
+
+
+from .external_llm_param import ExternalLlmParam

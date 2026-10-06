@@ -4,13 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .source_type import SourceType
-
 __all__ = ["SourceRequestParam"]
 
 
 class SourceRequestParam(TypedDict, total=False):
-    source_type: Required[SourceType]
+    source_type: Required["SourceType"]
     """The type of Telnyx data attached as a source.
 
     `bucket` requires an additional `bucket_id`. Only `voice` is searchable today;
@@ -23,3 +21,6 @@ class SourceRequestParam(TypedDict, total=False):
 
     Required when `source_type` is `bucket`; ignored otherwise.
     """
+
+
+from .source_type import SourceType

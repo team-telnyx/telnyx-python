@@ -8,9 +8,6 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
-from .tracking_settings_param import TrackingSettingsParam
-from .attachment_request_param import AttachmentRequestParam
-from .email_address_input_param import EmailAddressInputParam
 
 __all__ = ["EmailMessageBatchParams", "Message"]
 
@@ -40,7 +37,7 @@ class EmailMessageBatchParams(TypedDict, total=False):
 _MessageReservedKeywords = TypedDict(
     "_MessageReservedKeywords",
     {
-        "from": EmailAddressInputParam,
+        "from": "EmailAddressInputParam",
     },
     total=False,
 )
@@ -58,13 +55,13 @@ class Message(_MessageReservedKeywords, total=False):
     case-insensitive normalization. Duplicate recipients return `400`.
     """
 
-    to: Required[SequenceNotStr[EmailAddressInputParam]]
+    to: Required[SequenceNotStr["EmailAddressInputParam"]]
 
-    attachments: Iterable[AttachmentRequestParam]
+    attachments: Iterable["AttachmentRequestParam"]
 
-    bcc: SequenceNotStr[EmailAddressInputParam]
+    bcc: SequenceNotStr["EmailAddressInputParam"]
 
-    cc: SequenceNotStr[EmailAddressInputParam]
+    cc: SequenceNotStr["EmailAddressInputParam"]
 
     from_name: str
     """Optional display name for string `from`; overrides `from.name` when provided."""
@@ -101,7 +98,7 @@ class Message(_MessageReservedKeywords, total=False):
     Detail Records. Usable in `filter[metadata]` when listing messages.
     """
 
-    reply_to: EmailAddressInputParam
+    reply_to: "EmailAddressInputParam"
     """Reply-to address.
 
     If provided as an object with a name, only the email is stored; the name is
@@ -164,8 +161,13 @@ class Message(_MessageReservedKeywords, total=False):
     responses.
     """
 
-    tracking_settings: TrackingSettingsParam
+    tracking_settings: "TrackingSettingsParam"
     """Per-send open and click tracking overrides.
 
     Omitted properties inherit the sender domain's tracking settings.
     """
+
+
+from .tracking_settings_param import TrackingSettingsParam
+from .attachment_request_param import AttachmentRequestParam
+from .email_address_input_param import EmailAddressInputParam

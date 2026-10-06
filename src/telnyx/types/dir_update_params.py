@@ -6,8 +6,6 @@ from typing import Iterable, Optional
 from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
-from .document_param import DocumentParam
-from .bpo_authorization_input_param import BpoAuthorizationInputParam
 
 __all__ = ["DirUpdateParams"]
 
@@ -25,7 +23,7 @@ class DirUpdateParams(TypedDict, total=False):
     Must be a real individual.
     """
 
-    bpo_authorizations: Iterable[BpoAuthorizationInputParam]
+    bpo_authorizations: Iterable["BpoAuthorizationInputParam"]
     """Optional.
 
     Replace this DIR's authorized BPO (Business Process Outsourcer) accounts with
@@ -64,7 +62,7 @@ class DirUpdateParams(TypedDict, total=False):
     display_name: str
     """Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only."""
 
-    documents: Iterable[DocumentParam]
+    documents: Iterable["DocumentParam"]
     """Additional supporting documents to attach.
 
     Append-only: existing documents are never removed or replaced, and an empty or
@@ -86,3 +84,7 @@ class DirUpdateParams(TypedDict, total=False):
     compliance review completes. Send `null` to clear. Changing only this field on a
     `verified` DIR does not re-vet it. Maximum 2048 characters.
     """
+
+
+from .document_param import DocumentParam
+from .bpo_authorization_input_param import BpoAuthorizationInputParam

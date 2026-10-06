@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .signature_payload_param import SignaturePayloadParam
-
 __all__ = ["DirBpoLoaParams"]
 
 
@@ -17,10 +15,13 @@ class DirBpoLoaParams(TypedDict, total=False):
     approved.
     """
 
-    signature: SignaturePayloadParam
+    signature: "SignaturePayloadParam"
     """Optional.
 
     When provided the rendered PDF embeds the signature image, printed name, and
     signed-at date. When absent the PDF is returned unsigned so the Brand Owner can
     sign externally and the BPO can upload it via the Documents API.
     """
+
+
+from .signature_payload_param import SignaturePayloadParam

@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
-from .whatsapp_media_param import WhatsappMediaParam
-
 __all__ = [
     "WhatsappInteractiveParam",
     "Action",
@@ -54,11 +52,11 @@ class ActionCardBody(TypedDict, total=False):
 
 
 class ActionCardHeader(TypedDict, total=False):
-    image: WhatsappMediaParam
+    image: "WhatsappMediaParam"
 
     type: Literal["image", "video"]
 
-    video: WhatsappMediaParam
+    video: "WhatsappMediaParam"
 
 
 class ActionCard(TypedDict, total=False):
@@ -137,16 +135,16 @@ class Footer(TypedDict, total=False):
 
 
 class Header(TypedDict, total=False):
-    document: WhatsappMediaParam
+    document: "WhatsappMediaParam"
 
-    image: WhatsappMediaParam
+    image: "WhatsappMediaParam"
 
     sub_text: str
 
     text: str
     """header text, 60 character maximum"""
 
-    video: WhatsappMediaParam
+    video: "WhatsappMediaParam"
 
 
 class WhatsappInteractiveParam(TypedDict, total=False):
@@ -159,3 +157,6 @@ class WhatsappInteractiveParam(TypedDict, total=False):
     header: Header
 
     type: Literal["cta_url", "list", "carousel", "button", "location_request_message"]
+
+
+from .whatsapp_media_param import WhatsappMediaParam

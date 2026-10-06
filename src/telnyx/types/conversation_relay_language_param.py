@@ -5,28 +5,18 @@ from __future__ import annotations
 from typing import Dict, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .calls.aws_voice_settings_param import AwsVoiceSettingsParam
-from .shared_params.xai_voice_settings import XaiVoiceSettings
-from .calls.soniox_voice_settings_param import SonioxVoiceSettingsParam
-from .calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
-from .shared_params.azure_voice_settings import AzureVoiceSettings
-from .shared_params.inworld_voice_settings import InworldVoiceSettings
-from .shared_params.minimax_voice_settings import MinimaxVoiceSettings
-from .shared_params.resemble_voice_settings import ResembleVoiceSettings
-from .calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
-
 __all__ = ["ConversationRelayLanguageParam", "VoiceSettings"]
 
 VoiceSettings: TypeAlias = Union[
-    ElevenLabsVoiceSettingsParam,
-    TelnyxVoiceSettingsParam,
-    AwsVoiceSettingsParam,
-    MinimaxVoiceSettings,
-    AzureVoiceSettings,
-    ResembleVoiceSettings,
-    InworldVoiceSettings,
-    XaiVoiceSettings,
-    SonioxVoiceSettingsParam,
+    "ElevenLabsVoiceSettingsParam",
+    "TelnyxVoiceSettingsParam",
+    "AwsVoiceSettingsParam",
+    "MinimaxVoiceSettings",
+    "AzureVoiceSettings",
+    "ResembleVoiceSettings",
+    "InworldVoiceSettings",
+    "XaiVoiceSettings",
+    "SonioxVoiceSettingsParam",
 ]
 
 
@@ -79,3 +69,14 @@ class ConversationRelayLanguageParam(TypedDict, total=False):
 
     voice_settings: VoiceSettings
     """The settings associated with the voice selected"""
+
+
+from .calls.aws_voice_settings_param import AwsVoiceSettingsParam
+from .shared_params.xai_voice_settings import XaiVoiceSettings
+from .calls.soniox_voice_settings_param import SonioxVoiceSettingsParam
+from .calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
+from .shared_params.azure_voice_settings import AzureVoiceSettings
+from .shared_params.inworld_voice_settings import InworldVoiceSettings
+from .shared_params.minimax_voice_settings import MinimaxVoiceSettings
+from .shared_params.resemble_voice_settings import ResembleVoiceSettings
+from .calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
