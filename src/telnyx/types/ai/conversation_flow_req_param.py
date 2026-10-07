@@ -2,12 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import TYPE_CHECKING, Union, Iterable, ForwardRef
 from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = ["ConversationFlowReqParam", "Node"]
 
-Node: TypeAlias = Union["FlowNodeReqParam", "ToolNodeReqParam", "SpeakNodeReqParam"]
+if TYPE_CHECKING:
+    Node: TypeAlias = Union["FlowNodeReqParam", "ToolNodeReqParam", "SpeakNodeReqParam"]
+else:
+    Node = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).FlowNodeReqParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ToolNodeReqParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SpeakNodeReqParam"),
+    ]
 
 
 class ConversationFlowReqParam(TypedDict, total=False):

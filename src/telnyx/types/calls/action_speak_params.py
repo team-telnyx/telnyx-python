@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import TYPE_CHECKING, Union, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
@@ -164,17 +164,30 @@ class ActionSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
-VoiceSettings: TypeAlias = Union[
-    "ElevenLabsVoiceSettingsParam",
-    "TelnyxVoiceSettingsParam",
-    "AwsVoiceSettingsParam",
-    MinimaxVoiceSettings,
-    AzureVoiceSettings,
-    ResembleVoiceSettings,
-    InworldVoiceSettings,
-    XaiVoiceSettings,
-    "SonioxVoiceSettingsParam",
-]
+if TYPE_CHECKING:
+    VoiceSettings: TypeAlias = Union[
+        "ElevenLabsVoiceSettingsParam",
+        "TelnyxVoiceSettingsParam",
+        "AwsVoiceSettingsParam",
+        MinimaxVoiceSettings,
+        AzureVoiceSettings,
+        ResembleVoiceSettings,
+        InworldVoiceSettings,
+        XaiVoiceSettings,
+        "SonioxVoiceSettingsParam",
+    ]
+else:
+    VoiceSettings = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ElevenLabsVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TelnyxVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AwsVoiceSettingsParam"),
+        MinimaxVoiceSettings,
+        AzureVoiceSettings,
+        ResembleVoiceSettings,
+        InworldVoiceSettings,
+        XaiVoiceSettings,
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
+    ]
 
 from .loopcount_param import LoopcountParam
 from .aws_voice_settings_param import AwsVoiceSettingsParam

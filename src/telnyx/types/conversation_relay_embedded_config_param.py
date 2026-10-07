@@ -2,22 +2,35 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import TYPE_CHECKING, Dict, Union, Iterable, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["ConversationRelayEmbeddedConfigParam", "VoiceSettings"]
 
-VoiceSettings: TypeAlias = Union[
-    "ElevenLabsVoiceSettingsParam",
-    "TelnyxVoiceSettingsParam",
-    "AwsVoiceSettingsParam",
-    "MinimaxVoiceSettings",
-    "AzureVoiceSettings",
-    "ResembleVoiceSettings",
-    "InworldVoiceSettings",
-    "XaiVoiceSettings",
-    "SonioxVoiceSettingsParam",
-]
+if TYPE_CHECKING:
+    VoiceSettings: TypeAlias = Union[
+        "ElevenLabsVoiceSettingsParam",
+        "TelnyxVoiceSettingsParam",
+        "AwsVoiceSettingsParam",
+        "MinimaxVoiceSettings",
+        "AzureVoiceSettings",
+        "ResembleVoiceSettings",
+        "InworldVoiceSettings",
+        "XaiVoiceSettings",
+        "SonioxVoiceSettingsParam",
+    ]
+else:
+    VoiceSettings = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ElevenLabsVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TelnyxVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AwsVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).MinimaxVoiceSettings"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AzureVoiceSettings"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ResembleVoiceSettings"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).InworldVoiceSettings"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).XaiVoiceSettings"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
+    ]
 
 
 class ConversationRelayEmbeddedConfigParam(TypedDict, total=False):

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import TYPE_CHECKING, Dict, Union, Iterable, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
@@ -236,17 +236,30 @@ class ConversationRelaySettings(TypedDict, total=False):
     """Language-specific TTS and transcription settings."""
 
 
-VoiceSettings: TypeAlias = Union[
-    "ElevenLabsVoiceSettingsParam",
-    "TelnyxVoiceSettingsParam",
-    "AwsVoiceSettingsParam",
-    MinimaxVoiceSettings,
-    AzureVoiceSettings,
-    ResembleVoiceSettings,
-    InworldVoiceSettings,
-    XaiVoiceSettings,
-    "SonioxVoiceSettingsParam",
-]
+if TYPE_CHECKING:
+    VoiceSettings: TypeAlias = Union[
+        "ElevenLabsVoiceSettingsParam",
+        "TelnyxVoiceSettingsParam",
+        "AwsVoiceSettingsParam",
+        MinimaxVoiceSettings,
+        AzureVoiceSettings,
+        ResembleVoiceSettings,
+        InworldVoiceSettings,
+        XaiVoiceSettings,
+        "SonioxVoiceSettingsParam",
+    ]
+else:
+    VoiceSettings = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ElevenLabsVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TelnyxVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AwsVoiceSettingsParam"),
+        MinimaxVoiceSettings,
+        AzureVoiceSettings,
+        ResembleVoiceSettings,
+        InworldVoiceSettings,
+        XaiVoiceSettings,
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
+    ]
 
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .soniox_voice_settings_param import SonioxVoiceSettingsParam
