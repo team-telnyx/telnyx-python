@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import TYPE_CHECKING, Dict, Union, Iterable, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["CallAssistantRequestParam", "ExternalLlm", "FallbackConfig", "FallbackConfigExternalLlm", "Tool"]
@@ -96,14 +96,24 @@ class FallbackConfig(TypedDict, total=False, extra_items=object):  # type: ignor
     """
 
 
-Tool: TypeAlias = Union[
-    "BookAppointmentTool",
-    "CheckAvailabilityTool",
-    "WebhookToolParam",
-    "HangupToolParam",
-    "TransferToolParam",
-    "CallControlRetrievalTool",
-]
+if TYPE_CHECKING:
+    Tool: TypeAlias = Union[
+        "BookAppointmentTool",
+        "CheckAvailabilityTool",
+        "WebhookToolParam",
+        "HangupToolParam",
+        "TransferToolParam",
+        "CallControlRetrievalTool",
+    ]
+else:
+    Tool = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).BookAppointmentTool"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).CheckAvailabilityTool"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).WebhookToolParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).HangupToolParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TransferToolParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).CallControlRetrievalTool"),
+    ]
 
 
 class CallAssistantRequestParam(TypedDict, total=False):

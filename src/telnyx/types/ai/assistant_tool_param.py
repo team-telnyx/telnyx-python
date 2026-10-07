@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import TYPE_CHECKING, Dict, Union, Iterable, Optional, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
@@ -578,22 +578,40 @@ class UpdateDynamicVariables(TypedDict, total=False):
     """Configuration for an update_dynamic_variables tool."""
 
 
-AssistantToolParam: TypeAlias = Union[
-    Function,
-    "InferenceEmbeddingWebhookToolParamsParam",
-    ClientSideTool,
-    "RetrievalToolParam",
-    Handoff,
-    Hangup,
-    Transfer,
-    Invite,
-    Refer,
-    SendDtmf,
-    SendMessage,
-    SkipTurn,
-    Pay,
-    UpdateDynamicVariables,
-]
+if TYPE_CHECKING:
+    AssistantToolParam: TypeAlias = Union[
+        Function,
+        "InferenceEmbeddingWebhookToolParamsParam",
+        ClientSideTool,
+        "RetrievalToolParam",
+        Handoff,
+        Hangup,
+        Transfer,
+        Invite,
+        Refer,
+        SendDtmf,
+        SendMessage,
+        SkipTurn,
+        Pay,
+        UpdateDynamicVariables,
+    ]
+else:
+    AssistantToolParam = Union[
+        Function,
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).InferenceEmbeddingWebhookToolParamsParam"),
+        ClientSideTool,
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).RetrievalToolParam"),
+        Handoff,
+        Hangup,
+        Transfer,
+        Invite,
+        Refer,
+        SendDtmf,
+        SendMessage,
+        SkipTurn,
+        Pay,
+        UpdateDynamicVariables,
+    ]
 
 from .retrieval_tool_param import RetrievalToolParam
 from .pay_tool_params_param import PayToolParamsParam

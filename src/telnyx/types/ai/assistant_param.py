@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import TYPE_CHECKING, Union, Iterable, ForwardRef
 from typing_extensions import TypeAlias, TypedDict
 
 from ..shared_params.book_appointment_tool import BookAppointmentTool
@@ -11,14 +11,24 @@ from ..shared_params.call_control_retrieval_tool import CallControlRetrievalTool
 
 __all__ = ["AssistantParam", "Tool"]
 
-Tool: TypeAlias = Union[
-    BookAppointmentTool,
-    CheckAvailabilityTool,
-    "WebhookToolParam",
-    "HangupToolParam",
-    "TransferToolParam",
-    CallControlRetrievalTool,
-]
+if TYPE_CHECKING:
+    Tool: TypeAlias = Union[
+        BookAppointmentTool,
+        CheckAvailabilityTool,
+        "WebhookToolParam",
+        "HangupToolParam",
+        "TransferToolParam",
+        CallControlRetrievalTool,
+    ]
+else:
+    Tool = Union[
+        BookAppointmentTool,
+        CheckAvailabilityTool,
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).WebhookToolParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).HangupToolParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TransferToolParam"),
+        CallControlRetrievalTool,
+    ]
 
 
 class AssistantParam(TypedDict, total=False):
