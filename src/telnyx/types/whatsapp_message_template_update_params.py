@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import TYPE_CHECKING, Union, Iterable, ForwardRef
 from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["WhatsappMessageTemplateUpdateParams", "Component"]
@@ -15,13 +15,22 @@ class WhatsappMessageTemplateUpdateParams(TypedDict, total=False):
     """Updated template components. Same structure as the create request."""
 
 
-Component: TypeAlias = Union[
-    "WhatsappTemplateHeaderComponentParam",
-    "WhatsappTemplateBodyComponentParam",
-    "WhatsappTemplateFooterComponentParam",
-    "WhatsappTemplateButtonsComponentParam",
-    "WhatsappTemplateCarouselComponentParam",
-]
+if TYPE_CHECKING:
+    Component: TypeAlias = Union[
+        "WhatsappTemplateHeaderComponentParam",
+        "WhatsappTemplateBodyComponentParam",
+        "WhatsappTemplateFooterComponentParam",
+        "WhatsappTemplateButtonsComponentParam",
+        "WhatsappTemplateCarouselComponentParam",
+    ]
+else:
+    Component = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).WhatsappTemplateHeaderComponentParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).WhatsappTemplateBodyComponentParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).WhatsappTemplateFooterComponentParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).WhatsappTemplateButtonsComponentParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).WhatsappTemplateCarouselComponentParam"),
+    ]
 
 from .whatsapp.whatsapp_template_body_component_param import WhatsappTemplateBodyComponentParam
 from .whatsapp.whatsapp_template_footer_component_param import WhatsappTemplateFooterComponentParam

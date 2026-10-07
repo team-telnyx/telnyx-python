@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import TYPE_CHECKING, Union, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["CustomStorageCredentialUpdateParams", "Configuration"]
@@ -14,12 +14,20 @@ class CustomStorageCredentialUpdateParams(TypedDict, total=False):
     configuration: Required[Configuration]
 
 
-Configuration: TypeAlias = Union[
-    "GcsConfigurationDataParam",
-    "S3ConfigurationDataParam",
-    "S3GenericConfigurationDataParam",
-    "AzureConfigurationDataParam",
-]
+if TYPE_CHECKING:
+    Configuration: TypeAlias = Union[
+        "GcsConfigurationDataParam",
+        "S3ConfigurationDataParam",
+        "S3GenericConfigurationDataParam",
+        "AzureConfigurationDataParam",
+    ]
+else:
+    Configuration = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).GcsConfigurationDataParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).S3ConfigurationDataParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).S3GenericConfigurationDataParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AzureConfigurationDataParam"),
+    ]
 
 from .s3_configuration_data_param import S3ConfigurationDataParam
 from .gcs_configuration_data_param import GcsConfigurationDataParam

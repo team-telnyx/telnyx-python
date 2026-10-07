@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import TYPE_CHECKING, Dict, Union, Iterable, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..ai.assistant_param import AssistantParam
@@ -106,10 +106,10 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
       the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
       [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
       for compatibility.
-    - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-      Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-      Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-      [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+    - **Azure:** Use `Azure.<VoiceId>` (e.g., `Azure.en-CA-ClaraNeural`,
+      `Azure.en-CA-LiamNeural`, `Azure.en-US-BrianMultilingualNeural`,
+      `Azure.en-US-Ava:DragonHDLatestNeural`). For a complete list of voices, go to
+      [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
     - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
       `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
       ElevenLabs, you must provide your ElevenLabs API key as an integration secret
@@ -150,15 +150,26 @@ class MessageHistory(TypedDict, total=False):
     """The role of the message sender"""
 
 
-VoiceSettings: TypeAlias = Union[
-    "ElevenLabsVoiceSettingsParam",
-    "TelnyxVoiceSettingsParam",
-    "AwsVoiceSettingsParam",
-    AzureVoiceSettings,
-    ResembleVoiceSettings,
-    XaiVoiceSettings,
-    "SonioxVoiceSettingsParam",
-]
+if TYPE_CHECKING:
+    VoiceSettings: TypeAlias = Union[
+        "ElevenLabsVoiceSettingsParam",
+        "TelnyxVoiceSettingsParam",
+        "AwsVoiceSettingsParam",
+        AzureVoiceSettings,
+        ResembleVoiceSettings,
+        XaiVoiceSettings,
+        "SonioxVoiceSettingsParam",
+    ]
+else:
+    VoiceSettings = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ElevenLabsVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TelnyxVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AwsVoiceSettingsParam"),
+        AzureVoiceSettings,
+        ResembleVoiceSettings,
+        XaiVoiceSettings,
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
+    ]
 
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .transcription_config_param import TranscriptionConfigParam

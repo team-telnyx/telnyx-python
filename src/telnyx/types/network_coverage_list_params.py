@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import TYPE_CHECKING, Union, ForwardRef
 from typing_extensions import Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
@@ -61,7 +61,12 @@ class FiltersAvailableServicesContains(TypedDict, total=False):
     """Filter by available services containing the specified service"""
 
 
-FiltersAvailableServices: TypeAlias = Union["AvailableService", FiltersAvailableServicesContains]
+if TYPE_CHECKING:
+    FiltersAvailableServices: TypeAlias = Union["AvailableService", FiltersAvailableServicesContains]
+else:
+    FiltersAvailableServices = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AvailableService"), FiltersAvailableServicesContains
+    ]
 
 
 class Filters(TypedDict, total=False):

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import TYPE_CHECKING, Union, Iterable, ForwardRef
 from typing_extensions import TypeAlias, TypedDict
 
 from ..call_assistant_request_param import CallAssistantRequestParam
@@ -70,9 +70,18 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
     """
 
 
-MessageHistory: TypeAlias = Union[
-    "UserMessageParam", "AssistantMessageParam", "ToolMessageParam", "SystemMessageParam", "DeveloperMessageParam"
-]
+if TYPE_CHECKING:
+    MessageHistory: TypeAlias = Union[
+        "UserMessageParam", "AssistantMessageParam", "ToolMessageParam", "SystemMessageParam", "DeveloperMessageParam"
+    ]
+else:
+    MessageHistory = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).UserMessageParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AssistantMessageParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ToolMessageParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SystemMessageParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).DeveloperMessageParam"),
+    ]
 
 from .tool_message_param import ToolMessageParam
 from .user_message_param import UserMessageParam

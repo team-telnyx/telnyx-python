@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import TYPE_CHECKING, Union, ForwardRef
 from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["ActionStartTranscriptionParams", "TranscriptionEngineConfig"]
@@ -54,23 +54,42 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
     """
 
 
-TranscriptionEngineConfig: TypeAlias = Union[
-    "TranscriptionEngineGoogleConfigParam",
-    "TranscriptionEngineTelnyxConfigParam",
-    "TranscriptionEngineAzureConfigParam",
-    "TranscriptionEngineXaiConfigParam",
-    "TranscriptionEngineAssemblyaiConfigParam",
-    "TranscriptionEngineSpeechmaticsConfigParam",
-    "TranscriptionEngineSonioxConfigParam",
-    "TranscriptionEngineParakeetConfigParam",
-    "TranscriptionEngineHumainConfigParam",
-    "TranscriptionEngineReson8ConfigParam",
-    "TranscriptionEngineCohereConfigParam",
-    "TranscriptionEngineAConfigParam",
-    "TranscriptionEngineBConfigParam",
-    "DeepgramNova2ConfigParam",
-    "DeepgramNova3ConfigParam",
-]
+if TYPE_CHECKING:
+    TranscriptionEngineConfig: TypeAlias = Union[
+        "TranscriptionEngineGoogleConfigParam",
+        "TranscriptionEngineTelnyxConfigParam",
+        "TranscriptionEngineAzureConfigParam",
+        "TranscriptionEngineXaiConfigParam",
+        "TranscriptionEngineAssemblyaiConfigParam",
+        "TranscriptionEngineSpeechmaticsConfigParam",
+        "TranscriptionEngineSonioxConfigParam",
+        "TranscriptionEngineParakeetConfigParam",
+        "TranscriptionEngineHumainConfigParam",
+        "TranscriptionEngineReson8ConfigParam",
+        "TranscriptionEngineCohereConfigParam",
+        "TranscriptionEngineAConfigParam",
+        "TranscriptionEngineBConfigParam",
+        "DeepgramNova2ConfigParam",
+        "DeepgramNova3ConfigParam",
+    ]
+else:
+    TranscriptionEngineConfig = Union[
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineGoogleConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineTelnyxConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineAzureConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineXaiConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineAssemblyaiConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineSpeechmaticsConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineSonioxConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineParakeetConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineHumainConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineReson8ConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineCohereConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineAConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TranscriptionEngineBConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).DeepgramNova2ConfigParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).DeepgramNova3ConfigParam"),
+    ]
 
 from .deepgram_nova2_config_param import DeepgramNova2ConfigParam
 from .deepgram_nova3_config_param import DeepgramNova3ConfigParam

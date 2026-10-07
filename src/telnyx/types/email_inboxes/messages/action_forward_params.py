@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import TYPE_CHECKING, Union, ForwardRef
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
@@ -53,7 +53,14 @@ class ToInboxRecipientAddress(TypedDict, total=False):
     name: str
 
 
-To: TypeAlias = Union[str, ToInboxRecipientAddress, SequenceNotStr["InboxActionEmailAddressInputParam"]]
+if TYPE_CHECKING:
+    To: TypeAlias = Union[str, ToInboxRecipientAddress, SequenceNotStr["InboxActionEmailAddressInputParam"]]
+else:
+    To = Union[
+        str,
+        ToInboxRecipientAddress,
+        SequenceNotStr[ForwardRef(f"__import__({__name__!r}, fromlist=('',)).InboxActionEmailAddressInputParam")],
+    ]
 
 from .inbox_action_recipient_input_param import InboxActionRecipientInputParam
 from .inbox_action_email_address_input_param import InboxActionEmailAddressInputParam
