@@ -36,13 +36,8 @@ class Payload(BaseModel):
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """Number or SIP URI placing the call."""
 
-    result: Optional[Literal["beep_detected", "no_beep_detected", "prompt_ended"]] = None
-    """Premium Answering Machine Greeting Ended result.
-
-    `prompt_ended` is only sent when `answering_machine_detection` is
-    `premium_ios_call_screening_detection` and the iOS call-screening prompt ends
-    without a beep.
-    """
+    result: Optional[Literal["beep_detected", "no_beep_detected"]] = None
+    """Premium Answering Machine Greeting Ended result."""
 
     to: Optional[str] = None
     """Destination number or SIP URI of the call."""

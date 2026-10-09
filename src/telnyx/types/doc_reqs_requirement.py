@@ -42,9 +42,7 @@ class DocReqsRequirement(BaseModel):
     locality: Optional[str] = None
     """The locality where this requirement applies"""
 
-    phone_number_type: Optional[Literal["local", "mobile", "multipurpose", "national", "shared_cost", "toll_free"]] = (
-        None
-    )
+    phone_number_type: Optional[Literal["local", "national", "toll_free"]] = None
     """Indicates the phone_number_type this requirement applies to.
 
     Leave blank if this requirement applies to all number_types.
