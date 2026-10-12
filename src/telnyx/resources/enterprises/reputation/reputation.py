@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from .loa import (
@@ -39,7 +41,20 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.enterprises import ReputationCheckFrequency, reputation_enable_params, reputation_update_frequency_params
+from ....types.enterprises import (
+    ReputationCheckFrequency,
+    reputation_enable_params,
+    reputation_update_webhook_params,
+    reputation_update_frequency_params,
+)
+from .external_verification import (
+    ExternalVerificationResource,
+    AsyncExternalVerificationResource,
+    ExternalVerificationResourceWithRawResponse,
+    AsyncExternalVerificationResourceWithRawResponse,
+    ExternalVerificationResourceWithStreamingResponse,
+    AsyncExternalVerificationResourceWithStreamingResponse,
+)
 from ....types.enterprises.reputation_check_frequency import ReputationCheckFrequency
 from ....types.enterprises.enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
 
@@ -63,6 +78,11 @@ class ReputationResource(SyncAPIResource):
     def remediation(self) -> RemediationResource:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return RemediationResource(self._client)
+
+    @cached_property
+    def external_verification(self) -> ExternalVerificationResource:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return ExternalVerificationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ReputationResourceWithRawResponse:
@@ -269,6 +289,49 @@ class ReputationResource(SyncAPIResource):
             cast_to=EnterpriseReputationPublicWrapped,
         )
 
+    def update_webhook(
+        self,
+        enterprise_id: str,
+        *,
+        webhook_url: Optional[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EnterpriseReputationPublicWrapped:
+        """
+        Set the HTTPS URL that receives number-ownership events for this enterprise:
+        `number_reputation.number.flagged`, `number_reputation.number.removed` and
+        `number_reputation.external_verification.status_changed`. Send
+        `webhook_url: null` to stop receiving them.
+
+        Args:
+          webhook_url: HTTPS URL on a publicly routable host. Send `null` to stop receiving
+              number-ownership events.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return self._patch(
+            path_template("/enterprises/{enterprise_id}/reputation/webhook", enterprise_id=enterprise_id),
+            body=maybe_transform(
+                {"webhook_url": webhook_url}, reputation_update_webhook_params.ReputationUpdateWebhookParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EnterpriseReputationPublicWrapped,
+        )
+
 
 class AsyncReputationResource(AsyncAPIResource):
     """Phone-number reputation monitoring (spam-score lookup and tracking)."""
@@ -287,6 +350,11 @@ class AsyncReputationResource(AsyncAPIResource):
     def remediation(self) -> AsyncRemediationResource:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncRemediationResource(self._client)
+
+    @cached_property
+    def external_verification(self) -> AsyncExternalVerificationResource:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncExternalVerificationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncReputationResourceWithRawResponse:
@@ -493,6 +561,49 @@ class AsyncReputationResource(AsyncAPIResource):
             cast_to=EnterpriseReputationPublicWrapped,
         )
 
+    async def update_webhook(
+        self,
+        enterprise_id: str,
+        *,
+        webhook_url: Optional[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EnterpriseReputationPublicWrapped:
+        """
+        Set the HTTPS URL that receives number-ownership events for this enterprise:
+        `number_reputation.number.flagged`, `number_reputation.number.removed` and
+        `number_reputation.external_verification.status_changed`. Send
+        `webhook_url: null` to stop receiving them.
+
+        Args:
+          webhook_url: HTTPS URL on a publicly routable host. Send `null` to stop receiving
+              number-ownership events.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return await self._patch(
+            path_template("/enterprises/{enterprise_id}/reputation/webhook", enterprise_id=enterprise_id),
+            body=await async_maybe_transform(
+                {"webhook_url": webhook_url}, reputation_update_webhook_params.ReputationUpdateWebhookParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EnterpriseReputationPublicWrapped,
+        )
+
 
 class ReputationResourceWithRawResponse:
     def __init__(self, reputation: ReputationResource) -> None:
@@ -510,6 +621,9 @@ class ReputationResourceWithRawResponse:
         self.update_frequency = to_raw_response_wrapper(
             reputation.update_frequency,
         )
+        self.update_webhook = to_raw_response_wrapper(
+            reputation.update_webhook,
+        )
 
     @cached_property
     def numbers(self) -> NumbersResourceWithRawResponse:
@@ -525,6 +639,11 @@ class ReputationResourceWithRawResponse:
     def remediation(self) -> RemediationResourceWithRawResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return RemediationResourceWithRawResponse(self._reputation.remediation)
+
+    @cached_property
+    def external_verification(self) -> ExternalVerificationResourceWithRawResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return ExternalVerificationResourceWithRawResponse(self._reputation.external_verification)
 
 
 class AsyncReputationResourceWithRawResponse:
@@ -543,6 +662,9 @@ class AsyncReputationResourceWithRawResponse:
         self.update_frequency = async_to_raw_response_wrapper(
             reputation.update_frequency,
         )
+        self.update_webhook = async_to_raw_response_wrapper(
+            reputation.update_webhook,
+        )
 
     @cached_property
     def numbers(self) -> AsyncNumbersResourceWithRawResponse:
@@ -558,6 +680,11 @@ class AsyncReputationResourceWithRawResponse:
     def remediation(self) -> AsyncRemediationResourceWithRawResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncRemediationResourceWithRawResponse(self._reputation.remediation)
+
+    @cached_property
+    def external_verification(self) -> AsyncExternalVerificationResourceWithRawResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncExternalVerificationResourceWithRawResponse(self._reputation.external_verification)
 
 
 class ReputationResourceWithStreamingResponse:
@@ -576,6 +703,9 @@ class ReputationResourceWithStreamingResponse:
         self.update_frequency = to_streamed_response_wrapper(
             reputation.update_frequency,
         )
+        self.update_webhook = to_streamed_response_wrapper(
+            reputation.update_webhook,
+        )
 
     @cached_property
     def numbers(self) -> NumbersResourceWithStreamingResponse:
@@ -591,6 +721,11 @@ class ReputationResourceWithStreamingResponse:
     def remediation(self) -> RemediationResourceWithStreamingResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return RemediationResourceWithStreamingResponse(self._reputation.remediation)
+
+    @cached_property
+    def external_verification(self) -> ExternalVerificationResourceWithStreamingResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return ExternalVerificationResourceWithStreamingResponse(self._reputation.external_verification)
 
 
 class AsyncReputationResourceWithStreamingResponse:
@@ -609,6 +744,9 @@ class AsyncReputationResourceWithStreamingResponse:
         self.update_frequency = async_to_streamed_response_wrapper(
             reputation.update_frequency,
         )
+        self.update_webhook = async_to_streamed_response_wrapper(
+            reputation.update_webhook,
+        )
 
     @cached_property
     def numbers(self) -> AsyncNumbersResourceWithStreamingResponse:
@@ -624,3 +762,8 @@ class AsyncReputationResourceWithStreamingResponse:
     def remediation(self) -> AsyncRemediationResourceWithStreamingResponse:
         """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncRemediationResourceWithStreamingResponse(self._reputation.remediation)
+
+    @cached_property
+    def external_verification(self) -> AsyncExternalVerificationResourceWithStreamingResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncExternalVerificationResourceWithStreamingResponse(self._reputation.external_verification)

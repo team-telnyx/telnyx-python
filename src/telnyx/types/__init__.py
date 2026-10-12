@@ -1614,6 +1614,12 @@ from .conversation_relay_interruption_settings_param import (
 from .message_send_with_alphanumeric_sender_response import (
     MessageSendWithAlphanumericSenderResponse as MessageSendWithAlphanumericSenderResponse,
 )
+from .number_reputation_number_flagged_webhook_event import (
+    NumberReputationNumberFlaggedWebhookEvent as NumberReputationNumberFlaggedWebhookEvent,
+)
+from .number_reputation_number_removed_webhook_event import (
+    NumberReputationNumberRemovedWebhookEvent as NumberReputationNumberRemovedWebhookEvent,
+)
 from .porting_order_phone_number_configuration_param import (
     PortingOrderPhoneNumberConfigurationParam as PortingOrderPhoneNumberConfigurationParam,
 )
@@ -1760,6 +1766,9 @@ from .messaging_hosted_number_order_create_verification_codes_response import (
 )
 from .managed_account_get_allocatable_global_outbound_channels_response import (
     ManagedAccountGetAllocatableGlobalOutboundChannelsResponse as ManagedAccountGetAllocatableGlobalOutboundChannelsResponse,
+)
+from .number_reputation_external_verification_status_changed_webhook_event import (
+    NumberReputationExternalVerificationStatusChangedWebhookEvent as NumberReputationExternalVerificationStatusChangedWebhookEvent,
 )
 
 # Rebuild cyclical models only after all modules are imported.

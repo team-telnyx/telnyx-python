@@ -32,6 +32,14 @@ from .remediation import (
     RemediationResourceWithStreamingResponse,
     AsyncRemediationResourceWithStreamingResponse,
 )
+from .external_verification import (
+    ExternalVerificationResource,
+    AsyncExternalVerificationResource,
+    ExternalVerificationResourceWithRawResponse,
+    AsyncExternalVerificationResourceWithRawResponse,
+    ExternalVerificationResourceWithStreamingResponse,
+    AsyncExternalVerificationResourceWithStreamingResponse,
+)
 
 __all__ = [
     "NumbersResource",
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncRemediationResourceWithRawResponse",
     "RemediationResourceWithStreamingResponse",
     "AsyncRemediationResourceWithStreamingResponse",
+    "ExternalVerificationResource",
+    "AsyncExternalVerificationResource",
+    "ExternalVerificationResourceWithRawResponse",
+    "AsyncExternalVerificationResourceWithRawResponse",
+    "ExternalVerificationResourceWithStreamingResponse",
+    "AsyncExternalVerificationResourceWithStreamingResponse",
     "ReputationResource",
     "AsyncReputationResource",
     "ReputationResourceWithRawResponse",

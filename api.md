@@ -394,6 +394,9 @@ from telnyx.types import (
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdateWebhookEvent,
+    NumberReputationExternalVerificationStatusChangedWebhookEvent,
+    NumberReputationNumberFlaggedWebhookEvent,
+    NumberReputationNumberRemovedWebhookEvent,
     RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
@@ -460,6 +463,9 @@ from telnyx.types import (
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdateWebhookEvent,
+    NumberReputationExternalVerificationStatusChangedWebhookEvent,
+    NumberReputationNumberFlaggedWebhookEvent,
+    NumberReputationNumberRemovedWebhookEvent,
     RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
@@ -6143,6 +6149,7 @@ Methods:
 - <code title="delete /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">disable</a>(enterprise_id) -> None</code>
 - <code title="post /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">enable</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_enable_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/enterprise_reputation_public_wrapped.py">EnterpriseReputationPublicWrapped</a></code>
 - <code title="patch /enterprises/{enterprise_id}/reputation/frequency">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">update_frequency</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_update_frequency_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/enterprise_reputation_public_wrapped.py">EnterpriseReputationPublicWrapped</a></code>
+- <code title="patch /enterprises/{enterprise_id}/reputation/webhook">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">update_webhook</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_update_webhook_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/enterprise_reputation_public_wrapped.py">EnterpriseReputationPublicWrapped</a></code>
 
 ### Numbers
 
@@ -6150,11 +6157,14 @@ Types:
 
 ```python
 from telnyx.types.enterprises.reputation import (
+    ReputationNumberSource,
+    ReputationOwnershipStatus,
     ReputationPhoneNumber,
     ReputationPhoneNumberList,
     ReputationPhoneNumberListWithReputation,
     ReputationPhoneNumberWithReputation,
     NumberRefreshResponse,
+    NumberRetrieveOwnershipResponse,
 )
 ```
 
@@ -6164,7 +6174,9 @@ Methods:
 - <code title="get /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/reputation_phone_number.py">SyncDefaultFlatPagination[ReputationPhoneNumber]</a></code>
 - <code title="post /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">associate</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_associate_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/reputation_phone_number_list.py">ReputationPhoneNumberList</a></code>
 - <code title="delete /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">disassociate</a>(phone_number, \*, enterprise_id) -> None</code>
+- <code title="post /enterprises/{enterprise_id}/reputation/numbers/{phone_number}/ownership_confirm">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">ownership_confirm</a>(phone_number, \*, enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_ownership_confirm_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/reputation_phone_number_with_reputation.py">ReputationPhoneNumberWithReputation</a></code>
 - <code title="post /enterprises/{enterprise_id}/reputation/numbers/refresh">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">refresh</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_refresh_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_refresh_response.py">NumberRefreshResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/numbers/{phone_number}/ownership">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">retrieve_ownership</a>(phone_number, \*, enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation/number_retrieve_ownership_response.py">NumberRetrieveOwnershipResponse</a></code>
 
 ### Loa
 
@@ -6198,6 +6210,22 @@ Methods:
 - <code title="post /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_request_wrapped.py">RemediationRequestWrapped</a></code>
 - <code title="get /enterprises/{enterprise_id}/reputation/remediation/{remediation_id}">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">retrieve</a>(remediation_id, \*, enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_request_wrapped.py">RemediationRequestWrapped</a></code>
 - <code title="get /enterprises/{enterprise_id}/reputation/remediation">client.enterprises.reputation.remediation.<a href="./src/telnyx/resources/enterprises/reputation/remediation.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/remediation_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/remediation_list_response.py">SyncDefaultFlatPagination[RemediationListResponse]</a></code>
+
+### ExternalVerification
+
+Types:
+
+```python
+from telnyx.types.enterprises.reputation import (
+    ExternalVerificationStatus,
+    ExternalVerificationWrapped,
+)
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/reputation/external_verification">client.enterprises.reputation.external_verification.<a href="./src/telnyx/resources/enterprises/reputation/external_verification.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/external_verification_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/external_verification_wrapped.py">ExternalVerificationWrapped</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/external_verification">client.enterprises.reputation.external_verification.<a href="./src/telnyx/resources/enterprises/reputation/external_verification.py">list</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation/external_verification_wrapped.py">ExternalVerificationWrapped</a></code>
 
 ## Dir
 

@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .reputation_check_frequency import ReputationCheckFrequency
+from .reputation.external_verification_status import ExternalVerificationStatus
 
 __all__ = ["EnterpriseReputationPublic"]
 
@@ -22,6 +23,12 @@ class EnterpriseReputationPublic(BaseModel):
     created_at: Optional[datetime] = None
 
     enterprise_id: Optional[str] = None
+
+    external_verification_status: Optional[ExternalVerificationStatus] = None
+    """
+    Review state of the ownership proof that allows adding phone numbers hosted with
+    another provider.
+    """
 
     loa_document_id: Optional[str] = None
     """Id of the signed LOA document."""
@@ -40,3 +47,6 @@ class EnterpriseReputationPublic(BaseModel):
     """Lifecycle status of the enterprise's Phone Number Reputation activation."""
 
     updated_at: Optional[datetime] = None
+
+    webhook_url: Optional[str] = None
+    """HTTPS URL that receives number-ownership webhook events for this enterprise."""

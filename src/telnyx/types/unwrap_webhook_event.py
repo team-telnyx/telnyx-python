@@ -71,6 +71,8 @@ from .call_deepfake_detection_error_webhook_event import CallDeepfakeDetectionEr
 from .conference_participant_joined_webhook_event import ConferenceParticipantJoinedWebhookEvent
 from .call_ai_gather_partial_results_webhook_event import CallAIGatherPartialResultsWebhookEvent
 from .call_deepfake_detection_result_webhook_event import CallDeepfakeDetectionResultWebhookEvent
+from .number_reputation_number_flagged_webhook_event import NumberReputationNumberFlaggedWebhookEvent
+from .number_reputation_number_removed_webhook_event import NumberReputationNumberRemovedWebhookEvent
 from .call_recording_transcription_saved_webhook_event import CallRecordingTranscriptionSavedWebhookEvent
 from .conference_participant_speak_ended_webhook_event import ConferenceParticipantSpeakEndedWebhookEvent
 from .call_machine_premium_greeting_ended_webhook_event import CallMachinePremiumGreetingEndedWebhookEvent
@@ -80,6 +82,9 @@ from .conference_participant_speak_started_webhook_event import ConferencePartic
 from .conference_participant_playback_ended_webhook_event import ConferenceParticipantPlaybackEndedWebhookEvent
 from .call_ai_gather_message_history_updated_webhook_event import CallAIGatherMessageHistoryUpdatedWebhookEvent
 from .conference_participant_playback_started_webhook_event import ConferenceParticipantPlaybackStartedWebhookEvent
+from .number_reputation_external_verification_status_changed_webhook_event import (
+    NumberReputationExternalVerificationStatusChangedWebhookEvent,
+)
 
 __all__ = ["UnwrapWebhookEvent"]
 
@@ -152,6 +157,9 @@ UnwrapWebhookEvent: TypeAlias = Union[
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdateWebhookEvent,
+    NumberReputationExternalVerificationStatusChangedWebhookEvent,
+    NumberReputationNumberFlaggedWebhookEvent,
+    NumberReputationNumberRemovedWebhookEvent,
     RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,

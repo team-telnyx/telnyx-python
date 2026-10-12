@@ -46,9 +46,10 @@ class RemediationRequest(BaseModel):
     contact_email: Optional[str] = None
 
     results: Optional[RemediationPerNumberResults] = None
-    """Per-category buckets.
+    """Per-category buckets of phone numbers, populated once results are available.
 
-    Populated once results are available. Null while the request is still pending.
+    Empty lists are kept (not omitted) so consumers can iterate without
+    null-checking each key.
     """
 
     tier1_completed_at: Optional[datetime] = None
