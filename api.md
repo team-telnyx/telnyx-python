@@ -7235,3 +7235,15 @@ Methods:
 - <code title="patch /llm_token_gateway/token_keys/{id}">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">update</a>(id, \*\*<a href="src/telnyx/types/llm_token_gateway/token_key_update_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_key_response.py">TokenKeyResponse</a></code>
 - <code title="get /llm_token_gateway/token_keys">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">list</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/token_key_list_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_key.py">SyncDefaultFlatPagination[TokenKey]</a></code>
 - <code title="delete /llm_token_gateway/token_keys/{id}">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">delete</a>(id) -> None</code>
+
+# SipRegistrationStatus
+
+Types:
+
+```python
+from telnyx.types import SipRegistrationStatusListResponse
+```
+
+Methods:
+
+- <code title="get /sip_registration_status">client.sip_registration_status.<a href="./src/telnyx/resources/sip_registration_status.py">list</a>(\*\*<a href="src/telnyx/types/sip_registration_status_list_params.py">params</a>) -> <a href="./src/telnyx/types/sip_registration_status_list_response.py">SipRegistrationStatusListResponse</a></code>

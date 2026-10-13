@@ -722,7 +722,7 @@ class DirResource(SyncAPIResource):
 
         Returns `400` from `submitted`/`in_review`/`permanently_rejected`. Returns `400`
         if the DIR's business and financial references have not been submitted. Returns
-        `409` if the DIR has an unresolved infringement claim.
+        `400` if the DIR has an unresolved infringement claim.
 
         Args:
           extra_headers: Send extra headers
@@ -1453,7 +1453,7 @@ class AsyncDirResource(AsyncAPIResource):
 
         Returns `400` from `submitted`/`in_review`/`permanently_rejected`. Returns `400`
         if the DIR's business and financial references have not been submitted. Returns
-        `409` if the DIR has an unresolved infringement claim.
+        `400` if the DIR has an unresolved infringement claim.
 
         Args:
           extra_headers: Send extra headers

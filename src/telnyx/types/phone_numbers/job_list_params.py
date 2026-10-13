@@ -16,7 +16,7 @@ class JobListParams(TypedDict, total=False):
     """Consolidated filter parameter (deepObject style).
 
     Originally: filter[type], filter[phone_number], filter[phone_number][],
-    filter[status][]
+    filter[status][], filter[customer_reference]
     """
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
@@ -33,7 +33,17 @@ class JobListParams(TypedDict, total=False):
 class Filter(TypedDict, total=False):
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[type], filter[phone_number], filter[phone_number][], filter[status][]
+    Originally: filter[type], filter[phone_number], filter[phone_number][], filter[status][], filter[customer_reference]
+    """
+
+    customer_reference: str
+    """
+    Returns jobs whose creation-time customer reference exactly matches the supplied
+    value, not the current reference on a phone number. Only jobs within the lookup
+    window (90 days by default) are returned. Supply a single non-blank string of up
+    to 250 characters, without null characters, using
+    `filter[customer_reference]=yourcustomerrefhere`. An invalid filter value
+    returns HTTP 422.
     """
 
     phone_number: Union[str, SequenceNotStr[str]]

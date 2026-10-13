@@ -77,6 +77,7 @@ class TestJobs:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         job = client.phone_numbers.jobs.list(
             filter={
+                "customer_reference": "yourcustomerrefhere",
                 "phone_number": "+15551234567,1234567890123456789",
                 "status": ["pending", "in_progress"],
                 "type": "update_emergency_settings",
@@ -341,6 +342,7 @@ class TestAsyncJobs:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.phone_numbers.jobs.list(
             filter={
+                "customer_reference": "yourcustomerrefhere",
                 "phone_number": "+15551234567,1234567890123456789",
                 "status": ["pending", "in_progress"],
                 "type": "update_emergency_settings",
