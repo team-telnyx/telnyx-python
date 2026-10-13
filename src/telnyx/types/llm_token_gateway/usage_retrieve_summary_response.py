@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import datetime
-from typing import List, Optional
+from typing import Dict, List, Union, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .guardrail_finding import GuardrailFinding
 
 __all__ = [
     "UsageRetrieveSummaryResponse",
@@ -15,7 +16,6 @@ __all__ = [
     "DataByModel",
     "DataGuardrails",
     "DataGuardrailsRecentEvent",
-    "DataGuardrailsRecentEventFinding",
     "DataTotals",
     "Meta",
 ]
@@ -23,82 +23,66 @@ __all__ = [
 
 class DataByDay(BaseModel):
     cache_hits: int
-    """Requests served from the gateway cache."""
 
     date: datetime.date
-    """UTC day."""
 
     failed_requests: int
-    """Requests classified as failed."""
 
     input_tokens: int
-    """Independently known input tokens across attempts, including corrected usage."""
 
     output_tokens: int
-    """Independently known output tokens across attempts, including corrected usage."""
 
     partial_requests: int
-    """Requests classified as partial after streaming began."""
 
     requests: int
-    """Number of matching requests."""
 
     reserved_spend: float
-    """Unresolved budget reservations in USD."""
+    """
+    USD, decimal precision at most 6 places; parse exactly to integer micro-USD,
+    never binary float accounting.
+    """
 
     spend: float
-    """Sum of known reference/enforcement cost in USD."""
+    """
+    USD, decimal precision at most 6 places; parse exactly to integer micro-USD,
+    never binary float accounting.
+    """
 
     succeeded_requests: int
-    """Requests classified as succeeded."""
 
     unknown_requests: int
-    """Requests whose cost remains unresolved; unknown cost is excluded from spend."""
 
 
 class DataByModel(BaseModel):
     cache_hits: int
-    """Requests served from the gateway cache."""
 
     failed_requests: int
-    """Requests classified as failed."""
 
     input_tokens: int
-    """Independently known input tokens across attempts, including corrected usage."""
 
     model: str
-    """Model identifier."""
 
     output_tokens: int
-    """Independently known output tokens across attempts, including corrected usage."""
 
     partial_requests: int
-    """Requests classified as partial after streaming began."""
 
     requests: int
-    """Number of matching requests."""
 
     reserved_spend: float
-    """Unresolved budget reservations in USD."""
+    """
+    USD, decimal precision at most 6 places; parse exactly to integer micro-USD,
+    never binary float accounting.
+    """
 
     spend: float
-    """Sum of known reference/enforcement cost in USD."""
+    """
+    USD, decimal precision at most 6 places; parse exactly to integer micro-USD,
+    never binary float accounting.
+    """
 
     succeeded_requests: int
-    """Requests classified as succeeded."""
 
     unknown_requests: int
-    """Requests whose cost remains unresolved; unknown cost is excluded from spend."""
-
-
-class DataGuardrailsRecentEventFinding(BaseModel):
-    action: Literal["flag", "block"]
-
-    code: str
-
-    count: int
-
-    detector: Literal["secrets", "dlp", "safety"]
 
 
 class DataGuardrailsRecentEvent(BaseModel):
@@ -112,10 +96,20 @@ class DataGuardrailsRecentEvent(BaseModel):
 
     evaluation_output_tokens: Optional[int] = None
 
-    findings: List[DataGuardrailsRecentEventFinding]
+    findings: List[GuardrailFinding]
+
+    metadata: Dict[str, Union[str, int, bool]]
+    """Customer request tags from the x-ltg-metadata header: up to 5 entries.
+
+    Keys are case-sensitive; keys starting with ltg*, telnyx*, litellm* or cf* (any
+    case) are reserved. Values are strings (1-256 characters, no control or format
+    characters), integers within +/-9007199254740991, or booleans; floats, null,
+    objects and arrays are rejected. Values that look like credentials are rejected.
+    Tags are attribution only: never forwarded upstream, never part of the response
+    cache key, never used for budgets or routing. An untagged request reports {}.
+    """
 
     model: str
-    """Model identifier."""
 
     outcome: Literal["evaluated", "flagged", "blocked", "unevaluated"]
 
@@ -133,76 +127,58 @@ class DataGuardrailsRecentEvent(BaseModel):
 
 
 class DataGuardrails(BaseModel):
-    """
-    Complete guardrail event counts and bounded recent findings for the same group and range.
-    """
-
     blocked_events: int
-    """Total blocked guardrail events, not distinct requests."""
 
     flagged_events: int
-    """Total flagged guardrail events, not distinct requests."""
 
     recent_events: List[DataGuardrailsRecentEvent]
-    """
-    Up to 20 newest privacy-safe guardrail events, ordered by creation time
-    descending and event ID.
-    """
 
 
 class DataTotals(BaseModel):
-    """Metrics for all matching requests."""
-
     cache_hits: int
-    """Requests served from the gateway cache."""
 
     failed_requests: int
-    """Requests classified as failed."""
 
     input_tokens: int
-    """Independently known input tokens across attempts, including corrected usage."""
 
     output_tokens: int
-    """Independently known output tokens across attempts, including corrected usage."""
 
     partial_requests: int
-    """Requests classified as partial after streaming began."""
 
     requests: int
-    """Number of matching requests."""
 
     reserved_spend: float
-    """Unresolved budget reservations in USD."""
+    """
+    USD, decimal precision at most 6 places; parse exactly to integer micro-USD,
+    never binary float accounting.
+    """
 
     spend: float
-    """Sum of known reference/enforcement cost in USD."""
+    """
+    USD, decimal precision at most 6 places; parse exactly to integer micro-USD,
+    never binary float accounting.
+    """
 
     succeeded_requests: int
-    """Requests classified as succeeded."""
 
     unknown_requests: int
-    """Requests whose cost remains unresolved; unknown cost is excluded from spend."""
 
 
 class Data(BaseModel):
     by_day: List[DataByDay]
-    """One row per UTC day, including zero-activity days."""
 
     by_model: List[DataByModel]
-    """One row per model, ordered by request count descending then model name."""
 
     guardrails: DataGuardrails
-    """
-    Complete guardrail event counts and bounded recent findings for the same group
-    and range.
-    """
 
     totals: DataTotals
-    """Metrics for all matching requests."""
 
 
 class Meta(BaseModel):
     end_date: datetime.date
+
+    metadata: Dict[str, str]
+    """The metadata[<key>] filters applied to every section; {} when unfiltered."""
 
     start_date: datetime.date
 

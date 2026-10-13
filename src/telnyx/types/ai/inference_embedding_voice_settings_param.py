@@ -11,6 +11,9 @@ __all__ = [
     "BackgroundAudioUnionMember0",
     "BackgroundAudioUnionMember1",
     "BackgroundAudioUnionMember2",
+    "ToolCallAudio",
+    "ToolCallAudioUnionMember0",
+    "ToolCallAudioUnionMember1",
 ]
 
 
@@ -51,6 +54,31 @@ class BackgroundAudioUnionMember2(TypedDict, total=False):
 BackgroundAudio: TypeAlias = Union[
     BackgroundAudioUnionMember0, BackgroundAudioUnionMember1, BackgroundAudioUnionMember2
 ]
+
+
+class ToolCallAudioUnionMember0(TypedDict, total=False):
+    type: Required[Literal["predefined_media"]]
+    """Select from predefined media options."""
+
+    value: Required[Literal["typing"]]
+    """The predefined media to use. `typing` plays a keyboard typing sound."""
+
+    volume: float
+    """Volume level for the predefined media.
+
+    Supports values from 0.0 to 1.0 in 0.1 increments. `0.0` plays no sound.
+    """
+
+
+class ToolCallAudioUnionMember1(TypedDict, total=False):
+    type: Required[Literal["media_url"]]
+    """Provide a direct URL to an MP3 file. The audio loops while the tool runs."""
+
+    value: Required[str]
+    """HTTPS URL to an MP3 file."""
+
+
+ToolCallAudio: TypeAlias = Union[ToolCallAudioUnionMember0, ToolCallAudioUnionMember1]
 
 
 class InferenceEmbeddingVoiceSettingsParam(TypedDict, total=False):
@@ -170,6 +198,14 @@ class InferenceEmbeddingVoiceSettingsParam(TypedDict, total=False):
 
     Lower values create a broader emotional range; higher values produce more
     consistent, monotonous output. Only applicable when using ElevenLabs.
+    """
+
+    tool_call_audio: Optional[ToolCallAudio]
+    """
+    Optional sound played to the caller while the assistant runs a tool (for example
+    a webhook or MCP tool). It replaces the background audio until the tool
+    responds, then the background audio resumes. Defaults to null, which plays no
+    sound; send `null` on update to clear it. Not played in conference calls.
     """
 
     use_speaker_boost: bool

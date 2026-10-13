@@ -84,7 +84,13 @@ class CallsResource(SyncAPIResource):
         from_: str,
         to: Union[str, SequenceNotStr[str]],
         answering_machine_detection: Literal[
-            "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
+            "premium",
+            "premium_ios_call_screening_detection",
+            "detect",
+            "detect_beep",
+            "detect_words",
+            "greeting_end",
+            "disabled",
         ]
         | Omit = omit,
         answering_machine_detection_config: call_dial_params.AnsweringMachineDetectionConfig | Omit = omit,
@@ -161,10 +167,18 @@ class CallsResource(SyncAPIResource):
         include a `call_leg_id` which can be used to correlate the command with
         subsequent webhooks.
 
+        To place the call with an AI assistant from the start, include `assistant.id`
+        and any per-call overrides in the `assistant` object; Telnyx attempts to warm up
+        the assistant before placing the call and starts it automatically when the
+        called party answers.
+
         **Expected Webhooks:**
 
         - `call.initiated`
         - `call.answered` or `call.hangup`
+        - `call.conversation.created` when the requested assistant conversation is
+          created, or `call.conversation.start_failed` when it could not be started
+          after the called party answered
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.machine.detection.ended` if `answering_machine_detection` was requested
         - `call.machine.greeting.ended` if `answering_machine_detection` was requested
@@ -173,6 +187,9 @@ class CallsResource(SyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.machine.premium.call_screening.detected` if
+          `answering_machine_detection=premium_ios_call_screening_detection` was
+          requested and an Apple Call Screening tone was detected
         - `call.deepfake_detection.result` if `deepfake_detection` was enabled
         - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
           error occurred
@@ -217,12 +234,22 @@ class CallsResource(SyncAPIResource):
               `greeting_end` or `detect_words` is used and a `machine` is detected, you will
               receive another `call.machine.greeting.ended` webhook when the answering machine
               greeting ends with a beep or silence. If `detect_beep` is used, you will only
-              receive `call.machine.greeting.ended` if a beep is detected.
+              receive `call.machine.greeting.ended` if a beep is detected. If
+              `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+              Premium AMD runs with iOS Call Screening support: after an initial `machine`
+              result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+              Call Screening tone, sends `call.machine.premium.greeting.ended` with
+              `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+              `result=screening` respectively. When the Apple Call Screening tone is detected,
+              Premium AMD is restarted on the screened call and a
+              `call.machine.premium.detection.ended` webhook with the post-screening
+              classification follows.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
               parameters are applicable when `premium` is selected as
-              answering_machine_detection.
+              answering_machine_detection. `prompt_end_timeout_millis` is additionally
+              applicable when `premium_ios_call_screening_detection` is selected.
 
           assistant: AI Assistant configuration and per-call overrides. All fields except `id` are
               optional. Omitted assistant fields use the stored configuration. Supplied
@@ -584,7 +611,13 @@ class AsyncCallsResource(AsyncAPIResource):
         from_: str,
         to: Union[str, SequenceNotStr[str]],
         answering_machine_detection: Literal[
-            "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
+            "premium",
+            "premium_ios_call_screening_detection",
+            "detect",
+            "detect_beep",
+            "detect_words",
+            "greeting_end",
+            "disabled",
         ]
         | Omit = omit,
         answering_machine_detection_config: call_dial_params.AnsweringMachineDetectionConfig | Omit = omit,
@@ -661,10 +694,18 @@ class AsyncCallsResource(AsyncAPIResource):
         include a `call_leg_id` which can be used to correlate the command with
         subsequent webhooks.
 
+        To place the call with an AI assistant from the start, include `assistant.id`
+        and any per-call overrides in the `assistant` object; Telnyx attempts to warm up
+        the assistant before placing the call and starts it automatically when the
+        called party answers.
+
         **Expected Webhooks:**
 
         - `call.initiated`
         - `call.answered` or `call.hangup`
+        - `call.conversation.created` when the requested assistant conversation is
+          created, or `call.conversation.start_failed` when it could not be started
+          after the called party answered
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.machine.detection.ended` if `answering_machine_detection` was requested
         - `call.machine.greeting.ended` if `answering_machine_detection` was requested
@@ -673,6 +714,9 @@ class AsyncCallsResource(AsyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.machine.premium.call_screening.detected` if
+          `answering_machine_detection=premium_ios_call_screening_detection` was
+          requested and an Apple Call Screening tone was detected
         - `call.deepfake_detection.result` if `deepfake_detection` was enabled
         - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
           error occurred
@@ -717,12 +761,22 @@ class AsyncCallsResource(AsyncAPIResource):
               `greeting_end` or `detect_words` is used and a `machine` is detected, you will
               receive another `call.machine.greeting.ended` webhook when the answering machine
               greeting ends with a beep or silence. If `detect_beep` is used, you will only
-              receive `call.machine.greeting.ended` if a beep is detected.
+              receive `call.machine.greeting.ended` if a beep is detected. If
+              `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+              Premium AMD runs with iOS Call Screening support: after an initial `machine`
+              result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+              Call Screening tone, sends `call.machine.premium.greeting.ended` with
+              `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+              `result=screening` respectively. When the Apple Call Screening tone is detected,
+              Premium AMD is restarted on the screened call and a
+              `call.machine.premium.detection.ended` webhook with the post-screening
+              classification follows.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
               parameters are applicable when `premium` is selected as
-              answering_machine_detection.
+              answering_machine_detection. `prompt_end_timeout_millis` is additionally
+              applicable when `premium_ios_call_screening_detection` is selected.
 
           assistant: AI Assistant configuration and per-call overrides. All fields except `id` are
               optional. Omitted assistant fields use the stored configuration. Supplied

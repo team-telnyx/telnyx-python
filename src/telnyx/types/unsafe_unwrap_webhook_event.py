@@ -44,6 +44,7 @@ from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
 from .recording_available_webhook_event import RecordingAvailableWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent
+from .whatsapp_waba_added_webhook_event import WhatsappWabaAddedWebhookEvent
 from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
 from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent
 from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent
@@ -59,6 +60,7 @@ from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEve
 from .session_status_changed_webhook_event import SessionStatusChangedWebhookEvent
 from .call_conversation_ended_webhook_event import CallConversationEndedWebhookEvent
 from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhookEvent
+from .call_conversation_created_webhook_event import CallConversationCreatedWebhookEvent
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
 from .hosted_number_order_event_webhook_event import HostedNumberOrderEventWebhookEvent
 from .conference_recording_saved_webhook_event import ConferenceRecordingSavedWebhookEvent
@@ -70,6 +72,7 @@ from .call_machine_detection_ended_webhook_event import CallMachineDetectionEnde
 from .call_deepfake_detection_error_webhook_event import CallDeepfakeDetectionErrorWebhookEvent
 from .conference_participant_joined_webhook_event import ConferenceParticipantJoinedWebhookEvent
 from .call_ai_gather_partial_results_webhook_event import CallAIGatherPartialResultsWebhookEvent
+from .call_conversation_start_failed_webhook_event import CallConversationStartFailedWebhookEvent
 from .call_deepfake_detection_result_webhook_event import CallDeepfakeDetectionResultWebhookEvent
 from .number_reputation_number_flagged_webhook_event import NumberReputationNumberFlaggedWebhookEvent
 from .number_reputation_number_removed_webhook_event import NumberReputationNumberRemovedWebhookEvent
@@ -81,7 +84,11 @@ from .call_machine_premium_detection_ended_webhook_event import CallMachinePremi
 from .conference_participant_speak_started_webhook_event import ConferenceParticipantSpeakStartedWebhookEvent
 from .conference_participant_playback_ended_webhook_event import ConferenceParticipantPlaybackEndedWebhookEvent
 from .call_ai_gather_message_history_updated_webhook_event import CallAIGatherMessageHistoryUpdatedWebhookEvent
+from .call_machine_premium_detection_started_webhook_event import CallMachinePremiumDetectionStartedWebhookEvent
 from .conference_participant_playback_started_webhook_event import ConferenceParticipantPlaybackStartedWebhookEvent
+from .call_machine_premium_call_screening_detected_webhook_event import (
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
+)
 from .number_reputation_external_verification_status_changed_webhook_event import (
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
 )
@@ -96,8 +103,10 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
+    CallConversationStartFailedWebhookEvent,
     CallCostWebhookEvent,
     CallDeepfakeDetectionErrorWebhookEvent,
     CallDeepfakeDetectionResultWebhookEvent,
@@ -112,7 +121,9 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,
@@ -167,4 +178,5 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     TranscriptionWebhookEvent,
     WhatsappAccountUpdate,
     WhatsappMessageEcho,
+    WhatsappWabaAddedWebhookEvent,
 ]

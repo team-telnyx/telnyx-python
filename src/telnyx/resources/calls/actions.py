@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -132,6 +132,9 @@ from ...types.calls.action_stop_conversation_relay_response import ActionStopCon
 from ...types.calls.action_start_conversation_relay_response import ActionStartConversationRelayResponse
 from ...types.conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
 from ...types.calls.action_add_ai_assistant_messages_response import ActionAddAIAssistantMessagesResponse
+from ...types.calls.conversation_relay_transcription_engine_config_param import (
+    ConversationRelayTranscriptionEngineConfigParam,
+)
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 
@@ -274,6 +277,13 @@ class ActionsResource(SyncAPIResource):
         webhook to track the answer. If warm-up fails, Telnyx falls back to starting the
         assistant after answering.
 
+        When `assistant.id` is supplied, obtain the conversation ID from
+        `data.payload.conversation_id` in the
+        [call.conversation.created](/api-reference/callbacks/call-conversation-created)
+        webhook and correlate it using `data.payload.call_control_id`. The `answer` HTTP
+        response does not include `conversation_id`. The created event is emitted during
+        assistant startup and does not indicate that the assistant is ready to speak.
+
         Set the assistant voice with `assistant.voice_settings.voice` and speech-to-text
         settings with `assistant.transcription`. You can reuse one stored assistant with
         different per-call settings. Warm-up prepares assistant configuration and
@@ -284,6 +294,8 @@ class ActionsResource(SyncAPIResource):
         **Expected Webhooks:**
 
         - `call.answered`
+        - `call.conversation.created` when the requested assistant conversation is
+          created
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.deepfake_detection.result` if `deepfake_detection` was enabled
         - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
@@ -843,6 +855,8 @@ class ActionsResource(SyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.ai_gather.ended`
         - `call.conversation.ended`
         - `call.ai_gather.partial_results` (if `send_partial_results` is set to `true`)
@@ -904,10 +918,10 @@ class ActionsResource(SyncAPIResource):
                 the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
                 [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
                 for compatibility.
-              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+              - **Azure:** Use `Azure.<VoiceId>` (e.g., `Azure.en-CA-ClaraNeural`,
+                `Azure.en-CA-LiamNeural`, `Azure.en-US-BrianMultilingualNeural`,
+                `Azure.en-US-Ava:DragonHDLatestNeural`). For a complete list of voices, go to
+                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
               - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
                 `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
                 ElevenLabs, you must provide your ElevenLabs API key as an integration secret
@@ -1544,9 +1558,11 @@ class ActionsResource(SyncAPIResource):
         language: str | Omit = omit,
         max_attempts: int | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
+        min_postal_code_length: int | Omit = omit,
         parameters: Dict[str, object] | Omit = omit,
         payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
         payment_token: str | Omit = omit,
+        postal_code: Union[str, bool] | Omit = omit,
         prompts: action_pay_params.Prompts | Omit = omit,
         service_level: str | Omit = omit,
         timeout_millis: int | Omit = omit,
@@ -1606,11 +1622,26 @@ class ActionsResource(SyncAPIResource):
 
           metadata: Metadata forwarded to the Pay connector.
 
+          min_postal_code_length: Minimum number of digits the caller must enter when collecting a credit-card
+              billing postal code. Applies only when `postal_code` is `true` or `"true"` and
+              no `payment_token` is supplied. The default is 1. The maximum number of digits
+              collected is the greater of 10 and this value. This does not validate the length
+              of a postal code supplied directly in `postal_code`.
+
           parameters: Additional parameters forwarded to the Pay connector.
 
           payment_method: Payment method to collect.
 
           payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          postal_code: Controls billing postal code collection for credit-card payments when no
+              `payment_token` is supplied. Set to `true` or the string `"true"` (the default)
+              to prompt the caller for a postal code. Set to `false` or the string `"false"`
+              to skip the postal code prompt without supplying a postal code to the payment
+              connector. Supply any other non-empty string, such as `"90210"`, to use that
+              postal code without prompting. Empty or whitespace-only strings are rejected.
+              This option does not affect ACH debit payments or payments using an existing
+              token.
 
           prompts: Custom text-to-speech prompts keyed by payment collection step.
 
@@ -1655,9 +1686,11 @@ class ActionsResource(SyncAPIResource):
                     "language": language,
                     "max_attempts": max_attempts,
                     "metadata": metadata,
+                    "min_postal_code_length": min_postal_code_length,
                     "parameters": parameters,
                     "payment_method": payment_method,
                     "payment_token": payment_token,
+                    "postal_code": postal_code,
                     "prompts": prompts,
                     "service_level": service_level,
                     "timeout_millis": timeout_millis,
@@ -2205,6 +2238,8 @@ class ActionsResource(SyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.conversation.ended`
         - `call.conversation_insights.generated`
 
@@ -2299,7 +2334,7 @@ class ActionsResource(SyncAPIResource):
             "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
         ]
         | Omit = omit,
-        transcription_engine_config: Dict[str, object] | Omit = omit,
+        transcription_engine_config: ConversationRelayTranscriptionEngineConfigParam | Omit = omit,
         tts_provider: str | Omit = omit,
         url: str | Omit = omit,
         voice: str | Omit = omit,
@@ -2385,7 +2420,10 @@ class ActionsResource(SyncAPIResource):
           transcription_engine_config: Engine-specific transcription settings for Conversation Relay. This accepts the
               same provider-specific options used by the Call Transcription Start command,
               such as `transcription_model`, without requiring the engine discriminator to be
-              repeated inside this object.
+              repeated inside this object. With Deepgram Flux (`deepgram/flux`),
+              `interim_results`, `eot_threshold` and `eager_eot_threshold` control the interim
+              prompts and the `eagerEndOfTurn` and `turnResumed` frames sent to your WebSocket
+              server.
 
           tts_provider: Text-to-speech provider. If omitted, Telnyx derives it from `voice` or
               `provider`.
@@ -2403,10 +2441,10 @@ class ActionsResource(SyncAPIResource):
                 the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
                 [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
                 for compatibility.
-              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+              - **Azure:** Use `Azure.<VoiceId>` (e.g., `Azure.en-CA-ClaraNeural`,
+                `Azure.en-CA-LiamNeural`, `Azure.en-US-BrianMultilingualNeural`,
+                `Azure.en-US-Ava:DragonHDLatestNeural`). For a complete list of voices, go to
+                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
               - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
                 `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
                 ElevenLabs, you must provide your ElevenLabs API key as an integration secret
@@ -3962,7 +4000,13 @@ class ActionsResource(SyncAPIResource):
         *,
         to: str,
         answering_machine_detection: Literal[
-            "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
+            "premium",
+            "premium_ios_call_screening_detection",
+            "detect",
+            "detect_beep",
+            "detect_words",
+            "greeting_end",
+            "disabled",
         ]
         | Omit = omit,
         answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig | Omit = omit,
@@ -4031,6 +4075,9 @@ class ActionsResource(SyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.machine.premium.call_screening.detected` if
+          `answering_machine_detection=premium_ios_call_screening_detection` was
+          requested and an Apple Call Screening tone was detected
 
         Args:
           to: The DID or SIP URI to dial out to. For SIP URI destinations, append
@@ -4049,12 +4096,22 @@ class ActionsResource(SyncAPIResource):
               'greeting_end' or 'detect_words' is used and a 'machine' is detected, you will
               receive another 'call.machine.greeting.ended' webhook when the answering machine
               greeting ends with a beep or silence. If `detect_beep` is used, you will only
-              receive 'call.machine.greeting.ended' if a beep is detected.
+              receive 'call.machine.greeting.ended' if a beep is detected. If
+              `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+              Premium AMD runs with iOS Call Screening support: after an initial `machine`
+              result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+              Call Screening tone, sends `call.machine.premium.greeting.ended` with
+              `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+              `result=screening` respectively. When the Apple Call Screening tone is detected,
+              Premium AMD is restarted on the screened call and a
+              `call.machine.premium.detection.ended` webhook with the post-screening
+              classification follows.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
               parameters are applicable when `premium` is selected as
-              answering_machine_detection.
+              answering_machine_detection. `prompt_end_timeout_millis` is additionally
+              applicable when `premium_ios_call_screening_detection` is selected.
 
           audio_url: The URL of a file to be played back when the transfer destination answers before
               bridging the call. The URL can point to either a WAV or MP3 file. media_name and
@@ -4446,6 +4503,13 @@ class AsyncActionsResource(AsyncAPIResource):
         webhook to track the answer. If warm-up fails, Telnyx falls back to starting the
         assistant after answering.
 
+        When `assistant.id` is supplied, obtain the conversation ID from
+        `data.payload.conversation_id` in the
+        [call.conversation.created](/api-reference/callbacks/call-conversation-created)
+        webhook and correlate it using `data.payload.call_control_id`. The `answer` HTTP
+        response does not include `conversation_id`. The created event is emitted during
+        assistant startup and does not indicate that the assistant is ready to speak.
+
         Set the assistant voice with `assistant.voice_settings.voice` and speech-to-text
         settings with `assistant.transcription`. You can reuse one stored assistant with
         different per-call settings. Warm-up prepares assistant configuration and
@@ -4456,6 +4520,8 @@ class AsyncActionsResource(AsyncAPIResource):
         **Expected Webhooks:**
 
         - `call.answered`
+        - `call.conversation.created` when the requested assistant conversation is
+          created
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.deepfake_detection.result` if `deepfake_detection` was enabled
         - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
@@ -5015,6 +5081,8 @@ class AsyncActionsResource(AsyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.ai_gather.ended`
         - `call.conversation.ended`
         - `call.ai_gather.partial_results` (if `send_partial_results` is set to `true`)
@@ -5076,10 +5144,10 @@ class AsyncActionsResource(AsyncAPIResource):
                 the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
                 [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
                 for compatibility.
-              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+              - **Azure:** Use `Azure.<VoiceId>` (e.g., `Azure.en-CA-ClaraNeural`,
+                `Azure.en-CA-LiamNeural`, `Azure.en-US-BrianMultilingualNeural`,
+                `Azure.en-US-Ava:DragonHDLatestNeural`). For a complete list of voices, go to
+                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
               - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
                 `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
                 ElevenLabs, you must provide your ElevenLabs API key as an integration secret
@@ -5716,9 +5784,11 @@ class AsyncActionsResource(AsyncAPIResource):
         language: str | Omit = omit,
         max_attempts: int | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
+        min_postal_code_length: int | Omit = omit,
         parameters: Dict[str, object] | Omit = omit,
         payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
         payment_token: str | Omit = omit,
+        postal_code: Union[str, bool] | Omit = omit,
         prompts: action_pay_params.Prompts | Omit = omit,
         service_level: str | Omit = omit,
         timeout_millis: int | Omit = omit,
@@ -5778,11 +5848,26 @@ class AsyncActionsResource(AsyncAPIResource):
 
           metadata: Metadata forwarded to the Pay connector.
 
+          min_postal_code_length: Minimum number of digits the caller must enter when collecting a credit-card
+              billing postal code. Applies only when `postal_code` is `true` or `"true"` and
+              no `payment_token` is supplied. The default is 1. The maximum number of digits
+              collected is the greater of 10 and this value. This does not validate the length
+              of a postal code supplied directly in `postal_code`.
+
           parameters: Additional parameters forwarded to the Pay connector.
 
           payment_method: Payment method to collect.
 
           payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          postal_code: Controls billing postal code collection for credit-card payments when no
+              `payment_token` is supplied. Set to `true` or the string `"true"` (the default)
+              to prompt the caller for a postal code. Set to `false` or the string `"false"`
+              to skip the postal code prompt without supplying a postal code to the payment
+              connector. Supply any other non-empty string, such as `"90210"`, to use that
+              postal code without prompting. Empty or whitespace-only strings are rejected.
+              This option does not affect ACH debit payments or payments using an existing
+              token.
 
           prompts: Custom text-to-speech prompts keyed by payment collection step.
 
@@ -5827,9 +5912,11 @@ class AsyncActionsResource(AsyncAPIResource):
                     "language": language,
                     "max_attempts": max_attempts,
                     "metadata": metadata,
+                    "min_postal_code_length": min_postal_code_length,
                     "parameters": parameters,
                     "payment_method": payment_method,
                     "payment_token": payment_token,
+                    "postal_code": postal_code,
                     "prompts": prompts,
                     "service_level": service_level,
                     "timeout_millis": timeout_millis,
@@ -6377,6 +6464,8 @@ class AsyncActionsResource(AsyncAPIResource):
 
         **Expected Webhooks:**
 
+        - [`call.conversation.created`](/api-reference/callbacks/call-conversation-created)
+          includes `conversation_id` during startup
         - `call.conversation.ended`
         - `call.conversation_insights.generated`
 
@@ -6471,7 +6560,7 @@ class AsyncActionsResource(AsyncAPIResource):
             "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
         ]
         | Omit = omit,
-        transcription_engine_config: Dict[str, object] | Omit = omit,
+        transcription_engine_config: ConversationRelayTranscriptionEngineConfigParam | Omit = omit,
         tts_provider: str | Omit = omit,
         url: str | Omit = omit,
         voice: str | Omit = omit,
@@ -6557,7 +6646,10 @@ class AsyncActionsResource(AsyncAPIResource):
           transcription_engine_config: Engine-specific transcription settings for Conversation Relay. This accepts the
               same provider-specific options used by the Call Transcription Start command,
               such as `transcription_model`, without requiring the engine discriminator to be
-              repeated inside this object.
+              repeated inside this object. With Deepgram Flux (`deepgram/flux`),
+              `interim_results`, `eot_threshold` and `eager_eot_threshold` control the interim
+              prompts and the `eagerEndOfTurn` and `turnResumed` frames sent to your WebSocket
+              server.
 
           tts_provider: Text-to-speech provider. If omitted, Telnyx derives it from `voice` or
               `provider`.
@@ -6575,10 +6667,10 @@ class AsyncActionsResource(AsyncAPIResource):
                 the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
                 [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
                 for compatibility.
-              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+              - **Azure:** Use `Azure.<VoiceId>` (e.g., `Azure.en-CA-ClaraNeural`,
+                `Azure.en-CA-LiamNeural`, `Azure.en-US-BrianMultilingualNeural`,
+                `Azure.en-US-Ava:DragonHDLatestNeural`). For a complete list of voices, go to
+                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
               - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
                 `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
                 ElevenLabs, you must provide your ElevenLabs API key as an integration secret
@@ -8136,7 +8228,13 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         to: str,
         answering_machine_detection: Literal[
-            "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
+            "premium",
+            "premium_ios_call_screening_detection",
+            "detect",
+            "detect_beep",
+            "detect_words",
+            "greeting_end",
+            "disabled",
         ]
         | Omit = omit,
         answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig | Omit = omit,
@@ -8205,6 +8303,9 @@ class AsyncActionsResource(AsyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.machine.premium.call_screening.detected` if
+          `answering_machine_detection=premium_ios_call_screening_detection` was
+          requested and an Apple Call Screening tone was detected
 
         Args:
           to: The DID or SIP URI to dial out to. For SIP URI destinations, append
@@ -8223,12 +8324,22 @@ class AsyncActionsResource(AsyncAPIResource):
               'greeting_end' or 'detect_words' is used and a 'machine' is detected, you will
               receive another 'call.machine.greeting.ended' webhook when the answering machine
               greeting ends with a beep or silence. If `detect_beep` is used, you will only
-              receive 'call.machine.greeting.ended' if a beep is detected.
+              receive 'call.machine.greeting.ended' if a beep is detected. If
+              `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+              Premium AMD runs with iOS Call Screening support: after an initial `machine`
+              result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+              Call Screening tone, sends `call.machine.premium.greeting.ended` with
+              `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+              `result=screening` respectively. When the Apple Call Screening tone is detected,
+              Premium AMD is restarted on the screened call and a
+              `call.machine.premium.detection.ended` webhook with the post-screening
+              classification follows.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
               parameters are applicable when `premium` is selected as
-              answering_machine_detection.
+              answering_machine_detection. `prompt_end_timeout_millis` is additionally
+              applicable when `premium_ios_call_screening_detection` is selected.
 
           audio_url: The URL of a file to be played back when the transfer destination answers before
               bridging the call. The URL can point to either a WAV or MP3 file. media_name and

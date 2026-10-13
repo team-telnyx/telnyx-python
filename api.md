@@ -340,8 +340,10 @@ from telnyx.types import (
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
+    CallConversationStartFailedWebhookEvent,
     CallCostWebhookEvent,
     CallDeepfakeDetectionErrorWebhookEvent,
     CallDeepfakeDetectionResultWebhookEvent,
@@ -356,7 +358,9 @@ from telnyx.types import (
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,
@@ -402,6 +406,7 @@ from telnyx.types import (
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,
     TranscriptionWebhookEvent,
+    WhatsappWabaAddedWebhookEvent,
     CallAIGatherEndedWebhookEvent,
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
@@ -409,8 +414,10 @@ from telnyx.types import (
     ArtifactFailedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
+    CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
+    CallConversationStartFailedWebhookEvent,
     CallCostWebhookEvent,
     CallDeepfakeDetectionErrorWebhookEvent,
     CallDeepfakeDetectionResultWebhookEvent,
@@ -425,7 +432,9 @@ from telnyx.types import (
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
     CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumCallScreeningDetectedWebhookEvent,
     CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumDetectionStartedWebhookEvent,
     CallMachinePremiumGreetingEndedWebhookEvent,
     CallPaymentCompletedWebhookEvent,
     CallPaymentProgressWebhookEvent,
@@ -471,6 +480,7 @@ from telnyx.types import (
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,
     TranscriptionWebhookEvent,
+    WhatsappWabaAddedWebhookEvent,
     UnsafeUnwrapWebhookEvent,
     UnwrapWebhookEvent,
 )
@@ -1697,6 +1707,7 @@ from telnyx.types.calls import (
     CallControlCommandResult,
     CallControlCommandResultWithConversationID,
     ConversationRelayInterruptible,
+    ConversationRelayTranscriptionEngineConfig,
     DeepgramNova2Config,
     DeepgramNova3Config,
     DeveloperMessage,
@@ -5998,6 +6009,19 @@ Methods:
 - <code title="get /v2/whatsapp/user_data">client.whatsapp.user_data.<a href="./src/telnyx/resources/whatsapp/user_data.py">retrieve</a>() -> <a href="./src/telnyx/types/whatsapp/user_data_retrieve_response.py">UserDataRetrieveResponse</a></code>
 - <code title="patch /v2/whatsapp/user_data">client.whatsapp.user_data.<a href="./src/telnyx/resources/whatsapp/user_data.py">update</a>(\*\*<a href="src/telnyx/types/whatsapp/user_data_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/user_data_update_response.py">UserDataUpdateResponse</a></code>
 
+## Signup
+
+Types:
+
+```python
+from telnyx.types.whatsapp import SignupListResponse, SignupRetrieveStatusResponse
+```
+
+Methods:
+
+- <code title="get /whatsapp/signup">client.whatsapp.signup.<a href="./src/telnyx/resources/whatsapp/signup.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/signup_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/signup_list_response.py">SyncDefaultFlatPagination[SignupListResponse]</a></code>
+- <code title="get /whatsapp/signup/{id}/status">client.whatsapp.signup.<a href="./src/telnyx/resources/whatsapp/signup.py">retrieve_status</a>(id) -> <a href="./src/telnyx/types/whatsapp/signup_retrieve_status_response.py">SignupRetrieveStatusResponse</a></code>
+
 # WhatsappMessageTemplates
 
 Types:
@@ -6814,6 +6838,7 @@ Types:
 ```python
 from telnyx.types import (
     EmailTemplate,
+    EmailTemplateCommon,
     EmailTemplateResponse,
     UpdateEmailTemplateRequest,
     EmailTemplateRenderResponse,
@@ -7145,9 +7170,68 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.llm_token_gateway import UsageRetrieveSummaryResponse
+from telnyx.types.llm_token_gateway import (
+    GuardrailFinding,
+    UsageRetrieveExportResponse,
+    UsageRetrieveSummaryResponse,
+)
 ```
 
 Methods:
 
+- <code title="get /llm_token_gateway/usage/export">client.llm_token_gateway.usage.<a href="./src/telnyx/resources/llm_token_gateway/usage.py">retrieve_export</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/usage_retrieve_export_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/usage_retrieve_export_response.py">UsageRetrieveExportResponse</a></code>
 - <code title="get /llm_token_gateway/usage/summary">client.llm_token_gateway.usage.<a href="./src/telnyx/resources/llm_token_gateway/usage.py">retrieve_summary</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/usage_retrieve_summary_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/usage_retrieve_summary_response.py">UsageRetrieveSummaryResponse</a></code>
+
+## Spend
+
+Types:
+
+```python
+from telnyx.types.llm_token_gateway import (
+    SpendGroupBy,
+    SpendRetrieveEventsResponse,
+    SpendRetrieveSummaryResponse,
+)
+```
+
+Methods:
+
+- <code title="get /llm_token_gateway/spend/events">client.llm_token_gateway.spend.<a href="./src/telnyx/resources/llm_token_gateway/spend.py">retrieve_events</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/spend_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/spend_retrieve_events_response.py">SpendRetrieveEventsResponse</a></code>
+- <code title="get /llm_token_gateway/spend/summary">client.llm_token_gateway.spend.<a href="./src/telnyx/resources/llm_token_gateway/spend.py">retrieve_summary</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/spend_retrieve_summary_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/spend_retrieve_summary_response.py">SpendRetrieveSummaryResponse</a></code>
+
+## TokenGroups
+
+Types:
+
+```python
+from telnyx.types.llm_token_gateway import (
+    AIGatewayResourcesPageMeta,
+    BudgetDuration,
+    TokenGroup,
+    TokenGroupResponse,
+)
+```
+
+Methods:
+
+- <code title="post /llm_token_gateway/token_groups">client.llm_token_gateway.token_groups.<a href="./src/telnyx/resources/llm_token_gateway/token_groups.py">create</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/token_group_create_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_group_response.py">TokenGroupResponse</a></code>
+- <code title="get /llm_token_gateway/token_groups/{id}">client.llm_token_gateway.token_groups.<a href="./src/telnyx/resources/llm_token_gateway/token_groups.py">retrieve</a>(id) -> <a href="./src/telnyx/types/llm_token_gateway/token_group_response.py">TokenGroupResponse</a></code>
+- <code title="patch /llm_token_gateway/token_groups/{id}">client.llm_token_gateway.token_groups.<a href="./src/telnyx/resources/llm_token_gateway/token_groups.py">update</a>(id, \*\*<a href="src/telnyx/types/llm_token_gateway/token_group_update_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_group_response.py">TokenGroupResponse</a></code>
+- <code title="get /llm_token_gateway/token_groups">client.llm_token_gateway.token_groups.<a href="./src/telnyx/resources/llm_token_gateway/token_groups.py">list</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/token_group_list_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_group.py">SyncDefaultFlatPagination[TokenGroup]</a></code>
+- <code title="delete /llm_token_gateway/token_groups/{id}">client.llm_token_gateway.token_groups.<a href="./src/telnyx/resources/llm_token_gateway/token_groups.py">delete</a>(id) -> None</code>
+
+## TokenKeys
+
+Types:
+
+```python
+from telnyx.types.llm_token_gateway import TokenKey, TokenKeyResponse
+```
+
+Methods:
+
+- <code title="post /llm_token_gateway/token_keys">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">create</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/token_key_create_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_key_response.py">TokenKeyResponse</a></code>
+- <code title="get /llm_token_gateway/token_keys/{id}">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">retrieve</a>(id) -> <a href="./src/telnyx/types/llm_token_gateway/token_key_response.py">TokenKeyResponse</a></code>
+- <code title="patch /llm_token_gateway/token_keys/{id}">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">update</a>(id, \*\*<a href="src/telnyx/types/llm_token_gateway/token_key_update_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_key_response.py">TokenKeyResponse</a></code>
+- <code title="get /llm_token_gateway/token_keys">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">list</a>(\*\*<a href="src/telnyx/types/llm_token_gateway/token_key_list_params.py">params</a>) -> <a href="./src/telnyx/types/llm_token_gateway/token_key.py">SyncDefaultFlatPagination[TokenKey]</a></code>
+- <code title="delete /llm_token_gateway/token_keys/{id}">client.llm_token_gateway.token_keys.<a href="./src/telnyx/resources/llm_token_gateway/token_keys.py">delete</a>(id) -> None</code>

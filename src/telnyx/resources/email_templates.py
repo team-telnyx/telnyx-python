@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -64,7 +65,8 @@ class EmailTemplatesResource(SyncAPIResource):
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
         variable_schema: Optional[Dict[str, email_template_create_params.VariableSchema]] | Omit = omit,
-        variables: SequenceNotStr[str] | Omit = omit,
+        variables: Optional[SequenceNotStr[str]] | Omit = omit,
+        variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -110,7 +112,16 @@ class EmailTemplatesResource(SyncAPIResource):
               such as `false` and `0` pass (they are present, not empty). Optional variables
               fall back to their `default` when absent.
 
-          variables: Template variables. Auto-extracted from subject/body fields when absent.
+          variables: Persisted variable names. In `automatic` mode a non-null array is rejected; in
+              `explicit` mode this is the exact manual array and each item is limited to 255
+              Unicode code points.
+
+          variables_mode: Controls how `variables` is maintained. If both fields are omitted (or
+              `variables` is null), the template uses `automatic` mode and extracts variable
+              names from the effective subject, HTML body, and text body. A non-null
+              `variables` array with no mode selects `explicit`. `automatic` rejects a
+              simultaneous non-null array; `explicit` requires a non-null array, including
+              valid `[]`, and preserves its exact order, duplicates, and string contents.
 
           extra_headers: Send extra headers
 
@@ -133,6 +144,7 @@ class EmailTemplatesResource(SyncAPIResource):
                     "text_body": text_body,
                     "variable_schema": variable_schema,
                     "variables": variables,
+                    "variables_mode": variables_mode,
                 },
                 email_template_create_params.EmailTemplateCreateParams,
             ),
@@ -187,7 +199,8 @@ class EmailTemplatesResource(SyncAPIResource):
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
         variable_schema: Optional[Dict[str, email_template_update_params.VariableSchema]] | Omit = omit,
-        variables: SequenceNotStr[str] | Omit = omit,
+        variables: Optional[SequenceNotStr[str]] | Omit = omit,
+        variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -213,6 +226,17 @@ class EmailTemplatesResource(SyncAPIResource):
           variable_schema: Structured variable requirements. Required variables cannot define defaults;
               invalid combinations return 422. Set to `null` to clear the schema.
 
+          variables: Persisted variable names. In `automatic` mode a non-null array is rejected; in
+              `explicit` mode this is the exact manual array and each item is limited to 255
+              Unicode code points.
+
+          variables_mode: Controls how `variables` is maintained. Setting `automatic` re-extracts
+              immediately from the effective subject, HTML body, and text body and rejects a
+              simultaneous non-null array. Setting `explicit` requires the exact non-null
+              array, including valid `[]`. With the mode omitted, a non-null array selects
+              explicit mode, null selects automatic mode, and omitting both fields preserves
+              the current mode. Source-content changes re-extract only in automatic mode.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -235,6 +259,7 @@ class EmailTemplatesResource(SyncAPIResource):
                     "text_body": text_body,
                     "variable_schema": variable_schema,
                     "variables": variables,
+                    "variables_mode": variables_mode,
                 },
                 email_template_update_params.EmailTemplateUpdateParams,
             ),
@@ -247,6 +272,10 @@ class EmailTemplatesResource(SyncAPIResource):
     def list(
         self,
         *,
+        filter_autoescape: Literal["true", "false"] | Omit = omit,
+        filter_content_type: Literal["html_and_text", "html_only", "text_only", "no_body"] | Omit = omit,
+        filter_query: str | Omit = omit,
+        filter_strict_variables: Literal["true", "false"] | Omit = omit,
         page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -256,10 +285,32 @@ class EmailTemplatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEmailCursorPagination[EmailTemplate]:
-        """
-        Lists templates sorted newest first by `created_at desc, id desc`.
+        """Lists templates sorted newest first by `created_at desc, id desc`.
+
+        Optional
+        filters match a case-insensitive literal name/subject query, stored body
+        presence, and the `strict_variables` and `autoescape` settings. Filters
+        intersect, remain scoped to the authenticated account, and apply before cursor
+        pagination. Invalid filter names or values return 400.
 
         Args:
+          filter_autoescape: Exact match on the template's `autoescape` option. Only the exact query strings
+              `true` and `false` are accepted; other values, including blank, return 400.
+
+          filter_content_type: Matches templates by stored body presence. `html_and_text` requires both an HTML
+              and text body; `html_only` requires HTML and no text body; `text_only` requires
+              text and no HTML body; `no_body` requires neither. `null` and exactly `""` count
+              as absent; whitespace-only strings count as content. An empty or unsupported
+              value returns a 400 response.
+
+          filter_query: Case-insensitive literal substring match over the template `name` or stored
+              `subject` only; bodies are never searched. `%`, `_`, and `\\`` are literal
+              characters with no wildcard meaning. A blank value is treated as omitted.
+
+          filter_strict_variables: Exact match on the template's `strict_variables` option. Only the exact query
+              strings `true` and `false` are accepted; other values, including blank,
+              return 400.
+
           page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
 
           page_size: Number of results to return. Defaults to 25; maximum is 100. Invalid values are
@@ -283,6 +334,10 @@ class EmailTemplatesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_autoescape": filter_autoescape,
+                        "filter_content_type": filter_content_type,
+                        "filter_query": filter_query,
+                        "filter_strict_variables": filter_strict_variables,
                         "page_cursor": page_cursor,
                         "page_size": page_size,
                     },
@@ -387,7 +442,8 @@ class EmailTemplatesResource(SyncAPIResource):
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
         variable_schema: Optional[Dict[str, email_template_replace_params.VariableSchema]] | Omit = omit,
-        variables: SequenceNotStr[str] | Omit = omit,
+        variables: Optional[SequenceNotStr[str]] | Omit = omit,
+        variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,6 +470,17 @@ class EmailTemplatesResource(SyncAPIResource):
           variable_schema: Structured variable requirements. Required variables cannot define defaults;
               invalid combinations return 422. Set to `null` to clear the schema.
 
+          variables: Persisted variable names. In `automatic` mode a non-null array is rejected; in
+              `explicit` mode this is the exact manual array and each item is limited to 255
+              Unicode code points.
+
+          variables_mode: Controls how `variables` is maintained. Setting `automatic` re-extracts
+              immediately from the effective subject, HTML body, and text body and rejects a
+              simultaneous non-null array. Setting `explicit` requires the exact non-null
+              array, including valid `[]`. With the mode omitted, a non-null array selects
+              explicit mode, null selects automatic mode, and omitting both fields preserves
+              the current mode. Source-content changes re-extract only in automatic mode.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -436,6 +503,7 @@ class EmailTemplatesResource(SyncAPIResource):
                     "text_body": text_body,
                     "variable_schema": variable_schema,
                     "variables": variables,
+                    "variables_mode": variables_mode,
                 },
                 email_template_replace_params.EmailTemplateReplaceParams,
             ),
@@ -478,7 +546,8 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
         variable_schema: Optional[Dict[str, email_template_create_params.VariableSchema]] | Omit = omit,
-        variables: SequenceNotStr[str] | Omit = omit,
+        variables: Optional[SequenceNotStr[str]] | Omit = omit,
+        variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -524,7 +593,16 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
               such as `false` and `0` pass (they are present, not empty). Optional variables
               fall back to their `default` when absent.
 
-          variables: Template variables. Auto-extracted from subject/body fields when absent.
+          variables: Persisted variable names. In `automatic` mode a non-null array is rejected; in
+              `explicit` mode this is the exact manual array and each item is limited to 255
+              Unicode code points.
+
+          variables_mode: Controls how `variables` is maintained. If both fields are omitted (or
+              `variables` is null), the template uses `automatic` mode and extracts variable
+              names from the effective subject, HTML body, and text body. A non-null
+              `variables` array with no mode selects `explicit`. `automatic` rejects a
+              simultaneous non-null array; `explicit` requires a non-null array, including
+              valid `[]`, and preserves its exact order, duplicates, and string contents.
 
           extra_headers: Send extra headers
 
@@ -547,6 +625,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
                     "text_body": text_body,
                     "variable_schema": variable_schema,
                     "variables": variables,
+                    "variables_mode": variables_mode,
                 },
                 email_template_create_params.EmailTemplateCreateParams,
             ),
@@ -601,7 +680,8 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
         variable_schema: Optional[Dict[str, email_template_update_params.VariableSchema]] | Omit = omit,
-        variables: SequenceNotStr[str] | Omit = omit,
+        variables: Optional[SequenceNotStr[str]] | Omit = omit,
+        variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -627,6 +707,17 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
           variable_schema: Structured variable requirements. Required variables cannot define defaults;
               invalid combinations return 422. Set to `null` to clear the schema.
 
+          variables: Persisted variable names. In `automatic` mode a non-null array is rejected; in
+              `explicit` mode this is the exact manual array and each item is limited to 255
+              Unicode code points.
+
+          variables_mode: Controls how `variables` is maintained. Setting `automatic` re-extracts
+              immediately from the effective subject, HTML body, and text body and rejects a
+              simultaneous non-null array. Setting `explicit` requires the exact non-null
+              array, including valid `[]`. With the mode omitted, a non-null array selects
+              explicit mode, null selects automatic mode, and omitting both fields preserves
+              the current mode. Source-content changes re-extract only in automatic mode.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -649,6 +740,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
                     "text_body": text_body,
                     "variable_schema": variable_schema,
                     "variables": variables,
+                    "variables_mode": variables_mode,
                 },
                 email_template_update_params.EmailTemplateUpdateParams,
             ),
@@ -661,6 +753,10 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
     def list(
         self,
         *,
+        filter_autoescape: Literal["true", "false"] | Omit = omit,
+        filter_content_type: Literal["html_and_text", "html_only", "text_only", "no_body"] | Omit = omit,
+        filter_query: str | Omit = omit,
+        filter_strict_variables: Literal["true", "false"] | Omit = omit,
         page_cursor: str | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -670,10 +766,32 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EmailTemplate, AsyncEmailCursorPagination[EmailTemplate]]:
-        """
-        Lists templates sorted newest first by `created_at desc, id desc`.
+        """Lists templates sorted newest first by `created_at desc, id desc`.
+
+        Optional
+        filters match a case-insensitive literal name/subject query, stored body
+        presence, and the `strict_variables` and `autoescape` settings. Filters
+        intersect, remain scoped to the authenticated account, and apply before cursor
+        pagination. Invalid filter names or values return 400.
 
         Args:
+          filter_autoescape: Exact match on the template's `autoescape` option. Only the exact query strings
+              `true` and `false` are accepted; other values, including blank, return 400.
+
+          filter_content_type: Matches templates by stored body presence. `html_and_text` requires both an HTML
+              and text body; `html_only` requires HTML and no text body; `text_only` requires
+              text and no HTML body; `no_body` requires neither. `null` and exactly `""` count
+              as absent; whitespace-only strings count as content. An empty or unsupported
+              value returns a 400 response.
+
+          filter_query: Case-insensitive literal substring match over the template `name` or stored
+              `subject` only; bodies are never searched. `%`, `_`, and `\\`` are literal
+              characters with no wildcard meaning. A blank value is treated as omitted.
+
+          filter_strict_variables: Exact match on the template's `strict_variables` option. Only the exact query
+              strings `true` and `false` are accepted; other values, including blank,
+              return 400.
+
           page_cursor: Opaque URL-safe Base64 cursor returned by a previous list response.
 
           page_size: Number of results to return. Defaults to 25; maximum is 100. Invalid values are
@@ -697,6 +815,10 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_autoescape": filter_autoescape,
+                        "filter_content_type": filter_content_type,
+                        "filter_query": filter_query,
+                        "filter_strict_variables": filter_strict_variables,
                         "page_cursor": page_cursor,
                         "page_size": page_size,
                     },
@@ -801,7 +923,8 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
         variable_schema: Optional[Dict[str, email_template_replace_params.VariableSchema]] | Omit = omit,
-        variables: SequenceNotStr[str] | Omit = omit,
+        variables: Optional[SequenceNotStr[str]] | Omit = omit,
+        variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -828,6 +951,17 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
           variable_schema: Structured variable requirements. Required variables cannot define defaults;
               invalid combinations return 422. Set to `null` to clear the schema.
 
+          variables: Persisted variable names. In `automatic` mode a non-null array is rejected; in
+              `explicit` mode this is the exact manual array and each item is limited to 255
+              Unicode code points.
+
+          variables_mode: Controls how `variables` is maintained. Setting `automatic` re-extracts
+              immediately from the effective subject, HTML body, and text body and rejects a
+              simultaneous non-null array. Setting `explicit` requires the exact non-null
+              array, including valid `[]`. With the mode omitted, a non-null array selects
+              explicit mode, null selects automatic mode, and omitting both fields preserves
+              the current mode. Source-content changes re-extract only in automatic mode.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -850,6 +984,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
                     "text_body": text_body,
                     "variable_schema": variable_schema,
                     "variables": variables,
+                    "variables_mode": variables_mode,
                 },
                 email_template_replace_params.EmailTemplateReplaceParams,
             ),

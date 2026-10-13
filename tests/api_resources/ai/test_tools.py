@@ -41,9 +41,14 @@ class TestTools:
             invite={"foo": "bar"},
             pay={
                 "connector_name": "connector_name",
+                "connector_parameters": {
+                    "campaignid": "bar",
+                    "customer_ref": "bar",
+                },
                 "currency": "currency",
                 "description": "description",
                 "payment_method": "payment_method",
+                "valid_card_types": ["visa", "mastercard"],
             },
             retrieval={"foo": "bar"},
             timeout_ms=0,
@@ -153,9 +158,14 @@ class TestTools:
             invite={"foo": "bar"},
             pay={
                 "connector_name": "connector_name",
+                "connector_parameters": {
+                    "campaignid": "bar",
+                    "customer_ref": "bar",
+                },
                 "currency": "currency",
                 "description": "description",
                 "payment_method": "payment_method",
+                "valid_card_types": ["visa", "mastercard"],
             },
             retrieval={"foo": "bar"},
             timeout_ms=0,
@@ -317,9 +327,14 @@ class TestAsyncTools:
             invite={"foo": "bar"},
             pay={
                 "connector_name": "connector_name",
+                "connector_parameters": {
+                    "campaignid": "bar",
+                    "customer_ref": "bar",
+                },
                 "currency": "currency",
                 "description": "description",
                 "payment_method": "payment_method",
+                "valid_card_types": ["visa", "mastercard"],
             },
             retrieval={"foo": "bar"},
             timeout_ms=0,
@@ -429,9 +444,14 @@ class TestAsyncTools:
             invite={"foo": "bar"},
             pay={
                 "connector_name": "connector_name",
+                "connector_parameters": {
+                    "campaignid": "bar",
+                    "customer_ref": "bar",
+                },
                 "currency": "currency",
                 "description": "description",
                 "payment_method": "payment_method",
+                "valid_card_types": ["visa", "mastercard"],
             },
             retrieval={"foo": "bar"},
             timeout_ms=0,

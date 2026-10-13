@@ -28,7 +28,15 @@ class ActionTransferParams(TypedDict, total=False):
     `send_digits_on_answer` parameter takes precedence.
     """
 
-    answering_machine_detection: Literal["premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"]
+    answering_machine_detection: Literal[
+        "premium",
+        "premium_ios_call_screening_detection",
+        "detect",
+        "detect_beep",
+        "detect_words",
+        "greeting_end",
+        "disabled",
+    ]
     """Enables Answering Machine Detection.
 
     When a call is answered, Telnyx runs real-time detection to determine if it was
@@ -37,7 +45,16 @@ class ActionTransferParams(TypedDict, total=False):
     and a 'machine' is detected, you will receive another
     'call.machine.greeting.ended' webhook when the answering machine greeting ends
     with a beep or silence. If `detect_beep` is used, you will only receive
-    'call.machine.greeting.ended' if a beep is detected.
+    'call.machine.greeting.ended' if a beep is detected. If
+    `answering_machine_detection` is set to `premium_ios_call_screening_detection`,
+    Premium AMD runs with iOS Call Screening support: after an initial `machine`
+    result, Telnyx listens for the iOS call-screening prompt to end or for an Apple
+    Call Screening tone, sends `call.machine.premium.greeting.ended` with
+    `result=prompt_ended` or `call.machine.premium.call_screening.detected` with
+    `result=screening` respectively. When the Apple Call Screening tone is detected,
+    Premium AMD is restarted on the screened call and a
+    `call.machine.premium.detection.ended` webhook with the post-screening
+    classification follows.
     """
 
     answering_machine_detection_config: AnsweringMachineDetectionConfig
@@ -45,7 +62,8 @@ class ActionTransferParams(TypedDict, total=False):
     Optional configuration parameters to modify 'answering_machine_detection'
     performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
     parameters are applicable when `premium` is selected as
-    answering_machine_detection.
+    answering_machine_detection. `prompt_end_timeout_millis` is additionally
+    applicable when `premium_ios_call_screening_detection` is selected.
     """
 
     audio_url: str
@@ -294,7 +312,7 @@ class ActionTransferParams(TypedDict, total=False):
 
 class AnsweringMachineDetectionConfig(TypedDict, total=False):
     """
-    Optional configuration parameters to modify 'answering_machine_detection' performance. Only `total_analysis_time_millis` and `greeting_duration_millis` parameters are applicable when `premium` is selected as answering_machine_detection.
+    Optional configuration parameters to modify 'answering_machine_detection' performance. Only `total_analysis_time_millis` and `greeting_duration_millis` parameters are applicable when `premium` is selected as answering_machine_detection. `prompt_end_timeout_millis` is additionally applicable when `premium_ios_call_screening_detection` is selected.
     """
 
     after_greeting_silence_millis: int
@@ -386,6 +404,14 @@ class AnsweringMachineDetectionConfig(TypedDict, total=False):
 
     maximum_word_length_millis: int
     """If a single word lasts longer than this threshold, consider it a machine."""
+
+    prompt_end_timeout_millis: int
+    """
+    Maximum time Telnyx waits, in milliseconds, for the iOS call-screening prompt to
+    end after Premium AMD initially detects a `machine`. Used when
+    `answering_machine_detection` is `premium_ios_call_screening_detection`.
+    Defaults to 5000 milliseconds.
+    """
 
     silence_threshold: int
     """Minimum noise threshold for any analysis."""

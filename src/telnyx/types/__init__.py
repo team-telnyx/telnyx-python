@@ -300,6 +300,7 @@ from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_list_response import CommentListResponse as CommentListResponse
 from .credential_connection import CredentialConnection as CredentialConnection
 from .email_domain_response import EmailDomainResponse as EmailDomainResponse
+from .email_template_common import EmailTemplateCommon as EmailTemplateCommon
 from .fax_retrieve_response import FaxRetrieveResponse as FaxRetrieveResponse
 from .global_ip_list_params import GlobalIPListParams as GlobalIPListParams
 from .invoice_list_response import InvoiceListResponse as InvoiceListResponse
@@ -883,6 +884,7 @@ from .text_to_speech_list_voices_params import TextToSpeechListVoicesParams as T
 from .usage_report_get_options_response import UsageReportGetOptionsResponse as UsageReportGetOptionsResponse
 from .virtual_cross_connect_list_params import VirtualCrossConnectListParams as VirtualCrossConnectListParams
 from .voice_sdk_call_report_list_params import VoiceSDKCallReportListParams as VoiceSDKCallReportListParams
+from .whatsapp_waba_added_webhook_event import WhatsappWabaAddedWebhookEvent as WhatsappWabaAddedWebhookEvent
 from .wireguard_interface_create_params import WireguardInterfaceCreateParams as WireguardInterfaceCreateParams
 from .wireless_private_wireless_gateway import WirelessPrivateWirelessGateway as WirelessPrivateWirelessGateway
 from .alphanumeric_sender_id_list_params import AlphanumericSenderIDListParams as AlphanumericSenderIDListParams
@@ -1224,6 +1226,9 @@ from .authentication_provider_update_response import (
 from .call_control_application_outbound_param import (
     CallControlApplicationOutboundParam as CallControlApplicationOutboundParam,
 )
+from .call_conversation_created_webhook_event import (
+    CallConversationCreatedWebhookEvent as CallConversationCreatedWebhookEvent,
+)
 from .conference_participant_playback_started import (
     ConferenceParticipantPlaybackStarted as ConferenceParticipantPlaybackStarted,
 )
@@ -1551,6 +1556,9 @@ from .bulk_messaging_settings_update_phone_numbers import (
 from .call_ai_gather_partial_results_webhook_event import (
     CallAIGatherPartialResultsWebhookEvent as CallAIGatherPartialResultsWebhookEvent,
 )
+from .call_conversation_start_failed_webhook_event import (
+    CallConversationStartFailedWebhookEvent as CallConversationStartFailedWebhookEvent,
+)
 from .call_deepfake_detection_result_webhook_event import (
     CallDeepfakeDetectionResultWebhookEvent as CallDeepfakeDetectionResultWebhookEvent,
 )
@@ -1710,6 +1718,9 @@ from .porting_order_retrieve_allowed_foc_windows_response import (
 from .call_ai_gather_message_history_updated_webhook_event import (
     CallAIGatherMessageHistoryUpdatedWebhookEvent as CallAIGatherMessageHistoryUpdatedWebhookEvent,
 )
+from .call_machine_premium_detection_started_webhook_event import (
+    CallMachinePremiumDetectionStartedWebhookEvent as CallMachinePremiumDetectionStartedWebhookEvent,
+)
 from .managed_account_update_global_channel_limit_response import (
     ManagedAccountUpdateGlobalChannelLimitResponse as ManagedAccountUpdateGlobalChannelLimitResponse,
 )
@@ -1745,6 +1756,9 @@ from .well_known_retrieve_protected_resource_metadata_response import (
 )
 from .number_order_phone_number_update_requirement_group_params import (
     NumberOrderPhoneNumberUpdateRequirementGroupParams as NumberOrderPhoneNumberUpdateRequirementGroupParams,
+)
+from .call_machine_premium_call_screening_detected_webhook_event import (
+    CallMachinePremiumCallScreeningDetectedWebhookEvent as CallMachinePremiumCallScreeningDetectedWebhookEvent,
 )
 from .well_known_retrieve_authorization_server_metadata_response import (
     WellKnownRetrieveAuthorizationServerMetadataResponse as WellKnownRetrieveAuthorizationServerMetadataResponse,
