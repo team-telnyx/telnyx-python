@@ -61,6 +61,12 @@ class TestAssistants:
                     "timeout_ms": 30000,
                 }
             ],
+            avatar_settings={
+                "avatar_id": "elena",
+                "background_id": "office",
+                "model": "foxtrot-1",
+                "provider": "telnyx",
+            },
             conversation_flow={
                 "nodes": [
                     {
@@ -747,6 +753,12 @@ class TestAssistants:
                     "timeout_ms": 30000,
                 }
             ],
+            avatar_settings={
+                "avatar_id": "elena",
+                "background_id": "office",
+                "model": "foxtrot-1",
+                "provider": "telnyx",
+            },
             conversation_flow={
                 "nodes": [
                     {
@@ -1851,6 +1863,12 @@ class TestAsyncAssistants:
                     "timeout_ms": 30000,
                 }
             ],
+            avatar_settings={
+                "avatar_id": "elena",
+                "background_id": "office",
+                "model": "foxtrot-1",
+                "provider": "telnyx",
+            },
             conversation_flow={
                 "nodes": [
                     {
@@ -2537,6 +2555,12 @@ class TestAsyncAssistants:
                     "timeout_ms": 30000,
                 }
             ],
+            avatar_settings={
+                "avatar_id": "elena",
+                "background_id": "office",
+                "model": "foxtrot-1",
+                "provider": "telnyx",
+            },
             conversation_flow={
                 "nodes": [
                     {
