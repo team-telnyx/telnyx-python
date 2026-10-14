@@ -115,12 +115,26 @@ class ChatResource(SyncAPIResource):
               returns the log probabilities of each output token returned in the `content` of
               `message`.
 
-          max_tokens: Maximum number of completion (output) tokens the model may generate per request.
-              Defaults to 8192 when omitted or `null`. Set a higher value to allow longer
-              completions. The model's `max_completion_tokens` metadata (see
-              `GET /ai/models`), when set, caps both the default and any larger explicit
-              value. Reasoning models consume this budget across reasoning and answer tokens
-              combined.
+          max_tokens: Maximum number of completion (output) tokens, including reasoning and answer
+              tokens combined. An omitted or null limit defaults to 8192 unless the model is
+              excluded from that default; excluded models leave the limit to the serving
+              engine. Explicit values and applied defaults are clamped to the model's
+              max_completion_tokens metadata when that ceiling is set (see GET
+              /v2/ai/openai/models). An omitted limit on an excluded model remains unset even
+              when metadata declares a ceiling. Input and output together must fit the model's
+              context window. Set an explicit limit when a bounded generation budget is
+              required. For current Telnyx-hosted models, omitted or null limits default to
+              8192 for `zai-org/GLM-5.3`, `zai-org/GLM-5.3-Flash` and
+              `deepseek-ai/DeepSeek-V4.1-Flash`. The hosted exclusions are
+              `moonshotai/Kimi-K3`, `moonshotai/Kimi-K2.6`, `moonshotai/Kimi-K2.5`,
+              `zai-org/GLM-5.2`, `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M3-MXFP8`,
+              `MiniMaxAI/MiniMax-M2.7`, `Qwen/Qwen3.8-27B`, `Qwen/Qwen3-235B-A22B`,
+              `deepseek-ai/DeepSeek-V4-Flash-0731`, `meta-llama/Llama-3.3-70B-Instruct`,
+              `meta-llama/Meta-Llama-3.1-70B-Instruct`,
+              `meta-llama/Meta-Llama-3.1-8B-Instruct` and `google/gemma-2b-it`. Legacy
+              external and fine-tuned model IDs can also bypass the default; model discovery
+              reports completion ceilings, not whether this default applies. Set an explicit
+              limit for predictable behavior across models.
 
           min_p: This is an alternative to `top_p` that
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be
@@ -329,12 +343,26 @@ class AsyncChatResource(AsyncAPIResource):
               returns the log probabilities of each output token returned in the `content` of
               `message`.
 
-          max_tokens: Maximum number of completion (output) tokens the model may generate per request.
-              Defaults to 8192 when omitted or `null`. Set a higher value to allow longer
-              completions. The model's `max_completion_tokens` metadata (see
-              `GET /ai/models`), when set, caps both the default and any larger explicit
-              value. Reasoning models consume this budget across reasoning and answer tokens
-              combined.
+          max_tokens: Maximum number of completion (output) tokens, including reasoning and answer
+              tokens combined. An omitted or null limit defaults to 8192 unless the model is
+              excluded from that default; excluded models leave the limit to the serving
+              engine. Explicit values and applied defaults are clamped to the model's
+              max_completion_tokens metadata when that ceiling is set (see GET
+              /v2/ai/openai/models). An omitted limit on an excluded model remains unset even
+              when metadata declares a ceiling. Input and output together must fit the model's
+              context window. Set an explicit limit when a bounded generation budget is
+              required. For current Telnyx-hosted models, omitted or null limits default to
+              8192 for `zai-org/GLM-5.3`, `zai-org/GLM-5.3-Flash` and
+              `deepseek-ai/DeepSeek-V4.1-Flash`. The hosted exclusions are
+              `moonshotai/Kimi-K3`, `moonshotai/Kimi-K2.6`, `moonshotai/Kimi-K2.5`,
+              `zai-org/GLM-5.2`, `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M3-MXFP8`,
+              `MiniMaxAI/MiniMax-M2.7`, `Qwen/Qwen3.8-27B`, `Qwen/Qwen3-235B-A22B`,
+              `deepseek-ai/DeepSeek-V4-Flash-0731`, `meta-llama/Llama-3.3-70B-Instruct`,
+              `meta-llama/Meta-Llama-3.1-70B-Instruct`,
+              `meta-llama/Meta-Llama-3.1-8B-Instruct` and `google/gemma-2b-it`. Legacy
+              external and fine-tuned model IDs can also bypass the default; model discovery
+              reports completion ceilings, not whether this default applies. Set an explicit
+              limit for predictable behavior across models.
 
           min_p: This is an alternative to `top_p` that
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be

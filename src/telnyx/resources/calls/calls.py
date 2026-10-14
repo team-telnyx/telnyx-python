@@ -167,10 +167,18 @@ class CallsResource(SyncAPIResource):
         include a `call_leg_id` which can be used to correlate the command with
         subsequent webhooks.
 
+        To place the call with an AI assistant from the start, include `assistant.id`
+        and any per-call overrides in the `assistant` object; Telnyx attempts to warm up
+        the assistant before placing the call and starts it automatically when the
+        called party answers.
+
         **Expected Webhooks:**
 
         - `call.initiated`
         - `call.answered` or `call.hangup`
+        - `call.conversation.created` when the requested assistant conversation is
+          created, or `call.conversation.start_failed` when it could not be started
+          after the called party answered
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.machine.detection.ended` if `answering_machine_detection` was requested
         - `call.machine.greeting.ended` if `answering_machine_detection` was requested
@@ -686,10 +694,18 @@ class AsyncCallsResource(AsyncAPIResource):
         include a `call_leg_id` which can be used to correlate the command with
         subsequent webhooks.
 
+        To place the call with an AI assistant from the start, include `assistant.id`
+        and any per-call overrides in the `assistant` object; Telnyx attempts to warm up
+        the assistant before placing the call and starts it automatically when the
+        called party answers.
+
         **Expected Webhooks:**
 
         - `call.initiated`
         - `call.answered` or `call.hangup`
+        - `call.conversation.created` when the requested assistant conversation is
+          created, or `call.conversation.start_failed` when it could not be started
+          after the called party answered
         - `call.hold` and `call.unhold` if the call is held/unheld
         - `call.machine.detection.ended` if `answering_machine_detection` was requested
         - `call.machine.greeting.ended` if `answering_machine_detection` was requested

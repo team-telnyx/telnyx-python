@@ -194,6 +194,7 @@ if TYPE_CHECKING:
         mobile_push_credentials,
         outbound_voice_profiles,
         regulatory_requirements,
+        sip_registration_status,
         traffic_policy_profiles,
         authentication_providers,
         customer_service_records,
@@ -356,6 +357,7 @@ if TYPE_CHECKING:
     from .resources.mobile_push_credentials import MobilePushCredentialsResource, AsyncMobilePushCredentialsResource
     from .resources.outbound_voice_profiles import OutboundVoiceProfilesResource, AsyncOutboundVoiceProfilesResource
     from .resources.regulatory_requirements import RegulatoryRequirementsResource, AsyncRegulatoryRequirementsResource
+    from .resources.sip_registration_status import SipRegistrationStatusResource, AsyncSipRegistrationStatusResource
     from .resources.traffic_policy_profiles import TrafficPolicyProfilesResource, AsyncTrafficPolicyProfilesResource
     from .resources.authentication_providers import (
         AuthenticationProvidersResource,
@@ -1947,6 +1949,13 @@ class Telnyx(SyncAPIClient):
         return LlmTokenGatewayResource(self)
 
     @cached_property
+    def sip_registration_status(self) -> SipRegistrationStatusResource:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import SipRegistrationStatusResource
+
+        return SipRegistrationStatusResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3522,6 +3531,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncLlmTokenGatewayResource(self)
 
     @cached_property
+    def sip_registration_status(self) -> AsyncSipRegistrationStatusResource:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResource
+
+        return AsyncSipRegistrationStatusResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -5032,6 +5048,13 @@ class TelnyxWithRawResponse:
 
         return LlmTokenGatewayResourceWithRawResponse(self._client.llm_token_gateway)
 
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import SipRegistrationStatusResourceWithRawResponse
+
+        return SipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6415,6 +6438,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.llm_token_gateway import AsyncLlmTokenGatewayResourceWithRawResponse
 
         return AsyncLlmTokenGatewayResourceWithRawResponse(self._client.llm_token_gateway)
+
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
+
+        return AsyncSipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
 
 
 class TelnyxWithStreamedResponse:
@@ -7801,6 +7831,13 @@ class TelnyxWithStreamedResponse:
         from .resources.llm_token_gateway import LlmTokenGatewayResourceWithStreamingResponse
 
         return LlmTokenGatewayResourceWithStreamingResponse(self._client.llm_token_gateway)
+
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
+
+        return SipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9235,6 +9272,15 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.llm_token_gateway import AsyncLlmTokenGatewayResourceWithStreamingResponse
 
         return AsyncLlmTokenGatewayResourceWithStreamingResponse(self._client.llm_token_gateway)
+
+    @cached_property
+    def sip_registration_status(
+        self,
+    ) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithStreamingResponse
+
+        return AsyncSipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
 
 
 Client = Telnyx

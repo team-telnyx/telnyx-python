@@ -37,7 +37,6 @@ class TestPhoneNumbers:
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             page_number=1,
             page_size=20,
-            status="submitted",
         )
         assert_matches_type(SyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 
@@ -212,7 +211,6 @@ class TestAsyncPhoneNumbers:
             dir_id="16635d38-75a6-4481-82e8-69af60e05011",
             page_number=1,
             page_size=20,
-            status="submitted",
         )
         assert_matches_type(AsyncDefaultFlatPagination[DirPhoneNumber], phone_number, path=["response"])
 

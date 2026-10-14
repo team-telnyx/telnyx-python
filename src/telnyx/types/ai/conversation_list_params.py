@@ -25,6 +25,15 @@ class ConversationListParams(TypedDict, total=False):
     metadata_assistant_id: Annotated[str, PropertyInfo(alias="metadata->assistant_id")]
     """Filter by assistant ID (e.g., `metadata->assistant_id=eq.assistant-123`)"""
 
+    metadata_assistant_version_id: Annotated[str, PropertyInfo(alias="metadata->assistant_version_id")]
+    """
+    Filter by assistant version ID (e.g.,
+    `metadata->assistant_version_id=eq.20250812T114318034399`). The version that
+    handled the conversation is stored in metadata when the conversation starts;
+    conversations created before this field was tracked, or that never resolved a
+    version, have no `assistant_version_id` and do not match this filter.
+    """
+
     metadata_call_control_id: Annotated[str, PropertyInfo(alias="metadata->call_control_id")]
     """Filter by call control ID (e.g., `metadata->call_control_id=eq.v3:123`)"""
 

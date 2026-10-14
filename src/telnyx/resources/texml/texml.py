@@ -132,10 +132,11 @@ class TexmlResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlInitiateAICallResponse:
-        """Initiate an outbound AI call with warm-up support.
-
-        Validates parameters, builds
-        an internal TeXML with an AI Assistant configuration, encodes instructions into
+        """
+        Initiate an outbound AI call with warm-up support: Telnyx attempts to warm up
+        the assistant identified by `AIAssistantId` before placing the call and starts
+        it automatically when the called party answers. Validates parameters, builds an
+        internal TeXML with an AI Assistant configuration, encodes instructions into
         client state, and calls the dial API. The Twiml, Texml, and Url parameters are
         not allowed and will result in a 422 error.
 
@@ -151,7 +152,9 @@ class TexmlResource(SyncAPIResource):
         when those features are enabled.
 
         Args:
-          ai_assistant_id: The ID of the AI assistant to use for the call.
+          ai_assistant_id: The ID of the AI assistant to use for the call. Telnyx attempts to warm up this
+              assistant before the call is placed and starts it automatically when the called
+              party answers.
 
           from_: The phone number of the party initiating the call. Phone numbers are formatted
               with a `+` and country code.
@@ -505,10 +508,11 @@ class AsyncTexmlResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlInitiateAICallResponse:
-        """Initiate an outbound AI call with warm-up support.
-
-        Validates parameters, builds
-        an internal TeXML with an AI Assistant configuration, encodes instructions into
+        """
+        Initiate an outbound AI call with warm-up support: Telnyx attempts to warm up
+        the assistant identified by `AIAssistantId` before placing the call and starts
+        it automatically when the called party answers. Validates parameters, builds an
+        internal TeXML with an AI Assistant configuration, encodes instructions into
         client state, and calls the dial API. The Twiml, Texml, and Url parameters are
         not allowed and will result in a 422 error.
 
@@ -524,7 +528,9 @@ class AsyncTexmlResource(AsyncAPIResource):
         when those features are enabled.
 
         Args:
-          ai_assistant_id: The ID of the AI assistant to use for the call.
+          ai_assistant_id: The ID of the AI assistant to use for the call. Telnyx attempts to warm up this
+              assistant before the call is placed and starts it automatically when the called
+              party answers.
 
           from_: The phone number of the party initiating the call. Phone numbers are formatted
               with a `+` and country code.

@@ -18,9 +18,3 @@ class PhoneNumberListParams(TypedDict, total=False):
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Items per page. Maximum 250; values above are clamped to 250."""
-
-    status: "DirPhoneNumberStatus"
-    """Filter by phone-number status."""
-
-
-from .dir_phone_number_status import DirPhoneNumberStatus

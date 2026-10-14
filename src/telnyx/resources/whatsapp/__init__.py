@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .signup import (
+    SignupResource,
+    AsyncSignupResource,
+    SignupResourceWithRawResponse,
+    AsyncSignupResourceWithRawResponse,
+    SignupResourceWithStreamingResponse,
+    AsyncSignupResourceWithStreamingResponse,
+)
 from .whatsapp import (
     WhatsappResource,
     AsyncWhatsappResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncUserDataResourceWithRawResponse",
     "UserDataResourceWithStreamingResponse",
     "AsyncUserDataResourceWithStreamingResponse",
+    "SignupResource",
+    "AsyncSignupResource",
+    "SignupResourceWithRawResponse",
+    "AsyncSignupResourceWithRawResponse",
+    "SignupResourceWithStreamingResponse",
+    "AsyncSignupResourceWithStreamingResponse",
     "WhatsappResource",
     "AsyncWhatsappResource",
     "WhatsappResourceWithRawResponse",

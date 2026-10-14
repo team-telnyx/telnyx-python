@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
+from .signup_list_params import SignupListParams as SignupListParams
 from .template_list_params import TemplateListParams as TemplateListParams
 from .template_create_params import TemplateCreateParams as TemplateCreateParams
 from .phone_number_get_params import PhoneNumberGetParams as PhoneNumberGetParams
@@ -35,12 +36,14 @@ from .phone_number_retrieve_conversation_window_params import (
 
 if TYPE_CHECKING:
     from .whatsapp_user_data import WhatsappUserData as WhatsappUserData
+    from .signup_list_response import SignupListResponse as SignupListResponse
     from .template_create_response import TemplateCreateResponse as TemplateCreateResponse
     from .phone_number_get_response import PhoneNumberGetResponse as PhoneNumberGetResponse
     from .user_data_update_response import UserDataUpdateResponse as UserDataUpdateResponse
     from .phone_number_list_response import PhoneNumberListResponse as PhoneNumberListResponse
     from .user_data_retrieve_response import UserDataRetrieveResponse as UserDataRetrieveResponse
     from .business_account_list_response import BusinessAccountListResponse as BusinessAccountListResponse
+    from .signup_retrieve_status_response import SignupRetrieveStatusResponse as SignupRetrieveStatusResponse
     from .business_account_retrieve_response import BusinessAccountRetrieveResponse as BusinessAccountRetrieveResponse
     from .phone_number_retrieve_phone_number_response import (
         PhoneNumberRetrievePhoneNumberResponse as PhoneNumberRetrievePhoneNumberResponse,
@@ -91,4 +94,12 @@ def __getattr__(name: str) -> Any:
         from .user_data_update_response import UserDataUpdateResponse
 
         return UserDataUpdateResponse
+    if name == "SignupListResponse":
+        from .signup_list_response import SignupListResponse
+
+        return SignupListResponse
+    if name == "SignupRetrieveStatusResponse":
+        from .signup_retrieve_status_response import SignupRetrieveStatusResponse
+
+        return SignupRetrieveStatusResponse
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

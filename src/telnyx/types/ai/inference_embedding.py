@@ -23,6 +23,7 @@ from .delegation_settings import DelegationSettings
 from .assistant_a2_a_agent import AssistantA2AAgent
 from .assistant_mcp_server import AssistantMcpServer
 from .assistant_integration import AssistantIntegration
+from .telnyx_avatar_settings import TelnyxAvatarSettings
 from .transcription_settings import TranscriptionSettings
 from .post_conversation_settings import PostConversationSettings
 from .inference_embedding_voice_settings import InferenceEmbeddingVoiceSettings
@@ -66,6 +67,13 @@ class InferenceEmbedding(BaseModel):
     assistant, and a 6 second budget for all card fetches combined. An agent whose
     card cannot be fetched costs the assistant that capability for the conversation;
     it does not fail the call.
+    """
+
+    avatar_settings: Optional[TelnyxAvatarSettings] = None
+    """**Beta:** Configuration for the Telnyx open-source avatar provider.
+
+    The launch catalog supports six avatars and office, studio, or reception
+    backgrounds.
     """
 
     conversation_flow: Optional[ConversationFlow] = None

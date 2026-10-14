@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .signup import (
+    SignupResource,
+    AsyncSignupResource,
+    SignupResourceWithRawResponse,
+    AsyncSignupResourceWithRawResponse,
+    SignupResourceWithStreamingResponse,
+    AsyncSignupResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from .templates import (
     TemplatesResource,
@@ -62,6 +70,10 @@ class WhatsappResource(SyncAPIResource):
         return UserDataResource(self._client)
 
     @cached_property
+    def signup(self) -> SignupResource:
+        return SignupResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> WhatsappResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -101,6 +113,10 @@ class AsyncWhatsappResource(AsyncAPIResource):
     def user_data(self) -> AsyncUserDataResource:
         """Manage Whatsapp business accounts"""
         return AsyncUserDataResource(self._client)
+
+    @cached_property
+    def signup(self) -> AsyncSignupResource:
+        return AsyncSignupResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWhatsappResourceWithRawResponse:
@@ -146,6 +162,10 @@ class WhatsappResourceWithRawResponse:
         """Manage Whatsapp business accounts"""
         return UserDataResourceWithRawResponse(self._whatsapp.user_data)
 
+    @cached_property
+    def signup(self) -> SignupResourceWithRawResponse:
+        return SignupResourceWithRawResponse(self._whatsapp.signup)
+
 
 class AsyncWhatsappResourceWithRawResponse:
     def __init__(self, whatsapp: AsyncWhatsappResource) -> None:
@@ -170,6 +190,10 @@ class AsyncWhatsappResourceWithRawResponse:
     def user_data(self) -> AsyncUserDataResourceWithRawResponse:
         """Manage Whatsapp business accounts"""
         return AsyncUserDataResourceWithRawResponse(self._whatsapp.user_data)
+
+    @cached_property
+    def signup(self) -> AsyncSignupResourceWithRawResponse:
+        return AsyncSignupResourceWithRawResponse(self._whatsapp.signup)
 
 
 class WhatsappResourceWithStreamingResponse:
@@ -196,6 +220,10 @@ class WhatsappResourceWithStreamingResponse:
         """Manage Whatsapp business accounts"""
         return UserDataResourceWithStreamingResponse(self._whatsapp.user_data)
 
+    @cached_property
+    def signup(self) -> SignupResourceWithStreamingResponse:
+        return SignupResourceWithStreamingResponse(self._whatsapp.signup)
+
 
 class AsyncWhatsappResourceWithStreamingResponse:
     def __init__(self, whatsapp: AsyncWhatsappResource) -> None:
@@ -220,3 +248,7 @@ class AsyncWhatsappResourceWithStreamingResponse:
     def user_data(self) -> AsyncUserDataResourceWithStreamingResponse:
         """Manage Whatsapp business accounts"""
         return AsyncUserDataResourceWithStreamingResponse(self._whatsapp.user_data)
+
+    @cached_property
+    def signup(self) -> AsyncSignupResourceWithStreamingResponse:
+        return AsyncSignupResourceWithStreamingResponse(self._whatsapp.signup)

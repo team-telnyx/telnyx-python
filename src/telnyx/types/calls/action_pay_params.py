@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Union
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -45,6 +45,15 @@ class ActionPayParams(TypedDict, total=False):
     metadata: Dict[str, object]
     """Metadata forwarded to the Pay connector."""
 
+    min_postal_code_length: int
+    """
+    Minimum number of digits the caller must enter when collecting a credit-card
+    billing postal code. Applies only when `postal_code` is `true` or `"true"` and
+    no `payment_token` is supplied. The default is 1. The maximum number of digits
+    collected is the greater of 10 and this value. This does not validate the length
+    of a postal code supplied directly in `postal_code`.
+    """
+
     parameters: Dict[str, object]
     """Additional parameters forwarded to the Pay connector."""
 
@@ -53,6 +62,18 @@ class ActionPayParams(TypedDict, total=False):
 
     payment_token: str
     """Existing payment token. When supplied, payment-detail collection is skipped."""
+
+    postal_code: Union[str, bool]
+    """
+    Controls billing postal code collection for credit-card payments when no
+    `payment_token` is supplied. Set to `true` or the string `"true"` (the default)
+    to prompt the caller for a postal code. Set to `false` or the string `"false"`
+    to skip the postal code prompt without supplying a postal code to the payment
+    connector. Supply any other non-empty string, such as `"90210"`, to use that
+    postal code without prompting. Empty or whitespace-only strings are rejected.
+    This option does not affect ACH debit payments or payments using an existing
+    token.
+    """
 
     prompts: Prompts
     """Custom text-to-speech prompts keyed by payment collection step."""

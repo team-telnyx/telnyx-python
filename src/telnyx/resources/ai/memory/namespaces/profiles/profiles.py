@@ -39,12 +39,14 @@ from ......types.ai.memory.namespaces import (
     profile_list_params,
     profile_ingest_params,
     profile_recall_params,
+    profile_preview_params,
     profile_remember_params,
 )
 from ......types.ai.memory.namespaces.profile_list_response import ProfileListResponse
 from ......types.ai.memory.namespaces.profile_delete_response import ProfileDeleteResponse
 from ......types.ai.memory.namespaces.profile_ingest_response import ProfileIngestResponse
 from ......types.ai.memory.namespaces.profile_recall_response import ProfileRecallResponse
+from ......types.ai.memory.namespaces.profile_preview_response import ProfilePreviewResponse
 from ......types.ai.memory.namespaces.profile_remember_response import ProfileRememberResponse
 from ......types.ai.memory.namespaces.profile_retrieve_summary_response import ProfileRetrieveSummaryResponse
 
@@ -291,6 +293,63 @@ class ProfilesResource(SyncAPIResource):
                 query=maybe_transform({"session_id": session_id}, profile_ingest_params.ProfileIngestParams),
             ),
             cast_to=ProfileIngestResponse,
+        )
+
+    def preview(
+        self,
+        profile_id: str,
+        *,
+        namespace: str,
+        instructions: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProfilePreviewResponse:
+        """
+        Try a candidate note on one profile and see how that profile's summary would
+        read under it, without saving the note and without touching the stored summary.
+        Composes the same source query the apply path
+        (`PATCH /ai/memory/namespaces/{namespace}/settings`) would use, so a preview
+        cannot drift from what saving the note would produce. Reads the candidate alone
+        -- the namespace's current instructions and the profile's stored summary are
+        neither read nor replaced. Bounded at 120 seconds: the summary is generated on
+        the spot rather than read from a stored one. Nothing about the request is
+        stored.
+
+        Args:
+          namespace: The namespace. `default` exists for every organization.
+
+          instructions: The candidate note to try. `null`, empty, or whitespace-only previews the
+              neutral default -- the summary a profile returns to when instructions are
+              cleared. Capped at 2000 characters, the same cap `PATCH /settings` applies on
+              save; a longer note is refused with `422` before anything is generated.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
+        if not profile_id:
+            raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
+        return self._post(
+            path_template(
+                "/ai/memory/namespaces/{namespace}/profiles/{profile_id}/summary/preview",
+                namespace=namespace,
+                profile_id=profile_id,
+            ),
+            body=maybe_transform({"instructions": instructions}, profile_preview_params.ProfilePreviewParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ProfilePreviewResponse,
         )
 
     def recall(
@@ -685,6 +744,65 @@ class AsyncProfilesResource(AsyncAPIResource):
             cast_to=ProfileIngestResponse,
         )
 
+    async def preview(
+        self,
+        profile_id: str,
+        *,
+        namespace: str,
+        instructions: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProfilePreviewResponse:
+        """
+        Try a candidate note on one profile and see how that profile's summary would
+        read under it, without saving the note and without touching the stored summary.
+        Composes the same source query the apply path
+        (`PATCH /ai/memory/namespaces/{namespace}/settings`) would use, so a preview
+        cannot drift from what saving the note would produce. Reads the candidate alone
+        -- the namespace's current instructions and the profile's stored summary are
+        neither read nor replaced. Bounded at 120 seconds: the summary is generated on
+        the spot rather than read from a stored one. Nothing about the request is
+        stored.
+
+        Args:
+          namespace: The namespace. `default` exists for every organization.
+
+          instructions: The candidate note to try. `null`, empty, or whitespace-only previews the
+              neutral default -- the summary a profile returns to when instructions are
+              cleared. Capped at 2000 characters, the same cap `PATCH /settings` applies on
+              save; a longer note is refused with `422` before anything is generated.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
+        if not profile_id:
+            raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
+        return await self._post(
+            path_template(
+                "/ai/memory/namespaces/{namespace}/profiles/{profile_id}/summary/preview",
+                namespace=namespace,
+                profile_id=profile_id,
+            ),
+            body=await async_maybe_transform(
+                {"instructions": instructions}, profile_preview_params.ProfilePreviewParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ProfilePreviewResponse,
+        )
+
     async def recall(
         self,
         profile_id: str,
@@ -846,6 +964,9 @@ class ProfilesResourceWithRawResponse:
         self.ingest = to_raw_response_wrapper(
             profiles.ingest,
         )
+        self.preview = to_raw_response_wrapper(
+            profiles.preview,
+        )
         self.recall = to_raw_response_wrapper(
             profiles.recall,
         )
@@ -879,6 +1000,9 @@ class AsyncProfilesResourceWithRawResponse:
         )
         self.ingest = async_to_raw_response_wrapper(
             profiles.ingest,
+        )
+        self.preview = async_to_raw_response_wrapper(
+            profiles.preview,
         )
         self.recall = async_to_raw_response_wrapper(
             profiles.recall,
@@ -914,6 +1038,9 @@ class ProfilesResourceWithStreamingResponse:
         self.ingest = to_streamed_response_wrapper(
             profiles.ingest,
         )
+        self.preview = to_streamed_response_wrapper(
+            profiles.preview,
+        )
         self.recall = to_streamed_response_wrapper(
             profiles.recall,
         )
@@ -947,6 +1074,9 @@ class AsyncProfilesResourceWithStreamingResponse:
         )
         self.ingest = async_to_streamed_response_wrapper(
             profiles.ingest,
+        )
+        self.preview = async_to_streamed_response_wrapper(
+            profiles.preview,
         )
         self.recall = async_to_streamed_response_wrapper(
             profiles.recall,

@@ -14,6 +14,7 @@ from telnyx.types.enterprises.reputation import (
     NumberRefreshResponse,
     ReputationPhoneNumber,
     ReputationPhoneNumberList,
+    NumberRetrieveOwnershipResponse,
     ReputationPhoneNumberWithReputation,
 )
 
@@ -98,8 +99,10 @@ class TestNumbers:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         number = client.enterprises.reputation.numbers.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            filter_ownership_status="verified",
             filter_phone_number_contains="+16035551234",
             filter_phone_number_eq="+16035551234",
+            filter_source="external",
             page_number=1,
             page_size=10,
         )
@@ -239,6 +242,74 @@ class TestNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_ownership_confirm(self, client: Telnyx) -> None:
+        number = client.enterprises.reputation.numbers.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+        )
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_ownership_confirm_with_all_params(self, client: Telnyx) -> None:
+        number = client.enterprises.reputation.numbers.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+            evidence_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
+        )
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_ownership_confirm(self, client: Telnyx) -> None:
+        response = client.enterprises.reputation.numbers.with_raw_response.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        number = response.parse()
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_ownership_confirm(self, client: Telnyx) -> None:
+        with client.enterprises.reputation.numbers.with_streaming_response.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            number = response.parse()
+            assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_ownership_confirm(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
+            client.enterprises.reputation.numbers.with_raw_response.ownership_confirm(
+                phone_number="+19493253498",
+                enterprise_id="",
+                still_own=True,
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
+            client.enterprises.reputation.numbers.with_raw_response.ownership_confirm(
+                phone_number="",
+                enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+                still_own=True,
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_refresh(self, client: Telnyx) -> None:
         number = client.enterprises.reputation.numbers.refresh(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
@@ -281,6 +352,58 @@ class TestNumbers:
             client.enterprises.reputation.numbers.with_raw_response.refresh(
                 enterprise_id="",
                 phone_numbers=["+19493253498"],
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_ownership(self, client: Telnyx) -> None:
+        number = client.enterprises.reputation.numbers.retrieve_ownership(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+        )
+        assert_matches_type(NumberRetrieveOwnershipResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_ownership(self, client: Telnyx) -> None:
+        response = client.enterprises.reputation.numbers.with_raw_response.retrieve_ownership(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        number = response.parse()
+        assert_matches_type(NumberRetrieveOwnershipResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_ownership(self, client: Telnyx) -> None:
+        with client.enterprises.reputation.numbers.with_streaming_response.retrieve_ownership(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            number = response.parse()
+            assert_matches_type(NumberRetrieveOwnershipResponse, number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_ownership(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
+            client.enterprises.reputation.numbers.with_raw_response.retrieve_ownership(
+                phone_number="+19493253498",
+                enterprise_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
+            client.enterprises.reputation.numbers.with_raw_response.retrieve_ownership(
+                phone_number="",
+                enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             )
 
 
@@ -364,8 +487,10 @@ class TestAsyncNumbers:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         number = await async_client.enterprises.reputation.numbers.list(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            filter_ownership_status="verified",
             filter_phone_number_contains="+16035551234",
             filter_phone_number_eq="+16035551234",
+            filter_source="external",
             page_number=1,
             page_size=10,
         )
@@ -505,6 +630,74 @@ class TestAsyncNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_ownership_confirm(self, async_client: AsyncTelnyx) -> None:
+        number = await async_client.enterprises.reputation.numbers.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+        )
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_ownership_confirm_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        number = await async_client.enterprises.reputation.numbers.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+            evidence_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
+        )
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_ownership_confirm(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.enterprises.reputation.numbers.with_raw_response.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        number = await response.parse()
+        assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_ownership_confirm(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.enterprises.reputation.numbers.with_streaming_response.ownership_confirm(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            still_own=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            number = await response.parse()
+            assert_matches_type(ReputationPhoneNumberWithReputation, number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_ownership_confirm(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
+            await async_client.enterprises.reputation.numbers.with_raw_response.ownership_confirm(
+                phone_number="+19493253498",
+                enterprise_id="",
+                still_own=True,
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
+            await async_client.enterprises.reputation.numbers.with_raw_response.ownership_confirm(
+                phone_number="",
+                enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+                still_own=True,
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_method_refresh(self, async_client: AsyncTelnyx) -> None:
         number = await async_client.enterprises.reputation.numbers.refresh(
             enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
@@ -547,4 +740,56 @@ class TestAsyncNumbers:
             await async_client.enterprises.reputation.numbers.with_raw_response.refresh(
                 enterprise_id="",
                 phone_numbers=["+19493253498"],
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_ownership(self, async_client: AsyncTelnyx) -> None:
+        number = await async_client.enterprises.reputation.numbers.retrieve_ownership(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+        )
+        assert_matches_type(NumberRetrieveOwnershipResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_ownership(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.enterprises.reputation.numbers.with_raw_response.retrieve_ownership(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        number = await response.parse()
+        assert_matches_type(NumberRetrieveOwnershipResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_ownership(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.enterprises.reputation.numbers.with_streaming_response.retrieve_ownership(
+            phone_number="+19493253498",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            number = await response.parse()
+            assert_matches_type(NumberRetrieveOwnershipResponse, number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_ownership(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
+            await async_client.enterprises.reputation.numbers.with_raw_response.retrieve_ownership(
+                phone_number="+19493253498",
+                enterprise_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
+            await async_client.enterprises.reputation.numbers.with_raw_response.retrieve_ownership(
+                phone_number="",
+                enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
             )

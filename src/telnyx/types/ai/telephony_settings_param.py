@@ -126,6 +126,16 @@ class VoicemailDetection(TypedDict, total=False):
 
 
 class TelephonySettingsParam(TypedDict, total=False):
+    conversation_ended_full_history: bool
+    """
+    When enabled, the `messages` array of the `call.conversation.ended` webhook
+    contains the full conversation history in order: user and assistant turns,
+    assistant tool calls (`tool_calls`), tool results (`role: tool` with
+    `tool_call_id`), and informational `system` and `developer` entries. The
+    assistant's instructions are never included. When disabled, `messages` contains
+    only user and assistant text turns.
+    """
+
     default_texml_app_id: str
     """Default Texml App used for voice calls with your assistant.
 

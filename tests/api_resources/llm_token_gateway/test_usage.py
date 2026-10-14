@@ -9,8 +9,11 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx._utils import parse_date
-from telnyx.types.llm_token_gateway import UsageRetrieveSummaryResponse
+from telnyx._utils import parse_date, parse_datetime
+from telnyx.types.llm_token_gateway import (
+    UsageRetrieveExportResponse,
+    UsageRetrieveSummaryResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,11 +23,61 @@ class TestUsage:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_retrieve_export(self, client: Telnyx) -> None:
+        usage = client.llm_token_gateway.usage.retrieve_export()
+        assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_export_with_all_params(self, client: Telnyx) -> None:
+        usage = client.llm_token_gateway.usage.retrieve_export(
+            cursor="cursor",
+            limit=1,
+            start_time=parse_datetime("2019-12-27T18:11:19.117Z"),
+            types="types",
+        )
+        assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_export(self, client: Telnyx) -> None:
+        response = client.llm_token_gateway.usage.with_raw_response.retrieve_export()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = response.parse()
+        assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_export(self, client: Telnyx) -> None:
+        with client.llm_token_gateway.usage.with_streaming_response.retrieve_export() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            usage = response.parse()
+            assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_retrieve_summary(self, client: Telnyx) -> None:
         usage = client.llm_token_gateway.usage.retrieve_summary(
             end_date=parse_date("2019-12-27"),
             start_date=parse_date("2019-12-27"),
             token_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(UsageRetrieveSummaryResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_summary_with_all_params(self, client: Telnyx) -> None:
+        usage = client.llm_token_gateway.usage.retrieve_summary(
+            end_date=parse_date("2019-12-27"),
+            start_date=parse_date("2019-12-27"),
+            token_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={"foo": "J!Q0Ok0bzJb7"},
         )
         assert_matches_type(UsageRetrieveSummaryResponse, usage, path=["response"])
 
@@ -66,11 +119,61 @@ class TestAsyncUsage:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_retrieve_export(self, async_client: AsyncTelnyx) -> None:
+        usage = await async_client.llm_token_gateway.usage.retrieve_export()
+        assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_export_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        usage = await async_client.llm_token_gateway.usage.retrieve_export(
+            cursor="cursor",
+            limit=1,
+            start_time=parse_datetime("2019-12-27T18:11:19.117Z"),
+            types="types",
+        )
+        assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_export(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.llm_token_gateway.usage.with_raw_response.retrieve_export()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = await response.parse()
+        assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_export(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.llm_token_gateway.usage.with_streaming_response.retrieve_export() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            usage = await response.parse()
+            assert_matches_type(UsageRetrieveExportResponse, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_method_retrieve_summary(self, async_client: AsyncTelnyx) -> None:
         usage = await async_client.llm_token_gateway.usage.retrieve_summary(
             end_date=parse_date("2019-12-27"),
             start_date=parse_date("2019-12-27"),
             token_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(UsageRetrieveSummaryResponse, usage, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_summary_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        usage = await async_client.llm_token_gateway.usage.retrieve_summary(
+            end_date=parse_date("2019-12-27"),
+            start_date=parse_date("2019-12-27"),
+            token_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={"foo": "J!Q0Ok0bzJb7"},
         )
         assert_matches_type(UsageRetrieveSummaryResponse, usage, path=["response"])
 

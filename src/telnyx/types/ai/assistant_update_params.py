@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
@@ -23,6 +23,13 @@ class AssistantUpdateParams(TypedDict, total=False):
     card cannot be fetched costs the assistant that capability for the conversation;
     it does not fail the call. Omit this field to leave the assistant's agents
     unchanged; send an empty array to remove them all.
+    """
+
+    avatar_settings: Optional["AvatarSettingsRequestParam"]
+    """**Beta:** Configuration for the Telnyx open-source avatar provider.
+
+    The launch catalog supports six avatars and office, studio, or reception
+    backgrounds.
     """
 
     conversation_flow: "ConversationFlowReqParam"
@@ -231,6 +238,7 @@ from .assistant_mcp_server_param import AssistantMcpServerParam
 from .assistant_integration_param import AssistantIntegrationParam
 from .conversation_flow_req_param import ConversationFlowReqParam
 from .transcription_settings_param import TranscriptionSettingsParam
+from .avatar_settings_request_param import AvatarSettingsRequestParam
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam
 from .inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
 from .inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam

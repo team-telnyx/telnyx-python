@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from ..enterprises.reputation.reputation_number_source import ReputationNumberSource
+from ..enterprises.reputation.reputation_ownership_status import ReputationOwnershipStatus
 
 __all__ = ["NumberListParams"]
 
@@ -13,11 +15,21 @@ class NumberListParams(TypedDict, total=False):
     filter_enterprise_id: Annotated[str, PropertyInfo(alias="filter[enterprise_id]")]
     """Filter by enterprise ID."""
 
+    filter_ownership_status: Annotated[ReputationOwnershipStatus, PropertyInfo(alias="filter[ownership_status]")]
+    """Only numbers with this ownership status.
+
+    `removed` lists the numbers that were removed, each with its `removal_reason`
+    and `removed_at`; removed numbers are not returned otherwise.
+    """
+
     filter_phone_number_contains: Annotated[str, PropertyInfo(alias="filter[phone_number][contains]")]
     """Partial match on phone number. Must contain at least 5 digits."""
 
     filter_phone_number_eq: Annotated[str, PropertyInfo(alias="filter[phone_number][eq]")]
     """Exact phone-number match (E.164)."""
+
+    filter_source: Annotated[ReputationNumberSource, PropertyInfo(alias="filter[source]")]
+    """Only numbers with this source."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
     """1-based page number.

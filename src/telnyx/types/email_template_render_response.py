@@ -2,24 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 from .._models import BaseModel
-from .email_template import EmailTemplate
+from .email_template_common import EmailTemplateCommon
 
 __all__ = ["EmailTemplateRenderResponse", "Data"]
 
 
-class Data(EmailTemplate):
+class Data(EmailTemplateCommon):
     """
-    Template object with `subject`, `html_body`, and `text_body` replaced by their Liquid-rendered values. All other template fields (id, name, variables, etc.) remain unchanged.
+    Template object with `subject`, `html_body`, and `text_body` replaced by their Liquid-rendered values. Rendered content is not limited by the stored template-field lengths. All other template fields remain unchanged.
     """
 
-    pass
+    subject: Optional[str] = None
 
 
 class EmailTemplateRenderResponse(BaseModel):
     data: Data
     """
     Template object with `subject`, `html_body`, and `text_body` replaced by their
-    Liquid-rendered values. All other template fields (id, name, variables, etc.)
-    remain unchanged.
+    Liquid-rendered values. Rendered content is not limited by the stored
+    template-field lengths. All other template fields remain unchanged.
     """
