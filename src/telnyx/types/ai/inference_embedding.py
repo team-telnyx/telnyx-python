@@ -72,8 +72,8 @@ class InferenceEmbedding(BaseModel):
     avatar_settings: Optional[TelnyxAvatarSettings] = None
     """**Beta:** Configuration for the Telnyx open-source avatar provider.
 
-    The launch catalog supports six avatars and office, studio, or reception
-    backgrounds.
+    Use one of the six stock avatars or an organization-owned custom avatar returned
+    by the Avatars API. Supported backgrounds are office, studio, and reception.
     """
 
     conversation_flow: Optional[ConversationFlow] = None

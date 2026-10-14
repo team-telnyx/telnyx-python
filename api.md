@@ -1337,7 +1337,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import PayToolParams, SharedToolResponse, UpdateDynamicVariablesToolParams
+from telnyx.types.ai import (
+    PayToolParams,
+    SharedToolResponse,
+    UpdateDynamicVariablesToolParams,
+    VisionToolParams,
+)
 ```
 
 Methods:
@@ -1478,6 +1483,21 @@ Methods:
 
 - <code title="get /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">list</a>(namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
 - <code title="patch /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">patch_all</a>(namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/setting_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
+
+## Avatars
+
+Types:
+
+```python
+from telnyx.types.ai import Avatar, AvatarID, AvatarResponse, AvatarType
+```
+
+Methods:
+
+- <code title="post /ai/avatars">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">create</a>(\*\*<a href="src/telnyx/types/ai/avatar_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
+- <code title="get /ai/avatars/{avatar_id}">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">retrieve</a>(avatar_id) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
+- <code title="patch /ai/avatars/{avatar_id}">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">update</a>(avatar_id, \*\*<a href="src/telnyx/types/ai/avatar_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
+- <code title="get /ai/avatars">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">list</a>(\*\*<a href="src/telnyx/types/ai/avatar_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar.py">SyncDefaultFlatPagination[Avatar]</a></code>
 
 # AuditEvents
 

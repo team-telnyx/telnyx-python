@@ -42,6 +42,7 @@ __all__ = [
     "SendMessageSendMessage",
     "SkipTurn",
     "SkipTurnSkipTurn",
+    "Vision",
     "Pay",
     "UpdateDynamicVariables",
 ]
@@ -292,6 +293,20 @@ class TransferTransferWarmTransferAcceptance(TypedDict, total=False):
     exchange never reaches the conversation history, AI conversations, webhooks or
     insights, and the transfer tool result is rewritten with the outcome only. With
     `shared` the exchange stays in the conversation like any other messages.
+    """
+
+    require_acceptance: bool
+    """Fail closed when the acceptance consult cannot run.
+
+    Off by default: if the consult cannot be set up for any reason — including where
+    acceptance is unavailable at all (`gather_using_ai`, Conversation Relay or web
+    calls, a conference, or additional invited participants) — the transfer degrades
+    to a plain warm transfer (the warm transfer message is played to the destination
+    as audio and the calls are bridged anyway). Set to true to treat those paths as
+    a decline instead: the destination is disconnected without being asked, the
+    assistant returns to the caller, and no bridge happens without an acceptance.
+    Only consult-setup failures are affected; the destination must still explicitly
+    accept on every consult that does run.
     """
 
 
@@ -557,6 +572,16 @@ class SkipTurn(TypedDict, total=False):
     type: Required[Literal["skip_turn"]]
 
 
+class Vision(TypedDict, total=False):
+    """
+    (BETA) Lets the assistant look at recent image frames the client sent into the conversation (for example webcam or screen-share frames). Frames are sent with `conversation.item.create` and `item.buffer: true`; they never trigger a response on their own. The assistant decides when to look and which frames it needs. Requires a model that supports image input.
+    """
+
+    type: Required[Literal["vision"]]
+
+    vision: "VisionToolParamsParam"
+
+
 class Pay(TypedDict, total=False):
     """
     (BETA) The pay tool allows the assistant to collect card payments from the caller via DTMF during the conversation. Recording is automatically paused while the pay tool is active and resumes when the payment flow completes. The connector_name must reference a pay connector configured in the Telnyx API.
@@ -592,6 +617,7 @@ if TYPE_CHECKING:
         SendDtmf,
         SendMessage,
         SkipTurn,
+        Vision,
         Pay,
         UpdateDynamicVariables,
     ]
@@ -609,6 +635,7 @@ else:
         SendDtmf,
         SendMessage,
         SkipTurn,
+        Vision,
         Pay,
         UpdateDynamicVariables,
     ]
@@ -616,6 +643,7 @@ else:
 from .retrieval_tool_param import RetrievalToolParam
 from .pay_tool_params_param import PayToolParamsParam
 from .hangup_tool_params_param import HangupToolParamsParam
+from .vision_tool_params_param import VisionToolParamsParam
 from .openai.function_definition_param import FunctionDefinitionParam
 from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
 from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam

@@ -63,6 +63,7 @@ class TestTools:
                     }
                 ],
             },
+            vision={"max_frame_age_secs": 1},
             webhook={"foo": "bar"},
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
@@ -181,6 +182,7 @@ class TestTools:
                     }
                 ],
             },
+            vision={"max_frame_age_secs": 1},
             webhook={"foo": "bar"},
         )
         assert_matches_type(SharedToolResponse, tool, path=["response"])
@@ -349,6 +351,7 @@ class TestAsyncTools:
                     }
                 ],
             },
+            vision={"max_frame_age_secs": 1},
             webhook={"foo": "bar"},
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
@@ -467,6 +470,7 @@ class TestAsyncTools:
                     }
                 ],
             },
+            vision={"max_frame_age_secs": 1},
             webhook={"foo": "bar"},
         )
         assert_matches_type(SharedToolResponse, tool, path=["response"])
