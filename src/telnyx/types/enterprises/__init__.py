@@ -9,6 +9,7 @@ from .dir_create_params import DirCreateParams as DirCreateParams
 from .reputation_enable_params import ReputationEnableParams as ReputationEnableParams
 from .reputation_check_frequency import ReputationCheckFrequency as ReputationCheckFrequency
 from .verify_email_confirm_params import VerifyEmailConfirmParams as VerifyEmailConfirmParams
+from .reputation_update_webhook_params import ReputationUpdateWebhookParams as ReputationUpdateWebhookParams
 from .reputation_update_frequency_params import ReputationUpdateFrequencyParams as ReputationUpdateFrequencyParams
 
 if TYPE_CHECKING:

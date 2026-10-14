@@ -58,9 +58,9 @@ class CallingRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingRoutingListResponse:
         """
-        Retrieve the routing connection currently stored for a BYON (Bring Your Own
-        Number) phone number: the connection that inbound WhatsApp calls to the number
-        are delivered to.
+        Retrieve the connection ID currently stored for a WhatsApp Calling BYON (Bring
+        Your Own Number) phone number: the connection that inbound WhatsApp calls to the
+        number are delivered to.
 
         Use it to check the result of
         `PATCH /whatsapp/phone_numbers/{id}/calling_routing`. A read made immediately
@@ -100,8 +100,9 @@ class CallingRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingRoutingPatchAllResponse:
         """
-        Set or clear the connection that inbound WhatsApp calls to a BYON (Bring Your
-        Own Number) phone number are delivered to.
+        Set or clear the connection ID for a WhatsApp Calling BYON (Bring Your Own
+        Number) phone number: the connection that inbound WhatsApp calls to the number
+        are delivered to.
 
         The update is processed asynchronously. A `202` response means the request was
         accepted, not that the routing changed. Check the result with
@@ -179,9 +180,9 @@ class AsyncCallingRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingRoutingListResponse:
         """
-        Retrieve the routing connection currently stored for a BYON (Bring Your Own
-        Number) phone number: the connection that inbound WhatsApp calls to the number
-        are delivered to.
+        Retrieve the connection ID currently stored for a WhatsApp Calling BYON (Bring
+        Your Own Number) phone number: the connection that inbound WhatsApp calls to the
+        number are delivered to.
 
         Use it to check the result of
         `PATCH /whatsapp/phone_numbers/{id}/calling_routing`. A read made immediately
@@ -221,8 +222,9 @@ class AsyncCallingRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallingRoutingPatchAllResponse:
         """
-        Set or clear the connection that inbound WhatsApp calls to a BYON (Bring Your
-        Own Number) phone number are delivered to.
+        Set or clear the connection ID for a WhatsApp Calling BYON (Bring Your Own
+        Number) phone number: the connection that inbound WhatsApp calls to the number
+        are delivered to.
 
         The update is processed asynchronously. A `202` response means the request was
         accepted, not that the routing changed. Check the result with

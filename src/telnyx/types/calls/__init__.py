@@ -108,6 +108,9 @@ from .transcription_engine_assemblyai_config_param import (
 from .transcription_engine_speechmatics_config_param import (
     TranscriptionEngineSpeechmaticsConfigParam as TranscriptionEngineSpeechmaticsConfigParam,
 )
+from .conversation_relay_transcription_engine_config_param import (
+    ConversationRelayTranscriptionEngineConfigParam as ConversationRelayTranscriptionEngineConfigParam,
+)
 
 if TYPE_CHECKING:
     from .action_pay_response import ActionPayResponse as ActionPayResponse

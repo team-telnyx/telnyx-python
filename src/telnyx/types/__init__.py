@@ -300,6 +300,7 @@ from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_list_response import CommentListResponse as CommentListResponse
 from .credential_connection import CredentialConnection as CredentialConnection
 from .email_domain_response import EmailDomainResponse as EmailDomainResponse
+from .email_template_common import EmailTemplateCommon as EmailTemplateCommon
 from .fax_retrieve_response import FaxRetrieveResponse as FaxRetrieveResponse
 from .global_ip_list_params import GlobalIPListParams as GlobalIPListParams
 from .invoice_list_response import InvoiceListResponse as InvoiceListResponse
@@ -883,6 +884,7 @@ from .text_to_speech_list_voices_params import TextToSpeechListVoicesParams as T
 from .usage_report_get_options_response import UsageReportGetOptionsResponse as UsageReportGetOptionsResponse
 from .virtual_cross_connect_list_params import VirtualCrossConnectListParams as VirtualCrossConnectListParams
 from .voice_sdk_call_report_list_params import VoiceSDKCallReportListParams as VoiceSDKCallReportListParams
+from .whatsapp_waba_added_webhook_event import WhatsappWabaAddedWebhookEvent as WhatsappWabaAddedWebhookEvent
 from .wireguard_interface_create_params import WireguardInterfaceCreateParams as WireguardInterfaceCreateParams
 from .wireless_private_wireless_gateway import WirelessPrivateWirelessGateway as WirelessPrivateWirelessGateway
 from .alphanumeric_sender_id_list_params import AlphanumericSenderIDListParams as AlphanumericSenderIDListParams
@@ -958,6 +960,7 @@ from .public_internet_gateway_list_params import PublicInternetGatewayListParams
 from .recording_transcription_list_params import RecordingTranscriptionListParams as RecordingTranscriptionListParams
 from .room_recording_delete_bulk_response import RoomRecordingDeleteBulkResponse as RoomRecordingDeleteBulkResponse
 from .s3_generic_configuration_data_param import S3GenericConfigurationDataParam as S3GenericConfigurationDataParam
+from .sip_registration_status_list_params import SipRegistrationStatusListParams as SipRegistrationStatusListParams
 from .texml_application_retrieve_response import TexmlApplicationRetrieveResponse as TexmlApplicationRetrieveResponse
 from .text_to_speech_list_voices_response import TextToSpeechListVoicesResponse as TextToSpeechListVoicesResponse
 from .update_regulatory_requirement_param import UpdateRegulatoryRequirementParam as UpdateRegulatoryRequirementParam
@@ -1094,6 +1097,9 @@ from .public_internet_gateway_create_params import (
 )
 from .sim_card_get_activation_code_response import SimCardGetActivationCodeResponse as SimCardGetActivationCodeResponse
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
+from .sip_registration_status_list_response import (
+    SipRegistrationStatusListResponse as SipRegistrationStatusListResponse,
+)
 from .terms_of_service_retrieve_info_params import TermsOfServiceRetrieveInfoParams as TermsOfServiceRetrieveInfoParams
 from .text_to_speech_generate_speech_params import TextToSpeechGenerateSpeechParams as TextToSpeechGenerateSpeechParams
 from .text_to_speech_retrieve_speech_params import TextToSpeechRetrieveSpeechParams as TextToSpeechRetrieveSpeechParams
@@ -1554,6 +1560,9 @@ from .bulk_messaging_settings_update_phone_numbers import (
 from .call_ai_gather_partial_results_webhook_event import (
     CallAIGatherPartialResultsWebhookEvent as CallAIGatherPartialResultsWebhookEvent,
 )
+from .call_conversation_start_failed_webhook_event import (
+    CallConversationStartFailedWebhookEvent as CallConversationStartFailedWebhookEvent,
+)
 from .call_deepfake_detection_result_webhook_event import (
     CallDeepfakeDetectionResultWebhookEvent as CallDeepfakeDetectionResultWebhookEvent,
 )
@@ -1616,6 +1625,12 @@ from .conversation_relay_interruption_settings_param import (
 )
 from .message_send_with_alphanumeric_sender_response import (
     MessageSendWithAlphanumericSenderResponse as MessageSendWithAlphanumericSenderResponse,
+)
+from .number_reputation_number_flagged_webhook_event import (
+    NumberReputationNumberFlaggedWebhookEvent as NumberReputationNumberFlaggedWebhookEvent,
+)
+from .number_reputation_number_removed_webhook_event import (
+    NumberReputationNumberRemovedWebhookEvent as NumberReputationNumberRemovedWebhookEvent,
 )
 from .porting_order_phone_number_configuration_param import (
     PortingOrderPhoneNumberConfigurationParam as PortingOrderPhoneNumberConfigurationParam,
@@ -1769,6 +1784,9 @@ from .messaging_hosted_number_order_create_verification_codes_response import (
 )
 from .managed_account_get_allocatable_global_outbound_channels_response import (
     ManagedAccountGetAllocatableGlobalOutboundChannelsResponse as ManagedAccountGetAllocatableGlobalOutboundChannelsResponse,
+)
+from .number_reputation_external_verification_status_changed_webhook_event import (
+    NumberReputationExternalVerificationStatusChangedWebhookEvent as NumberReputationExternalVerificationStatusChangedWebhookEvent,
 )
 
 # Rebuild cyclical models only after all modules are imported.

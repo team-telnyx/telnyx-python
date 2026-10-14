@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -132,6 +132,9 @@ from ...types.calls.action_stop_conversation_relay_response import ActionStopCon
 from ...types.calls.action_start_conversation_relay_response import ActionStartConversationRelayResponse
 from ...types.conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
 from ...types.calls.action_add_ai_assistant_messages_response import ActionAddAIAssistantMessagesResponse
+from ...types.calls.conversation_relay_transcription_engine_config_param import (
+    ConversationRelayTranscriptionEngineConfigParam,
+)
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 
@@ -1555,9 +1558,11 @@ class ActionsResource(SyncAPIResource):
         language: str | Omit = omit,
         max_attempts: int | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
+        min_postal_code_length: int | Omit = omit,
         parameters: Dict[str, object] | Omit = omit,
         payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
         payment_token: str | Omit = omit,
+        postal_code: Union[str, bool] | Omit = omit,
         prompts: action_pay_params.Prompts | Omit = omit,
         service_level: str | Omit = omit,
         timeout_millis: int | Omit = omit,
@@ -1617,11 +1622,26 @@ class ActionsResource(SyncAPIResource):
 
           metadata: Metadata forwarded to the Pay connector.
 
+          min_postal_code_length: Minimum number of digits the caller must enter when collecting a credit-card
+              billing postal code. Applies only when `postal_code` is `true` or `"true"` and
+              no `payment_token` is supplied. The default is 1. The maximum number of digits
+              collected is the greater of 10 and this value. This does not validate the length
+              of a postal code supplied directly in `postal_code`.
+
           parameters: Additional parameters forwarded to the Pay connector.
 
           payment_method: Payment method to collect.
 
           payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          postal_code: Controls billing postal code collection for credit-card payments when no
+              `payment_token` is supplied. Set to `true` or the string `"true"` (the default)
+              to prompt the caller for a postal code. Set to `false` or the string `"false"`
+              to skip the postal code prompt without supplying a postal code to the payment
+              connector. Supply any other non-empty string, such as `"90210"`, to use that
+              postal code without prompting. Empty or whitespace-only strings are rejected.
+              This option does not affect ACH debit payments or payments using an existing
+              token.
 
           prompts: Custom text-to-speech prompts keyed by payment collection step.
 
@@ -1666,9 +1686,11 @@ class ActionsResource(SyncAPIResource):
                     "language": language,
                     "max_attempts": max_attempts,
                     "metadata": metadata,
+                    "min_postal_code_length": min_postal_code_length,
                     "parameters": parameters,
                     "payment_method": payment_method,
                     "payment_token": payment_token,
+                    "postal_code": postal_code,
                     "prompts": prompts,
                     "service_level": service_level,
                     "timeout_millis": timeout_millis,
@@ -2312,7 +2334,7 @@ class ActionsResource(SyncAPIResource):
             "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
         ]
         | Omit = omit,
-        transcription_engine_config: Dict[str, object] | Omit = omit,
+        transcription_engine_config: ConversationRelayTranscriptionEngineConfigParam | Omit = omit,
         tts_provider: str | Omit = omit,
         url: str | Omit = omit,
         voice: str | Omit = omit,
@@ -2398,7 +2420,10 @@ class ActionsResource(SyncAPIResource):
           transcription_engine_config: Engine-specific transcription settings for Conversation Relay. This accepts the
               same provider-specific options used by the Call Transcription Start command,
               such as `transcription_model`, without requiring the engine discriminator to be
-              repeated inside this object.
+              repeated inside this object. With Deepgram Flux (`deepgram/flux`),
+              `interim_results`, `eot_threshold` and `eager_eot_threshold` control the interim
+              prompts and the `eagerEndOfTurn` and `turnResumed` frames sent to your WebSocket
+              server.
 
           tts_provider: Text-to-speech provider. If omitted, Telnyx derives it from `voice` or
               `provider`.
@@ -5759,9 +5784,11 @@ class AsyncActionsResource(AsyncAPIResource):
         language: str | Omit = omit,
         max_attempts: int | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
+        min_postal_code_length: int | Omit = omit,
         parameters: Dict[str, object] | Omit = omit,
         payment_method: Literal["credit-card", "ach-debit"] | Omit = omit,
         payment_token: str | Omit = omit,
+        postal_code: Union[str, bool] | Omit = omit,
         prompts: action_pay_params.Prompts | Omit = omit,
         service_level: str | Omit = omit,
         timeout_millis: int | Omit = omit,
@@ -5821,11 +5848,26 @@ class AsyncActionsResource(AsyncAPIResource):
 
           metadata: Metadata forwarded to the Pay connector.
 
+          min_postal_code_length: Minimum number of digits the caller must enter when collecting a credit-card
+              billing postal code. Applies only when `postal_code` is `true` or `"true"` and
+              no `payment_token` is supplied. The default is 1. The maximum number of digits
+              collected is the greater of 10 and this value. This does not validate the length
+              of a postal code supplied directly in `postal_code`.
+
           parameters: Additional parameters forwarded to the Pay connector.
 
           payment_method: Payment method to collect.
 
           payment_token: Existing payment token. When supplied, payment-detail collection is skipped.
+
+          postal_code: Controls billing postal code collection for credit-card payments when no
+              `payment_token` is supplied. Set to `true` or the string `"true"` (the default)
+              to prompt the caller for a postal code. Set to `false` or the string `"false"`
+              to skip the postal code prompt without supplying a postal code to the payment
+              connector. Supply any other non-empty string, such as `"90210"`, to use that
+              postal code without prompting. Empty or whitespace-only strings are rejected.
+              This option does not affect ACH debit payments or payments using an existing
+              token.
 
           prompts: Custom text-to-speech prompts keyed by payment collection step.
 
@@ -5870,9 +5912,11 @@ class AsyncActionsResource(AsyncAPIResource):
                     "language": language,
                     "max_attempts": max_attempts,
                     "metadata": metadata,
+                    "min_postal_code_length": min_postal_code_length,
                     "parameters": parameters,
                     "payment_method": payment_method,
                     "payment_token": payment_token,
+                    "postal_code": postal_code,
                     "prompts": prompts,
                     "service_level": service_level,
                     "timeout_millis": timeout_millis,
@@ -6516,7 +6560,7 @@ class AsyncActionsResource(AsyncAPIResource):
             "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
         ]
         | Omit = omit,
-        transcription_engine_config: Dict[str, object] | Omit = omit,
+        transcription_engine_config: ConversationRelayTranscriptionEngineConfigParam | Omit = omit,
         tts_provider: str | Omit = omit,
         url: str | Omit = omit,
         voice: str | Omit = omit,
@@ -6602,7 +6646,10 @@ class AsyncActionsResource(AsyncAPIResource):
           transcription_engine_config: Engine-specific transcription settings for Conversation Relay. This accepts the
               same provider-specific options used by the Call Transcription Start command,
               such as `transcription_model`, without requiring the engine discriminator to be
-              repeated inside this object.
+              repeated inside this object. With Deepgram Flux (`deepgram/flux`),
+              `interim_results`, `eot_threshold` and `eager_eot_threshold` control the interim
+              prompts and the `eagerEndOfTurn` and `turnResumed` frames sent to your WebSocket
+              server.
 
           tts_provider: Text-to-speech provider. If omitted, Telnyx derives it from `voice` or
               `provider`.

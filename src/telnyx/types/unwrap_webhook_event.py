@@ -44,6 +44,7 @@ from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
 from .recording_available_webhook_event import RecordingAvailableWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent
+from .whatsapp_waba_added_webhook_event import WhatsappWabaAddedWebhookEvent
 from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
 from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent
 from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent
@@ -71,7 +72,10 @@ from .call_machine_detection_ended_webhook_event import CallMachineDetectionEnde
 from .call_deepfake_detection_error_webhook_event import CallDeepfakeDetectionErrorWebhookEvent
 from .conference_participant_joined_webhook_event import ConferenceParticipantJoinedWebhookEvent
 from .call_ai_gather_partial_results_webhook_event import CallAIGatherPartialResultsWebhookEvent
+from .call_conversation_start_failed_webhook_event import CallConversationStartFailedWebhookEvent
 from .call_deepfake_detection_result_webhook_event import CallDeepfakeDetectionResultWebhookEvent
+from .number_reputation_number_flagged_webhook_event import NumberReputationNumberFlaggedWebhookEvent
+from .number_reputation_number_removed_webhook_event import NumberReputationNumberRemovedWebhookEvent
 from .call_recording_transcription_saved_webhook_event import CallRecordingTranscriptionSavedWebhookEvent
 from .conference_participant_speak_ended_webhook_event import ConferenceParticipantSpeakEndedWebhookEvent
 from .call_machine_premium_greeting_ended_webhook_event import CallMachinePremiumGreetingEndedWebhookEvent
@@ -84,6 +88,9 @@ from .call_machine_premium_detection_started_webhook_event import CallMachinePre
 from .conference_participant_playback_started_webhook_event import ConferenceParticipantPlaybackStartedWebhookEvent
 from .call_machine_premium_call_screening_detected_webhook_event import (
     CallMachinePremiumCallScreeningDetectedWebhookEvent,
+)
+from .number_reputation_external_verification_status_changed_webhook_event import (
+    NumberReputationExternalVerificationStatusChangedWebhookEvent,
 )
 
 __all__ = ["UnwrapWebhookEvent"]
@@ -99,6 +106,7 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CallConversationCreatedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
+    CallConversationStartFailedWebhookEvent,
     CallCostWebhookEvent,
     CallDeepfakeDetectionErrorWebhookEvent,
     CallDeepfakeDetectionResultWebhookEvent,
@@ -160,6 +168,9 @@ UnwrapWebhookEvent: TypeAlias = Union[
     HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdateWebhookEvent,
+    NumberReputationExternalVerificationStatusChangedWebhookEvent,
+    NumberReputationNumberFlaggedWebhookEvent,
+    NumberReputationNumberRemovedWebhookEvent,
     RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
@@ -167,4 +178,5 @@ UnwrapWebhookEvent: TypeAlias = Union[
     TranscriptionWebhookEvent,
     WhatsappAccountUpdate,
     WhatsappMessageEcho,
+    WhatsappWabaAddedWebhookEvent,
 ]

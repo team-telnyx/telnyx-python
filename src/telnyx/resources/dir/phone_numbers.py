@@ -16,17 +16,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.dir import (
-    DirPhoneNumberStatus,
-    phone_number_add_params,
-    phone_number_list_params,
-    phone_number_remove_params,
-)
+from ...types.dir import phone_number_add_params, phone_number_list_params, phone_number_remove_params
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.document_param import DocumentParam
 from ...types.dir.dir_phone_number import DirPhoneNumber
-from ...types.dir.dir_phone_number_status import DirPhoneNumberStatus
 from ...types.dir.phone_number_add_response import PhoneNumberAddResponse
 from ...types.dir.phone_number_remove_response import PhoneNumberRemoveResponse
 
@@ -63,7 +57,6 @@ class PhoneNumbersResource(SyncAPIResource):
         *,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        status: DirPhoneNumberStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -80,8 +73,6 @@ class PhoneNumbersResource(SyncAPIResource):
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
-
-          status: Filter by phone-number status.
 
           extra_headers: Send extra headers
 
@@ -105,7 +96,6 @@ class PhoneNumbersResource(SyncAPIResource):
                     {
                         "page_number": page_number,
                         "page_size": page_size,
-                        "status": status,
                     },
                     phone_number_list_params.PhoneNumberListParams,
                 ),
@@ -241,7 +231,6 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         *,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        status: DirPhoneNumberStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -258,8 +247,6 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Maximum 250; values above are clamped to 250.
-
-          status: Filter by phone-number status.
 
           extra_headers: Send extra headers
 
@@ -283,7 +270,6 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     {
                         "page_number": page_number,
                         "page_size": page_size,
-                        "status": status,
                     },
                     phone_number_list_params.PhoneNumberListParams,
                 ),

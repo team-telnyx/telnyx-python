@@ -76,6 +76,7 @@ from .conversation_flow_req_param import ConversationFlowReqParam as Conversatio
 from .assistant_get_texml_response import AssistantGetTexmlResponse as AssistantGetTexmlResponse
 from .transcription_settings_param import TranscriptionSettingsParam as TranscriptionSettingsParam
 from .audio_visualizer_config_param import AudioVisualizerConfigParam as AudioVisualizerConfigParam
+from .avatar_settings_request_param import AvatarSettingsRequestParam as AvatarSettingsRequestParam
 from .mission_update_mission_params import MissionUpdateMissionParams as MissionUpdateMissionParams
 from .openai_create_response_params import OpenAICreateResponseParams as OpenAICreateResponseParams
 from .conversation_add_message_params import ConversationAddMessageParams as ConversationAddMessageParams
@@ -137,6 +138,7 @@ if TYPE_CHECKING:
     from .shared_tool_response import SharedToolResponse as SharedToolResponse
     from .assistant_integration import AssistantIntegration as AssistantIntegration
     from .cluster_list_response import ClusterListResponse as ClusterListResponse
+    from .telnyx_avatar_settings import TelnyxAvatarSettings as TelnyxAvatarSettings
     from .transcription_settings import TranscriptionSettings as TranscriptionSettings
     from .assistant_chat_response import AssistantChatResponse as AssistantChatResponse
     from .audio_visualizer_config import AudioVisualizerConfig as AudioVisualizerConfig
@@ -283,6 +285,10 @@ def __getattr__(name: str) -> Any:
         from .telephony_settings import TelephonySettings
 
         return TelephonySettings
+    if name == "TelnyxAvatarSettings":
+        from .telnyx_avatar_settings import TelnyxAvatarSettings
+
+        return TelnyxAvatarSettings
     if name == "ToolNode":
         from .tool_node import ToolNode
 

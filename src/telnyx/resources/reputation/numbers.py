@@ -17,7 +17,10 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.reputation import number_list_params, number_retrieve_params
+from ...types.enterprises.reputation import ReputationNumberSource, ReputationOwnershipStatus
 from ...types.enterprises.reputation.reputation_phone_number import ReputationPhoneNumber
+from ...types.enterprises.reputation.reputation_number_source import ReputationNumberSource
+from ...types.enterprises.reputation.reputation_ownership_status import ReputationOwnershipStatus
 from ...types.enterprises.reputation.reputation_phone_number_with_reputation import ReputationPhoneNumberWithReputation
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
@@ -91,8 +94,10 @@ class NumbersResource(SyncAPIResource):
         self,
         *,
         filter_enterprise_id: str | Omit = omit,
+        filter_ownership_status: ReputationOwnershipStatus | Omit = omit,
         filter_phone_number_contains: str | Omit = omit,
         filter_phone_number_eq: str | Omit = omit,
+        filter_source: ReputationNumberSource | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -110,9 +115,15 @@ class NumbersResource(SyncAPIResource):
         Args:
           filter_enterprise_id: Filter by enterprise ID.
 
+          filter_ownership_status: Only numbers with this ownership status. `removed` lists the numbers that were
+              removed, each with its `removal_reason` and `removed_at`; removed numbers are
+              not returned otherwise.
+
           filter_phone_number_contains: Partial match on phone number. Must contain at least 5 digits.
 
           filter_phone_number_eq: Exact phone-number match (E.164).
+
+          filter_source: Only numbers with this source.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
@@ -137,8 +148,10 @@ class NumbersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_enterprise_id": filter_enterprise_id,
+                        "filter_ownership_status": filter_ownership_status,
                         "filter_phone_number_contains": filter_phone_number_contains,
                         "filter_phone_number_eq": filter_phone_number_eq,
+                        "filter_source": filter_source,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -252,8 +265,10 @@ class AsyncNumbersResource(AsyncAPIResource):
         self,
         *,
         filter_enterprise_id: str | Omit = omit,
+        filter_ownership_status: ReputationOwnershipStatus | Omit = omit,
         filter_phone_number_contains: str | Omit = omit,
         filter_phone_number_eq: str | Omit = omit,
+        filter_source: ReputationNumberSource | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -271,9 +286,15 @@ class AsyncNumbersResource(AsyncAPIResource):
         Args:
           filter_enterprise_id: Filter by enterprise ID.
 
+          filter_ownership_status: Only numbers with this ownership status. `removed` lists the numbers that were
+              removed, each with its `removal_reason` and `removed_at`; removed numbers are
+              not returned otherwise.
+
           filter_phone_number_contains: Partial match on phone number. Must contain at least 5 digits.
 
           filter_phone_number_eq: Exact phone-number match (E.164).
+
+          filter_source: Only numbers with this source.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
@@ -298,8 +319,10 @@ class AsyncNumbersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_enterprise_id": filter_enterprise_id,
+                        "filter_ownership_status": filter_ownership_status,
                         "filter_phone_number_contains": filter_phone_number_contains,
                         "filter_phone_number_eq": filter_phone_number_eq,
+                        "filter_source": filter_source,
                         "page_number": page_number,
                         "page_size": page_size,
                     },

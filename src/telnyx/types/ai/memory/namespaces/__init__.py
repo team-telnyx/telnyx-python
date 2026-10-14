@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Any
 from .profile_list_params import ProfileListParams as ProfileListParams
 from .profile_ingest_params import ProfileIngestParams as ProfileIngestParams
 from .profile_recall_params import ProfileRecallParams as ProfileRecallParams
+from .profile_preview_params import ProfilePreviewParams as ProfilePreviewParams
 from .profile_remember_params import ProfileRememberParams as ProfileRememberParams
 from .setting_patch_all_params import SettingPatchAllParams as SettingPatchAllParams
 
@@ -16,6 +17,7 @@ if TYPE_CHECKING:
     from .profile_delete_response import ProfileDeleteResponse as ProfileDeleteResponse
     from .profile_ingest_response import ProfileIngestResponse as ProfileIngestResponse
     from .profile_recall_response import ProfileRecallResponse as ProfileRecallResponse
+    from .profile_preview_response import ProfilePreviewResponse as ProfilePreviewResponse
     from .profile_remember_response import ProfileRememberResponse as ProfileRememberResponse
     from .namespace_settings_response import NamespaceSettingsResponse as NamespaceSettingsResponse
     from .profile_retrieve_summary_response import ProfileRetrieveSummaryResponse as ProfileRetrieveSummaryResponse
@@ -38,6 +40,10 @@ def __getattr__(name: str) -> Any:
         from .profile_ingest_response import ProfileIngestResponse
 
         return ProfileIngestResponse
+    if name == "ProfilePreviewResponse":
+        from .profile_preview_response import ProfilePreviewResponse
+
+        return ProfilePreviewResponse
     if name == "ProfileRecallResponse":
         from .profile_recall_response import ProfileRecallResponse
 

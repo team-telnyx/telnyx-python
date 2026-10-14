@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
 
@@ -35,7 +35,23 @@ class EmailTemplateReplaceParams(TypedDict, total=False):
     to `null` to clear the schema.
     """
 
-    variables: SequenceNotStr[str]
+    variables: Optional[SequenceNotStr[str]]
+    """Persisted variable names.
+
+    In `automatic` mode a non-null array is rejected; in `explicit` mode this is the
+    exact manual array and each item is limited to 255 Unicode code points.
+    """
+
+    variables_mode: Literal["automatic", "explicit"]
+    """Controls how `variables` is maintained.
+
+    Setting `automatic` re-extracts immediately from the effective subject, HTML
+    body, and text body and rejects a simultaneous non-null array. Setting
+    `explicit` requires the exact non-null array, including valid `[]`. With the
+    mode omitted, a non-null array selects explicit mode, null selects automatic
+    mode, and omitting both fields preserves the current mode. Source-content
+    changes re-extract only in automatic mode.
+    """
 
 
 class VariableSchema(TypedDict, total=False):

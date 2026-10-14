@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
@@ -58,8 +58,23 @@ class EmailTemplateCreateParams(TypedDict, total=False):
     `default` when absent.
     """
 
-    variables: SequenceNotStr[str]
-    """Template variables. Auto-extracted from subject/body fields when absent."""
+    variables: Optional[SequenceNotStr[str]]
+    """Persisted variable names.
+
+    In `automatic` mode a non-null array is rejected; in `explicit` mode this is the
+    exact manual array and each item is limited to 255 Unicode code points.
+    """
+
+    variables_mode: Literal["automatic", "explicit"]
+    """Controls how `variables` is maintained.
+
+    If both fields are omitted (or `variables` is null), the template uses
+    `automatic` mode and extracts variable names from the effective subject, HTML
+    body, and text body. A non-null `variables` array with no mode selects
+    `explicit`. `automatic` rejects a simultaneous non-null array; `explicit`
+    requires a non-null array, including valid `[]`, and preserves its exact order,
+    duplicates, and string contents.
+    """
 
     idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
 

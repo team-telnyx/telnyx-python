@@ -15,6 +15,7 @@ from telnyx.types.ai.memory.namespaces import (
     ProfileDeleteResponse,
     ProfileIngestResponse,
     ProfileRecallResponse,
+    ProfilePreviewResponse,
     ProfileRememberResponse,
     ProfileRetrieveSummaryResponse,
 )
@@ -263,6 +264,68 @@ class TestProfiles:
                 profile_id="",
                 namespace="namespace",
                 body=[{}],
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_preview(self, client: Telnyx) -> None:
+        profile = client.ai.memory.namespaces.profiles.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+        )
+        assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_preview_with_all_params(self, client: Telnyx) -> None:
+        profile = client.ai.memory.namespaces.profiles.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+            instructions="Lead with billing status. Prefer plain language over jargon.",
+        )
+        assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_preview(self, client: Telnyx) -> None:
+        response = client.ai.memory.namespaces.profiles.with_raw_response.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        profile = response.parse()
+        assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_preview(self, client: Telnyx) -> None:
+        with client.ai.memory.namespaces.profiles.with_streaming_response.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            profile = response.parse()
+            assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_preview(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
+            client.ai.memory.namespaces.profiles.with_raw_response.preview(
+                profile_id="profile_id",
+                namespace="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
+            client.ai.memory.namespaces.profiles.with_raw_response.preview(
+                profile_id="",
+                namespace="namespace",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -686,6 +749,68 @@ class TestAsyncProfiles:
                 profile_id="",
                 namespace="namespace",
                 body=[{}],
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_preview(self, async_client: AsyncTelnyx) -> None:
+        profile = await async_client.ai.memory.namespaces.profiles.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+        )
+        assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_preview_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        profile = await async_client.ai.memory.namespaces.profiles.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+            instructions="Lead with billing status. Prefer plain language over jargon.",
+        )
+        assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_preview(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.memory.namespaces.profiles.with_raw_response.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        profile = await response.parse()
+        assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_preview(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.memory.namespaces.profiles.with_streaming_response.preview(
+            profile_id="profile_id",
+            namespace="namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            profile = await response.parse()
+            assert_matches_type(ProfilePreviewResponse, profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_preview(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
+            await async_client.ai.memory.namespaces.profiles.with_raw_response.preview(
+                profile_id="profile_id",
+                namespace="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
+            await async_client.ai.memory.namespaces.profiles.with_raw_response.preview(
+                profile_id="",
+                namespace="namespace",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

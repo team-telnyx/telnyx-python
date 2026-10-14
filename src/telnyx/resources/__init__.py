@@ -1257,6 +1257,14 @@ from .regulatory_requirements import (
     RegulatoryRequirementsResourceWithStreamingResponse,
     AsyncRegulatoryRequirementsResourceWithStreamingResponse,
 )
+from .sip_registration_status import (
+    SipRegistrationStatusResource,
+    AsyncSipRegistrationStatusResource,
+    SipRegistrationStatusResourceWithRawResponse,
+    AsyncSipRegistrationStatusResourceWithRawResponse,
+    SipRegistrationStatusResourceWithStreamingResponse,
+    AsyncSipRegistrationStatusResourceWithStreamingResponse,
+)
 from .traffic_policy_profiles import (
     TrafficPolicyProfilesResource,
     AsyncTrafficPolicyProfilesResource,
@@ -2651,4 +2659,10 @@ __all__ = [
     "AsyncLlmTokenGatewayResourceWithRawResponse",
     "LlmTokenGatewayResourceWithStreamingResponse",
     "AsyncLlmTokenGatewayResourceWithStreamingResponse",
+    "SipRegistrationStatusResource",
+    "AsyncSipRegistrationStatusResource",
+    "SipRegistrationStatusResourceWithRawResponse",
+    "AsyncSipRegistrationStatusResourceWithRawResponse",
+    "SipRegistrationStatusResourceWithStreamingResponse",
+    "AsyncSipRegistrationStatusResourceWithStreamingResponse",
 ]

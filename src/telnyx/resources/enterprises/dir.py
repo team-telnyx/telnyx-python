@@ -101,10 +101,16 @@ class DirResource(SyncAPIResource):
 
         **Failure modes**
 
-        - `422` - validation error; `errors[].source.pointer` names the offending field.
-        - `403` - Branded Calling not activated on this enterprise (see
+        - `400` - validation error; `errors[].source.pointer` names the offending field.
+        - `400` - a certification field is not `true`.
+        - `400` - Branded Calling not activated on this enterprise (see
           `POST /enterprises/{id}/branded_calling`).
+        - `400` - the enterprise is a BPO enterprise (`role_type` `bpo`), which cannot
+          own a DIR.
+        - `400` - a `bpo_authorizations` entry is not an approved BPO enterprise in your
+          account, or its `loa_document_id` could not be validated.
         - `404` - enterprise does not exist or does not belong to your account.
+        - `503` - the document check is temporarily unavailable; retry.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or
@@ -357,10 +363,16 @@ class AsyncDirResource(AsyncAPIResource):
 
         **Failure modes**
 
-        - `422` - validation error; `errors[].source.pointer` names the offending field.
-        - `403` - Branded Calling not activated on this enterprise (see
+        - `400` - validation error; `errors[].source.pointer` names the offending field.
+        - `400` - a certification field is not `true`.
+        - `400` - Branded Calling not activated on this enterprise (see
           `POST /enterprises/{id}/branded_calling`).
+        - `400` - the enterprise is a BPO enterprise (`role_type` `bpo`), which cannot
+          own a DIR.
+        - `400` - a `bpo_authorizations` entry is not an approved BPO enterprise in your
+          account, or its `loa_document_id` could not be validated.
         - `404` - enterprise does not exist or does not belong to your account.
+        - `503` - the document check is temporarily unavailable; retry.
 
         Args:
           authorizer_email: Contact email of the authorizer. Telnyx may send verification or

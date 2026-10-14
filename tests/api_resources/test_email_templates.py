@@ -47,6 +47,7 @@ class TestEmailTemplates:
                 }
             },
             variables=["string"],
+            variables_mode="automatic",
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
@@ -145,6 +146,7 @@ class TestEmailTemplates:
                 }
             },
             variables=["string"],
+            variables_mode="automatic",
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
 
@@ -192,6 +194,10 @@ class TestEmailTemplates:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         email_template = client.email_templates.list(
+            filter_autoescape="true",
+            filter_content_type="html_and_text",
+            filter_query="filter[query]",
+            filter_strict_variables="true",
             page_cursor="page_cursor",
             page_size=1,
         )
@@ -338,6 +344,7 @@ class TestEmailTemplates:
                 }
             },
             variables=["string"],
+            variables_mode="automatic",
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
 
@@ -406,6 +413,7 @@ class TestAsyncEmailTemplates:
                 }
             },
             variables=["string"],
+            variables_mode="automatic",
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
@@ -504,6 +512,7 @@ class TestAsyncEmailTemplates:
                 }
             },
             variables=["string"],
+            variables_mode="automatic",
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
 
@@ -551,6 +560,10 @@ class TestAsyncEmailTemplates:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         email_template = await async_client.email_templates.list(
+            filter_autoescape="true",
+            filter_content_type="html_and_text",
+            filter_query="filter[query]",
+            filter_strict_variables="true",
             page_cursor="page_cursor",
             page_size=1,
         )
@@ -697,6 +710,7 @@ class TestAsyncEmailTemplates:
                 }
             },
             variables=["string"],
+            variables_mode="automatic",
         )
         assert_matches_type(EmailTemplateResponse, email_template, path=["response"])
 

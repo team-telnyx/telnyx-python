@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, List, Iterable, Optional
 
 import httpx
 
@@ -37,6 +37,7 @@ from ....types.ai.assistant_mcp_server_param import AssistantMcpServerParam
 from ....types.ai.assistant_integration_param import AssistantIntegrationParam
 from ....types.ai.conversation_flow_req_param import ConversationFlowReqParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
+from ....types.ai.avatar_settings_request_param import AvatarSettingsRequestParam
 from ....types.ai.post_conversation_settings_req_param import PostConversationSettingsReqParam
 from ....types.ai.inference_embedding_voice_settings_param import InferenceEmbeddingVoiceSettingsParam
 from ....types.ai.inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
@@ -119,6 +120,7 @@ class VersionsResource(SyncAPIResource):
         *,
         assistant_id: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
+        avatar_settings: Optional[AvatarSettingsRequestParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
         delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
@@ -172,6 +174,9 @@ class VersionsResource(SyncAPIResource):
               fetches combined. An agent whose card cannot be fetched costs the assistant that
               capability for the conversation; it does not fail the call. Omit this field to
               leave the assistant's agents unchanged; send an empty array to remove them all.
+
+          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. The launch
+              catalog supports six avatars and office, studio, or reception backgrounds.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -298,6 +303,7 @@ class VersionsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "a2a_agents": a2a_agents,
+                    "avatar_settings": avatar_settings,
                     "conversation_flow": conversation_flow,
                     "delegation_settings": delegation_settings,
                     "description": description,
@@ -531,6 +537,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         *,
         assistant_id: str,
         a2a_agents: Iterable[AssistantA2AAgentParam] | Omit = omit,
+        avatar_settings: Optional[AvatarSettingsRequestParam] | Omit = omit,
         conversation_flow: ConversationFlowReqParam | Omit = omit,
         delegation_settings: DelegationSettingsParam | Omit = omit,
         description: str | Omit = omit,
@@ -584,6 +591,9 @@ class AsyncVersionsResource(AsyncAPIResource):
               fetches combined. An agent whose card cannot be fetched costs the assistant that
               capability for the conversation; it does not fail the call. Omit this field to
               leave the assistant's agents unchanged; send an empty array to remove them all.
+
+          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. The launch
+              catalog supports six avatars and office, studio, or reception backgrounds.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -710,6 +720,7 @@ class AsyncVersionsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "a2a_agents": a2a_agents,
+                    "avatar_settings": avatar_settings,
                     "conversation_flow": conversation_flow,
                     "delegation_settings": delegation_settings,
                     "description": description,

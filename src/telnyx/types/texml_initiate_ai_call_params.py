@@ -13,7 +13,11 @@ __all__ = ["TexmlInitiateAICallParams", "CustomHeader"]
 
 class TexmlInitiateAICallParams(TypedDict, total=False):
     ai_assistant_id: Required[Annotated[str, PropertyInfo(alias="AIAssistantId")]]
-    """The ID of the AI assistant to use for the call."""
+    """The ID of the AI assistant to use for the call.
+
+    Telnyx attempts to warm up this assistant before the call is placed and starts
+    it automatically when the called party answers.
+    """
 
     from_: Required[Annotated[str, PropertyInfo(alias="From")]]
     """The phone number of the party initiating the call.

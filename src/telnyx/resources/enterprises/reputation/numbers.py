@@ -17,14 +17,20 @@ from ...._response import (
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.enterprises.reputation import (
+    ReputationNumberSource,
+    ReputationOwnershipStatus,
     number_list_params,
     number_refresh_params,
     number_retrieve_params,
     number_associate_params,
+    number_ownership_confirm_params,
 )
 from ....types.enterprises.reputation.number_refresh_response import NumberRefreshResponse
 from ....types.enterprises.reputation.reputation_phone_number import ReputationPhoneNumber
+from ....types.enterprises.reputation.reputation_number_source import ReputationNumberSource
+from ....types.enterprises.reputation.reputation_ownership_status import ReputationOwnershipStatus
 from ....types.enterprises.reputation.reputation_phone_number_list import ReputationPhoneNumberList
+from ....types.enterprises.reputation.number_retrieve_ownership_response import NumberRetrieveOwnershipResponse
 from ....types.enterprises.reputation.reputation_phone_number_with_reputation import ReputationPhoneNumberWithReputation
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
@@ -107,8 +113,10 @@ class NumbersResource(SyncAPIResource):
         self,
         enterprise_id: str,
         *,
+        filter_ownership_status: ReputationOwnershipStatus | Omit = omit,
         filter_phone_number_contains: str | Omit = omit,
         filter_phone_number_eq: str | Omit = omit,
+        filter_source: ReputationNumberSource | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -124,9 +132,15 @@ class NumbersResource(SyncAPIResource):
         where one has been collected.
 
         Args:
+          filter_ownership_status: Only numbers with this ownership status. `removed` lists the numbers that were
+              removed, each with its `removal_reason` and `removed_at`; removed numbers are
+              not returned otherwise.
+
           filter_phone_number_contains: Partial match on phone number. Must contain at least 5 digits.
 
           filter_phone_number_eq: Exact phone-number match (E.164).
+
+          filter_source: Only numbers with this source.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
@@ -152,8 +166,10 @@ class NumbersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_ownership_status": filter_ownership_status,
                         "filter_phone_number_contains": filter_phone_number_contains,
                         "filter_phone_number_eq": filter_phone_number_eq,
+                        "filter_source": filter_source,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -178,14 +194,23 @@ class NumbersResource(SyncAPIResource):
         """Add up to 100 phone numbers to reputation monitoring on this enterprise.
 
         Each
-        must be in E.164 format (`+1NPANXXXXXX` for US/CA) and belong to your Telnyx
-        phone-number inventory.
+        must be in E.164 format (`+1NPANXXXXXX` for US/CA). A number in your Telnyx
+        phone-number inventory is accepted as `source: telnyx`; a number that is not is
+        treated as hosted with another provider and must meet the requirements below.
 
         **Prerequisite**: reputation must already be enabled on this enterprise (see
         `POST .../reputation`).
 
         **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
         for current pricing.
+
+        A phone number that is not in your Telnyx inventory is treated as a number
+        hosted with another provider (`source: external`). It must be a US local number,
+        and the enterprise's ownership proof must be approved first
+        (`POST /enterprises/{enterprise_id}/reputation/external_verification`);
+        otherwise the request fails with a 400 whose `detail` contains
+        `external_verification_required`. Ownership of such numbers is checked every
+        day.
 
         Args:
           phone_numbers: 1–100 phone numbers in E.164 format with a leading `+`.
@@ -252,6 +277,69 @@ class NumbersResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def ownership_confirm(
+        self,
+        phone_number: str,
+        *,
+        enterprise_id: str,
+        still_own: bool,
+        evidence_document_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReputationPhoneNumberWithReputation:
+        """
+        Answer an ownership question about a phone number hosted with another provider.
+
+        Send `still_own: true` to confirm you still own a number whose
+        `ownership_status` is `pending_confirmation` or `flagged`; its status returns to
+        `verified` and, after a carrier change, the new carrier becomes the one on
+        record.
+
+        Send `still_own: false` to report that you no longer own the number. It is
+        removed from Number Reputation immediately, whatever its current status, and the
+        response shows it with `ownership_status: removed`.
+
+        Args:
+          still_own: `true` confirms you still own the number. `false` reports that you no longer own
+              it and removes it from Number Reputation.
+
+          evidence_document_id: Optional id of an uploaded document supporting the confirmation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return self._post(
+            path_template(
+                "/enterprises/{enterprise_id}/reputation/numbers/{phone_number}/ownership_confirm",
+                enterprise_id=enterprise_id,
+                phone_number=phone_number,
+            ),
+            body=maybe_transform(
+                {
+                    "still_own": still_own,
+                    "evidence_document_id": evidence_document_id,
+                },
+                number_ownership_confirm_params.NumberOwnershipConfirmParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ReputationPhoneNumberWithReputation,
+        )
+
     def refresh(
         self,
         enterprise_id: str,
@@ -295,6 +383,47 @@ class NumbersResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NumberRefreshResponse,
+        )
+
+    def retrieve_ownership(
+        self,
+        phone_number: str,
+        *,
+        enterprise_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NumberRetrieveOwnershipResponse:
+        """
+        Get the ownership status of a phone number, when it was last checked, the
+        carrier recorded as its baseline, and the history of ownership events.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return self._get(
+            path_template(
+                "/enterprises/{enterprise_id}/reputation/numbers/{phone_number}/ownership",
+                enterprise_id=enterprise_id,
+                phone_number=phone_number,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NumberRetrieveOwnershipResponse,
         )
 
 
@@ -375,8 +504,10 @@ class AsyncNumbersResource(AsyncAPIResource):
         self,
         enterprise_id: str,
         *,
+        filter_ownership_status: ReputationOwnershipStatus | Omit = omit,
         filter_phone_number_contains: str | Omit = omit,
         filter_phone_number_eq: str | Omit = omit,
+        filter_source: ReputationNumberSource | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -392,9 +523,15 @@ class AsyncNumbersResource(AsyncAPIResource):
         where one has been collected.
 
         Args:
+          filter_ownership_status: Only numbers with this ownership status. `removed` lists the numbers that were
+              removed, each with its `removal_reason` and `removed_at`; removed numbers are
+              not returned otherwise.
+
           filter_phone_number_contains: Partial match on phone number. Must contain at least 5 digits.
 
           filter_phone_number_eq: Exact phone-number match (E.164).
+
+          filter_source: Only numbers with this source.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
@@ -420,8 +557,10 @@ class AsyncNumbersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_ownership_status": filter_ownership_status,
                         "filter_phone_number_contains": filter_phone_number_contains,
                         "filter_phone_number_eq": filter_phone_number_eq,
+                        "filter_source": filter_source,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -446,14 +585,23 @@ class AsyncNumbersResource(AsyncAPIResource):
         """Add up to 100 phone numbers to reputation monitoring on this enterprise.
 
         Each
-        must be in E.164 format (`+1NPANXXXXXX` for US/CA) and belong to your Telnyx
-        phone-number inventory.
+        must be in E.164 format (`+1NPANXXXXXX` for US/CA). A number in your Telnyx
+        phone-number inventory is accepted as `source: telnyx`; a number that is not is
+        treated as hosted with another provider and must meet the requirements below.
 
         **Prerequisite**: reputation must already be enabled on this enterprise (see
         `POST .../reputation`).
 
         **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
         for current pricing.
+
+        A phone number that is not in your Telnyx inventory is treated as a number
+        hosted with another provider (`source: external`). It must be a US local number,
+        and the enterprise's ownership proof must be approved first
+        (`POST /enterprises/{enterprise_id}/reputation/external_verification`);
+        otherwise the request fails with a 400 whose `detail` contains
+        `external_verification_required`. Ownership of such numbers is checked every
+        day.
 
         Args:
           phone_numbers: 1–100 phone numbers in E.164 format with a leading `+`.
@@ -522,6 +670,69 @@ class AsyncNumbersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def ownership_confirm(
+        self,
+        phone_number: str,
+        *,
+        enterprise_id: str,
+        still_own: bool,
+        evidence_document_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReputationPhoneNumberWithReputation:
+        """
+        Answer an ownership question about a phone number hosted with another provider.
+
+        Send `still_own: true` to confirm you still own a number whose
+        `ownership_status` is `pending_confirmation` or `flagged`; its status returns to
+        `verified` and, after a carrier change, the new carrier becomes the one on
+        record.
+
+        Send `still_own: false` to report that you no longer own the number. It is
+        removed from Number Reputation immediately, whatever its current status, and the
+        response shows it with `ownership_status: removed`.
+
+        Args:
+          still_own: `true` confirms you still own the number. `false` reports that you no longer own
+              it and removes it from Number Reputation.
+
+          evidence_document_id: Optional id of an uploaded document supporting the confirmation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return await self._post(
+            path_template(
+                "/enterprises/{enterprise_id}/reputation/numbers/{phone_number}/ownership_confirm",
+                enterprise_id=enterprise_id,
+                phone_number=phone_number,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "still_own": still_own,
+                    "evidence_document_id": evidence_document_id,
+                },
+                number_ownership_confirm_params.NumberOwnershipConfirmParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ReputationPhoneNumberWithReputation,
+        )
+
     async def refresh(
         self,
         enterprise_id: str,
@@ -569,6 +780,47 @@ class AsyncNumbersResource(AsyncAPIResource):
             cast_to=NumberRefreshResponse,
         )
 
+    async def retrieve_ownership(
+        self,
+        phone_number: str,
+        *,
+        enterprise_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NumberRetrieveOwnershipResponse:
+        """
+        Get the ownership status of a phone number, when it was last checked, the
+        carrier recorded as its baseline, and the history of ownership events.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return await self._get(
+            path_template(
+                "/enterprises/{enterprise_id}/reputation/numbers/{phone_number}/ownership",
+                enterprise_id=enterprise_id,
+                phone_number=phone_number,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NumberRetrieveOwnershipResponse,
+        )
+
 
 class NumbersResourceWithRawResponse:
     def __init__(self, numbers: NumbersResource) -> None:
@@ -586,8 +838,14 @@ class NumbersResourceWithRawResponse:
         self.disassociate = to_raw_response_wrapper(
             numbers.disassociate,
         )
+        self.ownership_confirm = to_raw_response_wrapper(
+            numbers.ownership_confirm,
+        )
         self.refresh = to_raw_response_wrapper(
             numbers.refresh,
+        )
+        self.retrieve_ownership = to_raw_response_wrapper(
+            numbers.retrieve_ownership,
         )
 
 
@@ -607,8 +865,14 @@ class AsyncNumbersResourceWithRawResponse:
         self.disassociate = async_to_raw_response_wrapper(
             numbers.disassociate,
         )
+        self.ownership_confirm = async_to_raw_response_wrapper(
+            numbers.ownership_confirm,
+        )
         self.refresh = async_to_raw_response_wrapper(
             numbers.refresh,
+        )
+        self.retrieve_ownership = async_to_raw_response_wrapper(
+            numbers.retrieve_ownership,
         )
 
 
@@ -628,8 +892,14 @@ class NumbersResourceWithStreamingResponse:
         self.disassociate = to_streamed_response_wrapper(
             numbers.disassociate,
         )
+        self.ownership_confirm = to_streamed_response_wrapper(
+            numbers.ownership_confirm,
+        )
         self.refresh = to_streamed_response_wrapper(
             numbers.refresh,
+        )
+        self.retrieve_ownership = to_streamed_response_wrapper(
+            numbers.retrieve_ownership,
         )
 
 
@@ -649,6 +919,12 @@ class AsyncNumbersResourceWithStreamingResponse:
         self.disassociate = async_to_streamed_response_wrapper(
             numbers.disassociate,
         )
+        self.ownership_confirm = async_to_streamed_response_wrapper(
+            numbers.ownership_confirm,
+        )
         self.refresh = async_to_streamed_response_wrapper(
             numbers.refresh,
+        )
+        self.retrieve_ownership = async_to_streamed_response_wrapper(
+            numbers.retrieve_ownership,
         )

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Union, ForwardRef
+from typing import TYPE_CHECKING, Union, ForwardRef
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["ConversationRelayLanguageParam", "VoiceSettings"]
@@ -56,12 +56,15 @@ class ConversationRelayLanguageParam(TypedDict, total=False):
     derives `transcription_provider` and `speech_model` for that language.
     """
 
-    transcription_engine_config: Dict[str, object]
+    transcription_engine_config: "ConversationRelayTranscriptionEngineConfigParam"
     """Engine-specific transcription settings for Conversation Relay.
 
     This accepts the same provider-specific options used by the Call Transcription
     Start command, such as `transcription_model`, without requiring the engine
-    discriminator to be repeated inside this object.
+    discriminator to be repeated inside this object. With Deepgram Flux
+    (`deepgram/flux`), `interim_results`, `eot_threshold` and `eager_eot_threshold`
+    control the interim prompts and the `eagerEndOfTurn` and `turnResumed` frames
+    sent to your WebSocket server.
     """
 
     transcription_provider: str
@@ -93,3 +96,4 @@ from .shared_params.inworld_voice_settings import InworldVoiceSettings
 from .shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from .shared_params.resemble_voice_settings import ResembleVoiceSettings
 from .calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from .calls.conversation_relay_transcription_engine_config_param import ConversationRelayTranscriptionEngineConfigParam

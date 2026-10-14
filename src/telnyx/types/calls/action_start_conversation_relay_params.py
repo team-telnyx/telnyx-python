@@ -125,12 +125,15 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     `transcription_engine_config`; the `transcription` object is not supported.
     """
 
-    transcription_engine_config: Dict[str, object]
+    transcription_engine_config: "ConversationRelayTranscriptionEngineConfigParam"
     """Engine-specific transcription settings for Conversation Relay.
 
     This accepts the same provider-specific options used by the Call Transcription
     Start command, such as `transcription_model`, without requiring the engine
-    discriminator to be repeated inside this object.
+    discriminator to be repeated inside this object. With Deepgram Flux
+    (`deepgram/flux`), `interim_results`, `eot_threshold` and `eager_eot_threshold`
+    control the interim prompts and the `eagerEndOfTurn` and `turnResumed` frames
+    sent to your WebSocket server.
     """
 
     tts_provider: str
@@ -266,3 +269,4 @@ from .soniox_voice_settings_param import SonioxVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .conversation_relay_interruptible import ConversationRelayInterruptible
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from .conversation_relay_transcription_engine_config_param import ConversationRelayTranscriptionEngineConfigParam
