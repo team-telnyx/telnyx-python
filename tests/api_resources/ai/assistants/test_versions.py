@@ -520,6 +520,7 @@ class TestVersions:
             },
             tags=["string"],
             telephony_settings={
+                "conversation_ended_full_history": True,
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
@@ -1391,6 +1392,7 @@ class TestAsyncVersions:
             },
             tags=["string"],
             telephony_settings={
+                "conversation_ended_full_history": True,
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",

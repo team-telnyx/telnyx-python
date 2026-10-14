@@ -460,6 +460,7 @@ class TestAssistants:
             },
             tags=["string"],
             telephony_settings={
+                "conversation_ended_full_history": True,
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
@@ -1155,6 +1156,7 @@ class TestAssistants:
             promote_to_main=True,
             tags=["string"],
             telephony_settings={
+                "conversation_ended_full_history": True,
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
@@ -2262,6 +2264,7 @@ class TestAsyncAssistants:
             },
             tags=["string"],
             telephony_settings={
+                "conversation_ended_full_history": True,
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
@@ -2957,6 +2960,7 @@ class TestAsyncAssistants:
             promote_to_main=True,
             tags=["string"],
             telephony_settings={
+                "conversation_ended_full_history": True,
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
