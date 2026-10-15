@@ -3464,6 +3464,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumbersError73c9788e53,
     NumbersPhoneNumberDetailed,
     PhoneNumberDetailed,
     PhoneNumberRetrieveResponse,
@@ -3524,6 +3525,7 @@ Types:
 
 ```python
 from telnyx.types.phone_numbers import (
+    NumbersPhoneNumbersJob,
     PhoneNumbersJob,
     JobRetrieveResponse,
     JobDeleteBatchResponse,
@@ -3535,7 +3537,7 @@ from telnyx.types.phone_numbers import (
 Methods:
 
 - <code title="get /phone_numbers/jobs/{id}">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/phone_numbers/job_retrieve_response.py">JobRetrieveResponse</a></code>
-- <code title="get /phone_numbers/jobs">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">list</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_list_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/phone_numbers_job.py">SyncDefaultFlatPagination[PhoneNumbersJob]</a></code>
+- <code title="get /phone_numbers/jobs">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">list</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_list_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/numbers_phone_numbers_job.py">SyncDefaultFlatPagination[NumbersPhoneNumbersJob]</a></code>
 - <code title="post /phone_numbers/jobs/delete_phone_numbers">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">delete_batch</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_delete_batch_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/job_delete_batch_response.py">JobDeleteBatchResponse</a></code>
 - <code title="post /phone_numbers/jobs/update_phone_numbers">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">update_batch</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_update_batch_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/job_update_batch_response.py">JobUpdateBatchResponse</a></code>
 - <code title="post /phone_numbers/jobs/update_emergency_settings">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">update_emergency_settings_batch</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_update_emergency_settings_batch_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/job_update_emergency_settings_batch_response.py">JobUpdateEmergencySettingsBatchResponse</a></code>
