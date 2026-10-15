@@ -45,7 +45,6 @@ from ..._base_client import make_request_options
 from ...types.meeting_session_response import MeetingSessionResponse
 from ...types.meeting_session_list_response import MeetingSessionListResponse
 from ...types.meeting_session_retrieve_events_response import MeetingSessionRetrieveEventsResponse
-from ...types.meeting_session_retrieve_recordings_response import MeetingSessionRetrieveRecordingsResponse
 from ...types.meeting_session_retrieve_transcript_response import MeetingSessionRetrieveTranscriptResponse
 from ...types.meeting_session_delete_recording_media_response import MeetingSessionDeleteRecordingMediaResponse
 
@@ -388,8 +387,8 @@ class MeetingSessionsResource(SyncAPIResource):
         The operation retains the Telnyx-local Meeting session, transcript segments,
         events, artifacts, and usage records. It is separate from
         `DELETE /meeting_sessions/{id}`, which stops or cancels participation without
-        deleting the persisted session. A missing/foreign session returns 404; provider
-        deletion failures return 502.
+        deleting the persisted session. A missing/foreign session returns 404; a
+        deletion request whose outcome is unknown returns 502.
 
         Args:
           extra_headers: Send extra headers
@@ -461,39 +460,6 @@ class MeetingSessionsResource(SyncAPIResource):
                 ),
             ),
             cast_to=MeetingSessionRetrieveEventsResponse,
-        )
-
-    def retrieve_recordings(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MeetingSessionRetrieveRecordingsResponse:
-        """
-        Returns recordings for a meeting session.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
-            path_template("/meeting_sessions/{id}/recordings", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MeetingSessionRetrieveRecordingsResponse,
         )
 
     def retrieve_transcript(
@@ -894,8 +860,8 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
         The operation retains the Telnyx-local Meeting session, transcript segments,
         events, artifacts, and usage records. It is separate from
         `DELETE /meeting_sessions/{id}`, which stops or cancels participation without
-        deleting the persisted session. A missing/foreign session returns 404; provider
-        deletion failures return 502.
+        deleting the persisted session. A missing/foreign session returns 404; a
+        deletion request whose outcome is unknown returns 502.
 
         Args:
           extra_headers: Send extra headers
@@ -967,39 +933,6 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
                 ),
             ),
             cast_to=MeetingSessionRetrieveEventsResponse,
-        )
-
-    async def retrieve_recordings(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MeetingSessionRetrieveRecordingsResponse:
-        """
-        Returns recordings for a meeting session.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
-            path_template("/meeting_sessions/{id}/recordings", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MeetingSessionRetrieveRecordingsResponse,
         )
 
     async def retrieve_transcript(
@@ -1087,9 +1020,6 @@ class MeetingSessionsResourceWithRawResponse:
         self.retrieve_events = to_raw_response_wrapper(
             meeting_sessions.retrieve_events,
         )
-        self.retrieve_recordings = to_raw_response_wrapper(
-            meeting_sessions.retrieve_recordings,
-        )
         self.retrieve_transcript = to_raw_response_wrapper(
             meeting_sessions.retrieve_transcript,
         )
@@ -1129,9 +1059,6 @@ class AsyncMeetingSessionsResourceWithRawResponse:
         )
         self.retrieve_events = async_to_raw_response_wrapper(
             meeting_sessions.retrieve_events,
-        )
-        self.retrieve_recordings = async_to_raw_response_wrapper(
-            meeting_sessions.retrieve_recordings,
         )
         self.retrieve_transcript = async_to_raw_response_wrapper(
             meeting_sessions.retrieve_transcript,
@@ -1173,9 +1100,6 @@ class MeetingSessionsResourceWithStreamingResponse:
         self.retrieve_events = to_streamed_response_wrapper(
             meeting_sessions.retrieve_events,
         )
-        self.retrieve_recordings = to_streamed_response_wrapper(
-            meeting_sessions.retrieve_recordings,
-        )
         self.retrieve_transcript = to_streamed_response_wrapper(
             meeting_sessions.retrieve_transcript,
         )
@@ -1215,9 +1139,6 @@ class AsyncMeetingSessionsResourceWithStreamingResponse:
         )
         self.retrieve_events = async_to_streamed_response_wrapper(
             meeting_sessions.retrieve_events,
-        )
-        self.retrieve_recordings = async_to_streamed_response_wrapper(
-            meeting_sessions.retrieve_recordings,
         )
         self.retrieve_transcript = async_to_streamed_response_wrapper(
             meeting_sessions.retrieve_transcript,

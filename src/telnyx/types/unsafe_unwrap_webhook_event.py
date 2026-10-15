@@ -42,7 +42,6 @@ from .conference_created_webhook_event import ConferenceCreatedWebhookEvent
 from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
-from .recording_available_webhook_event import RecordingAvailableWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent
 from .whatsapp_waba_added_webhook_event import WhatsappWabaAddedWebhookEvent
 from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
@@ -171,7 +170,6 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
     NumberReputationNumberFlaggedWebhookEvent,
     NumberReputationNumberRemovedWebhookEvent,
-    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,

@@ -401,7 +401,6 @@ from telnyx.types import (
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
     NumberReputationNumberFlaggedWebhookEvent,
     NumberReputationNumberRemovedWebhookEvent,
-    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,
@@ -475,7 +474,6 @@ from telnyx.types import (
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
     NumberReputationNumberFlaggedWebhookEvent,
     NumberReputationNumberRemovedWebhookEvent,
-    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,
@@ -7006,7 +7004,6 @@ from telnyx.types import (
     MeetingSessionListResponse,
     MeetingSessionDeleteRecordingMediaResponse,
     MeetingSessionRetrieveEventsResponse,
-    MeetingSessionRetrieveRecordingsResponse,
     MeetingSessionRetrieveTranscriptResponse,
 )
 ```
@@ -7020,7 +7017,6 @@ Methods:
 - <code title="delete /meeting_sessions/{id}">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">delete</a>(id) -> <a href="./src/telnyx/types/meeting_session_response.py">MeetingSessionResponse</a></code>
 - <code title="delete /meeting_sessions/{id}/recording_media">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">delete_recording_media</a>(id) -> <a href="./src/telnyx/types/meeting_session_delete_recording_media_response.py">MeetingSessionDeleteRecordingMediaResponse</a></code>
 - <code title="get /meeting_sessions/{id}/events">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_events</a>(id, \*\*<a href="src/telnyx/types/meeting_session_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_retrieve_events_response.py">MeetingSessionRetrieveEventsResponse</a></code>
-- <code title="get /meeting_sessions/{id}/recordings">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_recordings</a>(id) -> <a href="./src/telnyx/types/meeting_session_retrieve_recordings_response.py">MeetingSessionRetrieveRecordingsResponse</a></code>
 - <code title="get /meeting_sessions/{id}/transcript">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_transcript</a>(id, \*\*<a href="src/telnyx/types/meeting_session_retrieve_transcript_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_retrieve_transcript_response.py">MeetingSessionRetrieveTranscriptResponse</a></code>
 
 ## Actions

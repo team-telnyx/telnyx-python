@@ -13,7 +13,6 @@ from telnyx.types import (
     MeetingSessionResponse,
     MeetingSessionListResponse,
     MeetingSessionRetrieveEventsResponse,
-    MeetingSessionRetrieveRecordingsResponse,
     MeetingSessionRetrieveTranscriptResponse,
     MeetingSessionDeleteRecordingMediaResponse,
 )
@@ -352,48 +351,6 @@ class TestMeetingSessions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.meeting_sessions.with_raw_response.retrieve_events(
                 id="",
-            )
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_retrieve_recordings(self, client: Telnyx) -> None:
-        meeting_session = client.meeting_sessions.retrieve_recordings(
-            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        )
-        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_raw_response_retrieve_recordings(self, client: Telnyx) -> None:
-        response = client.meeting_sessions.with_raw_response.retrieve_recordings(
-            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        meeting_session = response.parse()
-        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_streaming_response_retrieve_recordings(self, client: Telnyx) -> None:
-        with client.meeting_sessions.with_streaming_response.retrieve_recordings(
-            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            meeting_session = response.parse()
-            assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_path_params_retrieve_recordings(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.meeting_sessions.with_raw_response.retrieve_recordings(
-                "",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -782,48 +739,6 @@ class TestAsyncMeetingSessions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.meeting_sessions.with_raw_response.retrieve_events(
                 id="",
-            )
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
-        meeting_session = await async_client.meeting_sessions.retrieve_recordings(
-            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        )
-        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_raw_response_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.meeting_sessions.with_raw_response.retrieve_recordings(
-            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        meeting_session = await response.parse()
-        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_streaming_response_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.meeting_sessions.with_streaming_response.retrieve_recordings(
-            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            meeting_session = await response.parse()
-            assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_path_params_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.meeting_sessions.with_raw_response.retrieve_recordings(
-                "",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
