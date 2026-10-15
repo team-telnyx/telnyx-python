@@ -13,7 +13,7 @@ __all__ = ["TelnyxAvatarSettings"]
 class TelnyxAvatarSettings(BaseModel):
     """**Beta:** Configuration for the Telnyx open-source avatar provider.
 
-    Use one of the six stock avatars or an organization-owned custom avatar returned by the Avatars API. Supported backgrounds are office, studio, and reception.
+    Use a stock avatar or an organization-owned custom avatar returned by the Avatars API. Discover the available stock catalog with GET /v2/ai/avatars and filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported backgrounds are office, studio, and reception.
     """
 
     avatar_id: AvatarID
