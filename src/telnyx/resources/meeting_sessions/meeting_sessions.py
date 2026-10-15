@@ -87,7 +87,6 @@ class MeetingSessionsResource(SyncAPIResource):
         *,
         meeting_url: str,
         assistant: meeting_session_create_params.Assistant | Omit = omit,
-        avatar: meeting_session_create_params.Avatar | Omit = omit,
         barge_in: bool | Omit = omit,
         bot_name: str | Omit = omit,
         camera_image: meeting_session_create_params.CameraImage | Omit = omit,
@@ -112,13 +111,18 @@ class MeetingSessionsResource(SyncAPIResource):
         request body, replay lookup is scoped to the authenticated account and compares
         only the key; the request payload is not fingerprinted or compared. If a session
         with that key already exists for the account, the existing session is replayed
-        (200); otherwise a new session is created (201). Supports bring-your-own-key
-        (BYOK) configuration. The session may enter asynchronous states (e.g. joining,
-        waiting_for_admission) before becoming active. Optional `camera_image` input is
-        write-only and applies only when no Avatar or Assistant webpage output takes
-        precedence. An ignored URL is not fetched. An effective URL source is resolved
-        before bot creation; neither the source URL nor image bytes are persisted,
-        returned, or logged. Treat signed URLs as credentials.
+        (200); otherwise a new session is created (201). The session may enter
+        asynchronous states (e.g. joining, waiting_for_admission) before becoming
+        active. Optional `camera_image` input is write-only and applies only when no
+        avatar or Assistant webpage output takes precedence. An ignored URL is not
+        fetched. An effective URL source is resolved before bot creation; neither the
+        source URL nor image bytes are persisted, returned, or logged. Treat signed URLs
+        as credentials. With `assistant.avatar: true`, the assistant is read before the
+        bot is created: an assistant without a Telnyx avatar configured is rejected with
+        400 `invalid_request` (message prefix `assistant_avatar_not_configured:`), an
+        unknown assistant with 400 `invalid_request` (prefix `assistant_not_found:`),
+        and a failed lookup with 503 `assistant_lookup_unavailable`; no bot is created
+        in any of these cases.
 
         Args:
           meeting_url: The meeting URL the bot should join.
@@ -127,8 +131,6 @@ class MeetingSessionsResource(SyncAPIResource):
               Meeting service connects it to the meeting directly. The Call Control
               connection, caller ID and loopback SIP URI previously required here have been
               removed and are now rejected as unknown fields.
-
-          avatar: Request options for attaching a bring-your-own-key avatar to the session.
 
           barge_in: When enabled, a human participant `speech_on` event interrupts and stops the
               current bot audio; it does not bypass admission or initiate speech. Assistant
@@ -163,6 +165,7 @@ class MeetingSessionsResource(SyncAPIResource):
               is attached**: the value is accepted and echoed back on the session, but the
               assistant owns the voice and the line is never delivered, with no event
               reporting the omission. Use `chat_on_enter` to announce an assistant-backed bot.
+              Rejected with 400 `invalid_request` when `assistant.avatar` is `true`.
 
           summarize_on_end: If true, generate a summary artifact when the session ends.
 
@@ -188,7 +191,6 @@ class MeetingSessionsResource(SyncAPIResource):
                 {
                     "meeting_url": meeting_url,
                     "assistant": assistant,
-                    "avatar": avatar,
                     "barge_in": barge_in,
                     "bot_name": bot_name,
                     "camera_image": camera_image,
@@ -589,7 +591,6 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
         *,
         meeting_url: str,
         assistant: meeting_session_create_params.Assistant | Omit = omit,
-        avatar: meeting_session_create_params.Avatar | Omit = omit,
         barge_in: bool | Omit = omit,
         bot_name: str | Omit = omit,
         camera_image: meeting_session_create_params.CameraImage | Omit = omit,
@@ -614,13 +615,18 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
         request body, replay lookup is scoped to the authenticated account and compares
         only the key; the request payload is not fingerprinted or compared. If a session
         with that key already exists for the account, the existing session is replayed
-        (200); otherwise a new session is created (201). Supports bring-your-own-key
-        (BYOK) configuration. The session may enter asynchronous states (e.g. joining,
-        waiting_for_admission) before becoming active. Optional `camera_image` input is
-        write-only and applies only when no Avatar or Assistant webpage output takes
-        precedence. An ignored URL is not fetched. An effective URL source is resolved
-        before bot creation; neither the source URL nor image bytes are persisted,
-        returned, or logged. Treat signed URLs as credentials.
+        (200); otherwise a new session is created (201). The session may enter
+        asynchronous states (e.g. joining, waiting_for_admission) before becoming
+        active. Optional `camera_image` input is write-only and applies only when no
+        avatar or Assistant webpage output takes precedence. An ignored URL is not
+        fetched. An effective URL source is resolved before bot creation; neither the
+        source URL nor image bytes are persisted, returned, or logged. Treat signed URLs
+        as credentials. With `assistant.avatar: true`, the assistant is read before the
+        bot is created: an assistant without a Telnyx avatar configured is rejected with
+        400 `invalid_request` (message prefix `assistant_avatar_not_configured:`), an
+        unknown assistant with 400 `invalid_request` (prefix `assistant_not_found:`),
+        and a failed lookup with 503 `assistant_lookup_unavailable`; no bot is created
+        in any of these cases.
 
         Args:
           meeting_url: The meeting URL the bot should join.
@@ -629,8 +635,6 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
               Meeting service connects it to the meeting directly. The Call Control
               connection, caller ID and loopback SIP URI previously required here have been
               removed and are now rejected as unknown fields.
-
-          avatar: Request options for attaching a bring-your-own-key avatar to the session.
 
           barge_in: When enabled, a human participant `speech_on` event interrupts and stops the
               current bot audio; it does not bypass admission or initiate speech. Assistant
@@ -665,6 +669,7 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
               is attached**: the value is accepted and echoed back on the session, but the
               assistant owns the voice and the line is never delivered, with no event
               reporting the omission. Use `chat_on_enter` to announce an assistant-backed bot.
+              Rejected with 400 `invalid_request` when `assistant.avatar` is `true`.
 
           summarize_on_end: If true, generate a summary artifact when the session ends.
 
@@ -690,7 +695,6 @@ class AsyncMeetingSessionsResource(AsyncAPIResource):
                 {
                     "meeting_url": meeting_url,
                     "assistant": assistant,
-                    "avatar": avatar,
                     "barge_in": barge_in,
                     "bot_name": bot_name,
                     "camera_image": camera_image,

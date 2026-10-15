@@ -11,7 +11,6 @@ from .._utils import PropertyInfo
 __all__ = [
     "MeetingSessionCreateParams",
     "Assistant",
-    "Avatar",
     "CameraImage",
     "CameraImageMeetingSessionCameraImageBase64Source",
     "CameraImageMeetingSessionCameraImageURLSource",
@@ -29,9 +28,6 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     directly. The Call Control connection, caller ID and loopback SIP URI previously
     required here have been removed and are now rejected as unknown fields.
     """
-
-    avatar: Avatar
-    """Request options for attaching a bring-your-own-key avatar to the session."""
 
     barge_in: bool
     """
@@ -87,7 +83,8 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     **Not spoken when an `assistant` is attached**: the value is accepted and echoed
     back on the session, but the assistant owns the voice and the line is never
     delivered, with no event reporting the omission. Use `chat_on_enter` to announce
-    an assistant-backed bot.
+    an assistant-backed bot. Rejected with 400 `invalid_request` when
+    `assistant.avatar` is `true`.
     """
 
     summarize_on_end: bool
@@ -129,6 +126,21 @@ class Assistant(TypedDict, total=False):
     participants.
     """
 
+    avatar: bool
+    """Beta.
+
+    Show the avatar configured on the assistant (its `avatar_settings`; see
+    [AI Assistant avatars](/docs/inference/ai-assistants/avatars)) as the bot's
+    camera, lip-synced to the assistant's own speech. The request carries no avatar
+    ID or key: the assistant is read at creation and the request is rejected with
+    400 `invalid_request` if it has no Telnyx avatar configured. Supported on Google
+    Meet, Zoom, Microsoft Teams and Webex; other platforms return 422
+    `unsupported_capability`. REST-only. Not echoed back on `assistant`; the
+    session's top-level `avatar` and `avatar_state` fields report it instead. If the
+    avatar fails, the session continues voice-only and `avatar_state` becomes
+    `degraded`.
+    """
+
     dynamic_variables: Dict[str, str]
     """
     Per-conversation values for the
@@ -151,22 +163,6 @@ class Assistant(TypedDict, total=False):
     leave twice, and a leave the provider refuses is logged without changing how the
     session settles.
     """
-
-
-class Avatar(TypedDict, total=False):
-    """Request options for attaching a bring-your-own-key avatar to the session."""
-
-    api_key: Required[str]
-    """Bring-your-own-key API key for the avatar provider.
-
-    The key is never stored or returned by the API.
-    """
-
-    avatar_id: Required[str]
-    """Identifier of the avatar to use."""
-
-    provider: Required[Literal["anam"]]
-    """Avatar provider identifier. Currently only "anam" is supported."""
 
 
 class CameraImageMeetingSessionCameraImageBase64Source(TypedDict, total=False):
