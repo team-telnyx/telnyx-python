@@ -10,7 +10,7 @@ from ..._files import deepcopy_with_paths
 from ..._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ..._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
-from ...types.ai import AvatarType, avatar_list_params, avatar_create_params, avatar_update_params
+from ...types.ai import AvatarID, AvatarType, avatar_list_params, avatar_create_params, avatar_update_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -21,8 +21,8 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ai.avatar import Avatar
+from ...types.ai.avatar_id import AvatarID
 from ...types.ai.avatar_type import AvatarType
-from ...types.ai.avatar_id_param import AvatarIDParam
 from ...types.ai.avatar_response import AvatarResponse
 
 __all__ = ["AvatarsResource", "AsyncAvatarsResource"]
@@ -117,7 +117,7 @@ class AvatarsResource(SyncAPIResource):
 
     def retrieve(
         self,
-        avatar_id: AvatarIDParam,
+        avatar_id: AvatarID,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -132,9 +132,11 @@ class AvatarsResource(SyncAPIResource):
         not found.
 
         Args:
-          avatar_id: Stable identifier of a Telnyx stock avatar or an organization-owned custom
-              avatar. Custom avatar IDs are returned by the Avatars API and use the `avatar_`
-              prefix.
+          avatar_id: Stable identifier returned by the Avatars API. Discover available stock IDs with
+              GET /v2/ai/avatars and filter[avatar_type]=stock rather than maintaining a fixed
+              list. Custom avatar IDs use the `avatar_` prefix and must belong to the
+              authenticated organization. The service validates that the selected avatar is
+              available.
 
           extra_headers: Send extra headers
 
@@ -144,6 +146,8 @@ class AvatarsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not avatar_id:
+            raise ValueError(f"Expected a non-empty value for `avatar_id` but received {avatar_id!r}")
         return self._get(
             path_template("/ai/avatars/{avatar_id}", avatar_id=avatar_id),
             options=make_request_options(
@@ -154,7 +158,7 @@ class AvatarsResource(SyncAPIResource):
 
     def update(
         self,
-        avatar_id: AvatarIDParam,
+        avatar_id: AvatarID,
         *,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -170,9 +174,11 @@ class AvatarsResource(SyncAPIResource):
         new custom avatar so existing references keep their original content.
 
         Args:
-          avatar_id: Stable identifier of a Telnyx stock avatar or an organization-owned custom
-              avatar. Custom avatar IDs are returned by the Avatars API and use the `avatar_`
-              prefix.
+          avatar_id: Stable identifier returned by the Avatars API. Discover available stock IDs with
+              GET /v2/ai/avatars and filter[avatar_type]=stock rather than maintaining a fixed
+              list. Custom avatar IDs use the `avatar_` prefix and must belong to the
+              authenticated organization. The service validates that the selected avatar is
+              available.
 
           name: New customer-facing name of the custom avatar.
 
@@ -184,6 +190,8 @@ class AvatarsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not avatar_id:
+            raise ValueError(f"Expected a non-empty value for `avatar_id` but received {avatar_id!r}")
         return self._patch(
             path_template("/ai/avatars/{avatar_id}", avatar_id=avatar_id),
             body=maybe_transform({"name": name}, avatar_update_params.AvatarUpdateParams),
@@ -197,7 +205,7 @@ class AvatarsResource(SyncAPIResource):
         self,
         *,
         filter_avatar_type: AvatarType | Omit = omit,
-        filter_id: AvatarIDParam | Omit = omit,
+        filter_id: AvatarID | Omit = omit,
         filter_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -213,7 +221,9 @@ class AvatarsResource(SyncAPIResource):
         available to the authenticated organization. Custom avatars owned by other
         organizations are never returned. The `image_url` value is suitable for
         displaying a thumbnail and may be refreshed by listing or retrieving the avatar
-        again.
+        again. `suggested_voice_id` recommends a compatible Telnyx voice for stock
+        avatars and is an empty string for custom avatars; it does not change an AI
+        Assistant's voice automatically.
 
         Args:
           filter_avatar_type: Return only stock or custom avatars.
@@ -346,7 +356,7 @@ class AsyncAvatarsResource(AsyncAPIResource):
 
     async def retrieve(
         self,
-        avatar_id: AvatarIDParam,
+        avatar_id: AvatarID,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -361,9 +371,11 @@ class AsyncAvatarsResource(AsyncAPIResource):
         not found.
 
         Args:
-          avatar_id: Stable identifier of a Telnyx stock avatar or an organization-owned custom
-              avatar. Custom avatar IDs are returned by the Avatars API and use the `avatar_`
-              prefix.
+          avatar_id: Stable identifier returned by the Avatars API. Discover available stock IDs with
+              GET /v2/ai/avatars and filter[avatar_type]=stock rather than maintaining a fixed
+              list. Custom avatar IDs use the `avatar_` prefix and must belong to the
+              authenticated organization. The service validates that the selected avatar is
+              available.
 
           extra_headers: Send extra headers
 
@@ -373,6 +385,8 @@ class AsyncAvatarsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not avatar_id:
+            raise ValueError(f"Expected a non-empty value for `avatar_id` but received {avatar_id!r}")
         return await self._get(
             path_template("/ai/avatars/{avatar_id}", avatar_id=avatar_id),
             options=make_request_options(
@@ -383,7 +397,7 @@ class AsyncAvatarsResource(AsyncAPIResource):
 
     async def update(
         self,
-        avatar_id: AvatarIDParam,
+        avatar_id: AvatarID,
         *,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -399,9 +413,11 @@ class AsyncAvatarsResource(AsyncAPIResource):
         new custom avatar so existing references keep their original content.
 
         Args:
-          avatar_id: Stable identifier of a Telnyx stock avatar or an organization-owned custom
-              avatar. Custom avatar IDs are returned by the Avatars API and use the `avatar_`
-              prefix.
+          avatar_id: Stable identifier returned by the Avatars API. Discover available stock IDs with
+              GET /v2/ai/avatars and filter[avatar_type]=stock rather than maintaining a fixed
+              list. Custom avatar IDs use the `avatar_` prefix and must belong to the
+              authenticated organization. The service validates that the selected avatar is
+              available.
 
           name: New customer-facing name of the custom avatar.
 
@@ -413,6 +429,8 @@ class AsyncAvatarsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not avatar_id:
+            raise ValueError(f"Expected a non-empty value for `avatar_id` but received {avatar_id!r}")
         return await self._patch(
             path_template("/ai/avatars/{avatar_id}", avatar_id=avatar_id),
             body=await async_maybe_transform({"name": name}, avatar_update_params.AvatarUpdateParams),
@@ -426,7 +444,7 @@ class AsyncAvatarsResource(AsyncAPIResource):
         self,
         *,
         filter_avatar_type: AvatarType | Omit = omit,
-        filter_id: AvatarIDParam | Omit = omit,
+        filter_id: AvatarID | Omit = omit,
         filter_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -442,7 +460,9 @@ class AsyncAvatarsResource(AsyncAPIResource):
         available to the authenticated organization. Custom avatars owned by other
         organizations are never returned. The `image_url` value is suitable for
         displaying a thumbnail and may be refreshed by listing or retrieving the avatar
-        again.
+        again. `suggested_voice_id` recommends a compatible Telnyx voice for stock
+        avatars and is an empty string for custom avatars; it does not change an AI
+        Assistant's voice automatically.
 
         Args:
           filter_avatar_type: Return only stock or custom avatars.

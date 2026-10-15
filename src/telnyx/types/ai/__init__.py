@@ -9,7 +9,6 @@ from .avatar_type import AvatarType as AvatarType
 from .assistant_tool import AssistantTool as AssistantTool
 from .execution_mode import ExecutionMode as ExecutionMode
 from .assistant_param import AssistantParam as AssistantParam
-from .avatar_id_param import AvatarIDParam as AvatarIDParam
 from .flow_edge_param import FlowEdgeParam as FlowEdgeParam
 from .bucket_ids_param import BucketIDsParam as BucketIDsParam
 from .enabled_features import EnabledFeatures as EnabledFeatures

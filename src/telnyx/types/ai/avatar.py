@@ -15,10 +15,12 @@ __all__ = ["Avatar"]
 
 class Avatar(BaseModel):
     id: AvatarID
-    """
-    Stable identifier of a Telnyx stock avatar or an organization-owned custom
-    avatar. Custom avatar IDs are returned by the Avatars API and use the `avatar_`
-    prefix.
+    """Stable identifier returned by the Avatars API.
+
+    Discover available stock IDs with GET /v2/ai/avatars and
+    filter[avatar_type]=stock rather than maintaining a fixed list. Custom avatar
+    IDs use the `avatar_` prefix and must belong to the authenticated organization.
+    The service validates that the selected avatar is available.
     """
 
     avatar_type: AvatarType
@@ -56,6 +58,14 @@ class Avatar(BaseModel):
 
     size_bytes: Optional[int] = None
     """Size of a custom avatar image in bytes."""
+
+    suggested_voice_id: Optional[str] = None
+    """Optional recommended Telnyx text-to-speech voice for this avatar.
+
+    An omitted field or empty string means no recommendation is available. Custom
+    avatars have no suggested voice. It is informational and selecting the avatar
+    does not automatically change the AI Assistant's configured voice.
+    """
 
     updated_at: Optional[datetime] = None
     """Time when the custom avatar was last updated."""

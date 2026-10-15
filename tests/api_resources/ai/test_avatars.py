@@ -94,6 +94,14 @@ class TestAvatars:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_path_params_retrieve(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `avatar_id` but received ''"):
+            client.ai.avatars.with_raw_response.retrieve(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         avatar = client.ai.avatars.update(
             avatar_id="avatar_0123456789abcdef0123456789abcdef",
@@ -128,6 +136,15 @@ class TestAvatars:
             assert_matches_type(AvatarResponse, avatar, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_update(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `avatar_id` but received ''"):
+            client.ai.avatars.with_raw_response.update(
+                avatar_id="",
+                name="Updated portrait",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -248,6 +265,14 @@ class TestAsyncAvatars:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `avatar_id` but received ''"):
+            await async_client.ai.avatars.with_raw_response.retrieve(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         avatar = await async_client.ai.avatars.update(
             avatar_id="avatar_0123456789abcdef0123456789abcdef",
@@ -282,6 +307,15 @@ class TestAsyncAvatars:
             assert_matches_type(AvatarResponse, avatar, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `avatar_id` but received ''"):
+            await async_client.ai.avatars.with_raw_response.update(
+                avatar_id="",
+                name="Updated portrait",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

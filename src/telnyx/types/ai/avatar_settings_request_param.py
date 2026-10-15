@@ -13,7 +13,7 @@ class AvatarSettingsRequestParam(TypedDict, total=False):
     Use a stock avatar or an organization-owned custom avatar returned by the Avatars API. Discover the available stock catalog with GET /v2/ai/avatars and filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported backgrounds are office, studio, and reception.
     """
 
-    avatar_id: Required["AvatarIDParam"]
+    avatar_id: Required["AvatarID"]
     """The Telnyx stock avatar or organization-owned custom avatar to render."""
 
     background_id: Required[Literal["office", "studio", "reception"]]
@@ -30,4 +30,4 @@ class AvatarSettingsRequestParam(TypedDict, total=False):
     """Selects the Telnyx open-source avatar provider."""
 
 
-from .avatar_id_param import AvatarIDParam
+from .avatar_id import AvatarID

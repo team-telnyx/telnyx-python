@@ -13,7 +13,7 @@ class AvatarListParams(TypedDict, total=False):
     filter_avatar_type: Annotated["AvatarType", PropertyInfo(alias="filter[avatar_type]")]
     """Return only stock or custom avatars."""
 
-    filter_id: Annotated["AvatarIDParam", PropertyInfo(alias="filter[id]")]
+    filter_id: Annotated["AvatarID", PropertyInfo(alias="filter[id]")]
     """Return the avatar with this exact ID."""
 
     filter_name: Annotated[str, PropertyInfo(alias="filter[name]")]
@@ -26,5 +26,5 @@ class AvatarListParams(TypedDict, total=False):
     """Number of avatars to return per page."""
 
 
+from .avatar_id import AvatarID
 from .avatar_type import AvatarType
-from .avatar_id_param import AvatarIDParam
