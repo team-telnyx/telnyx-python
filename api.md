@@ -338,6 +338,7 @@ from telnyx.types import (
     CallAIGatherPartialResultsWebhookEvent,
     ArtifactCompletedWebhookEvent,
     ArtifactFailedWebhookEvent,
+    CallAnalyzedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationCreatedWebhookEvent,
@@ -411,6 +412,7 @@ from telnyx.types import (
     CallAIGatherPartialResultsWebhookEvent,
     ArtifactCompletedWebhookEvent,
     ArtifactFailedWebhookEvent,
+    CallAnalyzedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationCreatedWebhookEvent,
@@ -6045,6 +6047,24 @@ Methods:
 
 - <code title="get /whatsapp/signup">client.whatsapp.signup.<a href="./src/telnyx/resources/whatsapp/signup.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/signup_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/signup_list_response.py">SyncDefaultFlatPagination[SignupListResponse]</a></code>
 - <code title="get /whatsapp/signup/{id}/status">client.whatsapp.signup.<a href="./src/telnyx/resources/whatsapp/signup.py">retrieve_status</a>(id) -> <a href="./src/telnyx/types/whatsapp/signup_retrieve_status_response.py">SignupRetrieveStatusResponse</a></code>
+
+## HostedSignups
+
+Types:
+
+```python
+from telnyx.types.whatsapp import (
+    HostedSignupCreateResponse,
+    HostedSignupRetrieveResponse,
+    HostedSignupListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /whatsapp/hosted_signups">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/hosted_signup_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_create_response.py">HostedSignupCreateResponse</a></code>
+- <code title="get /whatsapp/hosted_signups/{id}">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_retrieve_response.py">HostedSignupRetrieveResponse</a></code>
+- <code title="get /whatsapp/hosted_signups">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/hosted_signup_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_list_response.py">SyncDefaultFlatPagination[HostedSignupListResponse]</a></code>
 
 # WhatsappMessageTemplates
 

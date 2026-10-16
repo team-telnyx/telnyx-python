@@ -356,7 +356,6 @@ from .websocket_reconnection import (
     ReconnectingEvent as ReconnectingEvent,
     ReconnectingOverrides as ReconnectingOverrides,
 )
-from .whatsapp_contact_param import WhatsappContactParam as WhatsappContactParam
 from .address_create_response import AddressCreateResponse as AddressCreateResponse
 from .address_delete_response import AddressDeleteResponse as AddressDeleteResponse
 from .audit_event_list_params import AuditEventListParams as AuditEventListParams
@@ -544,12 +543,12 @@ from .voice_design_create_params import VoiceDesignCreateParams as VoiceDesignCr
 from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRenameParams
 from .web_search_contents_params import WebSearchContentsParams as WebSearchContentsParams
 from .web_search_create_response import WebSearchCreateResponse as WebSearchCreateResponse
-from .whatsapp_interactive_param import WhatsappInteractiveParam as WhatsappInteractiveParam
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
 from .billing_group_create_params import BillingGroupCreateParams as BillingGroupCreateParams
 from .billing_group_update_params import BillingGroupUpdateParams as BillingGroupUpdateParams
 from .bot_challenge_create_params import BotChallengeCreateParams as BotChallengeCreateParams
+from .call_analyzed_webhook_event import CallAnalyzedWebhookEvent as CallAnalyzedWebhookEvent
 from .call_answered_webhook_event import CallAnsweredWebhookEvent as CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent as CallEnqueuedWebhookEvent
 from .call_machine_greeting_ended import CallMachineGreetingEnded as CallMachineGreetingEnded
@@ -743,7 +742,6 @@ from .uac_connection_update_response import UacConnectionUpdateResponse as UacCo
 from .user_address_retrieve_response import UserAddressRetrieveResponse as UserAddressRetrieveResponse
 from .verification_retrieve_response import VerificationRetrieveResponse as VerificationRetrieveResponse
 from .virtual_cross_connect_combined import VirtualCrossConnectCombined as VirtualCrossConnectCombined
-from .whatsapp_message_content_param import WhatsappMessageContentParam as WhatsappMessageContentParam
 from .wireguard_peer_create_response import WireguardPeerCreateResponse as WireguardPeerCreateResponse
 from .wireguard_peer_delete_response import WireguardPeerDeleteResponse as WireguardPeerDeleteResponse
 from .wireguard_peer_update_response import WireguardPeerUpdateResponse as WireguardPeerUpdateResponse

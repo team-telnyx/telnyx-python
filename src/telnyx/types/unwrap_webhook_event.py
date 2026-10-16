@@ -19,6 +19,7 @@ from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
 from .call_unhold_webhook_event import CallUnholdWebhookEvent
 from .call_bridged_webhook_event import CallBridgedWebhookEvent
+from .call_analyzed_webhook_event import CallAnalyzedWebhookEvent
 from .call_answered_webhook_event import CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent
 from .transcription_webhook_event import TranscriptionWebhookEvent
@@ -100,6 +101,7 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CallAIGatherPartialResultsWebhookEvent,
     ArtifactCompletedWebhookEvent,
     ArtifactFailedWebhookEvent,
+    CallAnalyzedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationCreatedWebhookEvent,

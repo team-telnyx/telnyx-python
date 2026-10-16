@@ -28,6 +28,14 @@ from .user_data import (
     AsyncUserDataResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .hosted_signups import (
+    HostedSignupsResource,
+    AsyncHostedSignupsResource,
+    HostedSignupsResourceWithRawResponse,
+    AsyncHostedSignupsResourceWithRawResponse,
+    HostedSignupsResourceWithStreamingResponse,
+    AsyncHostedSignupsResourceWithStreamingResponse,
+)
 from .phone_numbers.phone_numbers import (
     PhoneNumbersResource,
     AsyncPhoneNumbersResource,
@@ -74,6 +82,10 @@ class WhatsappResource(SyncAPIResource):
         return SignupResource(self._client)
 
     @cached_property
+    def hosted_signups(self) -> HostedSignupsResource:
+        return HostedSignupsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> WhatsappResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -117,6 +129,10 @@ class AsyncWhatsappResource(AsyncAPIResource):
     @cached_property
     def signup(self) -> AsyncSignupResource:
         return AsyncSignupResource(self._client)
+
+    @cached_property
+    def hosted_signups(self) -> AsyncHostedSignupsResource:
+        return AsyncHostedSignupsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWhatsappResourceWithRawResponse:
@@ -166,6 +182,10 @@ class WhatsappResourceWithRawResponse:
     def signup(self) -> SignupResourceWithRawResponse:
         return SignupResourceWithRawResponse(self._whatsapp.signup)
 
+    @cached_property
+    def hosted_signups(self) -> HostedSignupsResourceWithRawResponse:
+        return HostedSignupsResourceWithRawResponse(self._whatsapp.hosted_signups)
+
 
 class AsyncWhatsappResourceWithRawResponse:
     def __init__(self, whatsapp: AsyncWhatsappResource) -> None:
@@ -194,6 +214,10 @@ class AsyncWhatsappResourceWithRawResponse:
     @cached_property
     def signup(self) -> AsyncSignupResourceWithRawResponse:
         return AsyncSignupResourceWithRawResponse(self._whatsapp.signup)
+
+    @cached_property
+    def hosted_signups(self) -> AsyncHostedSignupsResourceWithRawResponse:
+        return AsyncHostedSignupsResourceWithRawResponse(self._whatsapp.hosted_signups)
 
 
 class WhatsappResourceWithStreamingResponse:
@@ -224,6 +248,10 @@ class WhatsappResourceWithStreamingResponse:
     def signup(self) -> SignupResourceWithStreamingResponse:
         return SignupResourceWithStreamingResponse(self._whatsapp.signup)
 
+    @cached_property
+    def hosted_signups(self) -> HostedSignupsResourceWithStreamingResponse:
+        return HostedSignupsResourceWithStreamingResponse(self._whatsapp.hosted_signups)
+
 
 class AsyncWhatsappResourceWithStreamingResponse:
     def __init__(self, whatsapp: AsyncWhatsappResource) -> None:
@@ -252,3 +280,7 @@ class AsyncWhatsappResourceWithStreamingResponse:
     @cached_property
     def signup(self) -> AsyncSignupResourceWithStreamingResponse:
         return AsyncSignupResourceWithStreamingResponse(self._whatsapp.signup)
+
+    @cached_property
+    def hosted_signups(self) -> AsyncHostedSignupsResourceWithStreamingResponse:
+        return AsyncHostedSignupsResourceWithStreamingResponse(self._whatsapp.hosted_signups)
