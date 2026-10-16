@@ -31,12 +31,20 @@ class Assistant(BaseModel):
 
 
 class Avatar(BaseModel):
-    """Avatar configuration if an avatar is attached, otherwise null."""
+    """
+    The assistant's avatar, captured from its `avatar_settings` when the session was created. For display only; later changes to the assistant do not update it.
+    """
 
     avatar_id: str
     """Identifier of the avatar."""
 
-    provider: Literal["anam"]
+    background_id: str
+    """Identifier of the avatar's background."""
+
+    model: str
+    """Avatar rendering model, for example `foxtrot-1`."""
+
+    provider: Literal["telnyx"]
     """Avatar provider identifier."""
 
 
@@ -83,10 +91,18 @@ class MeetingSession(BaseModel):
     """Timestamp of the last assistant state change, or null."""
 
     avatar: Optional[Avatar] = None
-    """Avatar configuration if an avatar is attached, otherwise null."""
+    """
+    The assistant's avatar, captured from its `avatar_settings` when the session was
+    created. For display only; later changes to the assistant do not update it.
+    """
 
     avatar_state: Optional[Literal["starting", "connected", "degraded", "disconnected"]] = None
-    """Current state of the avatar connection, or null if no avatar is attached."""
+    """Current state of the avatar, or null if the session has no avatar.
+
+    `starting` until the avatar's video is playing, then `connected`; `degraded`
+    when the session has fallen back to voice-only (the `avatar.degraded` event
+    carries the reason); `disconnected` when the avatar has ended.
+    """
 
     avatar_state_changed_at: Optional[datetime] = None
     """Timestamp of the last avatar state change, or null."""

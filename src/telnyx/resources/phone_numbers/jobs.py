@@ -25,10 +25,10 @@ from ...types.phone_numbers import (
     job_update_batch_params,
     job_update_emergency_settings_batch_params,
 )
-from ...types.phone_numbers.phone_numbers_job import PhoneNumbersJob
 from ...types.phone_numbers.job_retrieve_response import JobRetrieveResponse
 from ...types.phone_numbers.job_delete_batch_response import JobDeleteBatchResponse
 from ...types.phone_numbers.job_update_batch_response import JobUpdateBatchResponse
+from ...types.phone_numbers.numbers_phone_numbers_job import NumbersPhoneNumbersJob
 from ...types.phone_numbers.update_voice_settings_param import UpdateVoiceSettingsParam
 from ...types.phone_numbers.job_update_emergency_settings_batch_response import JobUpdateEmergencySettingsBatchResponse
 
@@ -104,7 +104,7 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumbersJob]:
+    ) -> SyncDefaultFlatPagination[NumbersPhoneNumbersJob]:
         """Returns background jobs that operate on phone numbers.
 
         Filter by job type,
@@ -131,7 +131,7 @@ class JobsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/jobs",
-            page=SyncDefaultFlatPagination[PhoneNumbersJob],
+            page=SyncDefaultFlatPagination[NumbersPhoneNumbersJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -147,7 +147,7 @@ class JobsResource(SyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            model=PhoneNumbersJob,
+            model=NumbersPhoneNumbersJob,
         )
 
     def delete_batch(
@@ -403,7 +403,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumbersJob, AsyncDefaultFlatPagination[PhoneNumbersJob]]:
+    ) -> AsyncPaginator[NumbersPhoneNumbersJob, AsyncDefaultFlatPagination[NumbersPhoneNumbersJob]]:
         """Returns background jobs that operate on phone numbers.
 
         Filter by job type,
@@ -430,7 +430,7 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/jobs",
-            page=AsyncDefaultFlatPagination[PhoneNumbersJob],
+            page=AsyncDefaultFlatPagination[NumbersPhoneNumbersJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -446,7 +446,7 @@ class AsyncJobsResource(AsyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            model=PhoneNumbersJob,
+            model=NumbersPhoneNumbersJob,
         )
 
     async def delete_batch(

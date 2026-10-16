@@ -338,6 +338,7 @@ from telnyx.types import (
     CallAIGatherPartialResultsWebhookEvent,
     ArtifactCompletedWebhookEvent,
     ArtifactFailedWebhookEvent,
+    CallAnalyzedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationCreatedWebhookEvent,
@@ -401,7 +402,6 @@ from telnyx.types import (
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
     NumberReputationNumberFlaggedWebhookEvent,
     NumberReputationNumberRemovedWebhookEvent,
-    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,
@@ -412,6 +412,7 @@ from telnyx.types import (
     CallAIGatherPartialResultsWebhookEvent,
     ArtifactCompletedWebhookEvent,
     ArtifactFailedWebhookEvent,
+    CallAnalyzedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationCreatedWebhookEvent,
@@ -475,7 +476,6 @@ from telnyx.types import (
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
     NumberReputationNumberFlaggedWebhookEvent,
     NumberReputationNumberRemovedWebhookEvent,
-    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,
@@ -1337,7 +1337,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import PayToolParams, SharedToolResponse, UpdateDynamicVariablesToolParams
+from telnyx.types.ai import (
+    PayToolParams,
+    SharedToolResponse,
+    UpdateDynamicVariablesToolParams,
+    VisionToolParams,
+)
 ```
 
 Methods:
@@ -1478,6 +1483,21 @@ Methods:
 
 - <code title="get /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">list</a>(namespace) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
 - <code title="patch /ai/memory/namespaces/{namespace}/settings">client.ai.memory.namespaces.settings.<a href="./src/telnyx/resources/ai/memory/namespaces/settings.py">patch_all</a>(namespace, \*\*<a href="src/telnyx/types/ai/memory/namespaces/setting_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/ai/memory/namespaces/namespace_settings_response.py">NamespaceSettingsResponse</a></code>
+
+## Avatars
+
+Types:
+
+```python
+from telnyx.types.ai import Avatar, AvatarID, AvatarResponse, AvatarType
+```
+
+Methods:
+
+- <code title="post /ai/avatars">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">create</a>(\*\*<a href="src/telnyx/types/ai/avatar_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
+- <code title="get /ai/avatars/{avatar_id}">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">retrieve</a>(avatar_id) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
+- <code title="patch /ai/avatars/{avatar_id}">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">update</a>(avatar_id, \*\*<a href="src/telnyx/types/ai/avatar_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
+- <code title="get /ai/avatars">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">list</a>(\*\*<a href="src/telnyx/types/ai/avatar_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar.py">SyncDefaultFlatPagination[Avatar]</a></code>
 
 # AuditEvents
 
@@ -3446,6 +3466,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumbersError73c9788e53,
     NumbersPhoneNumberDetailed,
     PhoneNumberDetailed,
     PhoneNumberRetrieveResponse,
@@ -3506,6 +3527,7 @@ Types:
 
 ```python
 from telnyx.types.phone_numbers import (
+    NumbersPhoneNumbersJob,
     PhoneNumbersJob,
     JobRetrieveResponse,
     JobDeleteBatchResponse,
@@ -3517,7 +3539,7 @@ from telnyx.types.phone_numbers import (
 Methods:
 
 - <code title="get /phone_numbers/jobs/{id}">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/phone_numbers/job_retrieve_response.py">JobRetrieveResponse</a></code>
-- <code title="get /phone_numbers/jobs">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">list</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_list_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/phone_numbers_job.py">SyncDefaultFlatPagination[PhoneNumbersJob]</a></code>
+- <code title="get /phone_numbers/jobs">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">list</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_list_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/numbers_phone_numbers_job.py">SyncDefaultFlatPagination[NumbersPhoneNumbersJob]</a></code>
 - <code title="post /phone_numbers/jobs/delete_phone_numbers">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">delete_batch</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_delete_batch_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/job_delete_batch_response.py">JobDeleteBatchResponse</a></code>
 - <code title="post /phone_numbers/jobs/update_phone_numbers">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">update_batch</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_update_batch_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/job_update_batch_response.py">JobUpdateBatchResponse</a></code>
 - <code title="post /phone_numbers/jobs/update_emergency_settings">client.phone_numbers.jobs.<a href="./src/telnyx/resources/phone_numbers/jobs.py">update_emergency_settings_batch</a>(\*\*<a href="src/telnyx/types/phone_numbers/job_update_emergency_settings_batch_params.py">params</a>) -> <a href="./src/telnyx/types/phone_numbers/job_update_emergency_settings_batch_response.py">JobUpdateEmergencySettingsBatchResponse</a></code>
@@ -6026,6 +6048,24 @@ Methods:
 - <code title="get /whatsapp/signup">client.whatsapp.signup.<a href="./src/telnyx/resources/whatsapp/signup.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/signup_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/signup_list_response.py">SyncDefaultFlatPagination[SignupListResponse]</a></code>
 - <code title="get /whatsapp/signup/{id}/status">client.whatsapp.signup.<a href="./src/telnyx/resources/whatsapp/signup.py">retrieve_status</a>(id) -> <a href="./src/telnyx/types/whatsapp/signup_retrieve_status_response.py">SignupRetrieveStatusResponse</a></code>
 
+## HostedSignups
+
+Types:
+
+```python
+from telnyx.types.whatsapp import (
+    HostedSignupCreateResponse,
+    HostedSignupRetrieveResponse,
+    HostedSignupListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /whatsapp/hosted_signups">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/hosted_signup_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_create_response.py">HostedSignupCreateResponse</a></code>
+- <code title="get /whatsapp/hosted_signups/{id}">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_retrieve_response.py">HostedSignupRetrieveResponse</a></code>
+- <code title="get /whatsapp/hosted_signups">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/hosted_signup_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_list_response.py">SyncDefaultFlatPagination[HostedSignupListResponse]</a></code>
+
 # WhatsappMessageTemplates
 
 Types:
@@ -6986,7 +7026,6 @@ from telnyx.types import (
     MeetingSessionListResponse,
     MeetingSessionDeleteRecordingMediaResponse,
     MeetingSessionRetrieveEventsResponse,
-    MeetingSessionRetrieveRecordingsResponse,
     MeetingSessionRetrieveTranscriptResponse,
 )
 ```
@@ -7000,7 +7039,6 @@ Methods:
 - <code title="delete /meeting_sessions/{id}">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">delete</a>(id) -> <a href="./src/telnyx/types/meeting_session_response.py">MeetingSessionResponse</a></code>
 - <code title="delete /meeting_sessions/{id}/recording_media">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">delete_recording_media</a>(id) -> <a href="./src/telnyx/types/meeting_session_delete_recording_media_response.py">MeetingSessionDeleteRecordingMediaResponse</a></code>
 - <code title="get /meeting_sessions/{id}/events">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_events</a>(id, \*\*<a href="src/telnyx/types/meeting_session_retrieve_events_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_retrieve_events_response.py">MeetingSessionRetrieveEventsResponse</a></code>
-- <code title="get /meeting_sessions/{id}/recordings">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_recordings</a>(id) -> <a href="./src/telnyx/types/meeting_session_retrieve_recordings_response.py">MeetingSessionRetrieveRecordingsResponse</a></code>
 - <code title="get /meeting_sessions/{id}/transcript">client.meeting_sessions.<a href="./src/telnyx/resources/meeting_sessions/meeting_sessions.py">retrieve_transcript</a>(id, \*\*<a href="src/telnyx/types/meeting_session_retrieve_transcript_params.py">params</a>) -> <a href="./src/telnyx/types/meeting_session_retrieve_transcript_response.py">MeetingSessionRetrieveTranscriptResponse</a></code>
 
 ## Actions

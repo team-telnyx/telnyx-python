@@ -40,6 +40,14 @@ from .openai import (
     OpenAIResourceWithStreamingResponse,
     AsyncOpenAIResourceWithStreamingResponse,
 )
+from .avatars import (
+    AvatarsResource,
+    AsyncAvatarsResource,
+    AvatarsResourceWithRawResponse,
+    AsyncAvatarsResourceWithRawResponse,
+    AvatarsResourceWithStreamingResponse,
+    AsyncAvatarsResourceWithStreamingResponse,
+)
 from .clusters import (
     ClustersResource,
     AsyncClustersResource,
@@ -234,6 +242,12 @@ __all__ = [
     "AsyncMemoryResourceWithRawResponse",
     "MemoryResourceWithStreamingResponse",
     "AsyncMemoryResourceWithStreamingResponse",
+    "AvatarsResource",
+    "AsyncAvatarsResource",
+    "AvatarsResourceWithRawResponse",
+    "AsyncAvatarsResourceWithRawResponse",
+    "AvatarsResourceWithStreamingResponse",
+    "AsyncAvatarsResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",
