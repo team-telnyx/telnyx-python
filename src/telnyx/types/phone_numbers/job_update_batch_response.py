@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 
 from ..._models import BaseModel
-from .phone_numbers_job import PhoneNumbersJob
+from .numbers_phone_numbers_job import NumbersPhoneNumbersJob
 
 __all__ = ["JobUpdateBatchResponse"]
 
 
 class JobUpdateBatchResponse(BaseModel):
-    data: Optional[PhoneNumbersJob] = None
+    data: Optional[NumbersPhoneNumbersJob] = None

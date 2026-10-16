@@ -245,8 +245,11 @@ class AssistantsResource(SyncAPIResource):
               fetches combined. An agent whose card cannot be fetched costs the assistant that
               capability for the conversation; it does not fail the call.
 
-          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. The launch
-              catalog supports six avatars and office, studio, or reception backgrounds.
+          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
+              avatar or an organization-owned custom avatar returned by the Avatars API.
+              Discover the available stock catalog with GET /v2/ai/avatars and
+              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
+              backgrounds are office, studio, and reception.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -497,7 +500,10 @@ class AssistantsResource(SyncAPIResource):
         """
         Updates the specified AI assistant's attributes and returns the updated
         assistant. The request can also control how the change is promoted across
-        assistant versions.
+        assistant versions. Every update saves a new version, and an assistant keeps at
+        most 10 versions: once it has more, the oldest versions are permanently deleted,
+        except the main version and any version referenced by a traffic distribution
+        rule.
 
         Args:
           a2a_agents: A2A agents this assistant can delegate to. Tools are not stored here: at the
@@ -510,8 +516,11 @@ class AssistantsResource(SyncAPIResource):
               capability for the conversation; it does not fail the call. Omit this field to
               leave the assistant's agents unchanged; send an empty array to remove them all.
 
-          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. The launch
-              catalog supports six avatars and office, studio, or reception backgrounds.
+          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
+              avatar or an organization-owned custom avatar returned by the Avatars API.
+              Discover the available stock catalog with GET /v2/ai/avatars and
+              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
+              backgrounds are office, studio, and reception.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -1238,8 +1247,11 @@ class AsyncAssistantsResource(AsyncAPIResource):
               fetches combined. An agent whose card cannot be fetched costs the assistant that
               capability for the conversation; it does not fail the call.
 
-          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. The launch
-              catalog supports six avatars and office, studio, or reception backgrounds.
+          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
+              avatar or an organization-owned custom avatar returned by the Avatars API.
+              Discover the available stock catalog with GET /v2/ai/avatars and
+              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
+              backgrounds are office, studio, and reception.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -1490,7 +1502,10 @@ class AsyncAssistantsResource(AsyncAPIResource):
         """
         Updates the specified AI assistant's attributes and returns the updated
         assistant. The request can also control how the change is promoted across
-        assistant versions.
+        assistant versions. Every update saves a new version, and an assistant keeps at
+        most 10 versions: once it has more, the oldest versions are permanently deleted,
+        except the main version and any version referenced by a traffic distribution
+        rule.
 
         Args:
           a2a_agents: A2A agents this assistant can delegate to. Tools are not stored here: at the
@@ -1503,8 +1518,11 @@ class AsyncAssistantsResource(AsyncAPIResource):
               capability for the conversation; it does not fail the call. Omit this field to
               leave the assistant's agents unchanged; send an empty array to remove them all.
 
-          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. The launch
-              catalog supports six avatars and office, studio, or reception backgrounds.
+          avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
+              avatar or an organization-owned custom avatar returned by the Avatars API.
+              Discover the available stock catalog with GET /v2/ai/avatars and
+              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
+              backgrounds are office, studio, and reception.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 

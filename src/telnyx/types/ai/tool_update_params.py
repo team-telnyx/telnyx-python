@@ -30,8 +30,11 @@ class ToolUpdateParams(TypedDict, total=False):
     update_dynamic_variables: "UpdateDynamicVariablesToolParamsParam"
     """Configuration for an update_dynamic_variables tool."""
 
+    vision: "VisionToolParamsParam"
+
     webhook: Dict[str, object]
 
 
 from .pay_tool_params_param import PayToolParamsParam
+from .vision_tool_params_param import VisionToolParamsParam
 from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam

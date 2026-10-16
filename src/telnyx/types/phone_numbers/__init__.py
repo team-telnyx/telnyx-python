@@ -33,7 +33,6 @@ if TYPE_CHECKING:
     from .call_recording import CallRecording as CallRecording
     from .media_features import MediaFeatures as MediaFeatures
     from .call_forwarding import CallForwarding as CallForwarding
-    from .phone_numbers_job import PhoneNumbersJob as PhoneNumbersJob
     from .job_retrieve_response import JobRetrieveResponse as JobRetrieveResponse
     from .voice_update_response import VoiceUpdateResponse as VoiceUpdateResponse
     from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
@@ -41,6 +40,7 @@ if TYPE_CHECKING:
     from .job_delete_batch_response import JobDeleteBatchResponse as JobDeleteBatchResponse
     from .job_update_batch_response import JobUpdateBatchResponse as JobUpdateBatchResponse
     from .messaging_update_response import MessagingUpdateResponse as MessagingUpdateResponse
+    from .numbers_phone_numbers_job import NumbersPhoneNumbersJob as NumbersPhoneNumbersJob
     from .voicemail_create_response import VoicemailCreateResponse as VoicemailCreateResponse
     from .voicemail_update_response import VoicemailUpdateResponse as VoicemailUpdateResponse
     from .messaging_retrieve_response import MessagingRetrieveResponse as MessagingRetrieveResponse
@@ -87,10 +87,10 @@ def __getattr__(name: str) -> Any:
         from .csv_download_retrieve_response import CsvDownloadRetrieveResponse
 
         return CsvDownloadRetrieveResponse
-    if name == "PhoneNumbersJob":
-        from .phone_numbers_job import PhoneNumbersJob
+    if name == "NumbersPhoneNumbersJob":
+        from .numbers_phone_numbers_job import NumbersPhoneNumbersJob
 
-        return PhoneNumbersJob
+        return NumbersPhoneNumbersJob
     if name == "JobRetrieveResponse":
         from .job_retrieve_response import JobRetrieveResponse
 

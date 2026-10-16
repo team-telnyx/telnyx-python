@@ -41,7 +41,6 @@ from ...types.message_send_response import MessageSendResponse
 from ...types.message_retrieve_response import MessageRetrieveResponse
 from ...types.message_schedule_response import MessageScheduleResponse
 from ...types.message_whatsapp_response import MessageWhatsappResponse
-from ...types.whatsapp_message_content_param import WhatsappMessageContentParam
 from ...types.message_send_group_mms_response import MessageSendGroupMmsResponse
 from ...types.message_send_long_code_response import MessageSendLongCodeResponse
 from ...types.message_send_short_code_response import MessageSendShortCodeResponse
@@ -816,7 +815,7 @@ class MessagesResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        whatsapp_message: WhatsappMessageContentParam,
+        whatsapp_message: message_whatsapp_params.WhatsappMessage,
         messaging_profile_id: str | Omit = omit,
         type: Literal["WHATSAPP"] | Omit = omit,
         webhook_url: str | Omit = omit,
@@ -837,7 +836,9 @@ class MessagesResource(SyncAPIResource):
         Args:
           from_: Phone number in +E.164 format associated with Whatsapp account
 
-          to: Phone number in +E.164 format
+          to: Recipient phone number in +E.164 format, or the business-scoped user ID (BSUID)
+              of a WhatsApp user who hides their phone number, for example
+              `US.13491208655302741918`. Authentication templates cannot be sent to a BSUID.
 
           messaging_profile_id: Messaging profile ID - required if the 'from' number is not SMS-enabled
 
@@ -1636,7 +1637,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        whatsapp_message: WhatsappMessageContentParam,
+        whatsapp_message: message_whatsapp_params.WhatsappMessage,
         messaging_profile_id: str | Omit = omit,
         type: Literal["WHATSAPP"] | Omit = omit,
         webhook_url: str | Omit = omit,
@@ -1657,7 +1658,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         Args:
           from_: Phone number in +E.164 format associated with Whatsapp account
 
-          to: Phone number in +E.164 format
+          to: Recipient phone number in +E.164 format, or the business-scoped user ID (BSUID)
+              of a WhatsApp user who hides their phone number, for example
+              `US.13491208655302741918`. Authentication templates cannot be sent to a BSUID.
 
           messaging_profile_id: Messaging profile ID - required if the 'from' number is not SMS-enabled
 
