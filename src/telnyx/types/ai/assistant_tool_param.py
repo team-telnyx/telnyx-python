@@ -20,6 +20,7 @@ __all__ = [
     "Transfer",
     "TransferTransfer",
     "TransferTransferTargetsTargetsList",
+    "TransferTransferBridgeBeep",
     "TransferTransferCustomHeader",
     "TransferTransferVoicemailDetection",
     "TransferTransferVoicemailDetectionDetectionConfig",
@@ -161,6 +162,22 @@ class TransferTransferTargetsTargetsList(TypedDict, total=False):
     """SIP Authentication username used for SIP challenges.
 
     Applies when `to` is a SIP URI.
+    """
+
+
+class TransferTransferBridgeBeep(TypedDict, total=False):
+    """
+    Plays a short beep once the transfer completes and the calls are bridged, so the transfer destination knows the caller is now on the line. The warm transfer message plays before the bridge; this marks the moment the caller actually joins. Works with and without `warm_transfer_acceptance`.
+    """
+
+    enabled: bool
+    """Whether to play the beep when the calls are bridged."""
+
+    target_legs: Literal["self", "both"]
+    """Who hears the beep.
+
+    `self` plays it to the transfer destination only; `both` plays it to the
+    destination and the original caller.
     """
 
 
@@ -309,6 +326,18 @@ class TransferTransferWarmTransferAcceptance(TypedDict, total=False):
     accept on every consult that does run.
     """
 
+    timeout_secs: int
+    """
+    How long, in seconds, the destination has to accept the transfer, counted from
+    when the private consult starts (right after the destination answers, or after
+    `warm_message_delay_ms`). The caller keeps hearing ringback the whole time. If
+    no acceptance arrives in time, the destination is hung up and the assistant
+    returns to the caller (the transfer fails as a timeout). Raise it for
+    destinations that answer before a human is on the line, such as a call-center
+    queue/ACD or an IVR playing hold audio; keep it as short as practical, since the
+    caller waits on ringback until it expires.
+    """
+
 
 _TransferTransferReservedKeywords = TypedDict(
     "_TransferTransferReservedKeywords",
@@ -327,6 +356,14 @@ class TransferTransfer(_TransferTransferReservedKeywords, total=False):
     This can also be a dynamic variable string like `{{ targets }}` where `targets`
     is returned by the dynamic variables webhook and resolves to an array of target
     objects at runtime.
+    """
+
+    bridge_beep: TransferTransferBridgeBeep
+    """
+    Plays a short beep once the transfer completes and the calls are bridged, so the
+    transfer destination knows the caller is now on the line. The warm transfer
+    message plays before the bridge; this marks the moment the caller actually
+    joins. Works with and without `warm_transfer_acceptance`.
     """
 
     custom_headers: Iterable[TransferTransferCustomHeader]

@@ -360,7 +360,10 @@ class VersionsResource(SyncAPIResource):
     ) -> AssistantsList:
         """
         Retrieves all versions of a specific assistant with complete configuration and
-        metadata
+        metadata. An assistant keeps at most 10 versions, including the main version.
+        When an update takes it past that limit, the oldest versions are permanently
+        deleted. The main version and any version referenced by a traffic distribution
+        rule are never deleted this way.
 
         Args:
           extra_headers: Send extra headers
@@ -780,7 +783,10 @@ class AsyncVersionsResource(AsyncAPIResource):
     ) -> AssistantsList:
         """
         Retrieves all versions of a specific assistant with complete configuration and
-        metadata
+        metadata. An assistant keeps at most 10 versions, including the main version.
+        When an update takes it past that limit, the oldest versions are permanently
+        deleted. The main version and any version referenced by a traffic distribution
+        rule are never deleted this way.
 
         Args:
           extra_headers: Send extra headers
