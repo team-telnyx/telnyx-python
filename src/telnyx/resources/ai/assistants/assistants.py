@@ -248,8 +248,7 @@ class AssistantsResource(SyncAPIResource):
           avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
               avatar or an organization-owned custom avatar returned by the Avatars API.
               Discover the available stock catalog with GET /v2/ai/avatars and
-              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
-              backgrounds are office, studio, and reception.
+              filter[avatar_type]=stock; follow meta.total_pages to load every page.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -519,8 +518,7 @@ class AssistantsResource(SyncAPIResource):
           avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
               avatar or an organization-owned custom avatar returned by the Avatars API.
               Discover the available stock catalog with GET /v2/ai/avatars and
-              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
-              backgrounds are office, studio, and reception.
+              filter[avatar_type]=stock; follow meta.total_pages to load every page.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -1250,8 +1248,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
           avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
               avatar or an organization-owned custom avatar returned by the Avatars API.
               Discover the available stock catalog with GET /v2/ai/avatars and
-              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
-              backgrounds are office, studio, and reception.
+              filter[avatar_type]=stock; follow meta.total_pages to load every page.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 
@@ -1521,8 +1518,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
           avatar_settings: **Beta:** Configuration for the Telnyx open-source avatar provider. Use a stock
               avatar or an organization-owned custom avatar returned by the Avatars API.
               Discover the available stock catalog with GET /v2/ai/avatars and
-              filter[avatar_type]=stock; follow meta.total_pages to load every page. Supported
-              backgrounds are office, studio, and reception.
+              filter[avatar_type]=stock; follow meta.total_pages to load every page.
 
           conversation_flow: Conversation flow as supplied by API clients (create / update).
 

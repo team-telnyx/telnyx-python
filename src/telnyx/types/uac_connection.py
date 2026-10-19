@@ -46,6 +46,17 @@ class UacConnection(BaseModel):
     authentication: Optional[Literal["uac-authentication"]] = None
     """The authentication strategy used by this connection."""
 
+    bridge_generate_comfort_noise_on_cn: Optional[bool] = None
+    """
+    Stores the connection preference for generating silent RTP toward the opposite
+    call leg when comfort-noise packets (CN, payload type 13) are received during
+    hold. Defaults to false and returns the saved value. Only JSON true and false
+    are accepted; null and non-boolean values are rejected. This preference is
+    independent of default_on_hold_comfort_noise_enabled and does not modify that
+    setting. This API provisions the preference; call-processing behavior is
+    implemented separately.
+    """
+
     call_cost_in_webhooks: Optional[bool] = None
     """Specifies if call cost webhooks should be sent for this connection."""
 
