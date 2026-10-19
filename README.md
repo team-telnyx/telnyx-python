@@ -207,7 +207,23 @@ for access_ip_address in first_page.data:
 
 ## Nested params
 
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
+Nested parameters are dictionaries, typed using `TypedDict`. Bracketed query parameters in the REST API map to a single keyword argument that takes a dictionary, so `filter[country_code]=US` becomes `filter={"country_code": "US"}`. The exception is pagination: on list methods paginated with `page[...]`, `page[number]` and `page[size]` are flattened to the `page_number` and `page_size` keyword arguments (there is no `page=` or `limit=` argument on those methods).
+
+```python
+from telnyx import Telnyx
+
+client = Telnyx()
+
+# GET /v2/available_phone_numbers?filter[country_code]=US&filter[features][]=sms&filter[limit]=3
+numbers = client.available_phone_numbers.list(
+    filter={"country_code": "US", "features": ["sms"], "limit": 3},
+)
+
+# GET /v2/phone_numbers?page[number]=1&page[size]=25
+owned = client.phone_numbers.list(page_number=1, page_size=25)
+```
+
+For example:
 
 ```python
 from telnyx import Telnyx
