@@ -109,10 +109,14 @@ class AudioResource(SyncAPIResource):
               `omi-health/omi-med-stt-v1` is English only.
 
           model_config: Additional model-specific configuration parameters. Only allowed with the
-              `deepgram/*` models. Can include Deepgram-specific options such as
-              `smart_format`, `punctuate`, `diarize`, `utterance`, `numerals`, and `language`.
-              If `language` is provided both as a top-level parameter and in `model_config`,
-              the top-level parameter takes precedence.
+              `deepgram/*` models. Sent as a JSON string in multipart requests and passed
+              through to Deepgram as query parameters. Any other model with `model_config`
+              returns 422. Can include Deepgram-specific options such as `smart_format`,
+              `punctuate`, `diarize` (speaker labels), `multichannel` (transcribe each channel
+              independently; billed duration is file duration multiplied by the number of
+              channels), `utterances`, `numerals`, and `language`. If `language` is provided
+              both as a top-level parameter and in `model_config`, the top-level parameter
+              takes precedence.
 
           response_format: The format of the transcript output. Use `verbose_json` to take advantage of
               timestamps.
@@ -241,10 +245,14 @@ class AsyncAudioResource(AsyncAPIResource):
               `omi-health/omi-med-stt-v1` is English only.
 
           model_config: Additional model-specific configuration parameters. Only allowed with the
-              `deepgram/*` models. Can include Deepgram-specific options such as
-              `smart_format`, `punctuate`, `diarize`, `utterance`, `numerals`, and `language`.
-              If `language` is provided both as a top-level parameter and in `model_config`,
-              the top-level parameter takes precedence.
+              `deepgram/*` models. Sent as a JSON string in multipart requests and passed
+              through to Deepgram as query parameters. Any other model with `model_config`
+              returns 422. Can include Deepgram-specific options such as `smart_format`,
+              `punctuate`, `diarize` (speaker labels), `multichannel` (transcribe each channel
+              independently; billed duration is file duration multiplied by the number of
+              channels), `utterances`, `numerals`, and `language`. If `language` is provided
+              both as a top-level parameter and in `model_config`, the top-level parameter
+              takes precedence.
 
           response_format: The format of the transcript output. Use `verbose_json` to take advantage of
               timestamps.

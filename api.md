@@ -1732,6 +1732,7 @@ from telnyx.types.calls import (
     CallControlCommandResultWithConversationID,
     ConversationRelayInterruptible,
     ConversationRelayTranscriptionEngineConfig,
+    DeepgramEnglishTranscriptionLanguage,
     DeepgramNova2Config,
     DeepgramNova3Config,
     DeveloperMessage,
