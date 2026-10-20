@@ -848,6 +848,7 @@ class TestActions:
                     "value": "val_2",
                 },
             ],
+            reason="Call completed elsewhere",
         )
         assert_matches_type(ActionHangupResponse, action, path=["response"])
 
@@ -3823,6 +3824,7 @@ class TestAsyncActions:
                     "value": "val_2",
                 },
             ],
+            reason="Call completed elsewhere",
         )
         assert_matches_type(ActionHangupResponse, action, path=["response"])
 

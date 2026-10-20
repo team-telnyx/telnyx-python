@@ -64,7 +64,17 @@ class PortingPhoneNumberBlock(BaseModel):
     """Specifies the phone number range for this porting phone number block."""
 
     phone_number_type: Optional[
-        Literal["landline", "local", "mobile", "multipurpose", "national", "other", "shared_cost", "toll_free"]
+        Literal[
+            "landline",
+            "local",
+            "localcommercial",
+            "mobile",
+            "multipurpose",
+            "national",
+            "other",
+            "shared_cost",
+            "toll_free",
+        ]
     ] = None
     """Specifies the phone number type for this porting phone number block."""
 

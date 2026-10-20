@@ -25,6 +25,7 @@ from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ai.shared_tool_response import SharedToolResponse
 from ...types.ai.pay_tool_params_param import PayToolParamsParam
+from ...types.ai.vision_tool_params_param import VisionToolParamsParam
 from ...types.ai.update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
 
 __all__ = ["ToolsResource", "AsyncToolsResource"]
@@ -65,6 +66,7 @@ class ToolsResource(SyncAPIResource):
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
+        vision: VisionToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -103,6 +105,7 @@ class ToolsResource(SyncAPIResource):
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "update_dynamic_variables": update_dynamic_variables,
+                    "vision": vision,
                     "webhook": webhook,
                 },
                 tool_create_params.ToolCreateParams,
@@ -160,6 +163,7 @@ class ToolsResource(SyncAPIResource):
         timeout_ms: int | Omit = omit,
         type: str | Omit = omit,
         update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
+        vision: VisionToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -198,6 +202,7 @@ class ToolsResource(SyncAPIResource):
                     "timeout_ms": timeout_ms,
                     "type": type,
                     "update_dynamic_variables": update_dynamic_variables,
+                    "vision": vision,
                     "webhook": webhook,
                 },
                 tool_update_params.ToolUpdateParams,
@@ -333,6 +338,7 @@ class AsyncToolsResource(AsyncAPIResource):
         retrieval: Dict[str, object] | Omit = omit,
         timeout_ms: int | Omit = omit,
         update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
+        vision: VisionToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -371,6 +377,7 @@ class AsyncToolsResource(AsyncAPIResource):
                     "retrieval": retrieval,
                     "timeout_ms": timeout_ms,
                     "update_dynamic_variables": update_dynamic_variables,
+                    "vision": vision,
                     "webhook": webhook,
                 },
                 tool_create_params.ToolCreateParams,
@@ -428,6 +435,7 @@ class AsyncToolsResource(AsyncAPIResource):
         timeout_ms: int | Omit = omit,
         type: str | Omit = omit,
         update_dynamic_variables: UpdateDynamicVariablesToolParamsParam | Omit = omit,
+        vision: VisionToolParamsParam | Omit = omit,
         webhook: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -466,6 +474,7 @@ class AsyncToolsResource(AsyncAPIResource):
                     "timeout_ms": timeout_ms,
                     "type": type,
                     "update_dynamic_variables": update_dynamic_variables,
+                    "vision": vision,
                     "webhook": webhook,
                 },
                 tool_update_params.ToolUpdateParams,

@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.186.0](https://github.com/team-telnyx/telnyx-python/compare/v4.185.0...v4.186.0) (2026-10-20)
+
+
+### Features
+
+* promote from staging 1bc61b7 ([2d5c288](https://github.com/team-telnyx/telnyx-python/commit/2d5c288362e34197ec473936e13039b7afcfff41))
+
+
+### Bug Fixes
+
+* **types:** give the Omit sentinel a readable repr ([#446](https://github.com/team-telnyx/telnyx-python/issues/446)) ([7a484f2](https://github.com/team-telnyx/telnyx-python/commit/7a484f2a2ca43884586182685c0a172e5685ccee))
+
 ## [4.185.0](https://github.com/team-telnyx/telnyx-python/compare/v4.184.0...v4.185.0) (2026-10-14)
 
 
