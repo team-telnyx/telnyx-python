@@ -180,6 +180,10 @@ class Omit:
     def __bool__(self) -> Literal[False]:
         return False
 
+    @override
+    def __repr__(self) -> str:
+        return "omit"
+
 
 omit = Omit()
 
