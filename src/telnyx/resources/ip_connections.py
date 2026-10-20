@@ -74,6 +74,7 @@ class IPConnectionsResource(SyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        bridge_generate_comfort_noise_on_cn: bool | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
@@ -113,6 +114,14 @@ class IPConnectionsResource(SyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          bridge_generate_comfort_noise_on_cn: Stores the connection preference for generating silent RTP toward the opposite
+              call leg when comfort-noise packets (CN, payload type 13) are received during
+              hold. Optional; defaults to false when omitted on creation. Only JSON true and
+              false are accepted; null and non-boolean values are rejected. This preference is
+              independent of default_on_hold_comfort_noise_enabled and does not modify that
+              setting. This API provisions the preference; call-processing behavior is
+              implemented separately.
 
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
@@ -181,6 +190,7 @@ class IPConnectionsResource(SyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "bridge_generate_comfort_noise_on_cn": bridge_generate_comfort_noise_on_cn,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
@@ -250,6 +260,7 @@ class IPConnectionsResource(SyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        bridge_generate_comfort_noise_on_cn: bool | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
         conversation_persistence: bool | Omit = omit,
@@ -289,6 +300,14 @@ class IPConnectionsResource(SyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          bridge_generate_comfort_noise_on_cn: Stores the connection preference for generating silent RTP toward the opposite
+              call leg when comfort-noise packets (CN, payload type 13) are received during
+              hold. Optional; omitting this field preserves the saved value. Only JSON true
+              and false are accepted; null and non-boolean values are rejected. This
+              preference is independent of default_on_hold_comfort_noise_enabled and does not
+              modify that setting. This API provisions the preference; call-processing
+              behavior is implemented separately.
 
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
@@ -363,6 +382,7 @@ class IPConnectionsResource(SyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "bridge_generate_comfort_noise_on_cn": bridge_generate_comfort_noise_on_cn,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
                     "conversation_persistence": conversation_persistence,
@@ -523,6 +543,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        bridge_generate_comfort_noise_on_cn: bool | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
@@ -562,6 +583,14 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          bridge_generate_comfort_noise_on_cn: Stores the connection preference for generating silent RTP toward the opposite
+              call leg when comfort-noise packets (CN, payload type 13) are received during
+              hold. Optional; defaults to false when omitted on creation. Only JSON true and
+              false are accepted; null and non-boolean values are rejected. This preference is
+              independent of default_on_hold_comfort_noise_enabled and does not modify that
+              setting. This API provisions the preference; call-processing behavior is
+              implemented separately.
 
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
@@ -630,6 +659,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "bridge_generate_comfort_noise_on_cn": bridge_generate_comfort_noise_on_cn,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
@@ -699,6 +729,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        bridge_generate_comfort_noise_on_cn: bool | Omit = omit,
         call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
         conversation_persistence: bool | Omit = omit,
@@ -738,6 +769,14 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          bridge_generate_comfort_noise_on_cn: Stores the connection preference for generating silent RTP toward the opposite
+              call leg when comfort-noise packets (CN, payload type 13) are received during
+              hold. Optional; omitting this field preserves the saved value. Only JSON true
+              and false are accepted; null and non-boolean values are rejected. This
+              preference is independent of default_on_hold_comfort_noise_enabled and does not
+              modify that setting. This API provisions the preference; call-processing
+              behavior is implemented separately.
 
           call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
@@ -812,6 +851,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "bridge_generate_comfort_noise_on_cn": bridge_generate_comfort_noise_on_cn,
                     "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
                     "conversation_persistence": conversation_persistence,

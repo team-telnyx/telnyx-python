@@ -43,7 +43,7 @@ class EmailDomainListParams(TypedDict, total=False):
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
     """Number of records per page"""
 
-    sort: Literal["created_at", "-created_at", "domain", "-domain"]
+    sort: Literal["created_at", "-created_at", "domain", "-domain", "updated_at", "-updated_at"]
     """Field to sort by. Prefix with `-` for descending order."""
 
 

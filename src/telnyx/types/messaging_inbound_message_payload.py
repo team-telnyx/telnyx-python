@@ -136,7 +136,18 @@ class Body(BaseModel):
     """Meta WhatsApp message identifier for this webhook event."""
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
-    """WhatsApp sender in E.164 format."""
+    """WhatsApp sender in E.164 format.
+
+    Empty when the user hides their phone number; `from_user_id` then identifies the
+    sender.
+    """
+
+    from_user_id: Optional[str] = None
+    """
+    Business-scoped user ID (BSUID) of the WhatsApp sender when Meta provides one,
+    for example `US.13491208655302741918`. When `from` is empty, pass this value as
+    `to` to reply.
+    """
 
     location: Optional[BodyLocation] = None
     """Location shared in an RCS message."""

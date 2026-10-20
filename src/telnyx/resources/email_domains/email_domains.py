@@ -225,7 +225,7 @@ class EmailDomainsResource(SyncAPIResource):
         page_before: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        sort: Literal["created_at", "-created_at", "domain", "-domain"] | Omit = omit,
+        sort: Literal["created_at", "-created_at", "domain", "-domain", "updated_at", "-updated_at"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -659,7 +659,7 @@ class AsyncEmailDomainsResource(AsyncAPIResource):
         page_before: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        sort: Literal["created_at", "-created_at", "domain", "-domain"] | Omit = omit,
+        sort: Literal["created_at", "-created_at", "domain", "-domain", "updated_at", "-updated_at"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

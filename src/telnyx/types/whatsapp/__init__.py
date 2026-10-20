@@ -10,7 +10,9 @@ from .template_create_params import TemplateCreateParams as TemplateCreateParams
 from .phone_number_get_params import PhoneNumberGetParams as PhoneNumberGetParams
 from .user_data_update_params import UserDataUpdateParams as UserDataUpdateParams
 from .phone_number_list_params import PhoneNumberListParams as PhoneNumberListParams
+from .hosted_signup_list_params import HostedSignupListParams as HostedSignupListParams
 from .phone_number_verify_params import PhoneNumberVerifyParams as PhoneNumberVerifyParams
+from .hosted_signup_create_params import HostedSignupCreateParams as HostedSignupCreateParams
 from .business_account_list_params import BusinessAccountListParams as BusinessAccountListParams
 from .whatsapp_template_body_component_param import (
     WhatsappTemplateBodyComponentParam as WhatsappTemplateBodyComponentParam,
@@ -41,8 +43,11 @@ if TYPE_CHECKING:
     from .phone_number_get_response import PhoneNumberGetResponse as PhoneNumberGetResponse
     from .user_data_update_response import UserDataUpdateResponse as UserDataUpdateResponse
     from .phone_number_list_response import PhoneNumberListResponse as PhoneNumberListResponse
+    from .hosted_signup_list_response import HostedSignupListResponse as HostedSignupListResponse
     from .user_data_retrieve_response import UserDataRetrieveResponse as UserDataRetrieveResponse
+    from .hosted_signup_create_response import HostedSignupCreateResponse as HostedSignupCreateResponse
     from .business_account_list_response import BusinessAccountListResponse as BusinessAccountListResponse
+    from .hosted_signup_retrieve_response import HostedSignupRetrieveResponse as HostedSignupRetrieveResponse
     from .signup_retrieve_status_response import SignupRetrieveStatusResponse as SignupRetrieveStatusResponse
     from .business_account_retrieve_response import BusinessAccountRetrieveResponse as BusinessAccountRetrieveResponse
     from .phone_number_retrieve_phone_number_response import (
@@ -102,4 +107,16 @@ def __getattr__(name: str) -> Any:
         from .signup_retrieve_status_response import SignupRetrieveStatusResponse
 
         return SignupRetrieveStatusResponse
+    if name == "HostedSignupCreateResponse":
+        from .hosted_signup_create_response import HostedSignupCreateResponse
+
+        return HostedSignupCreateResponse
+    if name == "HostedSignupRetrieveResponse":
+        from .hosted_signup_retrieve_response import HostedSignupRetrieveResponse
+
+        return HostedSignupRetrieveResponse
+    if name == "HostedSignupListResponse":
+        from .hosted_signup_list_response import HostedSignupListResponse
+
+        return HostedSignupListResponse
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

@@ -25,6 +25,14 @@ from .tools import (
     AsyncToolsResourceWithStreamingResponse,
 )
 from ...types import ai_summarize_params, ai_retrieve_conversation_histories_params
+from .avatars import (
+    AvatarsResource,
+    AsyncAvatarsResource,
+    AvatarsResourceWithRawResponse,
+    AsyncAvatarsResourceWithRawResponse,
+    AvatarsResourceWithStreamingResponse,
+    AsyncAvatarsResourceWithStreamingResponse,
+)
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .clusters import (
@@ -227,6 +235,11 @@ class AIResource(SyncAPIResource):
     @cached_property
     def memory(self) -> MemoryResource:
         return MemoryResource(self._client)
+
+    @cached_property
+    def avatars(self) -> AvatarsResource:
+        """Create and manage real-time AI avatars"""
+        return AvatarsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -528,6 +541,11 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def memory(self) -> AsyncMemoryResource:
         return AsyncMemoryResource(self._client)
+
+    @cached_property
+    def avatars(self) -> AsyncAvatarsResource:
+        """Create and manage real-time AI avatars"""
+        return AsyncAvatarsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -842,6 +860,11 @@ class AIResourceWithRawResponse:
     def memory(self) -> MemoryResourceWithRawResponse:
         return MemoryResourceWithRawResponse(self._ai.memory)
 
+    @cached_property
+    def avatars(self) -> AvatarsResourceWithRawResponse:
+        """Create and manage real-time AI avatars"""
+        return AvatarsResourceWithRawResponse(self._ai.avatars)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -925,6 +948,11 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def memory(self) -> AsyncMemoryResourceWithRawResponse:
         return AsyncMemoryResourceWithRawResponse(self._ai.memory)
+
+    @cached_property
+    def avatars(self) -> AsyncAvatarsResourceWithRawResponse:
+        """Create and manage real-time AI avatars"""
+        return AsyncAvatarsResourceWithRawResponse(self._ai.avatars)
 
 
 class AIResourceWithStreamingResponse:
@@ -1010,6 +1038,11 @@ class AIResourceWithStreamingResponse:
     def memory(self) -> MemoryResourceWithStreamingResponse:
         return MemoryResourceWithStreamingResponse(self._ai.memory)
 
+    @cached_property
+    def avatars(self) -> AvatarsResourceWithStreamingResponse:
+        """Create and manage real-time AI avatars"""
+        return AvatarsResourceWithStreamingResponse(self._ai.avatars)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -1093,3 +1126,8 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def memory(self) -> AsyncMemoryResourceWithStreamingResponse:
         return AsyncMemoryResourceWithStreamingResponse(self._ai.memory)
+
+    @cached_property
+    def avatars(self) -> AsyncAvatarsResourceWithStreamingResponse:
+        """Create and manage real-time AI avatars"""
+        return AsyncAvatarsResourceWithStreamingResponse(self._ai.avatars)

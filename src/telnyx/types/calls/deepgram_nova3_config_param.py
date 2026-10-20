@@ -22,10 +22,12 @@ class DeepgramNova3ConfigParam(TypedDict, total=False):
     """
 
     keyterms: SequenceNotStr[str]
-    """Nova-3 keyterm prompting.
+    """Keyterm prompting.
 
     Up to 100 domain-specific terms or brand names to bias recognition toward.
-    Nova-3-only; use `hints` on Nova-2.
+    Supported on Nova-3 and Flux models (`deepgram/nova-3`,
+    `deepgram/nova-3-medical`, `deepgram/flux`, `deepgram/flux-multi`); use `hints`
+    on Nova-2.
     """
 
     keywords_boosting: Dict[str, float]

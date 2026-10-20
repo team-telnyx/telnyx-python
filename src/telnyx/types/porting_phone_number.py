@@ -19,7 +19,17 @@ class PortingPhoneNumber(BaseModel):
     """E164 formatted phone number"""
 
     phone_number_type: Optional[
-        Literal["landline", "local", "mobile", "multipurpose", "national", "other", "shared_cost", "toll_free"]
+        Literal[
+            "landline",
+            "local",
+            "localcommercial",
+            "mobile",
+            "multipurpose",
+            "national",
+            "other",
+            "shared_cost",
+            "toll_free",
+        ]
     ] = None
     """The type of the phone number"""
 

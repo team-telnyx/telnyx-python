@@ -76,7 +76,7 @@ class EnterprisesResource(SyncAPIResource):
     def verify_email(self) -> VerifyEmailResource:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return VerifyEmailResource(self._client)
 
@@ -705,7 +705,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
     def verify_email(self) -> AsyncVerifyEmailResource:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return AsyncVerifyEmailResource(self._client)
 
@@ -1354,7 +1354,7 @@ class EnterprisesResourceWithRawResponse:
     def verify_email(self) -> VerifyEmailResourceWithRawResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return VerifyEmailResourceWithRawResponse(self._enterprises.verify_email)
 
@@ -1398,7 +1398,7 @@ class AsyncEnterprisesResourceWithRawResponse:
     def verify_email(self) -> AsyncVerifyEmailResourceWithRawResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return AsyncVerifyEmailResourceWithRawResponse(self._enterprises.verify_email)
 
@@ -1442,7 +1442,7 @@ class EnterprisesResourceWithStreamingResponse:
     def verify_email(self) -> VerifyEmailResourceWithStreamingResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return VerifyEmailResourceWithStreamingResponse(self._enterprises.verify_email)
 
@@ -1486,6 +1486,6 @@ class AsyncEnterprisesResourceWithStreamingResponse:
     def verify_email(self) -> AsyncVerifyEmailResourceWithStreamingResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return AsyncVerifyEmailResourceWithStreamingResponse(self._enterprises.verify_email)

@@ -19,6 +19,7 @@ from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
 from .call_unhold_webhook_event import CallUnholdWebhookEvent
 from .call_bridged_webhook_event import CallBridgedWebhookEvent
+from .call_analyzed_webhook_event import CallAnalyzedWebhookEvent
 from .call_answered_webhook_event import CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent
 from .transcription_webhook_event import TranscriptionWebhookEvent
@@ -42,7 +43,6 @@ from .conference_created_webhook_event import ConferenceCreatedWebhookEvent
 from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
-from .recording_available_webhook_event import RecordingAvailableWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent
 from .whatsapp_waba_added_webhook_event import WhatsappWabaAddedWebhookEvent
 from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
@@ -101,6 +101,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     CallAIGatherPartialResultsWebhookEvent,
     ArtifactCompletedWebhookEvent,
     ArtifactFailedWebhookEvent,
+    CallAnalyzedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationCreatedWebhookEvent,
@@ -171,7 +172,6 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
     NumberReputationNumberFlaggedWebhookEvent,
     NumberReputationNumberRemovedWebhookEvent,
-    RecordingAvailableWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,

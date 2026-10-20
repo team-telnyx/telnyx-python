@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .avatar_id import AvatarID
 
 __all__ = ["TelnyxAvatarSettings"]
 
@@ -12,13 +13,13 @@ __all__ = ["TelnyxAvatarSettings"]
 class TelnyxAvatarSettings(BaseModel):
     """**Beta:** Configuration for the Telnyx open-source avatar provider.
 
-    The launch catalog supports six avatars and office, studio, or reception backgrounds.
+    Use a stock avatar or an organization-owned custom avatar returned by the Avatars API. Discover the available stock catalog with GET /v2/ai/avatars and filter[avatar_type]=stock; follow meta.total_pages to load every page.
     """
 
-    avatar_id: Literal["elena", "ben", "jordan", "lin", "avery", "raphael"]
-    """The Telnyx avatar to render."""
+    avatar_id: AvatarID
+    """The Telnyx stock avatar or organization-owned custom avatar to render."""
 
-    background_id: Literal["office", "studio", "reception"]
+    background_id: Literal["office", "studio", "reception", "illustrated_workspace"]
     """The background to render."""
 
     model: Literal["foxtrot-1"]
