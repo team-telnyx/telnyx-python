@@ -156,8 +156,8 @@ class FqdnConnectionsResource(SyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
@@ -352,8 +352,8 @@ class FqdnConnectionsResource(SyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
@@ -639,8 +639,8 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
@@ -835,8 +835,8 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
 

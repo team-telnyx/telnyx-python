@@ -465,6 +465,7 @@ class TestAssistants:
             privacy_settings={
                 "data_retention": True,
                 "in_transit_data_locality": True,
+                "pii_redaction": "disabled",
             },
             tags=["string"],
             telephony_settings={
@@ -1172,6 +1173,7 @@ class TestAssistants:
             privacy_settings={
                 "data_retention": True,
                 "in_transit_data_locality": True,
+                "pii_redaction": "disabled",
             },
             promote_to_main=True,
             tags=["string"],
@@ -2293,6 +2295,7 @@ class TestAsyncAssistants:
             privacy_settings={
                 "data_retention": True,
                 "in_transit_data_locality": True,
+                "pii_redaction": "disabled",
             },
             tags=["string"],
             telephony_settings={
@@ -3000,6 +3003,7 @@ class TestAsyncAssistants:
             privacy_settings={
                 "data_retention": True,
                 "in_transit_data_locality": True,
+                "pii_redaction": "disabled",
             },
             promote_to_main=True,
             tags=["string"],
