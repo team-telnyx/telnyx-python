@@ -205,8 +205,6 @@ for access_ip_address in first_page.data:
 # Remove `await` for non-async usage.
 ```
 
-from datetime import datetime
-
 ## Nested params
 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
@@ -239,13 +237,15 @@ print(response.answering_machine_detection_config)
 Object-valued query parameters are passed as dictionaries. For `client.access_ip_address.list`, the query string `filter[created_at]=2019-12-27T18%3A11%3A19.117Z&filter[ip_address]=ip_address&filter[ip_source]=ip_source` is represented by the `filter` keyword argument:
 
 ```python
+from datetime import datetime
+
 from telnyx import Telnyx
 
 client = Telnyx()
 
 client.access_ip_address.list(
     filter={
-        "created_at": datetime.fromisoformat("2019-12-27T18:11:19.117"),
+        "created_at": datetime.fromisoformat("2019-12-27T18:11:19.117+00:00"),
         "ip_address": "ip_address",
         "ip_source": "ip_source",
     },
