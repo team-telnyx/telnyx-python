@@ -159,8 +159,8 @@ class UacConnectionsResource(SyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           external_uac_settings: External SIP peer settings used by Telnyx when registering to your PBX and
               routing outbound calls.
@@ -374,8 +374,8 @@ class UacConnectionsResource(SyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           external_uac_settings: External SIP peer settings used by Telnyx when registering to your PBX and
               routing outbound calls.
@@ -691,8 +691,8 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           external_uac_settings: External SIP peer settings used by Telnyx when registering to your PBX and
               routing outbound calls.
@@ -906,8 +906,8 @@ class AsyncUacConnectionsResource(AsyncAPIResource):
           encode_contact_header_enabled: Encode the SIP contact header sent by Telnyx to avoid issues for NAT or ALG
               scenarios.
 
-          encrypted_media: Enable use of SRTP for encryption. Cannot be set if the transport_portocol is
-              TLS.
+          encrypted_media: Enable use of SRTP for encryption. Can only be set when the SIP signaling
+              transport protocol is TLS.
 
           external_uac_settings: External SIP peer settings used by Telnyx when registering to your PBX and
               routing outbound calls.

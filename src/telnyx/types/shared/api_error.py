@@ -24,6 +24,9 @@ class APIError(BaseModel):
 
     description: Optional[str] = None
 
+    detail: Optional[str] = None
+    """A human-readable explanation of the error."""
+
     meta: Optional[Dict[str, object]] = None
 
     source: Optional[Source] = None

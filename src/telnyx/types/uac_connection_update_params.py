@@ -64,7 +64,7 @@ class UacConnectionUpdateParams(TypedDict, total=False):
     encrypted_media: Optional["EncryptedMedia"]
     """Enable use of SRTP for encryption.
 
-    Cannot be set if the transport_portocol is TLS.
+    Can only be set when the SIP signaling transport protocol is TLS.
     """
 
     external_uac_settings: "UacExternalSettingsParam"

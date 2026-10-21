@@ -525,6 +525,7 @@ class TestVersions:
             privacy_settings={
                 "data_retention": True,
                 "in_transit_data_locality": True,
+                "pii_redaction": "disabled",
             },
             tags=["string"],
             telephony_settings={
@@ -1409,6 +1410,7 @@ class TestAsyncVersions:
             privacy_settings={
                 "data_retention": True,
                 "in_transit_data_locality": True,
+                "pii_redaction": "disabled",
             },
             tags=["string"],
             telephony_settings={
