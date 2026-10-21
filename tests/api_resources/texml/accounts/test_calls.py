@@ -28,7 +28,7 @@ class TestCalls:
     def test_method_retrieve(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.retrieve(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallResource, call, path=["response"])
 
@@ -37,7 +37,7 @@ class TestCalls:
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.retrieve(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestCalls:
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.retrieve(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,7 +72,7 @@ class TestCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             client.texml.accounts.calls.with_raw_response.retrieve(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -80,7 +80,7 @@ class TestCalls:
     def test_method_update(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallResource, call, path=["response"])
 
@@ -89,7 +89,7 @@ class TestCalls:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             fallback_method="GET",
             fallback_url="https://www.example.com/intruction-c.xml",
             method="GET",
@@ -106,7 +106,7 @@ class TestCalls:
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -119,7 +119,7 @@ class TestCalls:
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -141,14 +141,14 @@ class TestCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             client.texml.accounts.calls.with_raw_response.update(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_calls(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={"url": "https://www.example.com/texml.xml"},
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
@@ -157,10 +157,10 @@ class TestCalls:
     @parametrize
     def test_method_calls_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={
                 "url": "https://www.example.com/texml.xml",
-                "application_sid": "example-app-sid",
+                "application_sid": "1293384261075731499",
                 "async_amd": True,
                 "async_amd_status_callback": "https://www.example.com/callback",
                 "async_amd_status_callback_method": "GET",
@@ -225,7 +225,7 @@ class TestCalls:
     @parametrize
     def test_raw_response_calls(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={"url": "https://www.example.com/texml.xml"},
         )
 
@@ -238,7 +238,7 @@ class TestCalls:
     @parametrize
     def test_streaming_response_calls(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={"url": "https://www.example.com/texml.xml"},
         ) as response:
             assert not response.is_closed
@@ -262,7 +262,7 @@ class TestCalls:
     @parametrize
     def test_method_retrieve_calls(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallRetrieveCallsResponse, call, path=["response"])
 
@@ -270,7 +270,7 @@ class TestCalls:
     @parametrize
     def test_method_retrieve_calls_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             end_time="EndTime",
             end_time_lt="EndTime<",
             end_time_gt="EndTime>",
@@ -290,7 +290,7 @@ class TestCalls:
     @parametrize
     def test_raw_response_retrieve_calls(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -302,7 +302,7 @@ class TestCalls:
     @parametrize
     def test_streaming_response_retrieve_calls(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -325,7 +325,7 @@ class TestCalls:
     def test_method_siprec_json(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallSiprecJsonResponse, call, path=["response"])
 
@@ -334,7 +334,7 @@ class TestCalls:
     def test_method_siprec_json_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             connector_name="my_connector",
             include_metadata_custom_headers=True,
             name="my_siprec_session",
@@ -352,7 +352,7 @@ class TestCalls:
     def test_raw_response_siprec_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -365,7 +365,7 @@ class TestCalls:
     def test_streaming_response_siprec_json(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -387,7 +387,7 @@ class TestCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             client.texml.accounts.calls.with_raw_response.siprec_json(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -395,7 +395,7 @@ class TestCalls:
     def test_method_streams_json(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallStreamsJsonResponse, call, path=["response"])
 
@@ -404,7 +404,7 @@ class TestCalls:
     def test_method_streams_json_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             bidirectional_codec="G722",
             bidirectional_mode="rtp",
             name="My stream",
@@ -420,7 +420,7 @@ class TestCalls:
     def test_raw_response_streams_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -433,7 +433,7 @@ class TestCalls:
     def test_streaming_response_streams_json(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -455,7 +455,7 @@ class TestCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             client.texml.accounts.calls.with_raw_response.streams_json(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
 
@@ -469,7 +469,7 @@ class TestAsyncCalls:
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.retrieve(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallResource, call, path=["response"])
 
@@ -478,7 +478,7 @@ class TestAsyncCalls:
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.retrieve(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -491,7 +491,7 @@ class TestAsyncCalls:
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.retrieve(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -513,7 +513,7 @@ class TestAsyncCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             await async_client.texml.accounts.calls.with_raw_response.retrieve(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -521,7 +521,7 @@ class TestAsyncCalls:
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallResource, call, path=["response"])
 
@@ -530,7 +530,7 @@ class TestAsyncCalls:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             fallback_method="GET",
             fallback_url="https://www.example.com/intruction-c.xml",
             method="GET",
@@ -547,7 +547,7 @@ class TestAsyncCalls:
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -560,7 +560,7 @@ class TestAsyncCalls:
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.update(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -582,14 +582,14 @@ class TestAsyncCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             await async_client.texml.accounts.calls.with_raw_response.update(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_calls(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={"url": "https://www.example.com/texml.xml"},
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
@@ -598,10 +598,10 @@ class TestAsyncCalls:
     @parametrize
     async def test_method_calls_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={
                 "url": "https://www.example.com/texml.xml",
-                "application_sid": "example-app-sid",
+                "application_sid": "1293384261075731499",
                 "async_amd": True,
                 "async_amd_status_callback": "https://www.example.com/callback",
                 "async_amd_status_callback_method": "GET",
@@ -666,7 +666,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_raw_response_calls(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={"url": "https://www.example.com/texml.xml"},
         )
 
@@ -679,7 +679,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_streaming_response_calls(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             body={"url": "https://www.example.com/texml.xml"},
         ) as response:
             assert not response.is_closed
@@ -703,7 +703,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_method_retrieve_calls(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallRetrieveCallsResponse, call, path=["response"])
 
@@ -711,7 +711,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_method_retrieve_calls_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             end_time="EndTime",
             end_time_lt="EndTime<",
             end_time_gt="EndTime>",
@@ -731,7 +731,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_raw_response_retrieve_calls(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -743,7 +743,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_streaming_response_retrieve_calls(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.retrieve_calls(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -766,7 +766,7 @@ class TestAsyncCalls:
     async def test_method_siprec_json(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallSiprecJsonResponse, call, path=["response"])
 
@@ -775,7 +775,7 @@ class TestAsyncCalls:
     async def test_method_siprec_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             connector_name="my_connector",
             include_metadata_custom_headers=True,
             name="my_siprec_session",
@@ -793,7 +793,7 @@ class TestAsyncCalls:
     async def test_raw_response_siprec_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -806,7 +806,7 @@ class TestAsyncCalls:
     async def test_streaming_response_siprec_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.siprec_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -828,7 +828,7 @@ class TestAsyncCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             await async_client.texml.accounts.calls.with_raw_response.siprec_json(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -836,7 +836,7 @@ class TestAsyncCalls:
     async def test_method_streams_json(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(CallStreamsJsonResponse, call, path=["response"])
 
@@ -845,7 +845,7 @@ class TestAsyncCalls:
     async def test_method_streams_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             bidirectional_codec="G722",
             bidirectional_mode="rtp",
             name="My stream",
@@ -861,7 +861,7 @@ class TestAsyncCalls:
     async def test_raw_response_streams_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -874,7 +874,7 @@ class TestAsyncCalls:
     async def test_streaming_response_streams_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.streams_json(
             call_sid="call_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -896,5 +896,5 @@ class TestAsyncCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             await async_client.texml.accounts.calls.with_raw_response.streams_json(
                 call_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )

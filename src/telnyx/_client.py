@@ -143,6 +143,7 @@ if TYPE_CHECKING:
         operator_connect,
         session_analysis,
         terms_of_service,
+        tts_integrations,
         verified_numbers,
         access_ip_address,
         charges_breakdown,
@@ -470,6 +471,7 @@ if TYPE_CHECKING:
         AsyncSimCardDataUsageNotificationsResource,
     )
     from .resources.terms_of_service.terms_of_service import TermsOfServiceResource, AsyncTermsOfServiceResource
+    from .resources.tts_integrations.tts_integrations import TtsIntegrationsResource, AsyncTtsIntegrationsResource
     from .resources.verified_numbers.verified_numbers import VerifiedNumbersResource, AsyncVerifiedNumbersResource
     from .resources.email_validations.email_validations import EmailValidationsResource, AsyncEmailValidationsResource
     from .resources.llm_token_gateway.llm_token_gateway import LlmTokenGatewayResource, AsyncLlmTokenGatewayResource
@@ -1963,6 +1965,15 @@ class Telnyx(SyncAPIClient):
         from .resources.dial_metrics import DialMetricsResource
 
         return DialMetricsResource(self)
+
+    @cached_property
+    def tts_integrations(self) -> TtsIntegrationsResource:
+        """
+        Register and manage text-to-speech (TTS) engines you publish, and find the public engines other organizations published, so an AI Assistant, TeXML or Call Control can speak with one of their voices, using your own key for it, instead of a Telnyx-integrated vendor.
+        """
+        from .resources.tts_integrations import TtsIntegrationsResource
+
+        return TtsIntegrationsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3554,6 +3565,15 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncDialMetricsResource(self)
 
     @cached_property
+    def tts_integrations(self) -> AsyncTtsIntegrationsResource:
+        """
+        Register and manage text-to-speech (TTS) engines you publish, and find the public engines other organizations published, so an AI Assistant, TeXML or Call Control can speak with one of their voices, using your own key for it, instead of a Telnyx-integrated vendor.
+        """
+        from .resources.tts_integrations import AsyncTtsIntegrationsResource
+
+        return AsyncTtsIntegrationsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -5078,6 +5098,15 @@ class TelnyxWithRawResponse:
 
         return DialMetricsResourceWithRawResponse(self._client.dial_metrics)
 
+    @cached_property
+    def tts_integrations(self) -> tts_integrations.TtsIntegrationsResourceWithRawResponse:
+        """
+        Register and manage text-to-speech (TTS) engines you publish, and find the public engines other organizations published, so an AI Assistant, TeXML or Call Control can speak with one of their voices, using your own key for it, instead of a Telnyx-integrated vendor.
+        """
+        from .resources.tts_integrations import TtsIntegrationsResourceWithRawResponse
+
+        return TtsIntegrationsResourceWithRawResponse(self._client.tts_integrations)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6475,6 +6504,15 @@ class AsyncTelnyxWithRawResponse:
         from .resources.dial_metrics import AsyncDialMetricsResourceWithRawResponse
 
         return AsyncDialMetricsResourceWithRawResponse(self._client.dial_metrics)
+
+    @cached_property
+    def tts_integrations(self) -> tts_integrations.AsyncTtsIntegrationsResourceWithRawResponse:
+        """
+        Register and manage text-to-speech (TTS) engines you publish, and find the public engines other organizations published, so an AI Assistant, TeXML or Call Control can speak with one of their voices, using your own key for it, instead of a Telnyx-integrated vendor.
+        """
+        from .resources.tts_integrations import AsyncTtsIntegrationsResourceWithRawResponse
+
+        return AsyncTtsIntegrationsResourceWithRawResponse(self._client.tts_integrations)
 
 
 class TelnyxWithStreamedResponse:
@@ -7875,6 +7913,15 @@ class TelnyxWithStreamedResponse:
         from .resources.dial_metrics import DialMetricsResourceWithStreamingResponse
 
         return DialMetricsResourceWithStreamingResponse(self._client.dial_metrics)
+
+    @cached_property
+    def tts_integrations(self) -> tts_integrations.TtsIntegrationsResourceWithStreamingResponse:
+        """
+        Register and manage text-to-speech (TTS) engines you publish, and find the public engines other organizations published, so an AI Assistant, TeXML or Call Control can speak with one of their voices, using your own key for it, instead of a Telnyx-integrated vendor.
+        """
+        from .resources.tts_integrations import TtsIntegrationsResourceWithStreamingResponse
+
+        return TtsIntegrationsResourceWithStreamingResponse(self._client.tts_integrations)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9325,6 +9372,15 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.dial_metrics import AsyncDialMetricsResourceWithStreamingResponse
 
         return AsyncDialMetricsResourceWithStreamingResponse(self._client.dial_metrics)
+
+    @cached_property
+    def tts_integrations(self) -> tts_integrations.AsyncTtsIntegrationsResourceWithStreamingResponse:
+        """
+        Register and manage text-to-speech (TTS) engines you publish, and find the public engines other organizations published, so an AI Assistant, TeXML or Call Control can speak with one of their voices, using your own key for it, instead of a Telnyx-integrated vendor.
+        """
+        from .resources.tts_integrations import AsyncTtsIntegrationsResourceWithStreamingResponse
+
+        return AsyncTtsIntegrationsResourceWithStreamingResponse(self._client.tts_integrations)
 
 
 Client = Telnyx

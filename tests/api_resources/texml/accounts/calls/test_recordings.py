@@ -22,7 +22,7 @@ class TestRecordings:
     def test_method_recording_sid_json(self, client: Telnyx) -> None:
         recording = client.texml.accounts.calls.recordings.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
         assert_matches_type(TexmlCreateCallRecordingResponseBody, recording, path=["response"])
@@ -32,7 +32,7 @@ class TestRecordings:
     def test_method_recording_sid_json_with_all_params(self, client: Telnyx) -> None:
         recording = client.texml.accounts.calls.recordings.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
             status="paused",
         )
@@ -43,7 +43,7 @@ class TestRecordings:
     def test_raw_response_recording_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
 
@@ -57,7 +57,7 @@ class TestRecordings:
     def test_streaming_response_recording_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.recordings.with_streaming_response.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         ) as response:
             assert not response.is_closed
@@ -81,14 +81,14 @@ class TestRecordings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
                 recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_sid` but received ''"):
             client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
                 recording_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="call_sid",
             )
 
@@ -103,7 +103,7 @@ class TestAsyncRecordings:
     async def test_method_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.texml.accounts.calls.recordings.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
         assert_matches_type(TexmlCreateCallRecordingResponseBody, recording, path=["response"])
@@ -113,7 +113,7 @@ class TestAsyncRecordings:
     async def test_method_recording_sid_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.texml.accounts.calls.recordings.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
             status="paused",
         )
@@ -124,7 +124,7 @@ class TestAsyncRecordings:
     async def test_raw_response_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
 
@@ -138,7 +138,7 @@ class TestAsyncRecordings:
     async def test_streaming_response_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.recordings.with_streaming_response.recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         ) as response:
             assert not response.is_closed
@@ -162,13 +162,13 @@ class TestAsyncRecordings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             await async_client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
                 recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_sid` but received ''"):
             await async_client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
                 recording_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="call_sid",
             )

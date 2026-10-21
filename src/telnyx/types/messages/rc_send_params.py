@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
 from ..rcs_agent_message_param import RcsAgentMessageParam
 
 __all__ = ["RcSendParams", "MmsFallback", "SMSFallback"]
@@ -31,6 +32,8 @@ class RcSendParams(TypedDict, total=False):
 
     webhook_url: str
     """The URL where webhooks related to this message will be sent."""
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
 
 
 _MmsFallbackReservedKeywords = TypedDict(

@@ -1730,6 +1730,7 @@ from telnyx.types.calls import (
     AwsVoiceSettings,
     CallControlCommandResult,
     CallControlCommandResultWithConversationID,
+    CommunityVoiceSettings,
     ConversationRelayInterruptible,
     ConversationRelayTranscriptionEngineConfig,
     DeepgramEnglishTranscriptionLanguage,
@@ -7302,3 +7303,51 @@ from telnyx.types import DialMetricListResponse
 Methods:
 
 - <code title="get /dial_metrics">client.dial_metrics.<a href="./src/telnyx/resources/dial_metrics.py">list</a>(\*\*<a href="src/telnyx/types/dial_metric_list_params.py">params</a>) -> <a href="./src/telnyx/types/dial_metric_list_response.py">SyncCloudfsCursorPagination[DialMetricListResponse]</a></code>
+
+# TtsIntegrations
+
+Types:
+
+```python
+from telnyx.types import (
+    CommunityTtsAudioFormat,
+    CommunityTtsEngine,
+    CommunityTtsEngineCapabilities,
+    CommunityTtsEngineListMeta,
+    CommunityTtsEngineStatus,
+    CommunityTtsEngineVisibility,
+    UpdateCommunityTtsEngineRequest,
+    TtsIntegrationListResponse,
+    TtsIntegrationRetrieveConformanceRunsResponse,
+    TtsIntegrationRetrieveDiscoverableResponse,
+    TtsIntegrationRetrieveVoicesResponse,
+)
+```
+
+Methods:
+
+- <code title="post /tts_integrations">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">create</a>(\*\*<a href="src/telnyx/types/tts_integration_create_params.py">params</a>) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="get /tts_integrations/{id}">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">retrieve</a>(id) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="patch /tts_integrations/{id}">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">update</a>(id, \*\*<a href="src/telnyx/types/tts_integration_update_params.py">params</a>) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="get /tts_integrations">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">list</a>(\*\*<a href="src/telnyx/types/tts_integration_list_params.py">params</a>) -> <a href="./src/telnyx/types/tts_integration_list_response.py">TtsIntegrationListResponse</a></code>
+- <code title="delete /tts_integrations/{id}">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">delete</a>(id) -> None</code>
+- <code title="put /tts_integrations/{id}">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">replace</a>(id, \*\*<a href="src/telnyx/types/tts_integration_replace_params.py">params</a>) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="get /tts_integrations/{id}/conformance_runs">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">retrieve_conformance_runs</a>(id, \*\*<a href="src/telnyx/types/tts_integration_retrieve_conformance_runs_params.py">params</a>) -> <a href="./src/telnyx/types/tts_integration_retrieve_conformance_runs_response.py">TtsIntegrationRetrieveConformanceRunsResponse</a></code>
+- <code title="get /tts_integrations/discoverable">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">retrieve_discoverable</a>(\*\*<a href="src/telnyx/types/tts_integration_retrieve_discoverable_params.py">params</a>) -> <a href="./src/telnyx/types/tts_integration_retrieve_discoverable_response.py">TtsIntegrationRetrieveDiscoverableResponse</a></code>
+- <code title="get /tts_integrations/{id}/voices">client.tts_integrations.<a href="./src/telnyx/resources/tts_integrations/tts_integrations.py">retrieve_voices</a>(id) -> <a href="./src/telnyx/types/tts_integration_retrieve_voices_response.py">TtsIntegrationRetrieveVoicesResponse</a></code>
+
+## Actions
+
+Types:
+
+```python
+from telnyx.types.tts_integrations import CommunityTtsConformanceRun
+```
+
+Methods:
+
+- <code title="post /tts_integrations/{id}/actions/disable">client.tts_integrations.actions.<a href="./src/telnyx/resources/tts_integrations/actions.py">disable</a>(id) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="post /tts_integrations/{id}/actions/enable">client.tts_integrations.actions.<a href="./src/telnyx/resources/tts_integrations/actions.py">enable</a>(id) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="post /tts_integrations/{id}/actions/refresh_voices">client.tts_integrations.actions.<a href="./src/telnyx/resources/tts_integrations/actions.py">refresh_voices</a>(id) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="post /tts_integrations/{id}/actions/request_review">client.tts_integrations.actions.<a href="./src/telnyx/resources/tts_integrations/actions.py">request_review</a>(id) -> <a href="./src/telnyx/types/community_tts_engine.py">CommunityTtsEngine</a></code>
+- <code title="post /tts_integrations/{id}/actions/test_connection">client.tts_integrations.actions.<a href="./src/telnyx/resources/tts_integrations/actions.py">test_connection</a>(id, \*\*<a href="src/telnyx/types/tts_integrations/action_test_connection_params.py">params</a>) -> <a href="./src/telnyx/types/tts_integrations/community_tts_conformance_run.py">CommunityTtsConformanceRun</a></code>

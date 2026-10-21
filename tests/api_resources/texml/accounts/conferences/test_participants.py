@@ -26,7 +26,7 @@ class TestParticipants:
     def test_method_retrieve(self, client: Telnyx) -> None:
         participant = client.texml.accounts.conferences.participants.retrieve(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
         assert_matches_type(ParticipantResource, participant, path=["response"])
@@ -36,7 +36,7 @@ class TestParticipants:
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.participants.with_raw_response.retrieve(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
 
@@ -50,7 +50,7 @@ class TestParticipants:
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.participants.with_streaming_response.retrieve(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         ) as response:
             assert not response.is_closed
@@ -74,7 +74,7 @@ class TestParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.participants.with_raw_response.retrieve(
                 call_sid_or_participant_label="call_sid_or_participant_label",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="",
             )
 
@@ -83,7 +83,7 @@ class TestParticipants:
         ):
             client.texml.accounts.conferences.participants.with_raw_response.retrieve(
                 call_sid_or_participant_label="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="conference_sid",
             )
 
@@ -92,7 +92,7 @@ class TestParticipants:
     def test_method_update(self, client: Telnyx) -> None:
         participant = client.texml.accounts.conferences.participants.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
         assert_matches_type(ParticipantResource, participant, path=["response"])
@@ -102,7 +102,7 @@ class TestParticipants:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         participant = client.texml.accounts.conferences.participants.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
             announce_method="GET",
             announce_url="https://www.example.com/announce.xml",
@@ -123,7 +123,7 @@ class TestParticipants:
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.participants.with_raw_response.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
 
@@ -137,7 +137,7 @@ class TestParticipants:
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.participants.with_streaming_response.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         ) as response:
             assert not response.is_closed
@@ -161,7 +161,7 @@ class TestParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.participants.with_raw_response.update(
                 call_sid_or_participant_label="call_sid_or_participant_label",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="",
             )
 
@@ -170,7 +170,7 @@ class TestParticipants:
         ):
             client.texml.accounts.conferences.participants.with_raw_response.update(
                 call_sid_or_participant_label="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="conference_sid",
             )
 
@@ -179,7 +179,7 @@ class TestParticipants:
     def test_method_delete(self, client: Telnyx) -> None:
         participant = client.texml.accounts.conferences.participants.delete(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
         assert participant is None
@@ -189,7 +189,7 @@ class TestParticipants:
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.participants.with_raw_response.delete(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
 
@@ -203,7 +203,7 @@ class TestParticipants:
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.participants.with_streaming_response.delete(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         ) as response:
             assert not response.is_closed
@@ -227,7 +227,7 @@ class TestParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.participants.with_raw_response.delete(
                 call_sid_or_participant_label="call_sid_or_participant_label",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="",
             )
 
@@ -236,7 +236,7 @@ class TestParticipants:
         ):
             client.texml.accounts.conferences.participants.with_raw_response.delete(
                 call_sid_or_participant_label="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="conference_sid",
             )
 
@@ -245,7 +245,7 @@ class TestParticipants:
     def test_method_participants(self, client: Telnyx) -> None:
         participant = client.texml.accounts.conferences.participants.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ParticipantParticipantsResponse, participant, path=["response"])
 
@@ -254,7 +254,7 @@ class TestParticipants:
     def test_method_participants_with_all_params(self, client: Telnyx) -> None:
         participant = client.texml.accounts.conferences.participants.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             amd_status_callback="https://www.example.com/amd_result",
             amd_status_callback_method="GET",
             application_sid="1846572522338780702",
@@ -324,7 +324,7 @@ class TestParticipants:
     def test_raw_response_participants(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.participants.with_raw_response.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -337,7 +337,7 @@ class TestParticipants:
     def test_streaming_response_participants(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.participants.with_streaming_response.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,7 +359,7 @@ class TestParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.participants.with_raw_response.participants(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -367,7 +367,7 @@ class TestParticipants:
     def test_method_retrieve_participants(self, client: Telnyx) -> None:
         participant = client.texml.accounts.conferences.participants.retrieve_participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ParticipantRetrieveParticipantsResponse, participant, path=["response"])
 
@@ -376,7 +376,7 @@ class TestParticipants:
     def test_raw_response_retrieve_participants(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.participants.with_raw_response.retrieve_participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -389,7 +389,7 @@ class TestParticipants:
     def test_streaming_response_retrieve_participants(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.participants.with_streaming_response.retrieve_participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -411,7 +411,7 @@ class TestParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.participants.with_raw_response.retrieve_participants(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
 
@@ -425,7 +425,7 @@ class TestAsyncParticipants:
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         participant = await async_client.texml.accounts.conferences.participants.retrieve(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
         assert_matches_type(ParticipantResource, participant, path=["response"])
@@ -435,7 +435,7 @@ class TestAsyncParticipants:
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.participants.with_raw_response.retrieve(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
 
@@ -449,7 +449,7 @@ class TestAsyncParticipants:
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.participants.with_streaming_response.retrieve(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         ) as response:
             assert not response.is_closed
@@ -473,7 +473,7 @@ class TestAsyncParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.participants.with_raw_response.retrieve(
                 call_sid_or_participant_label="call_sid_or_participant_label",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="",
             )
 
@@ -482,7 +482,7 @@ class TestAsyncParticipants:
         ):
             await async_client.texml.accounts.conferences.participants.with_raw_response.retrieve(
                 call_sid_or_participant_label="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="conference_sid",
             )
 
@@ -491,7 +491,7 @@ class TestAsyncParticipants:
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         participant = await async_client.texml.accounts.conferences.participants.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
         assert_matches_type(ParticipantResource, participant, path=["response"])
@@ -501,7 +501,7 @@ class TestAsyncParticipants:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         participant = await async_client.texml.accounts.conferences.participants.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
             announce_method="GET",
             announce_url="https://www.example.com/announce.xml",
@@ -522,7 +522,7 @@ class TestAsyncParticipants:
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.participants.with_raw_response.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
 
@@ -536,7 +536,7 @@ class TestAsyncParticipants:
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.participants.with_streaming_response.update(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         ) as response:
             assert not response.is_closed
@@ -560,7 +560,7 @@ class TestAsyncParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.participants.with_raw_response.update(
                 call_sid_or_participant_label="call_sid_or_participant_label",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="",
             )
 
@@ -569,7 +569,7 @@ class TestAsyncParticipants:
         ):
             await async_client.texml.accounts.conferences.participants.with_raw_response.update(
                 call_sid_or_participant_label="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="conference_sid",
             )
 
@@ -578,7 +578,7 @@ class TestAsyncParticipants:
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         participant = await async_client.texml.accounts.conferences.participants.delete(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
         assert participant is None
@@ -588,7 +588,7 @@ class TestAsyncParticipants:
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.participants.with_raw_response.delete(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         )
 
@@ -602,7 +602,7 @@ class TestAsyncParticipants:
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.participants.with_streaming_response.delete(
             call_sid_or_participant_label="call_sid_or_participant_label",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             conference_sid="conference_sid",
         ) as response:
             assert not response.is_closed
@@ -626,7 +626,7 @@ class TestAsyncParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.participants.with_raw_response.delete(
                 call_sid_or_participant_label="call_sid_or_participant_label",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="",
             )
 
@@ -635,7 +635,7 @@ class TestAsyncParticipants:
         ):
             await async_client.texml.accounts.conferences.participants.with_raw_response.delete(
                 call_sid_or_participant_label="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 conference_sid="conference_sid",
             )
 
@@ -644,7 +644,7 @@ class TestAsyncParticipants:
     async def test_method_participants(self, async_client: AsyncTelnyx) -> None:
         participant = await async_client.texml.accounts.conferences.participants.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ParticipantParticipantsResponse, participant, path=["response"])
 
@@ -653,7 +653,7 @@ class TestAsyncParticipants:
     async def test_method_participants_with_all_params(self, async_client: AsyncTelnyx) -> None:
         participant = await async_client.texml.accounts.conferences.participants.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             amd_status_callback="https://www.example.com/amd_result",
             amd_status_callback_method="GET",
             application_sid="1846572522338780702",
@@ -723,7 +723,7 @@ class TestAsyncParticipants:
     async def test_raw_response_participants(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.participants.with_raw_response.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -736,7 +736,7 @@ class TestAsyncParticipants:
     async def test_streaming_response_participants(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.participants.with_streaming_response.participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -758,7 +758,7 @@ class TestAsyncParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.participants.with_raw_response.participants(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -766,7 +766,7 @@ class TestAsyncParticipants:
     async def test_method_retrieve_participants(self, async_client: AsyncTelnyx) -> None:
         participant = await async_client.texml.accounts.conferences.participants.retrieve_participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ParticipantRetrieveParticipantsResponse, participant, path=["response"])
 
@@ -775,7 +775,7 @@ class TestAsyncParticipants:
     async def test_raw_response_retrieve_participants(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.participants.with_raw_response.retrieve_participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -788,7 +788,7 @@ class TestAsyncParticipants:
     async def test_streaming_response_retrieve_participants(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.participants.with_streaming_response.retrieve_participants(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -810,5 +810,5 @@ class TestAsyncParticipants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.participants.with_raw_response.retrieve_participants(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )

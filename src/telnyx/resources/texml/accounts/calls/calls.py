@@ -238,7 +238,7 @@ class CallsResource(SyncAPIResource):
         """Initiate an outbound TeXML call.
 
         Telnyx will request TeXML from the XML Request
-        URL configured for the connection in the Mission Control Portal.
+        URL configured for the TeXML Application in the Mission Control Portal.
 
         Args:
           extra_headers: Send extra headers
@@ -688,7 +688,7 @@ class AsyncCallsResource(AsyncAPIResource):
         """Initiate an outbound TeXML call.
 
         Telnyx will request TeXML from the XML Request
-        URL configured for the connection in the Mission Control Portal.
+        URL configured for the TeXML Application in the Mission Control Portal.
 
         Args:
           extra_headers: Send extra headers
