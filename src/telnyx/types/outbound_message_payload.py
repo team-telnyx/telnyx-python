@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -26,10 +26,25 @@ __all__ = [
 
 
 class Body(BaseModel):
-    """RCS webhook message body. Text messages use the text property."""
+    """Message body for RCS and WhatsApp.
+
+    RCS text messages use the text property. WhatsApp messages contain the `whatsapp_message` object from the send request.
+    """
 
     text: Optional[str] = None
     """RCS text message."""
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
 
 
 class Cc(BaseModel):
@@ -144,7 +159,11 @@ class OutboundMessagePayload(BaseModel):
     """Identifies the type of resource."""
 
     body: Optional[Body] = None
-    """RCS webhook message body. Text messages use the text property."""
+    """Message body for RCS and WhatsApp.
+
+    RCS text messages use the text property. WhatsApp messages contain the
+    `whatsapp_message` object from the send request.
+    """
 
     cc: Optional[List[Cc]] = None
 
@@ -219,6 +238,15 @@ class OutboundMessagePayload(BaseModel):
     tcr_campaign_registered: Optional[str] = None
     """The registration status of the TCR campaign."""
 
+    template_id: Optional[str] = None
+    """Telnyx ID of the WhatsApp template used by the message, when known."""
+
+    template_name: Optional[str] = None
+    """Name of the WhatsApp template used by the message.
+
+    Present for WhatsApp template messages.
+    """
+
     text: Optional[str] = None
     """Message body (i.e., content) as a non-empty string.
 
@@ -227,7 +255,7 @@ class OutboundMessagePayload(BaseModel):
 
     to: Optional[List[To]] = None
 
-    type: Optional[Literal["SMS", "MMS", "RCS"]] = None
+    type: Optional[Literal["SMS", "MMS", "RCS", "WHATSAPP"]] = None
     """The type of message."""
 
     valid_until: Optional[datetime] = None

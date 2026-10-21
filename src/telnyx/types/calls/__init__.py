@@ -78,6 +78,9 @@ from .action_start_conversation_relay_params import (
 from .action_add_ai_assistant_messages_params import (
     ActionAddAIAssistantMessagesParams as ActionAddAIAssistantMessagesParams,
 )
+from .deepgram_english_transcription_language import (
+    DeepgramEnglishTranscriptionLanguage as DeepgramEnglishTranscriptionLanguage,
+)
 from .transcription_engine_azure_config_param import (
     TranscriptionEngineAzureConfigParam as TranscriptionEngineAzureConfigParam,
 )

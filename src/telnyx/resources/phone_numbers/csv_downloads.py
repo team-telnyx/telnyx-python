@@ -51,6 +51,7 @@ class CsvDownloadsResource(SyncAPIResource):
         *,
         csv_format: Literal["V1", "V2"] | Omit = omit,
         filter: csv_download_create_params.Filter | Omit = omit,
+        include_managed_accounts: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,6 +75,13 @@ class CsvDownloadsResource(SyncAPIResource):
               filter[voice.usage_payment_method], filter[billing_group_id],
               filter[emergency_address_id], filter[customer_reference]
 
+          include_managed_accounts: When true, the CSV includes phone numbers from all managed accounts in addition
+              to the requesting account's own numbers. Only applies to V2 format; ignored for
+              V1. The export appends `user_id` and `email` columns identifying the account
+              that owns each number. When a filter is provided, it applies to the combined set
+              of numbers. Requires access to managed accounts; requests without that access
+              are rejected.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -93,6 +101,7 @@ class CsvDownloadsResource(SyncAPIResource):
                     {
                         "csv_format": csv_format,
                         "filter": filter,
+                        "include_managed_accounts": include_managed_accounts,
                     },
                     csv_download_create_params.CsvDownloadCreateParams,
                 ),
@@ -204,6 +213,7 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
         *,
         csv_format: Literal["V1", "V2"] | Omit = omit,
         filter: csv_download_create_params.Filter | Omit = omit,
+        include_managed_accounts: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,6 +237,13 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
               filter[voice.usage_payment_method], filter[billing_group_id],
               filter[emergency_address_id], filter[customer_reference]
 
+          include_managed_accounts: When true, the CSV includes phone numbers from all managed accounts in addition
+              to the requesting account's own numbers. Only applies to V2 format; ignored for
+              V1. The export appends `user_id` and `email` columns identifying the account
+              that owns each number. When a filter is provided, it applies to the combined set
+              of numbers. Requires access to managed accounts; requests without that access
+              are rejected.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -246,6 +263,7 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
                     {
                         "csv_format": csv_format,
                         "filter": filter,
+                        "include_managed_accounts": include_managed_accounts,
                     },
                     csv_download_create_params.CsvDownloadCreateParams,
                 ),

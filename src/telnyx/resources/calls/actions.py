@@ -1331,6 +1331,7 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        reason: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1355,6 +1356,15 @@ class ActionsResource(SyncAPIResource):
 
           custom_headers: Custom headers to be added to the SIP BYE message.
 
+          reason: Text for the SIP `Reason` header (RFC 3326) sent when cancelling an unanswered
+              outbound leg. The SIP CANCEL carries `Reason: SIP;cause=200;text="<reason>"`;
+              phones such as Poly and Yealink use it to suppress the missed-call entry for a
+              call answered elsewhere. Has no effect on an answered leg or an inbound leg. A
+              hangup sent before the leg's `call.initiated` webhook still hangs up the leg,
+              but without the `Reason` header. Must not contain `"`, `\\``, control characters,
+              or characters outside the Basic Multilingual Plane (such as emoji); invalid
+              values are rejected with a 422.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1372,6 +1382,7 @@ class ActionsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "custom_headers": custom_headers,
+                    "reason": reason,
                 },
                 action_hangup_params.ActionHangupParams,
             ),
@@ -5557,6 +5568,7 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        reason: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5581,6 +5593,15 @@ class AsyncActionsResource(AsyncAPIResource):
 
           custom_headers: Custom headers to be added to the SIP BYE message.
 
+          reason: Text for the SIP `Reason` header (RFC 3326) sent when cancelling an unanswered
+              outbound leg. The SIP CANCEL carries `Reason: SIP;cause=200;text="<reason>"`;
+              phones such as Poly and Yealink use it to suppress the missed-call entry for a
+              call answered elsewhere. Has no effect on an answered leg or an inbound leg. A
+              hangup sent before the leg's `call.initiated` webhook still hangs up the leg,
+              but without the `Reason` header. Must not contain `"`, `\\``, control characters,
+              or characters outside the Basic Multilingual Plane (such as emoji); invalid
+              values are rejected with a 422.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5598,6 +5619,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "custom_headers": custom_headers,
+                    "reason": reason,
                 },
                 action_hangup_params.ActionHangupParams,
             ),

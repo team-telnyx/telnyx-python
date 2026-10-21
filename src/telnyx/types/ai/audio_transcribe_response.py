@@ -23,11 +23,20 @@ class Segment(BaseModel):
     text: str
     """Text content of the segment."""
 
+    channel: Optional[int] = None
+    """Zero-indexed audio channel of this segment.
+
+    Returned by the `deepgram/*` models when `multichannel` is enabled via
+    `model_config` and the file has more than one channel. Segments from all
+    channels are merged in one list ordered by start time.
+    """
+
     speakers: Optional[List[int]] = None
     """Speaker indices heard in this segment.
 
     Returned by the `deepgram/*` models when `diarize` is enabled via
-    `model_config`.
+    `model_config`. With `multichannel`, speakers are numbered per channel from 0,
+    so identify a speaker by (`channel`, speaker).
     """
 
     words: Optional[List[AudioTranscriptionResponseWord]] = None

@@ -19,6 +19,7 @@ class DocumentParam(TypedDict, total=False):
             "letter_of_authorization",
             "business_registration",
             "articles_of_incorporation",
+            "certificate_of_good_standing",
             "tax_document",
             "ein_letter",
             "trademark_registration",
@@ -28,6 +29,8 @@ class DocumentParam(TypedDict, total=False):
             "government_id",
             "utility_bill",
             "bank_statement",
+            "business_credit_report",
+            "bank_reference_letter",
             "other",
         ]
     ]

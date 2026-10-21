@@ -581,7 +581,14 @@ class TestMessages:
                                 "type": "type",
                             }
                         ],
-                        "name": "name",
+                        "name": {
+                            "formatted_name": "formatted_name",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
+                            "middle_name": "middle_name",
+                            "prefix": "prefix",
+                            "suffix": "suffix",
+                        },
                         "org": {
                             "company": "company",
                             "department": "department",
@@ -657,6 +664,17 @@ class TestMessages:
                         "name": "name",
                         "parameters": {
                             "display_text": "display_text",
+                            "flow_action": "navigate",
+                            "flow_action_payload": {
+                                "data": {},
+                                "screen": "screen",
+                            },
+                            "flow_cta": "flow_cta",
+                            "flow_id": "flow_id",
+                            "flow_message_version": "flow_message_version",
+                            "flow_name": "flow_name",
+                            "flow_token": "flow_token",
+                            "mode": "draft",
                             "url": "url",
                         },
                         "product_retailer_id": "product_retailer_id",
@@ -677,6 +695,7 @@ class TestMessages:
                     "body": {"text": "text"},
                     "footer": {"text": "text"},
                     "header": {
+                        "type": "document",
                         "document": {
                             "caption": "caption",
                             "filename": "filename",
@@ -722,6 +741,10 @@ class TestMessages:
                             "index": 0,
                             "parameters": [
                                 {
+                                    "action": {
+                                        "flow_action_data": {},
+                                        "flow_token": "flow_token",
+                                    },
                                     "text": "text",
                                     "type": "text",
                                 }
@@ -1342,7 +1365,14 @@ class TestAsyncMessages:
                                 "type": "type",
                             }
                         ],
-                        "name": "name",
+                        "name": {
+                            "formatted_name": "formatted_name",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
+                            "middle_name": "middle_name",
+                            "prefix": "prefix",
+                            "suffix": "suffix",
+                        },
                         "org": {
                             "company": "company",
                             "department": "department",
@@ -1418,6 +1448,17 @@ class TestAsyncMessages:
                         "name": "name",
                         "parameters": {
                             "display_text": "display_text",
+                            "flow_action": "navigate",
+                            "flow_action_payload": {
+                                "data": {},
+                                "screen": "screen",
+                            },
+                            "flow_cta": "flow_cta",
+                            "flow_id": "flow_id",
+                            "flow_message_version": "flow_message_version",
+                            "flow_name": "flow_name",
+                            "flow_token": "flow_token",
+                            "mode": "draft",
                             "url": "url",
                         },
                         "product_retailer_id": "product_retailer_id",
@@ -1438,6 +1479,7 @@ class TestAsyncMessages:
                     "body": {"text": "text"},
                     "footer": {"text": "text"},
                     "header": {
+                        "type": "document",
                         "document": {
                             "caption": "caption",
                             "filename": "filename",
@@ -1483,6 +1525,10 @@ class TestAsyncMessages:
                             "index": 0,
                             "parameters": [
                                 {
+                                    "action": {
+                                        "flow_action_data": {},
+                                        "flow_token": "flow_token",
+                                    },
                                     "text": "text",
                                     "type": "text",
                                 }

@@ -120,6 +120,8 @@ class DirResource(SyncAPIResource):
     def references(self) -> ReferencesResource:
         """
         Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+
+        References (two business references and one financial reference) are needed only if the documents uploaded with the DIR don't already prove the business is legitimate and financially stable. Any one of these is enough proof: audited or certified financial statements (uploaded as `other`, with a description), a commercial credit report (uploaded as `business_credit_report`), or references. Telnyx reviewers decide during vetting whether your documents are enough.
         """
         return ReferencesResource(self._client)
 
@@ -127,7 +129,7 @@ class DirResource(SyncAPIResource):
     def verify_email(self) -> VerifyEmailResource:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return VerifyEmailResource(self._client)
 
@@ -721,8 +723,7 @@ class DirResource(SyncAPIResource):
         existing registration stays live throughout the new vetting cycle.
 
         Returns `400` from `submitted`/`in_review`/`permanently_rejected`. Returns `400`
-        if the DIR's business and financial references have not been submitted. Returns
-        `400` if the DIR has an unresolved infringement claim.
+        if the DIR has an unresolved infringement claim.
 
         Args:
           extra_headers: Send extra headers
@@ -851,6 +852,8 @@ class AsyncDirResource(AsyncAPIResource):
     def references(self) -> AsyncReferencesResource:
         """
         Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+
+        References (two business references and one financial reference) are needed only if the documents uploaded with the DIR don't already prove the business is legitimate and financially stable. Any one of these is enough proof: audited or certified financial statements (uploaded as `other`, with a description), a commercial credit report (uploaded as `business_credit_report`), or references. Telnyx reviewers decide during vetting whether your documents are enough.
         """
         return AsyncReferencesResource(self._client)
 
@@ -858,7 +861,7 @@ class AsyncDirResource(AsyncAPIResource):
     def verify_email(self) -> AsyncVerifyEmailResource:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return AsyncVerifyEmailResource(self._client)
 
@@ -1452,8 +1455,7 @@ class AsyncDirResource(AsyncAPIResource):
         existing registration stays live throughout the new vetting cycle.
 
         Returns `400` from `submitted`/`in_review`/`permanently_rejected`. Returns `400`
-        if the DIR's business and financial references have not been submitted. Returns
-        `400` if the DIR has an unresolved infringement claim.
+        if the DIR has an unresolved infringement claim.
 
         Args:
           extra_headers: Send extra headers
@@ -1621,6 +1623,8 @@ class DirResourceWithRawResponse:
     def references(self) -> ReferencesResourceWithRawResponse:
         """
         Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+
+        References (two business references and one financial reference) are needed only if the documents uploaded with the DIR don't already prove the business is legitimate and financially stable. Any one of these is enough proof: audited or certified financial statements (uploaded as `other`, with a description), a commercial credit report (uploaded as `business_credit_report`), or references. Telnyx reviewers decide during vetting whether your documents are enough.
         """
         return ReferencesResourceWithRawResponse(self._dir.references)
 
@@ -1628,7 +1632,7 @@ class DirResourceWithRawResponse:
     def verify_email(self) -> VerifyEmailResourceWithRawResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return VerifyEmailResourceWithRawResponse(self._dir.verify_email)
 
@@ -1699,6 +1703,8 @@ class AsyncDirResourceWithRawResponse:
     def references(self) -> AsyncReferencesResourceWithRawResponse:
         """
         Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+
+        References (two business references and one financial reference) are needed only if the documents uploaded with the DIR don't already prove the business is legitimate and financially stable. Any one of these is enough proof: audited or certified financial statements (uploaded as `other`, with a description), a commercial credit report (uploaded as `business_credit_report`), or references. Telnyx reviewers decide during vetting whether your documents are enough.
         """
         return AsyncReferencesResourceWithRawResponse(self._dir.references)
 
@@ -1706,7 +1712,7 @@ class AsyncDirResourceWithRawResponse:
     def verify_email(self) -> AsyncVerifyEmailResourceWithRawResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return AsyncVerifyEmailResourceWithRawResponse(self._dir.verify_email)
 
@@ -1777,6 +1783,8 @@ class DirResourceWithStreamingResponse:
     def references(self) -> ReferencesResourceWithStreamingResponse:
         """
         Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+
+        References (two business references and one financial reference) are needed only if the documents uploaded with the DIR don't already prove the business is legitimate and financially stable. Any one of these is enough proof: audited or certified financial statements (uploaded as `other`, with a description), a commercial credit report (uploaded as `business_credit_report`), or references. Telnyx reviewers decide during vetting whether your documents are enough.
         """
         return ReferencesResourceWithStreamingResponse(self._dir.references)
 
@@ -1784,7 +1792,7 @@ class DirResourceWithStreamingResponse:
     def verify_email(self) -> VerifyEmailResourceWithStreamingResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return VerifyEmailResourceWithStreamingResponse(self._dir.verify_email)
 
@@ -1855,6 +1863,8 @@ class AsyncDirResourceWithStreamingResponse:
     def references(self) -> AsyncReferencesResourceWithStreamingResponse:
         """
         Submit and manage the two business references and one financial reference that vouch for a DIR. References are contacted to confirm the business identity during vetting.
+
+        References (two business references and one financial reference) are needed only if the documents uploaded with the DIR don't already prove the business is legitimate and financially stable. Any one of these is enough proof: audited or certified financial statements (uploaded as `other`, with a description), a commercial credit report (uploaded as `business_credit_report`), or references. Telnyx reviewers decide during vetting whether your documents are enough.
         """
         return AsyncReferencesResourceWithStreamingResponse(self._dir.references)
 
@@ -1862,6 +1872,6 @@ class AsyncDirResourceWithStreamingResponse:
     def verify_email(self) -> AsyncVerifyEmailResourceWithStreamingResponse:
         """Verify ownership of a DIR's authorizer email.
 
-        A short code is emailed and confirmed; the email must be verified before references can be submitted.
+        A short code is emailed and confirmed.
         """
         return AsyncVerifyEmailResourceWithStreamingResponse(self._dir.verify_email)

@@ -40,6 +40,14 @@ from .phone_numbers import (
     PhoneNumbersResourceWithStreamingResponse,
     AsyncPhoneNumbersResourceWithStreamingResponse,
 )
+from .hosted_signups import (
+    HostedSignupsResource,
+    AsyncHostedSignupsResource,
+    HostedSignupsResourceWithRawResponse,
+    AsyncHostedSignupsResourceWithRawResponse,
+    HostedSignupsResourceWithStreamingResponse,
+    AsyncHostedSignupsResourceWithStreamingResponse,
+)
 from .business_accounts import (
     BusinessAccountsResource,
     AsyncBusinessAccountsResource,
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncSignupResourceWithRawResponse",
     "SignupResourceWithStreamingResponse",
     "AsyncSignupResourceWithStreamingResponse",
+    "HostedSignupsResource",
+    "AsyncHostedSignupsResource",
+    "HostedSignupsResourceWithRawResponse",
+    "AsyncHostedSignupsResourceWithRawResponse",
+    "HostedSignupsResourceWithStreamingResponse",
+    "AsyncHostedSignupsResourceWithStreamingResponse",
     "WhatsappResource",
     "AsyncWhatsappResource",
     "WhatsappResourceWithRawResponse",

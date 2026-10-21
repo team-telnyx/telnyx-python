@@ -24,7 +24,7 @@ __all__ = ["VerifyEmailResource", "AsyncVerifyEmailResource"]
 class VerifyEmailResource(SyncAPIResource):
     """Verify ownership of a DIR's authorizer email.
 
-    A short code is emailed and confirmed; the email must be verified before references can be submitted.
+    A short code is emailed and confirmed.
     """
 
     @cached_property
@@ -133,7 +133,7 @@ class VerifyEmailResource(SyncAPIResource):
 class AsyncVerifyEmailResource(AsyncAPIResource):
     """Verify ownership of a DIR's authorizer email.
 
-    A short code is emailed and confirmed; the email must be verified before references can be submitted.
+    A short code is emailed and confirmed.
     """
 
     @cached_property

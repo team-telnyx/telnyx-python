@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
+from .avatar_id import AvatarID as AvatarID
+from .avatar_type import AvatarType as AvatarType
 from .assistant_tool import AssistantTool as AssistantTool
 from .execution_mode import ExecutionMode as ExecutionMode
 from .assistant_param import AssistantParam as AssistantParam
@@ -12,6 +14,7 @@ from .bucket_ids_param import BucketIDsParam as BucketIDsParam
 from .enabled_features import EnabledFeatures as EnabledFeatures
 from .tool_list_params import ToolListParams as ToolListParams
 from .hangup_tool_param import HangupToolParam as HangupToolParam
+from .avatar_list_params import AvatarListParams as AvatarListParams
 from .external_llm_param import ExternalLlmParam as ExternalLlmParam
 from .prompt_sync_status import PromptSyncStatus as PromptSyncStatus
 from .tool_create_params import ToolCreateParams as ToolCreateParams
@@ -24,6 +27,8 @@ from .node_position_param import NodePositionParam as NodePositionParam
 from .tool_node_req_param import ToolNodeReqParam as ToolNodeReqParam
 from .transfer_tool_param import TransferToolParam as TransferToolParam
 from .assistant_tool_param import AssistantToolParam as AssistantToolParam
+from .avatar_create_params import AvatarCreateParams as AvatarCreateParams
+from .avatar_update_params import AvatarUpdateParams as AvatarUpdateParams
 from .embedding_url_params import EmbeddingURLParams as EmbeddingURLParams
 from .observability_status import ObservabilityStatus as ObservabilityStatus
 from .retrieval_tool_param import RetrievalToolParam as RetrievalToolParam
@@ -58,6 +63,7 @@ from .mcp_server_create_params import McpServerCreateParams as McpServerCreatePa
 from .mcp_server_update_params import McpServerUpdateParams as McpServerUpdateParams
 from .messaging_settings_param import MessagingSettingsParam as MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam as TelephonySettingsParam
+from .vision_tool_params_param import VisionToolParamsParam as VisionToolParamsParam
 from .websocket_settings_param import WebsocketSettingsParam as WebsocketSettingsParam
 from .assistant_retrieve_params import AssistantRetrieveParams as AssistantRetrieveParams
 from .assistant_send_sms_params import AssistantSendSMSParams as AssistantSendSMSParams
@@ -99,6 +105,7 @@ from .inference_embedding_interruption_settings_param import (
 )
 
 if TYPE_CHECKING:
+    from .avatar import Avatar as Avatar
     from .flow_edge import FlowEdge as FlowEdge
     from .flow_node import FlowNode as FlowNode
     from .tool_node import ToolNode as ToolNode
@@ -114,6 +121,7 @@ if TYPE_CHECKING:
     from .observability import Observability as Observability
     from .retrieval_tool import RetrievalTool as RetrievalTool
     from .assistants_list import AssistantsList as AssistantsList
+    from .avatar_response import AvatarResponse as AvatarResponse
     from .fallback_config import FallbackConfig as FallbackConfig
     from .import_metadata import ImportMetadata as ImportMetadata
     from .pay_tool_params import PayToolParams as PayToolParams
@@ -127,6 +135,7 @@ if TYPE_CHECKING:
     from .hangup_tool_params import HangupToolParams as HangupToolParams
     from .messaging_settings import MessagingSettings as MessagingSettings
     from .telephony_settings import TelephonySettings as TelephonySettings
+    from .vision_tool_params import VisionToolParams as VisionToolParams
     from .websocket_settings import WebsocketSettings as WebsocketSettings
     from .collection_envelope import CollectionEnvelope as CollectionEnvelope
     from .delegation_settings import DelegationSettings as DelegationSettings
@@ -439,4 +448,16 @@ def __getattr__(name: str) -> Any:
         from .update_dynamic_variables_tool_params import UpdateDynamicVariablesToolParams
 
         return UpdateDynamicVariablesToolParams
+    if name == "VisionToolParams":
+        from .vision_tool_params import VisionToolParams
+
+        return VisionToolParams
+    if name == "Avatar":
+        from .avatar import Avatar
+
+        return Avatar
+    if name == "AvatarResponse":
+        from .avatar_response import AvatarResponse
+
+        return AvatarResponse
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

@@ -20,6 +20,7 @@ __all__ = [
     "Transfer",
     "TransferTransfer",
     "TransferTransferTargetsTargetsList",
+    "TransferTransferBridgeBeep",
     "TransferTransferCustomHeader",
     "TransferTransferVoicemailDetection",
     "TransferTransferVoicemailDetectionDetectionConfig",
@@ -42,6 +43,7 @@ __all__ = [
     "SendMessageSendMessage",
     "SkipTurn",
     "SkipTurnSkipTurn",
+    "Vision",
     "Pay",
     "UpdateDynamicVariables",
 ]
@@ -160,6 +162,22 @@ class TransferTransferTargetsTargetsList(TypedDict, total=False):
     """SIP Authentication username used for SIP challenges.
 
     Applies when `to` is a SIP URI.
+    """
+
+
+class TransferTransferBridgeBeep(TypedDict, total=False):
+    """
+    Plays a short beep once the transfer completes and the calls are bridged, so the transfer destination knows the caller is now on the line. The warm transfer message plays before the bridge; this marks the moment the caller actually joins. Works with and without `warm_transfer_acceptance`.
+    """
+
+    enabled: bool
+    """Whether to play the beep when the calls are bridged."""
+
+    target_legs: Literal["self", "both"]
+    """Who hears the beep.
+
+    `self` plays it to the transfer destination only; `both` plays it to the
+    destination and the original caller.
     """
 
 
@@ -294,6 +312,32 @@ class TransferTransferWarmTransferAcceptance(TypedDict, total=False):
     `shared` the exchange stays in the conversation like any other messages.
     """
 
+    require_acceptance: bool
+    """Fail closed when the acceptance consult cannot run.
+
+    Off by default: if the consult cannot be set up for any reason — including where
+    acceptance is unavailable at all (`gather_using_ai`, Conversation Relay or web
+    calls, a conference, or additional invited participants) — the transfer degrades
+    to a plain warm transfer (the warm transfer message is played to the destination
+    as audio and the calls are bridged anyway). Set to true to treat those paths as
+    a decline instead: the destination is disconnected without being asked, the
+    assistant returns to the caller, and no bridge happens without an acceptance.
+    Only consult-setup failures are affected; the destination must still explicitly
+    accept on every consult that does run.
+    """
+
+    timeout_secs: int
+    """
+    How long, in seconds, the destination has to accept the transfer, counted from
+    when the private consult starts (right after the destination answers, or after
+    `warm_message_delay_ms`). The caller keeps hearing ringback the whole time. If
+    no acceptance arrives in time, the destination is hung up and the assistant
+    returns to the caller (the transfer fails as a timeout). Raise it for
+    destinations that answer before a human is on the line, such as a call-center
+    queue/ACD or an IVR playing hold audio; keep it as short as practical, since the
+    caller waits on ringback until it expires.
+    """
+
 
 _TransferTransferReservedKeywords = TypedDict(
     "_TransferTransferReservedKeywords",
@@ -312,6 +356,14 @@ class TransferTransfer(_TransferTransferReservedKeywords, total=False):
     This can also be a dynamic variable string like `{{ targets }}` where `targets`
     is returned by the dynamic variables webhook and resolves to an array of target
     objects at runtime.
+    """
+
+    bridge_beep: TransferTransferBridgeBeep
+    """
+    Plays a short beep once the transfer completes and the calls are bridged, so the
+    transfer destination knows the caller is now on the line. The warm transfer
+    message plays before the bridge; this marks the moment the caller actually
+    joins. Works with and without `warm_transfer_acceptance`.
     """
 
     custom_headers: Iterable[TransferTransferCustomHeader]
@@ -557,6 +609,16 @@ class SkipTurn(TypedDict, total=False):
     type: Required[Literal["skip_turn"]]
 
 
+class Vision(TypedDict, total=False):
+    """
+    (BETA) Lets the assistant look at recent image frames the client sent into the conversation (for example webcam or screen-share frames). Frames are sent with `conversation.item.create` and `item.buffer: true`; they never trigger a response on their own. The assistant decides when to look and which frames it needs. Requires a model that supports image input.
+    """
+
+    type: Required[Literal["vision"]]
+
+    vision: "VisionToolParamsParam"
+
+
 class Pay(TypedDict, total=False):
     """
     (BETA) The pay tool allows the assistant to collect card payments from the caller via DTMF during the conversation. Recording is automatically paused while the pay tool is active and resumes when the payment flow completes. The connector_name must reference a pay connector configured in the Telnyx API.
@@ -592,6 +654,7 @@ if TYPE_CHECKING:
         SendDtmf,
         SendMessage,
         SkipTurn,
+        Vision,
         Pay,
         UpdateDynamicVariables,
     ]
@@ -609,6 +672,7 @@ else:
         SendDtmf,
         SendMessage,
         SkipTurn,
+        Vision,
         Pay,
         UpdateDynamicVariables,
     ]
@@ -616,6 +680,7 @@ else:
 from .retrieval_tool_param import RetrievalToolParam
 from .pay_tool_params_param import PayToolParamsParam
 from .hangup_tool_params_param import HangupToolParamsParam
+from .vision_tool_params_param import VisionToolParamsParam
 from .openai.function_definition_param import FunctionDefinitionParam
 from .update_dynamic_variables_tool_params_param import UpdateDynamicVariablesToolParamsParam
 from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam

@@ -24,10 +24,7 @@ class Data(BaseModel):
     """The new session status."""
 
     status_detail: Optional[str] = None
-    """
-    Additional detail about the status (for example `timeout_exceeded_everyone_left`
-    or `cancelled`), or null.
-    """
+    """Additional detail about the status (for example `cancelled`), or null."""
 
 
 class SessionStatusChangedWebhookEvent(BaseModel):

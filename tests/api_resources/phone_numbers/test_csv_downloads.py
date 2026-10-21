@@ -50,6 +50,7 @@ class TestCsvDownloads:
                 },
                 "voice_usage_payment_method": "channel",
             },
+            include_managed_accounts=True,
         )
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
@@ -188,6 +189,7 @@ class TestAsyncCsvDownloads:
                 },
                 "voice_usage_payment_method": "channel",
             },
+            include_managed_accounts=True,
         )
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
