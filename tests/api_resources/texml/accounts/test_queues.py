@@ -22,7 +22,7 @@ class TestQueues:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(QueueResource, queue, path=["response"])
 
@@ -30,7 +30,7 @@ class TestQueues:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             friendly_name="Support Queue",
             max_size=10,
         )
@@ -40,7 +40,7 @@ class TestQueues:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.texml.accounts.queues.with_raw_response.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestQueues:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.texml.accounts.queues.with_streaming_response.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,7 +75,7 @@ class TestQueues:
     def test_method_retrieve(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.retrieve(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(QueueResource, queue, path=["response"])
 
@@ -84,7 +84,7 @@ class TestQueues:
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.texml.accounts.queues.with_raw_response.retrieve(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -97,7 +97,7 @@ class TestQueues:
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.texml.accounts.queues.with_streaming_response.retrieve(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -119,7 +119,7 @@ class TestQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_sid` but received ''"):
             client.texml.accounts.queues.with_raw_response.retrieve(
                 queue_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -127,7 +127,7 @@ class TestQueues:
     def test_method_update(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(QueueResource, queue, path=["response"])
 
@@ -136,7 +136,7 @@ class TestQueues:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             max_size=10,
         )
         assert_matches_type(QueueResource, queue, path=["response"])
@@ -146,7 +146,7 @@ class TestQueues:
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.texml.accounts.queues.with_raw_response.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -159,7 +159,7 @@ class TestQueues:
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.texml.accounts.queues.with_streaming_response.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,14 +181,14 @@ class TestQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_sid` but received ''"):
             client.texml.accounts.queues.with_raw_response.update(
                 queue_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(SyncDefaultPaginationForQueues[QueueResource], queue, path=["response"])
 
@@ -196,7 +196,7 @@ class TestQueues:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             date_created="DateCreated",
             date_updated="DateUpdated",
             page=0,
@@ -209,7 +209,7 @@ class TestQueues:
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.texml.accounts.queues.with_raw_response.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -221,7 +221,7 @@ class TestQueues:
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.texml.accounts.queues.with_streaming_response.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,7 +244,7 @@ class TestQueues:
     def test_method_delete(self, client: Telnyx) -> None:
         queue = client.texml.accounts.queues.delete(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert queue is None
 
@@ -253,7 +253,7 @@ class TestQueues:
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.texml.accounts.queues.with_raw_response.delete(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -266,7 +266,7 @@ class TestQueues:
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.texml.accounts.queues.with_streaming_response.delete(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -288,7 +288,7 @@ class TestQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_sid` but received ''"):
             client.texml.accounts.queues.with_raw_response.delete(
                 queue_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
 
@@ -301,7 +301,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(QueueResource, queue, path=["response"])
 
@@ -309,7 +309,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             friendly_name="Support Queue",
             max_size=10,
         )
@@ -319,7 +319,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.queues.with_raw_response.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -331,7 +331,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.queues.with_streaming_response.create(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -354,7 +354,7 @@ class TestAsyncQueues:
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.retrieve(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(QueueResource, queue, path=["response"])
 
@@ -363,7 +363,7 @@ class TestAsyncQueues:
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.queues.with_raw_response.retrieve(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -376,7 +376,7 @@ class TestAsyncQueues:
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.queues.with_streaming_response.retrieve(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -398,7 +398,7 @@ class TestAsyncQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_sid` but received ''"):
             await async_client.texml.accounts.queues.with_raw_response.retrieve(
                 queue_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -406,7 +406,7 @@ class TestAsyncQueues:
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(QueueResource, queue, path=["response"])
 
@@ -415,7 +415,7 @@ class TestAsyncQueues:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             max_size=10,
         )
         assert_matches_type(QueueResource, queue, path=["response"])
@@ -425,7 +425,7 @@ class TestAsyncQueues:
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.queues.with_raw_response.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -438,7 +438,7 @@ class TestAsyncQueues:
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.queues.with_streaming_response.update(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -460,14 +460,14 @@ class TestAsyncQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_sid` but received ''"):
             await async_client.texml.accounts.queues.with_raw_response.update(
                 queue_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(AsyncDefaultPaginationForQueues[QueueResource], queue, path=["response"])
 
@@ -475,7 +475,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             date_created="DateCreated",
             date_updated="DateUpdated",
             page=0,
@@ -488,7 +488,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.queues.with_raw_response.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -500,7 +500,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.queues.with_streaming_response.list(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -523,7 +523,7 @@ class TestAsyncQueues:
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.texml.accounts.queues.delete(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert queue is None
 
@@ -532,7 +532,7 @@ class TestAsyncQueues:
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.queues.with_raw_response.delete(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -545,7 +545,7 @@ class TestAsyncQueues:
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.queues.with_streaming_response.delete(
             queue_sid="queue_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -567,5 +567,5 @@ class TestAsyncQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_sid` but received ''"):
             await async_client.texml.accounts.queues.with_raw_response.delete(
                 queue_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )

@@ -57,6 +57,7 @@ class AudioResource(SyncAPIResource):
             "deepgram/nova-3-medical",
             "nvidia/parakeet-v3",
             "omi-health/omi-med-stt-v1",
+            "reson8/prerecorded",
         ],
         file: FileTypes | Omit = omit,
         file_url: str | Omit = omit,
@@ -86,6 +87,8 @@ class AudioResource(SyncAPIResource):
               English only (`en` and its regional variants, e.g. `en-US`, `en-GB`).
               `nvidia/parakeet-v3` is multilingual with automatic language detection;
               `omi-health/omi-med-stt-v1` is a medical model, English only.
+              `reson8/prerecorded` covers 10 languages, returns word timestamps, and labels
+              speakers via `model_config`.
 
           file: The audio file object to transcribe, in one of these formats: flac, mp3, mp4,
               mpeg, mpga, m4a, ogg, wav, or webm. File uploads are limited to 100 MB. Cannot
@@ -106,13 +109,17 @@ class AudioResource(SyncAPIResource):
               `openai/whisper-large-v3-turbo`, supports multiple languages.
               `distil-whisper/distil-large-v2` does not support language parameter.
               `nvidia/parakeet-v3` detects the language automatically;
-              `omi-health/omi-med-stt-v1` is English only.
+              `omi-health/omi-med-stt-v1` is English only. `reson8/prerecorded` accepts `nl`,
+              `en`, `fr`, `fy`, `de`, `it`, `pl`, `pt`, `es` and `sv` (regional variants are
+              transcribed as the base language) and detects the language when it is omitted.
 
           model_config: Additional model-specific configuration parameters. Only allowed with the
-              `deepgram/*` models. Sent as a JSON string in multipart requests and passed
-              through to Deepgram as query parameters. Any other model with `model_config`
-              returns 422. Can include Deepgram-specific options such as `smart_format`,
-              `punctuate`, `diarize` (speaker labels), `multichannel` (transcribe each channel
+              `deepgram/*` models and `reson8/prerecorded`. Sent as a JSON string in multipart
+              requests; for the `deepgram/*` models it is passed through to Deepgram as query
+              parameters, while `reson8/prerecorded` accepts only `diarize` (speaker labels)
+              and `max_speakers` (1 to 8). Any other model with `model_config` returns 400.
+              Can include Deepgram-specific options such as `smart_format`, `punctuate`,
+              `diarize` (speaker labels), `multichannel` (transcribe each channel
               independently; billed duration is file duration multiplied by the number of
               channels), `utterances`, `numerals`, and `language`. If `language` is provided
               both as a top-level parameter and in `model_config`, the top-level parameter
@@ -193,6 +200,7 @@ class AsyncAudioResource(AsyncAPIResource):
             "deepgram/nova-3-medical",
             "nvidia/parakeet-v3",
             "omi-health/omi-med-stt-v1",
+            "reson8/prerecorded",
         ],
         file: FileTypes | Omit = omit,
         file_url: str | Omit = omit,
@@ -222,6 +230,8 @@ class AsyncAudioResource(AsyncAPIResource):
               English only (`en` and its regional variants, e.g. `en-US`, `en-GB`).
               `nvidia/parakeet-v3` is multilingual with automatic language detection;
               `omi-health/omi-med-stt-v1` is a medical model, English only.
+              `reson8/prerecorded` covers 10 languages, returns word timestamps, and labels
+              speakers via `model_config`.
 
           file: The audio file object to transcribe, in one of these formats: flac, mp3, mp4,
               mpeg, mpga, m4a, ogg, wav, or webm. File uploads are limited to 100 MB. Cannot
@@ -242,13 +252,17 @@ class AsyncAudioResource(AsyncAPIResource):
               `openai/whisper-large-v3-turbo`, supports multiple languages.
               `distil-whisper/distil-large-v2` does not support language parameter.
               `nvidia/parakeet-v3` detects the language automatically;
-              `omi-health/omi-med-stt-v1` is English only.
+              `omi-health/omi-med-stt-v1` is English only. `reson8/prerecorded` accepts `nl`,
+              `en`, `fr`, `fy`, `de`, `it`, `pl`, `pt`, `es` and `sv` (regional variants are
+              transcribed as the base language) and detects the language when it is omitted.
 
           model_config: Additional model-specific configuration parameters. Only allowed with the
-              `deepgram/*` models. Sent as a JSON string in multipart requests and passed
-              through to Deepgram as query parameters. Any other model with `model_config`
-              returns 422. Can include Deepgram-specific options such as `smart_format`,
-              `punctuate`, `diarize` (speaker labels), `multichannel` (transcribe each channel
+              `deepgram/*` models and `reson8/prerecorded`. Sent as a JSON string in multipart
+              requests; for the `deepgram/*` models it is passed through to Deepgram as query
+              parameters, while `reson8/prerecorded` accepts only `diarize` (speaker labels)
+              and `max_speakers` (1 to 8). Any other model with `model_config` returns 400.
+              Can include Deepgram-specific options such as `smart_format`, `punctuate`,
+              `diarize` (speaker labels), `multichannel` (transcribe each channel
               independently; billed duration is file duration multiplied by the number of
               channels), `utterances`, `numerals`, and `language`. If `language` is provided
               both as a top-level parameter and in `model_config`, the top-level parameter

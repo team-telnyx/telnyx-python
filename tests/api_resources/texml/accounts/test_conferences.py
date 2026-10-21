@@ -27,7 +27,7 @@ class TestConferences:
     def test_method_retrieve(self, client: Telnyx) -> None:
         conference = client.texml.accounts.conferences.retrieve(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceResource, conference, path=["response"])
 
@@ -36,7 +36,7 @@ class TestConferences:
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.with_raw_response.retrieve(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -49,7 +49,7 @@ class TestConferences:
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.with_streaming_response.retrieve(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,7 +71,7 @@ class TestConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.with_raw_response.retrieve(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -79,7 +79,7 @@ class TestConferences:
     def test_method_update(self, client: Telnyx) -> None:
         conference = client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceResource, conference, path=["response"])
 
@@ -88,7 +88,7 @@ class TestConferences:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         conference = client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             announce_method="GET",
             announce_url="https://www.example.com/announce.xml",
             status="completed",
@@ -100,7 +100,7 @@ class TestConferences:
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.with_raw_response.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -113,7 +113,7 @@ class TestConferences:
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.with_streaming_response.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -135,14 +135,14 @@ class TestConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.with_raw_response.update(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_conferences(self, client: Telnyx) -> None:
         conference = client.texml.accounts.conferences.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceRetrieveConferencesResponse, conference, path=["response"])
 
@@ -150,7 +150,7 @@ class TestConferences:
     @parametrize
     def test_method_retrieve_conferences_with_all_params(self, client: Telnyx) -> None:
         conference = client.texml.accounts.conferences.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             date_created="DateCreated",
             date_updated="DateUpdated",
             friendly_name="FriendlyName",
@@ -165,7 +165,7 @@ class TestConferences:
     @parametrize
     def test_raw_response_retrieve_conferences(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.with_raw_response.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -177,7 +177,7 @@ class TestConferences:
     @parametrize
     def test_streaming_response_retrieve_conferences(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.with_streaming_response.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -200,7 +200,7 @@ class TestConferences:
     def test_method_retrieve_recordings(self, client: Telnyx) -> None:
         conference = client.texml.accounts.conferences.retrieve_recordings(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceRetrieveRecordingsResponse, conference, path=["response"])
 
@@ -209,7 +209,7 @@ class TestConferences:
     def test_raw_response_retrieve_recordings(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.with_raw_response.retrieve_recordings(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -222,7 +222,7 @@ class TestConferences:
     def test_streaming_response_retrieve_recordings(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.with_streaming_response.retrieve_recordings(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,7 +244,7 @@ class TestConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.with_raw_response.retrieve_recordings(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -252,7 +252,7 @@ class TestConferences:
     def test_method_retrieve_recordings_json(self, client: Telnyx) -> None:
         conference = client.texml.accounts.conferences.retrieve_recordings_json(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
@@ -261,7 +261,7 @@ class TestConferences:
     def test_raw_response_retrieve_recordings_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.conferences.with_raw_response.retrieve_recordings_json(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -274,7 +274,7 @@ class TestConferences:
     def test_streaming_response_retrieve_recordings_json(self, client: Telnyx) -> None:
         with client.texml.accounts.conferences.with_streaming_response.retrieve_recordings_json(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -296,7 +296,7 @@ class TestConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.with_raw_response.retrieve_recordings_json(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
 
@@ -310,7 +310,7 @@ class TestAsyncConferences:
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.texml.accounts.conferences.retrieve(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceResource, conference, path=["response"])
 
@@ -319,7 +319,7 @@ class TestAsyncConferences:
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.with_raw_response.retrieve(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -332,7 +332,7 @@ class TestAsyncConferences:
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.with_streaming_response.retrieve(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -354,7 +354,7 @@ class TestAsyncConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.with_raw_response.retrieve(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -362,7 +362,7 @@ class TestAsyncConferences:
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceResource, conference, path=["response"])
 
@@ -371,7 +371,7 @@ class TestAsyncConferences:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             announce_method="GET",
             announce_url="https://www.example.com/announce.xml",
             status="completed",
@@ -383,7 +383,7 @@ class TestAsyncConferences:
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.with_raw_response.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -396,7 +396,7 @@ class TestAsyncConferences:
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.with_streaming_response.update(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -418,14 +418,14 @@ class TestAsyncConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.with_raw_response.update(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_conferences(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.texml.accounts.conferences.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceRetrieveConferencesResponse, conference, path=["response"])
 
@@ -433,7 +433,7 @@ class TestAsyncConferences:
     @parametrize
     async def test_method_retrieve_conferences_with_all_params(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.texml.accounts.conferences.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             date_created="DateCreated",
             date_updated="DateUpdated",
             friendly_name="FriendlyName",
@@ -448,7 +448,7 @@ class TestAsyncConferences:
     @parametrize
     async def test_raw_response_retrieve_conferences(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.with_raw_response.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -460,7 +460,7 @@ class TestAsyncConferences:
     @parametrize
     async def test_streaming_response_retrieve_conferences(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.with_streaming_response.retrieve_conferences(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -483,7 +483,7 @@ class TestAsyncConferences:
     async def test_method_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.texml.accounts.conferences.retrieve_recordings(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(ConferenceRetrieveRecordingsResponse, conference, path=["response"])
 
@@ -492,7 +492,7 @@ class TestAsyncConferences:
     async def test_raw_response_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.with_raw_response.retrieve_recordings(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -505,7 +505,7 @@ class TestAsyncConferences:
     async def test_streaming_response_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.with_streaming_response.retrieve_recordings(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -527,7 +527,7 @@ class TestAsyncConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.with_raw_response.retrieve_recordings(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -535,7 +535,7 @@ class TestAsyncConferences:
     async def test_method_retrieve_recordings_json(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.texml.accounts.conferences.retrieve_recordings_json(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(TexmlGetCallRecordingsResponseBody, conference, path=["response"])
 
@@ -544,7 +544,7 @@ class TestAsyncConferences:
     async def test_raw_response_retrieve_recordings_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.conferences.with_raw_response.retrieve_recordings_json(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -557,7 +557,7 @@ class TestAsyncConferences:
     async def test_streaming_response_retrieve_recordings_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.conferences.with_streaming_response.retrieve_recordings_json(
             conference_sid="conference_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -579,5 +579,5 @@ class TestAsyncConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.with_raw_response.retrieve_recordings_json(
                 conference_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )

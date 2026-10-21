@@ -25,7 +25,7 @@ class TestAccounts:
     @parametrize
     def test_method_retrieve_recordings_json(self, client: Telnyx) -> None:
         account = client.texml.accounts.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
@@ -33,7 +33,7 @@ class TestAccounts:
     @parametrize
     def test_method_retrieve_recordings_json_with_all_params(self, client: Telnyx) -> None:
         account = client.texml.accounts.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             date_created=parse_datetime("2023-05-22T00:00:00Z"),
             page=0,
             page_size=0,
@@ -44,7 +44,7 @@ class TestAccounts:
     @parametrize
     def test_raw_response_retrieve_recordings_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.with_raw_response.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -56,7 +56,7 @@ class TestAccounts:
     @parametrize
     def test_streaming_response_retrieve_recordings_json(self, client: Telnyx) -> None:
         with client.texml.accounts.with_streaming_response.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,7 +78,7 @@ class TestAccounts:
     @parametrize
     def test_method_retrieve_transcriptions_json(self, client: Telnyx) -> None:
         account = client.texml.accounts.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(AccountRetrieveTranscriptionsJsonResponse, account, path=["response"])
 
@@ -86,7 +86,7 @@ class TestAccounts:
     @parametrize
     def test_method_retrieve_transcriptions_json_with_all_params(self, client: Telnyx) -> None:
         account = client.texml.accounts.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             page_size=0,
             page_token="PageToken",
         )
@@ -96,7 +96,7 @@ class TestAccounts:
     @parametrize
     def test_raw_response_retrieve_transcriptions_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.with_raw_response.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestAccounts:
     @parametrize
     def test_streaming_response_retrieve_transcriptions_json(self, client: Telnyx) -> None:
         with client.texml.accounts.with_streaming_response.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,7 +136,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_retrieve_recordings_json(self, async_client: AsyncTelnyx) -> None:
         account = await async_client.texml.accounts.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(TexmlGetCallRecordingsResponseBody, account, path=["response"])
 
@@ -144,7 +144,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_retrieve_recordings_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         account = await async_client.texml.accounts.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             date_created=parse_datetime("2023-05-22T00:00:00Z"),
             page=0,
             page_size=0,
@@ -155,7 +155,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_raw_response_retrieve_recordings_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.with_raw_response.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -167,7 +167,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_streaming_response_retrieve_recordings_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.with_streaming_response.retrieve_recordings_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -189,7 +189,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_retrieve_transcriptions_json(self, async_client: AsyncTelnyx) -> None:
         account = await async_client.texml.accounts.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(AccountRetrieveTranscriptionsJsonResponse, account, path=["response"])
 
@@ -197,7 +197,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_retrieve_transcriptions_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         account = await async_client.texml.accounts.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             page_size=0,
             page_token="PageToken",
         )
@@ -207,7 +207,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_raw_response_retrieve_transcriptions_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.with_raw_response.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -219,7 +219,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_streaming_response_retrieve_transcriptions_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.with_streaming_response.retrieve_transcriptions_json(
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

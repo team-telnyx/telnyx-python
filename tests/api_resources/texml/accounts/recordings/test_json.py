@@ -22,7 +22,7 @@ class TestJson:
     def test_method_delete_recording_sid_json(self, client: Telnyx) -> None:
         json = client.texml.accounts.recordings.json.delete_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert json is None
 
@@ -31,7 +31,7 @@ class TestJson:
     def test_raw_response_delete_recording_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.recordings.json.with_raw_response.delete_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestJson:
     def test_streaming_response_delete_recording_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.recordings.json.with_streaming_response.delete_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,7 +66,7 @@ class TestJson:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_sid` but received ''"):
             client.texml.accounts.recordings.json.with_raw_response.delete_recording_sid_json(
                 recording_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -74,7 +74,7 @@ class TestJson:
     def test_method_retrieve_recording_sid_json(self, client: Telnyx) -> None:
         json = client.texml.accounts.recordings.json.retrieve_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
@@ -83,7 +83,7 @@ class TestJson:
     def test_raw_response_retrieve_recording_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.recordings.json.with_raw_response.retrieve_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -96,7 +96,7 @@ class TestJson:
     def test_streaming_response_retrieve_recording_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.recordings.json.with_streaming_response.retrieve_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -118,7 +118,7 @@ class TestJson:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_sid` but received ''"):
             client.texml.accounts.recordings.json.with_raw_response.retrieve_recording_sid_json(
                 recording_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
 
@@ -132,7 +132,7 @@ class TestAsyncJson:
     async def test_method_delete_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         json = await async_client.texml.accounts.recordings.json.delete_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert json is None
 
@@ -141,7 +141,7 @@ class TestAsyncJson:
     async def test_raw_response_delete_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.recordings.json.with_raw_response.delete_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -154,7 +154,7 @@ class TestAsyncJson:
     async def test_streaming_response_delete_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.recordings.json.with_streaming_response.delete_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -176,7 +176,7 @@ class TestAsyncJson:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_sid` but received ''"):
             await async_client.texml.accounts.recordings.json.with_raw_response.delete_recording_sid_json(
                 recording_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -184,7 +184,7 @@ class TestAsyncJson:
     async def test_method_retrieve_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         json = await async_client.texml.accounts.recordings.json.retrieve_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
         assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
@@ -193,7 +193,7 @@ class TestAsyncJson:
     async def test_raw_response_retrieve_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.recordings.json.with_raw_response.retrieve_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         )
 
         assert response.is_closed is True
@@ -206,7 +206,7 @@ class TestAsyncJson:
     async def test_streaming_response_retrieve_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.recordings.json.with_streaming_response.retrieve_recording_sid_json(
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -228,5 +228,5 @@ class TestAsyncJson:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_sid` but received ''"):
             await async_client.texml.accounts.recordings.json.with_raw_response.retrieve_recording_sid_json(
                 recording_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             )

@@ -22,7 +22,7 @@ class TestSiprec:
     def test_method_siprec_sid_json(self, client: Telnyx) -> None:
         siprec = client.texml.accounts.calls.siprec.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
         assert_matches_type(SiprecSiprecSidJsonResponse, siprec, path=["response"])
@@ -32,7 +32,7 @@ class TestSiprec:
     def test_method_siprec_sid_json_with_all_params(self, client: Telnyx) -> None:
         siprec = client.texml.accounts.calls.siprec.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
             status="stopped",
         )
@@ -43,7 +43,7 @@ class TestSiprec:
     def test_raw_response_siprec_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.siprec.with_raw_response.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
 
@@ -57,7 +57,7 @@ class TestSiprec:
     def test_streaming_response_siprec_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.siprec.with_streaming_response.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         ) as response:
             assert not response.is_closed
@@ -81,14 +81,14 @@ class TestSiprec:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             client.texml.accounts.calls.siprec.with_raw_response.siprec_sid_json(
                 siprec_sid="siprec_sid",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `siprec_sid` but received ''"):
             client.texml.accounts.calls.siprec.with_raw_response.siprec_sid_json(
                 siprec_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="call_sid",
             )
 
@@ -103,7 +103,7 @@ class TestAsyncSiprec:
     async def test_method_siprec_sid_json(self, async_client: AsyncTelnyx) -> None:
         siprec = await async_client.texml.accounts.calls.siprec.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
         assert_matches_type(SiprecSiprecSidJsonResponse, siprec, path=["response"])
@@ -113,7 +113,7 @@ class TestAsyncSiprec:
     async def test_method_siprec_sid_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         siprec = await async_client.texml.accounts.calls.siprec.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
             status="stopped",
         )
@@ -124,7 +124,7 @@ class TestAsyncSiprec:
     async def test_raw_response_siprec_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.siprec.with_raw_response.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
 
@@ -138,7 +138,7 @@ class TestAsyncSiprec:
     async def test_streaming_response_siprec_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.siprec.with_streaming_response.siprec_sid_json(
             siprec_sid="siprec_sid",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         ) as response:
             assert not response.is_closed
@@ -162,13 +162,13 @@ class TestAsyncSiprec:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             await async_client.texml.accounts.calls.siprec.with_raw_response.siprec_sid_json(
                 siprec_sid="siprec_sid",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `siprec_sid` but received ''"):
             await async_client.texml.accounts.calls.siprec.with_raw_response.siprec_sid_json(
                 siprec_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="call_sid",
             )

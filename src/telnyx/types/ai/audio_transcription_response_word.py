@@ -12,7 +12,7 @@ __all__ = ["AudioTranscriptionResponseWord"]
 class AudioTranscriptionResponseWord(BaseModel):
     """Word-level timing detail.
 
-    Only present when using a `deepgram/*` model with `model_config` options that enable word timestamps.
+    Only present when using a `deepgram/*` model with `model_config` options that enable word timestamps, or `reson8/prerecorded`.
     """
 
     end: float

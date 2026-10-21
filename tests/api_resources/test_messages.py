@@ -234,6 +234,7 @@ class TestMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
@@ -284,6 +285,7 @@ class TestMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
@@ -339,6 +341,7 @@ class TestMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
@@ -394,6 +397,7 @@ class TestMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
@@ -449,6 +453,7 @@ class TestMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
@@ -502,6 +507,7 @@ class TestMessages:
             use_profile_webhooks=True,
             webhook_failover_url="webhook_failover_url",
             webhook_url="webhook_url",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
 
@@ -775,6 +781,7 @@ class TestMessages:
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="WHATSAPP",
             webhook_url="webhook_url",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageWhatsappResponse, message, path=["response"])
 
@@ -1018,6 +1025,7 @@ class TestAsyncMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
@@ -1068,6 +1076,7 @@ class TestAsyncMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
@@ -1123,6 +1132,7 @@ class TestAsyncMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
@@ -1178,6 +1188,7 @@ class TestAsyncMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
@@ -1233,6 +1244,7 @@ class TestAsyncMessages:
             use_profile_webhooks=True,
             webhook_failover_url="https://backup.example.com/hooks",
             webhook_url="http://example.com/webhooks",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
@@ -1286,6 +1298,7 @@ class TestAsyncMessages:
             use_profile_webhooks=True,
             webhook_failover_url="webhook_failover_url",
             webhook_url="webhook_url",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
 
@@ -1559,6 +1572,7 @@ class TestAsyncMessages:
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="WHATSAPP",
             webhook_url="webhook_url",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(MessageWhatsappResponse, message, path=["response"])
 

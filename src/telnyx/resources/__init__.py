@@ -1361,6 +1361,14 @@ from .sub_number_orders_report import (
     SubNumberOrdersReportResourceWithStreamingResponse,
     AsyncSubNumberOrdersReportResourceWithStreamingResponse,
 )
+from .tailscale_subnet_routers import (
+    TailscaleSubnetRoutersResource,
+    AsyncTailscaleSubnetRoutersResource,
+    TailscaleSubnetRoutersResourceWithRawResponse,
+    AsyncTailscaleSubnetRoutersResourceWithRawResponse,
+    TailscaleSubnetRoutersResourceWithStreamingResponse,
+    AsyncTailscaleSubnetRoutersResourceWithStreamingResponse,
+)
 from .call_control_applications import (
     CallControlApplicationsResource,
     AsyncCallControlApplicationsResource,
@@ -2679,4 +2687,10 @@ __all__ = [
     "AsyncDialMetricsResourceWithRawResponse",
     "DialMetricsResourceWithStreamingResponse",
     "AsyncDialMetricsResourceWithStreamingResponse",
+    "TailscaleSubnetRoutersResource",
+    "AsyncTailscaleSubnetRoutersResource",
+    "TailscaleSubnetRoutersResourceWithRawResponse",
+    "AsyncTailscaleSubnetRoutersResourceWithRawResponse",
+    "TailscaleSubnetRoutersResourceWithStreamingResponse",
+    "AsyncTailscaleSubnetRoutersResourceWithStreamingResponse",
 ]

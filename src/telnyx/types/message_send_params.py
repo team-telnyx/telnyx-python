@@ -86,3 +86,5 @@ class MessageSendParams(TypedDict, total=False):
 
     webhook_url: str
     """The URL where webhooks related to this message will be sent."""
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

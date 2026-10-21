@@ -207,6 +207,7 @@ if TYPE_CHECKING:
         public_internet_gateways,
         recording_transcriptions,
         sub_number_orders_report,
+        tailscale_subnet_routers,
         call_control_applications,
         messaging_profile_metrics,
         noise_suppression_engines,
@@ -376,6 +377,7 @@ if TYPE_CHECKING:
         AsyncRecordingTranscriptionsResource,
     )
     from .resources.sub_number_orders_report import SubNumberOrdersReportResource, AsyncSubNumberOrdersReportResource
+    from .resources.tailscale_subnet_routers import TailscaleSubnetRoutersResource, AsyncTailscaleSubnetRoutersResource
     from .resources.call_control_applications import (
         CallControlApplicationsResource,
         AsyncCallControlApplicationsResource,
@@ -1875,6 +1877,7 @@ class Telnyx(SyncAPIClient):
 
     @cached_property
     def compute(self) -> ComputeResource:
+        """Inspect Stateful Actor types"""
         from .resources.compute import ComputeResource
 
         return ComputeResource(self)
@@ -1963,6 +1966,13 @@ class Telnyx(SyncAPIClient):
         from .resources.dial_metrics import DialMetricsResource
 
         return DialMetricsResource(self)
+
+    @cached_property
+    def tailscale_subnet_routers(self) -> TailscaleSubnetRoutersResource:
+        """Tailscale Subnet Router operations"""
+        from .resources.tailscale_subnet_routers import TailscaleSubnetRoutersResource
+
+        return TailscaleSubnetRoutersResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3464,6 +3474,7 @@ class AsyncTelnyx(AsyncAPIClient):
 
     @cached_property
     def compute(self) -> AsyncComputeResource:
+        """Inspect Stateful Actor types"""
         from .resources.compute import AsyncComputeResource
 
         return AsyncComputeResource(self)
@@ -3552,6 +3563,13 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.dial_metrics import AsyncDialMetricsResource
 
         return AsyncDialMetricsResource(self)
+
+    @cached_property
+    def tailscale_subnet_routers(self) -> AsyncTailscaleSubnetRoutersResource:
+        """Tailscale Subnet Router operations"""
+        from .resources.tailscale_subnet_routers import AsyncTailscaleSubnetRoutersResource
+
+        return AsyncTailscaleSubnetRoutersResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
@@ -4989,6 +5007,7 @@ class TelnyxWithRawResponse:
 
     @cached_property
     def compute(self) -> compute.ComputeResourceWithRawResponse:
+        """Inspect Stateful Actor types"""
         from .resources.compute import ComputeResourceWithRawResponse
 
         return ComputeResourceWithRawResponse(self._client.compute)
@@ -5077,6 +5096,13 @@ class TelnyxWithRawResponse:
         from .resources.dial_metrics import DialMetricsResourceWithRawResponse
 
         return DialMetricsResourceWithRawResponse(self._client.dial_metrics)
+
+    @cached_property
+    def tailscale_subnet_routers(self) -> tailscale_subnet_routers.TailscaleSubnetRoutersResourceWithRawResponse:
+        """Tailscale Subnet Router operations"""
+        from .resources.tailscale_subnet_routers import TailscaleSubnetRoutersResourceWithRawResponse
+
+        return TailscaleSubnetRoutersResourceWithRawResponse(self._client.tailscale_subnet_routers)
 
 
 class AsyncTelnyxWithRawResponse:
@@ -6385,6 +6411,7 @@ class AsyncTelnyxWithRawResponse:
 
     @cached_property
     def compute(self) -> compute.AsyncComputeResourceWithRawResponse:
+        """Inspect Stateful Actor types"""
         from .resources.compute import AsyncComputeResourceWithRawResponse
 
         return AsyncComputeResourceWithRawResponse(self._client.compute)
@@ -6475,6 +6502,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.dial_metrics import AsyncDialMetricsResourceWithRawResponse
 
         return AsyncDialMetricsResourceWithRawResponse(self._client.dial_metrics)
+
+    @cached_property
+    def tailscale_subnet_routers(self) -> tailscale_subnet_routers.AsyncTailscaleSubnetRoutersResourceWithRawResponse:
+        """Tailscale Subnet Router operations"""
+        from .resources.tailscale_subnet_routers import AsyncTailscaleSubnetRoutersResourceWithRawResponse
+
+        return AsyncTailscaleSubnetRoutersResourceWithRawResponse(self._client.tailscale_subnet_routers)
 
 
 class TelnyxWithStreamedResponse:
@@ -7785,6 +7819,7 @@ class TelnyxWithStreamedResponse:
 
     @cached_property
     def compute(self) -> compute.ComputeResourceWithStreamingResponse:
+        """Inspect Stateful Actor types"""
         from .resources.compute import ComputeResourceWithStreamingResponse
 
         return ComputeResourceWithStreamingResponse(self._client.compute)
@@ -7875,6 +7910,13 @@ class TelnyxWithStreamedResponse:
         from .resources.dial_metrics import DialMetricsResourceWithStreamingResponse
 
         return DialMetricsResourceWithStreamingResponse(self._client.dial_metrics)
+
+    @cached_property
+    def tailscale_subnet_routers(self) -> tailscale_subnet_routers.TailscaleSubnetRoutersResourceWithStreamingResponse:
+        """Tailscale Subnet Router operations"""
+        from .resources.tailscale_subnet_routers import TailscaleSubnetRoutersResourceWithStreamingResponse
+
+        return TailscaleSubnetRoutersResourceWithStreamingResponse(self._client.tailscale_subnet_routers)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9233,6 +9275,7 @@ class AsyncTelnyxWithStreamedResponse:
 
     @cached_property
     def compute(self) -> compute.AsyncComputeResourceWithStreamingResponse:
+        """Inspect Stateful Actor types"""
         from .resources.compute import AsyncComputeResourceWithStreamingResponse
 
         return AsyncComputeResourceWithStreamingResponse(self._client.compute)
@@ -9325,6 +9368,15 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.dial_metrics import AsyncDialMetricsResourceWithStreamingResponse
 
         return AsyncDialMetricsResourceWithStreamingResponse(self._client.dial_metrics)
+
+    @cached_property
+    def tailscale_subnet_routers(
+        self,
+    ) -> tailscale_subnet_routers.AsyncTailscaleSubnetRoutersResourceWithStreamingResponse:
+        """Tailscale Subnet Router operations"""
+        from .resources.tailscale_subnet_routers import AsyncTailscaleSubnetRoutersResourceWithStreamingResponse
+
+        return AsyncTailscaleSubnetRoutersResourceWithStreamingResponse(self._client.tailscale_subnet_routers)
 
 
 Client = Telnyx

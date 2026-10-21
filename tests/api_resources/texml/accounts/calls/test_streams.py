@@ -22,7 +22,7 @@ class TestStreams:
     def test_method_streaming_sid_json(self, client: Telnyx) -> None:
         stream = client.texml.accounts.calls.streams.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
@@ -32,7 +32,7 @@ class TestStreams:
     def test_method_streaming_sid_json_with_all_params(self, client: Telnyx) -> None:
         stream = client.texml.accounts.calls.streams.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
             status="stopped",
         )
@@ -43,7 +43,7 @@ class TestStreams:
     def test_raw_response_streaming_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
 
@@ -57,7 +57,7 @@ class TestStreams:
     def test_streaming_response_streaming_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.streams.with_streaming_response.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         ) as response:
             assert not response.is_closed
@@ -81,14 +81,14 @@ class TestStreams:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
                 streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `streaming_sid` but received ''"):
             client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
                 streaming_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="call_sid",
             )
 
@@ -103,7 +103,7 @@ class TestAsyncStreams:
     async def test_method_streaming_sid_json(self, async_client: AsyncTelnyx) -> None:
         stream = await async_client.texml.accounts.calls.streams.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
@@ -113,7 +113,7 @@ class TestAsyncStreams:
     async def test_method_streaming_sid_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         stream = await async_client.texml.accounts.calls.streams.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
             status="stopped",
         )
@@ -124,7 +124,7 @@ class TestAsyncStreams:
     async def test_raw_response_streaming_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         )
 
@@ -138,7 +138,7 @@ class TestAsyncStreams:
     async def test_streaming_response_streaming_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.streams.with_streaming_response.streaming_sid_json(
             streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            account_sid="account_sid",
+            account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
             call_sid="call_sid",
         ) as response:
             assert not response.is_closed
@@ -162,13 +162,13 @@ class TestAsyncStreams:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
             await async_client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
                 streaming_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `streaming_sid` but received ''"):
             await async_client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
                 streaming_sid="",
-                account_sid="account_sid",
+                account_sid="f5586561-8ff0-4291-a51b-c7dfe4139ff9",
                 call_sid="call_sid",
             )

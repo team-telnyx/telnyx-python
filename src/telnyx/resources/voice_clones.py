@@ -257,14 +257,16 @@ class VoiceClonesResource(SyncAPIResource):
         """Creates a new voice clone by uploading an audio file directly.
 
         Supported
-        formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–60 seconds of
-        clear speech (Ultra accepts up to 60 seconds; Qwen3TTS auto-trims to 10 seconds;
-        Minimax accepts up to 5 minutes). Maximum file size: 5MB for Telnyx, 20MB for
-        Minimax.
+        formats: WAV, MP3, FLAC, OGG, M4A. Maximum file size: 20MB. Reference audio is
+        trimmed per model: Qwen3TTS and Bayan use the first 10 seconds, Ultra uses up to
+        60 seconds, and Minimax accepts 10 seconds to 5 minutes. Ultra clones return
+        `202` with status `pending`; all other models return `201` with status `active`.
+        Bayan clones require `ref_text` (the exact transcript of the reference audio)
+        and support `ar` (default) and `en` only.
 
         Args:
           voice_clone_upload_request: Multipart form data for creating a voice clone from a direct audio upload.
-              Maximum file size: 5MB for Telnyx, 20MB for Minimax.
+              Maximum file size: 20MB.
 
           extra_headers: Send extra headers
 
@@ -274,8 +276,12 @@ class VoiceClonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_with_paths(voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"]])
-        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
+        body = deepcopy_with_paths(
+            voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+        )
+        files = extract_files(
+            cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+        )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -542,14 +548,16 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """Creates a new voice clone by uploading an audio file directly.
 
         Supported
-        formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–60 seconds of
-        clear speech (Ultra accepts up to 60 seconds; Qwen3TTS auto-trims to 10 seconds;
-        Minimax accepts up to 5 minutes). Maximum file size: 5MB for Telnyx, 20MB for
-        Minimax.
+        formats: WAV, MP3, FLAC, OGG, M4A. Maximum file size: 20MB. Reference audio is
+        trimmed per model: Qwen3TTS and Bayan use the first 10 seconds, Ultra uses up to
+        60 seconds, and Minimax accepts 10 seconds to 5 minutes. Ultra clones return
+        `202` with status `pending`; all other models return `201` with status `active`.
+        Bayan clones require `ref_text` (the exact transcript of the reference audio)
+        and support `ar` (default) and `en` only.
 
         Args:
           voice_clone_upload_request: Multipart form data for creating a voice clone from a direct audio upload.
-              Maximum file size: 5MB for Telnyx, 20MB for Minimax.
+              Maximum file size: 20MB.
 
           extra_headers: Send extra headers
 
@@ -559,8 +567,12 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_with_paths(voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"]])
-        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
+        body = deepcopy_with_paths(
+            voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+        )
+        files = extract_files(
+            cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+        )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--

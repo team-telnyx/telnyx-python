@@ -36,7 +36,14 @@ class BodyWithURL(TypedDict, total=False):
     """The URL from which Telnyx will retrieve the TeXML call instructions."""
 
     application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
-    """The ID of the TeXML Application."""
+    """
+    The ID of the TeXML Application that will handle the call, for example
+    `1293384261075731499`. The `ApplicationSid` name is kept for Twilio API
+    compatibility, but the value is the numeric ID of one of your TeXML Applications
+    (see the TeXML Applications API or the Mission Control Portal), not a Twilio
+    `AP...` SID. If `Url` and `Texml` are omitted, Telnyx fetches instructions from
+    the XML Request URL configured on this application.
+    """
 
     async_amd: Annotated[bool, PropertyInfo(alias="AsyncAmd")]
     """Select whether to perform answering machine detection in the background.
@@ -348,7 +355,14 @@ class BodyWithTeXml(TypedDict, total=False):
     """
 
     application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
-    """The ID of the TeXML Application."""
+    """
+    The ID of the TeXML Application that will handle the call, for example
+    `1293384261075731499`. The `ApplicationSid` name is kept for Twilio API
+    compatibility, but the value is the numeric ID of one of your TeXML Applications
+    (see the TeXML Applications API or the Mission Control Portal), not a Twilio
+    `AP...` SID. If `Url` and `Texml` are omitted, Telnyx fetches instructions from
+    the XML Request URL configured on this application.
+    """
 
     async_amd: Annotated[bool, PropertyInfo(alias="AsyncAmd")]
     """Select whether to perform answering machine detection in the background.
@@ -653,7 +667,14 @@ class BodyApplicationDefaultCustomHeader(TypedDict, total=False):
 
 class BodyApplicationDefault(TypedDict, total=False):
     application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
-    """The ID of the TeXML Application."""
+    """
+    The ID of the TeXML Application that will handle the call, for example
+    `1293384261075731499`. The `ApplicationSid` name is kept for Twilio API
+    compatibility, but the value is the numeric ID of one of your TeXML Applications
+    (see the TeXML Applications API or the Mission Control Portal), not a Twilio
+    `AP...` SID. If `Url` and `Texml` are omitted, Telnyx fetches instructions from
+    the XML Request URL configured on this application.
+    """
 
     async_amd: Annotated[bool, PropertyInfo(alias="AsyncAmd")]
     """Select whether to perform answering machine detection in the background.
