@@ -205,6 +205,8 @@ for access_ip_address in first_page.data:
 # Remove `await` for non-async usage.
 ```
 
+from datetime import datetime
+
 ## Nested params
 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
@@ -232,6 +234,35 @@ response = client.calls.dial(
     },
 )
 print(response.answering_machine_detection_config)
+```
+
+Object-valued query parameters are passed as dictionaries. For `client.access_ip_address.list`, the query string `filter[created_at]=2019-12-27T18%3A11%3A19.117Z&filter[ip_address]=ip_address&filter[ip_source]=ip_source` is represented by the `filter` keyword argument:
+
+```python
+from telnyx import Telnyx
+
+client = Telnyx()
+
+client.access_ip_address.list(
+    filter={
+        "created_at": datetime.fromisoformat("2019-12-27T18:11:19.117"),
+        "ip_address": "ip_address",
+        "ip_source": "ip_source",
+    },
+)
+```
+
+Pagination keyword arguments depend on the method. For `client.oauth_clients.list`, `page[number]` maps to `page_number`; `page[size]` maps to `page_size`. Pass these as separate keyword arguments, not as a nested dictionary. Use the names in each method's signature; other methods may accept different pagination parameters.
+
+```python
+from telnyx import Telnyx
+
+client = Telnyx()
+
+client.oauth_clients.list(
+    page_number=1,
+    page_size=1,
+)
 ```
 
 ## File uploads
