@@ -849,14 +849,6 @@ from .terms_of_service import (
     TermsOfServiceResourceWithStreamingResponse,
     AsyncTermsOfServiceResourceWithStreamingResponse,
 )
-from .tts_integrations import (
-    TtsIntegrationsResource,
-    AsyncTtsIntegrationsResource,
-    TtsIntegrationsResourceWithRawResponse,
-    AsyncTtsIntegrationsResourceWithRawResponse,
-    TtsIntegrationsResourceWithStreamingResponse,
-    AsyncTtsIntegrationsResourceWithStreamingResponse,
-)
 from .verified_numbers import (
     VerifiedNumbersResource,
     AsyncVerifiedNumbersResource,
@@ -2687,10 +2679,4 @@ __all__ = [
     "AsyncDialMetricsResourceWithRawResponse",
     "DialMetricsResourceWithStreamingResponse",
     "AsyncDialMetricsResourceWithStreamingResponse",
-    "TtsIntegrationsResource",
-    "AsyncTtsIntegrationsResource",
-    "TtsIntegrationsResourceWithRawResponse",
-    "AsyncTtsIntegrationsResourceWithRawResponse",
-    "TtsIntegrationsResourceWithStreamingResponse",
-    "AsyncTtsIntegrationsResourceWithStreamingResponse",
 ]

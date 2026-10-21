@@ -1241,13 +1241,6 @@ class ActionsResource(SyncAPIResource):
                 `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
                 `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
                 `ModelId` segment.
-              - **Community engines:** Use `<EngineName>.<VoiceId>` (e.g., `acme.alpha`),
-                where `EngineName` is the lowercase name of a community text-to-speech engine
-                and `VoiceId` is one of the voices it lists. You must provide your key for the
-                engine as an integration identifier secret in
-                `"voice_settings": {"api_key_ref": "<secret_identifier>"}`; any other key in
-                `voice_settings` is a setting of the engine. See the
-                [Community TTS engines guide](/docs/voice/tts/community-engines).
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -1290,8 +1283,7 @@ class ActionsResource(SyncAPIResource):
 
           valid_digits: A list of all digits accepted as valid.
 
-          voice_settings: The settings associated with the voice selected. For a community engine voice,
-              `api_key_ref` plus the engine's own settings.
+          voice_settings: The settings associated with the voice selected
 
           extra_headers: Send extra headers
 
@@ -2167,13 +2159,6 @@ class ActionsResource(SyncAPIResource):
                 `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
                 `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
                 `ModelId` segment.
-              - **Community engines:** Use `<EngineName>.<VoiceId>` (e.g., `acme.alpha`),
-                where `EngineName` is the lowercase name of a community text-to-speech engine
-                and `VoiceId` is one of the voices it lists. You must provide your key for the
-                engine as an integration identifier secret in
-                `"voice_settings": {"api_key_ref": "<secret_identifier>"}`; any other key in
-                `voice_settings` is a setting of the engine. See the
-                [Community TTS engines guide](/docs/voice/tts/community-engines).
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -2203,8 +2188,7 @@ class ActionsResource(SyncAPIResource):
 
           target_legs: Specifies which legs of the call should receive the spoken audio.
 
-          voice_settings: The settings associated with the voice selected. For a community engine voice,
-              `api_key_ref` plus the engine's own settings.
+          voice_settings: The settings associated with the voice selected
 
           extra_headers: Send extra headers
 
@@ -2253,8 +2237,6 @@ class ActionsResource(SyncAPIResource):
         participants: Iterable[AIAssistantJoinParticipantParam] | Omit = omit,
         send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
-        voice: str | Omit = omit,
-        voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2306,17 +2288,6 @@ class ActionsResource(SyncAPIResource):
               using a model with native audio support (e.g. `fixie-ai/ultravox-v0_4`) will
               ignore this field.
 
-          voice: The voice the assistant speaks with on this call, in place of the assistant's
-              own voice. Use the same formats as the `voice` of the
-              [speak](/api-reference/call-commands/speak-text) command. A community engine
-              voice is `<EngineName>.<VoiceId>` (e.g., `acme.alpha`) and needs
-              `voice_settings.api_key_ref`; see the
-              [Community TTS engines guide](/docs/voice/tts/community-engines). Without
-              `voice`, the assistant's own voice is used.
-
-          voice_settings: The settings of `voice`. A community engine voice requires `api_key_ref`; the
-              other keys are the engine's own settings.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2340,8 +2311,6 @@ class ActionsResource(SyncAPIResource):
                     "participants": participants,
                     "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
-                    "voice": voice,
-                    "voice_settings": voice_settings,
                 },
                 action_start_ai_assistant_params.ActionStartAIAssistantParams,
             ),
@@ -5509,13 +5478,6 @@ class AsyncActionsResource(AsyncAPIResource):
                 `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
                 `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
                 `ModelId` segment.
-              - **Community engines:** Use `<EngineName>.<VoiceId>` (e.g., `acme.alpha`),
-                where `EngineName` is the lowercase name of a community text-to-speech engine
-                and `VoiceId` is one of the voices it lists. You must provide your key for the
-                engine as an integration identifier secret in
-                `"voice_settings": {"api_key_ref": "<secret_identifier>"}`; any other key in
-                `voice_settings` is a setting of the engine. See the
-                [Community TTS engines guide](/docs/voice/tts/community-engines).
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -5558,8 +5520,7 @@ class AsyncActionsResource(AsyncAPIResource):
 
           valid_digits: A list of all digits accepted as valid.
 
-          voice_settings: The settings associated with the voice selected. For a community engine voice,
-              `api_key_ref` plus the engine's own settings.
+          voice_settings: The settings associated with the voice selected
 
           extra_headers: Send extra headers
 
@@ -6435,13 +6396,6 @@ class AsyncActionsResource(AsyncAPIResource):
                 `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
                 `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
                 `ModelId` segment.
-              - **Community engines:** Use `<EngineName>.<VoiceId>` (e.g., `acme.alpha`),
-                where `EngineName` is the lowercase name of a community text-to-speech engine
-                and `VoiceId` is one of the voices it lists. You must provide your key for the
-                engine as an integration identifier secret in
-                `"voice_settings": {"api_key_ref": "<secret_identifier>"}`; any other key in
-                `voice_settings` is a setting of the engine. See the
-                [Community TTS engines guide](/docs/voice/tts/community-engines).
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -6471,8 +6425,7 @@ class AsyncActionsResource(AsyncAPIResource):
 
           target_legs: Specifies which legs of the call should receive the spoken audio.
 
-          voice_settings: The settings associated with the voice selected. For a community engine voice,
-              `api_key_ref` plus the engine's own settings.
+          voice_settings: The settings associated with the voice selected
 
           extra_headers: Send extra headers
 
@@ -6521,8 +6474,6 @@ class AsyncActionsResource(AsyncAPIResource):
         participants: Iterable[AIAssistantJoinParticipantParam] | Omit = omit,
         send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
-        voice: str | Omit = omit,
-        voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6574,17 +6525,6 @@ class AsyncActionsResource(AsyncAPIResource):
               using a model with native audio support (e.g. `fixie-ai/ultravox-v0_4`) will
               ignore this field.
 
-          voice: The voice the assistant speaks with on this call, in place of the assistant's
-              own voice. Use the same formats as the `voice` of the
-              [speak](/api-reference/call-commands/speak-text) command. A community engine
-              voice is `<EngineName>.<VoiceId>` (e.g., `acme.alpha`) and needs
-              `voice_settings.api_key_ref`; see the
-              [Community TTS engines guide](/docs/voice/tts/community-engines). Without
-              `voice`, the assistant's own voice is used.
-
-          voice_settings: The settings of `voice`. A community engine voice requires `api_key_ref`; the
-              other keys are the engine's own settings.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6608,8 +6548,6 @@ class AsyncActionsResource(AsyncAPIResource):
                     "participants": participants,
                     "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
-                    "voice": voice,
-                    "voice_settings": voice_settings,
                 },
                 action_start_ai_assistant_params.ActionStartAIAssistantParams,
             ),

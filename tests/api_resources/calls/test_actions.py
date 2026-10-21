@@ -776,7 +776,10 @@ class TestActions:
             terminating_digit="#",
             timeout_millis=60000,
             valid_digits="123",
-            voice_settings={"api_key_ref": "acme-engine-key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionGatherUsingSpeakResponse, action, path=["response"])
 
@@ -1488,7 +1491,10 @@ class TestActions:
             service_level="basic",
             stop="current",
             target_legs="both",
-            voice_settings={"api_key_ref": "acme-engine-key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
@@ -1638,8 +1644,6 @@ class TestActions:
                 "language": "language",
                 "model": "distil-whisper/distil-large-v2",
             },
-            voice="acme.alpha",
-            voice_settings={"api_key_ref": "acme-engine-key"},
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])
 
@@ -3748,7 +3752,10 @@ class TestAsyncActions:
             terminating_digit="#",
             timeout_millis=60000,
             valid_digits="123",
-            voice_settings={"api_key_ref": "acme-engine-key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionGatherUsingSpeakResponse, action, path=["response"])
 
@@ -4460,7 +4467,10 @@ class TestAsyncActions:
             service_level="basic",
             stop="current",
             target_legs="both",
-            voice_settings={"api_key_ref": "acme-engine-key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
@@ -4610,8 +4620,6 @@ class TestAsyncActions:
                 "language": "language",
                 "model": "distil-whisper/distil-large-v2",
             },
-            voice="acme.alpha",
-            voice_settings={"api_key_ref": "acme-engine-key"},
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])
 

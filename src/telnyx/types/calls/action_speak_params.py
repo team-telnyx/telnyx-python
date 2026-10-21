@@ -75,13 +75,6 @@ class ActionSpeakParams(TypedDict, total=False):
       `sara-en`, `abdulaziz-en`, `sara-ar`, `abdulaziz-ar`, `nourah-ar`,
       `abdullah-ar`. Native Arabic (Saudi dialect) and English voices only — no
       `ModelId` segment.
-    - **Community engines:** Use `<EngineName>.<VoiceId>` (e.g., `acme.alpha`),
-      where `EngineName` is the lowercase name of a community text-to-speech engine
-      and `VoiceId` is one of the voices it lists. You must provide your key for the
-      engine as an integration identifier secret in
-      `"voice_settings": {"api_key_ref": "<secret_identifier>"}`; any other key in
-      `voice_settings` is a setting of the engine. See the
-      [Community TTS engines guide](/docs/voice/tts/community-engines).
 
     For service_level basic, you may define the gender of the speaker (male or
     female).
@@ -168,10 +161,7 @@ class ActionSpeakParams(TypedDict, total=False):
     """Specifies which legs of the call should receive the spoken audio."""
 
     voice_settings: VoiceSettings
-    """The settings associated with the voice selected.
-
-    For a community engine voice, `api_key_ref` plus the engine's own settings.
-    """
+    """The settings associated with the voice selected"""
 
 
 if TYPE_CHECKING:
@@ -185,7 +175,6 @@ if TYPE_CHECKING:
         InworldVoiceSettings,
         XaiVoiceSettings,
         "SonioxVoiceSettingsParam",
-        "CommunityVoiceSettingsParam",
     ]
 else:
     VoiceSettings = Union[
@@ -198,12 +187,10 @@ else:
         InworldVoiceSettings,
         XaiVoiceSettings,
         ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
-        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).CommunityVoiceSettingsParam"),
     ]
 
 from .loopcount_param import LoopcountParam
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .soniox_voice_settings_param import SonioxVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
-from .community_voice_settings_param import CommunityVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam

@@ -6,13 +6,8 @@ from typing import TYPE_CHECKING, Union, Iterable, ForwardRef
 from typing_extensions import TypeAlias, TypedDict
 
 from ..call_assistant_request_param import CallAssistantRequestParam
-from ..shared_params.xai_voice_settings import XaiVoiceSettings
-from ..shared_params.azure_voice_settings import AzureVoiceSettings
-from ..shared_params.inworld_voice_settings import InworldVoiceSettings
-from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
-from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = ["ActionStartAIAssistantParams", "MessageHistory", "VoiceSettings"]
+__all__ = ["ActionStartAIAssistantParams", "MessageHistory"]
 
 
 class ActionStartAIAssistantParams(TypedDict, total=False):
@@ -74,24 +69,6 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
     `fixie-ai/ultravox-v0_4`) will ignore this field.
     """
 
-    voice: str
-    """
-    The voice the assistant speaks with on this call, in place of the assistant's
-    own voice. Use the same formats as the `voice` of the
-    [speak](/api-reference/call-commands/speak-text) command. A community engine
-    voice is `<EngineName>.<VoiceId>` (e.g., `acme.alpha`) and needs
-    `voice_settings.api_key_ref`; see the
-    [Community TTS engines guide](/docs/voice/tts/community-engines). Without
-    `voice`, the assistant's own voice is used.
-    """
-
-    voice_settings: VoiceSettings
-    """The settings of `voice`.
-
-    A community engine voice requires `api_key_ref`; the other keys are the engine's
-    own settings.
-    """
-
 
 if TYPE_CHECKING:
     MessageHistory: TypeAlias = Union[
@@ -106,43 +83,11 @@ else:
         ForwardRef(f"__import__({__name__!r}, fromlist=('',)).DeveloperMessageParam"),
     ]
 
-if TYPE_CHECKING:
-    VoiceSettings: TypeAlias = Union[
-        "ElevenLabsVoiceSettingsParam",
-        "TelnyxVoiceSettingsParam",
-        "AwsVoiceSettingsParam",
-        MinimaxVoiceSettings,
-        AzureVoiceSettings,
-        ResembleVoiceSettings,
-        InworldVoiceSettings,
-        XaiVoiceSettings,
-        "SonioxVoiceSettingsParam",
-        "CommunityVoiceSettingsParam",
-    ]
-else:
-    VoiceSettings = Union[
-        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).ElevenLabsVoiceSettingsParam"),
-        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).TelnyxVoiceSettingsParam"),
-        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AwsVoiceSettingsParam"),
-        MinimaxVoiceSettings,
-        AzureVoiceSettings,
-        ResembleVoiceSettings,
-        InworldVoiceSettings,
-        XaiVoiceSettings,
-        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
-        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).CommunityVoiceSettingsParam"),
-    ]
-
 from .tool_message_param import ToolMessageParam
 from .user_message_param import UserMessageParam
 from .system_message_param import SystemMessageParam
 from .assistant_message_param import AssistantMessageParam
 from .developer_message_param import DeveloperMessageParam
-from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .transcription_config_param import TranscriptionConfigParam
 from .interruption_settings_param import InterruptionSettingsParam
-from .soniox_voice_settings_param import SonioxVoiceSettingsParam
-from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
-from .community_voice_settings_param import CommunityVoiceSettingsParam
-from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from .ai_assistant_join_participant_param import AIAssistantJoinParticipantParam

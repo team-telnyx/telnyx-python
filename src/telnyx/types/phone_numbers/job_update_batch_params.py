@@ -36,7 +36,14 @@ class JobUpdateBatchParams(TypedDict, total=False):
     """Identifies the connection associated with the phone number."""
 
     customer_reference: str
-    """A customer reference string for customer look ups."""
+    """
+    Sets the customer reference on the selected phone numbers and retains the
+    supplied value on the job. Recover the job without its ID using GET
+    /phone_numbers/jobs with filter[customer_reference] within 90 days of job
+    creation. This body field updates the numbers; the separate
+    filter[customer_reference] query parameter selects numbers by their current
+    reference.
+    """
 
     deletion_lock_enabled: bool
     """Indicates whether to enable or disable the deletion lock on each phone number.
