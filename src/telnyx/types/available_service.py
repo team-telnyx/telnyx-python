@@ -6,4 +6,6 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["AvailableService"]
 
-AvailableService: TypeAlias = Literal["cloud_vpn", "private_wireless_gateway", "virtual_cross_connect"]
+AvailableService: TypeAlias = Literal[
+    "cloud_vpn", "private_wireless_gateway", "tailscale_subnet_router", "virtual_cross_connect"
+]

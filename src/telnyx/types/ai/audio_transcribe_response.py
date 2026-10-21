@@ -34,23 +34,23 @@ class Segment(BaseModel):
     speakers: Optional[List[int]] = None
     """Speaker indices heard in this segment.
 
-    Returned by the `deepgram/*` models when `diarize` is enabled via
-    `model_config`. With `multichannel`, speakers are numbered per channel from 0,
-    so identify a speaker by (`channel`, speaker).
+    Returned by the `deepgram/*` models and `reson8/prerecorded` when `diarize` is
+    enabled via `model_config`. With `multichannel`, speakers are numbered per
+    channel from 0, so identify a speaker by (`channel`, speaker).
     """
 
     words: Optional[List[AudioTranscriptionResponseWord]] = None
     """Word-level timing detail for this segment.
 
     Returned by the `deepgram/*` models when word-level output is enabled via
-    `model_config`.
+    `model_config`, and by `reson8/prerecorded`.
     """
 
 
 class AudioTranscribeResponse(BaseModel):
     """Response fields vary by model.
 
-    `distil-whisper/distil-large-v2` returns `text`, `duration`, and `segments` in `verbose_json` mode. `openai/whisper-large-v3-turbo` returns `text` only. The `deepgram/*` models return `text` and, depending on `model_config`, may include `words` with per-word timestamps and speaker labels. The Parakeet models (`nvidia/parakeet-v3`, `omi-health/omi-med-stt-v1`) return `text` only.
+    `distil-whisper/distil-large-v2` returns `text`, `duration`, and `segments` in `verbose_json` mode. `openai/whisper-large-v3-turbo` returns `text` only. The `deepgram/*` models return `text` and, depending on `model_config`, may include `words` with per-word timestamps and speaker labels. The Parakeet models (`nvidia/parakeet-v3`, `omi-health/omi-med-stt-v1`) return `text` only. `reson8/prerecorded` returns `text` and, in `verbose_json` mode, `duration` and `segments` with `words`; with `diarize`, one segment per speaker turn with speaker labels.
     """
 
     text: str

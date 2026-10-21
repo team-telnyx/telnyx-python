@@ -24,6 +24,8 @@ __all__ = ["ExportResource", "AsyncExportResource"]
 
 
 class ExportResource(SyncAPIResource):
+    """Manage Edge Compute functions"""
+
     @cached_property
     def with_raw_response(self) -> ExportResourceWithRawResponse:
         """
@@ -182,6 +184,8 @@ class ExportResource(SyncAPIResource):
 
 
 class AsyncExportResource(AsyncAPIResource):
+    """Manage Edge Compute functions"""
+
     @cached_property
     def with_raw_response(self) -> AsyncExportResourceWithRawResponse:
         """
