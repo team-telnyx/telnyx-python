@@ -89,6 +89,7 @@ if TYPE_CHECKING:
         audit_events,
         bot_sessions,
         call_reasons,
+        dial_metrics,
         email_blocks,
         email_events,
         oauth_grants,
@@ -259,6 +260,7 @@ if TYPE_CHECKING:
     from .resources.audit_events import AuditEventsResource, AsyncAuditEventsResource
     from .resources.bot_sessions import BotSessionsResource, AsyncBotSessionsResource
     from .resources.call_reasons import CallReasonsResource, AsyncCallReasonsResource
+    from .resources.dial_metrics import DialMetricsResource, AsyncDialMetricsResource
     from .resources.email_events import EmailEventsResource, AsyncEmailEventsResource
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
@@ -1956,6 +1958,13 @@ class Telnyx(SyncAPIClient):
         return SipRegistrationStatusResource(self)
 
     @cached_property
+    def dial_metrics(self) -> DialMetricsResource:
+        """Call information"""
+        from .resources.dial_metrics import DialMetricsResource
+
+        return DialMetricsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3538,6 +3547,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncSipRegistrationStatusResource(self)
 
     @cached_property
+    def dial_metrics(self) -> AsyncDialMetricsResource:
+        """Call information"""
+        from .resources.dial_metrics import AsyncDialMetricsResource
+
+        return AsyncDialMetricsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -5055,6 +5071,13 @@ class TelnyxWithRawResponse:
 
         return SipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
 
+    @cached_property
+    def dial_metrics(self) -> dial_metrics.DialMetricsResourceWithRawResponse:
+        """Call information"""
+        from .resources.dial_metrics import DialMetricsResourceWithRawResponse
+
+        return DialMetricsResourceWithRawResponse(self._client.dial_metrics)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6445,6 +6468,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
 
         return AsyncSipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
+
+    @cached_property
+    def dial_metrics(self) -> dial_metrics.AsyncDialMetricsResourceWithRawResponse:
+        """Call information"""
+        from .resources.dial_metrics import AsyncDialMetricsResourceWithRawResponse
+
+        return AsyncDialMetricsResourceWithRawResponse(self._client.dial_metrics)
 
 
 class TelnyxWithStreamedResponse:
@@ -7838,6 +7868,13 @@ class TelnyxWithStreamedResponse:
         from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
 
         return SipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
+
+    @cached_property
+    def dial_metrics(self) -> dial_metrics.DialMetricsResourceWithStreamingResponse:
+        """Call information"""
+        from .resources.dial_metrics import DialMetricsResourceWithStreamingResponse
+
+        return DialMetricsResourceWithStreamingResponse(self._client.dial_metrics)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9281,6 +9318,13 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithStreamingResponse
 
         return AsyncSipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
+
+    @cached_property
+    def dial_metrics(self) -> dial_metrics.AsyncDialMetricsResourceWithStreamingResponse:
+        """Call information"""
+        from .resources.dial_metrics import AsyncDialMetricsResourceWithStreamingResponse
+
+        return AsyncDialMetricsResourceWithStreamingResponse(self._client.dial_metrics)
 
 
 Client = Telnyx

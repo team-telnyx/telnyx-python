@@ -417,6 +417,14 @@ from .call_reasons import (
     CallReasonsResourceWithStreamingResponse,
     AsyncCallReasonsResourceWithStreamingResponse,
 )
+from .dial_metrics import (
+    DialMetricsResource,
+    AsyncDialMetricsResource,
+    DialMetricsResourceWithRawResponse,
+    AsyncDialMetricsResourceWithRawResponse,
+    DialMetricsResourceWithStreamingResponse,
+    AsyncDialMetricsResourceWithStreamingResponse,
+)
 from .email_blocks import (
     EmailBlocksResource,
     AsyncEmailBlocksResource,
@@ -2665,4 +2673,10 @@ __all__ = [
     "AsyncSipRegistrationStatusResourceWithRawResponse",
     "SipRegistrationStatusResourceWithStreamingResponse",
     "AsyncSipRegistrationStatusResourceWithStreamingResponse",
+    "DialMetricsResource",
+    "AsyncDialMetricsResource",
+    "DialMetricsResourceWithRawResponse",
+    "AsyncDialMetricsResourceWithRawResponse",
+    "DialMetricsResourceWithStreamingResponse",
+    "AsyncDialMetricsResourceWithStreamingResponse",
 ]

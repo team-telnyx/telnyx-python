@@ -7290,3 +7290,15 @@ from telnyx.types import SipRegistrationStatusListResponse
 Methods:
 
 - <code title="get /sip_registration_status">client.sip_registration_status.<a href="./src/telnyx/resources/sip_registration_status.py">list</a>(\*\*<a href="src/telnyx/types/sip_registration_status_list_params.py">params</a>) -> <a href="./src/telnyx/types/sip_registration_status_list_response.py">SipRegistrationStatusListResponse</a></code>
+
+# DialMetrics
+
+Types:
+
+```python
+from telnyx.types import DialMetricListResponse
+```
+
+Methods:
+
+- <code title="get /dial_metrics">client.dial_metrics.<a href="./src/telnyx/resources/dial_metrics.py">list</a>(\*\*<a href="src/telnyx/types/dial_metric_list_params.py">params</a>) -> <a href="./src/telnyx/types/dial_metric_list_response.py">SyncCloudfsCursorPagination[DialMetricListResponse]</a></code>

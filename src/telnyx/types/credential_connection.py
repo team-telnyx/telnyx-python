@@ -85,7 +85,7 @@ class CredentialConnection(BaseModel):
     encrypted_media: Optional[EncryptedMedia] = None
     """Enable use of SRTP for encryption.
 
-    Cannot be set if the transport_portocol is TLS.
+    Can only be set when the SIP signaling transport protocol is TLS.
     """
 
     inbound: Optional[CredentialInbound] = None

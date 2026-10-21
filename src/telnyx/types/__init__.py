@@ -368,6 +368,7 @@ from .call_reason_list_params import CallReasonListParams as CallReasonListParam
 from .comment_create_response import CommentCreateResponse as CommentCreateResponse
 from .custom_sip_header_param import CustomSipHeaderParam as CustomSipHeaderParam
 from .customer_service_record import CustomerServiceRecord as CustomerServiceRecord
+from .dial_metric_list_params import DialMetricListParams as DialMetricListParams
 from .dialogflow_config_param import DialogflowConfigParam as DialogflowConfigParam
 from .email_block_list_params import EmailBlockListParams as EmailBlockListParams
 from .email_event_list_params import EmailEventListParams as EmailEventListParams
@@ -463,6 +464,7 @@ from .comment_retrieve_response import CommentRetrieveResponse as CommentRetriev
 from .conference_playback_ended import ConferencePlaybackEnded as ConferencePlaybackEnded
 from .credential_outbound_param import CredentialOutboundParam as CredentialOutboundParam
 from .detail_record_list_params import DetailRecordListParams as DetailRecordListParams
+from .dial_metric_list_response import DialMetricListResponse as DialMetricListResponse
 from .document_link_list_params import DocumentLinkListParams as DocumentLinkListParams
 from .domains_tracking_settings import DomainsTrackingSettings as DomainsTrackingSettings
 from .dynamic_emergency_address import DynamicEmergencyAddress as DynamicEmergencyAddress
