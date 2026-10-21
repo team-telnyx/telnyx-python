@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.187.0](https://github.com/team-telnyx/telnyx-python/compare/v4.186.0...v4.187.0) (2026-10-21)
+
+
+### Features
+
+* promote from staging 72bf8db ([aa6fe8c](https://github.com/team-telnyx/telnyx-python/commit/aa6fe8c864cfcd62ca2492a433b949ec619f4c71))
+
+
+### Documentation
+
+* **readme:** explain filter[...] and page[...] to kwargs mapping ([#447](https://github.com/team-telnyx/telnyx-python/issues/447)) ([08462bc](https://github.com/team-telnyx/telnyx-python/commit/08462bcba0cf9f33acd1b40cec7a3835469ad762))
+
 ## [4.186.0](https://github.com/team-telnyx/telnyx-python/compare/v4.185.0...v4.186.0) (2026-10-20)
 
 

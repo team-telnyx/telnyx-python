@@ -207,23 +207,7 @@ for access_ip_address in first_page.data:
 
 ## Nested params
 
-Nested parameters are dictionaries, typed using `TypedDict`. Bracketed query parameters in the REST API map to a single keyword argument that takes a dictionary, so `filter[country_code]=US` becomes `filter={"country_code": "US"}`. The exception is pagination: on list methods paginated with `page[...]`, `page[number]` and `page[size]` are flattened to the `page_number` and `page_size` keyword arguments (there is no `page=` or `limit=` argument on those methods).
-
-```python
-from telnyx import Telnyx
-
-client = Telnyx()
-
-# GET /v2/available_phone_numbers?filter[country_code]=US&filter[features][]=sms&filter[limit]=3
-numbers = client.available_phone_numbers.list(
-    filter={"country_code": "US", "features": ["sms"], "limit": 3},
-)
-
-# GET /v2/phone_numbers?page[number]=1&page[size]=25
-owned = client.phone_numbers.list(page_number=1, page_size=25)
-```
-
-For example:
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
 
 ```python
 from telnyx import Telnyx
@@ -248,6 +232,37 @@ response = client.calls.dial(
     },
 )
 print(response.answering_machine_detection_config)
+```
+
+Object-valued query parameters are passed as dictionaries. For `client.access_ip_address.list`, the query string `filter[created_at]=2019-12-27T18%3A11%3A19.117Z&filter[ip_address]=ip_address&filter[ip_source]=ip_source` is represented by the `filter` keyword argument:
+
+```python
+from datetime import datetime
+
+from telnyx import Telnyx
+
+client = Telnyx()
+
+client.access_ip_address.list(
+    filter={
+        "created_at": datetime.fromisoformat("2019-12-27T18:11:19.117+00:00"),
+        "ip_address": "ip_address",
+        "ip_source": "ip_source",
+    },
+)
+```
+
+Pagination keyword arguments depend on the method. For `client.oauth_clients.list`, `page[number]` maps to `page_number`; `page[size]` maps to `page_size`. Pass these as separate keyword arguments, not as a nested dictionary. Use the names in each method's signature; other methods may accept different pagination parameters.
+
+```python
+from telnyx import Telnyx
+
+client = Telnyx()
+
+client.oauth_clients.list(
+    page_number=1,
+    page_size=1,
+)
 ```
 
 ## File uploads
