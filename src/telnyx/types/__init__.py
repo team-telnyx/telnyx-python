@@ -404,6 +404,7 @@ from .report_list_mdrs_params import ReportListMdrsParams as ReportListMdrsParam
 from .report_list_wdrs_params import ReportListWdrsParams as ReportListWdrsParams
 from .requirement_list_params import RequirementListParams as RequirementListParams
 from .signature_payload_param import SignaturePayloadParam as SignaturePayloadParam
+from .tailscale_subnet_router import TailscaleSubnetRouter as TailscaleSubnetRouter
 from .tracking_settings_param import TrackingSettingsParam as TrackingSettingsParam
 from .transcribe_client_event import TranscribeClientEvent as TranscribeClientEvent
 from .transcribe_server_event import TranscribeServerEvent as TranscribeServerEvent
@@ -461,6 +462,7 @@ from .call_hangup_webhook_event import CallHangupWebhookEvent as CallHangupWebho
 from .call_reason_list_response import CallReasonListResponse as CallReasonListResponse
 from .call_unhold_webhook_event import CallUnholdWebhookEvent as CallUnholdWebhookEvent
 from .comment_retrieve_response import CommentRetrieveResponse as CommentRetrieveResponse
+from .compute_retrieve_response import ComputeRetrieveResponse as ComputeRetrieveResponse
 from .conference_playback_ended import ConferencePlaybackEnded as ConferencePlaybackEnded
 from .credential_outbound_param import CredentialOutboundParam as CredentialOutboundParam
 from .detail_record_list_params import DetailRecordListParams as DetailRecordListParams
@@ -961,6 +963,7 @@ from .recording_transcription_list_params import RecordingTranscriptionListParam
 from .room_recording_delete_bulk_response import RoomRecordingDeleteBulkResponse as RoomRecordingDeleteBulkResponse
 from .s3_generic_configuration_data_param import S3GenericConfigurationDataParam as S3GenericConfigurationDataParam
 from .sip_registration_status_list_params import SipRegistrationStatusListParams as SipRegistrationStatusListParams
+from .tailscale_subnet_router_list_params import TailscaleSubnetRouterListParams as TailscaleSubnetRouterListParams
 from .texml_application_retrieve_response import TexmlApplicationRetrieveResponse as TexmlApplicationRetrieveResponse
 from .text_to_speech_list_voices_response import TextToSpeechListVoicesResponse as TextToSpeechListVoicesResponse
 from .update_regulatory_requirement_param import UpdateRegulatoryRequirementParam as UpdateRegulatoryRequirementParam
@@ -1099,6 +1102,12 @@ from .sim_card_get_activation_code_response import SimCardGetActivationCodeRespo
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
 from .sip_registration_status_list_response import (
     SipRegistrationStatusListResponse as SipRegistrationStatusListResponse,
+)
+from .tailscale_subnet_router_create_params import (
+    TailscaleSubnetRouterCreateParams as TailscaleSubnetRouterCreateParams,
+)
+from .tailscale_subnet_router_update_params import (
+    TailscaleSubnetRouterUpdateParams as TailscaleSubnetRouterUpdateParams,
 )
 from .terms_of_service_retrieve_info_params import TermsOfServiceRetrieveInfoParams as TermsOfServiceRetrieveInfoParams
 from .text_to_speech_generate_speech_params import TextToSpeechGenerateSpeechParams as TextToSpeechGenerateSpeechParams
@@ -1299,6 +1308,15 @@ from .sim_card_order_preview_preview_response import (
 from .sub_number_order_regulatory_requirement import (
     SubNumberOrderRegulatoryRequirement as SubNumberOrderRegulatoryRequirement,
 )
+from .tailscale_subnet_router_create_response import (
+    TailscaleSubnetRouterCreateResponse as TailscaleSubnetRouterCreateResponse,
+)
+from .tailscale_subnet_router_delete_response import (
+    TailscaleSubnetRouterDeleteResponse as TailscaleSubnetRouterDeleteResponse,
+)
+from .tailscale_subnet_router_update_response import (
+    TailscaleSubnetRouterUpdateResponse as TailscaleSubnetRouterUpdateResponse,
+)
 from .terms_of_service_retrieve_info_response import (
     TermsOfServiceRetrieveInfoResponse as TermsOfServiceRetrieveInfoResponse,
 )
@@ -1442,6 +1460,9 @@ from .public_internet_gateway_retrieve_response import (
 )
 from .recording_transcription_retrieve_response import (
     RecordingTranscriptionRetrieveResponse as RecordingTranscriptionRetrieveResponse,
+)
+from .tailscale_subnet_router_retrieve_response import (
+    TailscaleSubnetRouterRetrieveResponse as TailscaleSubnetRouterRetrieveResponse,
 )
 from .terms_of_service_retrieve_status_response import (
     TermsOfServiceRetrieveStatusResponse as TermsOfServiceRetrieveStatusResponse,

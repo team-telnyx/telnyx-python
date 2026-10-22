@@ -256,6 +256,7 @@ class TestRcs:
             },
             type="RCS",
             webhook_url="webhook_url",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(RcSendResponse, rc, path=["response"])
 
@@ -532,6 +533,7 @@ class TestAsyncRcs:
             },
             type="RCS",
             webhook_url="webhook_url",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(RcSendResponse, rc, path=["response"])
 

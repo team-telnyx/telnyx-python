@@ -35,7 +35,11 @@ class TranscriptionConfigParam(TypedDict, total=False):
     detection, and the language codes `nl`, `en`, `fr`, `fy`, `de`, `it`, `pl`,
     `pt`, `es`, and `sv` to fix the transcription language. For `cohere/ar-stt`,
     supported values are `ar` and `en`; unlike other models, this model does not
-    auto-detect and defaults to `ar` when `language` is omitted.
+    auto-detect and defaults to `ar` when `language` is omitted. For
+    `speechmatics/linden-1`, there is no auto-detect; set a code from Speechmatics'
+    Realtime language list (see `SpeechmaticsTranscriptionLanguage`); unset defaults
+    to `en`, while an explicit `auto`, `auto_beta`, or `multi` is rejected (unlike
+    `speechmatics/standard`, which defaults to `en`).
     """
 
     model: Literal[
@@ -45,6 +49,7 @@ class TranscriptionConfigParam(TypedDict, total=False):
         "deepgram/nova-2",
         "speechmatics/standard",
         "speechmatics/enhanced",
+        "speechmatics/linden-1",
         "assemblyai/universal-3-5-pro",
         "assemblyai/universal-streaming",
         "xai/grok-stt",
@@ -68,6 +73,9 @@ class TranscriptionConfigParam(TypedDict, total=False):
     - `deepgram/nova-3` and `deepgram/nova-2` for live streaming transcription.
     - `speechmatics/standard` and `speechmatics/enhanced` for live streaming
       transcription.
+    - `speechmatics/linden-1` (preview, vendor-hosted) for live streaming
+      transcription; no auto-detect, so set `language` from Speechmatics' Realtime
+      language list (defaults to `en`).
     - `assemblyai/universal-3-5-pro` for live streaming transcription. The legacy
       alias `assemblyai/universal-streaming` is still accepted and resolves to the
       same model.

@@ -191,6 +191,7 @@ class SpeechToTextResource(SyncAPIResource):
             "openai/whisper-large-v3-turbo",
             "xai/grok-stt",
             "speechmatics/standard",
+            "speechmatics/linden-1",
             "soniox/stt-rt-v4",
             "nvidia/parakeet-v3",
             "omi-health/omi-med-stt-v1",
@@ -233,9 +234,10 @@ class SpeechToTextResource(SyncAPIResource):
 
           endpointing: Silence duration (in milliseconds) that triggers end-of-speech detection. When
               set, the engine uses this value to determine when a speaker has stopped talking.
-              Supported by `xAI`, `Deepgram`, `Google`, `Speechmatics`, and `Soniox`. `Soniox`
-              accepts values between 500 and 3000. Other engines may not support this
-              parameter.
+              Supported by `xAI`, `Deepgram`, `Google`, `Speechmatics`
+              (`speechmatics/standard` only; `speechmatics/linden-1` uses fixed service-side
+              voice activity detection and ignores it), and `Soniox`. `Soniox` accepts values
+              between 500 and 3000. Other engines may not support this parameter.
 
           interim_results: Whether to receive interim transcription results.
 
@@ -247,7 +249,12 @@ class SpeechToTextResource(SyncAPIResource):
 
           language: The language spoken in the audio stream. For `cohere/ar-stt`, this must be `ar`
               or `en` — unlike other engines, Cohere does not auto-detect the language, and
-              rejects unsupported values including `auto`; omitting it defaults to `ar`.
+              rejects unsupported values including `auto`; omitting it defaults to `ar`. For
+              `speechmatics/linden-1`, omitting it defaults to `en`; `auto`, `auto_beta`,
+              `multi`, or a language outside its supported list is rejected when the
+              connection is established. `speechmatics/linden-1` also accepts `en-US`,
+              `en-GB`, `en-AU`, `cmn-Hans`, and `cmn-Hant`, which select the spelling or
+              script variant (`en` alone uses the default spelling).
 
           model: The specific model to use within the selected transcription engine.
 
@@ -257,6 +264,7 @@ class SpeechToTextResource(SyncAPIResource):
           sample_rate: Audio sample rate in Hz. Required when `input_format` is a raw encoding
               (`linear16`, `linear32`) — those formats carry no header metadata. Ignored for
               container formats (`mp3`, `wav`), which self-describe their rate.
+              `speechmatics/linden-1` accepts only `16000`.
 
           extra_headers: Send extra headers
 
@@ -464,6 +472,7 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
             "openai/whisper-large-v3-turbo",
             "xai/grok-stt",
             "speechmatics/standard",
+            "speechmatics/linden-1",
             "soniox/stt-rt-v4",
             "nvidia/parakeet-v3",
             "omi-health/omi-med-stt-v1",
@@ -506,9 +515,10 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
 
           endpointing: Silence duration (in milliseconds) that triggers end-of-speech detection. When
               set, the engine uses this value to determine when a speaker has stopped talking.
-              Supported by `xAI`, `Deepgram`, `Google`, `Speechmatics`, and `Soniox`. `Soniox`
-              accepts values between 500 and 3000. Other engines may not support this
-              parameter.
+              Supported by `xAI`, `Deepgram`, `Google`, `Speechmatics`
+              (`speechmatics/standard` only; `speechmatics/linden-1` uses fixed service-side
+              voice activity detection and ignores it), and `Soniox`. `Soniox` accepts values
+              between 500 and 3000. Other engines may not support this parameter.
 
           interim_results: Whether to receive interim transcription results.
 
@@ -520,7 +530,12 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
 
           language: The language spoken in the audio stream. For `cohere/ar-stt`, this must be `ar`
               or `en` — unlike other engines, Cohere does not auto-detect the language, and
-              rejects unsupported values including `auto`; omitting it defaults to `ar`.
+              rejects unsupported values including `auto`; omitting it defaults to `ar`. For
+              `speechmatics/linden-1`, omitting it defaults to `en`; `auto`, `auto_beta`,
+              `multi`, or a language outside its supported list is rejected when the
+              connection is established. `speechmatics/linden-1` also accepts `en-US`,
+              `en-GB`, `en-AU`, `cmn-Hans`, and `cmn-Hant`, which select the spelling or
+              script variant (`en` alone uses the default spelling).
 
           model: The specific model to use within the selected transcription engine.
 
@@ -530,6 +545,7 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
           sample_rate: Audio sample rate in Hz. Required when `input_format` is a raw encoding
               (`linear16`, `linear32`) — those formats carry no header metadata. Ignored for
               container formats (`mp3`, `wav`), which self-describe their rate.
+              `speechmatics/linden-1` accepts only `16000`.
 
           extra_headers: Send extra headers
 

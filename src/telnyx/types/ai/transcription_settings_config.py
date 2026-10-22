@@ -116,4 +116,14 @@ class TranscriptionSettingsConfig(BaseModel):
     Leave empty unless needed. At most 1750 characters.
     """
 
+    remove_disfluencies: Optional[bool] = None
+    """Available only for speechmatics/linden-1.
+
+    When true, filler words such as "um" and "uh" are removed from the transcript.
+    Disfluency removal is supported only for `ar`, `cmn`, `da`, `de`, `el`, `en`,
+    `es`, `fr`, `he`, `hi`, `hu`, `it`, `ja`, `nl`, `pl`, `pt`, and `ru`, determined
+    by the base language (so `en-US`, `en-GB`, `en-AU`, `cmn-Hans`, and `cmn-Hant`
+    are supported); for other languages, filler words remain in the transcript.
+    """
+
     smart_format: Optional[bool] = None

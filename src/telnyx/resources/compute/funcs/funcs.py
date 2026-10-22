@@ -26,12 +26,15 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.compute import (
+    func_list_params,
     func_retrieve_logs_params,
     func_retrieve_revisions_params,
     func_retrieve_metric_aggregates_params,
 )
+from ....types.compute.func_list_response import FuncListResponse
 from ....types.compute.func_retrieve_logs_response import FuncRetrieveLogsResponse
 from ....types.compute.func_retrieve_revisions_response import FuncRetrieveRevisionsResponse
 from ....types.compute.func_retrieve_ship_inspection_response import FuncRetrieveShipInspectionResponse
@@ -41,8 +44,11 @@ __all__ = ["FuncsResource", "AsyncFuncsResource"]
 
 
 class FuncsResource(SyncAPIResource):
+    """Manage Edge Compute functions"""
+
     @cached_property
     def export(self) -> ExportResource:
+        """Manage Edge Compute functions"""
         return ExportResource(self._client)
 
     @cached_property
@@ -63,6 +69,57 @@ class FuncsResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return FuncsResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncDefaultFlatPagination[FuncListResponse]:
+        """List functions for the authenticated organization.
+
+        Each function includes its
+        persisted function-scoped bindings. Actor bindings expose actor_type and
+        env_name, allowing clients to identify every function attached to a Stateful
+        Actor type.
+
+        Args:
+          page_number: Page number
+
+          page_size: Page size (maximum 250)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/compute/funcs",
+            page=SyncDefaultFlatPagination[FuncListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    func_list_params.FuncListParams,
+                ),
+            ),
+            model=FuncListResponse,
+        )
 
     def retrieve_logs(
         self,
@@ -276,8 +333,11 @@ class FuncsResource(SyncAPIResource):
 
 
 class AsyncFuncsResource(AsyncAPIResource):
+    """Manage Edge Compute functions"""
+
     @cached_property
     def export(self) -> AsyncExportResource:
+        """Manage Edge Compute functions"""
         return AsyncExportResource(self._client)
 
     @cached_property
@@ -298,6 +358,57 @@ class AsyncFuncsResource(AsyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncFuncsResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[FuncListResponse, AsyncDefaultFlatPagination[FuncListResponse]]:
+        """List functions for the authenticated organization.
+
+        Each function includes its
+        persisted function-scoped bindings. Actor bindings expose actor_type and
+        env_name, allowing clients to identify every function attached to a Stateful
+        Actor type.
+
+        Args:
+          page_number: Page number
+
+          page_size: Page size (maximum 250)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/compute/funcs",
+            page=AsyncDefaultFlatPagination[FuncListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    func_list_params.FuncListParams,
+                ),
+            ),
+            model=FuncListResponse,
+        )
 
     async def retrieve_logs(
         self,
@@ -514,6 +625,9 @@ class FuncsResourceWithRawResponse:
     def __init__(self, funcs: FuncsResource) -> None:
         self._funcs = funcs
 
+        self.list = to_raw_response_wrapper(
+            funcs.list,
+        )
         self.retrieve_logs = to_raw_response_wrapper(
             funcs.retrieve_logs,
         )
@@ -529,6 +643,7 @@ class FuncsResourceWithRawResponse:
 
     @cached_property
     def export(self) -> ExportResourceWithRawResponse:
+        """Manage Edge Compute functions"""
         return ExportResourceWithRawResponse(self._funcs.export)
 
 
@@ -536,6 +651,9 @@ class AsyncFuncsResourceWithRawResponse:
     def __init__(self, funcs: AsyncFuncsResource) -> None:
         self._funcs = funcs
 
+        self.list = async_to_raw_response_wrapper(
+            funcs.list,
+        )
         self.retrieve_logs = async_to_raw_response_wrapper(
             funcs.retrieve_logs,
         )
@@ -551,6 +669,7 @@ class AsyncFuncsResourceWithRawResponse:
 
     @cached_property
     def export(self) -> AsyncExportResourceWithRawResponse:
+        """Manage Edge Compute functions"""
         return AsyncExportResourceWithRawResponse(self._funcs.export)
 
 
@@ -558,6 +677,9 @@ class FuncsResourceWithStreamingResponse:
     def __init__(self, funcs: FuncsResource) -> None:
         self._funcs = funcs
 
+        self.list = to_streamed_response_wrapper(
+            funcs.list,
+        )
         self.retrieve_logs = to_streamed_response_wrapper(
             funcs.retrieve_logs,
         )
@@ -573,6 +695,7 @@ class FuncsResourceWithStreamingResponse:
 
     @cached_property
     def export(self) -> ExportResourceWithStreamingResponse:
+        """Manage Edge Compute functions"""
         return ExportResourceWithStreamingResponse(self._funcs.export)
 
 
@@ -580,6 +703,9 @@ class AsyncFuncsResourceWithStreamingResponse:
     def __init__(self, funcs: AsyncFuncsResource) -> None:
         self._funcs = funcs
 
+        self.list = async_to_streamed_response_wrapper(
+            funcs.list,
+        )
         self.retrieve_logs = async_to_streamed_response_wrapper(
             funcs.retrieve_logs,
         )
@@ -595,4 +721,5 @@ class AsyncFuncsResourceWithStreamingResponse:
 
     @cached_property
     def export(self) -> AsyncExportResourceWithStreamingResponse:
+        """Manage Edge Compute functions"""
         return AsyncExportResourceWithStreamingResponse(self._funcs.export)

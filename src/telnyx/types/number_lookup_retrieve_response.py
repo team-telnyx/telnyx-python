@@ -7,7 +7,69 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["NumberLookupRetrieveResponse", "Data", "DataCallerName", "DataCarrier", "DataPortability"]
+__all__ = [
+    "NumberLookupRetrieveResponse",
+    "Data",
+    "DataCallerIdentity",
+    "DataCallerIdentityAddress",
+    "DataCallerName",
+    "DataCarrier",
+    "DataEnhancedCallerName",
+    "DataNnidOverride",
+    "DataPortability",
+]
+
+
+class DataCallerIdentityAddress(BaseModel):
+    """Postal address associated with the phone number's owner."""
+
+    city: Optional[str] = None
+    """City."""
+
+    country_code: Optional[str] = None
+    """Two-letter ISO 3166-1 country code."""
+
+    postal_code: Optional[str] = None
+    """Postal or ZIP code."""
+
+    state_code: Optional[str] = None
+    """Two-letter state or province code."""
+
+    street_line_1: Optional[str] = None
+    """First line of the street address."""
+
+    street_line_2: Optional[str] = None
+    """Second line of the street address, if any."""
+
+    zip4: Optional[str] = None
+    """ZIP+4 extension, if available."""
+
+
+class DataCallerIdentity(BaseModel):
+    """
+    Identity information for the phone number's owner, including name and postal address. Populated when `type=caller-identity` is requested.
+    """
+
+    address: Optional[DataCallerIdentityAddress] = None
+    """Postal address associated with the phone number's owner."""
+
+    confidence_score: Optional[float] = None
+    """
+    How strongly the phone number is linked to the returned name, on a scale of 50
+    to 90 (higher means more supporting signals). Reflects signal strength, not
+    probability: 70 indicates stronger, more consistent evidence than 60, not a 70%
+    chance of being correct. As a guide, 70+ is high confidence, 60 moderate, and 50
+    limited. Below 50 no name is returned, so scores under 50 are never present.
+    """
+
+    error_code: Optional[str] = None
+    """
+    A lookup-specific error code if the identity could not be resolved; otherwise
+    null.
+    """
+
+    name: Optional[str] = None
+    """The name associated with the phone number."""
 
 
 class DataCallerName(BaseModel):
@@ -68,6 +130,37 @@ class DataCarrier(BaseModel):
     """
 
 
+class DataEnhancedCallerName(BaseModel):
+    """Enhanced caller name for the phone number's owner.
+
+    Populated when `type=enhanced-caller-name` is requested.
+    """
+
+    caller_name: Optional[str] = None
+    """The name associated with the phone number."""
+
+    error_code: Optional[str] = None
+    """
+    A lookup-specific error code if the enhanced caller name could not be resolved;
+    otherwise null.
+    """
+
+
+class DataNnidOverride(BaseModel):
+    """
+    Network number ID (NNID) override for the phone number, when one applies (available only to accounts enabled for NNID); otherwise null.
+    """
+
+    name: Optional[str] = None
+    """Name associated with the NNID."""
+
+    nnid: Optional[str] = None
+    """The network number ID."""
+
+    type: Optional[str] = None
+    """The NNID type."""
+
+
 class DataPortability(BaseModel):
     altspid: Optional[str] = None
     """Alternative SPID (Service Provider ID).
@@ -87,8 +180,27 @@ class DataPortability(BaseModel):
     database
     """
 
-    line_type: Optional[str] = None
-    """Type of number"""
+    line_type: Optional[
+        Literal[
+            "fixed line",
+            "mobile",
+            "voip",
+            "fixed line or mobile",
+            "toll free",
+            "premium rate",
+            "shared cost",
+            "personal number",
+            "pager",
+            "uan",
+            "voicemail",
+            "unknown",
+        ]
+    ] = None
+    """The line type of the phone number.
+
+    Uses the same value set as carrier.type; see the API reference for the full
+    list.
+    """
 
     lrn: Optional[str] = None
     """Local Routing Number, if assigned to the requested phone number"""
@@ -118,12 +230,24 @@ class DataPortability(BaseModel):
 
 
 class Data(BaseModel):
+    caller_identity: Optional[DataCallerIdentity] = None
+    """
+    Identity information for the phone number's owner, including name and postal
+    address. Populated when `type=caller-identity` is requested.
+    """
+
     caller_name: Optional[DataCallerName] = None
 
     carrier: Optional[DataCarrier] = None
 
     country_code: Optional[str] = None
     """Region code that matches the specific country calling code"""
+
+    enhanced_caller_name: Optional[DataEnhancedCallerName] = None
+    """Enhanced caller name for the phone number's owner.
+
+    Populated when `type=enhanced-caller-name` is requested.
+    """
 
     fraud: Optional[str] = None
     """Unused"""
@@ -134,6 +258,12 @@ class Data(BaseModel):
     (NDC), with a 0 prefix, if an NDC is found
     """
 
+    nnid_override: Optional[DataNnidOverride] = None
+    """
+    Network number ID (NNID) override for the phone number, when one applies
+    (available only to accounts enabled for NNID); otherwise null.
+    """
+
     phone_number: Optional[str] = None
     """E164-formatted phone number"""
 
@@ -141,6 +271,9 @@ class Data(BaseModel):
 
     record_type: Optional[str] = None
     """Identifies the type of record"""
+
+    valid_number: Optional[bool] = None
+    """Indicates whether the phone number is valid."""
 
 
 class NumberLookupRetrieveResponse(BaseModel):

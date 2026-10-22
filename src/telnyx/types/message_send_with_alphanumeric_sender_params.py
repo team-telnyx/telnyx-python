@@ -31,3 +31,5 @@ class MessageSendWithAlphanumericSenderParams(TypedDict, total=False):
 
     webhook_url: Optional[str]
     """Callback URL for delivery status updates."""
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]

@@ -34,7 +34,9 @@ class VoiceCloneData(BaseModel):
     language: Optional[str] = None
     """ISO 639-1 language code of the voice clone."""
 
-    api_model_id: Optional[Literal["Qwen3TTS", "Ultra", "speech-2.8-turbo"]] = FieldInfo(alias="model_id", default=None)
+    api_model_id: Optional[Literal["Qwen3TTS", "Ultra", "Bayan", "speech-2.8-turbo"]] = FieldInfo(
+        alias="model_id", default=None
+    )
     """TTS model identifier for the voice clone."""
 
     name: Optional[str] = None

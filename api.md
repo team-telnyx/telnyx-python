@@ -7094,6 +7094,16 @@ Methods:
 
 # Compute
 
+Types:
+
+```python
+from telnyx.types import ComputeRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /compute/actors/{id}">client.compute.<a href="./src/telnyx/resources/compute/compute.py">retrieve</a>(id) -> <a href="./src/telnyx/types/compute_retrieve_response.py">ComputeRetrieveResponse</a></code>
+
 ## Funcs
 
 Types:
@@ -7102,6 +7112,7 @@ Types:
 from telnyx.types.compute import (
     FunctionsObservabilityPaginationMeta,
     LogsMeta,
+    FuncListResponse,
     FuncRetrieveLogsResponse,
     FuncRetrieveMetricAggregatesResponse,
     FuncRetrieveRevisionsResponse,
@@ -7111,6 +7122,7 @@ from telnyx.types.compute import (
 
 Methods:
 
+- <code title="get /compute/funcs">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">list</a>(\*\*<a href="src/telnyx/types/compute/func_list_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_list_response.py">SyncDefaultFlatPagination[FuncListResponse]</a></code>
 - <code title="get /compute/funcs/{id}/logs">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">retrieve_logs</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_logs_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_logs_response.py">FuncRetrieveLogsResponse</a></code>
 - <code title="get /compute/funcs/{id}/metric_aggregates">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">retrieve_metric_aggregates</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_metric_aggregates_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_metric_aggregates_response.py">FuncRetrieveMetricAggregatesResponse</a></code>
 - <code title="get /compute/funcs/{id}/revisions">client.compute.funcs.<a href="./src/telnyx/resources/compute/funcs/funcs.py">retrieve_revisions</a>(id, \*\*<a href="src/telnyx/types/compute/func_retrieve_revisions_params.py">params</a>) -> <a href="./src/telnyx/types/compute/func_retrieve_revisions_response.py">FuncRetrieveRevisionsResponse</a></code>
@@ -7302,3 +7314,25 @@ from telnyx.types import DialMetricListResponse
 Methods:
 
 - <code title="get /dial_metrics">client.dial_metrics.<a href="./src/telnyx/resources/dial_metrics.py">list</a>(\*\*<a href="src/telnyx/types/dial_metric_list_params.py">params</a>) -> <a href="./src/telnyx/types/dial_metric_list_response.py">SyncCloudfsCursorPagination[DialMetricListResponse]</a></code>
+
+# TailscaleSubnetRouters
+
+Types:
+
+```python
+from telnyx.types import (
+    TailscaleSubnetRouter,
+    TailscaleSubnetRouterCreateResponse,
+    TailscaleSubnetRouterRetrieveResponse,
+    TailscaleSubnetRouterUpdateResponse,
+    TailscaleSubnetRouterDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /tailscale_subnet_routers">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">create</a>(\*\*<a href="src/telnyx/types/tailscale_subnet_router_create_params.py">params</a>) -> <a href="./src/telnyx/types/tailscale_subnet_router_create_response.py">TailscaleSubnetRouterCreateResponse</a></code>
+- <code title="get /tailscale_subnet_routers/{id}">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">retrieve</a>(id) -> <a href="./src/telnyx/types/tailscale_subnet_router_retrieve_response.py">TailscaleSubnetRouterRetrieveResponse</a></code>
+- <code title="patch /tailscale_subnet_routers/{id}">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">update</a>(id, \*\*<a href="src/telnyx/types/tailscale_subnet_router_update_params.py">params</a>) -> <a href="./src/telnyx/types/tailscale_subnet_router_update_response.py">TailscaleSubnetRouterUpdateResponse</a></code>
+- <code title="get /tailscale_subnet_routers">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">list</a>(\*\*<a href="src/telnyx/types/tailscale_subnet_router_list_params.py">params</a>) -> <a href="./src/telnyx/types/tailscale_subnet_router.py">SyncDefaultFlatPagination[TailscaleSubnetRouter]</a></code>
+- <code title="delete /tailscale_subnet_routers/{id}">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">delete</a>(id) -> <a href="./src/telnyx/types/tailscale_subnet_router_delete_response.py">TailscaleSubnetRouterDeleteResponse</a></code>

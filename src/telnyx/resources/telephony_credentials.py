@@ -10,7 +10,7 @@ from ..types import (
     telephony_credential_update_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -273,6 +273,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,6 +296,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return self._post(
             path_template("/telephony_credentials/{id}/token", id=id),
             options=make_request_options(
@@ -547,6 +549,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        idempotency_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -569,6 +572,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"Idempotency-Key": idempotency_key}), **(extra_headers or {})}
         return await self._post(
             path_template("/telephony_credentials/{id}/token", id=id),
             options=make_request_options(

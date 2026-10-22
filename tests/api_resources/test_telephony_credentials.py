@@ -255,7 +255,16 @@ class TestTelephonyCredentials:
     @parametrize
     def test_method_create_token(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.create_token(
-            "id",
+            id="id",
+        )
+        assert_matches_type(str, telephony_credential, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create_token_with_all_params(self, client: Telnyx) -> None:
+        telephony_credential = client.telephony_credentials.create_token(
+            id="id",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(str, telephony_credential, path=["response"])
 
@@ -263,7 +272,7 @@ class TestTelephonyCredentials:
     @parametrize
     def test_raw_response_create_token(self, client: Telnyx) -> None:
         response = client.telephony_credentials.with_raw_response.create_token(
-            "id",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -275,7 +284,7 @@ class TestTelephonyCredentials:
     @parametrize
     def test_streaming_response_create_token(self, client: Telnyx) -> None:
         with client.telephony_credentials.with_streaming_response.create_token(
-            "id",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -290,7 +299,7 @@ class TestTelephonyCredentials:
     def test_path_params_create_token(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.telephony_credentials.with_raw_response.create_token(
-                "",
+                id="",
             )
 
 
@@ -532,7 +541,16 @@ class TestAsyncTelephonyCredentials:
     @parametrize
     async def test_method_create_token(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.create_token(
-            "id",
+            id="id",
+        )
+        assert_matches_type(str, telephony_credential, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create_token_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        telephony_credential = await async_client.telephony_credentials.create_token(
+            id="id",
+            idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9326",
         )
         assert_matches_type(str, telephony_credential, path=["response"])
 
@@ -540,7 +558,7 @@ class TestAsyncTelephonyCredentials:
     @parametrize
     async def test_raw_response_create_token(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.telephony_credentials.with_raw_response.create_token(
-            "id",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -552,7 +570,7 @@ class TestAsyncTelephonyCredentials:
     @parametrize
     async def test_streaming_response_create_token(self, async_client: AsyncTelnyx) -> None:
         async with async_client.telephony_credentials.with_streaming_response.create_token(
-            "id",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -567,5 +585,5 @@ class TestAsyncTelephonyCredentials:
     async def test_path_params_create_token(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.telephony_credentials.with_raw_response.create_token(
-                "",
+                id="",
             )

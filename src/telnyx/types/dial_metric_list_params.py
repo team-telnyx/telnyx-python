@@ -28,8 +28,9 @@ class DialMetricListParams(TypedDict, total=False):
     start_time: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
     """Inclusive start of the range, ISO 8601 (for example `2026-09-29T12:00:00.000Z`).
 
-    Buckets that start at or after this time are returned. Must not be older than
-    the retention window of the chosen `granularity`.
+    Buckets that start at or after this time are returned. A `start_time` older than
+    the retention window of the chosen `granularity` is moved forward to the start
+    of that window, and `meta.start_time` returns the start actually used.
     """
 
     page_after: Annotated[str, PropertyInfo(alias="page[after]")]
