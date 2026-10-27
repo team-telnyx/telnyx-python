@@ -16,6 +16,14 @@ from .audio import (
     AudioResourceWithStreamingResponse,
     AsyncAudioResourceWithStreamingResponse,
 )
+from .tests import (
+    TestsResource,
+    AsyncTestsResource,
+    TestsResourceWithRawResponse,
+    AsyncTestsResourceWithRawResponse,
+    TestsResourceWithStreamingResponse,
+    AsyncTestsResourceWithStreamingResponse,
+)
 from .tools import (
     ToolsResource,
     AsyncToolsResource,
@@ -248,6 +256,12 @@ __all__ = [
     "AsyncAvatarsResourceWithRawResponse",
     "AvatarsResourceWithStreamingResponse",
     "AsyncAvatarsResourceWithStreamingResponse",
+    "TestsResource",
+    "AsyncTestsResource",
+    "TestsResourceWithRawResponse",
+    "AsyncTestsResourceWithRawResponse",
+    "TestsResourceWithStreamingResponse",
+    "AsyncTestsResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

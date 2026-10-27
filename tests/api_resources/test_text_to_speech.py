@@ -68,7 +68,6 @@ class TestTextToSpeech:
             output_type="binary_output",
             provider="aws",
             resemble={
-                "api_key": "string",
                 "format": "string",
                 "precision": "string",
                 "sample_rate": "string",
@@ -257,7 +256,6 @@ class TestAsyncTextToSpeech:
             output_type="binary_output",
             provider="aws",
             resemble={
-                "api_key": "string",
                 "format": "string",
                 "precision": "string",
                 "sample_rate": "string",

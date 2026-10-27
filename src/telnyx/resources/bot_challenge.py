@@ -87,7 +87,7 @@ class BotChallengeResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/bot_challenge",
+            "/bot_challenge",
             body=maybe_transform(
                 {
                     "llm_model_name": llm_model_name,
@@ -169,7 +169,7 @@ class AsyncBotChallengeResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/bot_challenge",
+            "/bot_challenge",
             body=await async_maybe_transform(
                 {
                     "llm_model_name": llm_model_name,

@@ -162,6 +162,7 @@ class TestVoiceClones:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.list(
+            filter_model_id="Qwen3TTS",
             filter_name="filter[name]",
             filter_provider="telnyx",
             page_number=1,
@@ -498,6 +499,7 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.list(
+            filter_model_id="Qwen3TTS",
             filter_name="filter[name]",
             filter_provider="telnyx",
             page_number=1,

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -34,6 +35,7 @@ class SpendLimitsResource(SyncAPIResource):
     - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
     - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
     - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+    - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
     - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
     """
 
@@ -62,6 +64,7 @@ class SpendLimitsResource(SyncAPIResource):
         *,
         amount: float,
         product: str,
+        credential_id: Optional[str] | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Omit = omit,
@@ -78,12 +81,19 @@ class SpendLimitsResource(SyncAPIResource):
         `amount` and `unlimited: true`. The period's spend is checked at once: if it is
         already above the new limit, the product is blocked immediately
         (`evaluation.blocked_now`). Returns 409 when a limit already exists for the
-        product and period; update it instead.
+        product and period; update it instead. With `credential_id`, the limit applies
+        to that API key only: it needs an `amount`, and the period's API key limits
+        cannot add up to more than the total limit when the total has an amount.
 
         Args:
           amount: Limit in USD. `0` blocks at the first cent of spend.
 
           product: Product to limit, as returned in `product` by the list operation.
+
+          credential_id: Optional. Identifier of one API key as recorded on usage, never the key's
+              secret: the limit then applies to that key only. Absent or `null` sets the total
+              limit. A blank value, or one with control characters, is refused; it never means
+              the total limit. An API key limit always has an `amount`.
 
           period: `daily` is the current UTC day; `monthly` is the current UTC calendar month.
 
@@ -122,7 +132,9 @@ class SpendLimitsResource(SyncAPIResource):
         `amount` and `unlimited: true`. The period's spend is checked at once: if it is
         already above the new limit, the product is blocked immediately
         (`evaluation.blocked_now`). Returns 409 when a limit already exists for the
-        product and period; update it instead.
+        product and period; update it instead. With `credential_id`, the limit applies
+        to that API key only: it needs an `amount`, and the period's API key limits
+        cannot add up to more than the total limit when the total has an amount.
 
         Args:
           product: Product to limit, as returned in `product` by the list operation.
@@ -149,6 +161,7 @@ class SpendLimitsResource(SyncAPIResource):
         *,
         amount: float | Omit = omit,
         product: str,
+        credential_id: Optional[str] | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Literal[True] | Omit = omit,
@@ -165,6 +178,7 @@ class SpendLimitsResource(SyncAPIResource):
                 {
                     "amount": amount,
                     "product": product,
+                    "credential_id": credential_id,
                     "period": period,
                     "reason": reason,
                     "unlimited": unlimited,
@@ -183,6 +197,7 @@ class SpendLimitsResource(SyncAPIResource):
         product: str,
         *,
         amount: float,
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Omit = omit,
@@ -200,9 +215,16 @@ class SpendLimitsResource(SyncAPIResource):
         once: raising the limit above the spend lifts the period's block
         (`evaluation.released`), and lowering it below the spend blocks the product
         (`evaluation.blocked_now`). Returns 404 when no limit is set; create it instead.
+        With the `credential_id` query parameter, the request changes that API key's
+        limit; it needs an `amount`, and it can be at most the period's total limit.
+        Lowering the total limit below the period's highest API key limit is refused.
 
         Args:
           amount: Limit in USD. `0` blocks at the first cent of spend.
+
+          credential_id: Identifier of one API key as recorded on usage, never the key's secret,
+              percent-encoded: the request is then about that key's limit. Absent means the
+              total limit; present but blank is refused.
 
           period: Limit period. Defaults to `daily`; send it explicitly.
 
@@ -226,6 +248,7 @@ class SpendLimitsResource(SyncAPIResource):
         product: str,
         *,
         unlimited: Literal[True],
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -242,9 +265,16 @@ class SpendLimitsResource(SyncAPIResource):
         once: raising the limit above the spend lifts the period's block
         (`evaluation.released`), and lowering it below the spend blocks the product
         (`evaluation.blocked_now`). Returns 404 when no limit is set; create it instead.
+        With the `credential_id` query parameter, the request changes that API key's
+        limit; it needs an `amount`, and it can be at most the period's total limit.
+        Lowering the total limit below the period's highest API key limit is refused.
 
         Args:
           unlimited: `true`: explicitly no cap.
+
+          credential_id: Identifier of one API key as recorded on usage, never the key's secret,
+              percent-encoded: the request is then about that key's limit. Absent means the
+              total limit; present but blank is refused.
 
           period: Limit period. Defaults to `daily`; send it explicitly.
 
@@ -266,6 +296,7 @@ class SpendLimitsResource(SyncAPIResource):
         product: str,
         *,
         amount: float | Omit = omit,
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Literal[True] | Omit = omit,
@@ -293,7 +324,13 @@ class SpendLimitsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"period": period}, spend_limit_update_params.SpendLimitUpdateParams),
+                query=maybe_transform(
+                    {
+                        "credential_id": credential_id,
+                        "period": period,
+                    },
+                    spend_limit_update_params.SpendLimitUpdateParams,
+                ),
             ),
             cast_to=SpendLimitResponse,
         )
@@ -313,7 +350,9 @@ class SpendLimitsResource(SyncAPIResource):
         the spend so far in the period and whether the product is blocked. An entry
         without a limit is still listed (`limit: null`). When the spend cannot be read,
         the entry is returned with `spend_usd: null` and `spend_error` set. The list is
-        not paginated.
+        not paginated. Each entry also lists the API key limits of its product and
+        period in `credential_limits`, with each key's spend and block. Each API key
+        limit can be at most the total limit; together they may add up to more than it.
         """
         return self._get(
             "/spend_limits",
@@ -327,6 +366,7 @@ class SpendLimitsResource(SyncAPIResource):
         self,
         product: str,
         *,
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -342,9 +382,17 @@ class SpendLimitsResource(SyncAPIResource):
         default limit, the product becomes unlimited for the period and the period's
         block is lifted (`evaluation.released`). The response carries `limit: null` and
         the `effective_limit_usd` that applies after the removal. Returns 404 when no
-        limit is set.
+        limit is set. With the `credential_id` query parameter, the request removes that
+        API key's limit for the period and lifts the key's block in that period at once.
+        A block under the key's limit in the other period stays
+        (`evaluation.still_blocked_other_period`). Removing the total limit leaves the
+        API key limits in place.
 
         Args:
+          credential_id: Identifier of one API key as recorded on usage, never the key's secret,
+              percent-encoded: the request is then about that key's limit. Absent means the
+              total limit; present but blank is refused.
+
           period: Limit period. Defaults to `daily`; send it explicitly.
 
           reason: Why the limit is removed, kept for audit. At most 500 characters.
@@ -368,6 +416,7 @@ class SpendLimitsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "credential_id": credential_id,
                         "period": period,
                         "reason": reason,
                     },
@@ -387,6 +436,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
     - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
     - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
     - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+    - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
     - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
     """
 
@@ -415,6 +465,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         *,
         amount: float,
         product: str,
+        credential_id: Optional[str] | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Omit = omit,
@@ -431,12 +482,19 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         `amount` and `unlimited: true`. The period's spend is checked at once: if it is
         already above the new limit, the product is blocked immediately
         (`evaluation.blocked_now`). Returns 409 when a limit already exists for the
-        product and period; update it instead.
+        product and period; update it instead. With `credential_id`, the limit applies
+        to that API key only: it needs an `amount`, and the period's API key limits
+        cannot add up to more than the total limit when the total has an amount.
 
         Args:
           amount: Limit in USD. `0` blocks at the first cent of spend.
 
           product: Product to limit, as returned in `product` by the list operation.
+
+          credential_id: Optional. Identifier of one API key as recorded on usage, never the key's
+              secret: the limit then applies to that key only. Absent or `null` sets the total
+              limit. A blank value, or one with control characters, is refused; it never means
+              the total limit. An API key limit always has an `amount`.
 
           period: `daily` is the current UTC day; `monthly` is the current UTC calendar month.
 
@@ -475,7 +533,9 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         `amount` and `unlimited: true`. The period's spend is checked at once: if it is
         already above the new limit, the product is blocked immediately
         (`evaluation.blocked_now`). Returns 409 when a limit already exists for the
-        product and period; update it instead.
+        product and period; update it instead. With `credential_id`, the limit applies
+        to that API key only: it needs an `amount`, and the period's API key limits
+        cannot add up to more than the total limit when the total has an amount.
 
         Args:
           product: Product to limit, as returned in `product` by the list operation.
@@ -502,6 +562,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         *,
         amount: float | Omit = omit,
         product: str,
+        credential_id: Optional[str] | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Literal[True] | Omit = omit,
@@ -518,6 +579,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
                 {
                     "amount": amount,
                     "product": product,
+                    "credential_id": credential_id,
                     "period": period,
                     "reason": reason,
                     "unlimited": unlimited,
@@ -536,6 +598,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         product: str,
         *,
         amount: float,
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Omit = omit,
@@ -553,9 +616,16 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         once: raising the limit above the spend lifts the period's block
         (`evaluation.released`), and lowering it below the spend blocks the product
         (`evaluation.blocked_now`). Returns 404 when no limit is set; create it instead.
+        With the `credential_id` query parameter, the request changes that API key's
+        limit; it needs an `amount`, and it can be at most the period's total limit.
+        Lowering the total limit below the period's highest API key limit is refused.
 
         Args:
           amount: Limit in USD. `0` blocks at the first cent of spend.
+
+          credential_id: Identifier of one API key as recorded on usage, never the key's secret,
+              percent-encoded: the request is then about that key's limit. Absent means the
+              total limit; present but blank is refused.
 
           period: Limit period. Defaults to `daily`; send it explicitly.
 
@@ -579,6 +649,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         product: str,
         *,
         unlimited: Literal[True],
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -595,9 +666,16 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         once: raising the limit above the spend lifts the period's block
         (`evaluation.released`), and lowering it below the spend blocks the product
         (`evaluation.blocked_now`). Returns 404 when no limit is set; create it instead.
+        With the `credential_id` query parameter, the request changes that API key's
+        limit; it needs an `amount`, and it can be at most the period's total limit.
+        Lowering the total limit below the period's highest API key limit is refused.
 
         Args:
           unlimited: `true`: explicitly no cap.
+
+          credential_id: Identifier of one API key as recorded on usage, never the key's secret,
+              percent-encoded: the request is then about that key's limit. Absent means the
+              total limit; present but blank is refused.
 
           period: Limit period. Defaults to `daily`; send it explicitly.
 
@@ -619,6 +697,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         product: str,
         *,
         amount: float | Omit = omit,
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         unlimited: Literal[False] | Literal[True] | Omit = omit,
@@ -646,7 +725,13 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"period": period}, spend_limit_update_params.SpendLimitUpdateParams),
+                query=await async_maybe_transform(
+                    {
+                        "credential_id": credential_id,
+                        "period": period,
+                    },
+                    spend_limit_update_params.SpendLimitUpdateParams,
+                ),
             ),
             cast_to=SpendLimitResponse,
         )
@@ -666,7 +751,9 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         the spend so far in the period and whether the product is blocked. An entry
         without a limit is still listed (`limit: null`). When the spend cannot be read,
         the entry is returned with `spend_usd: null` and `spend_error` set. The list is
-        not paginated.
+        not paginated. Each entry also lists the API key limits of its product and
+        period in `credential_limits`, with each key's spend and block. Each API key
+        limit can be at most the total limit; together they may add up to more than it.
         """
         return await self._get(
             "/spend_limits",
@@ -680,6 +767,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         self,
         product: str,
         *,
+        credential_id: str | Omit = omit,
         period: SpendLimitPeriod | Omit = omit,
         reason: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -695,9 +783,17 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
         default limit, the product becomes unlimited for the period and the period's
         block is lifted (`evaluation.released`). The response carries `limit: null` and
         the `effective_limit_usd` that applies after the removal. Returns 404 when no
-        limit is set.
+        limit is set. With the `credential_id` query parameter, the request removes that
+        API key's limit for the period and lifts the key's block in that period at once.
+        A block under the key's limit in the other period stays
+        (`evaluation.still_blocked_other_period`). Removing the total limit leaves the
+        API key limits in place.
 
         Args:
+          credential_id: Identifier of one API key as recorded on usage, never the key's secret,
+              percent-encoded: the request is then about that key's limit. Absent means the
+              total limit; present but blank is refused.
+
           period: Limit period. Defaults to `daily`; send it explicitly.
 
           reason: Why the limit is removed, kept for audit. At most 500 characters.
@@ -721,6 +817,7 @@ class AsyncSpendLimitsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "credential_id": credential_id,
                         "period": period,
                         "reason": reason,
                     },

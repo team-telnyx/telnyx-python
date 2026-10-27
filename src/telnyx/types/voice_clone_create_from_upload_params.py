@@ -14,6 +14,7 @@ __all__ = [
     "VoiceCloneUploadRequestTelnyxUltraClone",
     "VoiceCloneUploadRequestTelnyxBayanClone",
     "VoiceCloneUploadRequestMinimaxClone",
+    "VoiceCloneUploadRequestResembleClone",
 ]
 
 
@@ -166,9 +167,78 @@ class VoiceCloneUploadRequestMinimaxClone(TypedDict, total=False):
     """Optional transcript of the audio file. Providing this improves clone quality."""
 
 
+class VoiceCloneUploadRequestResembleClone(TypedDict, total=False):
+    """Upload-based voice clone using the Resemble provider.
+
+    The clone is `active` on creation. Use it as voice `Resemble.<model_id>.<clone_id>`.
+    """
+
+    audio_file: Required[FileTypes]
+    """Audio file to clone the voice from.
+
+    Supported formats: WAV, MP3, FLAC, OGG, M4A. Converted to WAV and trimmed to the
+    first 10 seconds. For best quality, provide about 10 seconds of clean,
+    single-speaker speech. Maximum size: 20MB.
+    """
+
+    gender: Required[Literal["male", "female", "neutral"]]
+    """Gender of the voice clone."""
+
+    model_id: Required[Literal["Pro", "Turbo", "Urdu"]]
+    """Resemble model: `Pro`, `Turbo` (English only), or `Urdu`.
+
+    A clone works only with this model.
+    """
+
+    name: Required[str]
+    """Name for the voice clone."""
+
+    provider: Required[Literal["resemble", "Resemble"]]
+    """Voice synthesis provider. Must be `resemble`."""
+
+    label: str
+    """Optional custom label describing the voice style."""
+
+    language: Literal[
+        "ar",
+        "da",
+        "de",
+        "el",
+        "en",
+        "en-US",
+        "es",
+        "fi",
+        "fr-fr",
+        "he",
+        "hi",
+        "it",
+        "ja",
+        "ko",
+        "ms",
+        "nl",
+        "no",
+        "pl",
+        "pt",
+        "ru",
+        "sv",
+        "sw",
+        "tr",
+        "ur",
+        "zh",
+    ]
+    """Language of the reference audio, matched case-insensitively.
+
+    Pro: required, one of `ar`, `da`, `de`, `el`, `en-US`, `es`, `fi`, `fr-fr`,
+    `he`, `hi`, `it`, `ja`, `ko`, `ms`, `nl`, `no`, `pl`, `pt`, `ru`, `sv`, `sw`,
+    `tr`, `zh`. Turbo: `en` or `en-US` (default `en-US`). Urdu: `ur` (default).
+    Other values return `422`.
+    """
+
+
 VoiceCloneUploadRequest: TypeAlias = Union[
     VoiceCloneUploadRequestTelnyxQwen3TtsClone,
     VoiceCloneUploadRequestTelnyxUltraClone,
     VoiceCloneUploadRequestTelnyxBayanClone,
     VoiceCloneUploadRequestMinimaxClone,
+    VoiceCloneUploadRequestResembleClone,
 ]

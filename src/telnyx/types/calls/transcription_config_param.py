@@ -23,23 +23,25 @@ class TranscriptionConfigParam(TypedDict, total=False):
     language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
     and `nl`. For `soniox/stt-rt-v4`, `auto` omits the language hint and lets Soniox
     auto-detect; ISO 639-1 codes (e.g. `en`, `es`) bias detection toward that
-    language. For `assemblyai/universal-3-5-pro` (and its legacy alias
-    `assemblyai/universal-streaming`), `auto` (or unset) enables native multilingual
-    code-switching; ISO 639-1 codes (`en`, `es`, `de`, `fr`, `pt`, `it`, `tr`, `nl`,
-    `sv`, `no`, `da`, `fi`, `hi`, `vi`, `ar`, `he`, `ja`, `zh`) bias the session to
-    that language. For `humain/realtime`, supported values are `ar`, `en`,
-    `codeswitch` (Arabic/English code-switching), and `auto` (resolves server-side
-    to code-switching). Unlike other models, `humain/realtime` does not fall back to
-    `auto` when `language` is omitted — omitting it applies `en` instead. For
-    `reson8/turns`, supported values are `auto` (or unset) for automatic language
-    detection, and the language codes `nl`, `en`, `fr`, `fy`, `de`, `it`, `pl`,
-    `pt`, `es`, and `sv` to fix the transcription language. For `cohere/ar-stt`,
-    supported values are `ar` and `en`; unlike other models, this model does not
-    auto-detect and defaults to `ar` when `language` is omitted. For
-    `speechmatics/linden-1`, there is no auto-detect; set a code from Speechmatics'
-    Realtime language list (see `SpeechmaticsTranscriptionLanguage`); unset defaults
-    to `en`, while an explicit `auto`, `auto_beta`, or `multi` is rejected (unlike
-    `speechmatics/standard`, which defaults to `en`).
+    language. For `assemblyai/universal-3-6-pro` (and its legacy aliases
+    `assemblyai/universal-3-5-pro` and `assemblyai/universal-streaming`), `auto` (or
+    unset) enables native multilingual code-switching; language codes (`en`, `es`,
+    `de`, `fr`, `pt`, `it`, `tr`, `nl`, `sv`, `no`, `da`, `fi`, `hi`, `vi`, `ar`,
+    `he`, `ja`, `zh`, `ur`, `ru`, `ko`, `ca`, `gl`, `ro`, `et`, `fa`, `yue`, `af`,
+    `mr`, `zu`, `xh`, `nn`) bias the session to that language. For
+    `humain/realtime`, supported values are `ar`, `en`, `codeswitch` (Arabic/English
+    code-switching), and `auto` (resolves server-side to code-switching). Unlike
+    other models, `humain/realtime` does not fall back to `auto` when `language` is
+    omitted — omitting it applies `en` instead. For `reson8/turns`, supported values
+    are `auto` (or unset) for automatic language detection, and the language codes
+    `nl`, `en`, `fr`, `fy`, `de`, `it`, `pl`, `pt`, `es`, and `sv` to fix the
+    transcription language. For `cohere/ar-stt`, supported values are `ar` and `en`;
+    unlike other models, this model does not auto-detect and defaults to `ar` when
+    `language` is omitted. For `speechmatics/linden-1`, there is no auto-detect; set
+    a code from Speechmatics' Realtime language list (see
+    `SpeechmaticsTranscriptionLanguage`); unset defaults to `en`, while an explicit
+    `auto`, `auto_beta`, or `multi` is rejected (unlike `speechmatics/standard`,
+    which defaults to `en`).
     """
 
     model: Literal[
@@ -50,6 +52,7 @@ class TranscriptionConfigParam(TypedDict, total=False):
         "speechmatics/standard",
         "speechmatics/enhanced",
         "speechmatics/linden-1",
+        "assemblyai/universal-3-6-pro",
         "assemblyai/universal-3-5-pro",
         "assemblyai/universal-streaming",
         "xai/grok-stt",
@@ -76,9 +79,10 @@ class TranscriptionConfigParam(TypedDict, total=False):
     - `speechmatics/linden-1` (preview, vendor-hosted) for live streaming
       transcription; no auto-detect, so set `language` from Speechmatics' Realtime
       language list (defaults to `en`).
-    - `assemblyai/universal-3-5-pro` for live streaming transcription. The legacy
-      alias `assemblyai/universal-streaming` is still accepted and resolves to the
-      same model.
+    - `assemblyai/universal-3-6-pro` (AssemblyAI Universal-3.6 Pro) for live
+      streaming transcription. The legacy aliases `assemblyai/universal-3-5-pro` and
+      `assemblyai/universal-streaming` are still accepted and run the same
+      Universal-3.6 Pro model.
     - `xai/grok-stt` for live streaming transcription.
     - `soniox/stt-rt-v4` for live streaming multilingual transcription with
       automatic language detection.

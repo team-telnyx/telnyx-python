@@ -46,6 +46,55 @@ from telnyx.types import (
 )
 ```
 
+# BrowserSessions
+
+Types:
+
+```python
+from telnyx.types import (
+    Session,
+    BrowserSessionCreateResponse,
+    BrowserSessionRetrieveResponse,
+    BrowserSessionListResponse,
+    BrowserSessionDeleteResponse,
+    BrowserSessionRetrieveArtifactResponse,
+)
+```
+
+Methods:
+
+- <code title="post /browser_sessions">client.browser_sessions.<a href="./src/telnyx/resources/browser_sessions/browser_sessions.py">create</a>(\*\*<a href="src/telnyx/types/browser_session_create_params.py">params</a>) -> <a href="./src/telnyx/types/browser_session_create_response.py">BrowserSessionCreateResponse</a></code>
+- <code title="get /browser_sessions/{id}">client.browser_sessions.<a href="./src/telnyx/resources/browser_sessions/browser_sessions.py">retrieve</a>(id) -> <a href="./src/telnyx/types/browser_session_retrieve_response.py">BrowserSessionRetrieveResponse</a></code>
+- <code title="get /browser_sessions">client.browser_sessions.<a href="./src/telnyx/resources/browser_sessions/browser_sessions.py">list</a>(\*\*<a href="src/telnyx/types/browser_session_list_params.py">params</a>) -> <a href="./src/telnyx/types/browser_session_list_response.py">BrowserSessionListResponse</a></code>
+- <code title="delete /browser_sessions/{id}">client.browser_sessions.<a href="./src/telnyx/resources/browser_sessions/browser_sessions.py">delete</a>(id) -> <a href="./src/telnyx/types/browser_session_delete_response.py">BrowserSessionDeleteResponse</a></code>
+- <code title="get /browser_sessions/{id}/artifacts/{artifactId}">client.browser_sessions.<a href="./src/telnyx/resources/browser_sessions/browser_sessions.py">retrieve_artifact</a>(artifact_id, \*, id) -> <a href="./src/telnyx/types/browser_session_retrieve_artifact_response.py">BrowserSessionRetrieveArtifactResponse</a></code>
+
+## Actions
+
+Types:
+
+```python
+from telnyx.types.browser_sessions import (
+    ActionResponse,
+    ClickAction,
+    FillAction,
+    NavigateAction,
+    ObserveAction,
+    PressAction,
+    ScreenshotAction,
+    ScrollAction,
+    SelectAction,
+    WaitForAction,
+    ActionCreateResponse,
+    ActionRetrieveResponse,
+)
+```
+
+Methods:
+
+- <code title="post /browser_sessions/{id}/actions">client.browser_sessions.actions.<a href="./src/telnyx/resources/browser_sessions/actions.py">create</a>(id, \*\*<a href="src/telnyx/types/browser_sessions/action_create_params.py">params</a>) -> <a href="./src/telnyx/types/browser_sessions/action_create_response.py">ActionCreateResponse</a></code>
+- <code title="get /browser_sessions/{id}/actions/{actionId}">client.browser_sessions.actions.<a href="./src/telnyx/resources/browser_sessions/actions.py">retrieve</a>(action_id, \*, id) -> <a href="./src/telnyx/types/browser_sessions/action_retrieve_response.py">ActionRetrieveResponse</a></code>
+
 # Legacy
 
 ## Reporting
@@ -1498,6 +1547,128 @@ Methods:
 - <code title="get /ai/avatars/{avatar_id}">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">retrieve</a>(avatar_id) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
 - <code title="patch /ai/avatars/{avatar_id}">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">update</a>(avatar_id, \*\*<a href="src/telnyx/types/ai/avatar_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar_response.py">AvatarResponse</a></code>
 - <code title="get /ai/avatars">client.ai.avatars.<a href="./src/telnyx/resources/ai/avatars.py">list</a>(\*\*<a href="src/telnyx/types/ai/avatar_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/avatar.py">SyncDefaultFlatPagination[Avatar]</a></code>
+
+## Tests
+
+### Schedules
+
+#### V1
+
+##### CronJobs
+
+Types:
+
+```python
+from telnyx.types.ai.tests.schedules.v1 import ScheduledTestJob, CronJobRetrieveCronJobsResponse
+```
+
+Methods:
+
+- <code title="get /ai/tests/schedules/v1/cron-jobs/{id}">client.ai.tests.schedules.v1.cron_jobs.<a href="./src/telnyx/resources/ai/tests/schedules/v1/cron_jobs.py">retrieve</a>(id) -> <a href="./src/telnyx/types/ai/tests/schedules/v1/scheduled_test_job.py">ScheduledTestJob</a></code>
+- <code title="patch /ai/tests/schedules/v1/cron-jobs/{id}">client.ai.tests.schedules.v1.cron_jobs.<a href="./src/telnyx/resources/ai/tests/schedules/v1/cron_jobs.py">update</a>(id, \*\*<a href="src/telnyx/types/ai/tests/schedules/v1/cron_job_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/schedules/v1/scheduled_test_job.py">ScheduledTestJob</a></code>
+- <code title="delete /ai/tests/schedules/v1/cron-jobs/{id}">client.ai.tests.schedules.v1.cron_jobs.<a href="./src/telnyx/resources/ai/tests/schedules/v1/cron_jobs.py">delete</a>(id) -> object</code>
+- <code title="post /ai/tests/schedules/v1/cron-jobs">client.ai.tests.schedules.v1.cron_jobs.<a href="./src/telnyx/resources/ai/tests/schedules/v1/cron_jobs.py">cron_jobs</a>(\*\*<a href="src/telnyx/types/ai/tests/schedules/v1/cron_job_cron_jobs_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/schedules/v1/scheduled_test_job.py">ScheduledTestJob</a></code>
+- <code title="get /ai/tests/schedules/v1/cron-jobs">client.ai.tests.schedules.v1.cron_jobs.<a href="./src/telnyx/resources/ai/tests/schedules/v1/cron_jobs.py">retrieve_cron_jobs</a>(\*\*<a href="src/telnyx/types/ai/tests/schedules/v1/cron_job_retrieve_cron_jobs_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/schedules/v1/cron_job_retrieve_cron_jobs_response.py">CronJobRetrieveCronJobsResponse</a></code>
+
+### TestFramework
+
+#### V1
+
+Types:
+
+```python
+from telnyx.types.ai.tests.test_framework import V1RetrievePersonalitiesResponse
+```
+
+Methods:
+
+- <code title="get /ai/tests/test_framework/v1/personalities">client.ai.tests.test_framework.v1.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/v1.py">retrieve_personalities</a>() -> <a href="./src/telnyx/types/ai/tests/test_framework/v1_retrieve_personalities_response.py">V1RetrievePersonalitiesResponse</a></code>
+
+##### Aiagents
+
+Types:
+
+```python
+from telnyx.types.ai.tests.test_framework.v1 import TestAgent, AiagentListResponse
+```
+
+Methods:
+
+- <code title="post /ai/tests/test_framework/v1/aiagents">client.ai.tests.test_framework.v1.aiagents.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/aiagents.py">create</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/aiagent_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/test_agent.py">TestAgent</a></code>
+- <code title="get /ai/tests/test_framework/v1/aiagents/{id}">client.ai.tests.test_framework.v1.aiagents.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/aiagents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/test_agent.py">TestAgent</a></code>
+- <code title="put /ai/tests/test_framework/v1/aiagents/{id}">client.ai.tests.test_framework.v1.aiagents.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/aiagents.py">update</a>(id, \*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/aiagent_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/test_agent.py">TestAgent</a></code>
+- <code title="get /ai/tests/test_framework/v1/aiagents">client.ai.tests.test_framework.v1.aiagents.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/aiagents.py">list</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/aiagent_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/aiagent_list_response.py">AiagentListResponse</a></code>
+- <code title="delete /ai/tests/test_framework/v1/aiagents/{id}">client.ai.tests.test_framework.v1.aiagents.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/aiagents.py">delete</a>(id) -> object</code>
+
+##### Metrics
+
+Types:
+
+```python
+from telnyx.types.ai.tests.test_framework.v1 import (
+    AITestMetric,
+    CreateAITestMetricRequest,
+    ScenarioGenerationResponse,
+    MetricListResponse,
+    MetricBulkCreateResponse,
+    MetricRetrieveGenerateMetricsProgressResponse,
+)
+```
+
+Methods:
+
+- <code title="post /ai/tests/test_framework/v1/metrics">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">create</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/metric_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/ai_test_metric.py">AITestMetric</a></code>
+- <code title="get /ai/tests/test_framework/v1/metrics/{id}">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">retrieve</a>(id) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/ai_test_metric.py">AITestMetric</a></code>
+- <code title="patch /ai/tests/test_framework/v1/metrics/{id}">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">update</a>(id, \*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/metric_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/ai_test_metric.py">AITestMetric</a></code>
+- <code title="get /ai/tests/test_framework/v1/metrics">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">list</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/metric_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/metric_list_response.py">MetricListResponse</a></code>
+- <code title="delete /ai/tests/test_framework/v1/metrics/{id}">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">delete</a>(id) -> object</code>
+- <code title="post /ai/tests/test_framework/v1/metrics/bulk_create">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">bulk_create</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/metric_bulk_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/metric_bulk_create_response.py">MetricBulkCreateResponse</a></code>
+- <code title="post /ai/tests/test_framework/v1/metrics/generate_metrics">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">generate_metrics</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/metric_generate_metrics_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/scenario_generation_response.py">ScenarioGenerationResponse</a></code>
+- <code title="get /ai/tests/test_framework/v1/metrics/generate_metrics_progress">client.ai.tests.test_framework.v1.metrics.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/metrics.py">retrieve_generate_metrics_progress</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/metric_retrieve_generate_metrics_progress_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/metric_retrieve_generate_metrics_progress_response.py">MetricRetrieveGenerateMetricsProgressResponse</a></code>
+
+##### Results
+
+Types:
+
+```python
+from telnyx.types.ai.tests.test_framework.v1 import TestRunResult, ResultListResponse
+```
+
+Methods:
+
+- <code title="get /ai/tests/test_framework/v1/results/{id}">client.ai.tests.test_framework.v1.results.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/results.py">retrieve</a>(id) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/test_run_result.py">TestRunResult</a></code>
+- <code title="get /ai/tests/test_framework/v1/results">client.ai.tests.test_framework.v1.results.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/results.py">list</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/result_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/result_list_response.py">ResultListResponse</a></code>
+- <code title="delete /ai/tests/test_framework/v1/results/{id}">client.ai.tests.test_framework.v1.results.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/results.py">delete</a>(id) -> object</code>
+- <code title="post /ai/tests/test_framework/v1/results/{id}/rerun">client.ai.tests.test_framework.v1.results.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/results.py">rerun</a>(id) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/test_run_result.py">TestRunResult</a></code>
+
+##### Scenarios
+
+Types:
+
+```python
+from telnyx.types.ai.tests.test_framework.v1 import (
+    EvaluatorScenarioDetail,
+    ScenarioListResponse,
+    ScenarioRetrieveGenerateProgressResponse,
+    ScenarioRetrieveScenarioAgentProgressResponse,
+    ScenarioRunScenariosResponse,
+    ScenarioScenarioAgentResponse,
+)
+```
+
+Methods:
+
+- <code title="post /ai/tests/test_framework/v1/scenarios">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">create</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/evaluator_scenario_detail.py">EvaluatorScenarioDetail</a></code>
+- <code title="get /ai/tests/test_framework/v1/scenarios/{id}">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">retrieve</a>(id) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/evaluator_scenario_detail.py">EvaluatorScenarioDetail</a></code>
+- <code title="patch /ai/tests/test_framework/v1/scenarios/{id}">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">update</a>(id, \*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/evaluator_scenario_detail.py">EvaluatorScenarioDetail</a></code>
+- <code title="get /ai/tests/test_framework/v1/scenarios">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">list</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/scenario_list_response.py">ScenarioListResponse</a></code>
+- <code title="delete /ai/tests/test_framework/v1/scenarios/{id}">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">delete</a>(id) -> object</code>
+- <code title="post /ai/tests/test_framework/v1/scenarios/generate-bg">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">generate_bg</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_generate_bg_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/scenario_generation_response.py">ScenarioGenerationResponse</a></code>
+- <code title="get /ai/tests/test_framework/v1/scenarios/export_scenarios">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">retrieve_export_scenarios</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_retrieve_export_scenarios_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="get /ai/tests/test_framework/v1/scenarios/generate-progress">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">retrieve_generate_progress</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_retrieve_generate_progress_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/scenario_retrieve_generate_progress_response.py">ScenarioRetrieveGenerateProgressResponse</a></code>
+- <code title="get /ai/tests/test_framework/v1/scenarios/scenario-agent-progress">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">retrieve_scenario_agent_progress</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_retrieve_scenario_agent_progress_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/scenario_retrieve_scenario_agent_progress_response.py">ScenarioRetrieveScenarioAgentProgressResponse</a></code>
+- <code title="post /ai/tests/test_framework/v1/scenarios/run_scenarios">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">run_scenarios</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_run_scenarios_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/scenario_run_scenarios_response.py">ScenarioRunScenariosResponse</a></code>
+- <code title="post /ai/tests/test_framework/v1/scenarios/scenario-agent">client.ai.tests.test_framework.v1.scenarios.<a href="./src/telnyx/resources/ai/tests/test_framework/v1/scenarios.py">scenario_agent</a>(\*\*<a href="src/telnyx/types/ai/tests/test_framework/v1/scenario_scenario_agent_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tests/test_framework/v1/scenario_scenario_agent_response.py">ScenarioScenarioAgentResponse</a></code>
 
 # AuditEvents
 
@@ -2965,6 +3136,7 @@ from telnyx.types import (
     MessagingMessagingProfile,
     MessagingProfile,
     MessagingProfileFeatures,
+    Mm7Metadata,
     NumberPoolSettings,
     URLShortenerSettings,
     MessagingProfileCreateResponse,
@@ -7164,7 +7336,7 @@ from telnyx.types import BotChallengeCreateResponse
 
 Methods:
 
-- <code title="post /v2/bot_challenge">client.bot_challenge.<a href="./src/telnyx/resources/bot_challenge.py">create</a>(\*\*<a href="src/telnyx/types/bot_challenge_create_params.py">params</a>) -> <a href="./src/telnyx/types/bot_challenge_create_response.py">BotChallengeCreateResponse</a></code>
+- <code title="post /bot_challenge">client.bot_challenge.<a href="./src/telnyx/resources/bot_challenge.py">create</a>(\*\*<a href="src/telnyx/types/bot_challenge_create_params.py">params</a>) -> <a href="./src/telnyx/types/bot_challenge_create_response.py">BotChallengeCreateResponse</a></code>
 
 # BotSessions
 
@@ -7176,7 +7348,7 @@ from telnyx.types import BotSessionListResponse
 
 Methods:
 
-- <code title="get /v2/bot_sessions">client.bot_sessions.<a href="./src/telnyx/resources/bot_sessions.py">list</a>(\*\*<a href="src/telnyx/types/bot_session_list_params.py">params</a>) -> <a href="./src/telnyx/types/bot_session_list_response.py">BotSessionListResponse</a></code>
+- <code title="get /bot_sessions">client.bot_sessions.<a href="./src/telnyx/resources/bot_sessions.py">list</a>(\*\*<a href="src/telnyx/types/bot_session_list_params.py">params</a>) -> <a href="./src/telnyx/types/bot_session_list_response.py">BotSessionListResponse</a></code>
 
 # BotSignup
 
@@ -7188,8 +7360,8 @@ from telnyx.types import SuccessResponse
 
 Methods:
 
-- <code title="post /v2/bot_signup">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">create</a>(\*\*<a href="src/telnyx/types/bot_signup_create_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>
-- <code title="post /v2/bot_signup/resend_magic_link">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">resend_magic_link</a>(\*\*<a href="src/telnyx/types/bot_signup_resend_magic_link_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>
+- <code title="post /bot_signup">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">create</a>(\*\*<a href="src/telnyx/types/bot_signup_create_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>
+- <code title="post /bot_signup/resend_magic_link">client.bot_signup.<a href="./src/telnyx/resources/bot_signup.py">resend_magic_link</a>(\*\*<a href="src/telnyx/types/bot_signup_resend_magic_link_params.py">params</a>) -> <a href="./src/telnyx/types/success_response.py">SuccessResponse</a></code>
 
 # MachinePayments
 
@@ -7208,7 +7380,13 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import SpendLimit, SpendLimitPeriod, SpendLimitResponse, SpendLimitListResponse
+from telnyx.types import (
+    SpendLimit,
+    SpendLimitBlock,
+    SpendLimitPeriod,
+    SpendLimitResponse,
+    SpendLimitListResponse,
+)
 ```
 
 Methods:
@@ -7336,3 +7514,135 @@ Methods:
 - <code title="patch /tailscale_subnet_routers/{id}">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">update</a>(id, \*\*<a href="src/telnyx/types/tailscale_subnet_router_update_params.py">params</a>) -> <a href="./src/telnyx/types/tailscale_subnet_router_update_response.py">TailscaleSubnetRouterUpdateResponse</a></code>
 - <code title="get /tailscale_subnet_routers">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">list</a>(\*\*<a href="src/telnyx/types/tailscale_subnet_router_list_params.py">params</a>) -> <a href="./src/telnyx/types/tailscale_subnet_router.py">SyncDefaultFlatPagination[TailscaleSubnetRouter]</a></code>
 - <code title="delete /tailscale_subnet_routers/{id}">client.tailscale_subnet_routers.<a href="./src/telnyx/resources/tailscale_subnet_routers.py">delete</a>(id) -> <a href="./src/telnyx/types/tailscale_subnet_router_delete_response.py">TailscaleSubnetRouterDeleteResponse</a></code>
+
+# ArtifactDownloads
+
+Methods:
+
+- <code title="get /artifact_downloads/{artifactId}">client.artifact_downloads.<a href="./src/telnyx/resources/artifact_downloads.py">retrieve</a>(artifact_id, \*\*<a href="src/telnyx/types/artifact_download_retrieve_params.py">params</a>) -> BinaryAPIResponse</code>
+
+# Email
+
+## DedicatedIPs
+
+Types:
+
+```python
+from telnyx.types.email import DedicatedIP, DedicatedIPShowResponse, DedicatedIPListResponse
+```
+
+Methods:
+
+- <code title="post /email/dedicated_ips">client.email.dedicated_ips.<a href="./src/telnyx/resources/email/dedicated_ips/dedicated_ips.py">create</a>(\*\*<a href="src/telnyx/types/email/dedicated_ip_create_params.py">params</a>) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+- <code title="get /email/dedicated_ips/{id}">client.email.dedicated_ips.<a href="./src/telnyx/resources/email/dedicated_ips/dedicated_ips.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+- <code title="patch /email/dedicated_ips/{id}">client.email.dedicated_ips.<a href="./src/telnyx/resources/email/dedicated_ips/dedicated_ips.py">update</a>(id, \*\*<a href="src/telnyx/types/email/dedicated_ip_update_params.py">params</a>) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+- <code title="get /email/dedicated_ips">client.email.dedicated_ips.<a href="./src/telnyx/resources/email/dedicated_ips/dedicated_ips.py">list</a>(\*\*<a href="src/telnyx/types/email/dedicated_ip_list_params.py">params</a>) -> <a href="./src/telnyx/types/email/dedicated_ip_list_response.py">DedicatedIPListResponse</a></code>
+- <code title="delete /email/dedicated_ips/{id}">client.email.dedicated_ips.<a href="./src/telnyx/resources/email/dedicated_ips/dedicated_ips.py">delete</a>(id, \*\*<a href="src/telnyx/types/email/dedicated_ip_delete_params.py">params</a>) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+
+### Actions
+
+Methods:
+
+- <code title="post /email/dedicated_ips/{id}/actions/complete_warmup">client.email.dedicated_ips.actions.<a href="./src/telnyx/resources/email/dedicated_ips/actions.py">complete_warmup</a>(id) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+- <code title="post /email/dedicated_ips/{id}/actions/pause_warmup">client.email.dedicated_ips.actions.<a href="./src/telnyx/resources/email/dedicated_ips/actions.py">pause_warmup</a>(id) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+- <code title="post /email/dedicated_ips/{id}/actions/resume_warmup">client.email.dedicated_ips.actions.<a href="./src/telnyx/resources/email/dedicated_ips/actions.py">resume_warmup</a>(id) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+- <code title="post /email/dedicated_ips/{id}/actions/start_warmup">client.email.dedicated_ips.actions.<a href="./src/telnyx/resources/email/dedicated_ips/actions.py">start_warmup</a>(id) -> <a href="./src/telnyx/types/email/dedicated_ip_show_response.py">DedicatedIPShowResponse</a></code>
+
+## IPPools
+
+Types:
+
+```python
+from telnyx.types.email import IPPool, IPPoolShowResponse, IPPoolListResponse
+```
+
+Methods:
+
+- <code title="post /email/ip_pools">client.email.ip_pools.<a href="./src/telnyx/resources/email/ip_pools/ip_pools.py">create</a>(\*\*<a href="src/telnyx/types/email/ip_pool_create_params.py">params</a>) -> <a href="./src/telnyx/types/email/ip_pool_show_response.py">IPPoolShowResponse</a></code>
+- <code title="get /email/ip_pools/{id}">client.email.ip_pools.<a href="./src/telnyx/resources/email/ip_pools/ip_pools.py">retrieve</a>(id) -> <a href="./src/telnyx/types/email/ip_pool_show_response.py">IPPoolShowResponse</a></code>
+- <code title="patch /email/ip_pools/{id}">client.email.ip_pools.<a href="./src/telnyx/resources/email/ip_pools/ip_pools.py">update</a>(id, \*\*<a href="src/telnyx/types/email/ip_pool_update_params.py">params</a>) -> <a href="./src/telnyx/types/email/ip_pool_show_response.py">IPPoolShowResponse</a></code>
+- <code title="get /email/ip_pools">client.email.ip_pools.<a href="./src/telnyx/resources/email/ip_pools/ip_pools.py">list</a>() -> <a href="./src/telnyx/types/email/ip_pool_list_response.py">IPPoolListResponse</a></code>
+- <code title="delete /email/ip_pools/{id}">client.email.ip_pools.<a href="./src/telnyx/resources/email/ip_pools/ip_pools.py">delete</a>(id, \*\*<a href="src/telnyx/types/email/ip_pool_delete_params.py">params</a>) -> None</code>
+
+### IPs
+
+Types:
+
+```python
+from telnyx.types.email.ip_pools import IPCreateResponse
+```
+
+Methods:
+
+- <code title="post /email/ip_pools/{id}/ips">client.email.ip_pools.ips.<a href="./src/telnyx/resources/email/ip_pools/ips.py">create</a>(id, \*\*<a href="src/telnyx/types/email/ip_pools/ip_create_params.py">params</a>) -> <a href="./src/telnyx/types/email/ip_pools/ip_create_response.py">IPCreateResponse</a></code>
+- <code title="delete /email/ip_pools/{id}/ips/{ip_id}">client.email.ip_pools.ips.<a href="./src/telnyx/resources/email/ip_pools/ips.py">delete</a>(ip_id, \*, id, \*\*<a href="src/telnyx/types/email/ip_pools/ip_delete_params.py">params</a>) -> None</code>
+
+# NetworkRoutes
+
+Types:
+
+```python
+from telnyx.types import (
+    NetappsCursorPaginationMeta,
+    NetworkRoute,
+    NetworkRouteCreateResponse,
+    NetworkRouteRetrieveResponse,
+    NetworkRouteListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /network_routes">client.network_routes.<a href="./src/telnyx/resources/network_routes.py">create</a>(\*\*<a href="src/telnyx/types/network_route_create_params.py">params</a>) -> <a href="./src/telnyx/types/network_route_create_response.py">NetworkRouteCreateResponse</a></code>
+- <code title="get /network_routes/{id}">client.network_routes.<a href="./src/telnyx/resources/network_routes.py">retrieve</a>(id) -> <a href="./src/telnyx/types/network_route_retrieve_response.py">NetworkRouteRetrieveResponse</a></code>
+- <code title="get /network_routes">client.network_routes.<a href="./src/telnyx/resources/network_routes.py">list</a>(\*\*<a href="src/telnyx/types/network_route_list_params.py">params</a>) -> <a href="./src/telnyx/types/network_route_list_response.py">NetworkRouteListResponse</a></code>
+- <code title="delete /network_routes/{id}">client.network_routes.<a href="./src/telnyx/resources/network_routes.py">delete</a>(id) -> None</code>
+
+# PayConnectors
+
+Types:
+
+```python
+from telnyx.types import GenericPayConnectorConfig, PayConnector, PayConnectorResponse
+```
+
+Methods:
+
+- <code title="post /pay_connectors">client.pay_connectors.<a href="./src/telnyx/resources/pay_connectors.py">create</a>(\*\*<a href="src/telnyx/types/pay_connector_create_params.py">params</a>) -> <a href="./src/telnyx/types/pay_connector_response.py">PayConnectorResponse</a></code>
+- <code title="get /pay_connectors/{name}">client.pay_connectors.<a href="./src/telnyx/resources/pay_connectors.py">retrieve</a>(name) -> <a href="./src/telnyx/types/pay_connector_response.py">PayConnectorResponse</a></code>
+- <code title="patch /pay_connectors/{name}">client.pay_connectors.<a href="./src/telnyx/resources/pay_connectors.py">update</a>(name, \*\*<a href="src/telnyx/types/pay_connector_update_params.py">params</a>) -> <a href="./src/telnyx/types/pay_connector_response.py">PayConnectorResponse</a></code>
+- <code title="get /pay_connectors">client.pay_connectors.<a href="./src/telnyx/resources/pay_connectors.py">list</a>(\*\*<a href="src/telnyx/types/pay_connector_list_params.py">params</a>) -> <a href="./src/telnyx/types/pay_connector.py">SyncEmailBracketCursorPagination[PayConnector]</a></code>
+- <code title="delete /pay_connectors/{name}">client.pay_connectors.<a href="./src/telnyx/resources/pay_connectors.py">delete</a>(name) -> None</code>
+
+# Tunnels
+
+Types:
+
+```python
+from telnyx.types import (
+    Tunnel,
+    TunnelWithToken,
+    TunnelCreateResponse,
+    TunnelRetrieveResponse,
+    TunnelListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /tunnels">client.tunnels.<a href="./src/telnyx/resources/tunnels/tunnels.py">create</a>(\*\*<a href="src/telnyx/types/tunnel_create_params.py">params</a>) -> <a href="./src/telnyx/types/tunnel_create_response.py">TunnelCreateResponse</a></code>
+- <code title="get /tunnels/{id}">client.tunnels.<a href="./src/telnyx/resources/tunnels/tunnels.py">retrieve</a>(id) -> <a href="./src/telnyx/types/tunnel_retrieve_response.py">TunnelRetrieveResponse</a></code>
+- <code title="get /tunnels">client.tunnels.<a href="./src/telnyx/resources/tunnels/tunnels.py">list</a>(\*\*<a href="src/telnyx/types/tunnel_list_params.py">params</a>) -> <a href="./src/telnyx/types/tunnel_list_response.py">TunnelListResponse</a></code>
+- <code title="delete /tunnels/{id}">client.tunnels.<a href="./src/telnyx/resources/tunnels/tunnels.py">delete</a>(id) -> None</code>
+
+## Actions
+
+Types:
+
+```python
+from telnyx.types.tunnels import ActionRotateTokenResponse
+```
+
+Methods:
+
+- <code title="post /tunnels/{id}/actions/rotate_token">client.tunnels.actions.<a href="./src/telnyx/resources/tunnels/actions.py">rotate_token</a>(id) -> <a href="./src/telnyx/types/tunnels/action_rotate_token_response.py">ActionRotateTokenResponse</a></code>

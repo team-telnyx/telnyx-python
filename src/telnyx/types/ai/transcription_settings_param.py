@@ -19,6 +19,7 @@ class Challenger(TypedDict, total=False):
             "deepgram/nova-3",
             "deepgram/nova-2",
             "azure/fast",
+            "assemblyai/universal-3-6-pro",
             "assemblyai/universal-3-5-pro",
             "assemblyai/universal-streaming",
             "xai/grok-stt",
@@ -38,11 +39,11 @@ class Challenger(TypedDict, total=False):
 
     It must be the same kind of model as `transcription.model`: both streaming
     (`deepgram/flux`, `deepgram/nova-3`, `deepgram/nova-2`,
-    `assemblyai/universal-3-5-pro` or its legacy alias
-    `assemblyai/universal-streaming`, `xai/grok-stt`, `soniox/stt-rt-v4`,
-    `soniox/stt-rt-v5`, `humain/realtime`, `reson8/turns`) or both non-streaming
-    (`azure/fast`, `nvidia/parakeet-v3`, `omi-health/omi-med-stt-v1`,
-    `cohere/ar-stt`, `distil-whisper/distil-large-v2`,
+    `assemblyai/universal-3-6-pro` or its legacy aliases
+    `assemblyai/universal-3-5-pro` and `assemblyai/universal-streaming`,
+    `xai/grok-stt`, `soniox/stt-rt-v4`, `soniox/stt-rt-v5`, `humain/realtime`,
+    `reson8/turns`) or both non-streaming (`azure/fast`, `nvidia/parakeet-v3`,
+    `omi-health/omi-med-stt-v1`, `cohere/ar-stt`, `distil-whisper/distil-large-v2`,
     `openai/whisper-large-v3-turbo`, `telnyx/basira`). It can be the same model as
     `transcription.model` on a different `language`.
     """
@@ -99,6 +100,7 @@ class FallbackModel(TypedDict, total=False):
             "deepgram/flux",
             "deepgram/nova-3",
             "deepgram/nova-2",
+            "assemblyai/universal-3-6-pro",
             "assemblyai/universal-3-5-pro",
             "assemblyai/universal-streaming",
             "xai/grok-stt",
@@ -112,9 +114,10 @@ class FallbackModel(TypedDict, total=False):
 
     It must be a streaming model other than `transcription.model` and the other
     fallbacks: `deepgram/flux`, `deepgram/nova-3`, `deepgram/nova-2`,
-    `assemblyai/universal-3-5-pro` (or its legacy alias
-    `assemblyai/universal-streaming`), `xai/grok-stt`, `soniox/stt-rt-v4`,
-    `soniox/stt-rt-v5`, `humain/realtime`, or `reson8/turns`.
+    `assemblyai/universal-3-6-pro` (or its legacy aliases
+    `assemblyai/universal-3-5-pro` and `assemblyai/universal-streaming`),
+    `xai/grok-stt`, `soniox/stt-rt-v4`, `soniox/stt-rt-v5`, `humain/realtime`, or
+    `reson8/turns`.
     """
 
     language: Optional[str]
@@ -195,6 +198,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
         "speechmatics/standard",
         "speechmatics/linden-1",
         "azure/fast",
+        "assemblyai/universal-3-6-pro",
         "assemblyai/universal-3-5-pro",
         "assemblyai/universal-streaming",
         "xai/grok-stt",
@@ -223,9 +227,10 @@ class TranscriptionSettingsParam(TypedDict, total=False):
       auto-detect; set `language` from Speechmatics' Realtime language list
       (defaults to `en`).
     - `azure/fast` is a multilingual Azure transcription model.
-    - `assemblyai/universal-3-5-pro` is a multilingual streaming model with
-      configurable turn detection. The legacy alias `assemblyai/universal-streaming`
-      is still accepted and resolves to the same model.
+    - `assemblyai/universal-3-6-pro` (AssemblyAI Universal-3.6 Pro) is a
+      multilingual streaming model with configurable turn detection. The legacy
+      aliases `assemblyai/universal-3-5-pro` and `assemblyai/universal-streaming`
+      are still accepted and run the same model.
     - `xai/grok-stt` is a multilingual Grok STT model.
     - `soniox/stt-rt-v4` and `soniox/stt-rt-v5` are multilingual streaming models
       with automatic language detection, configurable endpointing, term biasing

@@ -10,6 +10,12 @@ __all__ = ["VoiceCloneListParams"]
 
 
 class VoiceCloneListParams(TypedDict, total=False):
+    filter_model_id: Annotated[
+        Literal["Qwen3TTS", "Ultra", "Bayan", "speech-2.8-turbo", "Pro", "Turbo", "Urdu"],
+        PropertyInfo(alias="filter[model_id]"),
+    ]
+    """Filter by TTS model. Case-insensitive."""
+
     filter_name: Annotated[str, PropertyInfo(alias="filter[name]")]
     """Case-insensitive substring filter on the name field."""
 

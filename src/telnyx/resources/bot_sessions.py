@@ -86,7 +86,7 @@ class BotSessionsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/bot_sessions",
+            "/bot_sessions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,7 +169,7 @@ class AsyncBotSessionsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/bot_sessions",
+            "/bot_sessions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
