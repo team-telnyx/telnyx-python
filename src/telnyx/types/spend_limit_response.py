@@ -10,4 +10,8 @@ __all__ = ["SpendLimitResponse"]
 
 class SpendLimitResponse(BaseModel):
     data: SpendLimit
-    """The spend limit, spend and block state of one product and period."""
+    """The spend limit, spend and block state of one product and period.
+
+    The top-level fields describe the total limit of the account; API key limits are
+    nested in `credential_limits`.
+    """

@@ -45,6 +45,7 @@ if TYPE_CHECKING:
         seti,
         x402,
         calls,
+        email,
         faxes,
         fqdns,
         media,
@@ -62,6 +63,7 @@ if TYPE_CHECKING:
         regions,
         reports,
         storage,
+        tunnels,
         comments,
         invoices,
         messages,
@@ -115,6 +117,8 @@ if TYPE_CHECKING:
         document_links,
         email_messages,
         ip_connections,
+        network_routes,
+        pay_connectors,
         porting_orders,
         speech_to_text,
         text_to_speech,
@@ -131,6 +135,7 @@ if TYPE_CHECKING:
         verify_profiles,
         wireguard_peers,
         access_ip_ranges,
+        browser_sessions,
         country_coverage,
         fax_applications,
         fqdn_connections,
@@ -155,6 +160,7 @@ if TYPE_CHECKING:
         room_participants,
         siprec_connectors,
         sub_number_orders,
+        artifact_downloads,
         inventory_coverage,
         messaging_profiles,
         messaging_tollfree,
@@ -253,6 +259,7 @@ if TYPE_CHECKING:
     from .resources.call_events import CallEventsResource, AsyncCallEventsResource
     from .resources.calls.calls import CallsResource, AsyncCallsResource
     from .resources.connections import ConnectionsResource, AsyncConnectionsResource
+    from .resources.email.email import EmailResource, AsyncEmailResource
     from .resources.faxes.faxes import FaxesResource, AsyncFaxesResource
     from .resources.ota_updates import OtaUpdatesResource, AsyncOtaUpdatesResource
     from .resources.rooms.rooms import RoomsResource, AsyncRoomsResource
@@ -281,6 +288,8 @@ if TYPE_CHECKING:
     from .resources.detail_records import DetailRecordsResource, AsyncDetailRecordsResource
     from .resources.document_links import DocumentLinksResource, AsyncDocumentLinksResource
     from .resources.ip_connections import IPConnectionsResource, AsyncIPConnectionsResource
+    from .resources.network_routes import NetworkRoutesResource, AsyncNetworkRoutesResource
+    from .resources.pay_connectors import PayConnectorsResource, AsyncPayConnectorsResource
     from .resources.speech_to_text import SpeechToTextResource, AsyncSpeechToTextResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.user_addresses import UserAddressesResource, AsyncUserAddressesResource
@@ -297,6 +306,7 @@ if TYPE_CHECKING:
     from .resources.room_recordings import RoomRecordingsResource, AsyncRoomRecordingsResource
     from .resources.sim_card_orders import SimCardOrdersResource, AsyncSimCardOrdersResource
     from .resources.storage.storage import StorageResource, AsyncStorageResource
+    from .resources.tunnels.tunnels import TunnelsResource, AsyncTunnelsResource
     from .resources.verify_profiles import VerifyProfilesResource, AsyncVerifyProfilesResource
     from .resources.wireguard_peers import WireguardPeersResource, AsyncWireguardPeersResource
     from .resources.access_ip_ranges import AccessIPRangesResource, AsyncAccessIPRangesResource
@@ -320,6 +330,7 @@ if TYPE_CHECKING:
     from .resources.sub_number_orders import SubNumberOrdersResource, AsyncSubNumberOrdersResource
     from .resources.whatsapp.whatsapp import WhatsappResource, AsyncWhatsappResource
     from .resources.wireless.wireless import WirelessResource, AsyncWirelessResource
+    from .resources.artifact_downloads import ArtifactDownloadsResource, AsyncArtifactDownloadsResource
     from .resources.inventory_coverage import InventoryCoverageResource, AsyncInventoryCoverageResource
     from .resources.portability_checks import PortabilityChecksResource, AsyncPortabilityChecksResource
     from .resources.requirement_groups import RequirementGroupsResource, AsyncRequirementGroupsResource
@@ -462,6 +473,7 @@ if TYPE_CHECKING:
         VirtualCrossConnectsCoverageResource,
         AsyncVirtualCrossConnectsCoverageResource,
     )
+    from .resources.browser_sessions.browser_sessions import BrowserSessionsResource, AsyncBrowserSessionsResource
     from .resources.fqdn_connections.fqdn_connections import FqdnConnectionsResource, AsyncFqdnConnectionsResource
     from .resources.managed_accounts.managed_accounts import ManagedAccountsResource, AsyncManagedAccountsResource
     from .resources.meeting_sessions.meeting_sessions import MeetingSessionsResource, AsyncMeetingSessionsResource
@@ -616,6 +628,12 @@ class Telnyx(SyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
+
+    @cached_property
+    def browser_sessions(self) -> BrowserSessionsResource:
+        from .resources.browser_sessions import BrowserSessionsResource
+
+        return BrowserSessionsResource(self)
 
     @cached_property
     def legacy(self) -> LegacyResource:
@@ -1941,6 +1959,7 @@ class Telnyx(SyncAPIClient):
         - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
         - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
         - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
         - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
         """
         from .resources.spend_limits import SpendLimitsResource
@@ -1973,6 +1992,42 @@ class Telnyx(SyncAPIClient):
         from .resources.tailscale_subnet_routers import TailscaleSubnetRoutersResource
 
         return TailscaleSubnetRoutersResource(self)
+
+    @cached_property
+    def artifact_downloads(self) -> ArtifactDownloadsResource:
+        """Download screenshots and other artifacts."""
+        from .resources.artifact_downloads import ArtifactDownloadsResource
+
+        return ArtifactDownloadsResource(self)
+
+    @cached_property
+    def email(self) -> EmailResource:
+        from .resources.email import EmailResource
+
+        return EmailResource(self)
+
+    @cached_property
+    def network_routes(self) -> NetworkRoutesResource:
+        """Routes on a Network that send a CIDR to a next hop, such as a tunnel."""
+        from .resources.network_routes import NetworkRoutesResource
+
+        return NetworkRoutesResource(self)
+
+    @cached_property
+    def pay_connectors(self) -> PayConnectorsResource:
+        """Generic payment connector configuration."""
+        from .resources.pay_connectors import PayConnectorsResource
+
+        return PayConnectorsResource(self)
+
+    @cached_property
+    def tunnels(self) -> TunnelsResource:
+        """
+        Tunnels connect a Network to hosts behind a tunnel process within the user's network.
+        """
+        from .resources.tunnels import TunnelsResource
+
+        return TunnelsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2213,6 +2268,12 @@ class AsyncTelnyx(AsyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
+
+    @cached_property
+    def browser_sessions(self) -> AsyncBrowserSessionsResource:
+        from .resources.browser_sessions import AsyncBrowserSessionsResource
+
+        return AsyncBrowserSessionsResource(self)
 
     @cached_property
     def legacy(self) -> AsyncLegacyResource:
@@ -3538,6 +3599,7 @@ class AsyncTelnyx(AsyncAPIClient):
         - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
         - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
         - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
         - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
         """
         from .resources.spend_limits import AsyncSpendLimitsResource
@@ -3570,6 +3632,42 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.tailscale_subnet_routers import AsyncTailscaleSubnetRoutersResource
 
         return AsyncTailscaleSubnetRoutersResource(self)
+
+    @cached_property
+    def artifact_downloads(self) -> AsyncArtifactDownloadsResource:
+        """Download screenshots and other artifacts."""
+        from .resources.artifact_downloads import AsyncArtifactDownloadsResource
+
+        return AsyncArtifactDownloadsResource(self)
+
+    @cached_property
+    def email(self) -> AsyncEmailResource:
+        from .resources.email import AsyncEmailResource
+
+        return AsyncEmailResource(self)
+
+    @cached_property
+    def network_routes(self) -> AsyncNetworkRoutesResource:
+        """Routes on a Network that send a CIDR to a next hop, such as a tunnel."""
+        from .resources.network_routes import AsyncNetworkRoutesResource
+
+        return AsyncNetworkRoutesResource(self)
+
+    @cached_property
+    def pay_connectors(self) -> AsyncPayConnectorsResource:
+        """Generic payment connector configuration."""
+        from .resources.pay_connectors import AsyncPayConnectorsResource
+
+        return AsyncPayConnectorsResource(self)
+
+    @cached_property
+    def tunnels(self) -> AsyncTunnelsResource:
+        """
+        Tunnels connect a Network to hosts behind a tunnel process within the user's network.
+        """
+        from .resources.tunnels import AsyncTunnelsResource
+
+        return AsyncTunnelsResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
@@ -3722,6 +3820,12 @@ class TelnyxWithRawResponse:
 
     def __init__(self, client: Telnyx) -> None:
         self._client = client
+
+    @cached_property
+    def browser_sessions(self) -> browser_sessions.BrowserSessionsResourceWithRawResponse:
+        from .resources.browser_sessions import BrowserSessionsResourceWithRawResponse
+
+        return BrowserSessionsResourceWithRawResponse(self._client.browser_sessions)
 
     @cached_property
     def legacy(self) -> legacy.LegacyResourceWithRawResponse:
@@ -5071,6 +5175,7 @@ class TelnyxWithRawResponse:
         - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
         - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
         - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
         - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
         """
         from .resources.spend_limits import SpendLimitsResourceWithRawResponse
@@ -5104,12 +5209,54 @@ class TelnyxWithRawResponse:
 
         return TailscaleSubnetRoutersResourceWithRawResponse(self._client.tailscale_subnet_routers)
 
+    @cached_property
+    def artifact_downloads(self) -> artifact_downloads.ArtifactDownloadsResourceWithRawResponse:
+        """Download screenshots and other artifacts."""
+        from .resources.artifact_downloads import ArtifactDownloadsResourceWithRawResponse
+
+        return ArtifactDownloadsResourceWithRawResponse(self._client.artifact_downloads)
+
+    @cached_property
+    def email(self) -> email.EmailResourceWithRawResponse:
+        from .resources.email import EmailResourceWithRawResponse
+
+        return EmailResourceWithRawResponse(self._client.email)
+
+    @cached_property
+    def network_routes(self) -> network_routes.NetworkRoutesResourceWithRawResponse:
+        """Routes on a Network that send a CIDR to a next hop, such as a tunnel."""
+        from .resources.network_routes import NetworkRoutesResourceWithRawResponse
+
+        return NetworkRoutesResourceWithRawResponse(self._client.network_routes)
+
+    @cached_property
+    def pay_connectors(self) -> pay_connectors.PayConnectorsResourceWithRawResponse:
+        """Generic payment connector configuration."""
+        from .resources.pay_connectors import PayConnectorsResourceWithRawResponse
+
+        return PayConnectorsResourceWithRawResponse(self._client.pay_connectors)
+
+    @cached_property
+    def tunnels(self) -> tunnels.TunnelsResourceWithRawResponse:
+        """
+        Tunnels connect a Network to hosts behind a tunnel process within the user's network.
+        """
+        from .resources.tunnels import TunnelsResourceWithRawResponse
+
+        return TunnelsResourceWithRawResponse(self._client.tunnels)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
 
     def __init__(self, client: AsyncTelnyx) -> None:
         self._client = client
+
+    @cached_property
+    def browser_sessions(self) -> browser_sessions.AsyncBrowserSessionsResourceWithRawResponse:
+        from .resources.browser_sessions import AsyncBrowserSessionsResourceWithRawResponse
+
+        return AsyncBrowserSessionsResourceWithRawResponse(self._client.browser_sessions)
 
     @cached_property
     def legacy(self) -> legacy.AsyncLegacyResourceWithRawResponse:
@@ -6477,6 +6624,7 @@ class AsyncTelnyxWithRawResponse:
         - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
         - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
         - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
         - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
         """
         from .resources.spend_limits import AsyncSpendLimitsResourceWithRawResponse
@@ -6510,12 +6658,54 @@ class AsyncTelnyxWithRawResponse:
 
         return AsyncTailscaleSubnetRoutersResourceWithRawResponse(self._client.tailscale_subnet_routers)
 
+    @cached_property
+    def artifact_downloads(self) -> artifact_downloads.AsyncArtifactDownloadsResourceWithRawResponse:
+        """Download screenshots and other artifacts."""
+        from .resources.artifact_downloads import AsyncArtifactDownloadsResourceWithRawResponse
+
+        return AsyncArtifactDownloadsResourceWithRawResponse(self._client.artifact_downloads)
+
+    @cached_property
+    def email(self) -> email.AsyncEmailResourceWithRawResponse:
+        from .resources.email import AsyncEmailResourceWithRawResponse
+
+        return AsyncEmailResourceWithRawResponse(self._client.email)
+
+    @cached_property
+    def network_routes(self) -> network_routes.AsyncNetworkRoutesResourceWithRawResponse:
+        """Routes on a Network that send a CIDR to a next hop, such as a tunnel."""
+        from .resources.network_routes import AsyncNetworkRoutesResourceWithRawResponse
+
+        return AsyncNetworkRoutesResourceWithRawResponse(self._client.network_routes)
+
+    @cached_property
+    def pay_connectors(self) -> pay_connectors.AsyncPayConnectorsResourceWithRawResponse:
+        """Generic payment connector configuration."""
+        from .resources.pay_connectors import AsyncPayConnectorsResourceWithRawResponse
+
+        return AsyncPayConnectorsResourceWithRawResponse(self._client.pay_connectors)
+
+    @cached_property
+    def tunnels(self) -> tunnels.AsyncTunnelsResourceWithRawResponse:
+        """
+        Tunnels connect a Network to hosts behind a tunnel process within the user's network.
+        """
+        from .resources.tunnels import AsyncTunnelsResourceWithRawResponse
+
+        return AsyncTunnelsResourceWithRawResponse(self._client.tunnels)
+
 
 class TelnyxWithStreamedResponse:
     _client: Telnyx
 
     def __init__(self, client: Telnyx) -> None:
         self._client = client
+
+    @cached_property
+    def browser_sessions(self) -> browser_sessions.BrowserSessionsResourceWithStreamingResponse:
+        from .resources.browser_sessions import BrowserSessionsResourceWithStreamingResponse
+
+        return BrowserSessionsResourceWithStreamingResponse(self._client.browser_sessions)
 
     @cached_property
     def legacy(self) -> legacy.LegacyResourceWithStreamingResponse:
@@ -7885,6 +8075,7 @@ class TelnyxWithStreamedResponse:
         - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
         - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
         - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
         - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
         """
         from .resources.spend_limits import SpendLimitsResourceWithStreamingResponse
@@ -7918,12 +8109,54 @@ class TelnyxWithStreamedResponse:
 
         return TailscaleSubnetRoutersResourceWithStreamingResponse(self._client.tailscale_subnet_routers)
 
+    @cached_property
+    def artifact_downloads(self) -> artifact_downloads.ArtifactDownloadsResourceWithStreamingResponse:
+        """Download screenshots and other artifacts."""
+        from .resources.artifact_downloads import ArtifactDownloadsResourceWithStreamingResponse
+
+        return ArtifactDownloadsResourceWithStreamingResponse(self._client.artifact_downloads)
+
+    @cached_property
+    def email(self) -> email.EmailResourceWithStreamingResponse:
+        from .resources.email import EmailResourceWithStreamingResponse
+
+        return EmailResourceWithStreamingResponse(self._client.email)
+
+    @cached_property
+    def network_routes(self) -> network_routes.NetworkRoutesResourceWithStreamingResponse:
+        """Routes on a Network that send a CIDR to a next hop, such as a tunnel."""
+        from .resources.network_routes import NetworkRoutesResourceWithStreamingResponse
+
+        return NetworkRoutesResourceWithStreamingResponse(self._client.network_routes)
+
+    @cached_property
+    def pay_connectors(self) -> pay_connectors.PayConnectorsResourceWithStreamingResponse:
+        """Generic payment connector configuration."""
+        from .resources.pay_connectors import PayConnectorsResourceWithStreamingResponse
+
+        return PayConnectorsResourceWithStreamingResponse(self._client.pay_connectors)
+
+    @cached_property
+    def tunnels(self) -> tunnels.TunnelsResourceWithStreamingResponse:
+        """
+        Tunnels connect a Network to hosts behind a tunnel process within the user's network.
+        """
+        from .resources.tunnels import TunnelsResourceWithStreamingResponse
+
+        return TunnelsResourceWithStreamingResponse(self._client.tunnels)
+
 
 class AsyncTelnyxWithStreamedResponse:
     _client: AsyncTelnyx
 
     def __init__(self, client: AsyncTelnyx) -> None:
         self._client = client
+
+    @cached_property
+    def browser_sessions(self) -> browser_sessions.AsyncBrowserSessionsResourceWithStreamingResponse:
+        from .resources.browser_sessions import AsyncBrowserSessionsResourceWithStreamingResponse
+
+        return AsyncBrowserSessionsResourceWithStreamingResponse(self._client.browser_sessions)
 
     @cached_property
     def legacy(self) -> legacy.AsyncLegacyResourceWithStreamingResponse:
@@ -9341,6 +9574,7 @@ class AsyncTelnyxWithStreamedResponse:
         - **Blocking.** When spend in a period goes above the limit (strictly greater), the product is blocked until the period ends: 00:00 UTC the next day for `daily`, 00:00 UTC on the 1st of the next month for `monthly`. A block appears within about 2 minutes (daily) or 10 minutes (monthly) of the spend being recorded.
         - **Changes apply immediately.** Creating, updating or deleting a limit checks the period's spend in the same request: raising the limit above the spend, or removing it, lifts that period's block, and lowering it below the spend blocks the product at once. The `evaluation` object in the response says what happened.
         - **Supported products.** Today only `inference` supports spend limits. A blocked account gets HTTP 403 with the error title `Inference spend limit reached` (code `10039`) on new billable chat completions, Responses, Anthropic Messages and classification requests; requests already running finish normally. Take the list of products from the list operation.
+        - **API key limits.** For `inference`, a limit can also apply to one API key, named by `credential_id`: the key's identifier as recorded on usage, never its secret. When the key's spend goes above its own limit, only that key is blocked, with the error title `API key spend limit reached` (code `10039`); the account's other keys keep working. The API key limits of a period cannot add up to more than the total limit when the total has an amount. Only language-model requests authenticated with an API key count toward its limit.
         - **Limits set by Telnyx.** Telnyx support can also set a limit on your account. It is listed with `origin: operator` and you can update or delete it like your own.
         """
         from .resources.spend_limits import AsyncSpendLimitsResourceWithStreamingResponse
@@ -9377,6 +9611,42 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.tailscale_subnet_routers import AsyncTailscaleSubnetRoutersResourceWithStreamingResponse
 
         return AsyncTailscaleSubnetRoutersResourceWithStreamingResponse(self._client.tailscale_subnet_routers)
+
+    @cached_property
+    def artifact_downloads(self) -> artifact_downloads.AsyncArtifactDownloadsResourceWithStreamingResponse:
+        """Download screenshots and other artifacts."""
+        from .resources.artifact_downloads import AsyncArtifactDownloadsResourceWithStreamingResponse
+
+        return AsyncArtifactDownloadsResourceWithStreamingResponse(self._client.artifact_downloads)
+
+    @cached_property
+    def email(self) -> email.AsyncEmailResourceWithStreamingResponse:
+        from .resources.email import AsyncEmailResourceWithStreamingResponse
+
+        return AsyncEmailResourceWithStreamingResponse(self._client.email)
+
+    @cached_property
+    def network_routes(self) -> network_routes.AsyncNetworkRoutesResourceWithStreamingResponse:
+        """Routes on a Network that send a CIDR to a next hop, such as a tunnel."""
+        from .resources.network_routes import AsyncNetworkRoutesResourceWithStreamingResponse
+
+        return AsyncNetworkRoutesResourceWithStreamingResponse(self._client.network_routes)
+
+    @cached_property
+    def pay_connectors(self) -> pay_connectors.AsyncPayConnectorsResourceWithStreamingResponse:
+        """Generic payment connector configuration."""
+        from .resources.pay_connectors import AsyncPayConnectorsResourceWithStreamingResponse
+
+        return AsyncPayConnectorsResourceWithStreamingResponse(self._client.pay_connectors)
+
+    @cached_property
+    def tunnels(self) -> tunnels.AsyncTunnelsResourceWithStreamingResponse:
+        """
+        Tunnels connect a Network to hosts behind a tunnel process within the user's network.
+        """
+        from .resources.tunnels import AsyncTunnelsResourceWithStreamingResponse
+
+        return AsyncTunnelsResourceWithStreamingResponse(self._client.tunnels)
 
 
 Client = Telnyx

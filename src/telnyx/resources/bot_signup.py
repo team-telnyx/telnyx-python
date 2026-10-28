@@ -109,7 +109,7 @@ class BotSignupResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/bot_signup",
+            "/bot_signup",
             body=maybe_transform(
                 {
                     "bot_challenge_answer": bot_challenge_answer,
@@ -161,7 +161,7 @@ class BotSignupResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/bot_signup/resend_magic_link",
+            "/bot_signup/resend_magic_link",
             body=maybe_transform({"email": email}, bot_signup_resend_magic_link_params.BotSignupResendMagicLinkParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -256,7 +256,7 @@ class AsyncBotSignupResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/bot_signup",
+            "/bot_signup",
             body=await async_maybe_transform(
                 {
                     "bot_challenge_answer": bot_challenge_answer,
@@ -308,7 +308,7 @@ class AsyncBotSignupResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/bot_signup/resend_magic_link",
+            "/bot_signup/resend_magic_link",
             body=await async_maybe_transform(
                 {"email": email}, bot_signup_resend_magic_link_params.BotSignupResendMagicLinkParams
             ),

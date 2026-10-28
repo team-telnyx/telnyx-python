@@ -35,6 +35,7 @@ class TestSpendLimits:
         spend_limit = client.spend_limits.create(
             amount=100,
             product="inference",
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="Team budget",
             unlimited=False,
@@ -132,6 +133,7 @@ class TestSpendLimits:
         spend_limit = client.spend_limits.update(
             product="inference",
             amount=100,
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="Raised for the product launch",
             unlimited=False,
@@ -190,6 +192,7 @@ class TestSpendLimits:
         spend_limit = client.spend_limits.update(
             product="inference",
             unlimited=True,
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="Raised for the product launch",
         )
@@ -273,6 +276,7 @@ class TestSpendLimits:
     def test_method_delete_with_all_params(self, client: Telnyx) -> None:
         spend_limit = client.spend_limits.delete(
             product="inference",
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="reason",
         )
@@ -333,6 +337,7 @@ class TestAsyncSpendLimits:
         spend_limit = await async_client.spend_limits.create(
             amount=100,
             product="inference",
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="Team budget",
             unlimited=False,
@@ -430,6 +435,7 @@ class TestAsyncSpendLimits:
         spend_limit = await async_client.spend_limits.update(
             product="inference",
             amount=100,
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="Raised for the product launch",
             unlimited=False,
@@ -488,6 +494,7 @@ class TestAsyncSpendLimits:
         spend_limit = await async_client.spend_limits.update(
             product="inference",
             unlimited=True,
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="Raised for the product launch",
         )
@@ -571,6 +578,7 @@ class TestAsyncSpendLimits:
     async def test_method_delete_with_all_params(self, async_client: AsyncTelnyx) -> None:
         spend_limit = await async_client.spend_limits.delete(
             product="inference",
+            credential_id="KEY0192F3A1B2C3D4E5F6A7B8C9D0E1F2",
             period="daily",
             reason="reason",
         )

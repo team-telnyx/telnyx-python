@@ -8,6 +8,13 @@ __all__ = ["SpendLimitDeleteParams"]
 
 
 class SpendLimitDeleteParams(TypedDict, total=False):
+    credential_id: str
+    """
+    Identifier of one API key as recorded on usage, never the key's secret,
+    percent-encoded: the request is then about that key's limit. Absent means the
+    total limit; present but blank is refused.
+    """
+
     period: "SpendLimitPeriod"
     """Limit period. Defaults to `daily`; send it explicitly."""
 

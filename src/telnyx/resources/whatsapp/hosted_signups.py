@@ -68,7 +68,8 @@ class HostedSignupsResource(SyncAPIResource):
         onboarding.
 
         Args:
-          app_id: Meta App ID linked to the Telnyx account. The app must be enabled.
+          app_id: Meta App ID linked to the Telnyx account or its manager account. The app must be
+              enabled.
 
           expires_at: When the onboarding URL expires, in RFC 3339 format. Must be in the future and
               at most 3 days ahead. Defaults to 24 hours after creation.
@@ -219,7 +220,8 @@ class AsyncHostedSignupsResource(AsyncAPIResource):
         onboarding.
 
         Args:
-          app_id: Meta App ID linked to the Telnyx account. The app must be enabled.
+          app_id: Meta App ID linked to the Telnyx account or its manager account. The app must be
+              enabled.
 
           expires_at: When the onboarding URL expires, in RFC 3339 format. Must be in the future and
               at most 3 days ahead. Defaults to 24 hours after creation.

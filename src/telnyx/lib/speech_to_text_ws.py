@@ -394,6 +394,7 @@ class SpeechToTextWS:
                     if not self._closed:
                         break
         finally:
+            self._connected = False
             # Signal end of events
             try:
                 self._events_queue.put(None, timeout=1.0)
@@ -533,8 +534,11 @@ class AsyncSpeechToTextWS:
                     data: dict[str, Any] = json.loads(message)
                     yield SttEvent.from_dict(data)
         except Exception:
+            self._connected = False
             if not self._closed:
                 raise
+        else:
+            self._connected = False
 
     async def close(self) -> None:
         """Close the WebSocket connection gracefully."""

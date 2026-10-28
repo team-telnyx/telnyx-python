@@ -152,6 +152,8 @@ class VoiceClonesResource(SyncAPIResource):
     def list(
         self,
         *,
+        filter_model_id: Literal["Qwen3TTS", "Ultra", "Bayan", "speech-2.8-turbo", "Pro", "Turbo", "Urdu"]
+        | Omit = omit,
         filter_name: str | Omit = omit,
         filter_provider: Literal["telnyx", "minimax"] | Omit = omit,
         page_number: int | Omit = omit,
@@ -168,6 +170,8 @@ class VoiceClonesResource(SyncAPIResource):
         Returns a paginated list of voice clones belonging to the authenticated account.
 
         Args:
+          filter_model_id: Filter by TTS model. Case-insensitive.
+
           filter_name: Case-insensitive substring filter on the name field.
 
           filter_provider: Filter by voice synthesis provider. Case-insensitive.
@@ -196,6 +200,7 @@ class VoiceClonesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_model_id": filter_model_id,
                         "filter_name": filter_name,
                         "filter_provider": filter_provider,
                         "page_number": page_number,
@@ -258,11 +263,12 @@ class VoiceClonesResource(SyncAPIResource):
 
         Supported
         formats: WAV, MP3, FLAC, OGG, M4A. Maximum file size: 20MB. Reference audio is
-        trimmed per model: Qwen3TTS and Bayan use the first 10 seconds, Ultra uses up to
-        60 seconds, and Minimax accepts 10 seconds to 5 minutes. Ultra clones return
-        `202` with status `pending`; all other models return `201` with status `active`.
-        Bayan clones require `ref_text` (the exact transcript of the reference audio)
-        and support `ar` (default) and `en` only.
+        trimmed per model: Qwen3TTS, Bayan, and Resemble use the first 10 seconds, Ultra
+        uses up to 60 seconds, and Minimax accepts 10 seconds to 5 minutes. Ultra clones
+        return `202` with status `pending`; all other models return `201` with status
+        `active`. Bayan clones require `ref_text` (the exact transcript of the reference
+        audio) and support `ar` (default) and `en` only. Resemble clones
+        (`provider: resemble`) take `model_id` `Pro`, `Turbo`, or `Urdu`.
 
         Args:
           voice_clone_upload_request: Multipart form data for creating a voice clone from a direct audio upload.
@@ -277,10 +283,11 @@ class VoiceClonesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         body = deepcopy_with_paths(
-            voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+            voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
         )
         files = extract_files(
-            cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+            cast(Mapping[str, object], body),
+            paths=[["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]],
         )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
@@ -443,6 +450,8 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
     def list(
         self,
         *,
+        filter_model_id: Literal["Qwen3TTS", "Ultra", "Bayan", "speech-2.8-turbo", "Pro", "Turbo", "Urdu"]
+        | Omit = omit,
         filter_name: str | Omit = omit,
         filter_provider: Literal["telnyx", "minimax"] | Omit = omit,
         page_number: int | Omit = omit,
@@ -459,6 +468,8 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         Returns a paginated list of voice clones belonging to the authenticated account.
 
         Args:
+          filter_model_id: Filter by TTS model. Case-insensitive.
+
           filter_name: Case-insensitive substring filter on the name field.
 
           filter_provider: Filter by voice synthesis provider. Case-insensitive.
@@ -487,6 +498,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_model_id": filter_model_id,
                         "filter_name": filter_name,
                         "filter_provider": filter_provider,
                         "page_number": page_number,
@@ -549,11 +561,12 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
         Supported
         formats: WAV, MP3, FLAC, OGG, M4A. Maximum file size: 20MB. Reference audio is
-        trimmed per model: Qwen3TTS and Bayan use the first 10 seconds, Ultra uses up to
-        60 seconds, and Minimax accepts 10 seconds to 5 minutes. Ultra clones return
-        `202` with status `pending`; all other models return `201` with status `active`.
-        Bayan clones require `ref_text` (the exact transcript of the reference audio)
-        and support `ar` (default) and `en` only.
+        trimmed per model: Qwen3TTS, Bayan, and Resemble use the first 10 seconds, Ultra
+        uses up to 60 seconds, and Minimax accepts 10 seconds to 5 minutes. Ultra clones
+        return `202` with status `pending`; all other models return `201` with status
+        `active`. Bayan clones require `ref_text` (the exact transcript of the reference
+        audio) and support `ar` (default) and `en` only. Resemble clones
+        (`provider: resemble`) take `model_id` `Pro`, `Turbo`, or `Urdu`.
 
         Args:
           voice_clone_upload_request: Multipart form data for creating a voice clone from a direct audio upload.
@@ -568,10 +581,11 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         body = deepcopy_with_paths(
-            voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+            voice_clone_upload_request, [["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
         )
         files = extract_files(
-            cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]]
+            cast(Mapping[str, object], body),
+            paths=[["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"], ["audio_file"]],
         )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
