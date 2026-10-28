@@ -22,6 +22,13 @@ class DataSuggested(BaseModel):
     For US addresses, this corresponds to the state of the address.
     """
 
+    borough: Optional[str] = None
+    """The borough of the address.
+
+    This field is not used for addresses in the US but is used for some
+    international addresses.
+    """
+
     country_code: Optional[str] = None
     """The two-character (ISO 3166-1 alpha-2) country code of the address."""
 
@@ -31,10 +38,23 @@ class DataSuggested(BaseModel):
     to, unit number or apartment number.
     """
 
+    latitude: Optional[float] = None
+    """Latitude of the suggested address, when available."""
+
     locality: Optional[str] = None
     """The locality of the address.
 
     For US addresses, this corresponds to the city of the address.
+    """
+
+    longitude: Optional[float] = None
+    """Longitude of the suggested address, when available."""
+
+    neighborhood: Optional[str] = None
+    """The neighborhood of the address.
+
+    This field is not used for addresses in the US but is used for some
+    international addresses.
     """
 
     postal_code: Optional[str] = None
@@ -57,8 +77,7 @@ class DataSuggested(BaseModel):
 
 
 class Data(BaseModel):
-    result: Literal["valid", "invalid"]
-    """Indicates whether an address is valid or invalid."""
+    result: Literal["valid"]
 
     suggested: DataSuggested
     """Provides normalized address when available."""

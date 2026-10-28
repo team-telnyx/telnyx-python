@@ -39,6 +39,9 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     preserved for forward compatibility with rolling deployments.
     """
 
+    mm7_metadata: Optional["Mm7MetadataParam"]
+    """MM7 settings for inbound messages"""
+
     mms_fall_back_to_sms: bool
     """enables SMS fallback for MMS messages."""
 
@@ -123,6 +126,7 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     """
 
 
+from .mm7_metadata_param import Mm7MetadataParam
 from .number_pool_settings_param import NumberPoolSettingsParam
 from .url_shortener_settings_param import URLShortenerSettingsParam
 from .messaging_profile_features_param import MessagingProfileFeaturesParam

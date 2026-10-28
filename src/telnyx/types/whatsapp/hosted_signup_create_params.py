@@ -13,7 +13,10 @@ __all__ = ["HostedSignupCreateParams"]
 
 class HostedSignupCreateParams(TypedDict, total=False):
     app_id: Required[str]
-    """Meta App ID linked to the Telnyx account. The app must be enabled."""
+    """Meta App ID linked to the Telnyx account or its manager account.
+
+    The app must be enabled.
+    """
 
     expires_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """When the onboarding URL expires, in RFC 3339 format.

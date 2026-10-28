@@ -64,6 +64,14 @@ from .calls import (
     CallsResourceWithStreamingResponse,
     AsyncCallsResourceWithStreamingResponse,
 )
+from .email import (
+    EmailResource,
+    AsyncEmailResource,
+    EmailResourceWithRawResponse,
+    AsyncEmailResourceWithRawResponse,
+    EmailResourceWithStreamingResponse,
+    AsyncEmailResourceWithStreamingResponse,
+)
 from .faxes import (
     FaxesResource,
     AsyncFaxesResource,
@@ -199,6 +207,14 @@ from .storage import (
     AsyncStorageResourceWithRawResponse,
     StorageResourceWithStreamingResponse,
     AsyncStorageResourceWithStreamingResponse,
+)
+from .tunnels import (
+    TunnelsResource,
+    AsyncTunnelsResource,
+    TunnelsResourceWithRawResponse,
+    AsyncTunnelsResourceWithRawResponse,
+    TunnelsResourceWithStreamingResponse,
+    AsyncTunnelsResourceWithStreamingResponse,
 )
 from .comments import (
     CommentsResource,
@@ -625,6 +641,22 @@ from .ip_connections import (
     IPConnectionsResourceWithStreamingResponse,
     AsyncIPConnectionsResourceWithStreamingResponse,
 )
+from .network_routes import (
+    NetworkRoutesResource,
+    AsyncNetworkRoutesResource,
+    NetworkRoutesResourceWithRawResponse,
+    AsyncNetworkRoutesResourceWithRawResponse,
+    NetworkRoutesResourceWithStreamingResponse,
+    AsyncNetworkRoutesResourceWithStreamingResponse,
+)
+from .pay_connectors import (
+    PayConnectorsResource,
+    AsyncPayConnectorsResource,
+    PayConnectorsResourceWithRawResponse,
+    AsyncPayConnectorsResourceWithRawResponse,
+    PayConnectorsResourceWithStreamingResponse,
+    AsyncPayConnectorsResourceWithStreamingResponse,
+)
 from .porting_orders import (
     PortingOrdersResource,
     AsyncPortingOrdersResource,
@@ -752,6 +784,14 @@ from .access_ip_ranges import (
     AsyncAccessIPRangesResourceWithRawResponse,
     AccessIPRangesResourceWithStreamingResponse,
     AsyncAccessIPRangesResourceWithStreamingResponse,
+)
+from .browser_sessions import (
+    BrowserSessionsResource,
+    AsyncBrowserSessionsResource,
+    BrowserSessionsResourceWithRawResponse,
+    AsyncBrowserSessionsResourceWithRawResponse,
+    BrowserSessionsResourceWithStreamingResponse,
+    AsyncBrowserSessionsResourceWithStreamingResponse,
 )
 from .country_coverage import (
     CountryCoverageResource,
@@ -944,6 +984,14 @@ from .sub_number_orders import (
     AsyncSubNumberOrdersResourceWithRawResponse,
     SubNumberOrdersResourceWithStreamingResponse,
     AsyncSubNumberOrdersResourceWithStreamingResponse,
+)
+from .artifact_downloads import (
+    ArtifactDownloadsResource,
+    AsyncArtifactDownloadsResource,
+    ArtifactDownloadsResourceWithRawResponse,
+    AsyncArtifactDownloadsResourceWithRawResponse,
+    ArtifactDownloadsResourceWithStreamingResponse,
+    AsyncArtifactDownloadsResourceWithStreamingResponse,
 )
 from .inventory_coverage import (
     InventoryCoverageResource,
@@ -1539,6 +1587,12 @@ from .phone_numbers_regulatory_requirements import (
 )
 
 __all__ = [
+    "BrowserSessionsResource",
+    "AsyncBrowserSessionsResource",
+    "BrowserSessionsResourceWithRawResponse",
+    "AsyncBrowserSessionsResourceWithRawResponse",
+    "BrowserSessionsResourceWithStreamingResponse",
+    "AsyncBrowserSessionsResourceWithStreamingResponse",
     "LegacyResource",
     "AsyncLegacyResource",
     "LegacyResourceWithRawResponse",
@@ -2693,4 +2747,34 @@ __all__ = [
     "AsyncTailscaleSubnetRoutersResourceWithRawResponse",
     "TailscaleSubnetRoutersResourceWithStreamingResponse",
     "AsyncTailscaleSubnetRoutersResourceWithStreamingResponse",
+    "ArtifactDownloadsResource",
+    "AsyncArtifactDownloadsResource",
+    "ArtifactDownloadsResourceWithRawResponse",
+    "AsyncArtifactDownloadsResourceWithRawResponse",
+    "ArtifactDownloadsResourceWithStreamingResponse",
+    "AsyncArtifactDownloadsResourceWithStreamingResponse",
+    "EmailResource",
+    "AsyncEmailResource",
+    "EmailResourceWithRawResponse",
+    "AsyncEmailResourceWithRawResponse",
+    "EmailResourceWithStreamingResponse",
+    "AsyncEmailResourceWithStreamingResponse",
+    "NetworkRoutesResource",
+    "AsyncNetworkRoutesResource",
+    "NetworkRoutesResourceWithRawResponse",
+    "AsyncNetworkRoutesResourceWithRawResponse",
+    "NetworkRoutesResourceWithStreamingResponse",
+    "AsyncNetworkRoutesResourceWithStreamingResponse",
+    "PayConnectorsResource",
+    "AsyncPayConnectorsResource",
+    "PayConnectorsResourceWithRawResponse",
+    "AsyncPayConnectorsResourceWithRawResponse",
+    "PayConnectorsResourceWithStreamingResponse",
+    "AsyncPayConnectorsResourceWithStreamingResponse",
+    "TunnelsResource",
+    "AsyncTunnelsResource",
+    "TunnelsResourceWithRawResponse",
+    "AsyncTunnelsResourceWithRawResponse",
+    "TunnelsResourceWithStreamingResponse",
+    "AsyncTunnelsResourceWithStreamingResponse",
 ]

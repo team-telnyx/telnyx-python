@@ -7,6 +7,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .mm7_metadata import Mm7Metadata
 from .number_pool_settings import NumberPoolSettings
 from .url_shortener_settings import URLShortenerSettings
 from .messaging_profile_features import MessagingProfileFeatures
@@ -51,6 +52,9 @@ class MessagingMessagingProfile(BaseModel):
 
     health_webhook_url: Optional[str] = None
     """DEPRECATED: health check url service checking"""
+
+    mm7_metadata: Optional[Mm7Metadata] = None
+    """MM7 settings for inbound messages"""
 
     mms_fall_back_to_sms: Optional[bool] = None
     """enables SMS fallback for MMS messages."""

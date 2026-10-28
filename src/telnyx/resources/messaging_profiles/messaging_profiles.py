@@ -46,6 +46,7 @@ from .autoresp_configs import (
     AsyncAutorespConfigsResourceWithStreamingResponse,
 )
 from ...types.shared.short_code import ShortCode
+from ...types.mm7_metadata_param import Mm7MetadataParam
 from ...types.alphanumeric_sender_id import AlphanumericSenderID
 from ...types.number_pool_settings_param import NumberPoolSettingsParam
 from ...types.messaging_messaging_profile import MessagingMessagingProfile
@@ -103,6 +104,7 @@ class MessagingProfilesResource(SyncAPIResource):
         enabled: bool | Omit = omit,
         features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
         health_webhook_url: Optional[str] | Omit = omit,
+        mm7_metadata: Optional[Mm7MetadataParam] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
@@ -148,6 +150,8 @@ class MessagingProfilesResource(SyncAPIResource):
               preserved for forward compatibility with rolling deployments.
 
           health_webhook_url: A URL to receive health check webhooks for numbers in this profile.
+
+          mm7_metadata: MM7 settings for inbound messages
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -204,6 +208,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "enabled": enabled,
                     "features": features,
                     "health_webhook_url": health_webhook_url,
+                    "mm7_metadata": mm7_metadata,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
@@ -269,6 +274,7 @@ class MessagingProfilesResource(SyncAPIResource):
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
         features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
+        mm7_metadata: Optional[Mm7MetadataParam] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
@@ -311,6 +317,8 @@ class MessagingProfilesResource(SyncAPIResource):
           features: Telnyx product features the messaging customer can enable on the messaging
               profile. Keys map to individual feature flags; unknown keys are accepted and
               preserved for forward compatibility with rolling deployments.
+
+          mm7_metadata: MM7 settings for inbound messages
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -385,6 +393,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
                     "features": features,
+                    "mm7_metadata": mm7_metadata,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
@@ -739,6 +748,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         enabled: bool | Omit = omit,
         features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
         health_webhook_url: Optional[str] | Omit = omit,
+        mm7_metadata: Optional[Mm7MetadataParam] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
@@ -784,6 +794,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
               preserved for forward compatibility with rolling deployments.
 
           health_webhook_url: A URL to receive health check webhooks for numbers in this profile.
+
+          mm7_metadata: MM7 settings for inbound messages
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -840,6 +852,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "enabled": enabled,
                     "features": features,
                     "health_webhook_url": health_webhook_url,
+                    "mm7_metadata": mm7_metadata,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
@@ -905,6 +918,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
         features: Optional[MessagingProfileFeaturesParam] | Omit = omit,
+        mm7_metadata: Optional[Mm7MetadataParam] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
@@ -947,6 +961,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
           features: Telnyx product features the messaging customer can enable on the messaging
               profile. Keys map to individual feature flags; unknown keys are accepted and
               preserved for forward compatibility with rolling deployments.
+
+          mm7_metadata: MM7 settings for inbound messages
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -1021,6 +1037,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
                     "features": features,
+                    "mm7_metadata": mm7_metadata,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,

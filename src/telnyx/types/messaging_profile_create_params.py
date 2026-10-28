@@ -52,6 +52,9 @@ class MessagingProfileCreateParams(TypedDict, total=False):
     health_webhook_url: Optional[str]
     """A URL to receive health check webhooks for numbers in this profile."""
 
+    mm7_metadata: Optional["Mm7MetadataParam"]
+    """MM7 settings for inbound messages"""
+
     mms_fall_back_to_sms: bool
     """enables SMS fallback for MMS messages."""
 
@@ -108,6 +111,7 @@ class MessagingProfileCreateParams(TypedDict, total=False):
     """The URL where webhooks related to this messaging profile will be sent."""
 
 
+from .mm7_metadata_param import Mm7MetadataParam
 from .number_pool_settings_param import NumberPoolSettingsParam
 from .url_shortener_settings_param import URLShortenerSettingsParam
 from .messaging_profile_features_param import MessagingProfileFeaturesParam

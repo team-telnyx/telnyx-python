@@ -200,9 +200,6 @@ class Minimax(TypedDict, total=False):
 class Resemble(TypedDict, total=False):
     """Resemble AI provider-specific parameters."""
 
-    api_key: str
-    """Custom Resemble API key."""
-
     format: str
     """Audio output format."""
 

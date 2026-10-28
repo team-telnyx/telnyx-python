@@ -49,6 +49,10 @@ class TestMessagingProfiles:
             enabled=True,
             features={"ai_opt_out_detection_enabled": True},
             health_webhook_url="health_webhook_url",
+            mm7_metadata={
+                "mm7_failover_webhook_url": "https://backup.example.com/hooks",
+                "mm7_webhook_url": "https://www.example.com/hooks",
+            },
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
             mobile_only=True,
@@ -162,6 +166,10 @@ class TestMessagingProfiles:
             daily_spend_limit_enabled=True,
             enabled=True,
             features={"ai_opt_out_detection_enabled": True},
+            mm7_metadata={
+                "mm7_failover_webhook_url": "https://backup.example.com/hooks",
+                "mm7_webhook_url": "https://www.example.com/hooks",
+            },
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
             mobile_only=True,
@@ -551,6 +559,10 @@ class TestAsyncMessagingProfiles:
             enabled=True,
             features={"ai_opt_out_detection_enabled": True},
             health_webhook_url="health_webhook_url",
+            mm7_metadata={
+                "mm7_failover_webhook_url": "https://backup.example.com/hooks",
+                "mm7_webhook_url": "https://www.example.com/hooks",
+            },
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
             mobile_only=True,
@@ -664,6 +676,10 @@ class TestAsyncMessagingProfiles:
             daily_spend_limit_enabled=True,
             enabled=True,
             features={"ai_opt_out_detection_enabled": True},
+            mm7_metadata={
+                "mm7_failover_webhook_url": "https://backup.example.com/hooks",
+                "mm7_webhook_url": "https://www.example.com/hooks",
+            },
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
             mobile_only=True,
