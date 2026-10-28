@@ -19,3 +19,15 @@ class MessagingProfileFeaturesParam(TypedDict, total=False, extra_items=object):
     applies an AI model to identify non-standard opt-out requests (e.g.
     natural-language phrases) and treats them as opt-outs.
     """
+
+    auto_chunk_long_messages: bool
+    """Enables server-side chunking of outbound SMS.
+
+    When enabled, an outbound message that exceeds the maximum number of segments
+    allowed for its destination (10 segments by default; some aggregators accept up
+    to 25) is automatically split into multiple child messages, each within the
+    segment limit, and sent sequentially in order. Splitting is encoding-aware:
+    GSM-7 bodies split at 153-character boundaries and UCS-2 bodies at 134-character
+    boundaries. When disabled (the default), messages exceeding the segment limit
+    are rejected with an error.
+    """

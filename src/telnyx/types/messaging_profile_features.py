@@ -24,6 +24,18 @@ class MessagingProfileFeatures(BaseModel):
     natural-language phrases) and treats them as opt-outs.
     """
 
+    auto_chunk_long_messages: Optional[bool] = None
+    """Enables server-side chunking of outbound SMS.
+
+    When enabled, an outbound message that exceeds the maximum number of segments
+    allowed for its destination (10 segments by default; some aggregators accept up
+    to 25) is automatically split into multiple child messages, each within the
+    segment limit, and sent sequentially in order. Splitting is encoding-aware:
+    GSM-7 bodies split at 153-character boundaries and UCS-2 bodies at 134-character
+    boundaries. When disabled (the default), messages exceeding the segment limit
+    are rejected with an error.
+    """
+
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
