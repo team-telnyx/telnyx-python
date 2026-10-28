@@ -77,7 +77,7 @@ class DataSuggested(BaseModel):
 
 
 class Data(BaseModel):
-    result: Literal["valid", "invalid"]
+    result: Literal["valid"]
 
     suggested: DataSuggested
     """Provides normalized address when available."""
