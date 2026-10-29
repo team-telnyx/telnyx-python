@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
@@ -22,7 +23,7 @@ class BrowserSessionCreateParams(TypedDict, total=False):
 
     limits: Limits
 
-    metadata: object
+    metadata: Dict[str, object]
     """Arbitrary key-value metadata."""
 
 

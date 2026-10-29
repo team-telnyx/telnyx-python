@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from typing_extensions import TypeAlias
 
 from ....._models import BaseModel
@@ -35,15 +35,15 @@ class V1RetrievePersonalitiesResponseItem(BaseModel):
     forked_from: Optional[int] = None
     """ID of the personality this one was forked from."""
 
-    generation_config: Optional[object] = None
+    generation_config: Optional[Dict[str, object]] = None
 
     interruption_level: Optional[str] = None
     """How aggressively the personality interrupts the assistant."""
 
-    message_plan: Optional[object] = None
+    message_plan: Optional[Dict[str, object]] = None
     """Idle-timeout plan for messages during a call."""
 
-    network_simulation: Optional[object] = None
+    network_simulation: Optional[Dict[str, object]] = None
 
     organization: Optional[int] = None
 
@@ -51,9 +51,9 @@ class V1RetrievePersonalitiesResponseItem(BaseModel):
 
     speed: Union[float, str, None] = None
 
-    start_speaking_plan: Union[float, object, None] = None
+    start_speaking_plan: Union[float, Dict[str, object], None] = None
 
-    stop_speaking_plan: Optional[object] = None
+    stop_speaking_plan: Optional[Dict[str, object]] = None
 
     voice_volume: Optional[float] = None
 
