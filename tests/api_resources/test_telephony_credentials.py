@@ -15,6 +15,7 @@ from telnyx.types import (
     TelephonyCredentialDeleteResponse,
     TelephonyCredentialUpdateResponse,
     TelephonyCredentialRetrieveResponse,
+    TelephonyCredentialRetrieveTokenMaterialResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
@@ -302,6 +303,50 @@ class TestTelephonyCredentials:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_token_material(self, client: Telnyx) -> None:
+        telephony_credential = client.telephony_credentials.retrieve_token_material(
+            "id",
+        )
+        assert_matches_type(TelephonyCredentialRetrieveTokenMaterialResponse, telephony_credential, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_token_material(self, client: Telnyx) -> None:
+        response = client.telephony_credentials.with_raw_response.retrieve_token_material(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        telephony_credential = response.parse()
+        assert_matches_type(TelephonyCredentialRetrieveTokenMaterialResponse, telephony_credential, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_token_material(self, client: Telnyx) -> None:
+        with client.telephony_credentials.with_streaming_response.retrieve_token_material(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            telephony_credential = response.parse()
+            assert_matches_type(
+                TelephonyCredentialRetrieveTokenMaterialResponse, telephony_credential, path=["response"]
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_token_material(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.telephony_credentials.with_raw_response.retrieve_token_material(
+                "",
+            )
+
 
 class TestAsyncTelephonyCredentials:
     parametrize = pytest.mark.parametrize(
@@ -586,4 +631,48 @@ class TestAsyncTelephonyCredentials:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.telephony_credentials.with_raw_response.create_token(
                 id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_token_material(self, async_client: AsyncTelnyx) -> None:
+        telephony_credential = await async_client.telephony_credentials.retrieve_token_material(
+            "id",
+        )
+        assert_matches_type(TelephonyCredentialRetrieveTokenMaterialResponse, telephony_credential, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_token_material(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.telephony_credentials.with_raw_response.retrieve_token_material(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        telephony_credential = await response.parse()
+        assert_matches_type(TelephonyCredentialRetrieveTokenMaterialResponse, telephony_credential, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_token_material(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.telephony_credentials.with_streaming_response.retrieve_token_material(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            telephony_credential = await response.parse()
+            assert_matches_type(
+                TelephonyCredentialRetrieveTokenMaterialResponse, telephony_credential, path=["response"]
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_token_material(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.telephony_credentials.with_raw_response.retrieve_token_material(
+                "",
             )

@@ -126,6 +126,7 @@ from .room_recording import RoomRecording as RoomRecording
 from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
+from .token_material import TokenMaterial as TokenMaterial
 from .uac_connection import UacConnection as UacConnection
 from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
@@ -1796,6 +1797,9 @@ from .messaging_hosted_number_order_validate_codes_response import (
 )
 from .messaging_profile_list_alphanumeric_sender_ids_params import (
     MessagingProfileListAlphanumericSenderIDsParams as MessagingProfileListAlphanumericSenderIDsParams,
+)
+from .telephony_credential_retrieve_token_material_response import (
+    TelephonyCredentialRetrieveTokenMaterialResponse as TelephonyCredentialRetrieveTokenMaterialResponse,
 )
 from .messaging_hosted_number_order_check_eligibility_params import (
     MessagingHostedNumberOrderCheckEligibilityParams as MessagingHostedNumberOrderCheckEligibilityParams,

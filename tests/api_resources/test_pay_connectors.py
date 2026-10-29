@@ -36,11 +36,11 @@ class TestPayConnectors:
         pay_connector = client.pay_connectors.create(
             config={
                 "auth_type": "none",
-                "token": {},
+                "token": "token",
                 "endpoint_url": "https://processor.example.com/pay",
-                "password": {},
+                "password": "password",
                 "timeout": 1,
-                "username": {},
+                "username": "username",
             },
             name="my-payment-connector",
             mode="test",
@@ -134,7 +134,7 @@ class TestPayConnectors:
             config={
                 "password": "P",
                 "username": "P",
-                "token": {},
+                "token": "token",
                 "auth_type": "basic",
                 "endpoint_url": "https://processor.example.com/pay",
                 "timeout": 1,
@@ -293,11 +293,11 @@ class TestAsyncPayConnectors:
         pay_connector = await async_client.pay_connectors.create(
             config={
                 "auth_type": "none",
-                "token": {},
+                "token": "token",
                 "endpoint_url": "https://processor.example.com/pay",
-                "password": {},
+                "password": "password",
                 "timeout": 1,
-                "username": {},
+                "username": "username",
             },
             name="my-payment-connector",
             mode="test",
@@ -391,7 +391,7 @@ class TestAsyncPayConnectors:
             config={
                 "password": "P",
                 "username": "P",
-                "token": {},
+                "token": "token",
                 "auth_type": "basic",
                 "endpoint_url": "https://processor.example.com/pay",
                 "timeout": 1,

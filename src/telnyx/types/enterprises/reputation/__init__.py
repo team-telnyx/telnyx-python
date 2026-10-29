@@ -22,6 +22,7 @@ from .external_verification_create_params import ExternalVerificationCreateParam
 
 if TYPE_CHECKING:
     from .remediation_request import RemediationRequest as RemediationRequest
+    from .external_verification import ExternalVerification as ExternalVerification
     from .number_refresh_response import NumberRefreshResponse as NumberRefreshResponse
     from .reputation_phone_number import ReputationPhoneNumber as ReputationPhoneNumber
     from .remediation_list_response import RemediationListResponse as RemediationListResponse
@@ -72,6 +73,10 @@ def __getattr__(name: str) -> Any:
         from .remediation_list_response import RemediationListResponse
 
         return RemediationListResponse
+    if name == "ExternalVerification":
+        from .external_verification import ExternalVerification
+
+        return ExternalVerification
     if name == "ExternalVerificationWrapped":
         from .external_verification_wrapped import ExternalVerificationWrapped
 

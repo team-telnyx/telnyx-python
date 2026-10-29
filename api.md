@@ -5097,11 +5097,13 @@ Types:
 ```python
 from telnyx.types import (
     TelephonyCredential,
+    TokenMaterial,
     TelephonyCredentialCreateResponse,
     TelephonyCredentialRetrieveResponse,
     TelephonyCredentialUpdateResponse,
     TelephonyCredentialDeleteResponse,
     TelephonyCredentialCreateTokenResponse,
+    TelephonyCredentialRetrieveTokenMaterialResponse,
 )
 ```
 
@@ -5113,6 +5115,7 @@ Methods:
 - <code title="get /telephony_credentials">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">list</a>(\*\*<a href="src/telnyx/types/telephony_credential_list_params.py">params</a>) -> <a href="./src/telnyx/types/telephony_credential.py">SyncDefaultFlatPagination[TelephonyCredential]</a></code>
 - <code title="delete /telephony_credentials/{id}">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">delete</a>(id) -> <a href="./src/telnyx/types/telephony_credential_delete_response.py">TelephonyCredentialDeleteResponse</a></code>
 - <code title="post /telephony_credentials/{id}/token">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">create_token</a>(id) -> str</code>
+- <code title="get /telephony_credentials/{id}/token_material">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">retrieve_token_material</a>(id) -> <a href="./src/telnyx/types/telephony_credential_retrieve_token_material_response.py">TelephonyCredentialRetrieveTokenMaterialResponse</a></code>
 
 # Texml
 
@@ -6460,6 +6463,7 @@ Types:
 
 ```python
 from telnyx.types.enterprises.reputation import (
+    ExternalVerification,
     ExternalVerificationStatus,
     ExternalVerificationWrapped,
 )
@@ -6482,7 +6486,10 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.enterprises import EnterpriseEmailVerificationStatusWrapped
+from telnyx.types.enterprises import (
+    EnterpriseEmailVerificationStatus,
+    EnterpriseEmailVerificationStatusWrapped,
+)
 ```
 
 Methods:
