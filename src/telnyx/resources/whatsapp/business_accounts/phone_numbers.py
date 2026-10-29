@@ -19,7 +19,7 @@ from ...._response import (
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.whatsapp.business_accounts import phone_number_list_params, phone_number_initialize_verification_params
-from ....types.whatsapp.business_accounts.phone_number_list_response import PhoneNumberListResponse
+from ....types.whatsapp.whatsapp_phone_response import WhatsappPhoneResponse
 
 __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
 
@@ -56,7 +56,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumberListResponse]:
+    ) -> SyncDefaultFlatPagination[WhatsappPhoneResponse]:
         """
         Returns phone numbers registered under the specified WhatsApp Business Account.
 
@@ -73,7 +73,7 @@ class PhoneNumbersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/v2/whatsapp/business_accounts/{id}/phone_numbers", id=id),
-            page=SyncDefaultFlatPagination[PhoneNumberListResponse],
+            page=SyncDefaultFlatPagination[WhatsappPhoneResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,7 +87,7 @@ class PhoneNumbersResource(SyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberListResponse,
+            model=WhatsappPhoneResponse,
         )
 
     def initialize_verification(
@@ -171,7 +171,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberListResponse, AsyncDefaultFlatPagination[PhoneNumberListResponse]]:
+    ) -> AsyncPaginator[WhatsappPhoneResponse, AsyncDefaultFlatPagination[WhatsappPhoneResponse]]:
         """
         Returns phone numbers registered under the specified WhatsApp Business Account.
 
@@ -188,7 +188,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template("/v2/whatsapp/business_accounts/{id}/phone_numbers", id=id),
-            page=AsyncDefaultFlatPagination[PhoneNumberListResponse],
+            page=AsyncDefaultFlatPagination[WhatsappPhoneResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -202,7 +202,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberListResponse,
+            model=WhatsappPhoneResponse,
         )
 
     async def initialize_verification(

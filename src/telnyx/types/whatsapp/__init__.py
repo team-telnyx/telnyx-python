@@ -39,11 +39,11 @@ from .phone_number_retrieve_conversation_window_params import (
 if TYPE_CHECKING:
     from .whatsapp_user_data import WhatsappUserData as WhatsappUserData
     from .signup_list_response import SignupListResponse as SignupListResponse
+    from .whatsapp_hosted_signup import WhatsappHostedSignup as WhatsappHostedSignup
+    from .whatsapp_phone_response import WhatsappPhoneResponse as WhatsappPhoneResponse
     from .template_create_response import TemplateCreateResponse as TemplateCreateResponse
     from .phone_number_get_response import PhoneNumberGetResponse as PhoneNumberGetResponse
     from .user_data_update_response import UserDataUpdateResponse as UserDataUpdateResponse
-    from .phone_number_list_response import PhoneNumberListResponse as PhoneNumberListResponse
-    from .hosted_signup_list_response import HostedSignupListResponse as HostedSignupListResponse
     from .user_data_retrieve_response import UserDataRetrieveResponse as UserDataRetrieveResponse
     from .hosted_signup_create_response import HostedSignupCreateResponse as HostedSignupCreateResponse
     from .business_account_list_response import BusinessAccountListResponse as BusinessAccountListResponse
@@ -71,10 +71,10 @@ def __getattr__(name: str) -> Any:
         from .template_create_response import TemplateCreateResponse
 
         return TemplateCreateResponse
-    if name == "PhoneNumberListResponse":
-        from .phone_number_list_response import PhoneNumberListResponse
+    if name == "WhatsappPhoneResponse":
+        from .whatsapp_phone_response import WhatsappPhoneResponse
 
-        return PhoneNumberListResponse
+        return WhatsappPhoneResponse
     if name == "PhoneNumberGetResponse":
         from .phone_number_get_response import PhoneNumberGetResponse
 
@@ -107,6 +107,10 @@ def __getattr__(name: str) -> Any:
         from .signup_retrieve_status_response import SignupRetrieveStatusResponse
 
         return SignupRetrieveStatusResponse
+    if name == "WhatsappHostedSignup":
+        from .whatsapp_hosted_signup import WhatsappHostedSignup
+
+        return WhatsappHostedSignup
     if name == "HostedSignupCreateResponse":
         from .hosted_signup_create_response import HostedSignupCreateResponse
 
@@ -115,8 +119,4 @@ def __getattr__(name: str) -> Any:
         from .hosted_signup_retrieve_response import HostedSignupRetrieveResponse
 
         return HostedSignupRetrieveResponse
-    if name == "HostedSignupListResponse":
-        from .hosted_signup_list_response import HostedSignupListResponse
-
-        return HostedSignupListResponse
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

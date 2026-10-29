@@ -8,7 +8,9 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 from ..numbers_error_73c9788e53 import NumbersError73c9788e53
+from .phone_numbers_job_pending_operation import PhoneNumbersJobPendingOperation
 from ..shared.phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber
+from .phone_numbers_job_successful_operation import PhoneNumbersJobSuccessfulOperation
 
 __all__ = [
     "NumbersPhoneNumbersJob",
@@ -19,8 +21,6 @@ __all__ = [
     "ParametersVoiceCallRecording",
     "ParametersVoiceCnamListing",
     "ParametersVoiceMediaFeatures",
-    "PendingOperation",
-    "SuccessfulOperation",
 ]
 
 
@@ -168,29 +168,6 @@ class Parameters(BaseModel):
     """
 
 
-class PendingOperation(BaseModel):
-    """The phone numbers pending confirmation on update results.
-
-    Entries in this list are transient, and will be moved to either successful_operations or failed_operations once the processing is done.
-    """
-
-    id: Optional[str] = None
-    """The phone number's ID"""
-
-    phone_number: Optional[str] = None
-    """The phone number in e164 format."""
-
-
-class SuccessfulOperation(BaseModel):
-    """The phone numbers successfully updated."""
-
-    id: Optional[str] = None
-    """The phone number's ID"""
-
-    phone_number: Optional[str] = None
-    """The phone number in e164 format."""
-
-
 class NumbersPhoneNumbersJob(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
@@ -217,7 +194,7 @@ class NumbersPhoneNumbersJob(BaseModel):
     filters. Historical jobs with no saved arguments return an empty object.
     """
 
-    pending_operations: Optional[List[PendingOperation]] = None
+    pending_operations: Optional[List[PhoneNumbersJobPendingOperation]] = None
 
     phone_numbers: Optional[List[PhoneNumbersJobPhoneNumber]] = None
 
@@ -227,7 +204,7 @@ class NumbersPhoneNumbersJob(BaseModel):
     status: Optional[Literal["pending", "in_progress", "completed", "failed", "expired"]] = None
     """Indicates the completion status of the background update."""
 
-    successful_operations: Optional[List[SuccessfulOperation]] = None
+    successful_operations: Optional[List[PhoneNumbersJobSuccessfulOperation]] = None
 
     type: Optional[Literal["update_emergency_settings", "delete_phone_numbers", "update_phone_numbers"]] = None
     """Identifies the type of the background job."""

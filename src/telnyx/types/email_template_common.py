@@ -7,19 +7,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .variable_schema_entry import VariableSchemaEntry
 
-__all__ = ["EmailTemplateCommon", "VariableSchema"]
-
-
-class VariableSchema(BaseModel):
-    required: bool
-    """
-    Whether the variable must be supplied when strict variable validation is
-    enabled.
-    """
-
-    default: Optional[str] = None
-    """Default value for an optional variable. Rejected when `required` is `true`."""
+__all__ = ["EmailTemplateCommon"]
 
 
 class EmailTemplateCommon(BaseModel):
@@ -51,7 +41,7 @@ class EmailTemplateCommon(BaseModel):
 
     updated_at: datetime
 
-    variable_schema: Optional[Dict[str, VariableSchema]] = None
+    variable_schema: Optional[Dict[str, VariableSchemaEntry]] = None
     """
     Structured variable requirements, or `null` when the template uses only the
     legacy `variables` array.

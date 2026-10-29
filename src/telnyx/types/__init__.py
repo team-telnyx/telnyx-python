@@ -329,6 +329,7 @@ from .reserved_phone_number import ReservedPhoneNumber as ReservedPhoneNumber
 from .s3_configuration_data import S3ConfigurationData as S3ConfigurationData
 from .uac_external_settings import UacExternalSettings as UacExternalSettings
 from .uac_internal_settings import UacInternalSettings as UacInternalSettings
+from .variable_schema_entry import VariableSchemaEntry as VariableSchemaEntry
 from .voice_design_response import VoiceDesignResponse as VoiceDesignResponse
 from .voice_sdk_call_report import VoiceSDKCallReport as VoiceSDKCallReport
 from .whatsapp_message_echo import WhatsappMessageEcho as WhatsappMessageEcho
@@ -608,6 +609,7 @@ from .uac_external_settings_param import UacExternalSettingsParam as UacExternal
 from .uac_internal_settings_param import UacInternalSettingsParam as UacInternalSettingsParam
 from .unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent as UnsafeUnwrapWebhookEvent
 from .user_addresses_user_address import UserAddressesUserAddress as UserAddressesUserAddress
+from .variable_schema_entry_param import VariableSchemaEntryParam as VariableSchemaEntryParam
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
 from .wireless_wireless_blocklist import WirelessWirelessBlocklist as WirelessWirelessBlocklist
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
