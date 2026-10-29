@@ -28,6 +28,7 @@ from ..pagination import SyncEmailCursorPagination, AsyncEmailCursorPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.email_template import EmailTemplate
 from ..types.email_template_response import EmailTemplateResponse
+from ..types.variable_schema_entry_param import VariableSchemaEntryParam
 from ..types.email_template_render_response import EmailTemplateRenderResponse
 
 __all__ = ["EmailTemplatesResource", "AsyncEmailTemplatesResource"]
@@ -64,7 +65,7 @@ class EmailTemplatesResource(SyncAPIResource):
         strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
-        variable_schema: Optional[Dict[str, email_template_create_params.VariableSchema]] | Omit = omit,
+        variable_schema: Optional[Dict[str, VariableSchemaEntryParam]] | Omit = omit,
         variables: Optional[SequenceNotStr[str]] | Omit = omit,
         variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         idempotency_key: str | Omit = omit,
@@ -198,7 +199,7 @@ class EmailTemplatesResource(SyncAPIResource):
         strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
-        variable_schema: Optional[Dict[str, email_template_update_params.VariableSchema]] | Omit = omit,
+        variable_schema: Optional[Dict[str, VariableSchemaEntryParam]] | Omit = omit,
         variables: Optional[SequenceNotStr[str]] | Omit = omit,
         variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -441,7 +442,7 @@ class EmailTemplatesResource(SyncAPIResource):
         strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
-        variable_schema: Optional[Dict[str, email_template_replace_params.VariableSchema]] | Omit = omit,
+        variable_schema: Optional[Dict[str, VariableSchemaEntryParam]] | Omit = omit,
         variables: Optional[SequenceNotStr[str]] | Omit = omit,
         variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -545,7 +546,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
-        variable_schema: Optional[Dict[str, email_template_create_params.VariableSchema]] | Omit = omit,
+        variable_schema: Optional[Dict[str, VariableSchemaEntryParam]] | Omit = omit,
         variables: Optional[SequenceNotStr[str]] | Omit = omit,
         variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         idempotency_key: str | Omit = omit,
@@ -679,7 +680,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
-        variable_schema: Optional[Dict[str, email_template_update_params.VariableSchema]] | Omit = omit,
+        variable_schema: Optional[Dict[str, VariableSchemaEntryParam]] | Omit = omit,
         variables: Optional[SequenceNotStr[str]] | Omit = omit,
         variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -922,7 +923,7 @@ class AsyncEmailTemplatesResource(AsyncAPIResource):
         strict_variables: bool | Omit = omit,
         subject: Optional[str] | Omit = omit,
         text_body: Optional[str] | Omit = omit,
-        variable_schema: Optional[Dict[str, email_template_replace_params.VariableSchema]] | Omit = omit,
+        variable_schema: Optional[Dict[str, VariableSchemaEntryParam]] | Omit = omit,
         variables: Optional[SequenceNotStr[str]] | Omit = omit,
         variables_mode: Literal["automatic", "explicit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -21,7 +21,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.whatsapp import hosted_signup_list_params, hosted_signup_create_params
-from ...types.whatsapp.hosted_signup_list_response import HostedSignupListResponse
+from ...types.whatsapp.whatsapp_hosted_signup import WhatsappHostedSignup
 from ...types.whatsapp.hosted_signup_create_response import HostedSignupCreateResponse
 from ...types.whatsapp.hosted_signup_retrieve_response import HostedSignupRetrieveResponse
 
@@ -145,7 +145,7 @@ class HostedSignupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[HostedSignupListResponse]:
+    ) -> SyncDefaultFlatPagination[WhatsappHostedSignup]:
         """List hosted signups created by the account, newest first.
 
         Expired hosted signups
@@ -162,7 +162,7 @@ class HostedSignupsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/whatsapp/hosted_signups",
-            page=SyncDefaultFlatPagination[HostedSignupListResponse],
+            page=SyncDefaultFlatPagination[WhatsappHostedSignup],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -176,7 +176,7 @@ class HostedSignupsResource(SyncAPIResource):
                     hosted_signup_list_params.HostedSignupListParams,
                 ),
             ),
-            model=HostedSignupListResponse,
+            model=WhatsappHostedSignup,
         )
 
 
@@ -297,7 +297,7 @@ class AsyncHostedSignupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[HostedSignupListResponse, AsyncDefaultFlatPagination[HostedSignupListResponse]]:
+    ) -> AsyncPaginator[WhatsappHostedSignup, AsyncDefaultFlatPagination[WhatsappHostedSignup]]:
         """List hosted signups created by the account, newest first.
 
         Expired hosted signups
@@ -314,7 +314,7 @@ class AsyncHostedSignupsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/whatsapp/hosted_signups",
-            page=AsyncDefaultFlatPagination[HostedSignupListResponse],
+            page=AsyncDefaultFlatPagination[WhatsappHostedSignup],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -328,7 +328,7 @@ class AsyncHostedSignupsResource(AsyncAPIResource):
                     hosted_signup_list_params.HostedSignupListParams,
                 ),
             ),
-            model=HostedSignupListResponse,
+            model=WhatsappHostedSignup,
         )
 
 

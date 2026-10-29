@@ -14,14 +14,9 @@ if TYPE_CHECKING:
     from .waba_settings import WabaSettings as WabaSettings
     from .setting_update_response import SettingUpdateResponse as SettingUpdateResponse
     from .setting_retrieve_response import SettingRetrieveResponse as SettingRetrieveResponse
-    from .phone_number_list_response import PhoneNumberListResponse as PhoneNumberListResponse
 
 
 def __getattr__(name: str) -> Any:
-    if name == "PhoneNumberListResponse":
-        from .phone_number_list_response import PhoneNumberListResponse
-
-        return PhoneNumberListResponse
     if name == "WabaSettings":
         from .waba_settings import WabaSettings
 

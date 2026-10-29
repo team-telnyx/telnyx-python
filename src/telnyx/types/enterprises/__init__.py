@@ -14,6 +14,9 @@ from .reputation_update_frequency_params import ReputationUpdateFrequencyParams 
 
 if TYPE_CHECKING:
     from .enterprise_reputation_public import EnterpriseReputationPublic as EnterpriseReputationPublic
+    from .enterprise_email_verification_status import (
+        EnterpriseEmailVerificationStatus as EnterpriseEmailVerificationStatus,
+    )
     from .enterprise_reputation_public_wrapped import (
         EnterpriseReputationPublicWrapped as EnterpriseReputationPublicWrapped,
     )
@@ -31,6 +34,10 @@ def __getattr__(name: str) -> Any:
         from .enterprise_reputation_public_wrapped import EnterpriseReputationPublicWrapped
 
         return EnterpriseReputationPublicWrapped
+    if name == "EnterpriseEmailVerificationStatus":
+        from .enterprise_email_verification_status import EnterpriseEmailVerificationStatus
+
+        return EnterpriseEmailVerificationStatus
     if name == "EnterpriseEmailVerificationStatusWrapped":
         from .enterprise_email_verification_status_wrapped import EnterpriseEmailVerificationStatusWrapped
 

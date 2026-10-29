@@ -10,9 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.whatsapp.business_accounts import (
-    PhoneNumberListResponse,
-)
+from telnyx.types.whatsapp import WhatsappPhoneResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +24,7 @@ class TestPhoneNumbers:
         phone_number = client.whatsapp.business_accounts.phone_numbers.list(
             id="id",
         )
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -36,7 +34,7 @@ class TestPhoneNumbers:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -48,7 +46,7 @@ class TestPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -60,7 +58,7 @@ class TestPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +144,7 @@ class TestAsyncPhoneNumbers:
         phone_number = await async_client.whatsapp.business_accounts.phone_numbers.list(
             id="id",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -156,7 +154,7 @@ class TestAsyncPhoneNumbers:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -168,7 +166,7 @@ class TestAsyncPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -180,7 +178,7 @@ class TestAsyncPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberListResponse], phone_number, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[WhatsappPhoneResponse], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -35,7 +35,7 @@ class Config(BaseModel):
     Omitted when no timeout was configured; the effective runtime default is 10000.
     """
 
-    username: Optional[object] = None
+    username: Optional[str] = None
     """Stored username, when supplied.
 
     Required to be a nonblank string for basic authentication.

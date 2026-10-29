@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -36,7 +36,7 @@ class Session(BaseModel):
 
     limits: Limits
 
-    metadata: object
+    metadata: Dict[str, object]
 
     policy: Policy
 

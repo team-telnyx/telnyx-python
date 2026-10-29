@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -196,7 +196,7 @@ class WhatsappMessageInteractiveActionParametersFlowActionPayload(TypedDict, tot
     When omitted, the flow opens on its first entry screen. Must be omitted when flow_action is data_exchange
     """
 
-    data: object
+    data: Dict[str, object]
     """input data for the first screen. Must be a non-empty object when provided"""
 
     screen: str
@@ -338,7 +338,7 @@ class WhatsappMessageInteractive(TypedDict, total=False):
 class WhatsappMessageTemplateComponentParameterAction(TypedDict, total=False):
     """Flow button parameters. Used with type action on a flow button component"""
 
-    flow_action_data: object
+    flow_action_data: Dict[str, object]
     """input data for the first screen of the flow"""
 
     flow_token: str

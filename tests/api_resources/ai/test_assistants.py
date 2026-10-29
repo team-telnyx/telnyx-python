@@ -484,6 +484,7 @@ class TestAssistants:
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
+                "greeting_delay_ms": 0,
                 "noise_suppression": "aicoustics",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
@@ -1208,6 +1209,7 @@ class TestAssistants:
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
+                "greeting_delay_ms": 0,
                 "noise_suppression": "aicoustics",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
@@ -2344,6 +2346,7 @@ class TestAsyncAssistants:
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
+                "greeting_delay_ms": 0,
                 "noise_suppression": "aicoustics",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
@@ -3068,6 +3071,7 @@ class TestAsyncAssistants:
                 "default_texml_app_id": "default_texml_app_id",
                 "disable_dtmf": True,
                 "fallback_destination": "fallback_destination",
+                "greeting_delay_ms": 0,
                 "noise_suppression": "aicoustics",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
