@@ -50,8 +50,12 @@ if TYPE_CHECKING:
     from .action_enable_emergency_response import ActionEnableEmergencyResponse as ActionEnableEmergencyResponse
     from .action_verify_ownership_response import ActionVerifyOwnershipResponse as ActionVerifyOwnershipResponse
     from .phone_number_with_voice_settings import PhoneNumberWithVoiceSettings as PhoneNumberWithVoiceSettings
+    from .phone_numbers_job_pending_operation import PhoneNumbersJobPendingOperation as PhoneNumbersJobPendingOperation
     from .action_change_bundle_status_response import (
         ActionChangeBundleStatusResponse as ActionChangeBundleStatusResponse,
+    )
+    from .phone_numbers_job_successful_operation import (
+        PhoneNumbersJobSuccessfulOperation as PhoneNumbersJobSuccessfulOperation,
     )
     from .job_update_emergency_settings_batch_response import (
         JobUpdateEmergencySettingsBatchResponse as JobUpdateEmergencySettingsBatchResponse,
@@ -91,6 +95,14 @@ def __getattr__(name: str) -> Any:
         from .numbers_phone_numbers_job import NumbersPhoneNumbersJob
 
         return NumbersPhoneNumbersJob
+    if name == "PhoneNumbersJobPendingOperation":
+        from .phone_numbers_job_pending_operation import PhoneNumbersJobPendingOperation
+
+        return PhoneNumbersJobPendingOperation
+    if name == "PhoneNumbersJobSuccessfulOperation":
+        from .phone_numbers_job_successful_operation import PhoneNumbersJobSuccessfulOperation
+
+        return PhoneNumbersJobSuccessfulOperation
     if name == "JobRetrieveResponse":
         from .job_retrieve_response import JobRetrieveResponse
 

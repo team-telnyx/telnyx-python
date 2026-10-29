@@ -70,6 +70,13 @@ class ModelMetadata(BaseModel):
     Only set for fine-tuned models.
     """
 
+    beta: Optional[bool] = None
+    """Whether the model is in beta.
+
+    New Telnyx-hosted models launch with `beta: true`; the label is removed once the
+    model is established.
+    """
+
     description: Optional[str] = None
     """Short, human-readable summary of what the model is best suited for."""
 

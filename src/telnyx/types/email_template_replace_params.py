@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["EmailTemplateReplaceParams", "VariableSchema"]
+__all__ = ["EmailTemplateReplaceParams"]
 
 
 class EmailTemplateReplaceParams(TypedDict, total=False):
@@ -28,7 +28,7 @@ class EmailTemplateReplaceParams(TypedDict, total=False):
     text_body: Optional[str]
     """Liquid template text body."""
 
-    variable_schema: Optional[Dict[str, VariableSchema]]
+    variable_schema: Optional[Dict[str, "VariableSchemaEntryParam"]]
     """Structured variable requirements.
 
     Required variables cannot define defaults; invalid combinations return 422. Set
@@ -54,12 +54,4 @@ class EmailTemplateReplaceParams(TypedDict, total=False):
     """
 
 
-class VariableSchema(TypedDict, total=False):
-    required: Required[bool]
-    """
-    Whether the variable must be supplied when strict variable validation is
-    enabled.
-    """
-
-    default: str
-    """Default value for an optional variable. Rejected when `required` is `true`."""
+from .variable_schema_entry_param import VariableSchemaEntryParam

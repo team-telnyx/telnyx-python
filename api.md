@@ -721,7 +721,9 @@ from telnyx.types.ai import (
     TelnyxAvatarSettings,
     ToolNode,
     ToolNodeReq,
+    TranscriptionChallenger,
     TranscriptionEndpointingPlan,
+    TranscriptionFallbackModel,
     TranscriptionSettings,
     TranscriptionSettingsConfig,
     TransferTool,
@@ -1525,7 +1527,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.memory.namespaces import NamespaceSettingsResponse
+from telnyx.types.ai.memory.namespaces import (
+    NamespaceSettings,
+    NamespaceSettingsResponse,
+    SummarySettings,
+)
 ```
 
 Methods:
@@ -3702,6 +3708,8 @@ Types:
 from telnyx.types.phone_numbers import (
     NumbersPhoneNumbersJob,
     PhoneNumbersJob,
+    PhoneNumbersJobPendingOperation,
+    PhoneNumbersJobSuccessfulOperation,
     JobRetrieveResponse,
     JobDeleteBatchResponse,
     JobUpdateBatchResponse,
@@ -5089,11 +5097,13 @@ Types:
 ```python
 from telnyx.types import (
     TelephonyCredential,
+    TokenMaterial,
     TelephonyCredentialCreateResponse,
     TelephonyCredentialRetrieveResponse,
     TelephonyCredentialUpdateResponse,
     TelephonyCredentialDeleteResponse,
     TelephonyCredentialCreateTokenResponse,
+    TelephonyCredentialRetrieveTokenMaterialResponse,
 )
 ```
 
@@ -5105,6 +5115,7 @@ Methods:
 - <code title="get /telephony_credentials">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">list</a>(\*\*<a href="src/telnyx/types/telephony_credential_list_params.py">params</a>) -> <a href="./src/telnyx/types/telephony_credential.py">SyncDefaultFlatPagination[TelephonyCredential]</a></code>
 - <code title="delete /telephony_credentials/{id}">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">delete</a>(id) -> <a href="./src/telnyx/types/telephony_credential_delete_response.py">TelephonyCredentialDeleteResponse</a></code>
 - <code title="post /telephony_credentials/{id}/token">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">create_token</a>(id) -> str</code>
+- <code title="get /telephony_credentials/{id}/token_material">client.telephony_credentials.<a href="./src/telnyx/resources/telephony_credentials.py">retrieve_token_material</a>(id) -> <a href="./src/telnyx/types/telephony_credential_retrieve_token_material_response.py">TelephonyCredentialRetrieveTokenMaterialResponse</a></code>
 
 # Texml
 
@@ -6042,15 +6053,9 @@ Methods:
 
 ### PhoneNumbers
 
-Types:
-
-```python
-from telnyx.types.whatsapp.business_accounts import PhoneNumberListResponse
-```
-
 Methods:
 
-- <code title="get /v2/whatsapp/business_accounts/{id}/phone_numbers">client.whatsapp.business_accounts.phone_numbers.<a href="./src/telnyx/resources/whatsapp/business_accounts/phone_numbers.py">list</a>(id, \*\*<a href="src/telnyx/types/whatsapp/business_accounts/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/business_accounts/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
+- <code title="get /v2/whatsapp/business_accounts/{id}/phone_numbers">client.whatsapp.business_accounts.phone_numbers.<a href="./src/telnyx/resources/whatsapp/business_accounts/phone_numbers.py">list</a>(id, \*\*<a href="src/telnyx/types/whatsapp/business_accounts/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/whatsapp_phone_response.py">SyncDefaultFlatPagination[WhatsappPhoneResponse]</a></code>
 - <code title="post /v2/whatsapp/business_accounts/{id}/phone_numbers">client.whatsapp.business_accounts.phone_numbers.<a href="./src/telnyx/resources/whatsapp/business_accounts/phone_numbers.py">initialize_verification</a>(id, \*\*<a href="src/telnyx/types/whatsapp/business_accounts/phone_number_initialize_verification_params.py">params</a>) -> None</code>
 
 ### Settings
@@ -6096,7 +6101,7 @@ Types:
 
 ```python
 from telnyx.types.whatsapp import (
-    PhoneNumberListResponse,
+    WhatsappPhoneResponse,
     PhoneNumberGetResponse,
     PhoneNumberRetrieveConversationWindowResponse,
     PhoneNumberRetrievePhoneNumberResponse,
@@ -6105,7 +6110,7 @@ from telnyx.types.whatsapp import (
 
 Methods:
 
-- <code title="get /v2/whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
+- <code title="get /v2/whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/whatsapp_phone_response.py">SyncDefaultFlatPagination[WhatsappPhoneResponse]</a></code>
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">delete</a>(phone_number) -> None</code>
 - <code title="get /whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">get</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_get_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_get_response.py">PhoneNumberGetResponse</a></code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/resend_verification">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">resend_verification</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_resend_verification_params.py">params</a>) -> None</code>
@@ -6227,9 +6232,9 @@ Types:
 
 ```python
 from telnyx.types.whatsapp import (
+    WhatsappHostedSignup,
     HostedSignupCreateResponse,
     HostedSignupRetrieveResponse,
-    HostedSignupListResponse,
 )
 ```
 
@@ -6237,7 +6242,7 @@ Methods:
 
 - <code title="post /whatsapp/hosted_signups">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/hosted_signup_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_create_response.py">HostedSignupCreateResponse</a></code>
 - <code title="get /whatsapp/hosted_signups/{id}">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_retrieve_response.py">HostedSignupRetrieveResponse</a></code>
-- <code title="get /whatsapp/hosted_signups">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/hosted_signup_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/hosted_signup_list_response.py">SyncDefaultFlatPagination[HostedSignupListResponse]</a></code>
+- <code title="get /whatsapp/hosted_signups">client.whatsapp.hosted_signups.<a href="./src/telnyx/resources/whatsapp/hosted_signups.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/hosted_signup_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/whatsapp_hosted_signup.py">SyncDefaultFlatPagination[WhatsappHostedSignup]</a></code>
 
 # WhatsappMessageTemplates
 
@@ -6458,6 +6463,7 @@ Types:
 
 ```python
 from telnyx.types.enterprises.reputation import (
+    ExternalVerification,
     ExternalVerificationStatus,
     ExternalVerificationWrapped,
 )
@@ -6480,7 +6486,10 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.enterprises import EnterpriseEmailVerificationStatusWrapped
+from telnyx.types.enterprises import (
+    EnterpriseEmailVerificationStatus,
+    EnterpriseEmailVerificationStatusWrapped,
+)
 ```
 
 Methods:
@@ -7058,6 +7067,7 @@ from telnyx.types import (
     EmailTemplateCommon,
     EmailTemplateResponse,
     UpdateEmailTemplateRequest,
+    VariableSchemaEntry,
     EmailTemplateRenderResponse,
 )
 ```
@@ -7305,7 +7315,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.compute.funcs import FuncLogExportConfigResponse
+from telnyx.types.compute.funcs import FuncLogExportConfig, FuncLogExportConfigResponse
 ```
 
 Methods:

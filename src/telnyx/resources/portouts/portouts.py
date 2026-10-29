@@ -147,8 +147,10 @@ class PortoutsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[PortoutDetails]:
-        """
-        Returns the portout requests according to filters
+        """Returns the portout requests according to filters.
+
+        Carrier Port Out API
+        available. Please contact porting@telnyx.com.
 
         Args:
           filter:
@@ -369,8 +371,10 @@ class AsyncPortoutsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PortoutDetails, AsyncDefaultFlatPagination[PortoutDetails]]:
-        """
-        Returns the portout requests according to filters
+        """Returns the portout requests according to filters.
+
+        Carrier Port Out API
+        available. Please contact porting@telnyx.com.
 
         Args:
           filter:

@@ -20,7 +20,7 @@ __all__ = [
     "WaitForActionConditionUnionMember0",
     "WaitForActionConditionUnionMember1",
     "WaitForActionConditionUnionMember2",
-    "WaitForActionConditionKind",
+    "WaitForActionConditionUnionMember3",
     "BatchAction",
     "BatchActionAction",
 ]
@@ -230,7 +230,7 @@ class WaitForActionConditionUnionMember2(TypedDict, total=False):
     text: Required[str]
 
 
-class WaitForActionConditionKind(TypedDict, total=False):
+class WaitForActionConditionUnionMember3(TypedDict, total=False):
     kind: Required[Literal["dom_stable"]]
 
 
@@ -238,7 +238,7 @@ WaitForActionCondition: TypeAlias = Union[
     WaitForActionConditionUnionMember0,
     WaitForActionConditionUnionMember1,
     WaitForActionConditionUnionMember2,
-    WaitForActionConditionKind,
+    WaitForActionConditionUnionMember3,
 ]
 
 

@@ -26,6 +26,9 @@ from ..types.telephony_credential_create_response import TelephonyCredentialCrea
 from ..types.telephony_credential_delete_response import TelephonyCredentialDeleteResponse
 from ..types.telephony_credential_update_response import TelephonyCredentialUpdateResponse
 from ..types.telephony_credential_retrieve_response import TelephonyCredentialRetrieveResponse
+from ..types.telephony_credential_retrieve_token_material_response import (
+    TelephonyCredentialRetrieveTokenMaterialResponse,
+)
 
 __all__ = ["TelephonyCredentialsResource", "AsyncTelephonyCredentialsResource"]
 
@@ -305,6 +308,42 @@ class TelephonyCredentialsResource(SyncAPIResource):
             cast_to=str,
         )
 
+    def retrieve_token_material(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelephonyCredentialRetrieveTokenMaterialResponse:
+        """
+        Returns the material a server needs to mint login tokens for the credential
+        locally, with no request per token: `kid`, `tel_token` and `signing_secret`. The
+        same material is in the response of `POST /telephony_credentials`. Treat it like
+        the SIP password.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            path_template("/telephony_credentials/{id}/token_material", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelephonyCredentialRetrieveTokenMaterialResponse,
+        )
+
 
 class AsyncTelephonyCredentialsResource(AsyncAPIResource):
     @cached_property
@@ -581,6 +620,42 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
             cast_to=str,
         )
 
+    async def retrieve_token_material(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelephonyCredentialRetrieveTokenMaterialResponse:
+        """
+        Returns the material a server needs to mint login tokens for the credential
+        locally, with no request per token: `kid`, `tel_token` and `signing_secret`. The
+        same material is in the response of `POST /telephony_credentials`. Treat it like
+        the SIP password.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            path_template("/telephony_credentials/{id}/token_material", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelephonyCredentialRetrieveTokenMaterialResponse,
+        )
+
 
 class TelephonyCredentialsResourceWithRawResponse:
     def __init__(self, telephony_credentials: TelephonyCredentialsResource) -> None:
@@ -603,6 +678,9 @@ class TelephonyCredentialsResourceWithRawResponse:
         )
         self.create_token = to_raw_response_wrapper(
             telephony_credentials.create_token,
+        )
+        self.retrieve_token_material = to_raw_response_wrapper(
+            telephony_credentials.retrieve_token_material,
         )
 
 
@@ -628,6 +706,9 @@ class AsyncTelephonyCredentialsResourceWithRawResponse:
         self.create_token = async_to_raw_response_wrapper(
             telephony_credentials.create_token,
         )
+        self.retrieve_token_material = async_to_raw_response_wrapper(
+            telephony_credentials.retrieve_token_material,
+        )
 
 
 class TelephonyCredentialsResourceWithStreamingResponse:
@@ -652,6 +733,9 @@ class TelephonyCredentialsResourceWithStreamingResponse:
         self.create_token = to_streamed_response_wrapper(
             telephony_credentials.create_token,
         )
+        self.retrieve_token_material = to_streamed_response_wrapper(
+            telephony_credentials.retrieve_token_material,
+        )
 
 
 class AsyncTelephonyCredentialsResourceWithStreamingResponse:
@@ -675,4 +759,7 @@ class AsyncTelephonyCredentialsResourceWithStreamingResponse:
         )
         self.create_token = async_to_streamed_response_wrapper(
             telephony_credentials.create_token,
+        )
+        self.retrieve_token_material = async_to_streamed_response_wrapper(
+            telephony_credentials.retrieve_token_material,
         )

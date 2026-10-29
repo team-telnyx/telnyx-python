@@ -167,6 +167,13 @@ class OutboundMessagePayload(BaseModel):
 
     cc: Optional[List[Cc]] = None
 
+    child_message_id: Optional[str] = None
+    """
+    Identifies the next chunk when server-side SMS chunking
+    (`auto_chunk_long_messages` on the messaging profile) split this message. Always
+    present; null on non-chunked messages and on the final chunk.
+    """
+
     completed_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the message was finalized."""
 
@@ -202,6 +209,14 @@ class OutboundMessagePayload(BaseModel):
 
     organization_id: Optional[str] = None
     """The id of the organization the messaging profile belongs to."""
+
+    parent_message_id: Optional[str] = None
+    """
+    Identifies the original request's message when server-side SMS chunking
+    (`auto_chunk_long_messages` on the messaging profile) split it into chunks. The
+    first chunk's ID is the original request's message ID. Always present; null when
+    this message is not part of a chunked send.
+    """
 
     parts: Optional[int] = None
     """Number of parts into which the message's body must be split."""

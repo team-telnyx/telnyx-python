@@ -47,7 +47,10 @@ class TestMessagingProfiles:
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
             enabled=True,
-            features={"ai_opt_out_detection_enabled": True},
+            features={
+                "ai_opt_out_detection_enabled": True,
+                "auto_chunk_long_messages": True,
+            },
             health_webhook_url="health_webhook_url",
             mm7_metadata={
                 "mm7_failover_webhook_url": "https://backup.example.com/hooks",
@@ -165,7 +168,10 @@ class TestMessagingProfiles:
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
             enabled=True,
-            features={"ai_opt_out_detection_enabled": True},
+            features={
+                "ai_opt_out_detection_enabled": True,
+                "auto_chunk_long_messages": True,
+            },
             mm7_metadata={
                 "mm7_failover_webhook_url": "https://backup.example.com/hooks",
                 "mm7_webhook_url": "https://www.example.com/hooks",
@@ -557,7 +563,10 @@ class TestAsyncMessagingProfiles:
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
             enabled=True,
-            features={"ai_opt_out_detection_enabled": True},
+            features={
+                "ai_opt_out_detection_enabled": True,
+                "auto_chunk_long_messages": True,
+            },
             health_webhook_url="health_webhook_url",
             mm7_metadata={
                 "mm7_failover_webhook_url": "https://backup.example.com/hooks",
@@ -675,7 +684,10 @@ class TestAsyncMessagingProfiles:
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
             enabled=True,
-            features={"ai_opt_out_detection_enabled": True},
+            features={
+                "ai_opt_out_detection_enabled": True,
+                "auto_chunk_long_messages": True,
+            },
             mm7_metadata={
                 "mm7_failover_webhook_url": "https://backup.example.com/hooks",
                 "mm7_webhook_url": "https://www.example.com/hooks",

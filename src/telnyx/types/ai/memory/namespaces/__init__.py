@@ -13,6 +13,8 @@ from .setting_patch_all_params import SettingPatchAllParams as SettingPatchAllPa
 
 if TYPE_CHECKING:
     from .page_meta import PageMeta as PageMeta
+    from .summary_settings import SummarySettings as SummarySettings
+    from .namespace_settings import NamespaceSettings as NamespaceSettings
     from .profile_list_response import ProfileListResponse as ProfileListResponse
     from .profile_delete_response import ProfileDeleteResponse as ProfileDeleteResponse
     from .profile_ingest_response import ProfileIngestResponse as ProfileIngestResponse
@@ -56,8 +58,16 @@ def __getattr__(name: str) -> Any:
         from .profile_retrieve_summary_response import ProfileRetrieveSummaryResponse
 
         return ProfileRetrieveSummaryResponse
+    if name == "NamespaceSettings":
+        from .namespace_settings import NamespaceSettings
+
+        return NamespaceSettings
     if name == "NamespaceSettingsResponse":
         from .namespace_settings_response import NamespaceSettingsResponse
 
         return NamespaceSettingsResponse
+    if name == "SummarySettings":
+        from .summary_settings import SummarySettings
+
+        return SummarySettings
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

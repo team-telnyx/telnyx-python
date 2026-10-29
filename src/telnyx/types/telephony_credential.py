@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Optional
 
 from .._models import BaseModel
+from .token_material import TokenMaterial
 
 __all__ = ["TelephonyCredential"]
 
@@ -35,6 +36,12 @@ class TelephonyCredential(BaseModel):
 
     sip_username: Optional[str] = None
     """The randomly generated SIP username for the credential."""
+
+    token_material: Optional[TokenMaterial] = None
+    """Returned when the credential is created.
+
+    See `GET /telephony_credentials/{id}/token_material` to fetch it again.
+    """
 
     updated_at: Optional[str] = None
     """ISO-8601 formatted date indicating when the resource was updated."""

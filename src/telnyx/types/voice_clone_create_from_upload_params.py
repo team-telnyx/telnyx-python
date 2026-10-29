@@ -131,7 +131,7 @@ class VoiceCloneUploadRequestTelnyxBayanClone(TypedDict, total=False):
     Defaults to `ar`. Other values return `422`.
     """
 
-    provider: Literal["telnyx", "Telnyx"]
+    provider: Literal["telnyx"]
     """Voice synthesis provider. Defaults to `telnyx`."""
 
 
@@ -193,7 +193,7 @@ class VoiceCloneUploadRequestResembleClone(TypedDict, total=False):
     name: Required[str]
     """Name for the voice clone."""
 
-    provider: Required[Literal["resemble", "Resemble"]]
+    provider: Required[Literal["resemble"]]
     """Voice synthesis provider. Must be `resemble`."""
 
     label: str
