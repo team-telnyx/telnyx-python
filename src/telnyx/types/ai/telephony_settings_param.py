@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = [
@@ -158,6 +159,15 @@ class TelephonySettingsParam(TypedDict, total=False):
     completed normally, the caller hung up after a relay handoff, or voicemail was
     detected), and it does not fire when the assistant already transferred or
     bridged the call.
+    """
+
+    greeting_delay_ms: Optional[int]
+    """
+    Milliseconds to wait after an inbound call is answered before the assistant
+    starts and speaks its greeting. Increase it if the beginning of the greeting is
+    cut off on some connections (for example, WebRTC calls). When unset (`null`),
+    the platform default of 250 ms is used. Set to `0` to start without a delay.
+    Maximum 2000.
     """
 
     noise_suppression: Literal["aicoustics", "krisp", "deepfilternet", "disabled"]
