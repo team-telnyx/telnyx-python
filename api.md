@@ -6868,7 +6868,7 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="get /email_events">client.email_events.<a href="./src/telnyx/resources/email_events.py">list</a>(\*\*<a href="src/telnyx/types/email_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_list_response.py">EmailEventListResponse</a></code>
+- <code title="get /email_events">client.email_events.<a href="./src/telnyx/resources/email_events.py">list</a>(\*\*<a href="src/telnyx/types/email_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_list_response.py">SyncEmailEventsCursorPagination[EmailEventListResponse]</a></code>
 - <code title="get /email_events/stats">client.email_events.<a href="./src/telnyx/resources/email_events.py">retrieve_stats</a>(\*\*<a href="src/telnyx/types/email_event_retrieve_stats_params.py">params</a>) -> <a href="./src/telnyx/types/email_event_retrieve_stats_response.py">EmailEventRetrieveStatsResponse</a></code>
 
 # EmailInboxes
