@@ -12,16 +12,16 @@ from ..._models import BaseModel
 __all__ = [
     "PayToolParams",
     "Prompts",
-    "PromptsBankAccountNumberUnionMember1",
-    "PromptsBankRoutingNumberUnionMember1",
-    "PromptsExpirationDateUnionMember1",
-    "PromptsPaymentCardNumberUnionMember1",
-    "PromptsPostalCodeUnionMember1",
-    "PromptsSecurityCodeUnionMember1",
+    "PromptsBankAccountNumberPayToolPromptList",
+    "PromptsBankRoutingNumberPayToolPromptList",
+    "PromptsExpirationDatePayToolPromptList",
+    "PromptsPaymentCardNumberPayToolPromptList",
+    "PromptsPostalCodePayToolPromptList",
+    "PromptsSecurityCodePayToolPromptList",
 ]
 
 
-class PromptsBankAccountNumberUnionMember1(BaseModel):
+class PromptsBankAccountNumberPayToolPromptList(BaseModel):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -58,7 +58,7 @@ class PromptsBankAccountNumberUnionMember1(BaseModel):
     """Step error for which this prompt applies."""
 
 
-class PromptsBankRoutingNumberUnionMember1(BaseModel):
+class PromptsBankRoutingNumberPayToolPromptList(BaseModel):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -95,7 +95,7 @@ class PromptsBankRoutingNumberUnionMember1(BaseModel):
     """Step error for which this prompt applies."""
 
 
-class PromptsExpirationDateUnionMember1(BaseModel):
+class PromptsExpirationDatePayToolPromptList(BaseModel):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -132,7 +132,7 @@ class PromptsExpirationDateUnionMember1(BaseModel):
     """Step error for which this prompt applies."""
 
 
-class PromptsPaymentCardNumberUnionMember1(BaseModel):
+class PromptsPaymentCardNumberPayToolPromptList(BaseModel):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -169,7 +169,7 @@ class PromptsPaymentCardNumberUnionMember1(BaseModel):
     """Step error for which this prompt applies."""
 
 
-class PromptsPostalCodeUnionMember1(BaseModel):
+class PromptsPostalCodePayToolPromptList(BaseModel):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -206,7 +206,7 @@ class PromptsPostalCodeUnionMember1(BaseModel):
     """Step error for which this prompt applies."""
 
 
-class PromptsSecurityCodeUnionMember1(BaseModel):
+class PromptsSecurityCodePayToolPromptList(BaseModel):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -249,30 +249,32 @@ class Prompts(BaseModel):
     The AI assistant merges its own card-number prompt into this map, matching on the same step keys.
     """
 
-    bank_account_number: Union[str, List[PromptsBankAccountNumberUnionMember1], None] = FieldInfo(
+    bank_account_number: Union[str, List[PromptsBankAccountNumberPayToolPromptList], None] = FieldInfo(
         alias="bank-account-number", default=None
     )
     """A default prompt string or an ordered list of qualified prompts."""
 
-    bank_routing_number: Union[str, List[PromptsBankRoutingNumberUnionMember1], None] = FieldInfo(
+    bank_routing_number: Union[str, List[PromptsBankRoutingNumberPayToolPromptList], None] = FieldInfo(
         alias="bank-routing-number", default=None
     )
     """A default prompt string or an ordered list of qualified prompts."""
 
-    expiration_date: Union[str, List[PromptsExpirationDateUnionMember1], None] = FieldInfo(
+    expiration_date: Union[str, List[PromptsExpirationDatePayToolPromptList], None] = FieldInfo(
         alias="expiration-date", default=None
     )
     """A default prompt string or an ordered list of qualified prompts."""
 
-    payment_card_number: Union[str, List[PromptsPaymentCardNumberUnionMember1], None] = FieldInfo(
+    payment_card_number: Union[str, List[PromptsPaymentCardNumberPayToolPromptList], None] = FieldInfo(
         alias="payment-card-number", default=None
     )
     """A default prompt string or an ordered list of qualified prompts."""
 
-    postal_code: Union[str, List[PromptsPostalCodeUnionMember1], None] = FieldInfo(alias="postal-code", default=None)
+    postal_code: Union[str, List[PromptsPostalCodePayToolPromptList], None] = FieldInfo(
+        alias="postal-code", default=None
+    )
     """A default prompt string or an ordered list of qualified prompts."""
 
-    security_code: Union[str, List[PromptsSecurityCodeUnionMember1], None] = FieldInfo(
+    security_code: Union[str, List[PromptsSecurityCodePayToolPromptList], None] = FieldInfo(
         alias="security-code", default=None
     )
     """A default prompt string or an ordered list of qualified prompts."""

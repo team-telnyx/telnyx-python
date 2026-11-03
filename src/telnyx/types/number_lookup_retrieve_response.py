@@ -139,6 +139,12 @@ class DataEnhancedCallerName(BaseModel):
     caller_name: Optional[str] = None
     """The name associated with the phone number."""
 
+    entity_type: Optional[str] = None
+    """
+    The entity type of the phone number's owner, from the enhanced caller name data
+    source — `Person` or `Business`. Null when not available.
+    """
+
     error_code: Optional[str] = None
     """
     A lookup-specific error code if the enhanced caller name could not be resolved;

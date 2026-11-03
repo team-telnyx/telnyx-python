@@ -10,16 +10,16 @@ from ..._utils import PropertyInfo
 __all__ = [
     "PayToolParamsParam",
     "Prompts",
-    "PromptsBankAccountNumberUnionMember1",
-    "PromptsBankRoutingNumberUnionMember1",
-    "PromptsExpirationDateUnionMember1",
-    "PromptsPaymentCardNumberUnionMember1",
-    "PromptsPostalCodeUnionMember1",
-    "PromptsSecurityCodeUnionMember1",
+    "PromptsBankAccountNumberPayToolPromptList",
+    "PromptsBankRoutingNumberPayToolPromptList",
+    "PromptsExpirationDatePayToolPromptList",
+    "PromptsPaymentCardNumberPayToolPromptList",
+    "PromptsPostalCodePayToolPromptList",
+    "PromptsSecurityCodePayToolPromptList",
 ]
 
 
-class PromptsBankAccountNumberUnionMember1(TypedDict, total=False):
+class PromptsBankAccountNumberPayToolPromptList(TypedDict, total=False):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -52,7 +52,7 @@ class PromptsBankAccountNumberUnionMember1(TypedDict, total=False):
     """Step error for which this prompt applies."""
 
 
-class PromptsBankRoutingNumberUnionMember1(TypedDict, total=False):
+class PromptsBankRoutingNumberPayToolPromptList(TypedDict, total=False):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -85,7 +85,7 @@ class PromptsBankRoutingNumberUnionMember1(TypedDict, total=False):
     """Step error for which this prompt applies."""
 
 
-class PromptsExpirationDateUnionMember1(TypedDict, total=False):
+class PromptsExpirationDatePayToolPromptList(TypedDict, total=False):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -118,7 +118,7 @@ class PromptsExpirationDateUnionMember1(TypedDict, total=False):
     """Step error for which this prompt applies."""
 
 
-class PromptsPaymentCardNumberUnionMember1(TypedDict, total=False):
+class PromptsPaymentCardNumberPayToolPromptList(TypedDict, total=False):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -151,7 +151,7 @@ class PromptsPaymentCardNumberUnionMember1(TypedDict, total=False):
     """Step error for which this prompt applies."""
 
 
-class PromptsPostalCodeUnionMember1(TypedDict, total=False):
+class PromptsPostalCodePayToolPromptList(TypedDict, total=False):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -184,7 +184,7 @@ class PromptsPostalCodeUnionMember1(TypedDict, total=False):
     """Step error for which this prompt applies."""
 
 
-class PromptsSecurityCodeUnionMember1(TypedDict, total=False):
+class PromptsSecurityCodePayToolPromptList(TypedDict, total=False):
     """
     A text-to-speech prompt with optional matching qualifiers, mirroring the Voice API PayPrompt schema.
     """
@@ -224,29 +224,31 @@ class Prompts(TypedDict, total=False):
     """
 
     bank_account_number: Annotated[
-        Union[str, Iterable[PromptsBankAccountNumberUnionMember1]], PropertyInfo(alias="bank-account-number")
+        Union[str, Iterable[PromptsBankAccountNumberPayToolPromptList]], PropertyInfo(alias="bank-account-number")
     ]
     """A default prompt string or an ordered list of qualified prompts."""
 
     bank_routing_number: Annotated[
-        Union[str, Iterable[PromptsBankRoutingNumberUnionMember1]], PropertyInfo(alias="bank-routing-number")
+        Union[str, Iterable[PromptsBankRoutingNumberPayToolPromptList]], PropertyInfo(alias="bank-routing-number")
     ]
     """A default prompt string or an ordered list of qualified prompts."""
 
     expiration_date: Annotated[
-        Union[str, Iterable[PromptsExpirationDateUnionMember1]], PropertyInfo(alias="expiration-date")
+        Union[str, Iterable[PromptsExpirationDatePayToolPromptList]], PropertyInfo(alias="expiration-date")
     ]
     """A default prompt string or an ordered list of qualified prompts."""
 
     payment_card_number: Annotated[
-        Union[str, Iterable[PromptsPaymentCardNumberUnionMember1]], PropertyInfo(alias="payment-card-number")
+        Union[str, Iterable[PromptsPaymentCardNumberPayToolPromptList]], PropertyInfo(alias="payment-card-number")
     ]
     """A default prompt string or an ordered list of qualified prompts."""
 
-    postal_code: Annotated[Union[str, Iterable[PromptsPostalCodeUnionMember1]], PropertyInfo(alias="postal-code")]
+    postal_code: Annotated[Union[str, Iterable[PromptsPostalCodePayToolPromptList]], PropertyInfo(alias="postal-code")]
     """A default prompt string or an ordered list of qualified prompts."""
 
-    security_code: Annotated[Union[str, Iterable[PromptsSecurityCodeUnionMember1]], PropertyInfo(alias="security-code")]
+    security_code: Annotated[
+        Union[str, Iterable[PromptsSecurityCodePayToolPromptList]], PropertyInfo(alias="security-code")
+    ]
     """A default prompt string or an ordered list of qualified prompts."""
 
 

@@ -1050,6 +1050,7 @@ Methods:
 - <code title="get /ai/conversations">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">list</a>(\*\*<a href="src/telnyx/types/ai/conversation_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversation_list_response.py">ConversationListResponse</a></code>
 - <code title="delete /ai/conversations/{conversation_id}">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">delete</a>(conversation_id) -> None</code>
 - <code title="post /ai/conversations/{conversation_id}/message">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">add_message</a>(conversation_id, \*\*<a href="src/telnyx/types/ai/conversation_add_message_params.py">params</a>) -> None</code>
+- <code title="delete /ai/conversations/{conversation_id}/conversations-insights/{insight_id}">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">delete_delete</a>(insight_id, \*, conversation_id) -> None</code>
 - <code title="get /ai/conversations/{conversation_id}/conversations-insights">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">retrieve_conversations_insights</a>(conversation_id) -> <a href="./src/telnyx/types/ai/conversation_retrieve_conversations_insights_response.py">ConversationRetrieveConversationsInsightsResponse</a></code>
 
 ### InsightGroups
