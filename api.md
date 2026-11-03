@@ -1904,6 +1904,7 @@ Types:
 ```python
 from telnyx.types.calls import (
     AIAssistantJoinParticipant,
+    AssemblyAIVoiceSettings,
     AssistantMessage,
     AwsVoiceSettings,
     CallControlCommandResult,
