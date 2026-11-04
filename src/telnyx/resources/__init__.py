@@ -481,6 +481,14 @@ from .spend_limits import (
     SpendLimitsResourceWithStreamingResponse,
     AsyncSpendLimitsResourceWithStreamingResponse,
 )
+from .user_profile import (
+    UserProfileResource,
+    AsyncUserProfileResource,
+    UserProfileResourceWithRawResponse,
+    AsyncUserProfileResourceWithRawResponse,
+    UserProfileResourceWithStreamingResponse,
+    AsyncUserProfileResourceWithStreamingResponse,
+)
 from .voice_clones import (
     VoiceClonesResource,
     AsyncVoiceClonesResource,
@@ -2777,4 +2785,10 @@ __all__ = [
     "AsyncTunnelsResourceWithRawResponse",
     "TunnelsResourceWithStreamingResponse",
     "AsyncTunnelsResourceWithStreamingResponse",
+    "UserProfileResource",
+    "AsyncUserProfileResource",
+    "UserProfileResourceWithRawResponse",
+    "AsyncUserProfileResourceWithRawResponse",
+    "UserProfileResourceWithStreamingResponse",
+    "AsyncUserProfileResourceWithStreamingResponse",
 ]

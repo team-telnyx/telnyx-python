@@ -7658,3 +7658,16 @@ from telnyx.types.tunnels import ActionRotateTokenResponse
 Methods:
 
 - <code title="post /tunnels/{id}/actions/rotate_token">client.tunnels.actions.<a href="./src/telnyx/resources/tunnels/actions.py">rotate_token</a>(id) -> <a href="./src/telnyx/types/tunnels/action_rotate_token_response.py">ActionRotateTokenResponse</a></code>
+
+# UserProfile
+
+Types:
+
+```python
+from telnyx.types import UserProfile, UserProfileListResponse, UserProfilePatchAllResponse
+```
+
+Methods:
+
+- <code title="get /user_profile">client.user_profile.<a href="./src/telnyx/resources/user_profile.py">list</a>() -> <a href="./src/telnyx/types/user_profile_list_response.py">UserProfileListResponse</a></code>
+- <code title="patch /user_profile">client.user_profile.<a href="./src/telnyx/resources/user_profile.py">patch_all</a>(\*\*<a href="src/telnyx/types/user_profile_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/user_profile_patch_all_response.py">UserProfilePatchAllResponse</a></code>

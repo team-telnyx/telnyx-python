@@ -99,6 +99,7 @@ from .service_plan import ServicePlan as ServicePlan
 from .stream_codec import StreamCodec as StreamCodec
 from .traffic_type import TrafficType as TrafficType
 from .uac_outbound import UacOutbound as UacOutbound
+from .user_profile import UserProfile as UserProfile
 from .verification import Verification as Verification
 from .video_region import VideoRegion as VideoRegion
 from .billing_group import BillingGroup as BillingGroup
@@ -560,6 +561,7 @@ from .uac_connection_list_params import UacConnectionListParams as UacConnection
 from .unsubscribe_group_response import UnsubscribeGroupResponse as UnsubscribeGroupResponse
 from .usage_report_list_response import UsageReportListResponse as UsageReportListResponse
 from .user_address_create_params import UserAddressCreateParams as UserAddressCreateParams
+from .user_profile_list_response import UserProfileListResponse as UserProfileListResponse
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
 from .voice_design_create_params import VoiceDesignCreateParams as VoiceDesignCreateParams
 from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRenameParams
@@ -727,6 +729,7 @@ from .requirement_retrieve_response import RequirementRetrieveResponse as Requir
 from .s3_generic_configuration_data import S3GenericConfigurationData as S3GenericConfigurationData
 from .texml_application_list_params import TexmlApplicationListParams as TexmlApplicationListParams
 from .texml_initiate_ai_call_params import TexmlInitiateAICallParams as TexmlInitiateAICallParams
+from .user_profile_patch_all_params import UserProfilePatchAllParams as UserProfilePatchAllParams
 from .verified_number_create_params import VerifiedNumberCreateParams as VerifiedNumberCreateParams
 from .voice_designs_pagination_meta import VoiceDesignsPaginationMeta as VoiceDesignsPaginationMeta
 from .azure_configuration_data_param import AzureConfigurationDataParam as AzureConfigurationDataParam
@@ -828,6 +831,7 @@ from .texml_application_create_params import TexmlApplicationCreateParams as Tex
 from .texml_application_update_params import TexmlApplicationUpdateParams as TexmlApplicationUpdateParams
 from .texml_initiate_ai_call_response import TexmlInitiateAICallResponse as TexmlInitiateAICallResponse
 from .usage_report_get_options_params import UsageReportGetOptionsParams as UsageReportGetOptionsParams
+from .user_profile_patch_all_response import UserProfilePatchAllResponse as UserProfilePatchAllResponse
 from .verification_trigger_sms_params import VerificationTriggerSMSParams as VerificationTriggerSMSParams
 from .verified_number_create_response import VerifiedNumberCreateResponse as VerifiedNumberCreateResponse
 from .voice_sdk_call_report_log_entry import VoiceSDKCallReportLogEntry as VoiceSDKCallReportLogEntry

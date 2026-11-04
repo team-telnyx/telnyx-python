@@ -97,6 +97,7 @@ if TYPE_CHECKING:
         oauth_grants,
         requirements,
         spend_limits,
+        user_profile,
         voice_clones,
         bot_challenge,
         channel_zones,
@@ -273,6 +274,7 @@ if TYPE_CHECKING:
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
     from .resources.spend_limits import SpendLimitsResource, AsyncSpendLimitsResource
+    from .resources.user_profile import UserProfileResource, AsyncUserProfileResource
     from .resources.voice_clones import VoiceClonesResource, AsyncVoiceClonesResource
     from .resources.bot_challenge import BotChallengeResource, AsyncBotChallengeResource
     from .resources.channel_zones import ChannelZonesResource, AsyncChannelZonesResource
@@ -2030,6 +2032,13 @@ class Telnyx(SyncAPIClient):
         return TunnelsResource(self)
 
     @cached_property
+    def user_profile(self) -> UserProfileResource:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import UserProfileResource
+
+        return UserProfileResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3670,6 +3679,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncTunnelsResource(self)
 
     @cached_property
+    def user_profile(self) -> AsyncUserProfileResource:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import AsyncUserProfileResource
+
+        return AsyncUserProfileResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -5245,6 +5261,13 @@ class TelnyxWithRawResponse:
 
         return TunnelsResourceWithRawResponse(self._client.tunnels)
 
+    @cached_property
+    def user_profile(self) -> user_profile.UserProfileResourceWithRawResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import UserProfileResourceWithRawResponse
+
+        return UserProfileResourceWithRawResponse(self._client.user_profile)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6693,6 +6716,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.tunnels import AsyncTunnelsResourceWithRawResponse
 
         return AsyncTunnelsResourceWithRawResponse(self._client.tunnels)
+
+    @cached_property
+    def user_profile(self) -> user_profile.AsyncUserProfileResourceWithRawResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import AsyncUserProfileResourceWithRawResponse
+
+        return AsyncUserProfileResourceWithRawResponse(self._client.user_profile)
 
 
 class TelnyxWithStreamedResponse:
@@ -8144,6 +8174,13 @@ class TelnyxWithStreamedResponse:
         from .resources.tunnels import TunnelsResourceWithStreamingResponse
 
         return TunnelsResourceWithStreamingResponse(self._client.tunnels)
+
+    @cached_property
+    def user_profile(self) -> user_profile.UserProfileResourceWithStreamingResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import UserProfileResourceWithStreamingResponse
+
+        return UserProfileResourceWithStreamingResponse(self._client.user_profile)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9647,6 +9684,13 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.tunnels import AsyncTunnelsResourceWithStreamingResponse
 
         return AsyncTunnelsResourceWithStreamingResponse(self._client.tunnels)
+
+    @cached_property
+    def user_profile(self) -> user_profile.AsyncUserProfileResourceWithStreamingResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import AsyncUserProfileResourceWithStreamingResponse
+
+        return AsyncUserProfileResourceWithStreamingResponse(self._client.user_profile)
 
 
 Client = Telnyx
