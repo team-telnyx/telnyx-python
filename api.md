@@ -7804,6 +7804,7 @@ from telnyx.types.agent_gateways import (
     AgentGatewayPolicyGuardrails,
     AgentGatewayPolicyPipeline,
     AgentGatewayPolicyResponse,
+    AgentGatewayPolicyStep,
     PolicyListResponse,
 )
 ```

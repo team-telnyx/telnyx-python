@@ -18,6 +18,7 @@ from .guardrail_update_params import GuardrailUpdateParams as GuardrailUpdatePar
 from .mcp_server_create_params import McpServerCreateParams as McpServerCreateParams
 from .mcp_server_update_params import McpServerUpdateParams as McpServerUpdateParams
 from .agent_gateway_no_auth_param import AgentGatewayNoAuthParam as AgentGatewayNoAuthParam
+from .agent_gateway_policy_step_param import AgentGatewayPolicyStepParam as AgentGatewayPolicyStepParam
 from .agent_gateway_static_auth_param import AgentGatewayStaticAuthParam as AgentGatewayStaticAuthParam
 from .policy_attachment_create_params import PolicyAttachmentCreateParams as PolicyAttachmentCreateParams
 from .agent_gateway_aws_sig_v4_auth_param import AgentGatewayAwsSigV4AuthParam as AgentGatewayAwsSigV4AuthParam
@@ -45,6 +46,7 @@ if TYPE_CHECKING:
     from .agent_gateway_mcp_server import AgentGatewayMcpServer as AgentGatewayMcpServer
     from .agent_gateway_shown_auth import AgentGatewayShownAuth as AgentGatewayShownAuth
     from .mcp_server_list_response import McpServerListResponse as McpServerListResponse
+    from .agent_gateway_policy_step import AgentGatewayPolicyStep as AgentGatewayPolicyStep
     from .agent_gateway_api_response import AgentGatewayAPIResponse as AgentGatewayAPIResponse
     from .agent_gateway_key_response import AgentGatewayKeyResponse as AgentGatewayKeyResponse
     from .agent_gateway_team_response import AgentGatewayTeamResponse as AgentGatewayTeamResponse
@@ -133,6 +135,10 @@ def __getattr__(name: str) -> Any:
         from .agent_gateway_policy_response import AgentGatewayPolicyResponse
 
         return AgentGatewayPolicyResponse
+    if name == "AgentGatewayPolicyStep":
+        from .agent_gateway_policy_step import AgentGatewayPolicyStep
+
+        return AgentGatewayPolicyStep
     if name == "PolicyListResponse":
         from .policy_list_response import PolicyListResponse
 
