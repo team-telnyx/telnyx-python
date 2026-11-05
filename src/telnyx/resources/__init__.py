@@ -601,6 +601,14 @@ from .voice_designs import (
     VoiceDesignsResourceWithStreamingResponse,
     AsyncVoiceDesignsResourceWithStreamingResponse,
 )
+from .agent_gateways import (
+    AgentGatewaysResource,
+    AsyncAgentGatewaysResource,
+    AgentGatewaysResourceWithRawResponse,
+    AsyncAgentGatewaysResourceWithRawResponse,
+    AgentGatewaysResourceWithStreamingResponse,
+    AsyncAgentGatewaysResourceWithStreamingResponse,
+)
 from .billing_groups import (
     BillingGroupsResource,
     AsyncBillingGroupsResource,
@@ -2791,4 +2799,10 @@ __all__ = [
     "AsyncUserProfileResourceWithRawResponse",
     "UserProfileResourceWithStreamingResponse",
     "AsyncUserProfileResourceWithStreamingResponse",
+    "AgentGatewaysResource",
+    "AsyncAgentGatewaysResource",
+    "AgentGatewaysResourceWithRawResponse",
+    "AsyncAgentGatewaysResourceWithRawResponse",
+    "AgentGatewaysResourceWithStreamingResponse",
+    "AsyncAgentGatewaysResourceWithStreamingResponse",
 ]

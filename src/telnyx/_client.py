@@ -112,6 +112,7 @@ if TYPE_CHECKING:
         usage_reports,
         verifications,
         voice_designs,
+        agent_gateways,
         billing_groups,
         bundle_pricing,
         detail_records,
@@ -453,6 +454,7 @@ if TYPE_CHECKING:
         LedgerBillingGroupReportsResource,
         AsyncLedgerBillingGroupReportsResource,
     )
+    from .resources.agent_gateways.agent_gateways import AgentGatewaysResource, AsyncAgentGatewaysResource
     from .resources.available_phone_number_blocks import (
         AvailablePhoneNumberBlocksResource,
         AsyncAvailablePhoneNumberBlocksResource,
@@ -2037,6 +2039,12 @@ class Telnyx(SyncAPIClient):
         from .resources.user_profile import UserProfileResource
 
         return UserProfileResource(self)
+
+    @cached_property
+    def agent_gateways(self) -> AgentGatewaysResource:
+        from .resources.agent_gateways import AgentGatewaysResource
+
+        return AgentGatewaysResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3686,6 +3694,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncUserProfileResource(self)
 
     @cached_property
+    def agent_gateways(self) -> AsyncAgentGatewaysResource:
+        from .resources.agent_gateways import AsyncAgentGatewaysResource
+
+        return AsyncAgentGatewaysResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -5268,6 +5282,12 @@ class TelnyxWithRawResponse:
 
         return UserProfileResourceWithRawResponse(self._client.user_profile)
 
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AgentGatewaysResourceWithRawResponse:
+        from .resources.agent_gateways import AgentGatewaysResourceWithRawResponse
+
+        return AgentGatewaysResourceWithRawResponse(self._client.agent_gateways)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6723,6 +6743,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.user_profile import AsyncUserProfileResourceWithRawResponse
 
         return AsyncUserProfileResourceWithRawResponse(self._client.user_profile)
+
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AsyncAgentGatewaysResourceWithRawResponse:
+        from .resources.agent_gateways import AsyncAgentGatewaysResourceWithRawResponse
+
+        return AsyncAgentGatewaysResourceWithRawResponse(self._client.agent_gateways)
 
 
 class TelnyxWithStreamedResponse:
@@ -8181,6 +8207,12 @@ class TelnyxWithStreamedResponse:
         from .resources.user_profile import UserProfileResourceWithStreamingResponse
 
         return UserProfileResourceWithStreamingResponse(self._client.user_profile)
+
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AgentGatewaysResourceWithStreamingResponse:
+        from .resources.agent_gateways import AgentGatewaysResourceWithStreamingResponse
+
+        return AgentGatewaysResourceWithStreamingResponse(self._client.agent_gateways)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9691,6 +9723,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.user_profile import AsyncUserProfileResourceWithStreamingResponse
 
         return AsyncUserProfileResourceWithStreamingResponse(self._client.user_profile)
+
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AsyncAgentGatewaysResourceWithStreamingResponse:
+        from .resources.agent_gateways import AsyncAgentGatewaysResourceWithStreamingResponse
+
+        return AsyncAgentGatewaysResourceWithStreamingResponse(self._client.agent_gateways)
 
 
 Client = Telnyx

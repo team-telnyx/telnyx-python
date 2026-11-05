@@ -102,6 +102,7 @@ from .uac_outbound import UacOutbound as UacOutbound
 from .user_profile import UserProfile as UserProfile
 from .verification import Verification as Verification
 from .video_region import VideoRegion as VideoRegion
+from .agent_gateway import AgentGateway as AgentGateway
 from .billing_group import BillingGroup as BillingGroup
 from .call_answered import CallAnswered as CallAnswered
 from .call_enqueued import CallEnqueued as CallEnqueued
@@ -335,6 +336,7 @@ from .variable_schema_entry import VariableSchemaEntry as VariableSchemaEntry
 from .voice_design_response import VoiceDesignResponse as VoiceDesignResponse
 from .voice_sdk_call_report import VoiceSDKCallReport as VoiceSDKCallReport
 from .whatsapp_message_echo import WhatsappMessageEcho as WhatsappMessageEcho
+from .agent_gateway_response import AgentGatewayResponse as AgentGatewayResponse
 from .alphanumeric_sender_id import AlphanumericSenderID as AlphanumericSenderID
 from .call_event_list_params import CallEventListParams as CallEventListParams
 from .call_streaming_started import CallStreamingStarted as CallStreamingStarted
@@ -471,6 +473,7 @@ from .web_search_create_params import WebSearchCreateParams as WebSearchCreatePa
 from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
 from .wireguard_interface_read import WireguardInterfaceRead as WireguardInterfaceRead
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
+from .agent_gateway_list_params import AgentGatewayListParams as AgentGatewayListParams
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
 from .billing_group_list_params import BillingGroupListParams as BillingGroupListParams
@@ -569,6 +572,7 @@ from .web_search_contents_params import WebSearchContentsParams as WebSearchCont
 from .web_search_create_response import WebSearchCreateResponse as WebSearchCreateResponse
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
+from .agent_gateway_create_params import AgentGatewayCreateParams as AgentGatewayCreateParams
 from .billing_group_create_params import BillingGroupCreateParams as BillingGroupCreateParams
 from .billing_group_update_params import BillingGroupUpdateParams as BillingGroupUpdateParams
 from .bot_challenge_create_params import BotChallengeCreateParams as BotChallengeCreateParams
@@ -1172,6 +1176,9 @@ from .voice_clone_create_from_upload_params import VoiceCloneCreateFromUploadPar
 from .wireguard_interface_retrieve_response import (
     WireguardInterfaceRetrieveResponse as WireguardInterfaceRetrieveResponse,
 )
+from .agent_gateway_retrieve_models_response import (
+    AgentGatewayRetrieveModelsResponse as AgentGatewayRetrieveModelsResponse,
+)
 from .alphanumeric_sender_id_create_response import (
     AlphanumericSenderIDCreateResponse as AlphanumericSenderIDCreateResponse,
 )
@@ -1376,6 +1383,9 @@ from .whatsapp_message_template_update_params import (
 from .wireguard_peer_retrieve_config_response import (
     WireguardPeerRetrieveConfigResponse as WireguardPeerRetrieveConfigResponse,
 )
+from .agent_gateway_retrieve_spend_logs_params import (
+    AgentGatewayRetrieveSpendLogsParams as AgentGatewayRetrieveSpendLogsParams,
+)
 from .alphanumeric_sender_id_retrieve_response import (
     AlphanumericSenderIDRetrieveResponse as AlphanumericSenderIDRetrieveResponse,
 )
@@ -1507,6 +1517,9 @@ from .terms_of_service_retrieve_status_response import (
 )
 from .whatsapp_message_template_update_response import (
     WhatsappMessageTemplateUpdateResponse as WhatsappMessageTemplateUpdateResponse,
+)
+from .agent_gateway_retrieve_spend_logs_response import (
+    AgentGatewayRetrieveSpendLogsResponse as AgentGatewayRetrieveSpendLogsResponse,
 )
 from .available_phone_number_block_list_response import (
     AvailablePhoneNumberBlockListResponse as AvailablePhoneNumberBlockListResponse,

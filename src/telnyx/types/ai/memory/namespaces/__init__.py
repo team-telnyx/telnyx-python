@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .summary_settings import SummarySettings as SummarySettings
     from .namespace_settings import NamespaceSettings as NamespaceSettings
     from .profile_list_response import ProfileListResponse as ProfileListResponse
+    from .agent_memory_page_meta import AgentMemoryPageMeta as AgentMemoryPageMeta
     from .profile_delete_response import ProfileDeleteResponse as ProfileDeleteResponse
     from .profile_ingest_response import ProfileIngestResponse as ProfileIngestResponse
     from .profile_recall_response import ProfileRecallResponse as ProfileRecallResponse
@@ -26,6 +27,10 @@ if TYPE_CHECKING:
 
 
 def __getattr__(name: str) -> Any:
+    if name == "AgentMemoryPageMeta":
+        from .agent_memory_page_meta import AgentMemoryPageMeta
+
+        return AgentMemoryPageMeta
     if name == "PageMeta":
         from .page_meta import PageMeta
 

@@ -1475,6 +1475,7 @@ Types:
 
 ```python
 from telnyx.types.ai.memory.namespaces import (
+    AgentMemoryPageMeta,
     PageMeta,
     ProfileListResponse,
     ProfileDeleteResponse,
@@ -7671,3 +7672,186 @@ Methods:
 
 - <code title="get /user_profile">client.user_profile.<a href="./src/telnyx/resources/user_profile.py">list</a>() -> <a href="./src/telnyx/types/user_profile_list_response.py">UserProfileListResponse</a></code>
 - <code title="patch /user_profile">client.user_profile.<a href="./src/telnyx/resources/user_profile.py">patch_all</a>(\*\*<a href="src/telnyx/types/user_profile_patch_all_params.py">params</a>) -> <a href="./src/telnyx/types/user_profile_patch_all_response.py">UserProfilePatchAllResponse</a></code>
+
+# AgentGateways
+
+Types:
+
+```python
+from telnyx.types import (
+    AgentGateway,
+    AgentGatewayResponse,
+    AgentGatewayRetrieveModelsResponse,
+    AgentGatewayRetrieveSpendLogsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /agent_gateways">client.agent_gateways.<a href="./src/telnyx/resources/agent_gateways/agent_gateways.py">create</a>(\*\*<a href="src/telnyx/types/agent_gateway_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateway_response.py">AgentGatewayResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}">client.agent_gateways.<a href="./src/telnyx/resources/agent_gateways/agent_gateways.py">retrieve</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateway_response.py">AgentGatewayResponse</a></code>
+- <code title="get /agent_gateways">client.agent_gateways.<a href="./src/telnyx/resources/agent_gateways/agent_gateways.py">list</a>(\*\*<a href="src/telnyx/types/agent_gateway_list_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateway.py">SyncDefaultFlatPagination[AgentGateway]</a></code>
+- <code title="delete /agent_gateways/{instance_id}">client.agent_gateways.<a href="./src/telnyx/resources/agent_gateways/agent_gateways.py">delete</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateway_response.py">AgentGatewayResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/models">client.agent_gateways.<a href="./src/telnyx/resources/agent_gateways/agent_gateways.py">retrieve_models</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateway_retrieve_models_response.py">AgentGatewayRetrieveModelsResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/spend_logs">client.agent_gateways.<a href="./src/telnyx/resources/agent_gateways/agent_gateways.py">retrieve_spend_logs</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateway_retrieve_spend_logs_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateway_retrieve_spend_logs_response.py">AgentGatewayRetrieveSpendLogsResponse</a></code>
+
+## APIs
+
+Types:
+
+```python
+from telnyx.types.agent_gateways import (
+    AgentGatewayAPI,
+    AgentGatewayAPIResponse,
+    AgentGatewayNoAuth,
+    AgentGatewayOAuthClientCredentials,
+    AgentGatewayPassthroughAuth,
+    AgentGatewayShownAuth,
+    AgentGatewayStaticAuth,
+    APIListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /agent_gateways/{instance_id}/apis">client.agent_gateways.apis.<a href="./src/telnyx/resources/agent_gateways/apis.py">create</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/api_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_api_response.py">AgentGatewayAPIResponse</a></code>
+- <code title="patch /agent_gateways/{instance_id}/apis/{api_id}">client.agent_gateways.apis.<a href="./src/telnyx/resources/agent_gateways/apis.py">update</a>(api_id, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/api_update_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_api_response.py">AgentGatewayAPIResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/apis">client.agent_gateways.apis.<a href="./src/telnyx/resources/agent_gateways/apis.py">list</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateways/api_list_response.py">APIListResponse</a></code>
+- <code title="delete /agent_gateways/{instance_id}/apis/{api_id}">client.agent_gateways.apis.<a href="./src/telnyx/resources/agent_gateways/apis.py">delete</a>(api_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_api_response.py">AgentGatewayAPIResponse</a></code>
+
+## Guardrails
+
+Types:
+
+```python
+from telnyx.types.agent_gateways import (
+    AgentGatewayGuardrail,
+    AgentGatewayGuardrailResponse,
+    GuardrailListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /agent_gateways/{instance_id}/guardrails">client.agent_gateways.guardrails.<a href="./src/telnyx/resources/agent_gateways/guardrails.py">create</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/guardrail_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_guardrail_response.py">AgentGatewayGuardrailResponse</a></code>
+- <code title="patch /agent_gateways/{instance_id}/guardrails/{guardrail_id}">client.agent_gateways.guardrails.<a href="./src/telnyx/resources/agent_gateways/guardrails.py">update</a>(guardrail_id, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/guardrail_update_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_guardrail_response.py">AgentGatewayGuardrailResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/guardrails">client.agent_gateways.guardrails.<a href="./src/telnyx/resources/agent_gateways/guardrails.py">list</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateways/guardrail_list_response.py">GuardrailListResponse</a></code>
+- <code title="delete /agent_gateways/{instance_id}/guardrails/{guardrail_id}">client.agent_gateways.guardrails.<a href="./src/telnyx/resources/agent_gateways/guardrails.py">delete</a>(guardrail_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_guardrail_response.py">AgentGatewayGuardrailResponse</a></code>
+
+## Keys
+
+Types:
+
+```python
+from telnyx.types.agent_gateways import (
+    AgentGatewayKey,
+    AgentGatewayKeyResponse,
+    KeyCreateResponse,
+    KeyListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /agent_gateways/{instance_id}/keys">client.agent_gateways.keys.<a href="./src/telnyx/resources/agent_gateways/keys/keys.py">create</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/key_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="patch /agent_gateways/{instance_id}/keys/{key_id}">client.agent_gateways.keys.<a href="./src/telnyx/resources/agent_gateways/keys/keys.py">update</a>(key_id, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/key_update_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_key_response.py">AgentGatewayKeyResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/keys">client.agent_gateways.keys.<a href="./src/telnyx/resources/agent_gateways/keys/keys.py">list</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/key_list_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /agent_gateways/{instance_id}/keys/{key_id}">client.agent_gateways.keys.<a href="./src/telnyx/resources/agent_gateways/keys/keys.py">delete</a>(key_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_key_response.py">AgentGatewayKeyResponse</a></code>
+
+### ToolPermissions
+
+Types:
+
+```python
+from telnyx.types.agent_gateways.keys import (
+    AgentGatewayToolPermissions,
+    AgentGatewayToolPermissionsResponse,
+)
+```
+
+Methods:
+
+- <code title="put /agent_gateways/{instance_id}/keys/{key_id}/tool_permissions">client.agent_gateways.keys.tool_permissions.<a href="./src/telnyx/resources/agent_gateways/keys/tool_permissions.py">create</a>(key_id, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/keys/tool_permission_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/keys/agent_gateway_tool_permissions_response.py">AgentGatewayToolPermissionsResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/keys/{key_id}/tool_permissions">client.agent_gateways.keys.tool_permissions.<a href="./src/telnyx/resources/agent_gateways/keys/tool_permissions.py">list</a>(key_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/keys/agent_gateway_tool_permissions_response.py">AgentGatewayToolPermissionsResponse</a></code>
+
+## McpServers
+
+Types:
+
+```python
+from telnyx.types.agent_gateways import (
+    AgentGatewayAwsSigV4Auth,
+    AgentGatewayMcpServer,
+    AgentGatewayMcpServerResponse,
+    McpServerListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /agent_gateways/{instance_id}/mcp_servers">client.agent_gateways.mcp_servers.<a href="./src/telnyx/resources/agent_gateways/mcp_servers.py">create</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/mcp_server_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_mcp_server_response.py">AgentGatewayMcpServerResponse</a></code>
+- <code title="patch /agent_gateways/{instance_id}/mcp_servers/{server_id}">client.agent_gateways.mcp_servers.<a href="./src/telnyx/resources/agent_gateways/mcp_servers.py">update</a>(server_id, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/mcp_server_update_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_mcp_server_response.py">AgentGatewayMcpServerResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/mcp_servers">client.agent_gateways.mcp_servers.<a href="./src/telnyx/resources/agent_gateways/mcp_servers.py">list</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateways/mcp_server_list_response.py">McpServerListResponse</a></code>
+- <code title="delete /agent_gateways/{instance_id}/mcp_servers/{server_id}">client.agent_gateways.mcp_servers.<a href="./src/telnyx/resources/agent_gateways/mcp_servers.py">delete</a>(server_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_mcp_server_response.py">AgentGatewayMcpServerResponse</a></code>
+
+## Policies
+
+Types:
+
+```python
+from telnyx.types.agent_gateways import (
+    AgentGatewayPolicy,
+    AgentGatewayPolicyGuardrails,
+    AgentGatewayPolicyPipeline,
+    AgentGatewayPolicyResponse,
+    PolicyListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /agent_gateways/{instance_id}/policies">client.agent_gateways.policies.<a href="./src/telnyx/resources/agent_gateways/policies.py">create</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/policy_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_policy_response.py">AgentGatewayPolicyResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/policies/{name}">client.agent_gateways.policies.<a href="./src/telnyx/resources/agent_gateways/policies.py">retrieve</a>(name, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_policy_response.py">AgentGatewayPolicyResponse</a></code>
+- <code title="patch /agent_gateways/{instance_id}/policies/{name}">client.agent_gateways.policies.<a href="./src/telnyx/resources/agent_gateways/policies.py">update</a>(name, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/policy_update_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_policy_response.py">AgentGatewayPolicyResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/policies">client.agent_gateways.policies.<a href="./src/telnyx/resources/agent_gateways/policies.py">list</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateways/policy_list_response.py">PolicyListResponse</a></code>
+- <code title="delete /agent_gateways/{instance_id}/policies/{name}">client.agent_gateways.policies.<a href="./src/telnyx/resources/agent_gateways/policies.py">delete</a>(name, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_policy_response.py">AgentGatewayPolicyResponse</a></code>
+
+## PolicyAttachments
+
+Types:
+
+```python
+from telnyx.types.agent_gateways import (
+    AgentGatewayPolicyAttachment,
+    AgentGatewayPolicyAttachmentResponse,
+    PolicyAttachmentListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /agent_gateways/{instance_id}/policy_attachments">client.agent_gateways.policy_attachments.<a href="./src/telnyx/resources/agent_gateways/policy_attachments.py">create</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/policy_attachment_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_policy_attachment_response.py">AgentGatewayPolicyAttachmentResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/policy_attachments">client.agent_gateways.policy_attachments.<a href="./src/telnyx/resources/agent_gateways/policy_attachments.py">list</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateways/policy_attachment_list_response.py">PolicyAttachmentListResponse</a></code>
+- <code title="delete /agent_gateways/{instance_id}/policy_attachments/{attachment_id}">client.agent_gateways.policy_attachments.<a href="./src/telnyx/resources/agent_gateways/policy_attachments.py">delete</a>(attachment_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_policy_attachment_response.py">AgentGatewayPolicyAttachmentResponse</a></code>
+
+## Teams
+
+Types:
+
+```python
+from telnyx.types.agent_gateways import AgentGatewayTeam, AgentGatewayTeamResponse, TeamListResponse
+```
+
+Methods:
+
+- <code title="post /agent_gateways/{instance_id}/teams">client.agent_gateways.teams.<a href="./src/telnyx/resources/agent_gateways/teams/teams.py">create</a>(instance_id, \*\*<a href="src/telnyx/types/agent_gateways/team_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_team_response.py">AgentGatewayTeamResponse</a></code>
+- <code title="patch /agent_gateways/{instance_id}/teams/{team_id}">client.agent_gateways.teams.<a href="./src/telnyx/resources/agent_gateways/teams/teams.py">update</a>(team_id, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/team_update_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_team_response.py">AgentGatewayTeamResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/teams">client.agent_gateways.teams.<a href="./src/telnyx/resources/agent_gateways/teams/teams.py">list</a>(instance_id) -> <a href="./src/telnyx/types/agent_gateways/team_list_response.py">TeamListResponse</a></code>
+- <code title="delete /agent_gateways/{instance_id}/teams/{team_id}">client.agent_gateways.teams.<a href="./src/telnyx/resources/agent_gateways/teams/teams.py">delete</a>(team_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/agent_gateway_team_response.py">AgentGatewayTeamResponse</a></code>
+
+### ToolPermissions
+
+Methods:
+
+- <code title="put /agent_gateways/{instance_id}/teams/{team_id}/tool_permissions">client.agent_gateways.teams.tool_permissions.<a href="./src/telnyx/resources/agent_gateways/teams/tool_permissions.py">create</a>(team_id, \*, instance_id, \*\*<a href="src/telnyx/types/agent_gateways/teams/tool_permission_create_params.py">params</a>) -> <a href="./src/telnyx/types/agent_gateways/keys/agent_gateway_tool_permissions_response.py">AgentGatewayToolPermissionsResponse</a></code>
+- <code title="get /agent_gateways/{instance_id}/teams/{team_id}/tool_permissions">client.agent_gateways.teams.tool_permissions.<a href="./src/telnyx/resources/agent_gateways/teams/tool_permissions.py">list</a>(team_id, \*, instance_id) -> <a href="./src/telnyx/types/agent_gateways/keys/agent_gateway_tool_permissions_response.py">AgentGatewayToolPermissionsResponse</a></code>
