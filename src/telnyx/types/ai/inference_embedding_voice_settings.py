@@ -124,6 +124,15 @@ class InferenceEmbeddingVoiceSettings(BaseModel):
     sad to add emotional nuance. Only supported for Telnyx Ultra voices.
     """
 
+    language: Optional[str] = None
+    """Two-letter ISO 639-1 code of the language the voice speaks, for example `es`.
+
+    Only applicable to Soniox and AssemblyAI voices, which speak every language of
+    their model. AssemblyAI accepts `en`, `es`, `de`, `fr`, `it`, and `pt`, as a
+    literal code: a dynamic variable is rejected. When unset, the voice speaks
+    English.
+    """
+
     language_boost: Optional[
         Literal[
             "auto",

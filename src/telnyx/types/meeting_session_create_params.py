@@ -22,11 +22,9 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     """The meeting URL the bot should join."""
 
     assistant: Assistant
-    """Attach a Telnyx AI Assistant to the session.
+    """Attach a Telnyx AI Assistant owned by the authenticated account.
 
-    Supply the Assistant's ID; the Meeting service connects it to the meeting
-    directly. The Call Control connection, caller ID and loopback SIP URI previously
-    required here have been removed and are now rejected as unknown fields.
+    Supply its ID and optional conversation settings. Unknown fields are rejected.
     """
 
     barge_in: bool
@@ -40,13 +38,14 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     """Display name for the bot in the meeting. Defaults to "Meeting Bot"."""
 
     camera_image: CameraImage
-    """
-    Write-only static camera-tile image for this session, not a native account or
+    """Not supported for Google Meet and Teams joins (422 unsupported_capability).
+
+    Write-only static camera-tile image for this session, not an account or
     participant profile photo. Supply exactly one JPEG source. When effective, the
     image is used as the bot's static camera/video output; presentation varies by
     meeting platform and recording configuration and is not guaranteed in
-    recordings. An effective Avatar or Assistant webpage output takes precedence, so
-    this input is ignored and a URL source is not fetched.
+    recordings. An attached assistant or avatar takes precedence, so this input is
+    ignored and a URL source is not fetched.
     """
 
     chat_on_enter: str
@@ -55,20 +54,33 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     typically a recording disclosure. Delivered at most once. Independent of
     `speak_on_enter`: both may be set, and the chat message posts first because it
     does not wait for text-to-speech or avatar startup. Rejected with 422
-    `unsupported_capability` on platforms without meeting chat.
+    `unsupported_capability` on platforms without meeting chat. For Google Meet and
+    Teams, text must be nonblank, at most 4096 UTF-8 bytes, with no control
+    characters except tabs and line breaks. Counts toward the 1000-chat-request
+    session limit.
     """
 
     idempotency_key: str
-    """
-    Client-supplied idempotency key to safely retry creation requests without
-    duplicating sessions. Lookup is scoped to the authenticated account and compares
-    the key only; the request payload is not fingerprinted or compared.
+    """Use a unique key per intended join and reuse the same key and request on
+    retries.
+
+    Reusing a key with a different join configuration or meeting URL can return 409
+    invalid_state. Always retry with the original request.
     """
 
     join_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """ISO-8601 timestamp in the future at which the bot should join.
+    """Future ISO-8601 join timestamp including timezone.
 
-    If omitted, the bot joins immediately.
+    Google Meet and Teams accept dates at most three years ahead. Omit for an
+    immediate join. Assistant sessions created through this endpoint must join
+    immediately.
+    """
+
+    leave_policy: "MeetingSessionLeavePolicyParam"
+    """Automatic departure settings for Google Meet and Teams.
+
+    Omitted fields use the default behavior. Set at creation; cannot be changed
+    later. Zoom ignores this policy.
     """
 
     metadata: Dict[str, object]
@@ -77,14 +89,36 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     The serialized JSON representation must not exceed 16384 characters at runtime.
     """
 
-    speak_on_enter: str
-    """Text the bot speaks when it enters the meeting.
+    recording: bool
+    """Google Meet and Teams only.
 
-    **Not spoken when an `assistant` is attached**: the value is accepted and echoed
-    back on the session, but the assistant owns the voice and the line is never
-    delivered, with no event reporting the omission. Use `chat_on_enter` to announce
-    an assistant-backed bot. Rejected with 400 `invalid_request` when
-    `assistant.avatar` is `true`.
+    Defaults to true when recording_export is supplied and false otherwise. True
+    requires recording_export.bucket; false cannot be combined with
+    recording_export. Fixed at creation, with no pause/resume action. Zoom rejects
+    recording, recording_view, and recording_export with 422 unsupported_capability;
+    omit these fields for Zoom.
+    """
+
+    recording_export: "MeetingSessionRecordingDestinationParam"
+    """Customer-owned Telnyx Storage destination for recording exports.
+
+    Uses the authenticated organization and user; do not supply credentials, region,
+    organization ID or object key.
+    """
+
+    recording_view: Literal["speaker_view", "gallery_view", "speaker_view_no_sidebar"]
+    """Recording layout for Google Meet and Teams.
+
+    Defaults to speaker_view. Accepted at creation only; does not enable recording
+    by itself.
+    """
+
+    speak_on_enter: str
+    """Text the bot speaks after joining.
+
+    Available for sessions without a digital avatar. With an AI Assistant, the
+    greeting waits until the assistant is connected. Rejected with 400
+    invalid_request when assistant.avatar is true.
     """
 
     summarize_on_end: bool
@@ -94,7 +128,8 @@ class MeetingSessionCreateParams(TypedDict, total=False):
     """
     Session-default voice identifier used for `speak_on_enter` and ordinary speak
     actions. A voice supplied on an individual speak action overrides this default
-    for that utterance.
+    for that utterance. With an assistant attached, its conversational voice remains
+    configured on the assistant.
     """
 
     webhook_url: str
@@ -107,23 +142,19 @@ class MeetingSessionCreateParams(TypedDict, total=False):
 
 
 class Assistant(TypedDict, total=False):
-    """Attach a Telnyx AI Assistant to the session.
+    """Attach a Telnyx AI Assistant owned by the authenticated account.
 
-    Supply the Assistant's ID; the Meeting service connects it to the meeting directly. The Call Control connection, caller ID and loopback SIP URI previously required here have been removed and are now rejected as unknown fields.
+    Supply its ID and optional conversation settings. Unknown fields are rejected.
     """
 
     id: Required[str]
     """Identifier of the assistant to attach."""
 
     audio_gate: Literal["half_duplex", "full_duplex"]
-    """Audio gating strategy for the assistant call leg.
-
-    `half_duplex` (default) sends the assistant a single mixed meeting stream and
-    mutes it while the assistant speaks, so the assistant cannot hear itself and
-    cannot be interrupted. `full_duplex` sends a separate stream per participant,
-    which allows barge-in and removes self-hearing, and COSTS SIGNIFICANTLY MORE:
-    per-participant streams multiply the per-minute cost by the number of
-    participants.
+    """
+    Use half_duplex (default) to pause listening while the assistant speaks, or
+    full_duplex to allow participants to interrupt. Full-duplex pricing depends on
+    participant audio usage; see the Meeting pricing guide.
     """
 
     avatar: bool
@@ -133,12 +164,11 @@ class Assistant(TypedDict, total=False):
     [AI Assistant avatars](/docs/inference/ai-assistants/avatars)) as the bot's
     camera, lip-synced to the assistant's own speech. The request carries no avatar
     ID or key: the assistant is read at creation and the request is rejected with
-    400 `invalid_request` if it has no Telnyx avatar configured. Supported on Google
-    Meet, Zoom, Microsoft Teams and Webex; other platforms return 422
-    `unsupported_capability`. REST-only. Not echoed back on `assistant`; the
-    session's top-level `avatar` and `avatar_state` fields report it instead. If the
-    avatar fails, the session continues voice-only and `avatar_state` becomes
-    `degraded`.
+    400 `invalid_request` if it has no Telnyx avatar configured. Available for
+    Google Meet, Zoom, and Teams sessions. REST-only. Not echoed back on
+    `assistant`; the session's top-level `avatar` and `avatar_state` fields report
+    it instead. If the avatar fails, the session continues voice-only and
+    `avatar_state` becomes `degraded`.
     """
 
     dynamic_variables: Dict[str, str]
@@ -150,18 +180,14 @@ class Assistant(TypedDict, total=False):
     conversation. At most 63 entries; keys 1-128 characters; values must be strings.
     The map is budgeted in aggregate at 1,047,552 bytes (1023 KiB) rather than
     capped per value. `streaming_audio`, `ai_assistant_streaming_audio` and
-    `meeting_session_id` are reserved and rejected with `400 invalid_request` --
-    they toggle provider infrastructure or are set by the service rather than fill a
-    prompt template.
+    `meeting_session_id` are reserved and rejected with `400 invalid_request`.
     """
 
     leave_on_end: bool
-    """
-    Leave the meeting when the Assistant's conversation reaches a terminal state --
-    `ended` **or** `failed`. Off by default, which leaves the bot in the meeting
-    after the Assistant stops. Fires once: a second terminal transition does not
-    leave twice, and a leave the provider refuses is logged without changing how the
-    session settles.
+    """Leave when the assistant conversation ends or fails.
+
+    Defaults to false. Other leave-policy rules and explicit leave requests still
+    apply.
     """
 
 
@@ -172,7 +198,7 @@ class CameraImageMeetingSessionCameraImageBase64Source(TypedDict, total=False):
     Data URIs, whitespace, and the URL-safe alphabet are rejected. The encoded value
     is limited to 1,835,008 characters and the decoded JPEG to 1,363,148 bytes. The
     JPEG is limited to 4,096 pixels per dimension, 4 megapixels, and 128 MB of
-    decoder memory. The image bytes are not persisted, returned, or logged.
+    decoder memory. The image bytes are not returned in the session response.
     """
 
     format: Required[Literal["jpeg"]]
@@ -191,11 +217,14 @@ class CameraImageMeetingSessionCameraImageURLSource(TypedDict, total=False):
     Fetching is limited to public network destinations, a five-second timeout, no
     redirects, a 2xx image/jpeg response with identity or no content encoding, and a
     1,363,148-byte limit enforced against both declared and streamed content. The
-    service resolves the URL before bot creation and does not persist, return, or
-    log the URL or image bytes.
+    service resolves the URL before bot creation and does not return the URL or
+    image bytes in the session response.
     """
 
 
 CameraImage: TypeAlias = Union[
     CameraImageMeetingSessionCameraImageBase64Source, CameraImageMeetingSessionCameraImageURLSource
 ]
+
+from .meeting_session_leave_policy_param import MeetingSessionLeavePolicyParam
+from .meeting_session_recording_destination_param import MeetingSessionRecordingDestinationParam

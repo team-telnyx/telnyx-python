@@ -17,8 +17,8 @@ __all__ = [
     "DataPayloadConversationInsight",
     "DataPayloadConversationInsightConversationInsight",
     "DataPayloadCost",
-    "DataPayloadCostUnionMember0",
-    "DataPayloadCostUnionMember0Breakdown",
+    "DataPayloadCostCallCostBreakdown",
+    "DataPayloadCostCallCostBreakdownBreakdown",
     "DataPayloadRecording",
     "DataPayloadRecordingDownloadURLs",
 ]
@@ -40,7 +40,7 @@ class DataPayloadConversationInsight(BaseModel):
     """Status of insight generation for this entry."""
 
 
-class DataPayloadCostUnionMember0Breakdown(BaseModel):
+class DataPayloadCostCallCostBreakdownBreakdown(BaseModel):
     cost: Optional[str] = None
     """
     Total cost for this product across the call, in the currency given by
@@ -54,12 +54,10 @@ class DataPayloadCostUnionMember0Breakdown(BaseModel):
     """
 
 
-class DataPayloadCostUnionMember0(BaseModel):
-    """
-    The session's cost breakdown from Session Analysis, covering every product billed on the call: the AI Voice Assistant engine minutes (`ai-voice-assistant`), LLM inference tokens (`inference`), and call-control, SIP trunking, and recording lines. If cost data could not be retrieved after retries, this field carries the placeholder string `No cost data available.` instead of an object.
-    """
+class DataPayloadCostCallCostBreakdown(BaseModel):
+    """The itemized cost of the call."""
 
-    breakdown: Optional[List[DataPayloadCostUnionMember0Breakdown]] = None
+    breakdown: Optional[List[DataPayloadCostCallCostBreakdownBreakdown]] = None
     """Cost lines grouped by product."""
 
     currency: Optional[str] = None
@@ -69,7 +67,7 @@ class DataPayloadCostUnionMember0(BaseModel):
     """The total cost of the call, summed across every product in the breakdown."""
 
 
-DataPayloadCost: TypeAlias = Union[DataPayloadCostUnionMember0, str]
+DataPayloadCost: TypeAlias = Union[DataPayloadCostCallCostBreakdown, str]
 
 
 class DataPayloadRecordingDownloadURLs(BaseModel):

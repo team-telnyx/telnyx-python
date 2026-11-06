@@ -7,27 +7,11 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .meeting_session_assistant import MeetingSessionAssistant
+from .meeting_session_leave_policy import MeetingSessionLeavePolicy
+from .meeting_session_recording_export import MeetingSessionRecordingExport
 
-__all__ = ["MeetingSession", "Assistant", "Avatar", "Config"]
-
-
-class Assistant(BaseModel):
-    """Assistant configuration if an assistant is attached, otherwise null."""
-
-    id: str
-    """Identifier of the assistant."""
-
-    audio_gate: Literal["half_duplex", "full_duplex"]
-    """Audio gating strategy in force for the assistant call leg."""
-
-    dynamic_variables: Optional[Dict[str, str]] = None
-    """
-    The dynamic variables in force for this session, or null when none were
-    supplied.
-    """
-
-    leave_on_end: bool
-    """Whether the bot leaves when the Assistant's conversation ends or fails."""
+__all__ = ["MeetingSession", "Avatar", "Config", "ConfigDeepfakeDetection"]
 
 
 class Avatar(BaseModel):
@@ -48,6 +32,14 @@ class Avatar(BaseModel):
     """Avatar provider identifier."""
 
 
+class ConfigDeepfakeDetection(BaseModel):
+    """Detection settings. Enabling audio or video detection is currently unsupported."""
+
+    audio: bool
+
+    video: bool
+
+
 class Config(BaseModel):
     barge_in: bool
     """
@@ -59,6 +51,9 @@ class Config(BaseModel):
     chat_on_enter: Optional[str] = None
     """The message posted to chat on join, or null when unset."""
 
+    deepfake_detection: ConfigDeepfakeDetection
+    """Detection settings. Enabling audio or video detection is currently unsupported."""
+
     speak_on_enter: Optional[str] = None
     """Text spoken on meeting entry, or null if not set."""
 
@@ -68,11 +63,27 @@ class Config(BaseModel):
     voice: Optional[str] = None
     """Configured voice identifier, or null if not set."""
 
+    leave_policy: Optional[MeetingSessionLeavePolicy] = None
+    """Automatic departure settings for Google Meet and Teams.
+
+    Omitted fields use the default behavior. Set at creation; cannot be changed
+    later. Zoom ignores this policy.
+    """
+
+    recording: Optional[bool] = None
+    """Recording intent set at creation for Google Meet and Teams.
+
+    Distinct from the top-level recording field, which reports current activity.
+    """
+
+    recording_view: Optional[Literal["gallery_view", "speaker_view_no_sidebar"]] = None
+    """Non-default recording layout. Omitted for the default speaker_view layout."""
+
 
 class MeetingSession(BaseModel):
     """Represents a meeting session.
 
-    All serializer fields are present and required; nullable fields use null when absent. No actor, provider-bot, idempotency, routing, key, or internal fields are exposed.
+    Core serializer fields are required; platform-specific fields are optional. Nullable fields use null when absent. No actor, provider-bot, idempotency, routing, key, or internal fields are exposed.
     """
 
     id: str
@@ -81,7 +92,7 @@ class MeetingSession(BaseModel):
     account_id: str
     """Identifier of the owning account."""
 
-    assistant: Optional[Assistant] = None
+    assistant: Optional[MeetingSessionAssistant] = None
     """Assistant configuration if an assistant is attached, otherwise null."""
 
     assistant_state: Optional[Literal["starting", "connected", "failed", "ended"]] = None
@@ -119,7 +130,16 @@ class MeetingSession(BaseModel):
     """Timestamp when the session ended, or null if ongoing."""
 
     failure_reason: Optional[str] = None
-    """Human-readable failure reason if the session failed, or null."""
+    """A machine-readable lifecycle reason, or null.
+
+    Values include left_on_request, meeting_ended, everyone_left, no_one_joined,
+    silence_timeout, max_duration_reached, admission_timeout, admission_denied,
+    removed_from_meeting, recording_permission_denied, meeting_not_found,
+    meeting_not_started, meeting_access_denied, meeting_full, cancelled,
+    cancelled_calendar_disconnected, cancelled_calendar_event_deleted,
+    cancelled_calendar_superseded, cancelled_policy, internal_error, and other.
+    Treat this vocabulary as extensible.
+    """
 
     join_at: Optional[datetime] = None
     """Scheduled join time, or null for immediate join."""
@@ -139,8 +159,8 @@ class MeetingSession(BaseModel):
     platform: Literal["zoom", "google_meet", "teams", "webex", "unknown"]
     """Detected meeting platform."""
 
-    provider: str
-    """Provider handling the meeting session."""
+    provider: Literal["telnyx"]
+    """Always telnyx."""
 
     recording: bool
     """Whether the session is being recorded."""
@@ -159,10 +179,33 @@ class MeetingSession(BaseModel):
     """
 
     status_detail: Optional[str] = None
-    """Additional human-readable detail about the status, or null."""
+    """A machine-readable lifecycle reason, or null.
+
+    Values include left_on_request, meeting_ended, everyone_left, no_one_joined,
+    silence_timeout, max_duration_reached, admission_timeout, admission_denied,
+    removed_from_meeting, recording_permission_denied, meeting_not_found,
+    meeting_not_started, meeting_access_denied, meeting_full, cancelled,
+    cancelled_calendar_disconnected, cancelled_calendar_event_deleted,
+    cancelled_calendar_superseded, cancelled_policy, internal_error, and other.
+    Treat this vocabulary as extensible.
+    """
 
     updated_at: datetime
     """Timestamp of the last update to the session."""
 
     webhook_url: Optional[str] = None
     """Webhook endpoint for session lifecycle callbacks, or null if not configured."""
+
+    recording_export: Optional[MeetingSessionRecordingExport] = None
+    """Customer Storage recording reference.
+
+    Pending is not downloadable; exported means upload was verified; failed is
+    terminal. Download with ordinary Storage authorization. No presigned URL is
+    returned.
+    """
+
+    remote_state_observed_at: Optional[datetime] = None
+    """Optional observation time on session list items.
+
+    Retrieve the individual session when current state is required.
+    """

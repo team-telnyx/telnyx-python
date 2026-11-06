@@ -24,7 +24,9 @@ class TextToSpeechRetrieveSpeechParams(TypedDict, total=False):
     Examples: `Ultra`, `KokoroTTS` (Telnyx); `Polly.Generative` (AWS).
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+    provider: Literal[
+        "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox", "assemblyai"
+    ]
     """TTS provider.
 
     Defaults to `telnyx` if not specified. Ignored when `voice` is provided.

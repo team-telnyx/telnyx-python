@@ -86,6 +86,7 @@ if TYPE_CHECKING:
         conferences,
         connections,
         enterprises,
+        meeting_bot,
         ota_updates,
         short_codes,
         audit_events,
@@ -97,6 +98,7 @@ if TYPE_CHECKING:
         oauth_grants,
         requirements,
         spend_limits,
+        user_profile,
         voice_clones,
         bot_challenge,
         channel_zones,
@@ -111,6 +113,7 @@ if TYPE_CHECKING:
         usage_reports,
         verifications,
         voice_designs,
+        agent_gateways,
         billing_groups,
         bundle_pricing,
         detail_records,
@@ -177,6 +180,7 @@ if TYPE_CHECKING:
         phone_number_blocks,
         pronunciation_dicts,
         wireless_blocklists,
+        calendar_connections,
         external_connections,
         mobile_phone_numbers,
         wireguard_interfaces,
@@ -273,6 +277,7 @@ if TYPE_CHECKING:
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
     from .resources.spend_limits import SpendLimitsResource, AsyncSpendLimitsResource
+    from .resources.user_profile import UserProfileResource, AsyncUserProfileResource
     from .resources.voice_clones import VoiceClonesResource, AsyncVoiceClonesResource
     from .resources.bot_challenge import BotChallengeResource, AsyncBotChallengeResource
     from .resources.channel_zones import ChannelZonesResource, AsyncChannelZonesResource
@@ -368,6 +373,7 @@ if TYPE_CHECKING:
     from .resources.enterprises.enterprises import EnterprisesResource, AsyncEnterprisesResource
     from .resources.global_ip_allowed_ports import GlobalIPAllowedPortsResource, AsyncGlobalIPAllowedPortsResource
     from .resources.global_ip_health_checks import GlobalIPHealthChecksResource, AsyncGlobalIPHealthChecksResource
+    from .resources.meeting_bot.meeting_bot import MeetingBotResource, AsyncMeetingBotResource
     from .resources.mobile_push_credentials import MobilePushCredentialsResource, AsyncMobilePushCredentialsResource
     from .resources.outbound_voice_profiles import OutboundVoiceProfilesResource, AsyncOutboundVoiceProfilesResource
     from .resources.regulatory_requirements import RegulatoryRequirementsResource, AsyncRegulatoryRequirementsResource
@@ -451,6 +457,7 @@ if TYPE_CHECKING:
         LedgerBillingGroupReportsResource,
         AsyncLedgerBillingGroupReportsResource,
     )
+    from .resources.agent_gateways.agent_gateways import AgentGatewaysResource, AsyncAgentGatewaysResource
     from .resources.available_phone_number_blocks import (
         AvailablePhoneNumberBlocksResource,
         AsyncAvailablePhoneNumberBlocksResource,
@@ -506,6 +513,10 @@ if TYPE_CHECKING:
     from .resources.phone_number_blocks.phone_number_blocks import (
         PhoneNumberBlocksResource,
         AsyncPhoneNumberBlocksResource,
+    )
+    from .resources.calendar_connections.calendar_connections import (
+        CalendarConnectionsResource,
+        AsyncCalendarConnectionsResource,
     )
     from .resources.external_connections.external_connections import (
         ExternalConnectionsResource,
@@ -2028,6 +2039,32 @@ class Telnyx(SyncAPIClient):
         from .resources.tunnels import TunnelsResource
 
         return TunnelsResource(self)
+
+    @cached_property
+    def user_profile(self) -> UserProfileResource:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import UserProfileResource
+
+        return UserProfileResource(self)
+
+    @cached_property
+    def agent_gateways(self) -> AgentGatewaysResource:
+        from .resources.agent_gateways import AgentGatewaysResource
+
+        return AgentGatewaysResource(self)
+
+    @cached_property
+    def calendar_connections(self) -> CalendarConnectionsResource:
+        """Connect calendars and manage automatic meeting joins."""
+        from .resources.calendar_connections import CalendarConnectionsResource
+
+        return CalendarConnectionsResource(self)
+
+    @cached_property
+    def meeting_bot(self) -> MeetingBotResource:
+        from .resources.meeting_bot import MeetingBotResource
+
+        return MeetingBotResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3670,6 +3707,32 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncTunnelsResource(self)
 
     @cached_property
+    def user_profile(self) -> AsyncUserProfileResource:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import AsyncUserProfileResource
+
+        return AsyncUserProfileResource(self)
+
+    @cached_property
+    def agent_gateways(self) -> AsyncAgentGatewaysResource:
+        from .resources.agent_gateways import AsyncAgentGatewaysResource
+
+        return AsyncAgentGatewaysResource(self)
+
+    @cached_property
+    def calendar_connections(self) -> AsyncCalendarConnectionsResource:
+        """Connect calendars and manage automatic meeting joins."""
+        from .resources.calendar_connections import AsyncCalendarConnectionsResource
+
+        return AsyncCalendarConnectionsResource(self)
+
+    @cached_property
+    def meeting_bot(self) -> AsyncMeetingBotResource:
+        from .resources.meeting_bot import AsyncMeetingBotResource
+
+        return AsyncMeetingBotResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -5245,6 +5308,32 @@ class TelnyxWithRawResponse:
 
         return TunnelsResourceWithRawResponse(self._client.tunnels)
 
+    @cached_property
+    def user_profile(self) -> user_profile.UserProfileResourceWithRawResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import UserProfileResourceWithRawResponse
+
+        return UserProfileResourceWithRawResponse(self._client.user_profile)
+
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AgentGatewaysResourceWithRawResponse:
+        from .resources.agent_gateways import AgentGatewaysResourceWithRawResponse
+
+        return AgentGatewaysResourceWithRawResponse(self._client.agent_gateways)
+
+    @cached_property
+    def calendar_connections(self) -> calendar_connections.CalendarConnectionsResourceWithRawResponse:
+        """Connect calendars and manage automatic meeting joins."""
+        from .resources.calendar_connections import CalendarConnectionsResourceWithRawResponse
+
+        return CalendarConnectionsResourceWithRawResponse(self._client.calendar_connections)
+
+    @cached_property
+    def meeting_bot(self) -> meeting_bot.MeetingBotResourceWithRawResponse:
+        from .resources.meeting_bot import MeetingBotResourceWithRawResponse
+
+        return MeetingBotResourceWithRawResponse(self._client.meeting_bot)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -6693,6 +6782,32 @@ class AsyncTelnyxWithRawResponse:
         from .resources.tunnels import AsyncTunnelsResourceWithRawResponse
 
         return AsyncTunnelsResourceWithRawResponse(self._client.tunnels)
+
+    @cached_property
+    def user_profile(self) -> user_profile.AsyncUserProfileResourceWithRawResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import AsyncUserProfileResourceWithRawResponse
+
+        return AsyncUserProfileResourceWithRawResponse(self._client.user_profile)
+
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AsyncAgentGatewaysResourceWithRawResponse:
+        from .resources.agent_gateways import AsyncAgentGatewaysResourceWithRawResponse
+
+        return AsyncAgentGatewaysResourceWithRawResponse(self._client.agent_gateways)
+
+    @cached_property
+    def calendar_connections(self) -> calendar_connections.AsyncCalendarConnectionsResourceWithRawResponse:
+        """Connect calendars and manage automatic meeting joins."""
+        from .resources.calendar_connections import AsyncCalendarConnectionsResourceWithRawResponse
+
+        return AsyncCalendarConnectionsResourceWithRawResponse(self._client.calendar_connections)
+
+    @cached_property
+    def meeting_bot(self) -> meeting_bot.AsyncMeetingBotResourceWithRawResponse:
+        from .resources.meeting_bot import AsyncMeetingBotResourceWithRawResponse
+
+        return AsyncMeetingBotResourceWithRawResponse(self._client.meeting_bot)
 
 
 class TelnyxWithStreamedResponse:
@@ -8144,6 +8259,32 @@ class TelnyxWithStreamedResponse:
         from .resources.tunnels import TunnelsResourceWithStreamingResponse
 
         return TunnelsResourceWithStreamingResponse(self._client.tunnels)
+
+    @cached_property
+    def user_profile(self) -> user_profile.UserProfileResourceWithStreamingResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import UserProfileResourceWithStreamingResponse
+
+        return UserProfileResourceWithStreamingResponse(self._client.user_profile)
+
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AgentGatewaysResourceWithStreamingResponse:
+        from .resources.agent_gateways import AgentGatewaysResourceWithStreamingResponse
+
+        return AgentGatewaysResourceWithStreamingResponse(self._client.agent_gateways)
+
+    @cached_property
+    def calendar_connections(self) -> calendar_connections.CalendarConnectionsResourceWithStreamingResponse:
+        """Connect calendars and manage automatic meeting joins."""
+        from .resources.calendar_connections import CalendarConnectionsResourceWithStreamingResponse
+
+        return CalendarConnectionsResourceWithStreamingResponse(self._client.calendar_connections)
+
+    @cached_property
+    def meeting_bot(self) -> meeting_bot.MeetingBotResourceWithStreamingResponse:
+        from .resources.meeting_bot import MeetingBotResourceWithStreamingResponse
+
+        return MeetingBotResourceWithStreamingResponse(self._client.meeting_bot)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -9647,6 +9788,32 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.tunnels import AsyncTunnelsResourceWithStreamingResponse
 
         return AsyncTunnelsResourceWithStreamingResponse(self._client.tunnels)
+
+    @cached_property
+    def user_profile(self) -> user_profile.AsyncUserProfileResourceWithStreamingResponse:
+        """Read and update the authenticated user's profile and data locality."""
+        from .resources.user_profile import AsyncUserProfileResourceWithStreamingResponse
+
+        return AsyncUserProfileResourceWithStreamingResponse(self._client.user_profile)
+
+    @cached_property
+    def agent_gateways(self) -> agent_gateways.AsyncAgentGatewaysResourceWithStreamingResponse:
+        from .resources.agent_gateways import AsyncAgentGatewaysResourceWithStreamingResponse
+
+        return AsyncAgentGatewaysResourceWithStreamingResponse(self._client.agent_gateways)
+
+    @cached_property
+    def calendar_connections(self) -> calendar_connections.AsyncCalendarConnectionsResourceWithStreamingResponse:
+        """Connect calendars and manage automatic meeting joins."""
+        from .resources.calendar_connections import AsyncCalendarConnectionsResourceWithStreamingResponse
+
+        return AsyncCalendarConnectionsResourceWithStreamingResponse(self._client.calendar_connections)
+
+    @cached_property
+    def meeting_bot(self) -> meeting_bot.AsyncMeetingBotResourceWithStreamingResponse:
+        from .resources.meeting_bot import AsyncMeetingBotResourceWithStreamingResponse
+
+        return AsyncMeetingBotResourceWithStreamingResponse(self._client.meeting_bot)
 
 
 Client = Telnyx

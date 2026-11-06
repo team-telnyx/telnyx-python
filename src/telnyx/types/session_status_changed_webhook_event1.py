@@ -26,6 +26,13 @@ class Data(BaseModel):
     status_detail: Optional[str] = None
     """Additional detail about the status (for example `cancelled`), or null."""
 
+    previous_status: Optional[
+        Literal[
+            "scheduled", "joining", "waiting_for_admission", "active", "leaving", "ended", "failed", "admission_denied"
+        ]
+    ] = None
+    """Previous lifecycle status, when supplied."""
+
 
 class SessionStatusChangedWebhookEvent(BaseModel):
     id: str

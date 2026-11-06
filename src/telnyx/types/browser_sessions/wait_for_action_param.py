@@ -11,7 +11,7 @@ __all__ = [
     "ConditionUnionMember0",
     "ConditionUnionMember1",
     "ConditionUnionMember2",
-    "ConditionKind",
+    "ConditionUnionMember3",
 ]
 
 
@@ -35,11 +35,11 @@ class ConditionUnionMember2(TypedDict, total=False):
     text: Required[str]
 
 
-class ConditionKind(TypedDict, total=False):
+class ConditionUnionMember3(TypedDict, total=False):
     kind: Required[Literal["dom_stable"]]
 
 
-Condition: TypeAlias = Union[ConditionUnionMember0, ConditionUnionMember1, ConditionUnionMember2, ConditionKind]
+Condition: TypeAlias = Union[ConditionUnionMember0, ConditionUnionMember1, ConditionUnionMember2, ConditionUnionMember3]
 
 
 class WaitForActionParam(TypedDict, total=False):

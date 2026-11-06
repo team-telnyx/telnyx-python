@@ -14,6 +14,7 @@ from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.inworld_voice_settings import InworldVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
+from ..calls.assembly_ai_voice_settings_param import AssemblyAIVoiceSettingsParam
 from ..calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 
 __all__ = ["ActionSpeakParams", "VoiceSettings"]
@@ -162,6 +163,7 @@ VoiceSettings: TypeAlias = Union[
     InworldVoiceSettings,
     XaiVoiceSettings,
     SonioxVoiceSettingsParam,
+    AssemblyAIVoiceSettingsParam,
 ]
 
 from .conference_region import ConferenceRegion

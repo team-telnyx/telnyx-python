@@ -41,7 +41,7 @@ class TestBrowserSessions:
                 "idle_timeout_s": 30,
                 "lifetime_s": 60,
             },
-            metadata={},
+            metadata={"foo": "bar"},
         )
         assert_matches_type(BrowserSessionCreateResponse, browser_session, path=["response"])
 
@@ -267,7 +267,7 @@ class TestAsyncBrowserSessions:
                 "idle_timeout_s": 30,
                 "lifetime_s": 60,
             },
-            metadata={},
+            metadata={"foo": "bar"},
         )
         assert_matches_type(BrowserSessionCreateResponse, browser_session, path=["response"])
 

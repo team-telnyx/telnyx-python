@@ -8,10 +8,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["HostedSignupListResponse"]
+__all__ = ["WhatsappHostedSignup"]
 
 
-class HostedSignupListResponse(BaseModel):
+class WhatsappHostedSignup(BaseModel):
     id: Optional[str] = None
     """Hosted signup ID"""
 

@@ -37,6 +37,9 @@ __all__ = [
     "EmailCursorPaginationMeta",
     "SyncEmailCursorPagination",
     "AsyncEmailCursorPagination",
+    "EmailEventsCursorPaginationMeta",
+    "SyncEmailEventsCursorPagination",
+    "AsyncEmailEventsCursorPagination",
     "EmailBracketCursorPaginationMeta",
     "SyncEmailBracketCursorPagination",
     "AsyncEmailBracketCursorPagination",
@@ -591,6 +594,56 @@ class AsyncEmailCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"page_cursor": page_cursor})
+
+
+class EmailEventsCursorPaginationMeta(BaseModel):
+    page_cursor: Optional[str] = None
+
+
+class SyncEmailEventsCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[EmailEventsCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        page_cursor = None
+        if self.meta is not None:
+            if self.meta.page_cursor is not None:
+                page_cursor = self.meta.page_cursor
+        if not page_cursor:
+            return None
+
+        return PageInfo(params={"page[cursor]": page_cursor})
+
+
+class AsyncEmailEventsCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[EmailEventsCursorPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        page_cursor = None
+        if self.meta is not None:
+            if self.meta.page_cursor is not None:
+                page_cursor = self.meta.page_cursor
+        if not page_cursor:
+            return None
+
+        return PageInfo(params={"page[cursor]": page_cursor})
 
 
 class EmailBracketCursorPaginationMeta(BaseModel):
