@@ -163,6 +163,15 @@ class TelephonySettings(BaseModel):
     bridged the call.
     """
 
+    greeting_delay_ms: Optional[int] = None
+    """
+    Milliseconds to wait after an inbound call is answered before the assistant
+    starts and speaks its greeting. Increase it if the beginning of the greeting is
+    cut off on some connections (for example, WebRTC calls). When unset (`null`),
+    the platform default of 250 ms is used. Set to `0` to start without a delay.
+    Maximum 2000.
+    """
+
     noise_suppression: Optional[Literal["aicoustics", "krisp", "deepfilternet", "disabled"]] = None
     """The noise suppression engine to use.
 

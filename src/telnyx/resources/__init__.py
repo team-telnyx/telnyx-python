@@ -393,6 +393,14 @@ from .enterprises import (
     EnterprisesResourceWithStreamingResponse,
     AsyncEnterprisesResourceWithStreamingResponse,
 )
+from .meeting_bot import (
+    MeetingBotResource,
+    AsyncMeetingBotResource,
+    MeetingBotResourceWithRawResponse,
+    AsyncMeetingBotResourceWithRawResponse,
+    MeetingBotResourceWithStreamingResponse,
+    AsyncMeetingBotResourceWithStreamingResponse,
+)
 from .ota_updates import (
     OtaUpdatesResource,
     AsyncOtaUpdatesResource,
@@ -480,6 +488,14 @@ from .spend_limits import (
     AsyncSpendLimitsResourceWithRawResponse,
     SpendLimitsResourceWithStreamingResponse,
     AsyncSpendLimitsResourceWithStreamingResponse,
+)
+from .user_profile import (
+    UserProfileResource,
+    AsyncUserProfileResource,
+    UserProfileResourceWithRawResponse,
+    AsyncUserProfileResourceWithRawResponse,
+    UserProfileResourceWithStreamingResponse,
+    AsyncUserProfileResourceWithStreamingResponse,
 )
 from .voice_clones import (
     VoiceClonesResource,
@@ -592,6 +608,14 @@ from .voice_designs import (
     AsyncVoiceDesignsResourceWithRawResponse,
     VoiceDesignsResourceWithStreamingResponse,
     AsyncVoiceDesignsResourceWithStreamingResponse,
+)
+from .agent_gateways import (
+    AgentGatewaysResource,
+    AsyncAgentGatewaysResource,
+    AgentGatewaysResourceWithRawResponse,
+    AsyncAgentGatewaysResourceWithRawResponse,
+    AgentGatewaysResourceWithStreamingResponse,
+    AsyncAgentGatewaysResourceWithStreamingResponse,
 )
 from .billing_groups import (
     BillingGroupsResource,
@@ -1120,6 +1144,14 @@ from .wireless_blocklists import (
     AsyncWirelessBlocklistsResourceWithRawResponse,
     WirelessBlocklistsResourceWithStreamingResponse,
     AsyncWirelessBlocklistsResourceWithStreamingResponse,
+)
+from .calendar_connections import (
+    CalendarConnectionsResource,
+    AsyncCalendarConnectionsResource,
+    CalendarConnectionsResourceWithRawResponse,
+    AsyncCalendarConnectionsResourceWithRawResponse,
+    CalendarConnectionsResourceWithStreamingResponse,
+    AsyncCalendarConnectionsResourceWithStreamingResponse,
 )
 from .external_connections import (
     ExternalConnectionsResource,
@@ -2777,4 +2809,28 @@ __all__ = [
     "AsyncTunnelsResourceWithRawResponse",
     "TunnelsResourceWithStreamingResponse",
     "AsyncTunnelsResourceWithStreamingResponse",
+    "UserProfileResource",
+    "AsyncUserProfileResource",
+    "UserProfileResourceWithRawResponse",
+    "AsyncUserProfileResourceWithRawResponse",
+    "UserProfileResourceWithStreamingResponse",
+    "AsyncUserProfileResourceWithStreamingResponse",
+    "AgentGatewaysResource",
+    "AsyncAgentGatewaysResource",
+    "AgentGatewaysResourceWithRawResponse",
+    "AsyncAgentGatewaysResourceWithRawResponse",
+    "AgentGatewaysResourceWithStreamingResponse",
+    "AsyncAgentGatewaysResourceWithStreamingResponse",
+    "CalendarConnectionsResource",
+    "AsyncCalendarConnectionsResource",
+    "CalendarConnectionsResourceWithRawResponse",
+    "AsyncCalendarConnectionsResourceWithRawResponse",
+    "CalendarConnectionsResourceWithStreamingResponse",
+    "AsyncCalendarConnectionsResourceWithStreamingResponse",
+    "MeetingBotResource",
+    "AsyncMeetingBotResource",
+    "MeetingBotResourceWithRawResponse",
+    "AsyncMeetingBotResourceWithRawResponse",
+    "MeetingBotResourceWithStreamingResponse",
+    "AsyncMeetingBotResourceWithStreamingResponse",
 ]

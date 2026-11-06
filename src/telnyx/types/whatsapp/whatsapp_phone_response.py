@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["PhoneNumberListResponse", "SyncProgress"]
+__all__ = ["WhatsappPhoneResponse", "SyncProgress"]
 
 
 class SyncProgress(BaseModel):
@@ -28,7 +28,7 @@ class SyncProgress(BaseModel):
     history_status: Optional[str] = None
 
 
-class PhoneNumberListResponse(BaseModel):
+class WhatsappPhoneResponse(BaseModel):
     calling_enabled: Optional[bool] = None
 
     coexistence_state: Optional[

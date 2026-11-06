@@ -18,6 +18,7 @@ if TYPE_CHECKING:
         "InworldVoiceSettings",
         "XaiVoiceSettings",
         "SonioxVoiceSettingsParam",
+        "AssemblyAIVoiceSettingsParam",
     ]
 else:
     VoiceSettings = Union[
@@ -30,6 +31,7 @@ else:
         ForwardRef(f"__import__({__name__!r}, fromlist=('',)).InworldVoiceSettings"),
         ForwardRef(f"__import__({__name__!r}, fromlist=('',)).XaiVoiceSettings"),
         ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AssemblyAIVoiceSettingsParam"),
     ]
 
 
@@ -95,5 +97,6 @@ from .shared_params.azure_voice_settings import AzureVoiceSettings
 from .shared_params.inworld_voice_settings import InworldVoiceSettings
 from .shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from .shared_params.resemble_voice_settings import ResembleVoiceSettings
+from .calls.assembly_ai_voice_settings_param import AssemblyAIVoiceSettingsParam
 from .calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from .calls.conversation_relay_transcription_engine_config_param import ConversationRelayTranscriptionEngineConfigParam

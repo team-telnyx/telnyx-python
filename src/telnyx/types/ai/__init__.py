@@ -85,9 +85,11 @@ from .audio_visualizer_config_param import AudioVisualizerConfigParam as AudioVi
 from .avatar_settings_request_param import AvatarSettingsRequestParam as AvatarSettingsRequestParam
 from .mission_update_mission_params import MissionUpdateMissionParams as MissionUpdateMissionParams
 from .openai_create_response_params import OpenAICreateResponseParams as OpenAICreateResponseParams
+from .transcription_challenger_param import TranscriptionChallengerParam as TranscriptionChallengerParam
 from .conversation_add_message_params import ConversationAddMessageParams as ConversationAddMessageParams
 from .openai_create_response_response import OpenAICreateResponseResponse as OpenAICreateResponseResponse
 from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams as EmbeddingSimilaritySearchParams
+from .transcription_fallback_model_param import TranscriptionFallbackModelParam as TranscriptionFallbackModelParam
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam as PostConversationSettingsReqParam
 from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam as TranscriptionEndpointingPlanParam
@@ -153,6 +155,7 @@ if TYPE_CHECKING:
     from .audio_visualizer_config import AudioVisualizerConfig as AudioVisualizerConfig
     from .embedding_list_response import EmbeddingListResponse as EmbeddingListResponse
     from .cluster_compute_response import ClusterComputeResponse as ClusterComputeResponse
+    from .transcription_challenger import TranscriptionChallenger as TranscriptionChallenger
     from .assistant_delete_response import AssistantDeleteResponse as AssistantDeleteResponse
     from .audio_transcribe_response import AudioTranscribeResponse as AudioTranscribeResponse
     from .cluster_retrieve_response import ClusterRetrieveResponse as ClusterRetrieveResponse
@@ -163,6 +166,7 @@ if TYPE_CHECKING:
     from .assistant_whatsapp_response import AssistantWhatsappResponse as AssistantWhatsappResponse
     from .embedding_retrieve_response import EmbeddingRetrieveResponse as EmbeddingRetrieveResponse
     from .conversation_update_response import ConversationUpdateResponse as ConversationUpdateResponse
+    from .transcription_fallback_model import TranscriptionFallbackModel as TranscriptionFallbackModel
     from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
     from .conversation_retrieve_response import ConversationRetrieveResponse as ConversationRetrieveResponse
     from .transcription_endpointing_plan import TranscriptionEndpointingPlan as TranscriptionEndpointingPlan
@@ -302,10 +306,18 @@ def __getattr__(name: str) -> Any:
         from .tool_node import ToolNode
 
         return ToolNode
+    if name == "TranscriptionChallenger":
+        from .transcription_challenger import TranscriptionChallenger
+
+        return TranscriptionChallenger
     if name == "TranscriptionEndpointingPlan":
         from .transcription_endpointing_plan import TranscriptionEndpointingPlan
 
         return TranscriptionEndpointingPlan
+    if name == "TranscriptionFallbackModel":
+        from .transcription_fallback_model import TranscriptionFallbackModel
+
+        return TranscriptionFallbackModel
     if name == "TranscriptionSettings":
         from .transcription_settings import TranscriptionSettings
 

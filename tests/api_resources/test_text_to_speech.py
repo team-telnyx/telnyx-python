@@ -30,6 +30,13 @@ class TestTextToSpeech:
     @parametrize
     def test_method_generate_speech_with_all_params(self, client: Telnyx) -> None:
         text_to_speech = client.text_to_speech.generate_speech(
+            assemblyai={
+                "voice_id": "aai-jane",
+                "audio_format": "mp3",
+                "language": "en",
+                "model_id": "assemblyai-tts-1",
+                "sample_rate": 8000,
+            },
             aws={
                 "language_code": "string",
                 "lexicon_names": ["string"],
@@ -218,6 +225,13 @@ class TestAsyncTextToSpeech:
     @parametrize
     async def test_method_generate_speech_with_all_params(self, async_client: AsyncTelnyx) -> None:
         text_to_speech = await async_client.text_to_speech.generate_speech(
+            assemblyai={
+                "voice_id": "aai-jane",
+                "audio_format": "mp3",
+                "language": "en",
+                "model_id": "assemblyai-tts-1",
+                "sample_rate": 8000,
+            },
             aws={
                 "language_code": "string",
                 "lexicon_names": ["string"],

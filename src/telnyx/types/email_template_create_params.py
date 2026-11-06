@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["EmailTemplateCreateParams", "VariableSchema"]
+__all__ = ["EmailTemplateCreateParams"]
 
 
 class EmailTemplateCreateParams(TypedDict, total=False):
@@ -46,7 +46,7 @@ class EmailTemplateCreateParams(TypedDict, total=False):
     text_body: Optional[str]
     """Liquid template text body."""
 
-    variable_schema: Optional[Dict[str, VariableSchema]]
+    variable_schema: Optional[Dict[str, "VariableSchemaEntryParam"]]
     """Structured variable requirements.
 
     Required variables cannot define defaults; invalid combinations return 422. This
@@ -79,12 +79,4 @@ class EmailTemplateCreateParams(TypedDict, total=False):
     idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
 
 
-class VariableSchema(TypedDict, total=False):
-    required: Required[bool]
-    """
-    Whether the variable must be supplied when strict variable validation is
-    enabled.
-    """
-
-    default: str
-    """Default value for an optional variable. Rejected when `required` is `true`."""
+from .variable_schema_entry_param import VariableSchemaEntryParam

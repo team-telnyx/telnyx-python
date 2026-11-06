@@ -40,6 +40,7 @@ from .call_refer_started_webhook_event import CallReferStartedWebhookEvent
 from .call_siprec_failed_webhook_event import CallSiprecFailedWebhookEvent
 from .call_speak_started_webhook_event import CallSpeakStartedWebhookEvent
 from .conference_created_webhook_event import ConferenceCreatedWebhookEvent
+from .recording_exported_webhook_event import RecordingExportedWebhookEvent
 from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
@@ -59,6 +60,7 @@ from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEve
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent
 from .session_status_changed_webhook_event import SessionStatusChangedWebhookEvent
 from .call_conversation_ended_webhook_event import CallConversationEndedWebhookEvent
+from .recording_export_failed_webhook_event import RecordingExportFailedWebhookEvent
 from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhookEvent
 from .call_conversation_created_webhook_event import CallConversationCreatedWebhookEvent
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
@@ -172,6 +174,8 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     NumberReputationExternalVerificationStatusChangedWebhookEvent,
     NumberReputationNumberFlaggedWebhookEvent,
     NumberReputationNumberRemovedWebhookEvent,
+    RecordingExportFailedWebhookEvent,
+    RecordingExportedWebhookEvent,
     ReplacedLinkClickWebhookEvent,
     SessionStatusChangedWebhookEvent,
     TranscriptCompletedWebhookEvent,

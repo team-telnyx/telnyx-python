@@ -155,7 +155,7 @@ class VoiceClonesResource(SyncAPIResource):
         filter_model_id: Literal["Qwen3TTS", "Ultra", "Bayan", "speech-2.8-turbo", "Pro", "Turbo", "Urdu"]
         | Omit = omit,
         filter_name: str | Omit = omit,
-        filter_provider: Literal["telnyx", "minimax"] | Omit = omit,
+        filter_provider: Literal["telnyx", "minimax", "resemble"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["name", "-name", "created_at", "-created_at"] | Omit = omit,
@@ -453,7 +453,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         filter_model_id: Literal["Qwen3TTS", "Ultra", "Bayan", "speech-2.8-turbo", "Pro", "Turbo", "Urdu"]
         | Omit = omit,
         filter_name: str | Omit = omit,
-        filter_provider: Literal["telnyx", "minimax"] | Omit = omit,
+        filter_provider: Literal["telnyx", "minimax", "resemble"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["name", "-name", "created_at", "-created_at"] | Omit = omit,

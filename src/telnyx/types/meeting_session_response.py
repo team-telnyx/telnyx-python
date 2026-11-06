@@ -12,7 +12,7 @@ class MeetingSessionResponse(BaseModel):
     data: MeetingSession
     """Represents a meeting session.
 
-    All serializer fields are present and required; nullable fields use null when
-    absent. No actor, provider-bot, idempotency, routing, key, or internal fields
-    are exposed.
+    Core serializer fields are required; platform-specific fields are optional.
+    Nullable fields use null when absent. No actor, provider-bot, idempotency,
+    routing, key, or internal fields are exposed.
     """

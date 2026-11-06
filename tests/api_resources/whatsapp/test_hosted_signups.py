@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.whatsapp import (
-    HostedSignupListResponse,
+    WhatsappHostedSignup,
     HostedSignupCreateResponse,
     HostedSignupRetrieveResponse,
 )
@@ -113,7 +113,7 @@ class TestHostedSignups:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         hosted_signup = client.whatsapp.hosted_signups.list()
-        assert_matches_type(SyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -122,7 +122,7 @@ class TestHostedSignups:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -132,7 +132,7 @@ class TestHostedSignups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hosted_signup = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -142,7 +142,7 @@ class TestHostedSignups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hosted_signup = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +242,7 @@ class TestAsyncHostedSignups:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         hosted_signup = await async_client.whatsapp.hosted_signups.list()
-        assert_matches_type(AsyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -251,7 +251,7 @@ class TestAsyncHostedSignups:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -261,7 +261,7 @@ class TestAsyncHostedSignups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hosted_signup = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -271,6 +271,6 @@ class TestAsyncHostedSignups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hosted_signup = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[HostedSignupListResponse], hosted_signup, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[WhatsappHostedSignup], hosted_signup, path=["response"])
 
         assert cast(Any, response.is_closed) is True

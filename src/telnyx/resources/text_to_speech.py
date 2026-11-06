@@ -76,6 +76,7 @@ class TextToSpeechResource(SyncAPIResource):
     def create_speech(
         self,
         *,
+        assemblyai: text_to_speech_generate_speech_params.Assemblyai | Omit = omit,
         aws: text_to_speech_generate_speech_params.Aws | Omit = omit,
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
@@ -84,7 +85,7 @@ class TextToSpeechResource(SyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+        provider: Literal["assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         soniox: text_to_speech_generate_speech_params.Soniox | Omit = omit,
@@ -115,7 +116,7 @@ class TextToSpeechResource(SyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
+        Supported providers: `assemblyai`, `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`, `soniox`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -123,6 +124,8 @@ class TextToSpeechResource(SyncAPIResource):
         configure these features.
 
         Args:
+          assemblyai: AssemblyAI provider-specific parameters. Every voice speaks all six supported
+              languages; set `language` to the language of the text.
           aws: AWS Polly provider-specific parameters.
 
           azure: Azure Cognitive Services provider-specific parameters.
@@ -179,6 +182,7 @@ class TextToSpeechResource(SyncAPIResource):
             "/text-to-speech/speech",
             body=maybe_transform(
                 {
+                    "assemblyai": assemblyai,
                     "aws": aws,
                     "azure": azure,
                     "disable_cache": disable_cache,
@@ -208,6 +212,7 @@ class TextToSpeechResource(SyncAPIResource):
     def generate_speech(
         self,
         *,
+        assemblyai: text_to_speech_generate_speech_params.Assemblyai | Omit = omit,
         aws: text_to_speech_generate_speech_params.Aws | Omit = omit,
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
@@ -216,7 +221,7 @@ class TextToSpeechResource(SyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+        provider: Literal["assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         soniox: text_to_speech_generate_speech_params.Soniox | Omit = omit,
@@ -247,7 +252,7 @@ class TextToSpeechResource(SyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
+        Supported providers: `assemblyai`, `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`, `soniox`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -255,6 +260,8 @@ class TextToSpeechResource(SyncAPIResource):
         configure these features.
 
         Args:
+          assemblyai: AssemblyAI provider-specific parameters. Every voice speaks all six supported
+              languages; set `language` to the language of the text.
           aws: AWS Polly provider-specific parameters.
 
           azure: Azure Cognitive Services provider-specific parameters.
@@ -311,6 +318,7 @@ class TextToSpeechResource(SyncAPIResource):
             "/text-to-speech/speech",
             body=maybe_transform(
                 {
+                    "assemblyai": assemblyai,
                     "aws": aws,
                     "azure": azure,
                     "disable_cache": disable_cache,
@@ -341,7 +349,7 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+        provider: Literal["assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -396,7 +404,7 @@ class TextToSpeechResource(SyncAPIResource):
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
         provider: Literal[
-            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain", "soniox"
+            "assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain", "soniox"
         ]
         | Omit = omit,
         socket_id: str | Omit = omit,
@@ -415,7 +423,7 @@ class TextToSpeechResource(SyncAPIResource):
         `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`,
+        Supported providers: `assemblyai`, `aws`, `telnyx`, `azure`, `murfai`, `minimax`,
         `resemble`, `elevenlabs`, `xai`, `humain`, `soniox`.
 
         **Connection flow:**
@@ -540,6 +548,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
     async def create_speech(
         self,
         *,
+        assemblyai: text_to_speech_generate_speech_params.Assemblyai | Omit = omit,
         aws: text_to_speech_generate_speech_params.Aws | Omit = omit,
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
@@ -548,7 +557,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+        provider: Literal["assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         soniox: text_to_speech_generate_speech_params.Soniox | Omit = omit,
@@ -579,7 +588,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
+        Supported providers: `assemblyai`, `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`, `soniox`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -587,6 +596,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         configure these features.
 
         Args:
+          assemblyai: AssemblyAI provider-specific parameters. Every voice speaks all six supported
+              languages; set `language` to the language of the text.
           aws: AWS Polly provider-specific parameters.
 
           azure: Azure Cognitive Services provider-specific parameters.
@@ -643,6 +654,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
             "/text-to-speech/speech",
             body=await async_maybe_transform(
                 {
+                    "assemblyai": assemblyai,
                     "aws": aws,
                     "azure": azure,
                     "disable_cache": disable_cache,
@@ -672,6 +684,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
     async def generate_speech(
         self,
         *,
+        assemblyai: text_to_speech_generate_speech_params.Assemblyai | Omit = omit,
         aws: text_to_speech_generate_speech_params.Aws | Omit = omit,
         azure: text_to_speech_generate_speech_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
@@ -680,7 +693,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_speech_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+        provider: Literal["assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
         | Omit = omit,
         resemble: text_to_speech_generate_speech_params.Resemble | Omit = omit,
         soniox: text_to_speech_generate_speech_params.Soniox | Omit = omit,
@@ -711,7 +724,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
         with provider-specific parameters.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
+        Supported providers: `assemblyai`, `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`,
         `resemble`, `xai`, `humain`, `soniox`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
@@ -719,6 +732,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         configure these features.
 
         Args:
+          assemblyai: AssemblyAI provider-specific parameters. Every voice speaks all six supported
+              languages; set `language` to the language of the text.
           aws: AWS Polly provider-specific parameters.
 
           azure: Azure Cognitive Services provider-specific parameters.
@@ -775,6 +790,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
             "/text-to-speech/speech",
             body=await async_maybe_transform(
                 {
+                    "assemblyai": assemblyai,
                     "aws": aws,
                     "azure": azure,
                     "disable_cache": disable_cache,
@@ -805,7 +821,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+        provider: Literal["assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -860,7 +876,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         disable_cache: bool | Omit = omit,
         model_id: str | Omit = omit,
         provider: Literal[
-            "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain", "soniox"
+            "assemblyai", "aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "resemble", "xai", "humain", "soniox"
         ]
         | Omit = omit,
         socket_id: str | Omit = omit,
@@ -879,7 +895,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
         synthesize; receive JSON frames containing base64-encoded audio chunks.
 
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`,
+        Supported providers: `assemblyai`, `aws`, `telnyx`, `azure`, `murfai`, `minimax`,
         `resemble`, `elevenlabs`, `xai`, `humain`, `soniox`.
 
         **Connection flow:**
