@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import Dict, List
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["GuardrailCreateParams"]
@@ -47,7 +47,7 @@ class GuardrailCreateParams(TypedDict, total=False):
     `false` runs it on the requests that name it.
     """
 
-    settings: object
+    settings: Dict[str, object]
     """The type's settings.
 
     `content_filter`: `patterns` (prebuilt patterns by `name`, such as `us_ssn` or

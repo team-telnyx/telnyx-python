@@ -40,18 +40,7 @@ class TestGuardrails:
             name="mask-pii",
             type="content_filter",
             always_on=True,
-            settings={
-                "patterns": [
-                    {
-                        "name": "us_ssn",
-                        "action": "mask",
-                    },
-                    {
-                        "name": "email",
-                        "action": "mask",
-                    },
-                ]
-            },
+            settings={"patterns": "bar"},
         )
         assert_matches_type(AgentGatewayGuardrailResponse, guardrail, path=["response"])
 
@@ -116,7 +105,7 @@ class TestGuardrails:
             always_on=True,
             modes=["before_request"],
             name="name",
-            settings={},
+            settings={"foo": "bar"},
         )
         assert_matches_type(AgentGatewayGuardrailResponse, guardrail, path=["response"])
 
@@ -283,18 +272,7 @@ class TestAsyncGuardrails:
             name="mask-pii",
             type="content_filter",
             always_on=True,
-            settings={
-                "patterns": [
-                    {
-                        "name": "us_ssn",
-                        "action": "mask",
-                    },
-                    {
-                        "name": "email",
-                        "action": "mask",
-                    },
-                ]
-            },
+            settings={"patterns": "bar"},
         )
         assert_matches_type(AgentGatewayGuardrailResponse, guardrail, path=["response"])
 
@@ -359,7 +337,7 @@ class TestAsyncGuardrails:
             always_on=True,
             modes=["before_request"],
             name="name",
-            settings={},
+            settings={"foo": "bar"},
         )
         assert_matches_type(AgentGatewayGuardrailResponse, guardrail, path=["response"])
 

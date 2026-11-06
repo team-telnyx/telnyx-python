@@ -13,6 +13,7 @@ from telnyx.types import (
     MeetingSessionResponse,
     MeetingSessionListResponse,
     MeetingSessionRetrieveEventsResponse,
+    MeetingSessionRetrieveRecordingsResponse,
     MeetingSessionRetrieveTranscriptResponse,
     MeetingSessionDeleteRecordingMediaResponse,
 )
@@ -38,8 +39,8 @@ class TestMeetingSessions:
         meeting_session = client.meeting_sessions.create(
             meeting_url="https://zoom.us/j/1234567890",
             assistant={
-                "id": "asst_fake-uuid-1234",
-                "audio_gate": "full_duplex",
+                "id": "x",
+                "audio_gate": "half_duplex",
                 "avatar": True,
                 "dynamic_variables": {"foo": "string"},
                 "leave_on_end": True,
@@ -51,9 +52,24 @@ class TestMeetingSessions:
                 "format": "jpeg",
             },
             chat_on_enter="x",
-            idempotency_key="x",
+            idempotency_key="weekly-planning-2026-11-10",
             join_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            leave_policy={
+                "alone_seconds": 300,
+                "bot_name_keywords": ["x"],
+                "host_wait_seconds": 1,
+                "lobby_wait_seconds": 1,
+                "max_duration_seconds": 7200,
+                "silence_grace_seconds": 1,
+                "silence_seconds": 1,
+            },
             metadata={"foo": "bar"},
+            recording=True,
+            recording_export={
+                "bucket": "meeting-recordings",
+                "prefix": "weekly-planning",
+            },
+            recording_view="speaker_view",
             speak_on_enter="x",
             summarize_on_end=True,
             voice="x",
@@ -355,6 +371,48 @@ class TestMeetingSessions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_retrieve_recordings(self, client: Telnyx) -> None:
+        meeting_session = client.meeting_sessions.retrieve_recordings(
+            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        )
+        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_recordings(self, client: Telnyx) -> None:
+        response = client.meeting_sessions.with_raw_response.retrieve_recordings(
+            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        meeting_session = response.parse()
+        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_recordings(self, client: Telnyx) -> None:
+        with client.meeting_sessions.with_streaming_response.retrieve_recordings(
+            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            meeting_session = response.parse()
+            assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_recordings(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.meeting_sessions.with_raw_response.retrieve_recordings(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_retrieve_transcript(self, client: Telnyx) -> None:
         meeting_session = client.meeting_sessions.retrieve_transcript(
             id="mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
@@ -426,8 +484,8 @@ class TestAsyncMeetingSessions:
         meeting_session = await async_client.meeting_sessions.create(
             meeting_url="https://zoom.us/j/1234567890",
             assistant={
-                "id": "asst_fake-uuid-1234",
-                "audio_gate": "full_duplex",
+                "id": "x",
+                "audio_gate": "half_duplex",
                 "avatar": True,
                 "dynamic_variables": {"foo": "string"},
                 "leave_on_end": True,
@@ -439,9 +497,24 @@ class TestAsyncMeetingSessions:
                 "format": "jpeg",
             },
             chat_on_enter="x",
-            idempotency_key="x",
+            idempotency_key="weekly-planning-2026-11-10",
             join_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            leave_policy={
+                "alone_seconds": 300,
+                "bot_name_keywords": ["x"],
+                "host_wait_seconds": 1,
+                "lobby_wait_seconds": 1,
+                "max_duration_seconds": 7200,
+                "silence_grace_seconds": 1,
+                "silence_seconds": 1,
+            },
             metadata={"foo": "bar"},
+            recording=True,
+            recording_export={
+                "bucket": "meeting-recordings",
+                "prefix": "weekly-planning",
+            },
+            recording_view="speaker_view",
             speak_on_enter="x",
             summarize_on_end=True,
             voice="x",
@@ -739,6 +812,48 @@ class TestAsyncMeetingSessions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.meeting_sessions.with_raw_response.retrieve_events(
                 id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
+        meeting_session = await async_client.meeting_sessions.retrieve_recordings(
+            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        )
+        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.meeting_sessions.with_raw_response.retrieve_recordings(
+            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        meeting_session = await response.parse()
+        assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.meeting_sessions.with_streaming_response.retrieve_recordings(
+            "mtgsess_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            meeting_session = await response.parse()
+            assert_matches_type(MeetingSessionRetrieveRecordingsResponse, meeting_session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_recordings(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.meeting_sessions.with_raw_response.retrieve_recordings(
+                "",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

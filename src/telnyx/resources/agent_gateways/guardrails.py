@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import Dict, List
 from typing_extensions import Literal
 
 import httpx
@@ -74,7 +74,7 @@ class GuardrailsResource(SyncAPIResource):
             "azure_content_safety",
         ],
         always_on: bool | Omit = omit,
-        settings: object | Omit = omit,
+        settings: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,7 +160,7 @@ class GuardrailsResource(SyncAPIResource):
         ]
         | Omit = omit,
         name: str | Omit = omit,
-        settings: object | Omit = omit,
+        settings: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -356,7 +356,7 @@ class AsyncGuardrailsResource(AsyncAPIResource):
             "azure_content_safety",
         ],
         always_on: bool | Omit = omit,
-        settings: object | Omit = omit,
+        settings: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -442,7 +442,7 @@ class AsyncGuardrailsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         name: str | Omit = omit,
-        settings: object | Omit = omit,
+        settings: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -235,6 +235,7 @@ from .video_region_param import VideoRegionParam as VideoRegionParam
 from .address_list_params import AddressListParams as AddressListParams
 from .ai_summarize_params import AISummarizeParams as AISummarizeParams
 from .anchorsite_override import AnchorsiteOverride as AnchorsiteOverride
+from .calendar_connection import CalendarConnection as CalendarConnection
 from .call_playback_ended import CallPlaybackEnded as CallPlaybackEnded
 from .call_siprec_started import CallSiprecStarted as CallSiprecStarted
 from .call_siprec_stopped import CallSiprecStopped as CallSiprecStopped
@@ -501,6 +502,7 @@ from .global_ip_create_response import GlobalIPCreateResponse as GlobalIPCreateR
 from .global_ip_delete_response import GlobalIPDeleteResponse as GlobalIPDeleteResponse
 from .invoice_retrieve_response import InvoiceRetrieveResponse as InvoiceRetrieveResponse
 from .ip_connection_list_params import IPConnectionListParams as IPConnectionListParams
+from .meeting_session_assistant import MeetingSessionAssistant as MeetingSessionAssistant
 from .message_retrieve_response import MessageRetrieveResponse as MessageRetrieveResponse
 from .message_schedule_response import MessageScheduleResponse as MessageScheduleResponse
 from .message_whatsapp_response import MessageWhatsappResponse as MessageWhatsappResponse
@@ -621,6 +623,7 @@ from .verified_number_list_params import VerifiedNumberListParams as VerifiedNum
 from .wireless_wireless_blocklist import WirelessWirelessBlocklist as WirelessWirelessBlocklist
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .advanced_order_list_response import AdvancedOrderListResponse as AdvancedOrderListResponse
+from .calendar_connection_response import CalendarConnectionResponse as CalendarConnectionResponse
 from .call_assistant_request_param import CallAssistantRequestParam as CallAssistantRequestParam
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent as CallInitiatedWebhookEvent
 from .call_machine_detection_ended import CallMachineDetectionEnded as CallMachineDetectionEnded
@@ -635,6 +638,7 @@ from .email_template_render_params import EmailTemplateRenderParams as EmailTemp
 from .email_template_update_params import EmailTemplateUpdateParams as EmailTemplateUpdateParams
 from .email_thread_retrieve_params import EmailThreadRetrieveParams as EmailThreadRetrieveParams
 from .gcs_configuration_data_param import GcsConfigurationDataParam as GcsConfigurationDataParam
+from .meeting_session_leave_policy import MeetingSessionLeavePolicy as MeetingSessionLeavePolicy
 from .messaging_metrics_time_frame import MessagingMetricsTimeFrame as MessagingMetricsTimeFrame
 from .messaging_optout_list_params import MessagingOptoutListParams as MessagingOptoutListParams
 from .network_coverage_list_params import NetworkCoverageListParams as NetworkCoverageListParams
@@ -855,6 +859,7 @@ from .global_ip_protocol_list_response import GlobalIPProtocolListResponse as Gl
 from .inexplicit_number_order_response import InexplicitNumberOrderResponse as InexplicitNumberOrderResponse
 from .integration_secret_create_params import IntegrationSecretCreateParams as IntegrationSecretCreateParams
 from .inventory_coverage_list_response import InventoryCoverageListResponse as InventoryCoverageListResponse
+from .meeting_session_recording_export import MeetingSessionRecordingExport as MeetingSessionRecordingExport
 from .message_send_short_code_response import MessageSendShortCodeResponse as MessageSendShortCodeResponse
 from .messaging_profile_features_param import MessagingProfileFeaturesParam as MessagingProfileFeaturesParam
 from .messaging_url_domain_list_params import MessagingURLDomainListParams as MessagingURLDomainListParams
@@ -868,6 +873,7 @@ from .number_reservation_create_params import NumberReservationCreateParams as N
 from .porting_phone_number_list_params import PortingPhoneNumberListParams as PortingPhoneNumberListParams
 from .pronunciation_dict_create_params import PronunciationDictCreateParams as PronunciationDictCreateParams
 from .pronunciation_dict_update_params import PronunciationDictUpdateParams as PronunciationDictUpdateParams
+from .recording_exported_webhook_event import RecordingExportedWebhookEvent as RecordingExportedWebhookEvent
 from .room_composition_create_response import RoomCompositionCreateResponse as RoomCompositionCreateResponse
 from .room_recording_retrieve_response import RoomRecordingRetrieveResponse as RoomRecordingRetrieveResponse
 from .session_analysis_retrieve_params import SessionAnalysisRetrieveParams as SessionAnalysisRetrieveParams
@@ -887,6 +893,9 @@ from .wireless_blocklist_update_params import WirelessBlocklistUpdateParams as W
 from .wireless_retrieve_regions_params import WirelessRetrieveRegionsParams as WirelessRetrieveRegionsParams
 from .artifact_download_retrieve_params import ArtifactDownloadRetrieveParams as ArtifactDownloadRetrieveParams
 from .browser_session_retrieve_response import BrowserSessionRetrieveResponse as BrowserSessionRetrieveResponse
+from .calendar_connection_create_params import CalendarConnectionCreateParams as CalendarConnectionCreateParams
+from .calendar_connection_list_response import CalendarConnectionListResponse as CalendarConnectionListResponse
+from .calendar_connection_update_params import CalendarConnectionUpdateParams as CalendarConnectionUpdateParams
 from .call_control_application_outbound import CallControlApplicationOutbound as CallControlApplicationOutbound
 from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent as CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent as CallSiprecStartedWebhookEvent
@@ -946,6 +955,7 @@ from .generic_pay_connector_config_param import GenericPayConnectorConfigParam a
 from .global_ip_assignment_update_params import GlobalIPAssignmentUpdateParams as GlobalIPAssignmentUpdateParams
 from .global_ip_health_check_list_params import GlobalIPHealthCheckListParams as GlobalIPHealthCheckListParams
 from .integration_secret_create_response import IntegrationSecretCreateResponse as IntegrationSecretCreateResponse
+from .meeting_session_leave_policy_param import MeetingSessionLeavePolicyParam as MeetingSessionLeavePolicyParam
 from .messaging_url_domain_list_response import MessagingURLDomainListResponse as MessagingURLDomainListResponse
 from .mobile_push_credential_list_params import MobilePushCredentialListParams as MobilePushCredentialListParams
 from .notification_channel_create_params import NotificationChannelCreateParams as NotificationChannelCreateParams
@@ -973,6 +983,8 @@ from .wireless_blocklist_update_response import WirelessBlocklistUpdateResponse 
 from .wireless_retrieve_regions_response import WirelessRetrieveRegionsResponse as WirelessRetrieveRegionsResponse
 from .authentication_provider_list_params import AuthenticationProviderListParams as AuthenticationProviderListParams
 from .bot_signup_resend_magic_link_params import BotSignupResendMagicLinkParams as BotSignupResendMagicLinkParams
+from .calendar_connection_create_response import CalendarConnectionCreateResponse as CalendarConnectionCreateResponse
+from .calendar_connection_update_response import CalendarConnectionUpdateResponse as CalendarConnectionUpdateResponse
 from .call_machine_premium_greeting_ended import CallMachinePremiumGreetingEnded as CallMachinePremiumGreetingEnded
 from .call_payment_progress_webhook_event import CallPaymentProgressWebhookEvent as CallPaymentProgressWebhookEvent
 from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent as CallPlaybackStartedWebhookEvent
@@ -1114,6 +1126,9 @@ from .inexplicit_number_order_create_params import (
 from .machine_payment_account_credit_params import (
     MachinePaymentAccountCreditParams as MachinePaymentAccountCreditParams,
 )
+from .meeting_session_recording_destination import (
+    MeetingSessionRecordingDestination as MeetingSessionRecordingDestination,
+)
 from .messaging_hosted_number_update_params import (
     MessagingHostedNumberUpdateParams as MessagingHostedNumberUpdateParams,
 )
@@ -1139,6 +1154,9 @@ from .pronunciation_dict_phoneme_item_param import (
 )
 from .public_internet_gateway_create_params import (
     PublicInternetGatewayCreateParams as PublicInternetGatewayCreateParams,
+)
+from .recording_export_failed_webhook_event import (
+    RecordingExportFailedWebhookEvent as RecordingExportFailedWebhookEvent,
 )
 from .sim_card_get_activation_code_response import SimCardGetActivationCodeResponse as SimCardGetActivationCodeResponse
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
@@ -1599,6 +1617,9 @@ from .global_ip_assignments_usage_retrieve_params import (
 from .ledger_billing_group_report_create_response import (
     LedgerBillingGroupReportCreateResponse as LedgerBillingGroupReportCreateResponse,
 )
+from .meeting_session_recording_destination_param import (
+    MeetingSessionRecordingDestinationParam as MeetingSessionRecordingDestinationParam,
+)
 from .messaging_hosted_number_order_create_params import (
     MessagingHostedNumberOrderCreateParams as MessagingHostedNumberOrderCreateParams,
 )
@@ -1646,6 +1667,9 @@ from .dynamic_emergency_endpoint_retrieve_response import (
 )
 from .external_connection_update_location_response import (
     ExternalConnectionUpdateLocationResponse as ExternalConnectionUpdateLocationResponse,
+)
+from .meeting_session_retrieve_recordings_response import (
+    MeetingSessionRetrieveRecordingsResponse as MeetingSessionRetrieveRecordingsResponse,
 )
 from .meeting_session_retrieve_transcript_response import (
     MeetingSessionRetrieveTranscriptResponse as MeetingSessionRetrieveTranscriptResponse,

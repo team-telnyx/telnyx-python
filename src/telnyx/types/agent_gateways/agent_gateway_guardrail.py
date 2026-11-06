@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -36,7 +36,7 @@ class AgentGatewayGuardrail(BaseModel):
     name: str
     """What a request names in its `guardrails` field."""
 
-    settings: object
+    settings: Dict[str, object]
     """The type's settings.
 
     `content_filter`: `patterns` (prebuilt patterns by name, such as `us_ssn` or

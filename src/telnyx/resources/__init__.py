@@ -393,6 +393,14 @@ from .enterprises import (
     EnterprisesResourceWithStreamingResponse,
     AsyncEnterprisesResourceWithStreamingResponse,
 )
+from .meeting_bot import (
+    MeetingBotResource,
+    AsyncMeetingBotResource,
+    MeetingBotResourceWithRawResponse,
+    AsyncMeetingBotResourceWithRawResponse,
+    MeetingBotResourceWithStreamingResponse,
+    AsyncMeetingBotResourceWithStreamingResponse,
+)
 from .ota_updates import (
     OtaUpdatesResource,
     AsyncOtaUpdatesResource,
@@ -1136,6 +1144,14 @@ from .wireless_blocklists import (
     AsyncWirelessBlocklistsResourceWithRawResponse,
     WirelessBlocklistsResourceWithStreamingResponse,
     AsyncWirelessBlocklistsResourceWithStreamingResponse,
+)
+from .calendar_connections import (
+    CalendarConnectionsResource,
+    AsyncCalendarConnectionsResource,
+    CalendarConnectionsResourceWithRawResponse,
+    AsyncCalendarConnectionsResourceWithRawResponse,
+    CalendarConnectionsResourceWithStreamingResponse,
+    AsyncCalendarConnectionsResourceWithStreamingResponse,
 )
 from .external_connections import (
     ExternalConnectionsResource,
@@ -2805,4 +2821,16 @@ __all__ = [
     "AsyncAgentGatewaysResourceWithRawResponse",
     "AgentGatewaysResourceWithStreamingResponse",
     "AsyncAgentGatewaysResourceWithStreamingResponse",
+    "CalendarConnectionsResource",
+    "AsyncCalendarConnectionsResource",
+    "CalendarConnectionsResourceWithRawResponse",
+    "AsyncCalendarConnectionsResourceWithRawResponse",
+    "CalendarConnectionsResourceWithStreamingResponse",
+    "AsyncCalendarConnectionsResourceWithStreamingResponse",
+    "MeetingBotResource",
+    "AsyncMeetingBotResource",
+    "MeetingBotResourceWithRawResponse",
+    "AsyncMeetingBotResourceWithRawResponse",
+    "MeetingBotResourceWithStreamingResponse",
+    "AsyncMeetingBotResourceWithStreamingResponse",
 ]
