@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -43,7 +43,7 @@ class ResultObservation(BaseModel):
     metadata.
     """
 
-    refs: Optional[object] = None
+    refs: Optional[Dict[str, object]] = None
 
     title: Optional[str] = None
 
@@ -65,7 +65,7 @@ class Result(BaseModel):
     action to obtain usable refs.
     """
 
-    results: Optional[List[object]] = None
+    results: Optional[List[Dict[str, object]]] = None
     """Present only for batch actions."""
 
     title: Optional[str] = None
@@ -91,7 +91,7 @@ class ActionResponse(BaseModel):
     execution_lost error and retryable=true; that is not proof of safe re-execution.
     """
 
-    request: object
+    request: Dict[str, object]
     """
     Normalized request metadata; defaults may be materialized and fill values are
     redacted as {redacted: true, length: number}, including inside batch actions.

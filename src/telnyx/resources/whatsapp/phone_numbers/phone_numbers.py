@@ -57,8 +57,8 @@ from .conversational_components import (
     ConversationalComponentsResourceWithStreamingResponse,
     AsyncConversationalComponentsResourceWithStreamingResponse,
 )
+from ....types.whatsapp.whatsapp_phone_response import WhatsappPhoneResponse
 from ....types.whatsapp.phone_number_get_response import PhoneNumberGetResponse
-from ....types.whatsapp.phone_number_list_response import PhoneNumberListResponse
 from ....types.whatsapp.phone_number_retrieve_phone_number_response import PhoneNumberRetrievePhoneNumberResponse
 from ....types.whatsapp.phone_number_retrieve_conversation_window_response import (
     PhoneNumberRetrieveConversationWindowResponse,
@@ -120,7 +120,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumberListResponse]:
+    ) -> SyncDefaultFlatPagination[WhatsappPhoneResponse]:
         """
         Returns WhatsApp phone numbers linked to the authenticated Telnyx account.
 
@@ -135,7 +135,7 @@ class PhoneNumbersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v2/whatsapp/phone_numbers",
-            page=SyncDefaultFlatPagination[PhoneNumberListResponse],
+            page=SyncDefaultFlatPagination[WhatsappPhoneResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,7 +149,7 @@ class PhoneNumbersResource(SyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberListResponse,
+            model=WhatsappPhoneResponse,
         )
 
     def delete(
@@ -437,7 +437,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberListResponse, AsyncDefaultFlatPagination[PhoneNumberListResponse]]:
+    ) -> AsyncPaginator[WhatsappPhoneResponse, AsyncDefaultFlatPagination[WhatsappPhoneResponse]]:
         """
         Returns WhatsApp phone numbers linked to the authenticated Telnyx account.
 
@@ -452,7 +452,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v2/whatsapp/phone_numbers",
-            page=AsyncDefaultFlatPagination[PhoneNumberListResponse],
+            page=AsyncDefaultFlatPagination[WhatsappPhoneResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,7 +466,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            model=PhoneNumberListResponse,
+            model=WhatsappPhoneResponse,
         )
 
     async def delete(

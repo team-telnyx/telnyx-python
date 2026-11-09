@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["ProfileIngestParams", "Variant0", "Variant1"]
+__all__ = ["ProfileIngestParams", "IngestPayloadObject", "IngestPayloadValue"]
 
 
-class Variant0(TypedDict, total=False):
+class IngestPayloadObject(TypedDict, total=False):
     namespace: Required[str]
 
     body: Required[Dict[str, object]]
@@ -22,7 +22,7 @@ class Variant0(TypedDict, total=False):
     """
 
 
-class Variant1(TypedDict, total=False):
+class IngestPayloadValue(TypedDict, total=False):
     namespace: Required[str]
 
     body: Required[Union[Iterable[object], str, float, bool]]
@@ -36,4 +36,4 @@ class Variant1(TypedDict, total=False):
     """
 
 
-ProfileIngestParams: TypeAlias = Union[Variant0, Variant1]
+ProfileIngestParams: TypeAlias = Union[IngestPayloadObject, IngestPayloadValue]

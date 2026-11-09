@@ -9,6 +9,7 @@ from .._types import SequenceNotStr
 
 __all__ = [
     "TextToSpeechGenerateSpeechParams",
+    "Assemblyai",
     "Aws",
     "Azure",
     "Elevenlabs",
@@ -22,6 +23,13 @@ __all__ = [
 
 
 class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
+    assemblyai: Assemblyai
+    """AssemblyAI provider-specific parameters.
+
+    Every voice speaks all six supported languages; set `language` to the language
+    of the text.
+    """
+
     aws: Aws
     """AWS Polly provider-specific parameters."""
 
@@ -55,7 +63,9 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
     audio in JSON.
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox"]
+    provider: Literal[
+        "aws", "telnyx", "azure", "elevenlabs", "minimax", "resemble", "xai", "humain", "soniox", "assemblyai"
+    ]
     """TTS provider. Required unless `voice` is provided."""
 
     resemble: Resemble
@@ -103,6 +113,35 @@ class TextToSpeechGenerateSpeechParams(TypedDict, total=False):
 
     xai: Xai
     """xAI provider-specific parameters."""
+
+
+class Assemblyai(TypedDict, total=False):
+    """AssemblyAI provider-specific parameters.
+
+    Every voice speaks all six supported languages; set `language` to the language of the text.
+    """
+
+    voice_id: Required[str]
+    """
+    AssemblyAI voice from the
+    [voices listing](https://developers.telnyx.com/api-reference/text-to-speech-commands/list-available-voices),
+    for example `aai-jane`.
+    """
+
+    audio_format: Literal["mp3", "wav", "pcm_s16le", "pcm_mulaw", "pcm_alaw"]
+    """Audio output format."""
+
+    language: Literal["en", "es", "de", "fr", "it", "pt"]
+    """Two-letter ISO 639-1 code of the text. AssemblyAI does not detect the language."""
+
+    model_id: Literal["assemblyai-tts-1"]
+    """AssemblyAI model."""
+
+    sample_rate: Literal[8000, 16000, 22050, 24000, 44100, 48000]
+    """Audio sample rate in Hz.
+
+    Defaults to 24000, or 8000 for `pcm_mulaw` and `pcm_alaw`.
+    """
 
 
 class Aws(TypedDict, total=False):

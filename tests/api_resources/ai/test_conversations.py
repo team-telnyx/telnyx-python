@@ -310,6 +310,58 @@ class TestConversations:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_delete_delete(self, client: Telnyx) -> None:
+        conversation = client.ai.conversations.delete_delete(
+            insight_id="insight_id",
+            conversation_id="conversation_id",
+        )
+        assert conversation is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_delete_delete(self, client: Telnyx) -> None:
+        response = client.ai.conversations.with_raw_response.delete_delete(
+            insight_id="insight_id",
+            conversation_id="conversation_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conversation = response.parse()
+        assert conversation is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_delete_delete(self, client: Telnyx) -> None:
+        with client.ai.conversations.with_streaming_response.delete_delete(
+            insight_id="insight_id",
+            conversation_id="conversation_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conversation = response.parse()
+            assert conversation is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_delete_delete(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
+            client.ai.conversations.with_raw_response.delete_delete(
+                insight_id="insight_id",
+                conversation_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
+            client.ai.conversations.with_raw_response.delete_delete(
+                insight_id="",
+                conversation_id="conversation_id",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_retrieve_conversations_insights(self, client: Telnyx) -> None:
         conversation = client.ai.conversations.retrieve_conversations_insights(
             "conversation_id",
@@ -638,6 +690,58 @@ class TestAsyncConversations:
             await async_client.ai.conversations.with_raw_response.add_message(
                 conversation_id="",
                 role="Role",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_delete_delete(self, async_client: AsyncTelnyx) -> None:
+        conversation = await async_client.ai.conversations.delete_delete(
+            insight_id="insight_id",
+            conversation_id="conversation_id",
+        )
+        assert conversation is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_delete_delete(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.conversations.with_raw_response.delete_delete(
+            insight_id="insight_id",
+            conversation_id="conversation_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conversation = await response.parse()
+        assert conversation is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_delete_delete(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.conversations.with_streaming_response.delete_delete(
+            insight_id="insight_id",
+            conversation_id="conversation_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conversation = await response.parse()
+            assert conversation is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_delete_delete(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
+            await async_client.ai.conversations.with_raw_response.delete_delete(
+                insight_id="insight_id",
+                conversation_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
+            await async_client.ai.conversations.with_raw_response.delete_delete(
+                insight_id="",
+                conversation_id="conversation_id",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

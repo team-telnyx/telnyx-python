@@ -2,33 +2,23 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from typing import TYPE_CHECKING, Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .time_range import TimeRange
 from .email_webhook_recipient import EmailWebhookRecipient
 
-__all__ = [
-    "EmailEventListResponse",
-    "Data",
-    "DataPayload",
-    "DataPayloadBcc",
-    "DataPayloadCc",
-    "DataPayloadFrom",
-    "DataPayloadTo",
-    "Meta",
-]
+__all__ = ["EmailEventListResponse", "Payload", "PayloadBcc", "PayloadCc", "PayloadFrom", "PayloadTo"]
 
-DataPayloadBcc: TypeAlias = Union[EmailWebhookRecipient, Literal["redacted"]]
+PayloadBcc: TypeAlias = Union[EmailWebhookRecipient, Literal["redacted"]]
 
-DataPayloadCc: TypeAlias = Union[EmailWebhookRecipient, str]
+PayloadCc: TypeAlias = Union[EmailWebhookRecipient, str]
 
 
-class DataPayloadFrom(BaseModel):
+class PayloadFrom(BaseModel):
     """Sender projection in account event polling.
 
     The display name is explicitly null when the message has no sender name.
@@ -39,10 +29,10 @@ class DataPayloadFrom(BaseModel):
     name: Optional[str] = None
 
 
-DataPayloadTo: TypeAlias = Union[EmailWebhookRecipient, str]
+PayloadTo: TypeAlias = Union[EmailWebhookRecipient, str]
 
 
-class DataPayload(BaseModel):
+class Payload(BaseModel):
     """Payload returned by GET /email_events.
 
     Every row includes id, status, and occurred_at. Recipient-scoped rows also include recipient_id, from, subject, and exactly one object-valued to, cc, or bcc field. Legacy or message-scoped rows can omit recipient_id and use object-valued or string-valued to/cc fields, including an empty string when no address exists; bcc is redacted. If the related message or recipient cannot be loaded, the minimal fallback can omit from, subject, and recipient fields. Additional persisted public evidence can be present.
@@ -90,12 +80,12 @@ class DataPayload(BaseModel):
     canonical_event_type to identify the outcome across surfaces.
     """
 
-    bcc: Optional[DataPayloadBcc] = None
+    bcc: Optional[PayloadBcc] = None
 
-    cc: Optional[DataPayloadCc] = None
+    cc: Optional[PayloadCc] = None
     """Legacy message-scoped address, or an empty string when absent."""
 
-    from_: Optional[DataPayloadFrom] = FieldInfo(alias="from", default=None)
+    from_: Optional[PayloadFrom] = FieldInfo(alias="from", default=None)
     """Sender projection in account event polling.
 
     The display name is explicitly null when the message has no sender name.
@@ -106,7 +96,7 @@ class DataPayload(BaseModel):
 
     subject: Optional[str] = None
 
-    to: Optional[DataPayloadTo] = None
+    to: Optional[PayloadTo] = None
     """Legacy message-scoped address, or an empty string when absent."""
 
     if TYPE_CHECKING:
@@ -122,7 +112,7 @@ class DataPayload(BaseModel):
         __pydantic_extra__: Dict[str, object]
 
 
-class Data(BaseModel):
+class EmailEventListResponse(BaseModel):
     """An account-polling event.
 
     The envelope is webhook-shaped, but polling preserves stored-event cardinality: queued, sending, sandbox, cancelled, and daily_limit_exceeded message events fan out per recipient; scheduled remains one message-scoped row. Payload fields vary among recipient-scoped, message-scoped, and minimal fallback rows.
@@ -150,7 +140,7 @@ class Data(BaseModel):
 
     occurred_at: datetime
 
-    payload: DataPayload
+    payload: Payload
     """Payload returned by GET /email_events.
 
     Every row includes id, status, and occurred_at. Recipient-scoped rows also
@@ -168,18 +158,3 @@ class Data(BaseModel):
     Present for recipient-scoped events, including each queued, sending, sandbox,
     cancelled, and daily_limit_exceeded fan-out event.
     """
-
-
-class Meta(BaseModel):
-    page_size: int
-
-    time_range: TimeRange
-
-    page_cursor: Optional[str] = None
-    """Cursor for the next page, when more results are available."""
-
-
-class EmailEventListResponse(BaseModel):
-    data: List[Data]
-
-    meta: Meta

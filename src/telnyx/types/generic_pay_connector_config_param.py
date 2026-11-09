@@ -20,7 +20,7 @@ class BasicAuthenticationAlsoTheValidationDefault(TypedDict, total=False):
     username: Required[str]
     """Basic username."""
 
-    token: object
+    token: str
     """Nonblank string required for bearer authentication.
 
     Write-only; omitted from responses. Re-send when replacing a bearer-auth config.
@@ -54,7 +54,7 @@ class BearerAuthentication(TypedDict, total=False):
     Use HTTPS to protect payment data in transit.
     """
 
-    password: object
+    password: str
     """Nonblank string required for basic authentication.
 
     Write-only; omitted from responses. Re-send when replacing a basic-auth config.
@@ -67,7 +67,7 @@ class BearerAuthentication(TypedDict, total=False):
     digit-gather timeout.
     """
 
-    username: object
+    username: str
     """Nonblank string required for basic authentication.
 
     Returned in connector responses.
@@ -77,7 +77,7 @@ class BearerAuthentication(TypedDict, total=False):
 class NoProcessorAuthentication(TypedDict, total=False):
     auth_type: Required[Literal["none"]]
 
-    token: object
+    token: str
     """Nonblank string required for bearer authentication.
 
     Write-only; omitted from responses. Re-send when replacing a bearer-auth config.
@@ -89,7 +89,7 @@ class NoProcessorAuthentication(TypedDict, total=False):
     Use HTTPS to protect payment data in transit.
     """
 
-    password: object
+    password: str
     """Nonblank string required for basic authentication.
 
     Write-only; omitted from responses. Re-send when replacing a basic-auth config.
@@ -102,7 +102,7 @@ class NoProcessorAuthentication(TypedDict, total=False):
     digit-gather timeout.
     """
 
-    username: object
+    username: str
     """Nonblank string required for basic authentication.
 
     Returned in connector responses.

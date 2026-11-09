@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["ExternalLlmParam"]
@@ -21,6 +22,22 @@ class ExternalLlmParam(TypedDict, total=False):
     """
     Integration secret identifier for the client certificate used with certificate
     authentication.
+    """
+
+    extra_headers: Optional[Dict[str, str]]
+    """
+    Custom HTTP headers Telnyx sets on every request to the external LLM endpoint,
+    in addition to the authentication header. Keys are header names, values are
+    static strings. At most 32 headers. Reserved names are rejected:
+    accept-encoding, authorization, connection, content-encoding, content-length,
+    content-type, cookie, expect, host, keep-alive, proxy-authenticate,
+    proxy-authorization, proxy-connection, set-cookie, te, trailer,
+    transfer-encoding, upgrade, x-host-rewrite, x-request-id, x-trace-id, and any
+    x-telnyx-_ or x-stainless-_ header; '\\__' counts as '-' when names are compared.
+    Names must be valid HTTP header names (RFC 7230 token, at most 128 characters)
+    and must not repeat (case-insensitive). Values must be printable ASCII, at most
+    4096 characters, with no leading or trailing whitespace. Values are stored as
+    plain text and returned when the assistant is retrieved.
     """
 
     forward_metadata: bool

@@ -99,8 +99,10 @@ from .service_plan import ServicePlan as ServicePlan
 from .stream_codec import StreamCodec as StreamCodec
 from .traffic_type import TrafficType as TrafficType
 from .uac_outbound import UacOutbound as UacOutbound
+from .user_profile import UserProfile as UserProfile
 from .verification import Verification as Verification
 from .video_region import VideoRegion as VideoRegion
+from .agent_gateway import AgentGateway as AgentGateway
 from .billing_group import BillingGroup as BillingGroup
 from .call_answered import CallAnswered as CallAnswered
 from .call_enqueued import CallEnqueued as CallEnqueued
@@ -126,6 +128,7 @@ from .room_recording import RoomRecording as RoomRecording
 from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
+from .token_material import TokenMaterial as TokenMaterial
 from .uac_connection import UacConnection as UacConnection
 from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
@@ -232,6 +235,7 @@ from .video_region_param import VideoRegionParam as VideoRegionParam
 from .address_list_params import AddressListParams as AddressListParams
 from .ai_summarize_params import AISummarizeParams as AISummarizeParams
 from .anchorsite_override import AnchorsiteOverride as AnchorsiteOverride
+from .calendar_connection import CalendarConnection as CalendarConnection
 from .call_playback_ended import CallPlaybackEnded as CallPlaybackEnded
 from .call_siprec_started import CallSiprecStarted as CallSiprecStarted
 from .call_siprec_stopped import CallSiprecStopped as CallSiprecStopped
@@ -329,9 +333,11 @@ from .reserved_phone_number import ReservedPhoneNumber as ReservedPhoneNumber
 from .s3_configuration_data import S3ConfigurationData as S3ConfigurationData
 from .uac_external_settings import UacExternalSettings as UacExternalSettings
 from .uac_internal_settings import UacInternalSettings as UacInternalSettings
+from .variable_schema_entry import VariableSchemaEntry as VariableSchemaEntry
 from .voice_design_response import VoiceDesignResponse as VoiceDesignResponse
 from .voice_sdk_call_report import VoiceSDKCallReport as VoiceSDKCallReport
 from .whatsapp_message_echo import WhatsappMessageEcho as WhatsappMessageEcho
+from .agent_gateway_response import AgentGatewayResponse as AgentGatewayResponse
 from .alphanumeric_sender_id import AlphanumericSenderID as AlphanumericSenderID
 from .call_event_list_params import CallEventListParams as CallEventListParams
 from .call_streaming_started import CallStreamingStarted as CallStreamingStarted
@@ -468,6 +474,7 @@ from .web_search_create_params import WebSearchCreateParams as WebSearchCreatePa
 from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
 from .wireguard_interface_read import WireguardInterfaceRead as WireguardInterfaceRead
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
+from .agent_gateway_list_params import AgentGatewayListParams as AgentGatewayListParams
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
 from .billing_group_list_params import BillingGroupListParams as BillingGroupListParams
@@ -495,6 +502,7 @@ from .global_ip_create_response import GlobalIPCreateResponse as GlobalIPCreateR
 from .global_ip_delete_response import GlobalIPDeleteResponse as GlobalIPDeleteResponse
 from .invoice_retrieve_response import InvoiceRetrieveResponse as InvoiceRetrieveResponse
 from .ip_connection_list_params import IPConnectionListParams as IPConnectionListParams
+from .meeting_session_assistant import MeetingSessionAssistant as MeetingSessionAssistant
 from .message_retrieve_response import MessageRetrieveResponse as MessageRetrieveResponse
 from .message_schedule_response import MessageScheduleResponse as MessageScheduleResponse
 from .message_whatsapp_response import MessageWhatsappResponse as MessageWhatsappResponse
@@ -558,6 +566,7 @@ from .uac_connection_list_params import UacConnectionListParams as UacConnection
 from .unsubscribe_group_response import UnsubscribeGroupResponse as UnsubscribeGroupResponse
 from .usage_report_list_response import UsageReportListResponse as UsageReportListResponse
 from .user_address_create_params import UserAddressCreateParams as UserAddressCreateParams
+from .user_profile_list_response import UserProfileListResponse as UserProfileListResponse
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
 from .voice_design_create_params import VoiceDesignCreateParams as VoiceDesignCreateParams
 from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRenameParams
@@ -565,6 +574,7 @@ from .web_search_contents_params import WebSearchContentsParams as WebSearchCont
 from .web_search_create_response import WebSearchCreateResponse as WebSearchCreateResponse
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
+from .agent_gateway_create_params import AgentGatewayCreateParams as AgentGatewayCreateParams
 from .billing_group_create_params import BillingGroupCreateParams as BillingGroupCreateParams
 from .billing_group_update_params import BillingGroupUpdateParams as BillingGroupUpdateParams
 from .bot_challenge_create_params import BotChallengeCreateParams as BotChallengeCreateParams
@@ -608,10 +618,12 @@ from .uac_external_settings_param import UacExternalSettingsParam as UacExternal
 from .uac_internal_settings_param import UacInternalSettingsParam as UacInternalSettingsParam
 from .unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent as UnsafeUnwrapWebhookEvent
 from .user_addresses_user_address import UserAddressesUserAddress as UserAddressesUserAddress
+from .variable_schema_entry_param import VariableSchemaEntryParam as VariableSchemaEntryParam
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
 from .wireless_wireless_blocklist import WirelessWirelessBlocklist as WirelessWirelessBlocklist
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .advanced_order_list_response import AdvancedOrderListResponse as AdvancedOrderListResponse
+from .calendar_connection_response import CalendarConnectionResponse as CalendarConnectionResponse
 from .call_assistant_request_param import CallAssistantRequestParam as CallAssistantRequestParam
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent as CallInitiatedWebhookEvent
 from .call_machine_detection_ended import CallMachineDetectionEnded as CallMachineDetectionEnded
@@ -626,6 +638,7 @@ from .email_template_render_params import EmailTemplateRenderParams as EmailTemp
 from .email_template_update_params import EmailTemplateUpdateParams as EmailTemplateUpdateParams
 from .email_thread_retrieve_params import EmailThreadRetrieveParams as EmailThreadRetrieveParams
 from .gcs_configuration_data_param import GcsConfigurationDataParam as GcsConfigurationDataParam
+from .meeting_session_leave_policy import MeetingSessionLeavePolicy as MeetingSessionLeavePolicy
 from .messaging_metrics_time_frame import MessagingMetricsTimeFrame as MessagingMetricsTimeFrame
 from .messaging_optout_list_params import MessagingOptoutListParams as MessagingOptoutListParams
 from .network_coverage_list_params import NetworkCoverageListParams as NetworkCoverageListParams
@@ -724,6 +737,7 @@ from .requirement_retrieve_response import RequirementRetrieveResponse as Requir
 from .s3_generic_configuration_data import S3GenericConfigurationData as S3GenericConfigurationData
 from .texml_application_list_params import TexmlApplicationListParams as TexmlApplicationListParams
 from .texml_initiate_ai_call_params import TexmlInitiateAICallParams as TexmlInitiateAICallParams
+from .user_profile_patch_all_params import UserProfilePatchAllParams as UserProfilePatchAllParams
 from .verified_number_create_params import VerifiedNumberCreateParams as VerifiedNumberCreateParams
 from .voice_designs_pagination_meta import VoiceDesignsPaginationMeta as VoiceDesignsPaginationMeta
 from .azure_configuration_data_param import AzureConfigurationDataParam as AzureConfigurationDataParam
@@ -825,6 +839,7 @@ from .texml_application_create_params import TexmlApplicationCreateParams as Tex
 from .texml_application_update_params import TexmlApplicationUpdateParams as TexmlApplicationUpdateParams
 from .texml_initiate_ai_call_response import TexmlInitiateAICallResponse as TexmlInitiateAICallResponse
 from .usage_report_get_options_params import UsageReportGetOptionsParams as UsageReportGetOptionsParams
+from .user_profile_patch_all_response import UserProfilePatchAllResponse as UserProfilePatchAllResponse
 from .verification_trigger_sms_params import VerificationTriggerSMSParams as VerificationTriggerSMSParams
 from .verified_number_create_response import VerifiedNumberCreateResponse as VerifiedNumberCreateResponse
 from .voice_sdk_call_report_log_entry import VoiceSDKCallReportLogEntry as VoiceSDKCallReportLogEntry
@@ -844,6 +859,7 @@ from .global_ip_protocol_list_response import GlobalIPProtocolListResponse as Gl
 from .inexplicit_number_order_response import InexplicitNumberOrderResponse as InexplicitNumberOrderResponse
 from .integration_secret_create_params import IntegrationSecretCreateParams as IntegrationSecretCreateParams
 from .inventory_coverage_list_response import InventoryCoverageListResponse as InventoryCoverageListResponse
+from .meeting_session_recording_export import MeetingSessionRecordingExport as MeetingSessionRecordingExport
 from .message_send_short_code_response import MessageSendShortCodeResponse as MessageSendShortCodeResponse
 from .messaging_profile_features_param import MessagingProfileFeaturesParam as MessagingProfileFeaturesParam
 from .messaging_url_domain_list_params import MessagingURLDomainListParams as MessagingURLDomainListParams
@@ -857,6 +873,7 @@ from .number_reservation_create_params import NumberReservationCreateParams as N
 from .porting_phone_number_list_params import PortingPhoneNumberListParams as PortingPhoneNumberListParams
 from .pronunciation_dict_create_params import PronunciationDictCreateParams as PronunciationDictCreateParams
 from .pronunciation_dict_update_params import PronunciationDictUpdateParams as PronunciationDictUpdateParams
+from .recording_exported_webhook_event import RecordingExportedWebhookEvent as RecordingExportedWebhookEvent
 from .room_composition_create_response import RoomCompositionCreateResponse as RoomCompositionCreateResponse
 from .room_recording_retrieve_response import RoomRecordingRetrieveResponse as RoomRecordingRetrieveResponse
 from .session_analysis_retrieve_params import SessionAnalysisRetrieveParams as SessionAnalysisRetrieveParams
@@ -876,6 +893,9 @@ from .wireless_blocklist_update_params import WirelessBlocklistUpdateParams as W
 from .wireless_retrieve_regions_params import WirelessRetrieveRegionsParams as WirelessRetrieveRegionsParams
 from .artifact_download_retrieve_params import ArtifactDownloadRetrieveParams as ArtifactDownloadRetrieveParams
 from .browser_session_retrieve_response import BrowserSessionRetrieveResponse as BrowserSessionRetrieveResponse
+from .calendar_connection_create_params import CalendarConnectionCreateParams as CalendarConnectionCreateParams
+from .calendar_connection_list_response import CalendarConnectionListResponse as CalendarConnectionListResponse
+from .calendar_connection_update_params import CalendarConnectionUpdateParams as CalendarConnectionUpdateParams
 from .call_control_application_outbound import CallControlApplicationOutbound as CallControlApplicationOutbound
 from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent as CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent as CallSiprecStartedWebhookEvent
@@ -935,6 +955,7 @@ from .generic_pay_connector_config_param import GenericPayConnectorConfigParam a
 from .global_ip_assignment_update_params import GlobalIPAssignmentUpdateParams as GlobalIPAssignmentUpdateParams
 from .global_ip_health_check_list_params import GlobalIPHealthCheckListParams as GlobalIPHealthCheckListParams
 from .integration_secret_create_response import IntegrationSecretCreateResponse as IntegrationSecretCreateResponse
+from .meeting_session_leave_policy_param import MeetingSessionLeavePolicyParam as MeetingSessionLeavePolicyParam
 from .messaging_url_domain_list_response import MessagingURLDomainListResponse as MessagingURLDomainListResponse
 from .mobile_push_credential_list_params import MobilePushCredentialListParams as MobilePushCredentialListParams
 from .notification_channel_create_params import NotificationChannelCreateParams as NotificationChannelCreateParams
@@ -962,6 +983,8 @@ from .wireless_blocklist_update_response import WirelessBlocklistUpdateResponse 
 from .wireless_retrieve_regions_response import WirelessRetrieveRegionsResponse as WirelessRetrieveRegionsResponse
 from .authentication_provider_list_params import AuthenticationProviderListParams as AuthenticationProviderListParams
 from .bot_signup_resend_magic_link_params import BotSignupResendMagicLinkParams as BotSignupResendMagicLinkParams
+from .calendar_connection_create_response import CalendarConnectionCreateResponse as CalendarConnectionCreateResponse
+from .calendar_connection_update_response import CalendarConnectionUpdateResponse as CalendarConnectionUpdateResponse
 from .call_machine_premium_greeting_ended import CallMachinePremiumGreetingEnded as CallMachinePremiumGreetingEnded
 from .call_payment_progress_webhook_event import CallPaymentProgressWebhookEvent as CallPaymentProgressWebhookEvent
 from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent as CallPlaybackStartedWebhookEvent
@@ -1103,6 +1126,9 @@ from .inexplicit_number_order_create_params import (
 from .machine_payment_account_credit_params import (
     MachinePaymentAccountCreditParams as MachinePaymentAccountCreditParams,
 )
+from .meeting_session_recording_destination import (
+    MeetingSessionRecordingDestination as MeetingSessionRecordingDestination,
+)
 from .messaging_hosted_number_update_params import (
     MessagingHostedNumberUpdateParams as MessagingHostedNumberUpdateParams,
 )
@@ -1128,6 +1154,9 @@ from .pronunciation_dict_phoneme_item_param import (
 )
 from .public_internet_gateway_create_params import (
     PublicInternetGatewayCreateParams as PublicInternetGatewayCreateParams,
+)
+from .recording_export_failed_webhook_event import (
+    RecordingExportFailedWebhookEvent as RecordingExportFailedWebhookEvent,
 )
 from .sim_card_get_activation_code_response import SimCardGetActivationCodeResponse as SimCardGetActivationCodeResponse
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
@@ -1164,6 +1193,9 @@ from .virtual_cross_connect_update_response import (
 from .voice_clone_create_from_upload_params import VoiceCloneCreateFromUploadParams as VoiceCloneCreateFromUploadParams
 from .wireguard_interface_retrieve_response import (
     WireguardInterfaceRetrieveResponse as WireguardInterfaceRetrieveResponse,
+)
+from .agent_gateway_retrieve_models_response import (
+    AgentGatewayRetrieveModelsResponse as AgentGatewayRetrieveModelsResponse,
 )
 from .alphanumeric_sender_id_create_response import (
     AlphanumericSenderIDCreateResponse as AlphanumericSenderIDCreateResponse,
@@ -1369,6 +1401,9 @@ from .whatsapp_message_template_update_params import (
 from .wireguard_peer_retrieve_config_response import (
     WireguardPeerRetrieveConfigResponse as WireguardPeerRetrieveConfigResponse,
 )
+from .agent_gateway_retrieve_spend_logs_params import (
+    AgentGatewayRetrieveSpendLogsParams as AgentGatewayRetrieveSpendLogsParams,
+)
 from .alphanumeric_sender_id_retrieve_response import (
     AlphanumericSenderIDRetrieveResponse as AlphanumericSenderIDRetrieveResponse,
 )
@@ -1501,6 +1536,9 @@ from .terms_of_service_retrieve_status_response import (
 from .whatsapp_message_template_update_response import (
     WhatsappMessageTemplateUpdateResponse as WhatsappMessageTemplateUpdateResponse,
 )
+from .agent_gateway_retrieve_spend_logs_response import (
+    AgentGatewayRetrieveSpendLogsResponse as AgentGatewayRetrieveSpendLogsResponse,
+)
 from .available_phone_number_block_list_response import (
     AvailablePhoneNumberBlockListResponse as AvailablePhoneNumberBlockListResponse,
 )
@@ -1579,6 +1617,9 @@ from .global_ip_assignments_usage_retrieve_params import (
 from .ledger_billing_group_report_create_response import (
     LedgerBillingGroupReportCreateResponse as LedgerBillingGroupReportCreateResponse,
 )
+from .meeting_session_recording_destination_param import (
+    MeetingSessionRecordingDestinationParam as MeetingSessionRecordingDestinationParam,
+)
 from .messaging_hosted_number_order_create_params import (
     MessagingHostedNumberOrderCreateParams as MessagingHostedNumberOrderCreateParams,
 )
@@ -1626,6 +1667,9 @@ from .dynamic_emergency_endpoint_retrieve_response import (
 )
 from .external_connection_update_location_response import (
     ExternalConnectionUpdateLocationResponse as ExternalConnectionUpdateLocationResponse,
+)
+from .meeting_session_retrieve_recordings_response import (
+    MeetingSessionRetrieveRecordingsResponse as MeetingSessionRetrieveRecordingsResponse,
 )
 from .meeting_session_retrieve_transcript_response import (
     MeetingSessionRetrieveTranscriptResponse as MeetingSessionRetrieveTranscriptResponse,
@@ -1794,6 +1838,9 @@ from .messaging_hosted_number_order_validate_codes_response import (
 )
 from .messaging_profile_list_alphanumeric_sender_ids_params import (
     MessagingProfileListAlphanumericSenderIDsParams as MessagingProfileListAlphanumericSenderIDsParams,
+)
+from .telephony_credential_retrieve_token_material_response import (
+    TelephonyCredentialRetrieveTokenMaterialResponse as TelephonyCredentialRetrieveTokenMaterialResponse,
 )
 from .messaging_hosted_number_order_check_eligibility_params import (
     MessagingHostedNumberOrderCheckEligibilityParams as MessagingHostedNumberOrderCheckEligibilityParams,

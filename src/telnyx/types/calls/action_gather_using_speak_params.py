@@ -200,6 +200,7 @@ if TYPE_CHECKING:
         InworldVoiceSettings,
         XaiVoiceSettings,
         "SonioxVoiceSettingsParam",
+        "AssemblyAIVoiceSettingsParam",
     ]
 else:
     VoiceSettings = Union[
@@ -212,9 +213,11 @@ else:
         InworldVoiceSettings,
         XaiVoiceSettings,
         ForwardRef(f"__import__({__name__!r}, fromlist=('',)).SonioxVoiceSettingsParam"),
+        ForwardRef(f"__import__({__name__!r}, fromlist=('',)).AssemblyAIVoiceSettingsParam"),
     ]
 
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .soniox_voice_settings_param import SonioxVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
+from .assembly_ai_voice_settings_param import AssemblyAIVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam

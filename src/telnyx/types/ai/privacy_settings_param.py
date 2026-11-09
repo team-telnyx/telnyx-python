@@ -20,18 +20,32 @@ class PrivacySettingsParam(TypedDict, total=False):
 
     in_transit_data_locality: bool
     """
-    Requires every model call made for a web chat turn to be received and served
-    inside your organization's data-locality region, rather than only stored there.
-    Applies to web chat only — voice and messaging assistants are unaffected.
-    Enabling it requires a data-locality region with in-region inference (USA, EU,
-    AUS, UAE; see
-    [Inference regions](https://developers.telnyx.com/docs/inference/models/regions))
-    and Telnyx-hosted models for the assistant, its fallback, and any
-    conversation-flow node that overrides the model; the request is rejected
-    otherwise. Once enabled, send chat requests to your region's API hostname: a
-    request entering the platform in another region is rejected rather than
+    Requires this assistant's conversations to be processed inside your
+    organization's data-locality region, rather than only stored there, on every
+    channel: for web chat, every model call of a turn; for voice, the call's model
+    calls and the Telnyx-hosted speech services it uses; for SMS and WhatsApp, the
+    model calls of each turn (how messages travel through carriers is not covered).
+    Covered processing that cannot be handled in region fails rather than being
+    served elsewhere. Enabling it requires a data-locality region with in-region
+    inference (USA, EU, AUS, UAE; see
+    [Inference regions](https://developers.telnyx.com/docs/inference/models/regions)),
+    models for the assistant, its fallback, and any conversation-flow node that
+    overrides the model that are either Telnyx-hosted or a customer-provided
+    `external_llm` endpoint (third-party model providers are refused), and, when
+    `insight_settings.model` is set, an insight model available in that region; the
+    request is rejected otherwise. A voice call fails when it starts if its STT
+    model or TTS voice is not self-hosted by Telnyx, if the assistant uses a
+    speech-to-speech model, or if the call's media is anchored outside the region.
+    URLs Telnyx is configured to call — an `external_llm` endpoint, webhook tools,
+    Voice API callbacks, or a recording storage destination — are followed as-is:
+    Telnyx cannot verify where a customer-supplied URL processes requests, and
+    keeping those steps in your region is your responsibility. Once enabled, send
+    web chat requests and WebSocket or WebRTC conversations to your region's API
+    hostname: one entering the platform in another region is refused rather than
     forwarded, because forwarding it would already have moved the content across the
-    border. Defaults to false.
+    border. See
+    [Data residency](https://developers.telnyx.com/docs/inference/data-residency#in-region-processing-for-ai-assistants).
+    Defaults to false.
     """
 
     pii_redaction: Literal["disabled", "redact"]

@@ -341,8 +341,13 @@ class ConversationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a specific conversation by its ID.
+        """Delete a specific conversation by its ID.
+
+        Permanently deletes the conversation
+        and its associated data: the conversation's messages, its insight generation
+        results, any conversation memories, and its webhook request logs. Recordings are
+        not deleted — recordings are managed separately through the /v2/recordings
+        endpoints. This action cannot be undone.
 
         Args:
           extra_headers: Send extra headers
@@ -418,6 +423,52 @@ class ConversationsResource(SyncAPIResource):
                     "tool_choice": tool_choice,
                 },
                 conversation_add_message_params.ConversationAddMessageParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    def delete_delete(
+        self,
+        insight_id: str,
+        *,
+        conversation_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Delete one insight generation request for a conversation.
+
+        Generation results are
+        stored per conversation and per insight template; deleting a request permanently
+        removes the stored result but does not stop insight generation from running
+        again. To remove every insight result for the conversation, delete the
+        conversation itself. A successful delete returns an empty response.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not conversation_id:
+            raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
+        if not insight_id:
+            raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template(
+                "/ai/conversations/{conversation_id}/conversations-insights/{insight_id}",
+                conversation_id=conversation_id,
+                insight_id=insight_id,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -737,8 +788,13 @@ class AsyncConversationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a specific conversation by its ID.
+        """Delete a specific conversation by its ID.
+
+        Permanently deletes the conversation
+        and its associated data: the conversation's messages, its insight generation
+        results, any conversation memories, and its webhook request logs. Recordings are
+        not deleted — recordings are managed separately through the /v2/recordings
+        endpoints. This action cannot be undone.
 
         Args:
           extra_headers: Send extra headers
@@ -821,6 +877,52 @@ class AsyncConversationsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def delete_delete(
+        self,
+        insight_id: str,
+        *,
+        conversation_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Delete one insight generation request for a conversation.
+
+        Generation results are
+        stored per conversation and per insight template; deleting a request permanently
+        removes the stored result but does not stop insight generation from running
+        again. To remove every insight result for the conversation, delete the
+        conversation itself. A successful delete returns an empty response.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not conversation_id:
+            raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
+        if not insight_id:
+            raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template(
+                "/ai/conversations/{conversation_id}/conversations-insights/{insight_id}",
+                conversation_id=conversation_id,
+                insight_id=insight_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
     async def retrieve_conversations_insights(
         self,
         conversation_id: str,
@@ -879,6 +981,9 @@ class ConversationsResourceWithRawResponse:
         self.add_message = to_raw_response_wrapper(
             conversations.add_message,
         )
+        self.delete_delete = to_raw_response_wrapper(
+            conversations.delete_delete,
+        )
         self.retrieve_conversations_insights = to_raw_response_wrapper(
             conversations.retrieve_conversations_insights,
         )
@@ -925,6 +1030,9 @@ class AsyncConversationsResourceWithRawResponse:
         )
         self.add_message = async_to_raw_response_wrapper(
             conversations.add_message,
+        )
+        self.delete_delete = async_to_raw_response_wrapper(
+            conversations.delete_delete,
         )
         self.retrieve_conversations_insights = async_to_raw_response_wrapper(
             conversations.retrieve_conversations_insights,
@@ -973,6 +1081,9 @@ class ConversationsResourceWithStreamingResponse:
         self.add_message = to_streamed_response_wrapper(
             conversations.add_message,
         )
+        self.delete_delete = to_streamed_response_wrapper(
+            conversations.delete_delete,
+        )
         self.retrieve_conversations_insights = to_streamed_response_wrapper(
             conversations.retrieve_conversations_insights,
         )
@@ -1019,6 +1130,9 @@ class AsyncConversationsResourceWithStreamingResponse:
         )
         self.add_message = async_to_streamed_response_wrapper(
             conversations.add_message,
+        )
+        self.delete_delete = async_to_streamed_response_wrapper(
+            conversations.delete_delete,
         )
         self.retrieve_conversations_insights = async_to_streamed_response_wrapper(
             conversations.retrieve_conversations_insights,
